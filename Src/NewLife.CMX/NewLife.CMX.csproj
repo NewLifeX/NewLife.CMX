@@ -48,6 +48,12 @@
     <Compile Include="Manager\SysConfig.cs" />
     <Compile Include="Manager\Admin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="基础\主题.Biz.cs" />
+    <Compile Include="基础\主题.cs" />
+    <Compile Include="基础\文章.Biz.cs" />
+    <Compile Include="基础\文章.cs" />
+    <Compile Include="基础\标题.Biz.cs" />
+    <Compile Include="基础\标题.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NewLife.CommonEntity\NewLife.CommonEntity.csproj">
@@ -62,6 +68,24 @@
       <Project>{b49aba5a-c5da-45f4-87f1-b435ec51d710}</Project>
       <Name>XCode</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CMX.xml" />
+    <Content Include="CMX数据字典.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="XCoder.log">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>XCoder.tt</DependentUpon>
+    </None>
+    <None Include="XCoder.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>XCoder.log</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Tables Version="8.9.4954.21601">
+  <Table Name="Subject" Description="主题" DbType="SqlServer" 实体分类="基础" 页面分类="Common">
+    <Columns>
+      <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
+      <Column Name="CategoryID" DataType="Int32" Description="分类" />
+      <Column Name="Title" DataType="String" Nullable="False" Description="标题" />
+      <Column Name="Version" DataType="Int32" Description="最新版本" />
+      <Column Name="StatisticsID" DataType="Int32" Description="访问统计" />
+      <Column Name="CreateUser" DataType="Int32" Description="创建人" />
+      <Column Name="CreateName" DataType="String" Description="创建人" />
+      <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
+      <Column Name="UpdateUser" DataType="Int32" Description="更新人" />
+      <Column Name="UpdateName" DataType="String" Description="更新人" />
+      <Column Name="UpdateTime" DataType="DateTime" Description="更新时间" />
+      <Column Name="Remark" DataType="String" Length="500" Description="备注" />
+    </Columns>
+    <Indexes>
+      <Index Name="IX_Subject_CategoryID" Columns="CategoryID" />
+    </Indexes>
+  </Table>
+  <Table Name="Title" Description="标题" DbType="SqlServer" 实体分类="基础" 页面分类="Common">
+    <Columns>
+      <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
+      <Column Name="SubjectID" DataType="Int32" Description="标题" />
+      <Column Name="Name" DataType="String" Nullable="False" Description="标题" />
+      <Column Name="Version" DataType="Int32" Description="版本" />
+    </Columns>
+    <Indexes>
+      <Index Name="IX_Title_SubjectID_Version" Unique="True" Columns="SubjectID,Version" />
+      <Index Name="IX_Title_SubjectID" Columns="SubjectID" />
+    </Indexes>
+  </Table>
+  <Table Name="Article" Description="文章" DbType="SqlServer" 实体分类="基础" 页面分类="Common">
+    <Columns>
+      <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
+      <Column Name="TitleID" DataType="Int32" Description="标题" />
+      <Column Name="Page" DataType="Int32" Description="页码" />
+      <Column Name="Content" DataType="String" Length="-1" Description="内容" />
+    </Columns>
+    <Indexes>
+      <Index Name="IX_Article_TitleID" Columns="TitleID" />
+      <Index Name="IX_Article_TitleID_Page" Unique="True" Columns="TitleID,Page" />
+    </Indexes>
+  </Table>
+</Tables>
