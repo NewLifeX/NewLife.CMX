@@ -14,6 +14,55 @@
 -->
 </style>
 
+Channel：
+<strong>频道 （Channel）</strong> <BR>
+<table border="0" cellspacing="0" class="dbtable">
+  <tr align="center" valign="middle" class="caption">
+    <td width="150">中文名</td>
+    <td width="150">英文名</td>
+    <td width="150">字段名</td>
+    <td width="75">数据类型</td>
+    <td width="75">大小</td>
+    <td width="75">是否主键</td>
+    <td width="75">是否唯一</td>
+    <td width="75">是否必填</td>
+    <td width="75">默认值</td>
+  </tr>
+  <tr class="dbbody">
+    <td>编号</td>
+    <td>ID</td>
+    <td>ID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td width="75"></td>
+  </tr>
+  <tr class="dbbody">
+    <td>名称</td>
+    <td>Name</td>
+    <td>Name</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td width="75"></td>
+  </tr>
+  <tr class="dbbody">
+    <td>模型</td>
+    <td>ModelKind</td>
+    <td>ModelKind</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td width="75"></td>
+  </tr>
+</table>
+
 Subject：
 <strong>主题 （Subject）</strong> <BR>
 <table border="0" cellspacing="0" class="dbtable">
@@ -162,8 +211,8 @@ Subject：
   </tr>
 </table>
 
-Title：
-<strong>标题 （Title）</strong> <BR>
+Article：
+<strong>文章 （Article）</strong> <BR>
 <table border="0" cellspacing="0" class="dbtable">
   <tr align="center" valign="middle" class="caption">
     <td width="150">中文名</td>
@@ -220,50 +269,45 @@ Title：
     <td align="center">&nbsp;</td>
     <td width="75"></td>
   </tr>
-</table>
-
-Article：
-<strong>文章 （Article）</strong> <BR>
-<table border="0" cellspacing="0" class="dbtable">
-  <tr align="center" valign="middle" class="caption">
-    <td width="150">中文名</td>
-    <td width="150">英文名</td>
-    <td width="150">字段名</td>
-    <td width="75">数据类型</td>
-    <td width="75">大小</td>
-    <td width="75">是否主键</td>
-    <td width="75">是否唯一</td>
-    <td width="75">是否必填</td>
-    <td width="75">默认值</td>
-  </tr>
-  <tr class="dbbody">
-    <td>编号</td>
-    <td>ID</td>
-    <td>ID</td>
-    <td>Int32</td>
-    <td>10</td>
-    <td align="center">是</td>
-    <td align="center">是</td>
-    <td align="center">是</td>
-    <td width="75"></td>
-  </tr>
-  <tr class="dbbody">
-    <td>标题</td>
-    <td>TitleID</td>
-    <td>TitleID</td>
-    <td>Int32</td>
-    <td>10</td>
-    <td align="center">&nbsp;</td>
-    <td align="center">&nbsp;</td>
-    <td align="center">&nbsp;</td>
-    <td width="75"></td>
-  </tr>
   <tr class="dbbody">
     <td>页码</td>
     <td>Page</td>
     <td>Page</td>
     <td>Int32</td>
     <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td width="75"></td>
+  </tr>
+  <tr class="dbbody">
+    <td>更新人</td>
+    <td>UpdateUser</td>
+    <td>UpdateUser</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td width="75"></td>
+  </tr>
+  <tr class="dbbody">
+    <td>更新人</td>
+    <td>UpdateName</td>
+    <td>UpdateName</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td width="75"></td>
+  </tr>
+  <tr class="dbbody">
+    <td>更新时间</td>
+    <td>UpdateTime</td>
+    <td>UpdateTime</td>
+    <td>DateTime</td>
+    <td>3</td>
     <td align="center">&nbsp;</td>
     <td align="center">&nbsp;</td>
     <td align="center">&nbsp;</td>

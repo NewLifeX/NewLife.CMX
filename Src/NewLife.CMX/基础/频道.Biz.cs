@@ -1,7 +1,7 @@
 ﻿/*
  * XCoder v5.1.4954.21602
  * 作者：nnhy/X2
- * 时间：2013-08-03 15:56:32
+ * 时间：2013-08-03 16:28:59
  * 版权：版权所有 (C) 新生命开发团队 2002~2013
 */
 ﻿using System;
@@ -17,8 +17,8 @@ using XCode.Configuration;
 
 namespace NewLife.CMX
 {
-    /// <summary>标题</summary>
-    public partial class Title : Entity<Title>
+    /// <summary>频道</summary>
+    public partial class Channel : Entity<Channel>
     {
         #region 对象操作﻿
 
@@ -49,15 +49,14 @@ namespace NewLife.CMX
         //    if (Meta.Count > 0) return;
 
         //    // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
-        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Title).Name, Meta.Table.DataTable.DisplayName);
+        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Channel).Name, Meta.Table.DataTable.DisplayName);
 
-        //    var entity = new Title();
-        //    entity.SubjectID = 0;
+        //    var entity = new Channel();
         //    entity.Name = "abc";
-        //    entity.Version = 0;
+        //    entity.ModelKind = 0;
         //    entity.Insert();
 
-        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Title).Name, Meta.Table.DataTable.DisplayName);
+        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Channel).Name, Meta.Table.DataTable.DisplayName);
         //}
 
 
@@ -80,29 +79,30 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展查询﻿
-        /// <summary>根据标题、版本查找</summary>
-        /// <param name="subjectid">标题</param>
-        /// <param name="version">版本</param>
+        /// <summary>根据名称查找</summary>
+        /// <param name="name">名称</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static Title FindBySubjectIDAndVersion(Int32 subjectid, Int32 version)
+        public static Channel FindByName(String name)
         {
             if (Meta.Count >= 1000)
-                return Find(new String[] { _.SubjectID, _.Version }, new Object[] { subjectid, version });
+                return Find(_.Name, name);
             else // 实体缓存
-                return Meta.Cache.Entities.Find(e => e.SubjectID == subjectid && e.Version == version);
+                return Meta.Cache.Entities.Find(_.Name, name);
+            // 单对象缓存
+            //return Meta.SingleCache[name];
         }
 
-        /// <summary>根据标题查找</summary>
-        /// <param name="subjectid">标题</param>
+        /// <summary>根据模型查找</summary>
+        /// <param name="modelkind">模型</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<Title> FindAllBySubjectID(Int32 subjectid)
+        public static EntityList<Channel> FindAllByModelKind(Int32 modelkind)
         {
             if (Meta.Count >= 1000)
-                return FindAll(_.SubjectID, subjectid);
+                return FindAll(_.ModelKind, modelkind);
             else // 实体缓存
-                return Meta.Cache.Entities.FindAll(_.SubjectID, subjectid);
+                return Meta.Cache.Entities.FindAll(_.ModelKind, modelkind);
         }
         #endregion
 
@@ -118,7 +118,7 @@ namespace NewLife.CMX
         ///// <param name="maximumRows">最大返回行数，0表示所有行</param>
         ///// <returns>实体集</returns>
         //[DataObjectMethod(DataObjectMethodType.Select, true)]
-        //public static EntityList<Title> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
+        //public static EntityList<Channel> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
         //{
         //    return FindAll(SearchWhere(key), orderClause, null, startRowIndex, maximumRows);
         //}

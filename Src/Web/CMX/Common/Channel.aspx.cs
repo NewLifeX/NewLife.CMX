@@ -5,7 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using NewLife.CMX;
 
-public partial class CMX_Title : MyEntityList<Title>
+public partial class CMX_Channel : MyEntityList<Channel>
 {
     protected void Page_Load(object sender, EventArgs e)
     {

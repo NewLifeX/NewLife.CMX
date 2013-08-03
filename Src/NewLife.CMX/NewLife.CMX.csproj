@@ -53,8 +53,8 @@
     <Compile Include="基础\主题.cs" />
     <Compile Include="基础\文章.Biz.cs" />
     <Compile Include="基础\文章.cs" />
-    <Compile Include="基础\标题.Biz.cs" />
-    <Compile Include="基础\标题.cs" />
+    <Compile Include="基础\频道.Biz.cs" />
+    <Compile Include="基础\频道.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NewLife.CommonEntity\NewLife.CommonEntity.csproj">
