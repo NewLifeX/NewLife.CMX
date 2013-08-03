@@ -1,12 +1,12 @@
 window.onload = function () {
     editor.setOpt({
-        emotionLocalization:true
+        emotionLocalization:false
     });
 
     emotion.SmileyPath = editor.options.emotionLocalization === true ? 'images/' : "http://img.baidu.com/hi/";
     emotion.SmileyBox = createTabList( emotion.tabNum );
     emotion.tabExist = createArr( emotion.tabNum );
-    alert(emotion.SmileyPath);
+
     initImgName();
     initEvtHandler( "tabHeads" );
 };
@@ -48,7 +48,7 @@ function InsertSmiley( url, evt ) {
     var obj = {
         src:editor.options.emotionLocalization ? editor.options.UEDITOR_HOME_URL + "dialogs/emotion/" + url : url
     };
-    obj.data_ue_src = obj.src;
+    obj._src = obj.src;
     editor.execCommand( 'insertimage', obj );
     if ( !evt.ctrlKey ) {
         dialog.popup.hide();
