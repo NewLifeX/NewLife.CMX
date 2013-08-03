@@ -6,8 +6,8 @@
 <head runat="server">
     <title></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script type="text/javascript" charset="utf-8" src="/UEditor/UEditorAjax.ashx"></script>
-    <script type="text/javascript" charset="utf-8" src="/UEditor/editor_all.js"></script>
+    <script type="text/javascript" charset="utf-8" src="<%= ResolveUrl("~/UEditor/UEditorAjax.ashx") %>"></script>
+    <script type="text/javascript" charset="utf-8" src="<%= ResolveUrl("~/UEditor/editor_all.js") %>"></script>
 </head>
 <body>
     <form id="form1" runat="server">

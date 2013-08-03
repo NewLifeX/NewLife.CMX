@@ -52,13 +52,13 @@ namespace NewLife.CMX
         [Description("网站备案号")]
         public String Crod { get { return _Crod; } set { _Crod = value; } }
 
-        private String _Title = "XTCMS内容管理系统";
+        private String _Title = "CMX内容管理系统";
         /// <summary>首页标题(SEO)</summary>
         [DisplayName("首页标题(SEO)")]
         [Description("自定义的首页标题")]
         public String Title { get { return _Title; } set { _Title = value; } }
 
-        private String _KeyWord = "XTCMS,新生命开发团队";
+        private String _KeyWord = "CMX,新生命开发团队";
         /// <summary>页面关健词(SEO)</summary>
         [DisplayName("页面关健词(SEO)")]
         [Description("页面关键词(keyword)")]

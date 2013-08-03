@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections;
+using System.IO;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
-using System.IO;
 
 namespace NewLife.CMX.Editor
 {
-    /// <summary>
-    /// UEditor 配置信息
-    /// </summary>
+    /// <summary>UEditor 配置信息</summary>
     public class UEditorAjaxCore : IHttpHandler
     {
         public void ProcessRequest(HttpContext context)
         {
-            
+
             String ac = RequestStr("ac");
             switch (ac)
             {
@@ -45,6 +43,7 @@ namespace NewLife.CMX.Editor
                     break;
             }
         }
+
         #region 方法
         /// <summary>获取字符型参数</summary>
         /// <param name="name"></param>
@@ -54,6 +53,7 @@ namespace NewLife.CMX.Editor
             String str = HttpContext.Current.Request[name];
             return String.IsNullOrEmpty(str) ? "" : str;
         }
+
         /// <summary>
         /// 集合转换字符串
         /// </summary>
@@ -177,7 +177,7 @@ namespace NewLife.CMX.Editor
         /// <returns></returns>
         public String GetimageManager(HttpContext context)
         {
-            UEditorConfig Entity = UEditorConfig.Current;
+            var Entity = UEditorConfig.Current;
             //保存文件地址
             String SavePath = context.Server.MapPath(Entity.UploadPath);
             //文件允许格式
@@ -186,14 +186,14 @@ namespace NewLife.CMX.Editor
             String str = String.Empty;
             if (action == "get")
             {
-                DirectoryInfo info = new DirectoryInfo(SavePath);
+                var info = new DirectoryInfo(SavePath);
                 //目录验证
                 if (info.Exists)
                 {
-                    DirectoryInfo[] infoArr = info.GetDirectories();
-                    foreach (DirectoryInfo tmpInfo in infoArr)
+                    var infoArr = info.GetDirectories();
+                    foreach (var tmpInfo in infoArr)
                     {
-                        foreach (FileInfo fi in tmpInfo.GetFiles())
+                        foreach (var fi in tmpInfo.GetFiles())
                         {
                             if (Array.IndexOf(FileType, fi.Extension) != -1)
                             {
@@ -256,13 +256,13 @@ namespace NewLife.CMX.Editor
             string action = RequestStr("action");
             if (action == "tmpImg")
             {
-                string pathbase =Entity.UploadPath+ "tmp/";                                                          //保存路径
+                string pathbase = Entity.UploadPath + "tmp/";                                                          //保存路径
                 info = up.upFile(context, pathbase, Entity.ImgExtensions, Entity.ImgFileSize); //获取上传状态
                 return "<script>parent.ue_callback('" + "tmp/" + info["url"] + "','" + info["state"] + "')</script>";
             }
             else
             {
-                string tmpPath =Entity.UploadPath+ "tmp/"; 
+                string tmpPath = Entity.UploadPath + "tmp/";
                 info = up.upScrawl(context, Entity.UploadPath, tmpPath, RequestStr("content")); //获取上传状态
                 return "{'url':'" + info["url"] + "',state:'" + info["state"] + "'}";
             }
@@ -277,23 +277,23 @@ namespace NewLife.CMX.Editor
         /// <returns></returns>
         public String LoadConfig(String Style)
         {
-            StringBuilder Config = new StringBuilder();
-            UEditorConfig UEConfig = UEditorConfig.Current;
-            Config.Append("(function () {");
-            Config.Append(" window.UEDITOR_CONFIG = {");
-            Config.Append("UEDITOR_HOME_URL : \"" + UEConfig.UEditorPath + "\"");
-            Config.Append("," + ImageConfig);
-            Config.Append("," + FileConfig);
-            Config.Append("," + ScrawConfig);
-            Config.Append("," + GetRemoteImageConfig);
-            Config.Append("," + ImageManagerConfig);
-            Config.Append("," + SnapscreenConfig);
-            Config.Append("," + WordImageConfig);
-            Config.Append("," + GetMovieConfig);
-            Config.Append("," + ToolBars);
-            Config.Append(",webAppKey:\"" + UEConfig.BaiduWebAppKey + "\"");
-            Config.Append("};})();");
-            return Config.ToString();
+            var sb = new StringBuilder();
+            var cfg = UEditorConfig.Current;
+            sb.Append("(function () {");
+            sb.Append(" window.UEDITOR_CONFIG = {");
+            sb.Append("UEDITOR_HOME_URL : \"" + cfg.UEditorPath + "\"");
+            sb.Append("," + ImageConfig);
+            sb.Append("," + FileConfig);
+            sb.Append("," + ScrawConfig);
+            sb.Append("," + GetRemoteImageConfig);
+            sb.Append("," + ImageManagerConfig);
+            sb.Append("," + SnapscreenConfig);
+            sb.Append("," + WordImageConfig);
+            sb.Append("," + GetMovieConfig);
+            sb.Append("," + ToolBars);
+            sb.Append(",webAppKey:\"" + cfg.BaiduWebAppKey + "\"");
+            sb.Append("};})();");
+            return sb.ToString();
         }
         /// <summary>
         /// 图片上传配置
@@ -309,8 +309,8 @@ namespace NewLife.CMX.Editor
             #endregion
             get
             {
-                UEditorConfig Entity = UEditorConfig.Current;
-                StringBuilder imgcfg = new StringBuilder();
+                var Entity = UEditorConfig.Current;
+                var imgcfg = new StringBuilder();
                 imgcfg.Append("imageUrl:\"" + Entity.ImgUpUrl + "\"");
                 imgcfg.Append("," + "imagePath:\"" + Entity.UploadPath + "\"");
                 return imgcfg.ToString();
@@ -323,8 +323,8 @@ namespace NewLife.CMX.Editor
         {
             get
             {
-                UEditorConfig Entity = UEditorConfig.Current;
-                StringBuilder Filecfg = new StringBuilder();
+                var Entity = UEditorConfig.Current;
+                var Filecfg = new StringBuilder();
                 Filecfg.Append("fileUrl:\"" + Entity.FileUrl + "\"");
                 Filecfg.Append("," + "filePath:\"" + Entity.UploadPath + "\"");
                 return Filecfg.ToString();
@@ -337,8 +337,8 @@ namespace NewLife.CMX.Editor
         {
             get
             {
-                UEditorConfig Entity = UEditorConfig.Current;
-                StringBuilder Scrawcfg = new StringBuilder();
+                var Entity = UEditorConfig.Current;
+                var Scrawcfg = new StringBuilder();
                 Scrawcfg.Append("scrawlUrl:\"" + Entity.ScrawUrl + "\"");
                 Scrawcfg.Append("," + "scrawlPath:\"" + Entity.UploadPath + "\"");
                 return Scrawcfg.ToString();
@@ -351,8 +351,8 @@ namespace NewLife.CMX.Editor
         {
             get
             {
-                UEditorConfig Entity = UEditorConfig.Current;
-                StringBuilder RemoteCfg = new StringBuilder();
+                var Entity = UEditorConfig.Current;
+                var RemoteCfg = new StringBuilder();
                 RemoteCfg.Append("catcherUrl:\"" + Entity.GetRemoteUrl + "\"");
                 RemoteCfg.Append("," + "catcherPath:\"" + Entity.UploadPath + "\"");
                 return RemoteCfg.ToString();
@@ -365,8 +365,8 @@ namespace NewLife.CMX.Editor
         {
             get
             {
-                UEditorConfig Entity = UEditorConfig.Current;
-                StringBuilder ImageManagerCfg = new StringBuilder();
+                var Entity = UEditorConfig.Current;
+                var ImageManagerCfg = new StringBuilder();
                 ImageManagerCfg.Append("imageManagerUrl:\"" + Entity.ImageManagerUrl + "\"");
                 ImageManagerCfg.Append("," + "imageManagerPath:\"" + Entity.UploadPath + "\"");
                 return ImageManagerCfg.ToString();
@@ -379,8 +379,8 @@ namespace NewLife.CMX.Editor
         {
             get
             {
-                UEditorConfig Entity = UEditorConfig.Current;
-                StringBuilder SnapscreenCfg = new StringBuilder();
+                var Entity = UEditorConfig.Current;
+                var SnapscreenCfg = new StringBuilder();
                 SnapscreenCfg.Append("snapscreenHost:\"" + Entity.SnapscreenHost + "\"");
                 SnapscreenCfg.Append("," + "snapscreenServerUrl:\"" + Entity.SnapscreenUrl + "\"");
                 SnapscreenCfg.Append("," + "snapscreenPath:\"" + Entity.UploadPath + "\"");
@@ -420,7 +420,7 @@ namespace NewLife.CMX.Editor
         {
             get
             {
-                StringBuilder ToolBarsCfg = new StringBuilder();
+                var ToolBarsCfg = new StringBuilder();
                 ToolBarsCfg.Append("toolbars:[");
                 ToolBarsCfg.Append("['fullscreen', 'source', '|', 'undo', 'redo', '|',");
                 ToolBarsCfg.Append("'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch','autotypeset','blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist','selectall', 'cleardoc', '|',");

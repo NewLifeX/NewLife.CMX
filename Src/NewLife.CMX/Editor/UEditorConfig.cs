@@ -1,9 +1,7 @@
-﻿using NewLife.Xml;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel;
-using System.Text;
 using System.Xml.Serialization;
+using NewLife.Xml;
 
 namespace NewLife.CMX.Editor
 {
