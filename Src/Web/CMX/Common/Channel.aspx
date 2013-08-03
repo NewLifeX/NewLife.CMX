@@ -20,6 +20,9 @@
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="Ikey" />
             </asp:BoundField>
             <asp:BoundField DataField="Name" HeaderText="名称" SortExpression="Name" />
+            <asp:BoundField DataField="ModelKind" HeaderText="模型" SortExpression="ModelKind" DataFormatString="{0:n0}">
+                <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
+            </asp:BoundField>
             <XCL:LinkBoxField HeaderText="编辑" DataNavigateUrlFields="ID" DataNavigateUrlFormatString="ChannelForm.aspx?ID={0}" Height="157px" Text="编辑" Width="440px" Title="编辑频道">
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="30px" />

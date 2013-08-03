@@ -33,10 +33,9 @@
   <Table Name="Article" Description="文章" DbType="SqlServer" 实体分类="基础" 页面分类="Common">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
-      <Column Name="SubjectID" DataType="Int32" Description="标题" />
-      <Column Name="Name" DataType="String" Nullable="False" Description="标题" />
+      <Column Name="SubjectID" DataType="Int32" Description="主题" />
+      <Column Name="Title" DataType="String" Nullable="False" Description="标题" />
       <Column Name="Version" DataType="Int32" Description="版本" />
-      <Column Name="Page" DataType="Int32" Description="页码" />
       <Column Name="UpdateUser" DataType="Int32" Description="更新人" />
       <Column Name="UpdateName" DataType="String" Description="更新人" />
       <Column Name="UpdateTime" DataType="DateTime" Description="更新时间" />
@@ -44,8 +43,7 @@
     </Columns>
     <Indexes>
       <Index Name="IX_Article_SubjectID" Columns="SubjectID" />
-      <Index Name="IX_Article_SubjectID_Version" Columns="SubjectID,Version" />
-      <Index Name="IX_Article_SubjectID_Version_Page" Unique="True" Columns="SubjectID,Version,Page" />
+      <Index Name="IX_Article_SubjectID_Version" Unique="True" Columns="SubjectID,Version" />
     </Indexes>
   </Table>
 </Tables>

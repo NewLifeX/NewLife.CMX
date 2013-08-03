@@ -13,8 +13,7 @@ namespace NewLife.CMX
     [DataObject]
     [Description("文章")]
     [BindIndex("IX_Article_SubjectID", false, "SubjectID")]
-    [BindIndex("IX_Article_SubjectID_Version", false, "SubjectID,Version")]
-    [BindIndex("IX_Article_SubjectID_Version_Page", true, "SubjectID,Version,Page")]
+    [BindIndex("IX_Article_SubjectID_Version", true, "SubjectID,Version")]
     [BindTable("Article", Description = "文章", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class Article : IArticle
     {
@@ -32,27 +31,27 @@ namespace NewLife.CMX
         }
 
         private Int32 _SubjectID;
-        /// <summary>标题</summary>
-        [DisplayName("标题")]
-        [Description("标题")]
+        /// <summary>主题</summary>
+        [DisplayName("主题")]
+        [Description("主题")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(2, "SubjectID", "标题", null, "int", 10, 0, false)]
+        [BindColumn(2, "SubjectID", "主题", null, "int", 10, 0, false)]
         public virtual Int32 SubjectID
         {
             get { return _SubjectID; }
             set { if (OnPropertyChanging(__.SubjectID, value)) { _SubjectID = value; OnPropertyChanged(__.SubjectID); } }
         }
 
-        private String _Name;
+        private String _Title;
         /// <summary>标题</summary>
         [DisplayName("标题")]
         [Description("标题")]
         [DataObjectField(false, false, false, 50)]
-        [BindColumn(3, "Name", "标题", null, "nvarchar(50)", 0, 0, true)]
-        public virtual String Name
+        [BindColumn(3, "Title", "标题", null, "nvarchar(50)", 0, 0, true)]
+        public virtual String Title
         {
-            get { return _Name; }
-            set { if (OnPropertyChanging(__.Name, value)) { _Name = value; OnPropertyChanged(__.Name); } }
+            get { return _Title; }
+            set { if (OnPropertyChanging(__.Title, value)) { _Title = value; OnPropertyChanged(__.Title); } }
         }
 
         private Int32 _Version;
@@ -67,24 +66,12 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.Version, value)) { _Version = value; OnPropertyChanged(__.Version); } }
         }
 
-        private Int32 _Page;
-        /// <summary>页码</summary>
-        [DisplayName("页码")]
-        [Description("页码")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(5, "Page", "页码", null, "int", 10, 0, false)]
-        public virtual Int32 Page
-        {
-            get { return _Page; }
-            set { if (OnPropertyChanging(__.Page, value)) { _Page = value; OnPropertyChanged(__.Page); } }
-        }
-
         private Int32 _UpdateUser;
         /// <summary>更新人</summary>
         [DisplayName("更新人")]
         [Description("更新人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(6, "UpdateUser", "更新人", null, "int", 10, 0, false)]
+        [BindColumn(5, "UpdateUser", "更新人", null, "int", 10, 0, false)]
         public virtual Int32 UpdateUser
         {
             get { return _UpdateUser; }
@@ -96,7 +83,7 @@ namespace NewLife.CMX
         [DisplayName("更新人")]
         [Description("更新人")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(7, "UpdateName", "更新人", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(6, "UpdateName", "更新人", null, "nvarchar(50)", 0, 0, true)]
         public virtual String UpdateName
         {
             get { return _UpdateName; }
@@ -108,7 +95,7 @@ namespace NewLife.CMX
         [DisplayName("更新时间")]
         [Description("更新时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(8, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
+        [BindColumn(7, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
         public virtual DateTime UpdateTime
         {
             get { return _UpdateTime; }
@@ -120,7 +107,7 @@ namespace NewLife.CMX
         [DisplayName("内容")]
         [Description("内容")]
         [DataObjectField(false, false, true, -1)]
-        [BindColumn(9, "Content", "内容", null, "ntext", 0, 0, true)]
+        [BindColumn(8, "Content", "内容", null, "ntext", 0, 0, true)]
         public virtual String Content
         {
             get { return _Content; }
@@ -144,9 +131,8 @@ namespace NewLife.CMX
                 {
                     case __.ID : return _ID;
                     case __.SubjectID : return _SubjectID;
-                    case __.Name : return _Name;
+                    case __.Title : return _Title;
                     case __.Version : return _Version;
-                    case __.Page : return _Page;
                     case __.UpdateUser : return _UpdateUser;
                     case __.UpdateName : return _UpdateName;
                     case __.UpdateTime : return _UpdateTime;
@@ -160,9 +146,8 @@ namespace NewLife.CMX
                 {
                     case __.ID : _ID = Convert.ToInt32(value); break;
                     case __.SubjectID : _SubjectID = Convert.ToInt32(value); break;
-                    case __.Name : _Name = Convert.ToString(value); break;
+                    case __.Title : _Title = Convert.ToString(value); break;
                     case __.Version : _Version = Convert.ToInt32(value); break;
-                    case __.Page : _Page = Convert.ToInt32(value); break;
                     case __.UpdateUser : _UpdateUser = Convert.ToInt32(value); break;
                     case __.UpdateName : _UpdateName = Convert.ToString(value); break;
                     case __.UpdateTime : _UpdateTime = Convert.ToDateTime(value); break;
@@ -180,17 +165,14 @@ namespace NewLife.CMX
             ///<summary>编号</summary>
             public static readonly Field ID = FindByName(__.ID);
 
-            ///<summary>标题</summary>
+            ///<summary>主题</summary>
             public static readonly Field SubjectID = FindByName(__.SubjectID);
 
             ///<summary>标题</summary>
-            public static readonly Field Name = FindByName(__.Name);
+            public static readonly Field Title = FindByName(__.Title);
 
             ///<summary>版本</summary>
             public static readonly Field Version = FindByName(__.Version);
-
-            ///<summary>页码</summary>
-            public static readonly Field Page = FindByName(__.Page);
 
             ///<summary>更新人</summary>
             public static readonly Field UpdateUser = FindByName(__.UpdateUser);
@@ -213,17 +195,14 @@ namespace NewLife.CMX
             ///<summary>编号</summary>
             public const String ID = "ID";
 
-            ///<summary>标题</summary>
+            ///<summary>主题</summary>
             public const String SubjectID = "SubjectID";
 
             ///<summary>标题</summary>
-            public const String Name = "Name";
+            public const String Title = "Title";
 
             ///<summary>版本</summary>
             public const String Version = "Version";
-
-            ///<summary>页码</summary>
-            public const String Page = "Page";
 
             ///<summary>更新人</summary>
             public const String UpdateUser = "UpdateUser";
@@ -248,17 +227,14 @@ namespace NewLife.CMX
         /// <summary>编号</summary>
         Int32 ID { get; set; }
 
-        /// <summary>标题</summary>
+        /// <summary>主题</summary>
         Int32 SubjectID { get; set; }
 
         /// <summary>标题</summary>
-        String Name { get; set; }
+        String Title { get; set; }
 
         /// <summary>版本</summary>
         Int32 Version { get; set; }
-
-        /// <summary>页码</summary>
-        Int32 Page { get; set; }
 
         /// <summary>更新人</summary>
         Int32 UpdateUser { get; set; }

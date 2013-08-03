@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
     <div class="toolbar">
-        <XCL:LinkBox ID="lbAdd" runat="server" BoxHeight="247px" BoxWidth="440px" Url="ArticleForm.aspx"
+        <XCL:LinkBox ID="lbAdd" runat="server" BoxHeight="355px" BoxWidth="440px" Url="ArticleForm.aspx"
             IconLeft="~/Admin/images/icons/new.gif" EnableViewState="false"><b>添加文章</b></XCL:LinkBox>
         关键字：<asp:TextBox ID="txtKey" runat="server"></asp:TextBox>
         <asp:Button ID="btnSearch" runat="server" Text="查询" />
@@ -19,13 +19,21 @@
             <asp:BoundField DataField="ID" HeaderText="编号" SortExpression="ID" InsertVisible="False" ReadOnly="True" >
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="Ikey" />
             </asp:BoundField>
-            <asp:BoundField DataField="TitleID" HeaderText="标题" SortExpression="TitleID" DataFormatString="{0:n0}">
+            <asp:BoundField DataField="SubjectID" HeaderText="主题" SortExpression="SubjectID" DataFormatString="{0:n0}">
                 <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
             </asp:BoundField>
-            <asp:BoundField DataField="Page" HeaderText="页码" SortExpression="Page" DataFormatString="{0:n0}">
+            <asp:BoundField DataField="Title" HeaderText="标题" SortExpression="Title" />
+            <asp:BoundField DataField="Version" HeaderText="版本" SortExpression="Version" DataFormatString="{0:n0}">
                 <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
             </asp:BoundField>
-            <XCL:LinkBoxField HeaderText="编辑" DataNavigateUrlFields="ID" DataNavigateUrlFormatString="ArticleForm.aspx?ID={0}" Height="247px" Text="编辑" Width="440px" Title="编辑文章">
+            <asp:BoundField DataField="UpdateUser" HeaderText="更新人" SortExpression="UpdateUser" DataFormatString="{0:n0}">
+                <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
+            </asp:BoundField>
+            <asp:BoundField DataField="UpdateName" HeaderText="更新人" SortExpression="UpdateName" />
+            <asp:BoundField DataField="UpdateTime" HeaderText="更新时间" SortExpression="UpdateTime" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" >
+                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="120px" />
+            </asp:BoundField>
+            <XCL:LinkBoxField HeaderText="编辑" DataNavigateUrlFields="ID" DataNavigateUrlFormatString="ArticleForm.aspx?ID={0}" Height="355px" Text="编辑" Width="440px" Title="编辑文章">
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="30px" />
             </XCL:LinkBoxField>

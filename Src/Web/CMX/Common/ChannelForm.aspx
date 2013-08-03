@@ -11,7 +11,7 @@
         </tr>
 <tr>
             <td align="right">模型：</td>
-            <td></td>
+            <td><XCL:NumberBox ID="frmModelKind" runat="server" Width="80px"></XCL:NumberBox></td>
         </tr>
     </table>
     <table border="0" align="Center" width="100%">

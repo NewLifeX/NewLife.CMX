@@ -1,7 +1,7 @@
 ﻿/*
  * XCoder v5.1.4954.21602
  * 作者：nnhy/X2
- * 时间：2013-08-03 16:30:11
+ * 时间：2013-08-03 16:40:37
  * 版权：版权所有 (C) 新生命开发团队 2002~2013
 */
 ﻿using System;
@@ -54,9 +54,8 @@ namespace NewLife.CMX
 
         //    var entity = new Article();
         //    entity.SubjectID = 0;
-        //    entity.Name = "abc";
+        //    entity.Title = "abc";
         //    entity.Version = 0;
-        //    entity.Page = 0;
         //    entity.UpdateUser = 0;
         //    entity.UpdateName = "abc";
         //    entity.UpdateTime = DateTime.Now;
@@ -86,8 +85,8 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展查询﻿
-        /// <summary>根据标题查找</summary>
-        /// <param name="subjectid">标题</param>
+        /// <summary>根据主题查找</summary>
+        /// <param name="subjectid">主题</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public static EntityList<Article> FindAllBySubjectID(Int32 subjectid)
@@ -98,31 +97,17 @@ namespace NewLife.CMX
                 return Meta.Cache.Entities.FindAll(_.SubjectID, subjectid);
         }
 
-        /// <summary>根据标题、版本查找</summary>
-        /// <param name="subjectid">标题</param>
+        /// <summary>根据主题、版本查找</summary>
+        /// <param name="subjectid">主题</param>
         /// <param name="version">版本</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<Article> FindAllBySubjectIDAndVersion(Int32 subjectid, Int32 version)
+        public static Article FindBySubjectIDAndVersion(Int32 subjectid, Int32 version)
         {
             if (Meta.Count >= 1000)
-                return FindAll(new String[] { _.SubjectID, _.Version }, new Object[] { subjectid, version });
+                return Find(new String[] { _.SubjectID, _.Version }, new Object[] { subjectid, version });
             else // 实体缓存
-                return Meta.Cache.Entities.FindAll(e => e.SubjectID == subjectid && e.Version == version);
-        }
-
-        /// <summary>根据标题、版本、页码查找</summary>
-        /// <param name="subjectid">标题</param>
-        /// <param name="version">版本</param>
-        /// <param name="page">页码</param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static Article FindBySubjectIDAndVersionAndPage(Int32 subjectid, Int32 version, Int32 page)
-        {
-            if (Meta.Count >= 1000)
-                return Find(new String[] { _.SubjectID, _.Version, _.Page }, new Object[] { subjectid, version, page });
-            else // 实体缓存
-                return Meta.Cache.Entities.Find(e => e.SubjectID == subjectid && e.Version == version && e.Page == page);
+                return Meta.Cache.Entities.Find(e => e.SubjectID == subjectid && e.Version == version);
         }
         #endregion
 
