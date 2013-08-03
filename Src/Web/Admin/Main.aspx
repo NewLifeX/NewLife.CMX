@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Main.aspx.cs" Inherits="Admin_Main" %>
 <%@ Import Namespace="NewLife" %>
+<%@ Import Namespace="NewLife.CMX" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -24,12 +25,12 @@
 <div class="nlist2 clearfix">
     <h2>站点信息</h2>
     <ul>
-    	<li>站点名称：<%=NewLife.CMX.SiteConfig.Current.Name %></li>
-        <li>公司名称：<%=NewLife.CMX.SiteConfig.Current.Company %></li>
-        <li>网站域名：<%=NewLife.CMX.SiteConfig.Current.Title %></li>
-        <li>安装目录：<%=NewLife.CMX.SysConfig.Current.Path %></li>
-        <li>网站管理目录：<%=NewLife.CMX.SysConfig.Current.ManagePath %></li>
-        <li>附件上传目录：<%=NewLife.CMX.AttachConfig.Current.Path %></li>
+    	<li>站点名称：<%=SiteConfig.Current.Name %></li>
+        <li>公司名称：<%=SiteConfig.Current.Company %></li>
+        <li>网站域名：<%=SiteConfig.Current.Title %></li>
+        <li>安装目录：<%=SysConfig.Current.Path %></li>
+        <li>网站管理目录：<%=SysConfig.Current.ManagePath %></li>
+        <li>附件上传目录：<%=AttachConfig.Current.Path %></li>
         <li>服务器名称：<%=Server.MachineName%> </li>
         <li>服务器IP：<%=Request.ServerVariables["LOCAL_ADDR"] %></li>
         <li>NET框架版本：<%=Environment.Version.ToString()%></li>
@@ -37,7 +38,7 @@
         <li>IIS环境：<%=Request.ServerVariables["SERVER_SOFTWARE"]%></li>
         <li>服务器端口：<%=Request.ServerVariables["SERVER_PORT"]%></li>
         <li>目录物理路径：<%=Request.ServerVariables["APPL_PHYSICAL_PATH"]%></li>
-        <li>系统版本：V<%=NewLife.CMX.SiteConfig.Current.Name%></li>
+        <li>系统版本：V<%=SiteConfig.Current.Name%></li>
         <li>升级通知：<asp:Literal ID="LitUpgrade" runat="server"/>
         </li>
     </ul>
