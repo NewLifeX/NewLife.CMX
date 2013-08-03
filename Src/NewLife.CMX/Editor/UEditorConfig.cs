@@ -11,13 +11,13 @@ namespace NewLife.CMX.Editor
     [XmlConfigFile("Config/UEditor.config", 15000)]
     public class UEditorConfig : XmlConfig<UEditorConfig>
     {
-        private String _UEditorPath = "/UEditor/";
+        private String _UEditorPath = "~/UEditor/";
         /// <summary>编辑器路径</summary>
         [DisplayName("编辑器路径")]
         [Description("编辑器所在目录，建议用相对路径 默认为根目录下的UEditor")]
         public String UEditorPath { get { return _UEditorPath; } set { _UEditorPath = value; } }
 
-        private String _UploadPath = "/Upload/";
+        private String _UploadPath = "~/Upload/";
         /// <summary>附件上传目录</summary>
         [DisplayName("附件上传目录")]
         [Description("上传图片或附件的目录，自动创建在网站根目录下")]
@@ -33,8 +33,8 @@ namespace NewLife.CMX.Editor
         private String _ImgUpUrl;
         /// <summary>图片上传处理文件</summary>
         [DisplayName("图片上传处理文件")]
-        [Description("图片上传处理文件所在目录，建议用相对路径 默认为根目录下的UEditor/UEditorAjax.ashx?ac=image 如自己修改，请带全路径/UEditor/UEditorAjax.ashx?ac=image")]
-        public String ImgUpUrl { get { return String.IsNullOrEmpty(_ImgUpUrl) ? _UEditorPath + "UEditorAjax.ashx?ac=image" : _ImgUpUrl; } set { _ImgUpUrl = value; } }
+        [Description("图片上传处理文件所在目录，建议用相对路径 默认为根目录下的UEditor/Ajax.ashx?ac=image 如自己修改，请带全路径/UEditor/Ajax.ashx?ac=image")]
+        public String ImgUpUrl { get { return String.IsNullOrEmpty(_ImgUpUrl) ? _UEditorPath + "Ajax.ashx?ac=image" : _ImgUpUrl; } set { _ImgUpUrl = value; } }
 
         private String _Imgextension = ".jpg,.gif,.png,.jpeg,.bmp";
         /// <summary>图片上传类型</summary>
@@ -60,8 +60,8 @@ namespace NewLife.CMX.Editor
 
         /// <summary>文件上传处理文件</summary>
         [DisplayName("文件上传处理文件")]
-        [Description("文件上传处理文件所在目录，建议用相对路径 默认为根目录下的UEditor/UEditorAjax.ashx?ac=file 如自己修改，请带全路径/UEditor/UEditorAjax.ashx?ac=file")]
-        public String FileUrl { get { return String.IsNullOrEmpty(_FileUrl) ? _UEditorPath + "UEditorAjax.ashx?ac=file" : _FileUrl; } set { _FileUrl = value; } }
+        [Description("文件上传处理文件所在目录，建议用相对路径 默认为根目录下的UEditor/Ajax.ashx?ac=file 如自己修改，请带全路径/UEditor/Ajax.ashx?ac=file")]
+        public String FileUrl { get { return String.IsNullOrEmpty(_FileUrl) ? _UEditorPath + "Ajax.ashx?ac=file" : _FileUrl; } set { _FileUrl = value; } }
 
 
         private String _FileExtension = ".rar,.doc,.docx,.zip,.pdf,.txt,.swf";
@@ -89,8 +89,8 @@ namespace NewLife.CMX.Editor
 
         /// <summary>涂鸦图片处理文件</summary>
         [DisplayName("涂鸦图片处理文件")]
-        [Description("涂鸦图片处理文件所在目录，建议用相对路径 默认为根目录下的UEditor/UEditorAjax.ashx?ac=scraw 如自己修改，请带全路径/UEditor/UEditorAjax.ashx?ac=scraw")]
-        public String ScrawUrl { get { return String.IsNullOrEmpty(_ScrawUrl) ? _UEditorPath + "UEditorAjax.ashx?ac=scraw" : _ScrawUrl; } set { _ScrawUrl = value; } }
+        [Description("涂鸦图片处理文件所在目录，建议用相对路径 默认为根目录下的UEditor/Ajax.ashx?ac=scraw 如自己修改，请带全路径/UEditor/Ajax.ashx?ac=scraw")]
+        public String ScrawUrl { get { return String.IsNullOrEmpty(_ScrawUrl) ? _UEditorPath + "Ajax.ashx?ac=scraw" : _ScrawUrl; } set { _ScrawUrl = value; } }
 
         #endregion
 
@@ -100,8 +100,8 @@ namespace NewLife.CMX.Editor
 
         /// <summary>远程抓取处理文件</summary>
         [DisplayName("远程抓取处理文件")]
-        [Description("远程抓取处理文件所在目录，建议用相对路径 默认为根目录下的UEditor/UEditorAjax.ashx?ac=remote 如自己修改，请带全路径/UEditor/UEditorAjax.ashx?ac=remote")]
-        public String GetRemoteUrl { get { return String.IsNullOrEmpty(_GetRemoteUrl) ? _UEditorPath + "UEditorAjax.ashx?ac=remote" : _GetRemoteUrl; } set { _GetRemoteUrl = value; } }
+        [Description("远程抓取处理文件所在目录，建议用相对路径 默认为根目录下的UEditor/Ajax.ashx?ac=remote 如自己修改，请带全路径/UEditor/Ajax.ashx?ac=remote")]
+        public String GetRemoteUrl { get { return String.IsNullOrEmpty(_GetRemoteUrl) ? _UEditorPath + "Ajax.ashx?ac=remote" : _GetRemoteUrl; } set { _GetRemoteUrl = value; } }
 
         #endregion
 
@@ -111,8 +111,8 @@ namespace NewLife.CMX.Editor
 
         /// <summary>图片在线管理处理文件</summary>
         [DisplayName("图片在线管理处理文件")]
-        [Description("图片在线管理处理文件所在目录，建议用相对路径 默认为根目录下的UEditor/UEditorAjax.ashx?ac=imagemanager 如自己修改，请带全路径/UEditor/UEditorAjax.ashx?ac=imagemanager")]
-        public String ImageManagerUrl { get { return String.IsNullOrEmpty(_ImageManagerUrl) ? _UEditorPath + "UEditorAjax.ashx?ac=imagemanager" : _ImageManagerUrl; } set { _ImageManagerUrl = value; } }
+        [Description("图片在线管理处理文件所在目录，建议用相对路径 默认为根目录下的UEditor/Ajax.ashx?ac=imagemanager 如自己修改，请带全路径/UEditor/Ajax.ashx?ac=imagemanager")]
+        public String ImageManagerUrl { get { return String.IsNullOrEmpty(_ImageManagerUrl) ? _UEditorPath + "Ajax.ashx?ac=imagemanager" : _ImageManagerUrl; } set { _ImageManagerUrl = value; } }
 
         #endregion
 
@@ -122,8 +122,8 @@ namespace NewLife.CMX.Editor
 
         /// <summary>获取视频数据处理文件</summary>
         [DisplayName("获取视频数据处理文件")]
-        [Description("获取视频数据处理文件所在目录，建议用相对路径 默认为根目录下的UEditor/UEditorAjax.ashx?ac=movie 如自己修改，请带全路径/UEditor/UEditorAjax.ashx?ac=movie")]
-        public String MovieUrl { get { return String.IsNullOrEmpty(_MovieUrl) ? _UEditorPath + "UEditorAjax.ashx?ac=movie" : _MovieUrl; } set { _MovieUrl = value; } }
+        [Description("获取视频数据处理文件所在目录，建议用相对路径 默认为根目录下的UEditor/Ajax.ashx?ac=movie 如自己修改，请带全路径/UEditor/Ajax.ashx?ac=movie")]
+        public String MovieUrl { get { return String.IsNullOrEmpty(_MovieUrl) ? _UEditorPath + "Ajax.ashx?ac=movie" : _MovieUrl; } set { _MovieUrl = value; } }
 
         #endregion
 
@@ -141,8 +141,8 @@ namespace NewLife.CMX.Editor
 
         /// <summary>屏幕截图处理文件</summary>
         [DisplayName("屏幕截图处理文件")]
-        [Description("屏幕截图处理文件所在目录，建议用相对路径 默认为根目录下的UEditor/UEditorAjax.ashx?ac=image 如自己修改，请带全路径/UEditor/UEditorAjax.ashx?ac=image")]
-        public String SnapscreenUrl { get { return String.IsNullOrEmpty(_SnapscreenUrl) ? _UEditorPath + "UEditorAjax.ashx?ac=image" : _SnapscreenUrl; } set { _SnapscreenUrl = value; } }
+        [Description("屏幕截图处理文件所在目录，建议用相对路径 默认为根目录下的UEditor/Ajax.ashx?ac=image 如自己修改，请带全路径/UEditor/Ajax.ashx?ac=image")]
+        public String SnapscreenUrl { get { return String.IsNullOrEmpty(_SnapscreenUrl) ? _UEditorPath + "Ajax.ashx?ac=image" : _SnapscreenUrl; } set { _SnapscreenUrl = value; } }
 
         #endregion
     }

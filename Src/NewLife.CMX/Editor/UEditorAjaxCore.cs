@@ -1,10 +1,13 @@
 ﻿using System;
+using NewLife.IO;
 using System.Collections;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
+using NewLife.Log;
+using NewLife.Web;
 
 namespace NewLife.CMX.Editor
 {
@@ -36,6 +39,13 @@ namespace NewLife.CMX.Editor
                 case "scraw":
                     context.Response.ContentType = "text/html";
                     context.Response.Write(ScrawlUp(context));
+                    break;
+                case "getmovie":
+                    context.Response.ContentType = "text/html";
+                    context.Response.Write(getMovie(context));
+                    break;
+                case "show":
+                    ShowFile(context);
                     break;
                 default:
                     context.Response.ContentType = "application/x-javascript";
@@ -80,19 +90,20 @@ namespace NewLife.CMX.Editor
         /// <returns></returns>
         public String GetRemoteImage(HttpContext context)
         {
-            UEditorConfig Entity = UEditorConfig.Current;
+            var config = UEditorConfig.Current;
             //保存文件地址
-            String SavePath = context.Server.MapPath(Entity.UploadPath);
+            String SavePath = context.Server.MapPath(config.UploadPath);
             //文件允许格式
-            String[] FileType = Entity.ImgExtensions;
+            String[] FileType = config.ImgExtensions;
             //文件大小限制，单位kb
-            Int32 FileSize = Entity.ImgFileSize;
-            string uri = context.Server.HtmlEncode(context.Request["upfile"]);
+            Int32 FileSize = config.ImgFileSize;
+            var uri = context.Server.HtmlEncode(context.Request["upfile"]);
             uri = uri.Replace("&amp;", "&");
+
             //取得所有图片地址
-            string[] imgUrls = Regex.Split(uri, "ue_separate_ue", RegexOptions.IgnoreCase);
-            ArrayList tmpNames = new ArrayList();
-            WebClient wc = new WebClient();
+            var imgUrls = Regex.Split(uri, "ue_separate_ue", RegexOptions.IgnoreCase);
+            var tmpNames = new ArrayList();
+            var wc = new WebClient();
             HttpWebResponse res;
             String tmpName = String.Empty;
             String imgUrl = String.Empty;
@@ -177,16 +188,16 @@ namespace NewLife.CMX.Editor
         /// <returns></returns>
         public String GetimageManager(HttpContext context)
         {
-            var Entity = UEditorConfig.Current;
+            var config = UEditorConfig.Current;
             //保存文件地址
-            String SavePath = context.Server.MapPath(Entity.UploadPath);
+            var up = context.Server.MapPath(config.UploadPath);
             //文件允许格式
-            String[] FileType = Entity.ImgExtensions;
-            string action = RequestStr("action");
-            String str = String.Empty;
-            if (action == "get")
+            var exts = config.ImgExtensions;
+
+            var sb = new StringBuilder();
+            if (RequestStr("action") == "get")
             {
-                var info = new DirectoryInfo(SavePath);
+                var info = new DirectoryInfo(up);
                 //目录验证
                 if (info.Exists)
                 {
@@ -195,15 +206,15 @@ namespace NewLife.CMX.Editor
                     {
                         foreach (var fi in tmpInfo.GetFiles())
                         {
-                            if (Array.IndexOf(FileType, fi.Extension) != -1)
+                            if (Array.IndexOf(exts, fi.Extension) != -1)
                             {
-                                str += tmpInfo.Name + "/" + fi.Name + "ue_separate_ue";
+                                sb.Append(tmpInfo.Name + "/" + fi.Name + "ue_separate_ue");
                             }
                         }
                     }
                 }
             }
-            return str;
+            return sb.ToString();
         }
         #endregion
 
@@ -215,15 +226,13 @@ namespace NewLife.CMX.Editor
         /// <returns></returns>
         public String ImgUp(HttpContext context)
         {
-            UEditorConfig Entity = UEditorConfig.Current;
-            Hashtable info = new Hashtable();
-            UEUploader up = new UEUploader();
-            info = up.upFile(context, Entity.UploadPath, Entity.ImgExtensions, Entity.ImgFileSize);                               //获取上传状态
+            var config = UEditorConfig.Current;
+            var up = new UEUploader();
+            var info = up.upFile(context, config.UploadPath, config.ImgExtensions, config.ImgFileSize);                               //获取上传状态
             string title = up.getOtherInfo(context, "pictitle");                              //获取图片描述
             string oriName = up.getOtherInfo(context, "fileName");                //获取原始文件名
             return "{'url':'" + info["url"] + "','title':'" + title + "','original':'" + oriName + "','state':'" + info["state"] + "'}";
         }
-
         #endregion
 
         #region 文件上传
@@ -234,10 +243,9 @@ namespace NewLife.CMX.Editor
         /// <returns></returns>
         public String FileUpLoad(HttpContext context)
         {
-            UEditorConfig Entity = UEditorConfig.Current;
-            Hashtable info = new Hashtable();
-            UEUploader up = new UEUploader();
-            info = up.upFile(context, Entity.UploadPath, Entity.FileExtensions, Entity.FileFileSize);                               //获取上传状态
+            var config = UEditorConfig.Current;
+            var up = new UEUploader();
+            var info = up.upFile(context, config.UploadPath, config.FileExtensions, config.FileFileSize);                               //获取上传状态
             return "{'state':'" + info["state"] + "','url':'" + info["url"] + "','fileType':'" + info["currentType"] + "','original':'" + info["originalName"] + "'}";
         }
         #endregion
@@ -265,6 +273,47 @@ namespace NewLife.CMX.Editor
                 string tmpPath = Entity.UploadPath + "tmp/";
                 info = up.upScrawl(context, Entity.UploadPath, tmpPath, RequestStr("content")); //获取上传状态
                 return "{'url':'" + info["url"] + "',state:'" + info["state"] + "'}";
+            }
+        }
+        #endregion
+
+        #region 获取视频
+        String getMovie(HttpContext context)
+        {
+            var key = context.Server.HtmlEncode(context.Request.Form["searchKey"]);
+            var type = context.Server.HtmlEncode(context.Request.Form["videoType"]);
+
+            var httpURL = new Uri("http://api.tudou.com/v3/gw?method=item.search&appKey=myKey&format=json&kw=" + key + "&pageNo=1&pageSize=20&channelId=" + type + "&inDays=7&media=v&sort=s");
+            var MyWebClient = new WebClient();
+
+            MyWebClient.Credentials = CredentialCache.DefaultCredentials;           //获取或设置用于向Internet资源的请求进行身份验证的网络凭据
+            var pageData = MyWebClient.DownloadData(httpURL);
+
+            return Encoding.UTF8.GetString(pageData);
+        }
+        #endregion
+
+        #region 显示文件
+        void ShowFile(HttpContext context)
+        {
+            var file = context.Request["file"];
+            if (String.IsNullOrEmpty(file)) return;
+
+            var config = UEditorConfig.Current;
+            //保存文件地址
+            var up = context.Server.MapPath(config.UploadPath).GetFullPath();
+            var file2 = up.CombinePath(file).GetFullPath();
+
+            //!!! 安全：必须验证路径，否则会爆任何文件
+            if (!file2.StartsWith(up, StringComparison.OrdinalIgnoreCase))
+            {
+                XTrace.WriteLine("安全警告！{0}试图请求{1}，原始访问{2}！", WebHelper.UserHost, file2, file);
+                return;
+            }
+
+            using (var fs = File.OpenRead(file2))
+            {
+                fs.CopyTo(context.Response.OutputStream);
             }
         }
         #endregion

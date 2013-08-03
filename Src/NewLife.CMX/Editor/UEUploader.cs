@@ -28,8 +28,8 @@ namespace NewLife.CMX.Editor
         /// <returns></returns>
         public Hashtable upFile(HttpContext cxt, string pathbase, string[] filetype, int size)
         {
-            String SVPath =  DateTime.Now.ToString("yyyy-MM-dd") + "/";
-            uploadpath = cxt.Server.MapPath(pathbase+SVPath);//获取文件上传路径
+            pathbase = pathbase + DateTime.Now.ToString("yyyy-MM-dd") + "/";
+            uploadpath = cxt.Server.MapPath(pathbase);//获取文件上传路径
 
             try
             {
@@ -53,7 +53,7 @@ namespace NewLife.CMX.Editor
                 {
                     filename = reName();
                     uploadFile.SaveAs(uploadpath + filename);
-                    URL = SVPath + filename;
+                    URL = pathbase + filename;
                 }
             }
             catch (Exception)
@@ -74,8 +74,9 @@ namespace NewLife.CMX.Editor
         /// <returns></returns>
         public Hashtable upScrawl(HttpContext cxt, string pathbase, string tmppath, string base64Data)
         {
-            String SVPath = DateTime.Now.ToString("yyyy-MM-dd") + "/";
-            uploadpath = cxt.Server.MapPath(pathbase + SVPath);//获取文件上传路径
+            pathbase = pathbase + DateTime.Now.ToString("yyyy-MM-dd") + "/";
+            uploadpath = cxt.Server.MapPath(pathbase);//获取文件上传路径
+
             FileStream fs = null;
             try
             {
@@ -87,7 +88,7 @@ namespace NewLife.CMX.Editor
                 byte[] bytes = Convert.FromBase64String(base64Data);
                 fs.Write(bytes, 0, bytes.Length);
 
-                URL = SVPath + filename;
+                URL = pathbase + filename;
             }
             catch (Exception)
             {
@@ -161,7 +162,7 @@ namespace NewLife.CMX.Editor
         /// <returns></returns>
         private bool checkSize(int size)
         {
-            return uploadFile.ContentLength >= (size * 1024 );
+            return uploadFile.ContentLength >= (size * 1024);
         }
 
         /// <summary>
