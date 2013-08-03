@@ -39,6 +39,7 @@
     <Compile Include="Base\基础信息.Biz.cs" />
     <Compile Include="Base\基础信息.cs" />
     <Compile Include="CMS\SysModel.cs" />
+    <Compile Include="Common\ModelKinds.cs" />
     <Compile Include="Editor\UEditorAjaxCore.cs" />
     <Compile Include="Editor\UEditorConfig.cs" />
     <Compile Include="Editor\UEUploader.cs" />
