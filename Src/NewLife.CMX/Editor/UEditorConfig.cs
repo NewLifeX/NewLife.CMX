@@ -10,7 +10,7 @@ namespace NewLife.CMX.Editor
     /// <summary>
     /// 编辑器配置
     /// </summary>
-    [XmlConfigFile("Config/UEditorConfig.config", 15000)]
+    [XmlConfigFile("Config/UEditor.config", 15000)]
     public class UEditorConfig : XmlConfig<UEditorConfig>
     {
         private String _UEditorPath = "/UEditor/";
@@ -30,10 +30,9 @@ namespace NewLife.CMX.Editor
         [DisplayName("百度应用的APIkey")]
         [Description("百度应用的APIkey，每个站长必须首先去百度官网注册一个key后方能正常使用app功能")]
         public String BaiduWebAppKey { get { return _BaiduWebAppKey; } set { _BaiduWebAppKey = value; } }
+
         #region 图片上传相关配置
-
         private String _ImgUpUrl;
-
         /// <summary>图片上传处理文件</summary>
         [DisplayName("图片上传处理文件")]
         [Description("图片上传处理文件所在目录，建议用相对路径 默认为根目录下的UEditor/UEditorAjax.ashx?ac=image 如自己修改，请带全路径/UEditor/UEditorAjax.ashx?ac=image")]
@@ -148,6 +147,5 @@ namespace NewLife.CMX.Editor
         public String SnapscreenUrl { get { return String.IsNullOrEmpty(_SnapscreenUrl) ? _UEditorPath + "UEditorAjax.ashx?ac=image" : _SnapscreenUrl; } set { _SnapscreenUrl = value; } }
 
         #endregion
-
     }
 }

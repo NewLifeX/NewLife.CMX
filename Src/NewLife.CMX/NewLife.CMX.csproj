@@ -58,7 +58,7 @@
     <Compile Include="Manager\MailConfig.cs" />
     <Compile Include="Manager\SiteConfig.cs" />
     <Compile Include="Manager\SysConfig.cs" />
-    <Compile Include="Manager\XAdmin.cs" />
+    <Compile Include="Manager\Admin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

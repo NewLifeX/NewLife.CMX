@@ -6,7 +6,7 @@ using NewLife.Log;
 
 namespace NewLife.CMX.CMS
 {
-    [BindTable("XTL_SysModel", Description = "系统模型", ConnName = "XTLDB", DbType = DatabaseType.SqlServer)]
+    [BindTable("SysModel", Description = "系统模型", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public class SysModel : BaseInfo<SysModel>
     {
         #region 属性

@@ -21,7 +21,7 @@ namespace NewLife.CMX
     [BindIndex("IX_BaseInfo", true, "Name")]
     [BindIndex("PK__BaseInfo__3214EC270AD2A005", true, "ID")]
     [BindIndex("PK_BaseInfo", true, "ID")]
-    [BindTable("BaseInfo", Description = "基础信息", ConnName = "Common", DbType = DatabaseType.SqlServer)]
+    [BindTable("BaseInfo", Description = "基础信息", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class BaseInfo<TEntity> : IBaseInfo
     {
         #region 属性
@@ -48,7 +48,7 @@ namespace NewLife.CMX
             get { return _Name; }
             set { if (OnPropertyChanging("Name", value)) { _Name = value; OnPropertyChanged("Name"); } }
         }
-		#endregion
+        #endregion
 
         #region 获取/设置 字段值
         /// <summary>

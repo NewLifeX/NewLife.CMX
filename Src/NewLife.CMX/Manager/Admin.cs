@@ -6,8 +6,8 @@ using XCode.DataAccessLayer;
 
 namespace NewLife.CMX
 {
-    [BindTable("XTL_XAdmin", Description = "系统管理员", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
-    public class XAdmin : Administrator<XAdmin, Role, Menu, RoleMenu, NewLife.CommonEntity.Log>
+    [BindTable("Admin", Description = "系统管理员", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
+    public class Admin : Administrator<Admin, Role, Menu, RoleMenu, NewLife.CommonEntity.Log>
     {
         #region 扩展属性
         private String _Telephone;
@@ -36,5 +36,5 @@ namespace NewLife.CMX
         #endregion
     }
 
-    public class XManagerProvider : CommonManageProvider<XAdmin>, ICommonManageProvider { }
+    public class XManagerProvider : CommonManageProvider<Admin>, ICommonManageProvider { }
 }
