@@ -8,14 +8,13 @@ using XCode.DataAccessLayer;
 
 namespace NewLife.CMX
 {
-    /// <summary>频道</summary>
+    /// <summary>模型</summary>
     [Serializable]
     [DataObject]
-    [Description("频道")]
-    [BindIndex("IU_Channel_Name", true, "Name")]
-    [BindIndex("IX_Channel_ModelKind", false, "ModelKind")]
-    [BindTable("Channel", Description = "频道", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
-    public partial class Channel : IChannel
+    [Description("模型")]
+    [BindIndex("IU_Model_Name", true, "Name")]
+    [BindTable("Model", Description = "模型", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
+    public partial class Model : IModel
     {
         #region 属性
         private Int32 _ID;
@@ -41,18 +40,6 @@ namespace NewLife.CMX
             get { return _Name; }
             set { if (OnPropertyChanging(__.Name, value)) { _Name = value; OnPropertyChanged(__.Name); } }
         }
-
-        private Int32 _ModelID;
-        /// <summary>模型</summary>
-        [DisplayName("模型")]
-        [Description("模型")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(3, "ModelID", "模型", null, "int", 10, 0, false)]
-        public virtual Int32 ModelID
-        {
-            get { return _ModelID; }
-            set { if (OnPropertyChanging(__.ModelID, value)) { _ModelID = value; OnPropertyChanged(__.ModelID); } }
-        }
         #endregion
 
         #region 获取/设置 字段值
@@ -71,7 +58,6 @@ namespace NewLife.CMX
                 {
                     case __.ID : return _ID;
                     case __.Name : return _Name;
-                    case __.ModelID : return _ModelID;
                     default: return base[name];
                 }
             }
@@ -81,7 +67,6 @@ namespace NewLife.CMX
                 {
                     case __.ID : _ID = Convert.ToInt32(value); break;
                     case __.Name : _Name = Convert.ToString(value); break;
-                    case __.ModelID : _ModelID = Convert.ToInt32(value); break;
                     default: base[name] = value; break;
                 }
             }
@@ -89,7 +74,7 @@ namespace NewLife.CMX
         #endregion
 
         #region 字段名
-        /// <summary>取得频道字段信息的快捷方式</summary>
+        /// <summary>取得模型字段信息的快捷方式</summary>
         public partial class _
         {
             ///<summary>编号</summary>
@@ -98,13 +83,10 @@ namespace NewLife.CMX
             ///<summary>名称</summary>
             public static readonly Field Name = FindByName(__.Name);
 
-            ///<summary>模型</summary>
-            public static readonly Field ModelID = FindByName(__.ModelID);
-
             static Field FindByName(String name) { return Meta.Table.FindByName(name); }
         }
 
-        /// <summary>取得频道字段名称的快捷方式</summary>
+        /// <summary>取得模型字段名称的快捷方式</summary>
         partial class __
         {
             ///<summary>编号</summary>
@@ -113,15 +95,12 @@ namespace NewLife.CMX
             ///<summary>名称</summary>
             public const String Name = "Name";
 
-            ///<summary>模型</summary>
-            public const String ModelID = "ModelID";
-
         }
         #endregion
     }
 
-    /// <summary>频道接口</summary>
-    public partial interface IChannel
+    /// <summary>模型接口</summary>
+    public partial interface IModel
     {
         #region 属性
         /// <summary>编号</summary>
@@ -129,9 +108,6 @@ namespace NewLife.CMX
 
         /// <summary>名称</summary>
         String Name { get; set; }
-
-        /// <summary>模型</summary>
-        Int32 ModelID { get; set; }
         #endregion
 
         #region 获取/设置 字段值

@@ -1,9 +1,9 @@
-﻿<%@ Page Title="频道管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="Channel.aspx.cs" Inherits="CMX_Channel" %>
+﻿<%@ Page Title="模型管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="Model.aspx.cs" Inherits="CMX_Model" %>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
     <div class="toolbar">
-        <XCL:LinkBox ID="lbAdd" runat="server" BoxHeight="157px" BoxWidth="440px" Url="ChannelForm.aspx"
-            IconLeft="~/Admin/images/icons/new.gif" EnableViewState="false"><b>添加频道</b></XCL:LinkBox>
+        <XCL:LinkBox ID="lbAdd" runat="server" BoxHeight="130px" BoxWidth="440px" Url="ModelForm.aspx"
+            IconLeft="~/Admin/images/icons/new.gif" EnableViewState="false"><b>添加模型</b></XCL:LinkBox>
         关键字：<asp:TextBox ID="txtKey" runat="server"></asp:TextBox>
         <asp:Button ID="btnSearch" runat="server" Text="查询" />
     </div>
@@ -20,10 +20,7 @@
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="Ikey" />
             </asp:BoundField>
             <asp:BoundField DataField="Name" HeaderText="名称" SortExpression="Name" />
-            <asp:BoundField DataField="ModelID" HeaderText="模型" SortExpression="ModelID" DataFormatString="{0:n0}">
-                <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
-            </asp:BoundField>
-            <XCL:LinkBoxField HeaderText="编辑" DataNavigateUrlFields="ID" DataNavigateUrlFormatString="ChannelForm.aspx?ID={0}" Height="157px" Text="编辑" Width="440px" Title="编辑频道">
+            <XCL:LinkBoxField HeaderText="编辑" DataNavigateUrlFields="ID" DataNavigateUrlFormatString="ModelForm.aspx?ID={0}" Height="130px" Text="编辑" Width="440px" Title="编辑模型">
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="30px" />
             </XCL:LinkBoxField>

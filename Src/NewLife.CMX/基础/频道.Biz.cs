@@ -1,7 +1,7 @@
 ﻿/*
- * XCoder v5.1.4954.21602
- * 作者：nnhy/X2
- * 时间：2013-08-03 16:40:37
+ * XCoder v5.1.4844.37642
+ * 作者：nnhy/X
+ * 时间：2013-08-04 15:16:25
  * 版权：版权所有 (C) 新生命开发团队 2002~2013
 */
 ﻿using System;
@@ -53,7 +53,7 @@ namespace NewLife.CMX
 
         //    var entity = new Channel();
         //    entity.Name = "abc";
-        //    entity.ModelKind = 0;
+        //    entity.ModelID = 0;
         //    entity.Insert();
 
         //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Channel).Name, Meta.Table.DataTable.DisplayName);
@@ -91,18 +91,6 @@ namespace NewLife.CMX
                 return Meta.Cache.Entities.Find(_.Name, name);
             // 单对象缓存
             //return Meta.SingleCache[name];
-        }
-
-        /// <summary>根据模型查找</summary>
-        /// <param name="modelkind">模型</param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<Channel> FindAllByModelKind(Int32 modelkind)
-        {
-            if (Meta.Count >= 1000)
-                return FindAll(_.ModelKind, modelkind);
-            else // 实体缓存
-                return Meta.Cache.Entities.FindAll(_.ModelKind, modelkind);
         }
         #endregion
 

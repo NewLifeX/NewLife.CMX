@@ -8,14 +8,14 @@ using XCode.DataAccessLayer;
 
 namespace NewLife.CMX
 {
-    /// <summary>文章</summary>
+    /// <summary>文章内容</summary>
     [Serializable]
     [DataObject]
-    [Description("文章")]
-    [BindIndex("IX_Article_SubjectID", false, "SubjectID")]
-    [BindIndex("IX_Article_SubjectID_Version", true, "SubjectID,Version")]
-    [BindTable("Article", Description = "文章", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
-    public partial class Article : IArticle
+    [Description("文章内容")]
+    [BindIndex("IX_SimpleTextContent_ArticleID", false, "ArticleID")]
+    [BindIndex("IU_SimpleTextContent_ArticleID_Version", true, "ArticleID,Version")]
+    [BindTable("SimpleTextContent", Description = "文章内容", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
+    public partial class SimpleTextContent : ISimpleTextContent
     {
         #region 属性
         private Int32 _ID;
@@ -30,16 +30,16 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.ID, value)) { _ID = value; OnPropertyChanged(__.ID); } }
         }
 
-        private Int32 _SubjectID;
+        private Int32 _ArticleID;
         /// <summary>主题</summary>
         [DisplayName("主题")]
         [Description("主题")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(2, "SubjectID", "主题", null, "int", 10, 0, false)]
-        public virtual Int32 SubjectID
+        [BindColumn(2, "ArticleID", "主题", null, "int", 10, 0, false)]
+        public virtual Int32 ArticleID
         {
-            get { return _SubjectID; }
-            set { if (OnPropertyChanging(__.SubjectID, value)) { _SubjectID = value; OnPropertyChanged(__.SubjectID); } }
+            get { return _ArticleID; }
+            set { if (OnPropertyChanging(__.ArticleID, value)) { _ArticleID = value; OnPropertyChanged(__.ArticleID); } }
         }
 
         private String _Title;
@@ -130,7 +130,7 @@ namespace NewLife.CMX
                 switch (name)
                 {
                     case __.ID : return _ID;
-                    case __.SubjectID : return _SubjectID;
+                    case __.ArticleID : return _ArticleID;
                     case __.Title : return _Title;
                     case __.Version : return _Version;
                     case __.UpdateUser : return _UpdateUser;
@@ -145,7 +145,7 @@ namespace NewLife.CMX
                 switch (name)
                 {
                     case __.ID : _ID = Convert.ToInt32(value); break;
-                    case __.SubjectID : _SubjectID = Convert.ToInt32(value); break;
+                    case __.ArticleID : _ArticleID = Convert.ToInt32(value); break;
                     case __.Title : _Title = Convert.ToString(value); break;
                     case __.Version : _Version = Convert.ToInt32(value); break;
                     case __.UpdateUser : _UpdateUser = Convert.ToInt32(value); break;
@@ -159,14 +159,14 @@ namespace NewLife.CMX
         #endregion
 
         #region 字段名
-        /// <summary>取得文章字段信息的快捷方式</summary>
+        /// <summary>取得文章内容字段信息的快捷方式</summary>
         public partial class _
         {
             ///<summary>编号</summary>
             public static readonly Field ID = FindByName(__.ID);
 
             ///<summary>主题</summary>
-            public static readonly Field SubjectID = FindByName(__.SubjectID);
+            public static readonly Field ArticleID = FindByName(__.ArticleID);
 
             ///<summary>标题</summary>
             public static readonly Field Title = FindByName(__.Title);
@@ -189,14 +189,14 @@ namespace NewLife.CMX
             static Field FindByName(String name) { return Meta.Table.FindByName(name); }
         }
 
-        /// <summary>取得文章字段名称的快捷方式</summary>
+        /// <summary>取得文章内容字段名称的快捷方式</summary>
         partial class __
         {
             ///<summary>编号</summary>
             public const String ID = "ID";
 
             ///<summary>主题</summary>
-            public const String SubjectID = "SubjectID";
+            public const String ArticleID = "ArticleID";
 
             ///<summary>标题</summary>
             public const String Title = "Title";
@@ -220,15 +220,15 @@ namespace NewLife.CMX
         #endregion
     }
 
-    /// <summary>文章接口</summary>
-    public partial interface IArticle
+    /// <summary>文章内容接口</summary>
+    public partial interface ISimpleTextContent
     {
         #region 属性
         /// <summary>编号</summary>
         Int32 ID { get; set; }
 
         /// <summary>主题</summary>
-        Int32 SubjectID { get; set; }
+        Int32 ArticleID { get; set; }
 
         /// <summary>标题</summary>
         String Title { get; set; }

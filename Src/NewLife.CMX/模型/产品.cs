@@ -8,14 +8,12 @@ using XCode.DataAccessLayer;
 
 namespace NewLife.CMX
 {
-    /// <summary>频道</summary>
+    /// <summary>产品</summary>
     [Serializable]
     [DataObject]
-    [Description("频道")]
-    [BindIndex("IU_Channel_Name", true, "Name")]
-    [BindIndex("IX_Channel_ModelKind", false, "ModelKind")]
-    [BindTable("Channel", Description = "频道", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
-    public partial class Channel : IChannel
+    [Description("产品")]
+    [BindTable("Product", Description = "产品", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
+    public partial class Product : IProduct
     {
         #region 属性
         private Int32 _ID;
@@ -30,28 +28,28 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.ID, value)) { _ID = value; OnPropertyChanged(__.ID); } }
         }
 
-        private String _Name;
-        /// <summary>名称</summary>
-        [DisplayName("名称")]
-        [Description("名称")]
-        [DataObjectField(false, false, false, 50)]
-        [BindColumn(2, "Name", "名称", null, "nvarchar(50)", 0, 0, true)]
-        public virtual String Name
+        private Int32 _SubjectID;
+        /// <summary>主题</summary>
+        [DisplayName("主题")]
+        [Description("主题")]
+        [DataObjectField(false, false, true, 10)]
+        [BindColumn(2, "SubjectID", "主题", null, "int", 10, 0, false)]
+        public virtual Int32 SubjectID
         {
-            get { return _Name; }
-            set { if (OnPropertyChanging(__.Name, value)) { _Name = value; OnPropertyChanged(__.Name); } }
+            get { return _SubjectID; }
+            set { if (OnPropertyChanging(__.SubjectID, value)) { _SubjectID = value; OnPropertyChanged(__.SubjectID); } }
         }
 
-        private Int32 _ModelID;
-        /// <summary>模型</summary>
-        [DisplayName("模型")]
-        [Description("模型")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(3, "ModelID", "模型", null, "int", 10, 0, false)]
-        public virtual Int32 ModelID
+        private String _Title;
+        /// <summary>标题</summary>
+        [DisplayName("标题")]
+        [Description("标题")]
+        [DataObjectField(false, false, false, 50)]
+        [BindColumn(3, "Title", "标题", null, "nvarchar(50)", 0, 0, true)]
+        public virtual String Title
         {
-            get { return _ModelID; }
-            set { if (OnPropertyChanging(__.ModelID, value)) { _ModelID = value; OnPropertyChanged(__.ModelID); } }
+            get { return _Title; }
+            set { if (OnPropertyChanging(__.Title, value)) { _Title = value; OnPropertyChanged(__.Title); } }
         }
         #endregion
 
@@ -70,8 +68,8 @@ namespace NewLife.CMX
                 switch (name)
                 {
                     case __.ID : return _ID;
-                    case __.Name : return _Name;
-                    case __.ModelID : return _ModelID;
+                    case __.SubjectID : return _SubjectID;
+                    case __.Title : return _Title;
                     default: return base[name];
                 }
             }
@@ -80,8 +78,8 @@ namespace NewLife.CMX
                 switch (name)
                 {
                     case __.ID : _ID = Convert.ToInt32(value); break;
-                    case __.Name : _Name = Convert.ToString(value); break;
-                    case __.ModelID : _ModelID = Convert.ToInt32(value); break;
+                    case __.SubjectID : _SubjectID = Convert.ToInt32(value); break;
+                    case __.Title : _Title = Convert.ToString(value); break;
                     default: base[name] = value; break;
                 }
             }
@@ -89,49 +87,49 @@ namespace NewLife.CMX
         #endregion
 
         #region 字段名
-        /// <summary>取得频道字段信息的快捷方式</summary>
+        /// <summary>取得产品字段信息的快捷方式</summary>
         public partial class _
         {
             ///<summary>编号</summary>
             public static readonly Field ID = FindByName(__.ID);
 
-            ///<summary>名称</summary>
-            public static readonly Field Name = FindByName(__.Name);
+            ///<summary>主题</summary>
+            public static readonly Field SubjectID = FindByName(__.SubjectID);
 
-            ///<summary>模型</summary>
-            public static readonly Field ModelID = FindByName(__.ModelID);
+            ///<summary>标题</summary>
+            public static readonly Field Title = FindByName(__.Title);
 
             static Field FindByName(String name) { return Meta.Table.FindByName(name); }
         }
 
-        /// <summary>取得频道字段名称的快捷方式</summary>
+        /// <summary>取得产品字段名称的快捷方式</summary>
         partial class __
         {
             ///<summary>编号</summary>
             public const String ID = "ID";
 
-            ///<summary>名称</summary>
-            public const String Name = "Name";
+            ///<summary>主题</summary>
+            public const String SubjectID = "SubjectID";
 
-            ///<summary>模型</summary>
-            public const String ModelID = "ModelID";
+            ///<summary>标题</summary>
+            public const String Title = "Title";
 
         }
         #endregion
     }
 
-    /// <summary>频道接口</summary>
-    public partial interface IChannel
+    /// <summary>产品接口</summary>
+    public partial interface IProduct
     {
         #region 属性
         /// <summary>编号</summary>
         Int32 ID { get; set; }
 
-        /// <summary>名称</summary>
-        String Name { get; set; }
+        /// <summary>主题</summary>
+        Int32 SubjectID { get; set; }
 
-        /// <summary>模型</summary>
-        Int32 ModelID { get; set; }
+        /// <summary>标题</summary>
+        String Title { get; set; }
         #endregion
 
         #region 获取/设置 字段值

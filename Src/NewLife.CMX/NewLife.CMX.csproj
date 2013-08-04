@@ -49,12 +49,14 @@
     <Compile Include="Manager\SysConfig.cs" />
     <Compile Include="Manager\Admin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="基础\主题.Biz.cs" />
-    <Compile Include="基础\主题.cs" />
-    <Compile Include="基础\文章.Biz.cs" />
-    <Compile Include="基础\文章.cs" />
+    <Compile Include="基础\模型.Biz.cs" />
+    <Compile Include="基础\模型.cs" />
     <Compile Include="基础\频道.Biz.cs" />
     <Compile Include="基础\频道.cs" />
+    <Compile Include="模型\产品.cs" />
+    <Compile Include="模型\文本.cs" />
+    <Compile Include="模型\文章.cs" />
+    <Compile Include="模型\文章内容.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NewLife.CommonEntity\NewLife.CommonEntity.csproj">
