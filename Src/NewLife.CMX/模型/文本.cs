@@ -12,10 +12,10 @@ namespace NewLife.CMX
     [Serializable]
     [DataObject]
     [Description("文本")]
-    [BindIndex("IX_SimpleText_ChannelID", false, "ChannelID")]
-    [BindIndex("IX_SimpleText_CategoryID", false, "CategoryID")]
-    [BindTable("SimpleText", Description = "文本", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
-    public partial class SimpleText : ISimpleText
+    [BindIndex("IX_Text_ChannelID", false, "ChannelID")]
+    [BindIndex("IX_Text_CategoryID", false, "CategoryID")]
+    [BindTable("Text", Description = "文本", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
+    public partial class Text : IText
     {
         #region 属性
         private Int32 _ID;
@@ -58,8 +58,8 @@ namespace NewLife.CMX
         /// <summary>标题</summary>
         [DisplayName("标题")]
         [Description("标题")]
-        [DataObjectField(false, false, false, 50)]
-        [BindColumn(4, "Title", "标题", null, "nvarchar(50)", 0, 0, true)]
+        [DataObjectField(false, false, false, 200)]
+        [BindColumn(4, "Title", "标题", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Title
         {
             get { return _Title; }
@@ -321,7 +321,7 @@ namespace NewLife.CMX
     }
 
     /// <summary>文本接口</summary>
-    public partial interface ISimpleText
+    public partial interface IText
     {
         #region 属性
         /// <summary>编号</summary>

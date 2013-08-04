@@ -1,9 +1,9 @@
-﻿<%@ Page Title="文章内容管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="ArticleContent.aspx.cs" Inherits="CMX_ArticleContent" %>
+﻿<%@ Page Title="文章分类管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="ArticleCategory.aspx.cs" Inherits="CMX_ArticleCategory" %>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
     <div class="toolbar">
-        <XCL:LinkBox ID="lbAdd" runat="server" BoxHeight="355px" BoxWidth="440px" Url="ArticleContentForm.aspx"
-            IconLeft="~/Admin/images/icons/new.gif" EnableViewState="false"><b>添加文章内容</b></XCL:LinkBox>
+        <XCL:LinkBox ID="lbAdd" runat="server" BoxHeight="211px" BoxWidth="440px" Url="ArticleCategoryForm.aspx"
+            IconLeft="~/Admin/images/icons/new.gif" EnableViewState="false"><b>添加文章分类</b></XCL:LinkBox>
         关键字：<asp:TextBox ID="txtKey" runat="server"></asp:TextBox>
         <asp:Button ID="btnSearch" runat="server" Text="查询" />
     </div>
@@ -19,21 +19,15 @@
             <asp:BoundField DataField="ID" HeaderText="编号" SortExpression="ID" InsertVisible="False" ReadOnly="True" >
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="Ikey" />
             </asp:BoundField>
-            <asp:BoundField DataField="ParentID" HeaderText="主题" SortExpression="ParentID" DataFormatString="{0:n0}">
+            <asp:BoundField DataField="Name" HeaderText="名称" SortExpression="Name" />
+            <asp:BoundField DataField="ParentID" HeaderText="父类" SortExpression="ParentID" DataFormatString="{0:n0}">
                 <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
             </asp:BoundField>
-            <asp:BoundField DataField="Title" HeaderText="标题" SortExpression="Title" />
-            <asp:BoundField DataField="Version" HeaderText="版本" SortExpression="Version" DataFormatString="{0:n0}">
+            <asp:BoundField DataField="Sort" HeaderText="排序" SortExpression="Sort" DataFormatString="{0:n0}">
                 <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
             </asp:BoundField>
-            <asp:BoundField DataField="CreateUser" HeaderText="创建人" SortExpression="CreateUser" DataFormatString="{0:n0}">
-                <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
-            </asp:BoundField>
-            <asp:BoundField DataField="CreateName" HeaderText="创建人" SortExpression="CreateName" />
-            <asp:BoundField DataField="CreateTime" HeaderText="创建时间" SortExpression="CreateTime" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" >
-                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="120px" />
-            </asp:BoundField>
-            <XCL:LinkBoxField HeaderText="编辑" DataNavigateUrlFields="ID" DataNavigateUrlFormatString="ArticleContentForm.aspx?ID={0}" Height="355px" Text="编辑" Width="440px" Title="编辑文章内容">
+            <asp:BoundField DataField="Remark" HeaderText="备注" SortExpression="Remark" />
+            <XCL:LinkBoxField HeaderText="编辑" DataNavigateUrlFields="ID" DataNavigateUrlFormatString="ArticleCategoryForm.aspx?ID={0}" Height="211px" Text="编辑" Width="440px" Title="编辑文章分类">
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="30px" />
             </XCL:LinkBoxField>

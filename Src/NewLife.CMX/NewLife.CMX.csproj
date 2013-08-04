@@ -53,10 +53,18 @@
     <Compile Include="基础\模型.cs" />
     <Compile Include="基础\频道.Biz.cs" />
     <Compile Include="基础\频道.cs" />
+    <Compile Include="模型\产品.Biz.cs" />
     <Compile Include="模型\产品.cs" />
+    <Compile Include="模型\文本.Biz.cs" />
     <Compile Include="模型\文本.cs" />
+    <Compile Include="模型\文本分类.Biz.cs" />
+    <Compile Include="模型\文本分类.cs" />
+    <Compile Include="模型\文章.Biz.cs" />
     <Compile Include="模型\文章.cs" />
+    <Compile Include="模型\文章内容.Biz.cs" />
     <Compile Include="模型\文章内容.cs" />
+    <Compile Include="模型\文章分类.Biz.cs" />
+    <Compile Include="模型\文章分类.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NewLife.CommonEntity\NewLife.CommonEntity.csproj">

@@ -45,7 +45,7 @@
     <Indexes>
       <Index Columns="Name" />
       <Index Columns="ParentID" />
-      <Index Columns="ParentID,Name" Unique="True" />
+      <Index Unique="True" Columns="ParentID,Name" />
     </Indexes>
   </Table>
   <Table Name="Article" Description="文章" DbType="SqlServer" 实体分类="模型" 页面分类="Model">
@@ -97,7 +97,7 @@
     <Indexes>
       <Index Columns="Name" />
       <Index Columns="ParentID" />
-      <Index Columns="ParentID,Name" Unique="True" />
+      <Index Unique="True" Columns="ParentID,Name" />
     </Indexes>
   </Table>
   <Table Name="Text" Description="文本" DbType="SqlServer" 实体分类="模型" 页面分类="Model">
@@ -148,7 +148,7 @@
     <Indexes>
       <Index Columns="Name" />
       <Index Columns="ParentID" />
-      <Index Columns="ParentID,Name" Unique="True" />
+      <Index Unique="True" Columns="ParentID,Name" />
     </Indexes>
   </Table>
   <Table Name="Product" Description="产品" DbType="SqlServer" 实体分类="模型" 页面分类="Model">

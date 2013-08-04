@@ -13,6 +13,34 @@
             <td align="right">模型：</td>
             <td><XCL:NumberBox ID="frmModelID" runat="server" Width="80px"></XCL:NumberBox></td>
         </tr>
+<tr>
+            <td align="right">创建人：</td>
+            <td><XCL:NumberBox ID="frmCreateUser" runat="server" Width="80px"></XCL:NumberBox></td>
+        </tr>
+<tr>
+            <td align="right">创建人：</td>
+            <td><asp:TextBox ID="frmCreateName" runat="server" Width="150px"></asp:TextBox></td>
+        </tr>
+<tr>
+            <td align="right">创建时间：</td>
+            <td><XCL:DateTimePicker ID="frmCreateTime" runat="server"></XCL:DateTimePicker></td>
+        </tr>
+<tr>
+            <td align="right">更新人：</td>
+            <td><XCL:NumberBox ID="frmUpdateUser" runat="server" Width="80px"></XCL:NumberBox></td>
+        </tr>
+<tr>
+            <td align="right">更新人：</td>
+            <td><asp:TextBox ID="frmUpdateName" runat="server" Width="150px"></asp:TextBox></td>
+        </tr>
+<tr>
+            <td align="right">更新时间：</td>
+            <td><XCL:DateTimePicker ID="frmUpdateTime" runat="server"></XCL:DateTimePicker></td>
+        </tr>
+<tr>
+            <td align="right">备注：</td>
+            <td><asp:TextBox ID="frmRemark" runat="server" Width="300px"></asp:TextBox></td>
+        </tr>
     </table>
     <table border="0" align="Center" width="100%">
         <tr>

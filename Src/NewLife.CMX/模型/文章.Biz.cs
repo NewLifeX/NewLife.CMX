@@ -17,8 +17,8 @@ using XCode.Configuration;
 
 namespace NewLife.CMX
 {
-    /// <summary>模型</summary>
-    public partial class Model : Entity<Model>
+    /// <summary>文章</summary>
+    public partial class Article : Entity<Article>
     {
         #region 对象操作﻿
 
@@ -51,10 +51,15 @@ namespace NewLife.CMX
         //    if (Meta.Count > 0) return;
 
         //    // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
-        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Model).Name, Meta.Table.DataTable.DisplayName);
+        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Article).Name, Meta.Table.DataTable.DisplayName);
 
-        //    var entity = new Model();
-        //    entity.Name = "abc";
+        //    var entity = new Article();
+        //    entity.ChannelID = 0;
+        //    entity.CategoryID = 0;
+        //    entity.Title = "abc";
+        //    entity.Version = 0;
+        //    entity.Hits = 0;
+        //    entity.StatisticsID = 0;
         //    entity.CreateUser = 0;
         //    entity.CreateName = "abc";
         //    entity.CreateTime = DateTime.Now;
@@ -64,7 +69,7 @@ namespace NewLife.CMX
         //    entity.Remark = "abc";
         //    entity.Insert();
 
-        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Model).Name, Meta.Table.DataTable.DisplayName);
+        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Article).Name, Meta.Table.DataTable.DisplayName);
         //}
 
 
@@ -87,18 +92,28 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展查询﻿
-        /// <summary>根据名称查找</summary>
-        /// <param name="name">名称</param>
+        /// <summary>根据频道查找</summary>
+        /// <param name="channelid">频道</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static Model FindByName(String name)
+        public static EntityList<Article> FindAllByChannelID(Int32 channelid)
         {
             if (Meta.Count >= 1000)
-                return Find(_.Name, name);
+                return FindAll(_.ChannelID, channelid);
             else // 实体缓存
-                return Meta.Cache.Entities.Find(_.Name, name);
-            // 单对象缓存
-            //return Meta.SingleCache[name];
+                return Meta.Cache.Entities.FindAll(_.ChannelID, channelid);
+        }
+
+        /// <summary>根据分类查找</summary>
+        /// <param name="categoryid">分类</param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static EntityList<Article> FindAllByCategoryID(Int32 categoryid)
+        {
+            if (Meta.Count >= 1000)
+                return FindAll(_.CategoryID, categoryid);
+            else // 实体缓存
+                return Meta.Cache.Entities.FindAll(_.CategoryID, categoryid);
         }
         #endregion
 
@@ -114,7 +129,7 @@ namespace NewLife.CMX
         ///// <param name="maximumRows">最大返回行数，0表示所有行</param>
         ///// <returns>实体集</returns>
         //[DataObjectMethod(DataObjectMethodType.Select, true)]
-        //public static EntityList<Model> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
+        //public static EntityList<Article> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
         //{
         //    return FindAll(SearchWhere(key), orderClause, null, startRowIndex, maximumRows);
         //}

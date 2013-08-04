@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
     <div class="toolbar">
-        <XCL:LinkBox ID="lbAdd" runat="server" BoxHeight="157px" BoxWidth="440px" Url="ChannelForm.aspx"
+        <XCL:LinkBox ID="lbAdd" runat="server" BoxHeight="346px" BoxWidth="440px" Url="ChannelForm.aspx"
             IconLeft="~/Admin/images/icons/new.gif" EnableViewState="false"><b>添加频道</b></XCL:LinkBox>
         关键字：<asp:TextBox ID="txtKey" runat="server"></asp:TextBox>
         <asp:Button ID="btnSearch" runat="server" Text="查询" />
@@ -23,7 +23,22 @@
             <asp:BoundField DataField="ModelID" HeaderText="模型" SortExpression="ModelID" DataFormatString="{0:n0}">
                 <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
             </asp:BoundField>
-            <XCL:LinkBoxField HeaderText="编辑" DataNavigateUrlFields="ID" DataNavigateUrlFormatString="ChannelForm.aspx?ID={0}" Height="157px" Text="编辑" Width="440px" Title="编辑频道">
+            <asp:BoundField DataField="CreateUser" HeaderText="创建人" SortExpression="CreateUser" DataFormatString="{0:n0}">
+                <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
+            </asp:BoundField>
+            <asp:BoundField DataField="CreateName" HeaderText="创建人" SortExpression="CreateName" />
+            <asp:BoundField DataField="CreateTime" HeaderText="创建时间" SortExpression="CreateTime" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" >
+                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="120px" />
+            </asp:BoundField>
+            <asp:BoundField DataField="UpdateUser" HeaderText="更新人" SortExpression="UpdateUser" DataFormatString="{0:n0}">
+                <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
+            </asp:BoundField>
+            <asp:BoundField DataField="UpdateName" HeaderText="更新人" SortExpression="UpdateName" />
+            <asp:BoundField DataField="UpdateTime" HeaderText="更新时间" SortExpression="UpdateTime" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" >
+                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="120px" />
+            </asp:BoundField>
+            <asp:BoundField DataField="Remark" HeaderText="备注" SortExpression="Remark" />
+            <XCL:LinkBoxField HeaderText="编辑" DataNavigateUrlFields="ID" DataNavigateUrlFormatString="ChannelForm.aspx?ID={0}" Height="346px" Text="编辑" Width="440px" Title="编辑频道">
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="30px" />
             </XCL:LinkBoxField>

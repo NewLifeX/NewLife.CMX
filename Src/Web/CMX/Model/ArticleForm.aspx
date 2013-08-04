@@ -15,11 +15,15 @@
         </tr>
 <tr>
             <td align="right">标题：</td>
-            <td><asp:TextBox ID="frmTitle" runat="server" Width="150px"></asp:TextBox></td>
+            <td><asp:TextBox ID="frmTitle" runat="server" Width="300px"></asp:TextBox></td>
         </tr>
 <tr>
             <td align="right">最新版本：</td>
             <td><XCL:NumberBox ID="frmVersion" runat="server" Width="80px"></XCL:NumberBox></td>
+        </tr>
+<tr>
+            <td align="right">访问量：</td>
+            <td><XCL:NumberBox ID="frmHits" runat="server" Width="80px"></XCL:NumberBox></td>
         </tr>
 <tr>
             <td align="right">访问统计：</td>

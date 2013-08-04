@@ -1,7 +1,7 @@
 ﻿/*
  * XCoder v5.1.4844.37642
  * 作者：nnhy/X
- * 时间：2013-08-04 15:16:25
+ * 时间：2013-08-04 22:27:47
  * 版权：版权所有 (C) 新生命开发团队 2002~2013
 */
 ﻿using System;
@@ -36,6 +36,8 @@ namespace NewLife.CMX
             // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
             //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
             
+            if (isNew && !Dirtys[__.CreateTime]) CreateTime = DateTime.Now;
+            if (!Dirtys[__.UpdateTime]) UpdateTime = DateTime.Now;
         }
 
         ///// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
@@ -54,6 +56,13 @@ namespace NewLife.CMX
         //    var entity = new Channel();
         //    entity.Name = "abc";
         //    entity.ModelID = 0;
+        //    entity.CreateUser = 0;
+        //    entity.CreateName = "abc";
+        //    entity.CreateTime = DateTime.Now;
+        //    entity.UpdateUser = 0;
+        //    entity.UpdateName = "abc";
+        //    entity.UpdateTime = DateTime.Now;
+        //    entity.Remark = "abc";
         //    entity.Insert();
 
         //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Channel).Name, Meta.Table.DataTable.DisplayName);
@@ -91,6 +100,18 @@ namespace NewLife.CMX
                 return Meta.Cache.Entities.Find(_.Name, name);
             // 单对象缓存
             //return Meta.SingleCache[name];
+        }
+
+        /// <summary>根据模型查找</summary>
+        /// <param name="modelid">模型</param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static EntityList<Channel> FindAllByModelID(Int32 modelid)
+        {
+            if (Meta.Count >= 1000)
+                return FindAll(_.ModelID, modelid);
+            else // 实体缓存
+                return Meta.Cache.Entities.FindAll(_.ModelID, modelid);
         }
         #endregion
 
