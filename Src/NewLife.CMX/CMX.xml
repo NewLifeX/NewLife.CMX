@@ -34,7 +34,7 @@
       <Index Columns="ModelID" />
     </Indexes>
   </Table>
-  <Table Name="ArticleCategory" Description="文章分类" DbType="SqlServer" 实体分类="模型" 页面分类="Model">
+  <Table Name="ArticleCategory" Description="文章分类" DbType="SqlServer" 实体分类="模型" 页面分类="Model" 基类="EntityTree">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Nullable="False" Description="名称" />
@@ -86,7 +86,7 @@
       <Index Unique="True" Columns="ParentID,Version" />
     </Indexes>
   </Table>
-  <Table Name="TextCategory" Description="文本分类" DbType="SqlServer" 实体分类="模型" 页面分类="Model">
+  <Table Name="TextCategory" Description="文本分类" DbType="SqlServer" 实体分类="模型" 页面分类="Model" 基类="EntityTree">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Nullable="False" Description="名称" />
@@ -137,7 +137,7 @@
       <Index Unique="True" Columns="ParentID,Version" />
     </Indexes>
   </Table>
-  <Table Name="ArticleCategory" Description="文章分类" DbType="SqlServer" 实体分类="模型" 页面分类="Model">
+  <Table Name="ArticleCategory" Description="文章分类" DbType="SqlServer" 实体分类="模型" 页面分类="Model" 基类="EntityTree">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Nullable="False" Description="名称" />
