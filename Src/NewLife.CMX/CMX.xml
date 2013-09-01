@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Tables Version="8.9.4974.18562">
+<Tables Version="8.9.4992.32523">
   <Table Name="Model" Description="模型。默认有文章、文本、产品三种模型，可以扩展增加。" DbType="SqlServer" 实体分类="基础" 页面分类="Common">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
@@ -37,7 +37,7 @@
       <Index Columns="ModelID" />
     </Indexes>
   </Table>
-  <Table Name="ArticleCategory" Description="文章分类" DbType="SqlServer" 实体分类="模型" 页面分类="Model" 基类="EntityTree">
+  <Table Name="ArticleCategory" Description="文章分类" DbType="SqlServer" 实体分类="文章" 页面分类="Article" 基类="EntityTree">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Nullable="False" Description="名称" />
@@ -51,7 +51,7 @@
       <Index Columns="ParentID,Name" Unique="True" />
     </Indexes>
   </Table>
-  <Table Name="Article" Description="文章" DbType="SqlServer" 实体分类="模型" 页面分类="Model">
+  <Table Name="Article" Description="文章" DbType="SqlServer" 实体分类="文章" 页面分类="Article">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="CategoryID" DataType="Int32" Description="分类" />
@@ -71,7 +71,7 @@
       <Index Columns="CategoryID" />
     </Indexes>
   </Table>
-  <Table Name="ArticleContent" Description="文章内容" DbType="SqlServer" 实体分类="模型" 页面分类="Model">
+  <Table Name="ArticleContent" Description="文章内容" DbType="SqlServer" 实体分类="文章" 页面分类="Article">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="ParentID" DataType="Int32" Description="主题" />
@@ -87,8 +87,8 @@
       <Index Columns="ParentID,Version" Unique="True" />
     </Indexes>
   </Table>
-  <Table Name="ArticleStatistics" Description="文章统计" DbType="SqlServer" 实体分类="模型" 页面分类="Model" 基类="Statistics" />
-  <Table Name="TextCategory" Description="文本分类" DbType="SqlServer" 实体分类="模型" 页面分类="Model" 基类="EntityTree">
+  <Table Name="ArticleStatistics" Description="文章统计" DbType="SqlServer" 实体分类="文章" 页面分类="Article" 基类="Statistics" />
+  <Table Name="TextCategory" Description="文本分类" DbType="SqlServer" 实体分类="文本" 页面分类="Text" 基类="EntityTree">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Nullable="False" Description="名称" />
@@ -102,7 +102,7 @@
       <Index Columns="ParentID,Name" Unique="True" />
     </Indexes>
   </Table>
-  <Table Name="Text" Description="文本" DbType="SqlServer" 实体分类="模型" 页面分类="Model">
+  <Table Name="Text" Description="文本" DbType="SqlServer" 实体分类="文本" 页面分类="Text">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="CategoryID" DataType="Int32" Description="分类" />
@@ -118,11 +118,10 @@
       <Column Name="Remark" DataType="String" Length="500" Description="备注" />
     </Columns>
     <Indexes>
-      <Index Columns="ChannelID" />
       <Index Columns="CategoryID" />
     </Indexes>
   </Table>
-  <Table Name="TextContent" Description="文本内容" DbType="SqlServer" 实体分类="模型" 页面分类="Model">
+  <Table Name="TextContent" Description="文本内容" DbType="SqlServer" 实体分类="文本" 页面分类="Text">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="ParentID" DataType="Int32" Description="主题" />
@@ -138,8 +137,8 @@
       <Index Columns="ParentID,Version" Unique="True" />
     </Indexes>
   </Table>
-  <Table Name="TextStatistics" Description="文本统计" DbType="SqlServer" 实体分类="模型" 页面分类="Model" 基类="Statistics" />
-  <Table Name="ProductCategory" Description="产品分类" DbType="SqlServer" 实体分类="模型" 页面分类="Model" 基类="EntityTree">
+  <Table Name="TextStatistics" Description="文本统计" DbType="SqlServer" 实体分类="文本" 页面分类="Text" 基类="Statistics" />
+  <Table Name="ProductCategory" Description="产品分类" DbType="SqlServer" 实体分类="产品" 页面分类="Product" 基类="EntityTree">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Nullable="False" Description="名称" />
@@ -153,7 +152,7 @@
       <Index Columns="ParentID,Name" Unique="True" />
     </Indexes>
   </Table>
-  <Table Name="Product" Description="产品" DbType="SqlServer" 实体分类="模型" 页面分类="Model">
+  <Table Name="Product" Description="产品" DbType="SqlServer" 实体分类="产品" 页面分类="Product">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="CategoryID" DataType="Int32" Description="分类" />
@@ -169,8 +168,11 @@
       <Column Name="UpdateTime" DataType="DateTime" Description="更新时间" />
       <Column Name="Remark" DataType="String" Length="200" Description="备注" />
     </Columns>
+    <Indexes>
+      <Index Columns="CategoryID" />
+    </Indexes>
   </Table>
-  <Table Name="ProductContent" Description="产品内容" DbType="SqlServer" 实体分类="模型" 页面分类="Model">
+  <Table Name="ProductContent" Description="产品内容" DbType="SqlServer" 实体分类="产品" 页面分类="Product">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="ParentID" DataType="Int32" Description="主题" />
@@ -186,5 +188,5 @@
       <Index Columns="ParentID,Version" Unique="True" />
     </Indexes>
   </Table>
-  <Table Name="ProductStatistics" Description="产品统计" DbType="SqlServer" 实体分类="模型" 页面分类="Model" 基类="Statistics" />
+  <Table Name="ProductStatistics" Description="产品统计" DbType="SqlServer" 实体分类="产品" 页面分类="Product" 基类="Statistics" />
 </Tables>

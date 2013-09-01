@@ -1,15 +1,11 @@
-﻿<%@ Page Title="文本管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="TextForm.aspx.cs" Inherits="CMX_TextForm"%>
+﻿<%@ Page Title="产品管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="ProductForm.aspx.cs" Inherits="CMX_ProductForm"%>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
     <table border="0" class="m_table" cellspacing="1" cellpadding="0" align="Center">
         <tr>
-            <th colspan="2">文本</th>
+            <th colspan="2">产品</th>
         </tr>
         <tr>
-            <td align="right">频道：</td>
-            <td><XCL:NumberBox ID="frmChannelID" runat="server" Width="80px"></XCL:NumberBox></td>
-        </tr>
-<tr>
             <td align="right">分类：</td>
             <td><XCL:NumberBox ID="frmCategoryID" runat="server" Width="80px"></XCL:NumberBox></td>
         </tr>
@@ -20,6 +16,10 @@
 <tr>
             <td align="right">最新版本：</td>
             <td><XCL:NumberBox ID="frmVersion" runat="server" Width="80px"></XCL:NumberBox></td>
+        </tr>
+<tr>
+            <td align="right">价格：</td>
+            <td><XCL:DecimalBox ID="frmPrice" runat="server" Width="80px"></XCL:DecimalBox></td>
         </tr>
 <tr>
             <td align="right">访问统计：</td>
@@ -51,14 +51,14 @@
         </tr>
 <tr>
             <td align="right">备注：</td>
-            <td><asp:TextBox ID="frmRemark" runat="server" TextMode="MultiLine" Width="300px" Height="80px"></asp:TextBox></td>
+            <td><asp:TextBox ID="frmRemark" runat="server" Width="300px"></asp:TextBox></td>
         </tr>
     </table>
     <table border="0" align="Center" width="100%">
         <tr>
             <td align="center">
                 <asp:Button ID="btnSave" runat="server" CausesValidation="True" Text='保存' />
-                &nbsp;<asp:Button ID="btnCopy" runat="server" CausesValidation="True" Text='另存为新文本' />
+                &nbsp;<asp:Button ID="btnCopy" runat="server" CausesValidation="True" Text='另存为新产品' />
                 &nbsp;<asp:Button ID="btnReturn" runat="server" OnClientClick="parent.Dialog.CloseSelfDialog(frameElement);return false;" Text="返回" />
             </td>
         </tr>

@@ -1,7 +1,7 @@
 ﻿/*
- * XCoder v5.1.4974.18563
+ * XCoder v5.1.4992.36291
  * 作者：nnhy/X
- * 时间：2013-09-01 14:31:19
+ * 时间：2013-09-01 20:13:59
  * 版权：版权所有 (C) 新生命开发团队 2002~2013
 */
 ﻿using System;
@@ -17,8 +17,8 @@ using XCode.Configuration;
 
 namespace NewLife.CMX
 {
-    /// <summary>文本</summary>
-    public partial class Text : Entity<Text>
+    /// <summary>文本内容</summary>
+    public partial class TextContent : Entity<TextContent>
     {
         #region 对象操作﻿
 
@@ -37,7 +37,6 @@ namespace NewLife.CMX
             //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
             
             if (isNew && !Dirtys[__.CreateTime]) CreateTime = DateTime.Now;
-            if (!Dirtys[__.UpdateTime]) UpdateTime = DateTime.Now;
         }
 
         ///// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
@@ -51,24 +50,19 @@ namespace NewLife.CMX
         //    if (Meta.Count > 0) return;
 
         //    // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
-        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Text).Name, Meta.Table.DataTable.DisplayName);
+        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(TextContent).Name, Meta.Table.DataTable.DisplayName);
 
-        //    var entity = new Text();
-        //    entity.ChannelID = 0;
-        //    entity.CategoryID = 0;
+        //    var entity = new TextContent();
+        //    entity.ParentID = 0;
         //    entity.Title = "abc";
         //    entity.Version = 0;
-        //    entity.StatisticsID = 0;
         //    entity.CreateUserID = 0;
         //    entity.CreateUserName = "abc";
         //    entity.CreateTime = DateTime.Now;
-        //    entity.UpdateUserID = 0;
-        //    entity.UpdateUserName = "abc";
-        //    entity.UpdateTime = DateTime.Now;
-        //    entity.Remark = "abc";
+        //    entity.Content = "abc";
         //    entity.Insert();
 
-        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Text).Name, Meta.Table.DataTable.DisplayName);
+        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(TextContent).Name, Meta.Table.DataTable.DisplayName);
         //}
 
 
@@ -91,28 +85,29 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展查询﻿
-        /// <summary>根据频道查找</summary>
-        /// <param name="channelid">频道</param>
+        /// <summary>根据主题查找</summary>
+        /// <param name="parentid">主题</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<Text> FindAllByChannelID(Int32 channelid)
+        public static EntityList<TextContent> FindAllByParentID(Int32 parentid)
         {
             if (Meta.Count >= 1000)
-                return FindAll(_.ChannelID, channelid);
+                return FindAll(_.ParentID, parentid);
             else // 实体缓存
-                return Meta.Cache.Entities.FindAll(_.ChannelID, channelid);
+                return Meta.Cache.Entities.FindAll(_.ParentID, parentid);
         }
 
-        /// <summary>根据分类查找</summary>
-        /// <param name="categoryid">分类</param>
+        /// <summary>根据主题、版本查找</summary>
+        /// <param name="parentid">主题</param>
+        /// <param name="version">版本</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<Text> FindAllByCategoryID(Int32 categoryid)
+        public static TextContent FindByParentIDAndVersion(Int32 parentid, Int32 version)
         {
             if (Meta.Count >= 1000)
-                return FindAll(_.CategoryID, categoryid);
+                return Find(new String[] { _.ParentID, _.Version }, new Object[] { parentid, version });
             else // 实体缓存
-                return Meta.Cache.Entities.FindAll(_.CategoryID, categoryid);
+                return Meta.Cache.Entities.Find(e => e.ParentID == parentid && e.Version == version);
         }
         #endregion
 
@@ -128,7 +123,7 @@ namespace NewLife.CMX
         ///// <param name="maximumRows">最大返回行数，0表示所有行</param>
         ///// <returns>实体集</returns>
         //[DataObjectMethod(DataObjectMethodType.Select, true)]
-        //public static EntityList<Text> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
+        //public static EntityList<TextContent> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
         //{
         //    return FindAll(SearchWhere(key), orderClause, null, startRowIndex, maximumRows);
         //}

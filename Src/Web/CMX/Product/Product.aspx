@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
     <div class="toolbar">
-        <XCL:LinkBox ID="lbAdd" runat="server" BoxHeight="346px" BoxWidth="440px" Url="ProductForm.aspx"
+        <XCL:LinkBox ID="lbAdd" runat="server" BoxHeight="427px" BoxWidth="440px" Url="ProductForm.aspx"
             IconLeft="~/Admin/images/icons/new.gif" EnableViewState="false"><b>添加产品</b></XCL:LinkBox>
         关键字：<asp:TextBox ID="txtKey" runat="server"></asp:TextBox>
         <asp:Button ID="btnSearch" runat="server" Text="查询" />
@@ -23,6 +23,15 @@
                 <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
             </asp:BoundField>
             <asp:BoundField DataField="Title" HeaderText="标题" SortExpression="Title" />
+            <asp:BoundField DataField="Version" HeaderText="最新版本" SortExpression="Version" DataFormatString="{0:n0}">
+                <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
+            </asp:BoundField>
+            <asp:BoundField DataField="Price" HeaderText="价格" SortExpression="Price" DataFormatString="{0:c}">
+                <ItemStyle HorizontalAlign="Right" Font-Bold="True" ForeColor="Blue" />
+            </asp:BoundField>
+            <asp:BoundField DataField="StatisticsID" HeaderText="访问统计" SortExpression="StatisticsID" DataFormatString="{0:n0}">
+                <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
+            </asp:BoundField>
             <asp:BoundField DataField="CreateUserID" HeaderText="创建人" SortExpression="CreateUserID" DataFormatString="{0:n0}">
                 <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
             </asp:BoundField>
@@ -38,7 +47,7 @@
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="120px" />
             </asp:BoundField>
             <asp:BoundField DataField="Remark" HeaderText="备注" SortExpression="Remark" />
-            <XCL:LinkBoxField HeaderText="编辑" DataNavigateUrlFields="ID" DataNavigateUrlFormatString="ProductForm.aspx?ID={0}" Height="346px" Text="编辑" Width="440px" Title="编辑产品">
+            <XCL:LinkBoxField HeaderText="编辑" DataNavigateUrlFields="ID" DataNavigateUrlFormatString="ProductForm.aspx?ID={0}" Height="427px" Text="编辑" Width="440px" Title="编辑产品">
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="30px" />
             </XCL:LinkBoxField>

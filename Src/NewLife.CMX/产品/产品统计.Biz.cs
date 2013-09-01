@@ -1,7 +1,7 @@
 ﻿/*
- * XCoder v5.1.4974.18563
+ * XCoder v5.1.4992.36291
  * 作者：nnhy/X
- * 时间：2013-09-01 14:31:19
+ * 时间：2013-09-01 20:13:59
  * 版权：版权所有 (C) 新生命开发团队 2002~2013
 */
 ﻿using System;
@@ -17,8 +17,8 @@ using XCode.Configuration;
 
 namespace NewLife.CMX
 {
-    /// <summary>文章</summary>
-    public partial class Article : Entity<Article>
+    /// <summary>产品统计</summary>
+    public partial class ProductStatistics : Entity<ProductStatistics>
     {
         #region 对象操作﻿
 
@@ -36,8 +36,6 @@ namespace NewLife.CMX
             // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
             //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
             
-            if (isNew && !Dirtys[__.CreateTime]) CreateTime = DateTime.Now;
-            if (!Dirtys[__.UpdateTime]) UpdateTime = DateTime.Now;
         }
 
         ///// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
@@ -51,25 +49,12 @@ namespace NewLife.CMX
         //    if (Meta.Count > 0) return;
 
         //    // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
-        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Article).Name, Meta.Table.DataTable.DisplayName);
+        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(ProductStatistics).Name, Meta.Table.DataTable.DisplayName);
 
-        //    var entity = new Article();
-        //    entity.ChannelID = 0;
-        //    entity.CategoryID = 0;
-        //    entity.Title = "abc";
-        //    entity.Version = 0;
-        //    entity.Hits = 0;
-        //    entity.StatisticsID = 0;
-        //    entity.CreateUserID = 0;
-        //    entity.CreateUserName = "abc";
-        //    entity.CreateTime = DateTime.Now;
-        //    entity.UpdateUserID = 0;
-        //    entity.UpdateUserName = "abc";
-        //    entity.UpdateTime = DateTime.Now;
-        //    entity.Remark = "abc";
+        //    var entity = new ProductStatistics();
         //    entity.Insert();
 
-        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Article).Name, Meta.Table.DataTable.DisplayName);
+        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(ProductStatistics).Name, Meta.Table.DataTable.DisplayName);
         //}
 
 
@@ -92,29 +77,6 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展查询﻿
-        /// <summary>根据频道查找</summary>
-        /// <param name="channelid">频道</param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<Article> FindAllByChannelID(Int32 channelid)
-        {
-            if (Meta.Count >= 1000)
-                return FindAll(_.ChannelID, channelid);
-            else // 实体缓存
-                return Meta.Cache.Entities.FindAll(_.ChannelID, channelid);
-        }
-
-        /// <summary>根据分类查找</summary>
-        /// <param name="categoryid">分类</param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<Article> FindAllByCategoryID(Int32 categoryid)
-        {
-            if (Meta.Count >= 1000)
-                return FindAll(_.CategoryID, categoryid);
-            else // 实体缓存
-                return Meta.Cache.Entities.FindAll(_.CategoryID, categoryid);
-        }
         #endregion
 
         #region 高级查询
@@ -129,7 +91,7 @@ namespace NewLife.CMX
         ///// <param name="maximumRows">最大返回行数，0表示所有行</param>
         ///// <returns>实体集</returns>
         //[DataObjectMethod(DataObjectMethodType.Select, true)]
-        //public static EntityList<Article> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
+        //public static EntityList<ProductStatistics> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
         //{
         //    return FindAll(SearchWhere(key), orderClause, null, startRowIndex, maximumRows);
         //}

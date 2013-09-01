@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
     <div class="toolbar">
-        <XCL:LinkBox ID="lbAdd" runat="server" BoxHeight="319px" BoxWidth="440px" Url="ModelForm.aspx"
+        <XCL:LinkBox ID="lbAdd" runat="server" BoxHeight="346px" BoxWidth="440px" Url="ModelForm.aspx"
             IconLeft="~/Admin/images/icons/new.gif" EnableViewState="false"><b>添加模型</b></XCL:LinkBox>
         关键字：<asp:TextBox ID="txtKey" runat="server"></asp:TextBox>
         <asp:Button ID="btnSearch" runat="server" Text="查询" />
@@ -20,6 +20,13 @@
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="Ikey" />
             </asp:BoundField>
             <asp:BoundField DataField="Name" HeaderText="名称" SortExpression="Name" />
+            <asp:TemplateField HeaderText="启用" SortExpression="Enable">
+                <ItemTemplate>
+                    <asp:Label ID="Enable1" runat="server" Text="√" Visible='<%# Eval("Enable") %>' Font-Bold="True" Font-Size="14pt" ForeColor="Green"></asp:Label>
+                    <asp:Label ID="Enable2" runat="server" Text="×" Visible='<%# !(Boolean)Eval("Enable") %>' Font-Bold="True" Font-Size="16pt" ForeColor="Red"></asp:Label>
+                </ItemTemplate>
+                <ItemStyle HorizontalAlign="Center" />
+            </asp:TemplateField>
             <asp:BoundField DataField="CreateUserID" HeaderText="创建人" SortExpression="CreateUserID" DataFormatString="{0:n0}">
                 <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
             </asp:BoundField>
@@ -35,7 +42,7 @@
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="120px" />
             </asp:BoundField>
             <asp:BoundField DataField="Remark" HeaderText="备注" SortExpression="Remark" />
-            <XCL:LinkBoxField HeaderText="编辑" DataNavigateUrlFields="ID" DataNavigateUrlFormatString="ModelForm.aspx?ID={0}" Height="319px" Text="编辑" Width="440px" Title="编辑模型">
+            <XCL:LinkBoxField HeaderText="编辑" DataNavigateUrlFields="ID" DataNavigateUrlFormatString="ModelForm.aspx?ID={0}" Height="346px" Text="编辑" Width="440px" Title="编辑模型">
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="30px" />
             </XCL:LinkBoxField>

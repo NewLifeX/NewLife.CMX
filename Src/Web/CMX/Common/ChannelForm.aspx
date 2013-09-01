@@ -14,6 +14,14 @@
             <td><XCL:NumberBox ID="frmModelID" runat="server" Width="80px"></XCL:NumberBox></td>
         </tr>
 <tr>
+            <td align="right">后缀：</td>
+            <td><asp:TextBox ID="frmSuffix" runat="server" Width="150px"></asp:TextBox></td>
+        </tr>
+<tr>
+            <td align="right">启用：</td>
+            <td><asp:CheckBox ID="frmEnable" runat="server" Text="启用" /></td>
+        </tr>
+<tr>
             <td align="right">创建人：</td>
             <td><XCL:NumberBox ID="frmCreateUserID" runat="server" Width="80px"></XCL:NumberBox></td>
         </tr>

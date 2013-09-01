@@ -10,6 +10,10 @@
             <td><asp:TextBox ID="frmName" runat="server" Width="150px"></asp:TextBox></td>
         </tr>
 <tr>
+            <td align="right">启用：</td>
+            <td><asp:CheckBox ID="frmEnable" runat="server" Text="启用" /></td>
+        </tr>
+<tr>
             <td align="right">创建人：</td>
             <td><XCL:NumberBox ID="frmCreateUserID" runat="server" Width="80px"></XCL:NumberBox></td>
         </tr>

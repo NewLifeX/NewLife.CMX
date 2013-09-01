@@ -54,12 +54,36 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.ModelID, value)) { _ModelID = value; OnPropertyChanged(__.ModelID); } }
         }
 
+        private String _Suffix;
+        /// <summary>后缀。默认频道后缀为空，扩展频道必须有不同的表后缀</summary>
+        [DisplayName("后缀")]
+        [Description("后缀。默认频道后缀为空，扩展频道必须有不同的表后缀")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn(4, "Suffix", "后缀。默认频道后缀为空，扩展频道必须有不同的表后缀", null, "nvarchar(50)", 0, 0, true)]
+        public virtual String Suffix
+        {
+            get { return _Suffix; }
+            set { if (OnPropertyChanging(__.Suffix, value)) { _Suffix = value; OnPropertyChanged(__.Suffix); } }
+        }
+
+        private Boolean _Enable;
+        /// <summary>启用</summary>
+        [DisplayName("启用")]
+        [Description("启用")]
+        [DataObjectField(false, false, true, 1)]
+        [BindColumn(5, "Enable", "启用", null, "bit", 0, 0, false)]
+        public virtual Boolean Enable
+        {
+            get { return _Enable; }
+            set { if (OnPropertyChanging(__.Enable, value)) { _Enable = value; OnPropertyChanged(__.Enable); } }
+        }
+
         private Int32 _CreateUserID;
         /// <summary>创建人</summary>
         [DisplayName("创建人")]
         [Description("创建人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(4, "CreateUserID", "创建人", null, "int", 10, 0, false)]
+        [BindColumn(6, "CreateUserID", "创建人", null, "int", 10, 0, false)]
         public virtual Int32 CreateUserID
         {
             get { return _CreateUserID; }
@@ -71,7 +95,7 @@ namespace NewLife.CMX
         [DisplayName("创建人")]
         [Description("创建人")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(5, "CreateUserName", "创建人", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(7, "CreateUserName", "创建人", null, "nvarchar(50)", 0, 0, true)]
         public virtual String CreateUserName
         {
             get { return _CreateUserName; }
@@ -83,7 +107,7 @@ namespace NewLife.CMX
         [DisplayName("创建时间")]
         [Description("创建时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(6, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
+        [BindColumn(8, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
         public virtual DateTime CreateTime
         {
             get { return _CreateTime; }
@@ -95,7 +119,7 @@ namespace NewLife.CMX
         [DisplayName("更新人")]
         [Description("更新人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(7, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
+        [BindColumn(9, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
         public virtual Int32 UpdateUserID
         {
             get { return _UpdateUserID; }
@@ -107,7 +131,7 @@ namespace NewLife.CMX
         [DisplayName("更新人")]
         [Description("更新人")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(8, "UpdateUserName", "更新人", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(10, "UpdateUserName", "更新人", null, "nvarchar(50)", 0, 0, true)]
         public virtual String UpdateUserName
         {
             get { return _UpdateUserName; }
@@ -119,7 +143,7 @@ namespace NewLife.CMX
         [DisplayName("更新时间")]
         [Description("更新时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(9, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
+        [BindColumn(11, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
         public virtual DateTime UpdateTime
         {
             get { return _UpdateTime; }
@@ -131,7 +155,7 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(10, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(12, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Remark
         {
             get { return _Remark; }
@@ -156,6 +180,8 @@ namespace NewLife.CMX
                     case __.ID : return _ID;
                     case __.Name : return _Name;
                     case __.ModelID : return _ModelID;
+                    case __.Suffix : return _Suffix;
+                    case __.Enable : return _Enable;
                     case __.CreateUserID : return _CreateUserID;
                     case __.CreateUserName : return _CreateUserName;
                     case __.CreateTime : return _CreateTime;
@@ -173,6 +199,8 @@ namespace NewLife.CMX
                     case __.ID : _ID = Convert.ToInt32(value); break;
                     case __.Name : _Name = Convert.ToString(value); break;
                     case __.ModelID : _ModelID = Convert.ToInt32(value); break;
+                    case __.Suffix : _Suffix = Convert.ToString(value); break;
+                    case __.Enable : _Enable = Convert.ToBoolean(value); break;
                     case __.CreateUserID : _CreateUserID = Convert.ToInt32(value); break;
                     case __.CreateUserName : _CreateUserName = Convert.ToString(value); break;
                     case __.CreateTime : _CreateTime = Convert.ToDateTime(value); break;
@@ -198,6 +226,12 @@ namespace NewLife.CMX
 
             ///<summary>模型</summary>
             public static readonly Field ModelID = FindByName(__.ModelID);
+
+            ///<summary>后缀。默认频道后缀为空，扩展频道必须有不同的表后缀</summary>
+            public static readonly Field Suffix = FindByName(__.Suffix);
+
+            ///<summary>启用</summary>
+            public static readonly Field Enable = FindByName(__.Enable);
 
             ///<summary>创建人</summary>
             public static readonly Field CreateUserID = FindByName(__.CreateUserID);
@@ -234,6 +268,12 @@ namespace NewLife.CMX
 
             ///<summary>模型</summary>
             public const String ModelID = "ModelID";
+
+            ///<summary>后缀。默认频道后缀为空，扩展频道必须有不同的表后缀</summary>
+            public const String Suffix = "Suffix";
+
+            ///<summary>启用</summary>
+            public const String Enable = "Enable";
 
             ///<summary>创建人</summary>
             public const String CreateUserID = "CreateUserID";
@@ -272,6 +312,12 @@ namespace NewLife.CMX
 
         /// <summary>模型</summary>
         Int32 ModelID { get; set; }
+
+        /// <summary>后缀。默认频道后缀为空，扩展频道必须有不同的表后缀</summary>
+        String Suffix { get; set; }
+
+        /// <summary>启用</summary>
+        Boolean Enable { get; set; }
 
         /// <summary>创建人</summary>
         Int32 CreateUserID { get; set; }

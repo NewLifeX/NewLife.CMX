@@ -1,7 +1,7 @@
 ﻿/*
- * XCoder v5.1.4974.18563
+ * XCoder v5.1.4992.36291
  * 作者：nnhy/X
- * 时间：2013-09-01 14:31:19
+ * 时间：2013-09-01 20:13:59
  * 版权：版权所有 (C) 新生命开发团队 2002~2013
 */
 ﻿using System;
@@ -17,8 +17,8 @@ using XCode.Configuration;
 
 namespace NewLife.CMX
 {
-    /// <summary>产品</summary>
-    public partial class Product : Entity<Product>
+    /// <summary>文本分类</summary>
+    public partial class TextCategory : Entity<TextCategory>
     {
         #region 对象操作﻿
 
@@ -36,8 +36,6 @@ namespace NewLife.CMX
             // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
             //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
             
-            if (isNew && !Dirtys[__.CreateTime]) CreateTime = DateTime.Now;
-            if (!Dirtys[__.UpdateTime]) UpdateTime = DateTime.Now;
         }
 
         ///// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
@@ -51,21 +49,16 @@ namespace NewLife.CMX
         //    if (Meta.Count > 0) return;
 
         //    // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
-        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Product).Name, Meta.Table.DataTable.DisplayName);
+        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(TextCategory).Name, Meta.Table.DataTable.DisplayName);
 
-        //    var entity = new Product();
-        //    entity.CategoryID = 0;
-        //    entity.Title = "abc";
-        //    entity.CreateUserID = 0;
-        //    entity.CreateUserName = "abc";
-        //    entity.CreateTime = DateTime.Now;
-        //    entity.UpdateUserID = 0;
-        //    entity.UpdateUserName = "abc";
-        //    entity.UpdateTime = DateTime.Now;
+        //    var entity = new TextCategory();
+        //    entity.Name = "abc";
+        //    entity.ParentID = 0;
+        //    entity.Sort = 0;
         //    entity.Remark = "abc";
         //    entity.Insert();
 
-        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Product).Name, Meta.Table.DataTable.DisplayName);
+        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(TextCategory).Name, Meta.Table.DataTable.DisplayName);
         //}
 
 
@@ -88,6 +81,42 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展查询﻿
+        /// <summary>根据名称查找</summary>
+        /// <param name="name">名称</param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static EntityList<TextCategory> FindAllByName(String name)
+        {
+            if (Meta.Count >= 1000)
+                return FindAll(_.Name, name);
+            else // 实体缓存
+                return Meta.Cache.Entities.FindAll(_.Name, name);
+        }
+
+        /// <summary>根据父类查找</summary>
+        /// <param name="parentid">父类</param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static EntityList<TextCategory> FindAllByParentID(Int32 parentid)
+        {
+            if (Meta.Count >= 1000)
+                return FindAll(_.ParentID, parentid);
+            else // 实体缓存
+                return Meta.Cache.Entities.FindAll(_.ParentID, parentid);
+        }
+
+        /// <summary>根据名称、父类查找</summary>
+        /// <param name="name">名称</param>
+        /// <param name="parentid">父类</param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static TextCategory FindByNameAndParentID(String name, Int32 parentid)
+        {
+            if (Meta.Count >= 1000)
+                return Find(new String[] { _.Name, _.ParentID }, new Object[] { name, parentid });
+            else // 实体缓存
+                return Meta.Cache.Entities.Find(e => e.Name == name && e.ParentID == parentid);
+        }
         #endregion
 
         #region 高级查询
@@ -102,7 +131,7 @@ namespace NewLife.CMX
         ///// <param name="maximumRows">最大返回行数，0表示所有行</param>
         ///// <returns>实体集</returns>
         //[DataObjectMethod(DataObjectMethodType.Select, true)]
-        //public static EntityList<Product> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
+        //public static EntityList<TextCategory> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
         //{
         //    return FindAll(SearchWhere(key), orderClause, null, startRowIndex, maximumRows);
         //}

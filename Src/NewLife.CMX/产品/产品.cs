@@ -8,14 +8,13 @@ using XCode.DataAccessLayer;
 
 namespace NewLife.CMX
 {
-    /// <summary>文本</summary>
+    /// <summary>产品</summary>
     [Serializable]
     [DataObject]
-    [Description("文本")]
-    [BindIndex("IX_Text_ChannelID", false, "ChannelID")]
-    [BindIndex("IX_Text_CategoryID", false, "CategoryID")]
-    [BindTable("Text", Description = "文本", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
-    public partial class Text : IText
+    [Description("产品")]
+    [BindIndex("IX_Product_CategoryID", false, "CategoryID")]
+    [BindTable("Product", Description = "产品", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
+    public partial class Product : IProduct
     {
         #region 属性
         private Int32 _ID;
@@ -30,24 +29,12 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.ID, value)) { _ID = value; OnPropertyChanged(__.ID); } }
         }
 
-        private Int32 _ChannelID;
-        /// <summary>频道</summary>
-        [DisplayName("频道")]
-        [Description("频道")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(2, "ChannelID", "频道", null, "int", 10, 0, false)]
-        public virtual Int32 ChannelID
-        {
-            get { return _ChannelID; }
-            set { if (OnPropertyChanging(__.ChannelID, value)) { _ChannelID = value; OnPropertyChanged(__.ChannelID); } }
-        }
-
         private Int32 _CategoryID;
         /// <summary>分类</summary>
         [DisplayName("分类")]
         [Description("分类")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(3, "CategoryID", "分类", null, "int", 10, 0, false)]
+        [BindColumn(2, "CategoryID", "分类", null, "int", 10, 0, false)]
         public virtual Int32 CategoryID
         {
             get { return _CategoryID; }
@@ -59,7 +46,7 @@ namespace NewLife.CMX
         [DisplayName("标题")]
         [Description("标题")]
         [DataObjectField(false, false, false, 200)]
-        [BindColumn(4, "Title", "标题", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(3, "Title", "标题", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Title
         {
             get { return _Title; }
@@ -71,11 +58,23 @@ namespace NewLife.CMX
         [DisplayName("最新版本")]
         [Description("最新版本")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(5, "Version", "最新版本", null, "int", 10, 0, false)]
+        [BindColumn(4, "Version", "最新版本", null, "int", 10, 0, false)]
         public virtual Int32 Version
         {
             get { return _Version; }
             set { if (OnPropertyChanging(__.Version, value)) { _Version = value; OnPropertyChanged(__.Version); } }
+        }
+
+        private Decimal _Price;
+        /// <summary>价格</summary>
+        [DisplayName("价格")]
+        [Description("价格")]
+        [DataObjectField(false, false, true, 19)]
+        [BindColumn(5, "Price", "价格", null, "money", 0, 0, false)]
+        public virtual Decimal Price
+        {
+            get { return _Price; }
+            set { if (OnPropertyChanging(__.Price, value)) { _Price = value; OnPropertyChanged(__.Price); } }
         }
 
         private Int32 _StatisticsID;
@@ -166,8 +165,8 @@ namespace NewLife.CMX
         /// <summary>备注</summary>
         [DisplayName("备注")]
         [Description("备注")]
-        [DataObjectField(false, false, true, 500)]
-        [BindColumn(13, "Remark", "备注", null, "nvarchar(500)", 0, 0, true)]
+        [DataObjectField(false, false, true, 200)]
+        [BindColumn(13, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Remark
         {
             get { return _Remark; }
@@ -190,10 +189,10 @@ namespace NewLife.CMX
                 switch (name)
                 {
                     case __.ID : return _ID;
-                    case __.ChannelID : return _ChannelID;
                     case __.CategoryID : return _CategoryID;
                     case __.Title : return _Title;
                     case __.Version : return _Version;
+                    case __.Price : return _Price;
                     case __.StatisticsID : return _StatisticsID;
                     case __.CreateUserID : return _CreateUserID;
                     case __.CreateUserName : return _CreateUserName;
@@ -210,10 +209,10 @@ namespace NewLife.CMX
                 switch (name)
                 {
                     case __.ID : _ID = Convert.ToInt32(value); break;
-                    case __.ChannelID : _ChannelID = Convert.ToInt32(value); break;
                     case __.CategoryID : _CategoryID = Convert.ToInt32(value); break;
                     case __.Title : _Title = Convert.ToString(value); break;
                     case __.Version : _Version = Convert.ToInt32(value); break;
+                    case __.Price : _Price = Convert.ToDecimal(value); break;
                     case __.StatisticsID : _StatisticsID = Convert.ToInt32(value); break;
                     case __.CreateUserID : _CreateUserID = Convert.ToInt32(value); break;
                     case __.CreateUserName : _CreateUserName = Convert.ToString(value); break;
@@ -229,14 +228,11 @@ namespace NewLife.CMX
         #endregion
 
         #region 字段名
-        /// <summary>取得文本字段信息的快捷方式</summary>
+        /// <summary>取得产品字段信息的快捷方式</summary>
         public partial class _
         {
             ///<summary>编号</summary>
             public static readonly Field ID = FindByName(__.ID);
-
-            ///<summary>频道</summary>
-            public static readonly Field ChannelID = FindByName(__.ChannelID);
 
             ///<summary>分类</summary>
             public static readonly Field CategoryID = FindByName(__.CategoryID);
@@ -246,6 +242,9 @@ namespace NewLife.CMX
 
             ///<summary>最新版本</summary>
             public static readonly Field Version = FindByName(__.Version);
+
+            ///<summary>价格</summary>
+            public static readonly Field Price = FindByName(__.Price);
 
             ///<summary>访问统计</summary>
             public static readonly Field StatisticsID = FindByName(__.StatisticsID);
@@ -274,14 +273,11 @@ namespace NewLife.CMX
             static Field FindByName(String name) { return Meta.Table.FindByName(name); }
         }
 
-        /// <summary>取得文本字段名称的快捷方式</summary>
+        /// <summary>取得产品字段名称的快捷方式</summary>
         partial class __
         {
             ///<summary>编号</summary>
             public const String ID = "ID";
-
-            ///<summary>频道</summary>
-            public const String ChannelID = "ChannelID";
 
             ///<summary>分类</summary>
             public const String CategoryID = "CategoryID";
@@ -291,6 +287,9 @@ namespace NewLife.CMX
 
             ///<summary>最新版本</summary>
             public const String Version = "Version";
+
+            ///<summary>价格</summary>
+            public const String Price = "Price";
 
             ///<summary>访问统计</summary>
             public const String StatisticsID = "StatisticsID";
@@ -320,15 +319,12 @@ namespace NewLife.CMX
         #endregion
     }
 
-    /// <summary>文本接口</summary>
-    public partial interface IText
+    /// <summary>产品接口</summary>
+    public partial interface IProduct
     {
         #region 属性
         /// <summary>编号</summary>
         Int32 ID { get; set; }
-
-        /// <summary>频道</summary>
-        Int32 ChannelID { get; set; }
 
         /// <summary>分类</summary>
         Int32 CategoryID { get; set; }
@@ -338,6 +334,9 @@ namespace NewLife.CMX
 
         /// <summary>最新版本</summary>
         Int32 Version { get; set; }
+
+        /// <summary>价格</summary>
+        Decimal Price { get; set; }
 
         /// <summary>访问统计</summary>
         Int32 StatisticsID { get; set; }
