@@ -7,7 +7,7 @@
     <title>系统日志管理</title>
     <link type="text/css" rel="stylesheet" href="../../scripts/ui/skins/Aqua/css/ligerui-all.css" />
     <link type="text/css" rel="stylesheet" href="../images/style.css" />
-    <script type="text/javascript" src="../../scripts/jquery/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="../../scripts/jquery/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="../../scripts/ui/js/ligerBuild.min.js"></script>
     <script type="text/javascript" src="../js/function.js"></script>
 </head>

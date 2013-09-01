@@ -15,7 +15,7 @@ public partial class ListPage : System.Web.UI.MasterPage
             IManagePage manager = fix.GetValue(Page) as IManagePage;
             if (manager != null) Navigation.Text = manager.Navigation;
         }
-        //Page.ClientScript.RegisterClientScriptInclude("jquery", ResolveUrl("~/Scripts/jquery/jquery-1.3.2.min.js"));
+        //Page.ClientScript.RegisterClientScriptInclude("jquery", ResolveUrl("~/Scripts/jquery/jquery-1.9.1.min.js"));
         //Page.ClientScript.RegisterClientScriptInclude("adminstyle", ResolveUrl("~/Scripts/ui/js/ligerBuild.min.js"));
         //Page.ClientScript.RegisterClientScriptInclude("fun", ResolveUrl("~/Scripts/function.js"));       
 
