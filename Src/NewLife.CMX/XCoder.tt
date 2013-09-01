@@ -53,7 +53,7 @@
 	WriteLine("生成：" + dic["TemplateName"]);
 	Process.Start(exe, arg).WaitForExit(3000);
 
-	//dic["Override"] = false;					// 是否覆盖目标文件
+	dic["Override"] = false;					// 是否覆盖目标文件
 	dic["OutputPath"] = mypath + "\\$(实体分类)";	// 输出目录
 	dic["TemplateName"] = "[内置]实体业务";		// 模版名
 	Save(cfg, dic);
