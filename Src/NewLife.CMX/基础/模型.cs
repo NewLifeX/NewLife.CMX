@@ -8,12 +8,12 @@ using XCode.DataAccessLayer;
 
 namespace NewLife.CMX
 {
-    /// <summary>模型</summary>
+    /// <summary>模型。默认有文章、文本、产品三种模型，可以扩展增加。</summary>
     [Serializable]
     [DataObject]
-    [Description("模型")]
+    [Description("模型。默认有文章、文本、产品三种模型，可以扩展增加。")]
     [BindIndex("IU_Model_Name", true, "Name")]
-    [BindTable("Model", Description = "模型", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
+    [BindTable("Model", Description = "模型。默认有文章、文本、产品三种模型，可以扩展增加。", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class Model : IModel
     {
         #region 属性
@@ -41,28 +41,28 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.Name, value)) { _Name = value; OnPropertyChanged(__.Name); } }
         }
 
-        private Int32 _CreateUser;
+        private Int32 _CreateUserID;
         /// <summary>创建人</summary>
         [DisplayName("创建人")]
         [Description("创建人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(3, "CreateUser", "创建人", null, "int", 10, 0, false)]
-        public virtual Int32 CreateUser
+        [BindColumn(3, "CreateUserID", "创建人", null, "int", 10, 0, false)]
+        public virtual Int32 CreateUserID
         {
-            get { return _CreateUser; }
-            set { if (OnPropertyChanging(__.CreateUser, value)) { _CreateUser = value; OnPropertyChanged(__.CreateUser); } }
+            get { return _CreateUserID; }
+            set { if (OnPropertyChanging(__.CreateUserID, value)) { _CreateUserID = value; OnPropertyChanged(__.CreateUserID); } }
         }
 
-        private String _CreateName;
+        private String _CreateUserName;
         /// <summary>创建人</summary>
         [DisplayName("创建人")]
         [Description("创建人")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(4, "CreateName", "创建人", null, "nvarchar(50)", 0, 0, true)]
-        public virtual String CreateName
+        [BindColumn(4, "CreateUserName", "创建人", null, "nvarchar(50)", 0, 0, true)]
+        public virtual String CreateUserName
         {
-            get { return _CreateName; }
-            set { if (OnPropertyChanging(__.CreateName, value)) { _CreateName = value; OnPropertyChanged(__.CreateName); } }
+            get { return _CreateUserName; }
+            set { if (OnPropertyChanging(__.CreateUserName, value)) { _CreateUserName = value; OnPropertyChanged(__.CreateUserName); } }
         }
 
         private DateTime _CreateTime;
@@ -77,28 +77,28 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.CreateTime, value)) { _CreateTime = value; OnPropertyChanged(__.CreateTime); } }
         }
 
-        private Int32 _UpdateUser;
+        private Int32 _UpdateUserID;
         /// <summary>更新人</summary>
         [DisplayName("更新人")]
         [Description("更新人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(6, "UpdateUser", "更新人", null, "int", 10, 0, false)]
-        public virtual Int32 UpdateUser
+        [BindColumn(6, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
+        public virtual Int32 UpdateUserID
         {
-            get { return _UpdateUser; }
-            set { if (OnPropertyChanging(__.UpdateUser, value)) { _UpdateUser = value; OnPropertyChanged(__.UpdateUser); } }
+            get { return _UpdateUserID; }
+            set { if (OnPropertyChanging(__.UpdateUserID, value)) { _UpdateUserID = value; OnPropertyChanged(__.UpdateUserID); } }
         }
 
-        private String _UpdateName;
+        private String _UpdateUserName;
         /// <summary>更新人</summary>
         [DisplayName("更新人")]
         [Description("更新人")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(7, "UpdateName", "更新人", null, "nvarchar(50)", 0, 0, true)]
-        public virtual String UpdateName
+        [BindColumn(7, "UpdateUserName", "更新人", null, "nvarchar(50)", 0, 0, true)]
+        public virtual String UpdateUserName
         {
-            get { return _UpdateName; }
-            set { if (OnPropertyChanging(__.UpdateName, value)) { _UpdateName = value; OnPropertyChanged(__.UpdateName); } }
+            get { return _UpdateUserName; }
+            set { if (OnPropertyChanging(__.UpdateUserName, value)) { _UpdateUserName = value; OnPropertyChanged(__.UpdateUserName); } }
         }
 
         private DateTime _UpdateTime;
@@ -142,11 +142,11 @@ namespace NewLife.CMX
                 {
                     case __.ID : return _ID;
                     case __.Name : return _Name;
-                    case __.CreateUser : return _CreateUser;
-                    case __.CreateName : return _CreateName;
+                    case __.CreateUserID : return _CreateUserID;
+                    case __.CreateUserName : return _CreateUserName;
                     case __.CreateTime : return _CreateTime;
-                    case __.UpdateUser : return _UpdateUser;
-                    case __.UpdateName : return _UpdateName;
+                    case __.UpdateUserID : return _UpdateUserID;
+                    case __.UpdateUserName : return _UpdateUserName;
                     case __.UpdateTime : return _UpdateTime;
                     case __.Remark : return _Remark;
                     default: return base[name];
@@ -158,11 +158,11 @@ namespace NewLife.CMX
                 {
                     case __.ID : _ID = Convert.ToInt32(value); break;
                     case __.Name : _Name = Convert.ToString(value); break;
-                    case __.CreateUser : _CreateUser = Convert.ToInt32(value); break;
-                    case __.CreateName : _CreateName = Convert.ToString(value); break;
+                    case __.CreateUserID : _CreateUserID = Convert.ToInt32(value); break;
+                    case __.CreateUserName : _CreateUserName = Convert.ToString(value); break;
                     case __.CreateTime : _CreateTime = Convert.ToDateTime(value); break;
-                    case __.UpdateUser : _UpdateUser = Convert.ToInt32(value); break;
-                    case __.UpdateName : _UpdateName = Convert.ToString(value); break;
+                    case __.UpdateUserID : _UpdateUserID = Convert.ToInt32(value); break;
+                    case __.UpdateUserName : _UpdateUserName = Convert.ToString(value); break;
                     case __.UpdateTime : _UpdateTime = Convert.ToDateTime(value); break;
                     case __.Remark : _Remark = Convert.ToString(value); break;
                     default: base[name] = value; break;
@@ -172,7 +172,7 @@ namespace NewLife.CMX
         #endregion
 
         #region 字段名
-        /// <summary>取得模型字段信息的快捷方式</summary>
+        /// <summary>取得模型。默认有文章、文本、产品三种模型，可以扩展增加。字段信息的快捷方式</summary>
         public partial class _
         {
             ///<summary>编号</summary>
@@ -182,19 +182,19 @@ namespace NewLife.CMX
             public static readonly Field Name = FindByName(__.Name);
 
             ///<summary>创建人</summary>
-            public static readonly Field CreateUser = FindByName(__.CreateUser);
+            public static readonly Field CreateUserID = FindByName(__.CreateUserID);
 
             ///<summary>创建人</summary>
-            public static readonly Field CreateName = FindByName(__.CreateName);
+            public static readonly Field CreateUserName = FindByName(__.CreateUserName);
 
             ///<summary>创建时间</summary>
             public static readonly Field CreateTime = FindByName(__.CreateTime);
 
             ///<summary>更新人</summary>
-            public static readonly Field UpdateUser = FindByName(__.UpdateUser);
+            public static readonly Field UpdateUserID = FindByName(__.UpdateUserID);
 
             ///<summary>更新人</summary>
-            public static readonly Field UpdateName = FindByName(__.UpdateName);
+            public static readonly Field UpdateUserName = FindByName(__.UpdateUserName);
 
             ///<summary>更新时间</summary>
             public static readonly Field UpdateTime = FindByName(__.UpdateTime);
@@ -205,7 +205,7 @@ namespace NewLife.CMX
             static Field FindByName(String name) { return Meta.Table.FindByName(name); }
         }
 
-        /// <summary>取得模型字段名称的快捷方式</summary>
+        /// <summary>取得模型。默认有文章、文本、产品三种模型，可以扩展增加。字段名称的快捷方式</summary>
         partial class __
         {
             ///<summary>编号</summary>
@@ -215,19 +215,19 @@ namespace NewLife.CMX
             public const String Name = "Name";
 
             ///<summary>创建人</summary>
-            public const String CreateUser = "CreateUser";
+            public const String CreateUserID = "CreateUserID";
 
             ///<summary>创建人</summary>
-            public const String CreateName = "CreateName";
+            public const String CreateUserName = "CreateUserName";
 
             ///<summary>创建时间</summary>
             public const String CreateTime = "CreateTime";
 
             ///<summary>更新人</summary>
-            public const String UpdateUser = "UpdateUser";
+            public const String UpdateUserID = "UpdateUserID";
 
             ///<summary>更新人</summary>
-            public const String UpdateName = "UpdateName";
+            public const String UpdateUserName = "UpdateUserName";
 
             ///<summary>更新时间</summary>
             public const String UpdateTime = "UpdateTime";
@@ -239,7 +239,7 @@ namespace NewLife.CMX
         #endregion
     }
 
-    /// <summary>模型接口</summary>
+    /// <summary>模型。默认有文章、文本、产品三种模型，可以扩展增加。接口</summary>
     public partial interface IModel
     {
         #region 属性
@@ -250,19 +250,19 @@ namespace NewLife.CMX
         String Name { get; set; }
 
         /// <summary>创建人</summary>
-        Int32 CreateUser { get; set; }
+        Int32 CreateUserID { get; set; }
 
         /// <summary>创建人</summary>
-        String CreateName { get; set; }
+        String CreateUserName { get; set; }
 
         /// <summary>创建时间</summary>
         DateTime CreateTime { get; set; }
 
         /// <summary>更新人</summary>
-        Int32 UpdateUser { get; set; }
+        Int32 UpdateUserID { get; set; }
 
         /// <summary>更新人</summary>
-        String UpdateName { get; set; }
+        String UpdateUserName { get; set; }
 
         /// <summary>更新时间</summary>
         DateTime UpdateTime { get; set; }

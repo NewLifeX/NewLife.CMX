@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Tables Version="8.9.4964.27475">
-  <Table Name="Model" Description="模型" DbType="SqlServer" 实体分类="基础" 页面分类="Common">
+<Tables Version="8.9.4974.18562">
+  <Table Name="Model" Description="模型。默认有文章、文本、产品三种模型，可以扩展增加。" DbType="SqlServer" 实体分类="基础" 页面分类="Common">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Nullable="False" Description="名称" />
-      <Column Name="CreateUser" DataType="Int32" Description="创建人" />
-      <Column Name="CreateName" DataType="String" Description="创建人" />
+      <Column Name="Enable" DataType="Boolean" Description="启用" />
+      <Column Name="CreateUserID" DataType="Int32" Description="创建人" />
+      <Column Name="CreateUserName" DataType="String" Description="创建人" />
       <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
-      <Column Name="UpdateUser" DataType="Int32" Description="更新人" />
-      <Column Name="UpdateName" DataType="String" Description="更新人" />
+      <Column Name="UpdateUserID" DataType="Int32" Description="更新人" />
+      <Column Name="UpdateUserName" DataType="String" Description="更新人" />
       <Column Name="UpdateTime" DataType="DateTime" Description="更新时间" />
       <Column Name="Remark" DataType="String" Length="200" Description="备注" />
     </Columns>
     <Indexes>
-      <Index Unique="True" Columns="Name" />
+      <Index Columns="Name" Unique="True" />
     </Indexes>
   </Table>
   <Table Name="Channel" Description="频道" DbType="SqlServer" 实体分类="基础" 页面分类="Common">
@@ -21,16 +22,18 @@
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Nullable="False" Description="名称" />
       <Column Name="ModelID" DataType="Int32" Description="模型" />
-      <Column Name="CreateUser" DataType="Int32" Description="创建人" />
-      <Column Name="CreateName" DataType="String" Description="创建人" />
+      <Column Name="Suffix" DataType="String" Description="后缀。默认频道后缀为空，扩展频道必须有不同的表后缀" />
+      <Column Name="Enable" DataType="Boolean" Description="启用" />
+      <Column Name="CreateUserID" DataType="Int32" Description="创建人" />
+      <Column Name="CreateUserName" DataType="String" Description="创建人" />
       <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
-      <Column Name="UpdateUser" DataType="Int32" Description="更新人" />
-      <Column Name="UpdateName" DataType="String" Description="更新人" />
+      <Column Name="UpdateUserID" DataType="Int32" Description="更新人" />
+      <Column Name="UpdateUserName" DataType="String" Description="更新人" />
       <Column Name="UpdateTime" DataType="DateTime" Description="更新时间" />
       <Column Name="Remark" DataType="String" Length="200" Description="备注" />
     </Columns>
     <Indexes>
-      <Index Unique="True" Columns="Name" />
+      <Index Columns="Name" Unique="True" />
       <Index Columns="ModelID" />
     </Indexes>
   </Table>
@@ -45,28 +48,26 @@
     <Indexes>
       <Index Columns="Name" />
       <Index Columns="ParentID" />
-      <Index Unique="True" Columns="ParentID,Name" />
+      <Index Columns="ParentID,Name" Unique="True" />
     </Indexes>
   </Table>
   <Table Name="Article" Description="文章" DbType="SqlServer" 实体分类="模型" 页面分类="Model">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
-      <Column Name="ChannelID" DataType="Int32" Description="频道" />
       <Column Name="CategoryID" DataType="Int32" Description="分类" />
       <Column Name="Title" DataType="String" Length="200" Nullable="False" Description="标题" />
       <Column Name="Version" DataType="Int32" Description="最新版本" />
       <Column Name="Hits" DataType="Int32" Description="访问量" />
       <Column Name="StatisticsID" DataType="Int32" Description="访问统计" />
-      <Column Name="CreateUser" DataType="Int32" Description="创建人" />
-      <Column Name="CreateName" DataType="String" Description="创建人" />
+      <Column Name="CreateUserID" DataType="Int32" Description="创建人" />
+      <Column Name="CreateUserName" DataType="String" Description="创建人" />
       <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
-      <Column Name="UpdateUser" DataType="Int32" Description="更新人" />
-      <Column Name="UpdateName" DataType="String" Description="更新人" />
+      <Column Name="UpdateUserID" DataType="Int32" Description="更新人" />
+      <Column Name="UpdateUserName" DataType="String" Description="更新人" />
       <Column Name="UpdateTime" DataType="DateTime" Description="更新时间" />
       <Column Name="Remark" DataType="String" Length="200" Description="备注" />
     </Columns>
     <Indexes>
-      <Index Columns="ChannelID" />
       <Index Columns="CategoryID" />
     </Indexes>
   </Table>
@@ -76,16 +77,17 @@
       <Column Name="ParentID" DataType="Int32" Description="主题" />
       <Column Name="Title" DataType="String" Length="200" Nullable="False" Description="标题" />
       <Column Name="Version" DataType="Int32" Description="版本" />
-      <Column Name="CreateUser" DataType="Int32" Description="创建人" />
-      <Column Name="CreateName" DataType="String" Description="创建人" />
+      <Column Name="CreateUserID" DataType="Int32" Description="创建人" />
+      <Column Name="CreateUserName" DataType="String" Description="创建人" />
       <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
       <Column Name="Content" DataType="String" Length="-1" Description="内容" />
     </Columns>
     <Indexes>
       <Index Columns="ParentID" />
-      <Index Unique="True" Columns="ParentID,Version" />
+      <Index Columns="ParentID,Version" Unique="True" />
     </Indexes>
   </Table>
+  <Table Name="ArticleStatistics" Description="文章统计" DbType="SqlServer" 实体分类="模型" 页面分类="Model" 基类="Statistics" />
   <Table Name="TextCategory" Description="文本分类" DbType="SqlServer" 实体分类="模型" 页面分类="Model" 基类="EntityTree">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
@@ -97,22 +99,21 @@
     <Indexes>
       <Index Columns="Name" />
       <Index Columns="ParentID" />
-      <Index Unique="True" Columns="ParentID,Name" />
+      <Index Columns="ParentID,Name" Unique="True" />
     </Indexes>
   </Table>
   <Table Name="Text" Description="文本" DbType="SqlServer" 实体分类="模型" 页面分类="Model">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
-      <Column Name="ChannelID" DataType="Int32" Description="频道" />
       <Column Name="CategoryID" DataType="Int32" Description="分类" />
       <Column Name="Title" DataType="String" Length="200" Nullable="False" Description="标题" />
       <Column Name="Version" DataType="Int32" Description="最新版本" />
       <Column Name="StatisticsID" DataType="Int32" Description="访问统计" />
-      <Column Name="CreateUser" DataType="Int32" Description="创建人" />
-      <Column Name="CreateName" DataType="String" Description="创建人" />
+      <Column Name="CreateUserID" DataType="Int32" Description="创建人" />
+      <Column Name="CreateUserName" DataType="String" Description="创建人" />
       <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
-      <Column Name="UpdateUser" DataType="Int32" Description="更新人" />
-      <Column Name="UpdateName" DataType="String" Description="更新人" />
+      <Column Name="UpdateUserID" DataType="Int32" Description="更新人" />
+      <Column Name="UpdateUserName" DataType="String" Description="更新人" />
       <Column Name="UpdateTime" DataType="DateTime" Description="更新时间" />
       <Column Name="Remark" DataType="String" Length="500" Description="备注" />
     </Columns>
@@ -121,23 +122,24 @@
       <Index Columns="CategoryID" />
     </Indexes>
   </Table>
-  <Table Name="TextContent" Description="文章内容" DbType="SqlServer" 实体分类="模型" 页面分类="Model">
+  <Table Name="TextContent" Description="文本内容" DbType="SqlServer" 实体分类="模型" 页面分类="Model">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="ParentID" DataType="Int32" Description="主题" />
       <Column Name="Title" DataType="String" Length="200" Nullable="False" Description="标题" />
       <Column Name="Version" DataType="Int32" Description="版本" />
-      <Column Name="CreateUser" DataType="Int32" Description="创建人" />
-      <Column Name="CreateName" DataType="String" Description="创建人" />
+      <Column Name="CreateUserID" DataType="Int32" Description="创建人" />
+      <Column Name="CreateUserName" DataType="String" Description="创建人" />
       <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
       <Column Name="Content" DataType="String" Length="-1" Description="内容" />
     </Columns>
     <Indexes>
       <Index Columns="ParentID" />
-      <Index Unique="True" Columns="ParentID,Version" />
+      <Index Columns="ParentID,Version" Unique="True" />
     </Indexes>
   </Table>
-  <Table Name="ArticleCategory" Description="文章分类" DbType="SqlServer" 实体分类="模型" 页面分类="Model" 基类="EntityTree">
+  <Table Name="TextStatistics" Description="文本统计" DbType="SqlServer" 实体分类="模型" 页面分类="Model" 基类="Statistics" />
+  <Table Name="ProductCategory" Description="产品分类" DbType="SqlServer" 实体分类="模型" 页面分类="Model" 基类="EntityTree">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Nullable="False" Description="名称" />
@@ -148,37 +150,41 @@
     <Indexes>
       <Index Columns="Name" />
       <Index Columns="ParentID" />
-      <Index Unique="True" Columns="ParentID,Name" />
+      <Index Columns="ParentID,Name" Unique="True" />
     </Indexes>
   </Table>
   <Table Name="Product" Description="产品" DbType="SqlServer" 实体分类="模型" 页面分类="Model">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
-      <Column Name="SubjectID" DataType="Int32" Description="主题" />
+      <Column Name="CategoryID" DataType="Int32" Description="分类" />
       <Column Name="Title" DataType="String" Length="200" Nullable="False" Description="标题" />
-      <Column Name="CreateUser" DataType="Int32" Description="创建人" />
-      <Column Name="CreateName" DataType="String" Description="创建人" />
+      <Column Name="Version" DataType="Int32" Description="最新版本" />
+      <Column Name="Price" DataType="Decimal" Description="价格" />
+      <Column Name="StatisticsID" DataType="Int32" Description="访问统计" />
+      <Column Name="CreateUserID" DataType="Int32" Description="创建人" />
+      <Column Name="CreateUserName" DataType="String" Description="创建人" />
       <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
-      <Column Name="UpdateUser" DataType="Int32" Description="更新人" />
-      <Column Name="UpdateName" DataType="String" Description="更新人" />
+      <Column Name="UpdateUserID" DataType="Int32" Description="更新人" />
+      <Column Name="UpdateUserName" DataType="String" Description="更新人" />
       <Column Name="UpdateTime" DataType="DateTime" Description="更新时间" />
       <Column Name="Remark" DataType="String" Length="200" Description="备注" />
     </Columns>
   </Table>
-  <Table Name="ProductContent" Description="文章内容" DbType="SqlServer" 实体分类="模型" 页面分类="Model">
+  <Table Name="ProductContent" Description="产品内容" DbType="SqlServer" 实体分类="模型" 页面分类="Model">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="ParentID" DataType="Int32" Description="主题" />
       <Column Name="Title" DataType="String" Length="200" Nullable="False" Description="标题" />
       <Column Name="Version" DataType="Int32" Description="版本" />
-      <Column Name="CreateUser" DataType="Int32" Description="创建人" />
-      <Column Name="CreateName" DataType="String" Description="创建人" />
+      <Column Name="CreateUserID" DataType="Int32" Description="创建人" />
+      <Column Name="CreateUserName" DataType="String" Description="创建人" />
       <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
       <Column Name="Content" DataType="String" Length="-1" Description="内容" />
     </Columns>
     <Indexes>
       <Index Columns="ParentID" />
-      <Index Unique="True" Columns="ParentID,Version" />
+      <Index Columns="ParentID,Version" Unique="True" />
     </Indexes>
   </Table>
+  <Table Name="ProductStatistics" Description="产品统计" DbType="SqlServer" 实体分类="模型" 页面分类="Model" 基类="Statistics" />
 </Tables>

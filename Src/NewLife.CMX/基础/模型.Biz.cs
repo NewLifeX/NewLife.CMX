@@ -1,7 +1,7 @@
 ﻿/*
- * XCoder v5.1.4844.37642
+ * XCoder v5.1.4974.18563
  * 作者：nnhy/X
- * 时间：2013-08-04 22:27:47
+ * 时间：2013-09-01 14:31:19
  * 版权：版权所有 (C) 新生命开发团队 2002~2013
 */
 ﻿using System;
@@ -17,7 +17,7 @@ using XCode.Configuration;
 
 namespace NewLife.CMX
 {
-    /// <summary>模型</summary>
+    /// <summary>模型。默认有文章、文本、产品三种模型，可以扩展增加。</summary>
     public partial class Model : Entity<Model>
     {
         #region 对象操作﻿
@@ -55,11 +55,11 @@ namespace NewLife.CMX
 
         //    var entity = new Model();
         //    entity.Name = "abc";
-        //    entity.CreateUser = 0;
-        //    entity.CreateName = "abc";
+        //    entity.CreateUserID = 0;
+        //    entity.CreateUserName = "abc";
         //    entity.CreateTime = DateTime.Now;
-        //    entity.UpdateUser = 0;
-        //    entity.UpdateName = "abc";
+        //    entity.UpdateUserID = 0;
+        //    entity.UpdateUserName = "abc";
         //    entity.UpdateTime = DateTime.Now;
         //    entity.Remark = "abc";
         //    entity.Insert();

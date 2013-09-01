@@ -12,10 +12,10 @@ namespace NewLife.CMX
     [Serializable]
     [DataObject]
     [Description("文章内容")]
-    [BindIndex("IX_ProductContent_ParentID", false, "ParentID")]
-    [BindIndex("IU_ProductContent_ParentID_Version", true, "ParentID,Version")]
-    [BindTable("ProductContent", Description = "文章内容", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
-    public partial class ProductContent : IProductContent
+    [BindIndex("IX_ArticleContent_ParentID", false, "ParentID")]
+    [BindIndex("IU_ArticleContent_ParentID_Version", true, "ParentID,Version")]
+    [BindTable("ArticleContent", Description = "文章内容", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
+    public partial class ArticleContent : IArticleContent
     {
         #region 属性
         private Int32 _ID;
@@ -66,28 +66,28 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.Version, value)) { _Version = value; OnPropertyChanged(__.Version); } }
         }
 
-        private Int32 _CreateUser;
+        private Int32 _CreateUserID;
         /// <summary>创建人</summary>
         [DisplayName("创建人")]
         [Description("创建人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(5, "CreateUser", "创建人", null, "int", 10, 0, false)]
-        public virtual Int32 CreateUser
+        [BindColumn(5, "CreateUserID", "创建人", null, "int", 10, 0, false)]
+        public virtual Int32 CreateUserID
         {
-            get { return _CreateUser; }
-            set { if (OnPropertyChanging(__.CreateUser, value)) { _CreateUser = value; OnPropertyChanged(__.CreateUser); } }
+            get { return _CreateUserID; }
+            set { if (OnPropertyChanging(__.CreateUserID, value)) { _CreateUserID = value; OnPropertyChanged(__.CreateUserID); } }
         }
 
-        private String _CreateName;
+        private String _CreateUserName;
         /// <summary>创建人</summary>
         [DisplayName("创建人")]
         [Description("创建人")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(6, "CreateName", "创建人", null, "nvarchar(50)", 0, 0, true)]
-        public virtual String CreateName
+        [BindColumn(6, "CreateUserName", "创建人", null, "nvarchar(50)", 0, 0, true)]
+        public virtual String CreateUserName
         {
-            get { return _CreateName; }
-            set { if (OnPropertyChanging(__.CreateName, value)) { _CreateName = value; OnPropertyChanged(__.CreateName); } }
+            get { return _CreateUserName; }
+            set { if (OnPropertyChanging(__.CreateUserName, value)) { _CreateUserName = value; OnPropertyChanged(__.CreateUserName); } }
         }
 
         private DateTime _CreateTime;
@@ -133,8 +133,8 @@ namespace NewLife.CMX
                     case __.ParentID : return _ParentID;
                     case __.Title : return _Title;
                     case __.Version : return _Version;
-                    case __.CreateUser : return _CreateUser;
-                    case __.CreateName : return _CreateName;
+                    case __.CreateUserID : return _CreateUserID;
+                    case __.CreateUserName : return _CreateUserName;
                     case __.CreateTime : return _CreateTime;
                     case __.Content : return _Content;
                     default: return base[name];
@@ -148,8 +148,8 @@ namespace NewLife.CMX
                     case __.ParentID : _ParentID = Convert.ToInt32(value); break;
                     case __.Title : _Title = Convert.ToString(value); break;
                     case __.Version : _Version = Convert.ToInt32(value); break;
-                    case __.CreateUser : _CreateUser = Convert.ToInt32(value); break;
-                    case __.CreateName : _CreateName = Convert.ToString(value); break;
+                    case __.CreateUserID : _CreateUserID = Convert.ToInt32(value); break;
+                    case __.CreateUserName : _CreateUserName = Convert.ToString(value); break;
                     case __.CreateTime : _CreateTime = Convert.ToDateTime(value); break;
                     case __.Content : _Content = Convert.ToString(value); break;
                     default: base[name] = value; break;
@@ -175,10 +175,10 @@ namespace NewLife.CMX
             public static readonly Field Version = FindByName(__.Version);
 
             ///<summary>创建人</summary>
-            public static readonly Field CreateUser = FindByName(__.CreateUser);
+            public static readonly Field CreateUserID = FindByName(__.CreateUserID);
 
             ///<summary>创建人</summary>
-            public static readonly Field CreateName = FindByName(__.CreateName);
+            public static readonly Field CreateUserName = FindByName(__.CreateUserName);
 
             ///<summary>创建时间</summary>
             public static readonly Field CreateTime = FindByName(__.CreateTime);
@@ -205,10 +205,10 @@ namespace NewLife.CMX
             public const String Version = "Version";
 
             ///<summary>创建人</summary>
-            public const String CreateUser = "CreateUser";
+            public const String CreateUserID = "CreateUserID";
 
             ///<summary>创建人</summary>
-            public const String CreateName = "CreateName";
+            public const String CreateUserName = "CreateUserName";
 
             ///<summary>创建时间</summary>
             public const String CreateTime = "CreateTime";
@@ -221,7 +221,7 @@ namespace NewLife.CMX
     }
 
     /// <summary>文章内容接口</summary>
-    public partial interface IProductContent
+    public partial interface IArticleContent
     {
         #region 属性
         /// <summary>编号</summary>
@@ -237,10 +237,10 @@ namespace NewLife.CMX
         Int32 Version { get; set; }
 
         /// <summary>创建人</summary>
-        Int32 CreateUser { get; set; }
+        Int32 CreateUserID { get; set; }
 
         /// <summary>创建人</summary>
-        String CreateName { get; set; }
+        String CreateUserName { get; set; }
 
         /// <summary>创建时间</summary>
         DateTime CreateTime { get; set; }

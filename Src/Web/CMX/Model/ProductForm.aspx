@@ -6,8 +6,8 @@
             <th colspan="2">产品</th>
         </tr>
         <tr>
-            <td align="right">主题：</td>
-            <td><XCL:NumberBox ID="frmSubjectID" runat="server" Width="80px"></XCL:NumberBox></td>
+            <td align="right">分类：</td>
+            <td><XCL:NumberBox ID="frmCategoryID" runat="server" Width="80px"></XCL:NumberBox></td>
         </tr>
 <tr>
             <td align="right">标题：</td>
@@ -15,11 +15,11 @@
         </tr>
 <tr>
             <td align="right">创建人：</td>
-            <td><XCL:NumberBox ID="frmCreateUser" runat="server" Width="80px"></XCL:NumberBox></td>
+            <td><XCL:NumberBox ID="frmCreateUserID" runat="server" Width="80px"></XCL:NumberBox></td>
         </tr>
 <tr>
             <td align="right">创建人：</td>
-            <td><asp:TextBox ID="frmCreateName" runat="server" Width="150px"></asp:TextBox></td>
+            <td><asp:TextBox ID="frmCreateUserName" runat="server" Width="150px"></asp:TextBox></td>
         </tr>
 <tr>
             <td align="right">创建时间：</td>
@@ -27,11 +27,11 @@
         </tr>
 <tr>
             <td align="right">更新人：</td>
-            <td><XCL:NumberBox ID="frmUpdateUser" runat="server" Width="80px"></XCL:NumberBox></td>
+            <td><XCL:NumberBox ID="frmUpdateUserID" runat="server" Width="80px"></XCL:NumberBox></td>
         </tr>
 <tr>
             <td align="right">更新人：</td>
-            <td><asp:TextBox ID="frmUpdateName" runat="server" Width="150px"></asp:TextBox></td>
+            <td><asp:TextBox ID="frmUpdateUserName" runat="server" Width="150px"></asp:TextBox></td>
         </tr>
 <tr>
             <td align="right">更新时间：</td>

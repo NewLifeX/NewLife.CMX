@@ -1,7 +1,7 @@
 ﻿/*
- * XCoder v5.1.4844.37642
+ * XCoder v5.1.4974.18563
  * 作者：nnhy/X
- * 时间：2013-08-04 22:27:47
+ * 时间：2013-09-01 14:31:19
  * 版权：版权所有 (C) 新生命开发团队 2002~2013
 */
 ﻿using System;
@@ -18,7 +18,7 @@ using XCode.Configuration;
 namespace NewLife.CMX
 {
     /// <summary>文章内容</summary>
-    public partial class ProductContent : Entity<ProductContent>
+    public partial class ArticleContent : Entity<ArticleContent>
     {
         #region 对象操作﻿
 
@@ -50,19 +50,19 @@ namespace NewLife.CMX
         //    if (Meta.Count > 0) return;
 
         //    // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
-        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(ProductContent).Name, Meta.Table.DataTable.DisplayName);
+        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(ArticleContent).Name, Meta.Table.DataTable.DisplayName);
 
-        //    var entity = new ProductContent();
+        //    var entity = new ArticleContent();
         //    entity.ParentID = 0;
         //    entity.Title = "abc";
         //    entity.Version = 0;
-        //    entity.CreateUser = 0;
-        //    entity.CreateName = "abc";
+        //    entity.CreateUserID = 0;
+        //    entity.CreateUserName = "abc";
         //    entity.CreateTime = DateTime.Now;
         //    entity.Content = "abc";
         //    entity.Insert();
 
-        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(ProductContent).Name, Meta.Table.DataTable.DisplayName);
+        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(ArticleContent).Name, Meta.Table.DataTable.DisplayName);
         //}
 
 
@@ -89,7 +89,7 @@ namespace NewLife.CMX
         /// <param name="parentid">主题</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<ProductContent> FindAllByParentID(Int32 parentid)
+        public static EntityList<ArticleContent> FindAllByParentID(Int32 parentid)
         {
             if (Meta.Count >= 1000)
                 return FindAll(_.ParentID, parentid);
@@ -102,7 +102,7 @@ namespace NewLife.CMX
         /// <param name="version">版本</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static ProductContent FindByParentIDAndVersion(Int32 parentid, Int32 version)
+        public static ArticleContent FindByParentIDAndVersion(Int32 parentid, Int32 version)
         {
             if (Meta.Count >= 1000)
                 return Find(new String[] { _.ParentID, _.Version }, new Object[] { parentid, version });
@@ -123,7 +123,7 @@ namespace NewLife.CMX
         ///// <param name="maximumRows">最大返回行数，0表示所有行</param>
         ///// <returns>实体集</returns>
         //[DataObjectMethod(DataObjectMethodType.Select, true)]
-        //public static EntityList<ProductContent> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
+        //public static EntityList<ArticleContent> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
         //{
         //    return FindAll(SearchWhere(key), orderClause, null, startRowIndex, maximumRows);
         //}

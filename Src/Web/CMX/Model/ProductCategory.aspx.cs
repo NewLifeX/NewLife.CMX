@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using NewLife.Log;
-using NewLife.Web;
 using NewLife.CMX;
 
-public partial class CMX_SimpleTextContentForm : MyEntityForm<SimpleTextContent>
+public partial class CMX_ProductCategory : MyEntityList<ProductCategory>
 {
     protected void Page_Load(object sender, EventArgs e)
     {
