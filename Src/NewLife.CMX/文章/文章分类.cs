@@ -19,6 +19,7 @@ namespace NewLife.CMX
     public partial class ArticleCategory : IArticleCategory
     {
         #region 属性
+
         private Int32 _ID;
         /// <summary>编号</summary>
         [DisplayName("编号")]

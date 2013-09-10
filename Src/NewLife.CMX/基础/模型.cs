@@ -18,6 +18,7 @@ namespace NewLife.CMX
     public partial class Model : IModel
     {
         #region 属性
+
         private Int32 _ID;
         /// <summary>编号</summary>
         [DisplayName("编号")]
@@ -137,6 +138,42 @@ namespace NewLife.CMX
             get { return _Remark; }
             set { if (OnPropertyChanging(__.Remark, value)) { _Remark = value; OnPropertyChanged(__.Remark); } }
         }
+
+        private String _FormTemplatePath;
+        /// <summary>表单页</summary>
+        [DisplayName("表单页")]
+        [Description("表单页")]
+        [DataObjectField(false, false, true, 200)]
+        [BindColumn(11, "FormTemplatePath", "表单页", null, "nvarchar(200)", 0, 0, true)]
+        public virtual String FormTemplatePath
+        {
+            get { return _FormTemplatePath; }
+            set { if (OnPropertyChanging(__.FormTemplatePath, value)) { _FormTemplatePath = value; OnPropertyChanged(__.FormTemplatePath); } }
+        }
+
+        private String _ListTemplatePath;
+        /// <summary>列表页</summary>
+        [DisplayName("列表页")]
+        [Description("列表页")]
+        [DataObjectField(false, false, true, 200)]
+        [BindColumn(12, "ListTemplatePath", "列表页", null, "nvarchar(200)", 0, 0, true)]
+        public virtual String ListTemplatePath
+        {
+            get { return _ListTemplatePath; }
+            set { if (OnPropertyChanging(__.ListTemplatePath, value)) { _ListTemplatePath = value; OnPropertyChanged(__.ListTemplatePath); } }
+        }
+
+        private String _ClassName;
+        /// <summary>类名</summary>
+        [DisplayName("类名")]
+        [Description("类名")]
+        [DataObjectField(false, false, true, 200)]
+        [BindColumn(13, "ClassName", "类名", null, "nvarchar(200)", 0, 0, true)]
+        public virtual String ClassName
+        {
+            get { return _ClassName; }
+            set { if (OnPropertyChanging(__.ClassName, value)) { _ClassName = value; OnPropertyChanged(__.ClassName); } }
+        }
         #endregion
 
         #region 获取/设置 字段值
@@ -163,6 +200,9 @@ namespace NewLife.CMX
                     case __.UpdateUserName : return _UpdateUserName;
                     case __.UpdateTime : return _UpdateTime;
                     case __.Remark : return _Remark;
+                    case __.FormTemplatePath : return _FormTemplatePath;
+                    case __.ListTemplatePath : return _ListTemplatePath;
+                    case __.ClassName : return _ClassName;
                     default: return base[name];
                 }
             }
@@ -180,6 +220,9 @@ namespace NewLife.CMX
                     case __.UpdateUserName : _UpdateUserName = Convert.ToString(value); break;
                     case __.UpdateTime : _UpdateTime = Convert.ToDateTime(value); break;
                     case __.Remark : _Remark = Convert.ToString(value); break;
+                    case __.FormTemplatePath : _FormTemplatePath = Convert.ToString(value); break;
+                    case __.ListTemplatePath : _ListTemplatePath = Convert.ToString(value); break;
+                    case __.ClassName : _ClassName = Convert.ToString(value); break;
                     default: base[name] = value; break;
                 }
             }
@@ -220,6 +263,15 @@ namespace NewLife.CMX
             ///<summary>备注</summary>
             public static readonly Field Remark = FindByName(__.Remark);
 
+            ///<summary>表单页</summary>
+            public static readonly Field FormTemplatePath = FindByName(__.FormTemplatePath);
+
+            ///<summary>列表页</summary>
+            public static readonly Field ListTemplatePath = FindByName(__.ListTemplatePath);
+
+            ///<summary>类名</summary>
+            public static readonly Field ClassName = FindByName(__.ClassName);
+
             static Field FindByName(String name) { return Meta.Table.FindByName(name); }
         }
 
@@ -255,6 +307,15 @@ namespace NewLife.CMX
 
             ///<summary>备注</summary>
             public const String Remark = "Remark";
+
+            ///<summary>表单页</summary>
+            public const String FormTemplatePath = "FormTemplatePath";
+
+            ///<summary>列表页</summary>
+            public const String ListTemplatePath = "ListTemplatePath";
+
+            ///<summary>类名</summary>
+            public const String ClassName = "ClassName";
 
         }
         #endregion
@@ -294,6 +355,15 @@ namespace NewLife.CMX
 
         /// <summary>备注</summary>
         String Remark { get; set; }
+
+        /// <summary>表单页</summary>
+        String FormTemplatePath { get; set; }
+
+        /// <summary>列表页</summary>
+        String ListTemplatePath { get; set; }
+
+        /// <summary>类名</summary>
+        String ClassName { get; set; }
         #endregion
 
         #region 获取/设置 字段值

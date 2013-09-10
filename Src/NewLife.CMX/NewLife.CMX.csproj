@@ -93,7 +93,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CMX.xml" />
+    <Content Include="CMX.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="CMX数据字典.htm" />
   </ItemGroup>
   <ItemGroup>
