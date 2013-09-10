@@ -1,4 +1,4 @@
-﻿<%@ Page Title="频道管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="ChannelForm.aspx.cs" Inherits="CMX_ChannelForm"%>
+﻿<%@ Page Title="频道管理" Language="C#" MasterPageFile="~/Admin/FormPage.master" AutoEventWireup="true" CodeFile="ChannelForm.aspx.cs" Inherits="CMX_ChannelForm"%>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
     <table border="0" class="m_table" cellspacing="1" cellpadding="0" align="Center">

@@ -149,8 +149,8 @@
                         <span><b><%=admin.DisplayName %>（<%=admin.RoleName %>）</b>您好，欢迎光临</span>
                         <br />
                         <a href="javascript:f_addTab('home','管理中心','center.aspx')">管理中心</a> | 
-                    <a target="_blank" href="../">预览网站</a> | 
-                    <asp:LinkButton ID="lbtnExit" runat="server">安全退出</asp:LinkButton>
+                    <a target="_blank" href="#">预览网站</a> | 
+                    <asp:LinkButton ID="lbtnExit" runat="server" onclick="lbtnExit_Click">安全退出</asp:LinkButton>
                     </div>
                     <a class="logo">DTcms Logo</a>
                 </div>
@@ -161,7 +161,6 @@
                     <ul id="global_channel_tree" style="margin-top: 3px;">
                     </ul>
                 </div>
-
 <%--                <div title="会员管理" iconcss="menu-icon-member">
                     <ul class="nlist">
                     </ul>

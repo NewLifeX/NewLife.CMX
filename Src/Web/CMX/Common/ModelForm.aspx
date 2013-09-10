@@ -1,4 +1,4 @@
-﻿<%@ Page Title="模型管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="ModelForm.aspx.cs" Inherits="CMX_ModelForm"%>
+﻿<%@ Page Title="模型管理" Language="C#" MasterPageFile="~/Admin/FormPage.master" AutoEventWireup="true" CodeFile="ModelForm.aspx.cs" Inherits="CMX_ModelForm"%>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
     <table border="0" class="m_table" cellspacing="1" cellpadding="0" align="Center">
@@ -40,6 +40,18 @@
 <tr>
             <td align="right">备注：</td>
             <td><asp:TextBox ID="frmRemark" runat="server" Width="300px"></asp:TextBox></td>
+        </tr>
+<tr>
+            <td align="right">表单页：</td>
+            <td><asp:TextBox ID="frmFormTemplatePath" runat="server" Width="300px"></asp:TextBox></td>
+        </tr>
+<tr>
+            <td align="right">列表页：</td>
+            <td><asp:TextBox ID="frmListTemplatePath" runat="server" Width="300px"></asp:TextBox></td>
+        </tr>
+<tr>
+            <td align="right">类名：</td>
+            <td><asp:TextBox ID="frmClassName" runat="server" Width="300px"></asp:TextBox></td>
         </tr>
     </table>
     <table border="0" align="Center" width="100%">

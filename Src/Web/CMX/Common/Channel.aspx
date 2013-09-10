@@ -1,4 +1,4 @@
-﻿<%@ Page Title="频道管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="Channel.aspx.cs" Inherits="CMX_Channel" %>
+﻿<%@ Page Title="频道管理" Language="C#" MasterPageFile="~/Admin/ListPage.master" AutoEventWireup="true" CodeFile="Channel.aspx.cs" Inherits="CMX_Channel" %>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
     <div class="toolbar">

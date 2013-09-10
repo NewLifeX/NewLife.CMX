@@ -1,4 +1,4 @@
-﻿<%@ Page Title="文本分类管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="TextCategory.aspx.cs" Inherits="CMX_TextCategory" %>
+﻿<%@ Page Title="文本分类管理" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeFile="TextCategory.aspx.cs" Inherits="CMX_TextCategory" %>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
     <div class="toolbar">

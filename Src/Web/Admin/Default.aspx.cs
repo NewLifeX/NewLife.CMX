@@ -23,10 +23,15 @@ public partial class Admin_Default : Page
             List<IMenu> list2 = admin.Role.GetMySubMenus(0);
             foreach (IMenu item in list2)
             {
-                menuSB.AppendLine(String.Format("<div title=\"{0}\" iconcss=\"menu-icon-setting\"><ul class=\"nlist\">",item.Name));
+                menuSB.AppendLine(String.Format("<div title=\"{0}\" iconcss=\"menu-icon-setting\"><ul class=\"nlist\">", item.Name));
                 menuSB.AppendLine("</ul></div>");
             }
             return menuSB.ToString();
         }
+    }
+    protected void lbtnExit_Click(object sender, EventArgs e)
+    {
+        admin.Logout();
+        Response.Redirect("Login.aspx");
     }
 }

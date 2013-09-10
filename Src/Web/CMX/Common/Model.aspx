@@ -1,8 +1,8 @@
-﻿<%@ Page Title="模型管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="Model.aspx.cs" Inherits="CMX_Model" %>
+﻿<%@ Page Title="模型管理" Language="C#" MasterPageFile="~/Admin/ListPage.master" AutoEventWireup="true" CodeFile="Model.aspx.cs" Inherits="CMX_Model" %>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
     <div class="toolbar">
-        <XCL:LinkBox ID="lbAdd" runat="server" BoxHeight="346px" BoxWidth="440px" Url="ModelForm.aspx"
+        <XCL:LinkBox ID="lbAdd" runat="server" BoxHeight="427px" BoxWidth="440px" Url="ModelForm.aspx"
             IconLeft="~/Admin/images/icons/new.gif" EnableViewState="false"><b>添加模型</b></XCL:LinkBox>
         关键字：<asp:TextBox ID="txtKey" runat="server"></asp:TextBox>
         <asp:Button ID="btnSearch" runat="server" Text="查询" />
@@ -42,7 +42,10 @@
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="120px" />
             </asp:BoundField>
             <asp:BoundField DataField="Remark" HeaderText="备注" SortExpression="Remark" />
-            <XCL:LinkBoxField HeaderText="编辑" DataNavigateUrlFields="ID" DataNavigateUrlFormatString="ModelForm.aspx?ID={0}" Height="346px" Text="编辑" Width="440px" Title="编辑模型">
+            <asp:BoundField DataField="FormTemplatePath" HeaderText="表单页" SortExpression="FormTemplatePath" />
+            <asp:BoundField DataField="ListTemplatePath" HeaderText="列表页" SortExpression="ListTemplatePath" />
+            <asp:BoundField DataField="ClassName" HeaderText="类名" SortExpression="ClassName" />
+            <XCL:LinkBoxField HeaderText="编辑" DataNavigateUrlFields="ID" DataNavigateUrlFormatString="ModelForm.aspx?ID={0}" Height="427px" Text="编辑" Width="440px" Title="编辑模型">
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="30px" />
             </XCL:LinkBoxField>

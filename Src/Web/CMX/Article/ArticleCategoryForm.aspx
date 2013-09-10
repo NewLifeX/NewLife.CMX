@@ -1,4 +1,4 @@
-﻿<%@ Page Title="文章分类管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="ArticleCategoryForm.aspx.cs" Inherits="CMX_ArticleCategoryForm"%>
+﻿<%@ Page Title="文章分类管理" Language="C#" MasterPageFile="~/Admin/FormPage.master" AutoEventWireup="true" CodeFile="ArticleCategoryForm.aspx.cs" Inherits="CMX_ArticleCategoryForm"%>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
     <table border="0" class="m_table" cellspacing="1" cellpadding="0" align="Center">

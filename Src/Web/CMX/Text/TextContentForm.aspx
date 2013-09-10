@@ -1,4 +1,4 @@
-﻿<%@ Page Title="文本内容管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="TextContentForm.aspx.cs" Inherits="CMX_TextContentForm"%>
+﻿<%@ Page Title="文本内容管理" Language="C#" MasterPageFile="~/Admin/FormPage.master" AutoEventWireup="true" CodeFile="TextContentForm.aspx.cs" Inherits="CMX_TextContentForm"%>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
     <table border="0" class="m_table" cellspacing="1" cellpadding="0" align="Center">

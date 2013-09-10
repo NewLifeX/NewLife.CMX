@@ -1,4 +1,4 @@
-﻿<%@ Page Title="文章统计管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="ArticleStatistics.aspx.cs" Inherits="CMX_ArticleStatistics" %>
+﻿<%@ Page Title="文章统计管理" Language="C#" MasterPageFile="~/Admin/ListPage.master" AutoEventWireup="true" CodeFile="ArticleStatistics.aspx.cs" Inherits="CMX_ArticleStatistics" %>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
     <div class="toolbar">
