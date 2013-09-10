@@ -36,7 +36,8 @@ namespace NewLife.CMX
     /// <summary>文本统计接口</summary>
     public partial interface ITextStatistics
     {
-        #region 属性        #endregion
+        #region 属性        
+        #endregion
 
         #region 获取/设置 字段值
         /// <summary>获取/设置 字段值。</summary>

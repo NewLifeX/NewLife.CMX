@@ -36,7 +36,8 @@ namespace NewLife.CMX
     /// <summary>文章统计接口</summary>
     public partial interface IArticleStatistics
     {
-        #region 属性        #endregion
+        #region 属性        
+        #endregion
 
         #region 获取/设置 字段值
         /// <summary>获取/设置 字段值。</summary>
