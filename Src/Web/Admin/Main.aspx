@@ -50,11 +50,15 @@
     <h3>建站快捷导航</h3>
     <ul>
         <li><a href="javascript:parent.f_addTab('Sys_Config','系统参数设置','Settings/Sys_Config.aspx')"><img src="images/icon_setting.png" /><br />参数设置</a></li>
-        <li><a href="javascript:parent.f_addTab('sys_channel','系统频道设置','../CMX/Common/Channel.aspx')"><img src="images/icon_channel.png" /><br />频道设置</a></li>
-        <li><a href="javascript:parent.f_addTab('templet_list','系统模板管理','settings/templet_list.aspx')"><img src="images/icon_templet.png" /><br />生成模板</a></li>
+        <%--<li><a href="javascript:parent.f_addTab('sys_channel','系统频道设置','../CMX/settings/sys_channel_list.aspx')"><img src="images/icon_channel.png" /><br />频道设置</a></li>
+        <li><a href="javascript:parent.f_addTab('templet_list','系统模板管理','settings/templet_list.aspx')"><img src="images/icon_templet.png" /><br />生成模板</a></li>--%>
+        <li><a href="#"><img src="images/icon_channel.png" /><br />频道设置</a></li>
+        <li><a href="#"><img src="images/icon_templet.png" /><br />生成模板</a></li>
         <li><a href="#"><img src="images/icon_mark.png" /><br />生成静态</a></li>
-        <li><a href="javascript:parent.f_addTab('plugin_list','系统插件管理','settings/plugin_list.aspx')"><img src="images/icon_plugin.png" /><br />插件管理</a></li>
-        <li><a href="javascript:parent.f_addTab('user_list','会员信息管理','users/user_list.aspx')"><img src="images/icon_user.png" /><br />会员管理</a></li>
+        <%--<li><a href="javascript:parent.f_addTab('plugin_list','系统插件管理','settings/plugin_list.aspx')"><img src="images/icon_plugin.png" /><br />插件管理</a></li>
+        <li><a href="javascript:parent.f_addTab('user_list','会员信息管理','users/Menu.aspx')"><img src="images/icon_user.png" /><br />会员管理</a></li>--%>
+        <li><a href="javascript:parent.f_addTab('Menu','菜单管理','Manager/Menu.aspx')"><img src="images/icon_menu.png" /><br />菜单管理</a></li>
+        <li><a href="javascript:parent.f_addTab('RoleMenu','权限管理','Manager/RoleMenuForm.aspx')"><img src="images/icon_user.png" /><br />权限管理</a></li>
         <li><a href="javascript:parent.f_addTab('Manager','管理员管理','Manager/Manager.aspx')"><img src="images/icon_manaer.png" /><br />管理员</a></li>
         <li><a href="javascript:parent.f_addTab('Log','系统日志','Manager/Log.aspx')"><img src="images/icon_log.png" /><br />系统日志</a></li>
     </ul>

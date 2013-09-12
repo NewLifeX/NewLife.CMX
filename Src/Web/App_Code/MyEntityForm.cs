@@ -49,14 +49,17 @@ public class MyEntityForm : Page
     void EntityForm_OnSaveSuccess(object sender, EntityFormEventArgs e)
     {
         e.Cancel = true;
-        Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", @"alert('成功！');
-var api = frameElement.api;api.reload();", true);        
+        //由于原先框架中的API属性不存在
+//        Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", @"alert('成功');
+//var api = frameElement.api;api.reload();", true);
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", @"alert('成功');$(frameElement).attr('src',$(frameElement).attr('src'));",true);
 
     }
     public void CloseWindows()
     {
-        Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", @"alert('成功！');
-var api = frameElement.api;api.reload();", true);
+//        Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", @"alert('成功！');
+//var api = frameElement.api;api.reload();", true);
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", @"alert('成功!');$(frameElement).attr('src',$(frameElement).attr('src'));",true);
     }
     #endregion
 }
