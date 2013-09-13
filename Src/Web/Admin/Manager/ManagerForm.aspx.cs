@@ -33,5 +33,12 @@ public partial class Admin_Manager_ManagerForm : MyEntityForm
     {
         base.OnInitComplete(e);
         ods.DataObjectTypeName = ods.TypeName = CommonManageProvider.Provider.RoleType.FullName;
+
+        ManagerPage.SetFormScript(true);
     }
+
+    //protected void Page_Load(object sender, EventArgs e)
+    //{
+    //    ManagerPage.SetFormScript(true);
+    //}
 }

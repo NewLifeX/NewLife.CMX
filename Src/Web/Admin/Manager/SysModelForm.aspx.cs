@@ -10,6 +10,6 @@ public partial class Admin_Manager_SysModelForm : MyEntityForm<SysModel>
    
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        ManagerPage.SetFormScript(true);
     }
 }

@@ -1,19 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Menu.aspx.cs" Inherits="Admin_Manager_Menu" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Menu.aspx.cs" Inherits="Admin_Manager_Menu" MasterPageFile="~/Admin/ManagerPage.master" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>系统菜单管理</title>
-    <link type="text/css" rel="stylesheet" href="../../scripts/ui/skins/Aqua/css/ligerui-all.css" />
-    <link type="text/css" rel="stylesheet" href="../images/style.css" />
-    <script type="text/javascript" src="../../scripts/jquery/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="../../scripts/ui/js/ligerBuild.min.js"></script>
-    <script type="text/javascript" src="../js/function.js"></script>
-</head>
-<body class="mainbody">
-    <form id="form1" runat="server">
-    <div class="navigation">
-        首页 &gt; 系统管理 &gt; 菜单列表</div>
+<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="H">
+</asp:Content>
+<asp:Content ID="Content2" runat="server" ContentPlaceHolderID="C">
     <div class="tools_box">
         <div class="tools_bar">
             <a href="MenuForm.aspx" class="tools_btn"><span><b class="add">添加菜单</b></span></a>
@@ -70,14 +59,14 @@
                     <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandArgument='<%# Eval("ID") %>'
                         CommandName="Up" Text="↑" Font-Size="12pt" ForeColor="Red" Visible='<%# !IsFirst(Container.DataItem) %>'></asp:LinkButton>
                 </ItemTemplate>
-                <ItemStyle Font-Size="12pt" ForeColor="Red" HorizontalAlign="Center"/>
+                <ItemStyle Font-Size="12pt" ForeColor="Red" HorizontalAlign="Center" />
             </asp:TemplateField>
             <asp:TemplateField HeaderText="降" ShowHeader="False">
                 <ItemTemplate>
                     <asp:LinkButton ID="LinkButton3" runat="server" CausesValidation="False" CommandArgument='<%# Eval("ID") %>'
                         CommandName="Down" Text="↓" Font-Size="12pt" ForeColor="Green" Visible='<%# !IsLast(Container.DataItem) %>'></asp:LinkButton>
                 </ItemTemplate>
-                <ItemStyle Font-Size="12pt" ForeColor="Green" HorizontalAlign="Center"/>
+                <ItemStyle Font-Size="12pt" ForeColor="Green" HorizontalAlign="Center" />
             </asp:TemplateField>
             <asp:TemplateField HeaderText="添加子菜单" SortExpression="Name">
                 <ItemTemplate>
@@ -110,10 +99,6 @@
             <asp:Parameter DefaultValue="0" Name="parentKey" Type="Object" />
         </SelectParameters>
     </asp:ObjectDataSource>
-    <XCL:GridViewExtender ID="gvExt" runat="server">
-    </XCL:GridViewExtender>
-    <div class="line10">
-    </div>
-    </form>
-</body>
-</html>
+    <XCL:GridViewExtender ID="gvExt" runat="server"></XCL:GridViewExtender>
+    <div class="line10"></div>
+</asp:Content>

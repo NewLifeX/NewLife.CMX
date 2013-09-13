@@ -10,5 +10,8 @@ public partial class Admin_Manager_MenuForm : MyEntityForm
     /// <summary>实体类型</summary>
     public override Type EntityType { get { return CommonManageProvider.Provider.MenuType; } set { base.EntityType = value; } }
 
-    protected void Page_Load(object sender, EventArgs e) { }
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        ManagerPage.SetFormScript(true);
+    }
 }

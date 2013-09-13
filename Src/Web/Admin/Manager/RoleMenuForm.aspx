@@ -1,19 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="RoleMenuForm.aspx.cs" Inherits="Admin_Manager_RoleMenuForm" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="RoleMenuForm.aspx.cs" Inherits="Admin_Manager_RoleMenuForm" MasterPageFile="~/Admin/ManagerPage.master"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>系统角色管理</title>
-    <link type="text/css" rel="stylesheet" href="../../scripts/ui/skins/Aqua/css/ligerui-all.css" />
-    <link type="text/css" rel="stylesheet" href="../images/style.css" />
-    <script type="text/javascript" src="../../scripts/jquery/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="../../scripts/ui/js/ligerBuild.min.js"></script>
-    <script type="text/javascript" src="../js/function.js"></script>
-</head>
-<body class="mainbody">
-    <form id="form1" runat="server">
-        <div class="navigation">首页 &gt; 系统管理 &gt; 角色管理</div>
+<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="H">
+</asp:Content>
+<asp:Content ID="Content2" runat="server" ContentPlaceHolderID="C">
+        <%--<div class="navigation">首页 &gt; 系统管理 &gt; 角色管理</div>--%>
         <div class="tools_box">
             <div class="tools_bar">
                 <a href="Manager.aspx" class="tools_btn"><span><b class="return">管理员列表</b></span></a>
@@ -26,7 +16,6 @@
                 </div>
             </div>
         </div>
-
         <asp:GridView ID="gv" runat="server" AutoGenerateColumns="False" DataKeyNames="ID"
             CssClass="msgtable" CellPadding="0" GridLines="None" PageSize="15" EnableModelValidation="True"
             DataSourceID="ods" OnRowDataBound="gv_RowDataBound"
@@ -81,6 +70,4 @@
         <XCL:GridViewExtender ID="gvExt" runat="server">
         </XCL:GridViewExtender>
         <div class="line10"></div>
-    </form>
-</body>
-</html>
+</asp:Content>

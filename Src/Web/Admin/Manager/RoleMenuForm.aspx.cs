@@ -29,7 +29,9 @@ public partial class Admin_Manager_RoleMenuForm : MyEntityList
             ddlRole.SelectedValue = roleID.ToString();
         }
     }
-    protected void Page_Load(object sender, EventArgs e) { }
+    protected void Page_Load(object sender, EventArgs e) {
+          
+    }
 
     public Int32 RoleID { get { return String.IsNullOrEmpty(ddlRole.SelectedValue) ? 0 : Convert.ToInt32(ddlRole.SelectedValue); } }
 

@@ -1,19 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Log.aspx.cs" Inherits="Admin_Manager_Log" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Log.aspx.cs" Inherits="Admin_Manager_Log" MasterPageFile="~/Admin/ManagerPage.master"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
-    <title>系统日志管理</title>
-    <link type="text/css" rel="stylesheet" href="../../scripts/ui/skins/Aqua/css/ligerui-all.css" />
-    <link type="text/css" rel="stylesheet" href="../images/style.css" />
-    <script type="text/javascript" src="../../scripts/jquery/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="../../scripts/ui/js/ligerBuild.min.js"></script>
-    <script type="text/javascript" src="../js/function.js"></script>
-</head>
-<body class="mainbody">
-    <form id="form1" runat="server">
-        <div class="navigation">首页 &gt; 系统管理 &gt; 日志列表</div>
+<asp:content id="Content1" runat="server" contentplaceholderid="H">
+</asp:content>
+<asp:content id="Content2" runat="server" contentplaceholderid="C">
+        <%--<div class="navigation">首页 &gt; 系统管理 &gt; 日志列表</div>--%>
         <div class="tools_box">
             <div class="tools_bar">
                 <div class="search_box">
@@ -95,7 +85,5 @@
         </XCL:GridViewExtender>
        
         <div class="line10"></div>
-    </form>
-</body>
-</html>
+</asp:content>
 
