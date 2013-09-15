@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
@@ -11,5 +11,6 @@ public partial class CMX_ModelForm : MyEntityForm<Model>
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        ManagerPage.SetFormScript(true);
     }
 }

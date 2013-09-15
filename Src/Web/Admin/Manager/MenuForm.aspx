@@ -4,7 +4,7 @@
     <%--<div class="navigation"><a href="javascript:history.go(-1);" class="back">后退</a>首页 &gt; 系统管理 &gt; 菜单列表</div>--%>
     <div id="contentTab">
         <ul class="tab_nav">
-            <li class="selected"><a onclick="tabs('#contentTab',0);" href="javascript:;">编辑管理员信息</a></li>
+            <li class="selected"><a onclick="tabs('#contentTab',0);" href="javascript:;">编辑菜单</a></li>
         </ul>
         <div class="tab_con" style="display: block;">
             <table class="form_table">

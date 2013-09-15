@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="RoleMenuForm.aspx.cs" Inherits="Admin_Manager_RoleMenuForm" MasterPageFile="~/Admin/ManagerPage.master"%>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="H">
+    <title>权限管理</title>
 </asp:Content>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="C">
         <%--<div class="navigation">首页 &gt; 系统管理 &gt; 角色管理</div>--%>

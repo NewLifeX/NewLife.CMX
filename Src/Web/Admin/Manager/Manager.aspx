@@ -2,6 +2,7 @@
 
 
 <asp:content id="Content1" runat="server" contentplaceholderid="H">
+    <title>管理员管理</title>
 </asp:content>
 <asp:content id="Content2" runat="server" contentplaceholderid="C">
         <%--<div class="navigation">首页 &gt; 系统管理 &gt; 管理员管理</div>--%>
@@ -82,7 +83,6 @@
                         <asp:HyperLink ID="HyperManager" runat="server" Text='编辑管理员' NavigateUrl='<%# "ManagerForm.aspx?ID="+Eval("ID") %>'></asp:HyperLink>
                     </ItemTemplate>
                       <ItemStyle HorizontalAlign="Center" />
-               
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="删除" ShowHeader="False">
                     <ItemTemplate>

@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Log.aspx.cs" Inherits="Admin_Manager_Log" MasterPageFile="~/Admin/ManagerPage.master"%>
 
 <asp:content id="Content1" runat="server" contentplaceholderid="H">
+    <title>系统日志</title>
 </asp:content>
 <asp:content id="Content2" runat="server" contentplaceholderid="C">
         <%--<div class="navigation">首页 &gt; 系统管理 &gt; 日志列表</div>--%>

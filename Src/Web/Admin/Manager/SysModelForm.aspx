@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="SysModelForm.aspx.cs" Inherits="Admin_Manager_SysModelForm" MasterPageFile="~/Admin/ManagerPage.master"%>
 
 <asp:content id="Content1" runat="server" contentplaceholderid="H">
+    <title>系统模型管理</title>
 </asp:content>
 <asp:content id="Content2" runat="server" contentplaceholderid="C">
         <%--<div class="navigation"><a href="javascript:history.go(-1);" class="back">后退</a>首页 &gt; 系统管理 &gt; 系统模型管理</div>--%>

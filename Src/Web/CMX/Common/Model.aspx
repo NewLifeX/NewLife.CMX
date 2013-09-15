@@ -1,13 +1,19 @@
-﻿<%@ Page Title="模型管理" Language="C#" MasterPageFile="~/Admin/ListPage.master" AutoEventWireup="true" CodeFile="Model.aspx.cs" Inherits="CMX_Model" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="Model.aspx.cs" Inherits="CMX_Model" %>
 
+<asp:Content ID="Content2" runat="server" ContentPlaceHolderID="H">
+    <title>模型管理</title>
+</asp:Content>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
-    <div class="toolbar">
-        <XCL:LinkBox ID="lbAdd" runat="server" BoxHeight="427px" BoxWidth="440px" Url="ModelForm.aspx"
-            IconLeft="~/Admin/images/icons/new.gif" EnableViewState="false"><b>添加模型</b></XCL:LinkBox>
-        关键字：<asp:TextBox ID="txtKey" runat="server"></asp:TextBox>
-        <asp:Button ID="btnSearch" runat="server" Text="查询" />
+    <div class="navigation">首页</div>
+    <div class="tools_box">
+        <div class="tools_bar">
+            <a href="ModelForm.aspx" class="tools_btn"><span><b class="add">添加模型</b></span></a>
+            <div class="search_box">
+                关键字：<asp:TextBox ID="txtKey" runat="server"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="查询" />
+            </div>
+        </div>
     </div>
-    <asp:GridView ID="gv" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="ods" AllowPaging="True" AllowSorting="True" CssClass="m_table" PageSize="20" CellPadding="0" GridLines="None" EnableModelValidation="True">
+    <asp:GridView ID="gv" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="ods" AllowPaging="True" AllowSorting="True" CssClass="msgtable" PageSize="10" CellPadding="0" GridLines="None" EnableModelValidation="True">
         <Columns>
             <%--<asp:TemplateField>
                 <ItemTemplate>
@@ -16,9 +22,6 @@
                 <HeaderStyle Width="20px" />
                 <ItemStyle HorizontalAlign="Center" />
             </asp:TemplateField>--%>
-            <asp:BoundField DataField="ID" HeaderText="编号" SortExpression="ID" InsertVisible="False" ReadOnly="True" >
-                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="Ikey" />
-            </asp:BoundField>
             <asp:BoundField DataField="Name" HeaderText="名称" SortExpression="Name" />
             <asp:TemplateField HeaderText="启用" SortExpression="Enable">
                 <ItemTemplate>
@@ -45,10 +48,15 @@
             <asp:BoundField DataField="FormTemplatePath" HeaderText="表单页" SortExpression="FormTemplatePath" />
             <asp:BoundField DataField="ListTemplatePath" HeaderText="列表页" SortExpression="ListTemplatePath" />
             <asp:BoundField DataField="ClassName" HeaderText="类名" SortExpression="ClassName" />
-            <XCL:LinkBoxField HeaderText="编辑" DataNavigateUrlFields="ID" DataNavigateUrlFormatString="ModelForm.aspx?ID={0}" Height="427px" Text="编辑" Width="440px" Title="编辑模型">
-                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="30px" />
-            </XCL:LinkBoxField>
+            <asp:BoundField DataField="ID" HeaderText="编号" SortExpression="ID" InsertVisible="False" ReadOnly="True" >
+                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="Ikey" />
+            </asp:BoundField>
+                <asp:TemplateField HeaderText="编辑" SortExpression="Name">
+                    <ItemTemplate>
+                        <asp:HyperLink ID="HyperManager" runat="server" Text='编辑模型' NavigateUrl='<%# "ModelForm.aspx?ID="+Eval("ID")%>'></asp:HyperLink>
+                    </ItemTemplate>
+                      <ItemStyle HorizontalAlign="Center" />
+                </asp:TemplateField>
             <asp:TemplateField ShowHeader="False" HeaderText="删除">
                 <ItemTemplate>
                     <asp:LinkButton ID="btnDelete" runat="server" CausesValidation="False" CommandName="Delete" OnClientClick='return confirm("确定删除吗？")' Text="删除"></asp:LinkButton>
@@ -70,4 +78,5 @@
     </asp:ObjectDataSource>
     <XCL:GridViewExtender ID="gvExt" runat="server">
     </XCL:GridViewExtender>
+    <div class="line10"></div>
 </asp:Content>
