@@ -5,11 +5,9 @@
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Nullable="False" Description="名称" />
       <Column Name="Enable" DataType="Boolean" Description="启用" />
-      <Column Name="CreateUserID" DataType="Int32" Description="创建人" />
-      <Column Name="CreateUserName" DataType="String" Description="创建人" />
+      <Column Name="CreateUserID" DataType="Int32" Description="创建人ID" />
       <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
-      <Column Name="UpdateUserID" DataType="Int32" Description="更新人" />
-      <Column Name="UpdateUserName" DataType="String" Description="更新人" />
+      <Column Name="UpdateUserID" DataType="Int32" Description="更新人ID" />
       <Column Name="UpdateTime" DataType="DateTime" Description="更新时间" />
       <Column Name="Remark" DataType="String" Length="200" Description="备注" />
       <Column Name="FormTemplatePath" DataType="String" Length="200" Description="表单页" />
@@ -27,11 +25,9 @@
       <Column Name="ModelID" DataType="Int32" Description="模型" />
       <Column Name="Suffix" DataType="String" Description="后缀。默认频道后缀为空，扩展频道必须有不同的表后缀" />
       <Column Name="Enable" DataType="Boolean" Description="启用" />
-      <Column Name="CreateUserID" DataType="Int32" Description="创建人" />
-      <Column Name="CreateUserName" DataType="String" Description="创建人" />
+      <Column Name="CreateUserID" DataType="Int32" Description="创建人ID" />
       <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
-      <Column Name="UpdateUserID" DataType="Int32" Description="更新人" />
-      <Column Name="UpdateUserName" DataType="String" Description="更新人" />
+      <Column Name="UpdateUserID" DataType="Int32" Description="更新人ID" />
       <Column Name="UpdateTime" DataType="DateTime" Description="更新时间" />
       <Column Name="Remark" DataType="String" Length="200" Description="备注" />
     </Columns>
