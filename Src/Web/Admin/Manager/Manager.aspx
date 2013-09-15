@@ -76,7 +76,6 @@
                         <asp:CheckBox ID="checkbox2" runat="server" Checked='<%# Bind("IsEnable")%>' />
                     </EditItemTemplate>
                       <ItemStyle HorizontalAlign="Center" />
-               
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="编辑" SortExpression="Name">
                     <ItemTemplate>

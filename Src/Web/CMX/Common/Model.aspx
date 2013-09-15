@@ -4,7 +4,6 @@
     <title>模型管理</title>
 </asp:Content>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
-    <div class="navigation">首页</div>
     <div class="tools_box">
         <div class="tools_bar">
             <a href="ModelForm.aspx" class="tools_btn"><span><b class="add">添加模型</b></span></a>
@@ -22,6 +21,9 @@
                 <HeaderStyle Width="20px" />
                 <ItemStyle HorizontalAlign="Center" />
             </asp:TemplateField>--%>
+            <asp:BoundField DataField="ID" HeaderText="编号" SortExpression="ID" InsertVisible="False" ReadOnly="True" >
+                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="Ikey" />
+            </asp:BoundField>
             <asp:BoundField DataField="Name" HeaderText="名称" SortExpression="Name" />
             <asp:TemplateField HeaderText="启用" SortExpression="Enable">
                 <ItemTemplate>
@@ -30,17 +32,15 @@
                 </ItemTemplate>
                 <ItemStyle HorizontalAlign="Center" />
             </asp:TemplateField>
-            <asp:BoundField DataField="CreateUserID" HeaderText="创建人" SortExpression="CreateUserID" DataFormatString="{0:n0}">
+            <asp:BoundField DataField="CreateUserID" HeaderText="创建人ID" SortExpression="CreateUserID" DataFormatString="{0:n0}">
                 <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
             </asp:BoundField>
-            <asp:BoundField DataField="CreateUserName" HeaderText="创建人" SortExpression="CreateUserName" />
             <asp:BoundField DataField="CreateTime" HeaderText="创建时间" SortExpression="CreateTime" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" >
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="120px" />
             </asp:BoundField>
-            <asp:BoundField DataField="UpdateUserID" HeaderText="更新人" SortExpression="UpdateUserID" DataFormatString="{0:n0}">
+            <asp:BoundField DataField="UpdateUserID" HeaderText="更新人ID" SortExpression="UpdateUserID" DataFormatString="{0:n0}">
                 <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
             </asp:BoundField>
-            <asp:BoundField DataField="UpdateUserName" HeaderText="更新人" SortExpression="UpdateUserName" />
             <asp:BoundField DataField="UpdateTime" HeaderText="更新时间" SortExpression="UpdateTime" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" >
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="120px" />
             </asp:BoundField>
@@ -48,9 +48,6 @@
             <asp:BoundField DataField="FormTemplatePath" HeaderText="表单页" SortExpression="FormTemplatePath" />
             <asp:BoundField DataField="ListTemplatePath" HeaderText="列表页" SortExpression="ListTemplatePath" />
             <asp:BoundField DataField="ClassName" HeaderText="类名" SortExpression="ClassName" />
-            <asp:BoundField DataField="ID" HeaderText="编号" SortExpression="ID" InsertVisible="False" ReadOnly="True" >
-                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="Ikey" />
-            </asp:BoundField>
                 <asp:TemplateField HeaderText="编辑" SortExpression="Name">
                     <ItemTemplate>
                         <asp:HyperLink ID="HyperManager" runat="server" Text='编辑模型' NavigateUrl='<%# "ModelForm.aspx?ID="+Eval("ID")%>'></asp:HyperLink>

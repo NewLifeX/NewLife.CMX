@@ -4,7 +4,6 @@
     <title>频道管理</title>
 </asp:Content>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
-    <div class="navigation"><a href="javascript:history.go(-1);" class="back">后退</a>首页 </div>
     <div id="contentTab">
         <ul class="tab_nav">
             <li class="selected"><a onclick="tabs('#contentTab',0);" href="javascript:;">编辑频道</a></li>
@@ -31,24 +30,16 @@
             <td><asp:CheckBox ID="frmEnable" runat="server" Text="启用" /></td>
         </tr>
 <tr>
-            <th>创建人：</th>
+            <th>创建人ID：</th>
             <td><XCL:NumberBox ID="frmCreateUserID" runat="server" Width="80px"></XCL:NumberBox></td>
-        </tr>
-<tr>
-            <th>创建人：</th>
-            <td><asp:TextBox ID="frmCreateUserName" runat="server" Width="150px"></asp:TextBox></td>
         </tr>
 <tr>
             <th>创建时间：</th>
             <td><XCL:DateTimePicker ID="frmCreateTime" runat="server"></XCL:DateTimePicker></td>
         </tr>
 <tr>
-            <th>更新人：</th>
+            <th>更新人ID：</th>
             <td><XCL:NumberBox ID="frmUpdateUserID" runat="server" Width="80px"></XCL:NumberBox></td>
-        </tr>
-<tr>
-            <th>更新人：</th>
-            <td><asp:TextBox ID="frmUpdateUserName" runat="server" Width="150px"></asp:TextBox></td>
         </tr>
 <tr>
             <th>更新时间：</th>

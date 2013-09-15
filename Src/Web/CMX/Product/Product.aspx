@@ -1,13 +1,18 @@
-﻿<%@ Page Title="产品管理" Language="C#" MasterPageFile="~/Admin/ListPage.master" AutoEventWireup="true" CodeFile="Product.aspx.cs" Inherits="CMX_Product" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="Product.aspx.cs" Inherits="CMX_Product" %>
 
+<asp:Content ID="Content2" runat="server" ContentPlaceHolderID="H">
+    <title>产品管理</title>
+</asp:Content>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
-    <div class="toolbar">
-        <XCL:LinkBox ID="lbAdd" runat="server" BoxHeight="427px" BoxWidth="440px" Url="ProductForm.aspx"
-            IconLeft="~/Admin/images/icons/new.gif" EnableViewState="false"><b>添加产品</b></XCL:LinkBox>
-        关键字：<asp:TextBox ID="txtKey" runat="server"></asp:TextBox>
-        <asp:Button ID="btnSearch" runat="server" Text="查询" />
+    <div class="tools_box">
+        <div class="tools_bar">
+            <a href="ProductForm.aspx" class="tools_btn"><span><b class="add">添加产品</b></span></a>
+            <div class="search_box">
+                关键字：<asp:TextBox ID="txtKey" runat="server"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="查询" />
+            </div>
+        </div>
     </div>
-    <asp:GridView ID="gv" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="ods" AllowPaging="True" AllowSorting="True" CssClass="m_table" PageSize="20" CellPadding="0" GridLines="None" EnableModelValidation="True">
+    <asp:GridView ID="gv" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="ods" AllowPaging="True" AllowSorting="True" CssClass="msgtable" PageSize="10" CellPadding="0" GridLines="None" EnableModelValidation="True">
         <Columns>
             <%--<asp:TemplateField>
                 <ItemTemplate>
@@ -47,10 +52,12 @@
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="120px" />
             </asp:BoundField>
             <asp:BoundField DataField="Remark" HeaderText="备注" SortExpression="Remark" />
-            <XCL:LinkBoxField HeaderText="编辑" DataNavigateUrlFields="ID" DataNavigateUrlFormatString="ProductForm.aspx?ID={0}" Height="427px" Text="编辑" Width="440px" Title="编辑产品">
-                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="30px" />
-            </XCL:LinkBoxField>
+                <asp:TemplateField HeaderText="编辑" SortExpression="Name">
+                    <ItemTemplate>
+                        <asp:HyperLink ID="HyperManager" runat="server" Text='编辑产品' NavigateUrl='<%# "ProductForm.aspx?ID="+Eval("ID")%>'></asp:HyperLink>
+                    </ItemTemplate>
+                      <ItemStyle HorizontalAlign="Center" />
+                </asp:TemplateField>
             <asp:TemplateField ShowHeader="False" HeaderText="删除">
                 <ItemTemplate>
                     <asp:LinkButton ID="btnDelete" runat="server" CausesValidation="False" CommandName="Delete" OnClientClick='return confirm("确定删除吗？")' Text="删除"></asp:LinkButton>
@@ -72,4 +79,5 @@
     </asp:ObjectDataSource>
     <XCL:GridViewExtender ID="gvExt" runat="server">
     </XCL:GridViewExtender>
+    <div class="line10"></div>
 </asp:Content>

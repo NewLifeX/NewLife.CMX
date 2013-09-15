@@ -11,13 +11,19 @@
     <script type="text/javascript" src='<%=ResolveUrl("../Scripts/jquery/jquery-1.9.1.min.js")%>'></script>
     <script type="text/javascript" src='<%=ResolveUrl("../Scripts/ui/js/ligerBuild.min.js")%>'></script>
     <script type="text/javascript" src='<%=ResolveUrl("../Admin/js/function.js")%>'></script>
+    <style type="text/css">
+        .back
+        {
+            display:none;
+        }
+    </style>
     <asp:ContentPlaceHolder ID="H" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body class="mainbody">
     <form id="form1" runat="server" class="form1">
-        <div class="navigation">
-            你当前的位置：<asp:Literal ID="Navigation" runat="server"></asp:Literal>
+        <div class="navigation"><a href="javascript:history.go(-1);" class="back">后退</a>
+            你当前的位置：
         </div>
         <asp:ContentPlaceHolder ID="C" runat="server">
         </asp:ContentPlaceHolder>

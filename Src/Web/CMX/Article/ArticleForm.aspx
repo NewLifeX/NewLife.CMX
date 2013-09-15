@@ -1,66 +1,76 @@
-﻿<%@ Page Title="文章管理" Language="C#" MasterPageFile="~/Admin/FormPage.master" AutoEventWireup="true" CodeFile="ArticleForm.aspx.cs" Inherits="CMX_ArticleForm"%>
+﻿<%@ Page Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="ArticleForm.aspx.cs" Inherits="CMX_ArticleForm"%>
 
+<asp:Content ID="Content2" runat="server" ContentPlaceHolderID="H">
+    <title>文章管理</title>
+</asp:Content>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
-    <table border="0" class="m_table" cellspacing="1" cellpadding="0" align="Center">
+    <div id="contentTab">
+        <ul class="tab_nav">
+            <li class="selected"><a onclick="tabs('#contentTab',0);" href="javascript:;">编辑文章</a></li>
+        </ul>
+        <div class="tab_con" style="display: block;">
+            <table class="form_table">
+                <col width="180px" />
+                <col />
+                <tbody>
         <tr>
-            <th colspan="2">文章</th>
-        </tr>
-        <tr>
-            <td align="right">分类：</td>
+            <th>分类：</th>
             <td><XCL:NumberBox ID="frmCategoryID" runat="server" Width="80px"></XCL:NumberBox></td>
         </tr>
 <tr>
-            <td align="right">标题：</td>
+            <th>标题：</th>
             <td><asp:TextBox ID="frmTitle" runat="server" Width="300px"></asp:TextBox></td>
         </tr>
 <tr>
-            <td align="right">最新版本：</td>
+            <th>最新版本：</th>
             <td><XCL:NumberBox ID="frmVersion" runat="server" Width="80px"></XCL:NumberBox></td>
         </tr>
 <tr>
-            <td align="right">访问量：</td>
+            <th>访问量：</th>
             <td><XCL:NumberBox ID="frmHits" runat="server" Width="80px"></XCL:NumberBox></td>
         </tr>
 <tr>
-            <td align="right">访问统计：</td>
+            <th>访问统计：</th>
             <td><XCL:NumberBox ID="frmStatisticsID" runat="server" Width="80px"></XCL:NumberBox></td>
         </tr>
 <tr>
-            <td align="right">创建人：</td>
+            <th>创建人：</th>
             <td><XCL:NumberBox ID="frmCreateUserID" runat="server" Width="80px"></XCL:NumberBox></td>
         </tr>
 <tr>
-            <td align="right">创建人：</td>
+            <th>创建人：</th>
             <td><asp:TextBox ID="frmCreateUserName" runat="server" Width="150px"></asp:TextBox></td>
         </tr>
 <tr>
-            <td align="right">创建时间：</td>
+            <th>创建时间：</th>
             <td><XCL:DateTimePicker ID="frmCreateTime" runat="server"></XCL:DateTimePicker></td>
         </tr>
 <tr>
-            <td align="right">更新人：</td>
+            <th>更新人：</th>
             <td><XCL:NumberBox ID="frmUpdateUserID" runat="server" Width="80px"></XCL:NumberBox></td>
         </tr>
 <tr>
-            <td align="right">更新人：</td>
+            <th>更新人：</th>
             <td><asp:TextBox ID="frmUpdateUserName" runat="server" Width="150px"></asp:TextBox></td>
         </tr>
 <tr>
-            <td align="right">更新时间：</td>
+            <th>更新时间：</th>
             <td><XCL:DateTimePicker ID="frmUpdateTime" runat="server"></XCL:DateTimePicker></td>
         </tr>
 <tr>
-            <td align="right">备注：</td>
+            <th>备注：</th>
             <td><asp:TextBox ID="frmRemark" runat="server" Width="300px"></asp:TextBox></td>
         </tr>
-    </table>
-    <table border="0" align="Center" width="100%">
+    
         <tr>
-            <td align="center">
+            <th></th>
+            <td>
                 <asp:Button ID="btnSave" runat="server" CausesValidation="True" Text='保存' />
                 &nbsp;<asp:Button ID="btnCopy" runat="server" CausesValidation="True" Text='另存为新文章' />
-                &nbsp;<asp:Button ID="btnReturn" runat="server" OnClientClick="parent.Dialog.CloseSelfDialog(frameElement);return false;" Text="返回" />
             </td>
         </tr>
+        </tbody>
     </table>
+            </div>
+    </div>
 </asp:Content>
