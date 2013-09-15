@@ -4,7 +4,6 @@
     <title><#=Table.DisplayName#>管理</title>
 </asp:Content>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
-    <div class="navigation"><a href="javascript:history.go(-1);" class="back">后退</a>首页 </div>
     <div id="contentTab">
         <ul class="tab_nav">
             <li class="selected"><a onclick="tabs('#contentTab',0);" href="javascript:;">编辑<#=Table.DisplayName#></a></li>

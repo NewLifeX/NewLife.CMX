@@ -4,7 +4,6 @@
     <title><#=Table.DisplayName#>管理</title>
 </asp:Content>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
-    <div class="navigation">首页</div>
     <div class="tools_box">
         <div class="tools_bar">
             <a href="<#=Table.Name#>Form.aspx" class="tools_btn"><span><b class="add">添加<#=Table.DisplayName#></b></span></a>
