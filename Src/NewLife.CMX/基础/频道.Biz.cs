@@ -35,7 +35,7 @@ namespace NewLife.CMX
 
             // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
             //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
-            
+
             if (isNew && !Dirtys[__.CreateTime]) CreateTime = DateTime.Now;
             if (!Dirtys[__.UpdateTime]) UpdateTime = DateTime.Now;
         }
@@ -87,6 +87,24 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
+        private Model _Model;
+        /// <summary>模型</summary>
+        public Model Model
+        {
+            get
+            {
+                if (_Model == null && ModelID > 0 && !Dirtys.ContainsKey("Model"))
+                {
+                    _Model = Model.FindByKey(ModelID);
+                    Dirtys["Model"] = true;
+                }
+                return _Model;
+            }
+            set { _Model = value; }
+        }
+
+        /// <summary>模型名称</summary>
+        public String ModelName { get { return Model != null ? Model.Name : "未命名"; } }
         #endregion
 
         #region 扩展查询﻿
