@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Menu.aspx.cs" Inherits="Admin_Manager_Menu" MasterPageFile="~/Admin/ManagerPage.master" %>
+﻿<%@ Page Title="菜单管理" Language="C#" AutoEventWireup="true" CodeFile="Menu.aspx.cs" Inherits="Admin_Manager_Menu" MasterPageFile="~/Admin/ManagerPage.master" %>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="H">
     <title>菜单管理</title>

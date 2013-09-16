@@ -156,12 +156,12 @@
                 </div>
             </div>
             <!--左边-->
-            <div position="left" title="管理菜单" id="global_left_nav">
+<%--            <div position="left" title="管理菜单" id="global_left_nav">
                 <div title="频道管理" iconcss="menu-icon-model" class="l-scroll">
                     <ul id="global_channel_tree" style="margin-top: 3px;">
                     </ul>
                 </div>
-<%--                <div title="会员管理" iconcss="menu-icon-member">
+                <div title="会员管理" iconcss="menu-icon-member">
                     <ul class="nlist">
                     </ul>
                 </div>
@@ -179,8 +179,9 @@
                         <li><a class="l-link" href="javascript:f_addTab('SysModel','系统模型管理','Manager/SysModel.aspx')">系统模型管理</a></li>
 
                     </ul>
-                </div>--%>
-            </div>
+                </div>
+            </div>--%>
+            <Custom:LeftMenu id="leftmenu" runat="server"/>
             <div position="center" id="framecenter" toolsid="tab-tools-nav">
                 <div tabid="home" title="管理中心" iconcss="tab-icon-home" style="height: 300px">
                     <iframe frameborder="0" name="sysMain" src="Main.aspx"></iframe>

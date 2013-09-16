@@ -5,7 +5,7 @@ using XCode;
 using NewLife.Web;
 
 /// <summary>实体表单页面基类</summary>
-public class MyEntityForm : Page
+public class MyModelEntityForm : Page
 {
     #region 管理页控制器
     private Type _EntityType;
@@ -34,7 +34,7 @@ public class MyEntityForm : Page
 
         // 让页面管理器先注册，因为页面管理器要控制权限
         Manager = ManageProvider.Provider.GetService<IManagePage>().Init(this, EntityType);
-        //Manager.ValidatePermission = false; //关闭页面权限检查
+        Manager.ValidatePermission = false;//关闭页面权限检查
         EntityForm = ManageProvider.Provider.GetService<IEntityForm>().Init(this, EntityType);
         EntityForm.OnSaveSuccess += EntityForm_OnSaveSuccess;
         EntityForm.OnSaveFailure += EntityForm_OnSaveFailure;
@@ -65,7 +65,7 @@ public class MyEntityForm : Page
 }
 
 /// <summary>实体表单页面基类</summary>
-public class MyEntityForm<TEntity> : MyEntityForm where TEntity : Entity<TEntity>, new()
+public class MyModelEntityForm<TEntity> : MyModelEntityForm where TEntity : Entity<TEntity>, new()
 {
     /// <summary>实体类</summary>
     public override Type EntityType { get { return base.EntityType ?? (base.EntityType = typeof(TEntity)); } set { base.EntityType = value; } }

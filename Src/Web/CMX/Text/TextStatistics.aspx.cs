@@ -5,7 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using NewLife.CMX;
 
-public partial class CMX_TextStatistics : MyEntityList<TextStatistics>
+public partial class CMX_TextStatistics : MyModelEntityList<TextStatistics>
 {
     protected void Page_Load(object sender, EventArgs e)
     {

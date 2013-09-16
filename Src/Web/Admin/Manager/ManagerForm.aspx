@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ManagerForm.aspx.cs" Inherits="Admin_Manager_ManagerForm" MasterPageFile="~/Admin/ManagerPage.master" %>
+﻿<%@ Page Title="管理员管理" Language="C#" AutoEventWireup="true" CodeFile="ManagerForm.aspx.cs" Inherits="Admin_Manager_ManagerForm" MasterPageFile="~/Admin/ManagerPage.master" %>
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="H">
 </asp:Content>

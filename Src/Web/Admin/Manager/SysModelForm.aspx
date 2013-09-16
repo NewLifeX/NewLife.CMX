@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="SysModelForm.aspx.cs" Inherits="Admin_Manager_SysModelForm" MasterPageFile="~/Admin/ManagerPage.master"%>
+﻿<%@ Page Title="模型列表" Language="C#" AutoEventWireup="true" CodeFile="SysModelForm.aspx.cs" Inherits="Admin_Manager_SysModelForm" MasterPageFile="~/Admin/ManagerPage.master"%>
 
 <asp:content id="Content1" runat="server" contentplaceholderid="H">
     <title>系统模型管理</title>

@@ -9,7 +9,7 @@ using XControl;
 using System.Web;
 
 /// <summary>实体列表页面基类</summary>
-public abstract class MyEntityList : Page
+public abstract class MyModelEntityList : Page
 {
     #region 管理页控制器
     private Type _EntityType;
@@ -49,7 +49,7 @@ public abstract class MyEntityList : Page
         //    Response.Redirect("/Manager/Login.aspx");
         //}
         Manager = ManageProvider.Provider.GetService<IManagePage>().Init(this, EntityType);
-        //Manager.ValidatePermission = false;
+        Manager.ValidatePermission = false;//关闭页面权限检查
         base.OnPreInit(e);
     }
     #endregion
@@ -92,7 +92,7 @@ public abstract class MyEntityList : Page
 }
 
 /// <summary>实体列表页面基类</summary>
-public class MyEntityList<TEntity> : MyEntityList where TEntity : Entity<TEntity>, new()
+public class MyModelEntityList<TEntity> : MyModelEntityList where TEntity : Entity<TEntity>, new()
 {
     /// <summary>实体类</summary>
     public override Type EntityType { get { return base.EntityType ?? (base.EntityType = typeof(TEntity)); } set { base.EntityType = value; } }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="MenuForm.aspx.cs" Inherits="Admin_Manager_MenuForm" MasterPageFile="~/Admin/ManagerPage.master" %>
+﻿<%@ Page Title="菜单管理" Language="C#" AutoEventWireup="true" CodeFile="MenuForm.aspx.cs" Inherits="Admin_Manager_MenuForm" MasterPageFile="~/Admin/ManagerPage.master" %>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
     <%--<div class="navigation"><a href="javascript:history.go(-1);" class="back">后退</a>首页 &gt; 系统管理 &gt; 菜单列表</div>--%>
@@ -50,8 +50,8 @@
                     <tr>
                         <th>显示：</th>
                         <td>
-                            <asp:RadioButtonList ID="frmIsEnable" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow">
-                                <asp:ListItem Selected="True" Value="True">显示 </asp:ListItem>
+                            <asp:RadioButtonList ID="frmIsShow" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow">
+                                <asp:ListItem Value="True">显示 </asp:ListItem>
                                 <asp:ListItem Value="False">隐藏 </asp:ListItem>
                             </asp:RadioButtonList></td>
                     </tr>

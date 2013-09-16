@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Role.aspx.cs" Inherits="Admin_Manager_Role" MasterPageFile="~/Admin/ManagerPage.master"%>
+﻿<%@ Page Title="角色管理" Language="C#" AutoEventWireup="true" CodeFile="Role.aspx.cs" Inherits="Admin_Manager_Role" MasterPageFile="~/Admin/ManagerPage.master"%>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="H">
     <title>角色管理</title>

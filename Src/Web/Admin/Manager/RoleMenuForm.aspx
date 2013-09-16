@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="RoleMenuForm.aspx.cs" Inherits="Admin_Manager_RoleMenuForm" MasterPageFile="~/Admin/ManagerPage.master"%>
+﻿<%@ Page Title="角色管理" Language="C#" AutoEventWireup="true" CodeFile="RoleMenuForm.aspx.cs" Inherits="Admin_Manager_RoleMenuForm" MasterPageFile="~/Admin/ManagerPage.master"%>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="H">
     <title>权限管理</title>

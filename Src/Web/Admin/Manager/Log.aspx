@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Log.aspx.cs" Inherits="Admin_Manager_Log" MasterPageFile="~/Admin/ManagerPage.master"%>
+﻿<%@ Page  Title="系统日志" Language="C#" AutoEventWireup="true" CodeFile="Log.aspx.cs" Inherits="Admin_Manager_Log" MasterPageFile="~/Admin/ManagerPage.master"%>
 
 <asp:content id="Content1" runat="server" contentplaceholderid="H">
     <title>系统日志</title>

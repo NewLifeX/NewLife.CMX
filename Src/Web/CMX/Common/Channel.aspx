@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="Channel.aspx.cs" Inherits="CMX_Channel" %>
+﻿<%@ Page Title="频道管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="Channel.aspx.cs" Inherits="CMX_Channel" %>
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="H">
     <title>频道管理</title>
@@ -21,13 +21,14 @@
                 <HeaderStyle Width="20px" />
                 <ItemStyle HorizontalAlign="Center" />
             </asp:TemplateField>--%>
-            <asp:BoundField DataField="ID" HeaderText="编号" SortExpression="ID" InsertVisible="False" ReadOnly="True" >
+            <asp:BoundField DataField="ID" HeaderText="编号" SortExpression="ID" InsertVisible="False" ReadOnly="True">
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="Ikey" />
             </asp:BoundField>
             <asp:BoundField DataField="Name" HeaderText="名称" SortExpression="Name" />
-            <asp:BoundField DataField="ModelID" HeaderText="模型" SortExpression="ModelID" DataFormatString="{0:n0}">
+            <%--<asp:BoundField DataField="ModelID" HeaderText="模型" SortExpression="ModelID" DataFormatString="{0:n0}">
                 <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
-            </asp:BoundField>
+            </asp:BoundField>--%>
+            <asp:BoundField DataField="ModelName" HeaderText="模型" SortExpression="ModelID" />
             <asp:BoundField DataField="Suffix" HeaderText="后缀" SortExpression="Suffix" />
             <asp:TemplateField HeaderText="启用" SortExpression="Enable">
                 <ItemTemplate>
@@ -36,25 +37,21 @@
                 </ItemTemplate>
                 <ItemStyle HorizontalAlign="Center" />
             </asp:TemplateField>
-            <asp:BoundField DataField="CreateUserID" HeaderText="创建人ID" SortExpression="CreateUserID" DataFormatString="{0:n0}">
-                <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
-            </asp:BoundField>
-            <asp:BoundField DataField="CreateTime" HeaderText="创建时间" SortExpression="CreateTime" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" >
+            <asp:BoundField DataField="CreateUserName" HeaderText="创建人" SortExpression="CreateUserID" />
+            <asp:BoundField DataField="CreateTime" HeaderText="创建时间" SortExpression="CreateTime" DataFormatString="{0:yyyy-MM-dd}">
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="120px" />
             </asp:BoundField>
-            <asp:BoundField DataField="UpdateUserID" HeaderText="更新人ID" SortExpression="UpdateUserID" DataFormatString="{0:n0}">
-                <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
-            </asp:BoundField>
-            <asp:BoundField DataField="UpdateTime" HeaderText="更新时间" SortExpression="UpdateTime" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" >
+            <asp:BoundField DataField="UpdateUserName" HeaderText="更新人" SortExpression="UpdateUserID" />
+            <asp:BoundField DataField="UpdateTime" HeaderText="更新时间" SortExpression="UpdateTime" DataFormatString="{0:yyyy-MM-dd}">
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="120px" />
             </asp:BoundField>
-            <asp:BoundField DataField="Remark" HeaderText="备注" SortExpression="Remark" />
-                <asp:TemplateField HeaderText="编辑" SortExpression="Name">
-                    <ItemTemplate>
-                        <asp:HyperLink ID="HyperManager" runat="server" Text='编辑频道' NavigateUrl='<%# "ChannelForm.aspx?ID="+Eval("ID")%>'></asp:HyperLink>
-                    </ItemTemplate>
-                      <ItemStyle HorizontalAlign="Center" />
-                </asp:TemplateField>
+            <%-- <asp:BoundField DataField="Remark" HeaderText="备注" SortExpression="Remark" />--%>
+            <asp:TemplateField HeaderText="编辑频道" SortExpression="Name">
+                <ItemTemplate>
+                    <asp:HyperLink ID="HyperManager" runat="server" Text='编辑频道' NavigateUrl='<%# "ChannelForm.aspx?ID="+Eval("ID")%>'></asp:HyperLink>
+                </ItemTemplate>
+                <ItemStyle HorizontalAlign="Center" />
+            </asp:TemplateField>
             <asp:TemplateField ShowHeader="False" HeaderText="删除">
                 <ItemTemplate>
                     <asp:LinkButton ID="btnDelete" runat="server" CausesValidation="False" CommandName="Delete" OnClientClick='return confirm("确定删除吗？")' Text="删除"></asp:LinkButton>
@@ -74,7 +71,7 @@
             <asp:Parameter Name="maximumRows" Type="Int32" />
         </SelectParameters>
     </asp:ObjectDataSource>
-    <XCL:GridViewExtender ID="gvExt" runat="server">
+    <XCL:GridViewExtender ID="gvExt" runat="server" DblClickRowFieldText="编辑频道">
     </XCL:GridViewExtender>
     <div class="line10"></div>
 </asp:Content>
