@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="TextCategoryForm.aspx.cs" Inherits="CMX_TextCategoryForm"%>
+﻿<%@ Page Title="文本分类管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="TextCategoryForm.aspx.cs" Inherits="CMX_TextCategoryForm"%>
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="H">
     <title>文本分类管理</title>

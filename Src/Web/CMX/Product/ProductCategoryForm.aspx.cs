@@ -7,7 +7,7 @@ using NewLife.Log;
 using NewLife.Web;
 using NewLife.CMX;
 
-public partial class CMX_ProductCategoryForm : MyModelEntityForm<ProductCategory>
+public partial class CMX_ProductCategoryForm : MyEntityForm<ProductCategory>
 {
     protected void Page_Load(object sender, EventArgs e)
     {

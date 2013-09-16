@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="TextContent.aspx.cs" Inherits="CMX_TextContent" %>
+﻿<%@ Page Title="文本内容管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="TextContent.aspx.cs" Inherits="CMX_TextContent" %>
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="H">
     <title>文本内容管理</title>

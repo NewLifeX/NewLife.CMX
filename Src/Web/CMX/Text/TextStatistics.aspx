@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="TextStatistics.aspx.cs" Inherits="CMX_TextStatistics" %>
+﻿<%@ Page Title="文本统计管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="TextStatistics.aspx.cs" Inherits="CMX_TextStatistics" %>
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="H">
     <title>文本统计管理</title>

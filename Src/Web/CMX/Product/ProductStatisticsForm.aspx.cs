@@ -7,7 +7,7 @@ using NewLife.Log;
 using NewLife.Web;
 using NewLife.CMX;
 
-public partial class CMX_ProductStatisticsForm : MyModelEntityForm<ProductStatistics>
+public partial class CMX_ProductStatisticsForm : MyEntityForm<ProductStatistics>
 {
     protected void Page_Load(object sender, EventArgs e)
     {

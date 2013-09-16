@@ -1,12 +1,12 @@
-﻿<%@ Page Title="产品管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="Product.aspx.cs" Inherits="CMX_Product" %>
+﻿<%@ Page Title="频道权限管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="ChennalRole.aspx.cs" Inherits="CMX_ChennalRole" %>
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="H">
-    <title>产品管理</title>
+    <title>频道权限管理</title>
 </asp:Content>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
     <div class="tools_box">
         <div class="tools_bar">
-            <a href="ProductForm.aspx" class="tools_btn"><span><b class="add">添加产品</b></span></a>
+            <a href="ChennalRoleForm.aspx" class="tools_btn"><span><b class="add">添加频道权限</b></span></a>
             <div class="search_box">
                 关键字：<asp:TextBox ID="txtKey" runat="server"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="查询" />
             </div>
@@ -24,37 +24,15 @@
             <asp:BoundField DataField="ID" HeaderText="编号" SortExpression="ID" InsertVisible="False" ReadOnly="True" >
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="Ikey" />
             </asp:BoundField>
-            <asp:BoundField DataField="CategoryID" HeaderText="分类" SortExpression="CategoryID" DataFormatString="{0:n0}">
+            <asp:BoundField DataField="RoleID" HeaderText="角色ID" SortExpression="RoleID" DataFormatString="{0:n0}">
                 <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
             </asp:BoundField>
-            <asp:BoundField DataField="Title" HeaderText="标题" SortExpression="Title" />
-            <asp:BoundField DataField="Version" HeaderText="最新版本" SortExpression="Version" DataFormatString="{0:n0}">
+            <asp:BoundField DataField="ChannelID" HeaderText="频道ID" SortExpression="ChannelID" DataFormatString="{0:n0}">
                 <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
             </asp:BoundField>
-            <asp:BoundField DataField="Price" HeaderText="价格" SortExpression="Price" DataFormatString="{0:c}">
-                <ItemStyle HorizontalAlign="Right" Font-Bold="True" ForeColor="Blue" />
-            </asp:BoundField>
-            <asp:BoundField DataField="StatisticsID" HeaderText="访问统计" SortExpression="StatisticsID" DataFormatString="{0:n0}">
-                <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
-            </asp:BoundField>
-            <asp:BoundField DataField="CreateUserID" HeaderText="创建人" SortExpression="CreateUserID" DataFormatString="{0:n0}">
-                <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
-            </asp:BoundField>
-            <asp:BoundField DataField="CreateUserName" HeaderText="创建人" SortExpression="CreateUserName" />
-            <asp:BoundField DataField="CreateTime" HeaderText="创建时间" SortExpression="CreateTime" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" >
-                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="120px" />
-            </asp:BoundField>
-            <asp:BoundField DataField="UpdateUserID" HeaderText="更新人" SortExpression="UpdateUserID" DataFormatString="{0:n0}">
-                <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
-            </asp:BoundField>
-            <asp:BoundField DataField="UpdateUserName" HeaderText="更新人" SortExpression="UpdateUserName" />
-            <asp:BoundField DataField="UpdateTime" HeaderText="更新时间" SortExpression="UpdateTime" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" >
-                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="120px" />
-            </asp:BoundField>
-            <asp:BoundField DataField="Remark" HeaderText="备注" SortExpression="Remark" />
                 <asp:TemplateField HeaderText="编辑" SortExpression="Name">
                     <ItemTemplate>
-                        <asp:HyperLink ID="HyperManager" runat="server" Text='编辑产品' NavigateUrl='<%# "ProductForm.aspx?ID="+Eval("ID")%>'></asp:HyperLink>
+                        <asp:HyperLink ID="HyperManager" runat="server" Text='编辑频道权限' NavigateUrl='<%# "ChennalRoleForm.aspx?ID="+Eval("ID")%>'></asp:HyperLink>
                     </ItemTemplate>
                       <ItemStyle HorizontalAlign="Center" />
                 </asp:TemplateField>
