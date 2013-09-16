@@ -54,7 +54,7 @@
         <li><a href="javascript:parent.f_addTab('templet_list','系统模板管理','settings/templet_list.aspx')"><img src="images/icon_templet.png" /><br />生成模板</a></li>--%>
         <li><a href="javascript:parent.f_addTab('Channel','频道设置','../CMX/Common/Channel.aspx')"><img src="images/icon_channel.png" /><br />频道设置</a></li>
         <li><a href="javascript:parent.f_addTab('Model','模型管理','../CMX/Common/Model.aspx')"><img src="images/icon_templet.png" /><br />模型管理</a></li>
-        <li><a href="#"><img src="images/icon_mark.png" /><br />生成静态</a></li>
+        <li><a href="javascript:parent.f_addTab('ChannelRole','频道权限','../CMX/Common/ChennalRole.aspx')"><img src="images/icon_mark.png" /><br />频道权限</a></li>
         <%--<li><a href="javascript:parent.f_addTab('plugin_list','系统插件管理','settings/plugin_list.aspx')"><img src="images/icon_plugin.png" /><br />插件管理</a></li>
         <li><a href="javascript:parent.f_addTab('user_list','会员信息管理','users/Menu.aspx')"><img src="images/icon_user.png" /><br />会员管理</a></li>--%>
         <li><a href="javascript:parent.f_addTab('Menu','菜单管理','Manager/Menu.aspx')"><img src="images/icon_menu.png" /><br />菜单管理</a></li>
