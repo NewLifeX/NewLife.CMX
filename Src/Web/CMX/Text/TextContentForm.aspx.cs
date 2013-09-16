@@ -7,7 +7,7 @@ using NewLife.Log;
 using NewLife.Web;
 using NewLife.CMX;
 
-public partial class CMX_TextContentForm : MyEntityForm<TextContent>
+public partial class CMX_TextContentForm : MyModelEntityForm<TextContent>
 {
     protected void Page_Load(object sender, EventArgs e)
     {

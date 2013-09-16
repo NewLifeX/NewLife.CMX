@@ -1,4 +1,4 @@
-﻿<%@ Page Title="频道权限管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="ChennalRoleForm.aspx.cs" Inherits="CMX_ChennalRoleForm"%>
+﻿<%@ Page Title="频道权限管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="ChennalRoleForm.aspx.cs" Inherits="CMX_ChennalRoleForm" %>
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="H">
     <title>频道权限管理</title>
@@ -13,24 +13,32 @@
                 <col width="180px" />
                 <col />
                 <tbody>
-        <tr>
-            <th>角色ID：</th>
-            <td><XCL:NumberBox ID="frmRoleID" runat="server" Width="80px"></XCL:NumberBox></td>
-        </tr>
-<tr>
-            <th>频道ID：</th>
-            <td><XCL:NumberBox ID="frmChannelID" runat="server" Width="80px"></XCL:NumberBox></td>
-        </tr>
-    
-        <tr>
-            <th></th>
-            <td>
-                <asp:Button ID="btnSave" runat="server" CausesValidation="True" Text='保存' />
-                &nbsp;<asp:Button ID="btnCopy" runat="server" CausesValidation="True" Text='另存为新频道权限' />
-            </td>
-        </tr>
-        </tbody>
-    </table>
-            </div>
+                    <tr>
+                        <th>角色：</th>
+                        <td>
+                            <XCL:DropDownList ID="frmRoleID" runat="server" DataTextField="Name" DataValueField="ID" AppendDataBoundItems="true">
+                                <asp:ListItem Value="0">请选择</asp:ListItem>
+                            </XCL:DropDownList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>频道：</th>
+                        <td>
+                            <XCL:DropDownList ID="frmChannelID" runat="server" DataTextField="Name" DataValueField="ID" AppendDataBoundItems="true">
+                                <asp:ListItem Value="0">请选择</asp:ListItem>
+                            </XCL:DropDownList>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th></th>
+                        <td>
+                            <asp:Button ID="btnSave" runat="server" CausesValidation="True" Text='保存' />
+                            &nbsp;<asp:Button ID="btnCopy" runat="server" CausesValidation="True" Text='另存为新频道权限' />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </asp:Content>

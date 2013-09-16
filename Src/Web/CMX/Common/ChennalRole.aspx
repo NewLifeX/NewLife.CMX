@@ -21,21 +21,17 @@
                 <HeaderStyle Width="20px" />
                 <ItemStyle HorizontalAlign="Center" />
             </asp:TemplateField>--%>
-            <asp:BoundField DataField="ID" HeaderText="编号" SortExpression="ID" InsertVisible="False" ReadOnly="True" >
+            <asp:BoundField DataField="ID" HeaderText="编号" SortExpression="ID" InsertVisible="False" ReadOnly="True">
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="Ikey" />
             </asp:BoundField>
-            <asp:BoundField DataField="RoleID" HeaderText="角色ID" SortExpression="RoleID" DataFormatString="{0:n0}">
-                <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
-            </asp:BoundField>
-            <asp:BoundField DataField="ChannelID" HeaderText="频道ID" SortExpression="ChannelID" DataFormatString="{0:n0}">
-                <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
-            </asp:BoundField>
-                <asp:TemplateField HeaderText="编辑" SortExpression="Name">
-                    <ItemTemplate>
-                        <asp:HyperLink ID="HyperManager" runat="server" Text='编辑频道权限' NavigateUrl='<%# "ChennalRoleForm.aspx?ID="+Eval("ID")%>'></asp:HyperLink>
-                    </ItemTemplate>
-                      <ItemStyle HorizontalAlign="Center" />
-                </asp:TemplateField>
+            <asp:BoundField DataField="RoleName" HeaderText="角色" SortExpression="RoleID" />
+            <asp:BoundField DataField="ChannelName" HeaderText="频道" SortExpression="ChannelID" />
+            <asp:TemplateField HeaderText="编辑" SortExpression="Name">
+                <ItemTemplate>
+                    <asp:HyperLink ID="HyperManager" runat="server" Text='编辑' NavigateUrl='<%# "ChennalRoleForm.aspx?ID="+Eval("ID")%>'></asp:HyperLink>
+                </ItemTemplate>
+                <ItemStyle HorizontalAlign="Center" />
+            </asp:TemplateField>
             <asp:TemplateField ShowHeader="False" HeaderText="删除">
                 <ItemTemplate>
                     <asp:LinkButton ID="btnDelete" runat="server" CausesValidation="False" CommandName="Delete" OnClientClick='return confirm("确定删除吗？")' Text="删除"></asp:LinkButton>

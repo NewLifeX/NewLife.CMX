@@ -9,6 +9,14 @@ using NewLife.CMX;
 
 public partial class CMX_ChannelForm : MyEntityForm<Channel>
 {
+    protected override void OnInit(EventArgs e)
+    {
+        base.OnInit(e);
+
+        frmModelID.DataSource = Model.FindAll(Model._.Enable, true);
+        frmModelID.DataBind();
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         ManagerPage.SetFormScript(true);

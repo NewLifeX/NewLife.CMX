@@ -5,7 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using NewLife.CMX;
 
-public partial class CMX_ProductContent : MyEntityList<ProductContent>
+public partial class CMX_ProductContent : MyModelEntityList<ProductContent>
 {
     protected void Page_Load(object sender, EventArgs e)
     {
