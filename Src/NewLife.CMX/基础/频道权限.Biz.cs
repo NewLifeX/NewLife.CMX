@@ -1,7 +1,7 @@
 ﻿/*
- * XCoder v5.1.4992.36291
- * 作者：nnhy/X
- * 时间：2013-09-01 20:13:59
+ * XCoder v5.1.5000.39465
+ * 作者：XYF/XYF-PC
+ * 时间：2013-09-16 17:45:40
  * 版权：版权所有 (C) 新生命开发团队 2002~2013
 */
 ﻿using System;
@@ -17,8 +17,8 @@ using XCode.Configuration;
 
 namespace NewLife.CMX
 {
-    /// <summary>频道</summary>
-    public partial class Channel : Entity<Channel>
+    /// <summary>频道权限</summary>
+    public partial class ChennalRole : Entity<ChennalRole>
     {
         #region 对象操作﻿
 
@@ -34,12 +34,8 @@ namespace NewLife.CMX
             base.Valid(isNew);
 
             // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
-            if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
-
-            if (isNew && !Dirtys[__.CreateUserID]) CreateUserID = Admin.Current.ID;
-            if (!Dirtys[__.UpdateUserID]) UpdateUserID = Admin.Current.ID;
-            if (isNew && !Dirtys[__.CreateTime]) CreateTime = DateTime.Now;
-            if (!Dirtys[__.UpdateTime]) UpdateTime = DateTime.Now;
+            //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
+            
         }
 
         ///// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
@@ -53,23 +49,14 @@ namespace NewLife.CMX
         //    if (Meta.Count > 0) return;
 
         //    // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
-        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Channel).Name, Meta.Table.DataTable.DisplayName);
+        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(ChennalRole).Name, Meta.Table.DataTable.DisplayName);
 
-        //    var entity = new Channel();
-        //    entity.Name = "abc";
-        //    entity.ModelID = 0;
-        //    entity.Suffix = "abc";
-        //    entity.Enable = true;
-        //    entity.CreateUserID = 0;
-        //    entity.CreateUserName = "abc";
-        //    entity.CreateTime = DateTime.Now;
-        //    entity.UpdateUserID = 0;
-        //    entity.UpdateUserName = "abc";
-        //    entity.UpdateTime = DateTime.Now;
-        //    entity.Remark = "abc";
+        //    var entity = new ChennalRole();
+        //    entity.RoleID = 0;
+        //    entity.ChannelID = 0;
         //    entity.Insert();
 
-        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Channel).Name, Meta.Table.DataTable.DisplayName);
+        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(ChennalRole).Name, Meta.Table.DataTable.DisplayName);
         //}
 
 
@@ -89,90 +76,9 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
-        private Model _Model;
-        /// <summary>模型</summary>
-        public Model Model
-        {
-            get
-            {
-                if (_Model == null && ModelID > 0 && !Dirtys.ContainsKey("Model"))
-                {
-                    _Model = Model.FindByKey(ModelID);
-                    Dirtys["Model"] = true;
-                }
-                return _Model;
-            }
-            set { _Model = value; }
-        }
-
-        /// <summary>模型名称</summary>
-        public String ModelName { get { return Model != null ? Model.Name : "未命名"; } }
-
-        private Admin _CreateUser;
-        /// <summary>创建人</summary>
-        public Admin CreateUser
-        {
-            get
-            {
-                if (_CreateUser == null && CreateUserID > 0 && !Dirtys.ContainsKey("CreateUser"))
-                {
-                    _CreateUser = Admin.FindByID(CreateUserID);
-                    Dirtys["CreateUser"] = true;
-                }
-                return _CreateUser;
-            }
-            set { _CreateUser = value; }
-        }
-
-        /// <summary>创建人名称</summary>
-        public String CreateUserName { get { return CreateUser != null ? CreateUser.DisplayName : ""; } }
-
-        private Admin _UpdateUser;
-        /// <summary>更新人</summary>
-        public Admin UpdateUser
-        {
-            get
-            {
-                if (_UpdateUser == null && UpdateUserID > 0 && !Dirtys.ContainsKey("UpdateUser"))
-                {
-                    _UpdateUser = Admin.FindByID(UpdateUserID);
-                    Dirtys["UpdateUser"] = true;
-                }
-                return _UpdateUser;
-            }
-            set { _UpdateUser = value; }
-        }
-
-        /// <summary>更新人名称</summary>
-        public String UpdateUserName { get { return UpdateUser != null ? UpdateUser.DisplayName : ""; } }
         #endregion
 
         #region 扩展查询﻿
-        /// <summary>根据名称查找</summary>
-        /// <param name="name">名称</param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static Channel FindByName(String name)
-        {
-            if (Meta.Count >= 1000)
-                return Find(_.Name, name);
-            else // 实体缓存
-                return Meta.Cache.Entities.Find(_.Name, name);
-            // 单对象缓存
-            //return Meta.SingleCache[name];
-        }
-
-        /// <summary>根据模型查找</summary>
-        /// <param name="modelid">模型</param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<Channel> FindAllByModelID(Int32 modelid)
-        {
-            if (Meta.Count >= 1000)
-                return FindAll(_.ModelID, modelid);
-            else // 实体缓存
-                return Meta.Cache.Entities.FindAll(_.ModelID, modelid);
-        }
         #endregion
 
         #region 高级查询
@@ -187,7 +93,7 @@ namespace NewLife.CMX
         ///// <param name="maximumRows">最大返回行数，0表示所有行</param>
         ///// <returns>实体集</returns>
         //[DataObjectMethod(DataObjectMethodType.Select, true)]
-        //public static EntityList<Channel> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
+        //public static EntityList<ChennalRole> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
         //{
         //    return FindAll(SearchWhere(key), orderClause, null, startRowIndex, maximumRows);
         //}

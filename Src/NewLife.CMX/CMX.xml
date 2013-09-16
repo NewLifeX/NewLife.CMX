@@ -188,4 +188,14 @@
     </Indexes>
   </Table>
   <Table Name="ProductStatistics" Description="产品统计" DbType="SqlServer" 实体分类="产品" 页面分类="Product" 基类="Statistics" />
+  <Table Name="ChennalRole" Description="频道权限" DbType="SqlServer" 实体分类="基础" 页面分类="Common">
+    <Columns>
+      <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
+      <Column Name="RoleID" DataType="Int32" Description="角色ID" />
+      <Column Name="ChannelID" DataType="Int32" Description="频道ID" />
+    </Columns>
+    <Indexes>
+      <Index Columns="RoleID" />
+    </Indexes>
+  </Table>
 </Tables>
