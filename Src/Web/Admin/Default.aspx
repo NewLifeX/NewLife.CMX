@@ -34,21 +34,21 @@
             });
 
             //设置频道菜单
-            $("#global_channel_tree").ligerTree({
-                url: '/Admin/ajax.ashx?action=channel',
-                checkbox: false,
-                nodeWidth: 112,
-                //attribute: ['nodename', 'url'],
-                onSelect: function (node) {
-                    if (!node.data.url) return;
-                    var tabid = $(node.target).attr("tabid");
-                    if (!tabid) {
-                        tabid = new Date().getTime();
-                        $(node.target).attr("tabid", tabid)
-                    }
-                    f_addTab("my", node.data.text, node.data.url);
-                }
-            });
+            //$("#global_channel_tree").ligerTree({
+            //    url: '/Admin/ajax.ashx?action=channel',
+            //    checkbox: false,
+            //    nodeWidth: 112,
+            //    //attribute: ['nodename', 'url'],
+            //    onSelect: function (node) {
+            //        if (!node.data.url) return;
+            //        var tabid = $(node.target).attr("tabid");
+            //        if (!tabid) {
+            //            tabid = new Date().getTime();
+            //            $(node.target).attr("tabid", tabid)
+            //        }
+            //        f_addTab("my", node.data.text, node.data.url);
+            //    }
+            //});
 
             //加载插件菜单
             //loadPluginsNav();
@@ -71,7 +71,7 @@
 
             tab = $("#framecenter").ligerGetTabManager();
             accordion = $("#global_left_nav").ligerGetAccordionManager();
-            tree = $("#global_channel_tree").ligerGetTreeManager();
+            //tree = $("#global_channel_tree").ligerGetTreeManager();
             //tree.expandAll(); //默认展开所有节点
             $("#pageloading_bg,#pageloading").hide();
         });
