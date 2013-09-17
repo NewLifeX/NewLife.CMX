@@ -14,7 +14,7 @@ namespace NewLife.CMX
     [Description("频道权限")]
     [BindIndex("IX_ChennalRole_RoleID", false, "RoleID")]
     [BindTable("ChennalRole", Description = "频道权限", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
-    public partial class ChennalRole : IChennalRole
+    public partial class ChannelRole : IChennalRole
     {
         #region 属性
 

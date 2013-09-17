@@ -18,7 +18,7 @@ using XCode.Configuration;
 namespace NewLife.CMX
 {
     /// <summary>频道权限</summary>
-    public partial class ChennalRole : Entity<ChennalRole>
+    public partial class ChannelRole : Entity<ChannelRole>
     {
         #region 对象操作﻿
 
@@ -35,7 +35,7 @@ namespace NewLife.CMX
 
             // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
             //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
-            
+
         }
 
         ///// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
@@ -76,9 +76,58 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
+        private Role _Role;
+        /// <summary>角色</summary>
+        public Role Role
+        {
+            get
+            {
+                if (_Role == null && RoleID > 0 && !Dirtys.ContainsKey("Role"))
+                {
+                    _Role = Role.FindByID(RoleID);
+                    Dirtys["Role"] = true;
+                }
+                return _Role;
+            }
+            set { _Role = value; }
+        }
+
+        /// <summary>角色名</summary>
+        public String RoleName { get { return Role != null ? Role.Name : "未知角色"; } }
+
+        private Channel _Channel;
+        /// <summary>频道</summary>
+        public Channel Channel
+        {
+            get
+            {
+                if (_Channel == null && ChannelID > 0 && !Dirtys.ContainsKey("Channel"))
+                {
+                    _Channel = Channel.FindByID(ChannelID);
+                    Dirtys["Channel"] = true;
+                }
+                return _Channel;
+            }
+            set { _Channel = value; }
+        }
+
+        /// <summary>频道名</summary>
+        public String ChannelName { get { return Channel != null ? Channel.Name : "未知频道"; } }
         #endregion
 
         #region 扩展查询﻿
+        /// <summary>
+        /// 根据角色ID查询所有
+        /// </summary>
+        /// <param name="RoleID"></param>
+        /// <returns></returns>
+        public static List<ChannelRole> FindAllByRoleID(Int32 RoleID)
+        {
+            if (Meta.Count >= 1000)
+                return FindAll(_.RoleID, RoleID);
+            else
+                return Meta.Cache.Entities.FindAll(_.RoleID, RoleID);
+        }
         #endregion
 
         #region 高级查询
@@ -134,6 +183,7 @@ namespace NewLife.CMX
         #endregion
 
         #region 业务
+        
         #endregion
     }
 }
