@@ -7,6 +7,9 @@ using NewLife.Web;
 using XCode;
 using XControl;
 using System.Web;
+using NewLife.CMX;
+using System.Reflection;
+using NewLife.Reflection;
 
 /// <summary>实体列表页面基类</summary>
 public abstract class MyModelEntityList : Page
@@ -96,4 +99,34 @@ public class MyModelEntityList<TEntity> : MyModelEntityList where TEntity : Enti
 {
     /// <summary>实体类</summary>
     public override Type EntityType { get { return base.EntityType ?? (base.EntityType = typeof(TEntity)); } set { base.EntityType = value; } }
+
+    protected override void OnInit(EventArgs e)
+    {
+        Channel c = Channel.FindBySuffix(Request["Channel"]);
+
+        if (c == null) throw new Exception("未知频道");
+        EntityFactory.CreateOperate(EntityType).TableName = "";
+        EntityFactory.CreateOperate(EntityType).TableName += c.Suffix;
+
+        if (EntityType.BaseType.GetGenericTypeDefinition() == typeof(EntityTree<>))
+        {
+            PropertyInfoX mix = PropertyInfoX.Create(EntityType, "Root");
+
+            mix.SetValue(null);
+        }
+        
+        base.OnInit(e);
+    }
+
+    protected override void OnSaveStateComplete(EventArgs e)
+    {
+        base.OnSaveStateComplete(e);
+        EntityFactory.CreateOperate(EntityType).TableName = "";
+    }
+
+    protected override void OnUnload(EventArgs e)
+    {
+        EntityFactory.CreateOperate(EntityType).TableName = "";
+        base.OnUnload(e);
+    }
 }

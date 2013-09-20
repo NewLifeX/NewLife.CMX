@@ -8,40 +8,29 @@ using NewLife.Web;
 
 public partial class CMX_ProductCategory : MyModelEntityList<ProductCategory>
 {
+    //protected override void OnInit(EventArgs e)
+    //{
+    //    Channel c = Channel.FindBySuffix(Request["Channel"]);
 
-    private String _suffix;
+    //    if (c == null) throw new Exception("未知频道");
 
-    public String Suffix
-    {
-        get
-        {
-            if (_suffix == null)
-                _suffix = Request["Channel"];
-            return _suffix;
-        }
-    }
+    //    ProductCategory.Meta.TableName += c.Suffix;
+    //    base.OnInit(e);
+    //}
 
-    protected override void OnInit(EventArgs e)
-    {
-        Channel c = Channel.FindBySuffix(Suffix);
+    //protected override void OnSaveStateComplete(EventArgs e)
+    //{
+    //    base.OnSaveStateComplete(e);
+    //    //EntityFactory.CreateOperate(EntityType).TableName = "";
+    //    ProductCategory.Meta.TableName = "";
+    //}
 
-        if (c == null)
-        {
-            //存在BUG当无法获取频道信息的时候会默认查询基础表
-            WebHelper.Alert("未知频道！");
-        }
-
-        ArticleCategory.Meta.TableName += c.Suffix;
-
-        base.OnInit(e);
-    }
-
-    protected override void OnSaveStateComplete(EventArgs e)
-    {
-
-        base.OnSaveStateComplete(e);
-        ArticleCategory.Meta.TableName = "";
-    }
+    //protected override void OnUnload(EventArgs e)
+    //{
+    //    //EntityFactory.CreateOperate(EntityType).TableName = "";
+    //    ProductCategory.Meta.TableName = "";
+    //    base.OnUnload(e);
+    //}
 
     protected void Page_Load(object sender, EventArgs e)
     {

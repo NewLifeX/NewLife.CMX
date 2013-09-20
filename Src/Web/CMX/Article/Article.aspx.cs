@@ -8,39 +8,39 @@ using NewLife.Web;
 
 public partial class CMX_Article : MyModelEntityList<Article>
 {
-    String channelsuffix;
-    Int32 channelid;
+    //String channelsuffix;
+    //Int32 channelid;
 
-    protected override void OnInit(EventArgs e)
-    {
-        Channel c;
+    //protected override void OnInit(EventArgs e)
+    //{
+    //    channelsuffix = Request["Channel"];
+    //    Channel c = Channel.FindBySuffix(channelsuffix);
 
-        channelid = WebHelper.RequestInt("Channel");
+    //    if(c==null) 
 
-        if (channelid == 0)
-        {
-            channelsuffix = Request["Channel"];
-            c = Channel.FindBySuffix(channelsuffix);
-        }
-        else
-        {
-            c = Channel.FindByID(channelid);
-        }
+    //    Article.Meta.TableName = "";
+    //    Article.Meta.TableName += c.Suffix;
 
-        Article.Meta.TableName += c.Suffix;
+    //    base.OnInit(e);
+    //}
 
-        base.OnInit(e);
-    }
+    //protected override void OnPreRenderComplete(EventArgs e)
+    //{
+    //    base.OnPreRenderComplete(e);
 
-    protected override void OnPreRenderComplete(EventArgs e)
-    {
-        base.OnPreRenderComplete(e);
-
-        Article.Meta.TableName = "";
-    }
+    //    Article.Meta.TableName = "";
+    //}
 
     protected void Page_Load(object sender, EventArgs e)
     {
 
+    }
+    protected void ods_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
+    {
+        Int32 cid = 0;
+
+        Int32.TryParse(Request["CategoryID"], out cid);
+
+        e.InputParameters["CategoryID"] = cid;
     }
 }

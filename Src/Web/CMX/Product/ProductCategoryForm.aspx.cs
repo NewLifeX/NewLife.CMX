@@ -9,6 +9,13 @@ using NewLife.CMX;
 
 public partial class CMX_ProductCategoryForm : MyModelEntityForm<ProductCategory>
 {
+    protected override void OnInit(EventArgs e)
+    {
+        base.OnInit(e);
+
+        if (!EntityForm.IsNew) frmIsEnd.Enabled = false;
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         ManagerPage.SetFormScript(true);

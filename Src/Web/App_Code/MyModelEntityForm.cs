@@ -3,6 +3,7 @@ using System.Web.UI;
 using NewLife.CommonEntity;
 using XCode;
 using NewLife.Web;
+using NewLife.CMX;
 
 /// <summary>实体表单页面基类</summary>
 public class MyModelEntityForm : Page
@@ -19,8 +20,10 @@ public class MyModelEntityForm : Page
     protected IEntityForm EntityForm;
 
     /// <summary>管理员</summary>
-    protected IAdministrator CurrentManage {
-        get {
+    protected IAdministrator CurrentManage
+    {
+        get
+        {
             return ManageProvider.Provider.Current as IAdministrator;
         }
     }
@@ -44,22 +47,22 @@ public class MyModelEntityForm : Page
     {
         e.Cancel = true;
         WebHelper.Alert(e.Error.Message);
-        
+
     }
     void EntityForm_OnSaveSuccess(object sender, EntityFormEventArgs e)
     {
         e.Cancel = true;
         //由于原先框架中的API属性不存在
-//        Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", @"alert('成功');
-//var api = frameElement.api;api.reload();", true);
-        Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", @"alert('成功');$(frameElement).attr('src',$(frameElement).attr('src'));",true);
+        //        Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", @"alert('成功');
+        //var api = frameElement.api;api.reload();", true);
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", @"alert('成功');$(frameElement).attr('src',$(frameElement).attr('src'));", true);
 
     }
     public void CloseWindows()
     {
-//        Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", @"alert('成功！');
-//var api = frameElement.api;api.reload();", true);
-        Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", @"alert('成功!');$(frameElement).attr('src',$(frameElement).attr('src'));",true);
+        //        Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", @"alert('成功！');
+        //var api = frameElement.api;api.reload();", true);
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", @"alert('成功!');$(frameElement).attr('src',$(frameElement).attr('src'));", true);
     }
     #endregion
 }
@@ -72,4 +75,29 @@ public class MyModelEntityForm<TEntity> : MyModelEntityForm where TEntity : Enti
 
     /// <summary>实体</summary>
     public virtual TEntity Entity { get { return EntityForm == null ? null : EntityForm.Entity as TEntity; } set { if (EntityForm != null) EntityForm.Entity = value; } }
+
+    protected override void OnInit(EventArgs e)
+    {
+       
+
+        Channel c = Channel.FindBySuffix(Request["Channel"]);
+
+        if (c == null) throw new Exception("未知频道");
+        EntityFactory.CreateOperate(EntityType).TableName = "";
+        EntityFactory.CreateOperate(EntityType).TableName += c.Suffix;
+
+        base.OnInit(e);
+    }
+
+    protected override void OnSaveStateComplete(EventArgs e)
+    {
+        base.OnSaveStateComplete(e);
+        EntityFactory.CreateOperate(EntityType).TableName = "";
+    }
+
+    protected override void OnUnload(EventArgs e)
+    {
+        EntityFactory.CreateOperate(EntityType).TableName = "";
+        base.OnUnload(e);
+    }
 }

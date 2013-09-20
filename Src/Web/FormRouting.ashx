@@ -10,7 +10,7 @@ public class FormRouting : IHttpHandler
     public void ProcessRequest(HttpContext context)
     {
         //参数可以频道的ID也可以频道名称也可以扩展名（Suffix）
-        Channel channel = Channel.GetModel(context.Request["Channel"]);
+        Channel channel = Channel.FindBySuffix(context.Request["Channel"]);
 
         if (channel != null)
         {
@@ -24,13 +24,11 @@ public class FormRouting : IHttpHandler
             }
             else
             {
-                
+                context.Response.Write("路径地址无法解析");
             }
         }
         context.Response.StatusCode = 404;
         context.Response.Write("未知地址！");
-
-
     }
 
     public bool IsReusable

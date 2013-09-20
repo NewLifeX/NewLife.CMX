@@ -54,7 +54,7 @@
                             <asp:TextBox ID="frmFormTemplatePath" runat="server" Width="300px"></asp:TextBox></td>
                     </tr>
                     <tr>
-                        <th>列表页：</th>
+                        <th>分类页：</th>
                         <td>
                             <asp:TextBox ID="frmListTemplatePath" runat="server" Width="300px"></asp:TextBox></td>
                     </tr>

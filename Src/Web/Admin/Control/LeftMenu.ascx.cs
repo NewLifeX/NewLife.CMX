@@ -126,23 +126,26 @@ public partial class Admin_LeftMenu : System.Web.UI.UserControl
             IList<IMenu> menus = icmp.GetMySubMenus(MenuID);
 
             #region 系统菜单
-            foreach (IMenu menu in menus)
+            if (menus != null)
             {
-                if (!menu.IsShow) continue;
-
-                ListMenu lmsingle = ConvertToMenu(menu, null, "Sys", null, null);
-
-                if (menu.Childs.Count > 0)
+                foreach (IMenu menu in menus)
                 {
-                    foreach (IMenu child in menu.Childs)
+                    if (!menu.IsShow) continue;
+
+                    ListMenu lmsingle = ConvertToMenu(menu, null, "Sys", null, null);
+
+                    if (menu.Childs.Count > 0)
                     {
-                        if (!child.IsShow) continue;
+                        foreach (IMenu child in menu.Childs)
+                        {
+                            if (!child.IsShow) continue;
 
-                        lmsingle.Children.Add(ConvertToMenu(child, null, "SysChild", null, null));
+                            lmsingle.Children.Add(ConvertToMenu(child, null, "SysChild", null, null));
+                        }
                     }
-                }
 
-                lm.Add(lmsingle);
+                    lm.Add(lmsingle);
+                }
             }
             #endregion
 
