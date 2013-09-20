@@ -12,32 +12,21 @@ namespace NewLife.CMX
     [Serializable]
     [DataObject]
     [Description("文章分类")]
+    [BindIndex("IU_ArticleCategory_ParentID_Name", true, "ParentID,Name")]
     [BindIndex("IX_ArticleCategory_Name", false, "Name")]
     [BindIndex("IX_ArticleCategory_ParentID", false, "ParentID")]
-    [BindIndex("IU_ArticleCategory_ParentID_Name", true, "ParentID,Name")]
+    [BindIndex("PK__ArticleC__3214EC273864608B", true, "ID")]
     [BindTable("ArticleCategory", Description = "文章分类", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class ArticleCategory : IArticleCategory
     {
         #region 属性
-
-        private Int32 _ID;
-        /// <summary>编号</summary>
-        [DisplayName("编号")]
-        [Description("编号")]
-        [DataObjectField(true, true, false, 10)]
-        [BindColumn(1, "ID", "编号", null, "int", 10, 0, false)]
-        public virtual Int32 ID
-        {
-            get { return _ID; }
-            set { if (OnPropertyChanging(__.ID, value)) { _ID = value; OnPropertyChanged(__.ID); } }
-        }
 
         private String _Name;
         /// <summary>名称</summary>
         [DisplayName("名称")]
         [Description("名称")]
         [DataObjectField(false, false, false, 50)]
-        [BindColumn(2, "Name", "名称", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(1, "Name", "名称", null, "nvarchar(50)", 0, 0, true)]
         public virtual String Name
         {
             get { return _Name; }
@@ -49,7 +38,7 @@ namespace NewLife.CMX
         [DisplayName("父类")]
         [Description("父类")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(3, "ParentID", "父类", null, "int", 10, 0, false)]
+        [BindColumn(2, "ParentID", "父类", null, "int", 10, 0, false)]
         public virtual Int32 ParentID
         {
             get { return _ParentID; }
@@ -61,7 +50,7 @@ namespace NewLife.CMX
         [DisplayName("排序")]
         [Description("排序")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(4, "Sort", "排序", null, "int", 10, 0, false)]
+        [BindColumn(3, "Sort", "排序", null, "int", 10, 0, false)]
         public virtual Int32 Sort
         {
             get { return _Sort; }
@@ -73,11 +62,35 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(5, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(4, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Remark
         {
             get { return _Remark; }
             set { if (OnPropertyChanging(__.Remark, value)) { _Remark = value; OnPropertyChanged(__.Remark); } }
+        }
+
+        private Int32 _ID;
+        /// <summary>编号</summary>
+        [DisplayName("编号")]
+        [Description("编号")]
+        [DataObjectField(true, true, false, 10)]
+        [BindColumn(5, "ID", "编号", null, "int", 10, 0, false)]
+        public virtual Int32 ID
+        {
+            get { return _ID; }
+            set { if (OnPropertyChanging(__.ID, value)) { _ID = value; OnPropertyChanged(__.ID); } }
+        }
+
+        private Boolean _IsEnable;
+        /// <summary></summary>
+        [DisplayName("IsEnable")]
+        [Description("")]
+        [DataObjectField(false, false, true, 1)]
+        [BindColumn(6, "IsEnable", "", null, "bit", 0, 0, false)]
+        public virtual Boolean IsEnable
+        {
+            get { return _IsEnable; }
+            set { if (OnPropertyChanging(__.IsEnable, value)) { _IsEnable = value; OnPropertyChanged(__.IsEnable); } }
         }
         #endregion
 
@@ -95,11 +108,12 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
-                    case __.ID : return _ID;
                     case __.Name : return _Name;
                     case __.ParentID : return _ParentID;
                     case __.Sort : return _Sort;
                     case __.Remark : return _Remark;
+                    case __.ID : return _ID;
+                    case __.IsEnable : return _IsEnable;
                     default: return base[name];
                 }
             }
@@ -107,11 +121,12 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
-                    case __.ID : _ID = Convert.ToInt32(value); break;
                     case __.Name : _Name = Convert.ToString(value); break;
                     case __.ParentID : _ParentID = Convert.ToInt32(value); break;
                     case __.Sort : _Sort = Convert.ToInt32(value); break;
                     case __.Remark : _Remark = Convert.ToString(value); break;
+                    case __.ID : _ID = Convert.ToInt32(value); break;
+                    case __.IsEnable : _IsEnable = Convert.ToBoolean(value); break;
                     default: base[name] = value; break;
                 }
             }
@@ -122,9 +137,6 @@ namespace NewLife.CMX
         /// <summary>取得文章分类字段信息的快捷方式</summary>
         public partial class _
         {
-            ///<summary>编号</summary>
-            public static readonly Field ID = FindByName(__.ID);
-
             ///<summary>名称</summary>
             public static readonly Field Name = FindByName(__.Name);
 
@@ -137,15 +149,18 @@ namespace NewLife.CMX
             ///<summary>备注</summary>
             public static readonly Field Remark = FindByName(__.Remark);
 
+            ///<summary>编号</summary>
+            public static readonly Field ID = FindByName(__.ID);
+
+            ///<summary></summary>
+            public static readonly Field IsEnable = FindByName(__.IsEnable);
+
             static Field FindByName(String name) { return Meta.Table.FindByName(name); }
         }
 
         /// <summary>取得文章分类字段名称的快捷方式</summary>
         partial class __
         {
-            ///<summary>编号</summary>
-            public const String ID = "ID";
-
             ///<summary>名称</summary>
             public const String Name = "Name";
 
@@ -158,6 +173,12 @@ namespace NewLife.CMX
             ///<summary>备注</summary>
             public const String Remark = "Remark";
 
+            ///<summary>编号</summary>
+            public const String ID = "ID";
+
+            ///<summary></summary>
+            public const String IsEnable = "IsEnable";
+
         }
         #endregion
     }
@@ -166,9 +187,6 @@ namespace NewLife.CMX
     public partial interface IArticleCategory
     {
         #region 属性
-        /// <summary>编号</summary>
-        Int32 ID { get; set; }
-
         /// <summary>名称</summary>
         String Name { get; set; }
 
@@ -180,6 +198,12 @@ namespace NewLife.CMX
 
         /// <summary>备注</summary>
         String Remark { get; set; }
+
+        /// <summary>编号</summary>
+        Int32 ID { get; set; }
+
+        /// <summary></summary>
+        Boolean IsEnable { get; set; }
         #endregion
 
         #region 获取/设置 字段值

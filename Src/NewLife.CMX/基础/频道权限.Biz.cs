@@ -34,7 +34,7 @@ namespace NewLife.CMX
             base.Valid(isNew);
 
             // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
-            //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
+            if (isNew || Dirtys[__.ChannelID] || Dirtys[__.RoleID]) CheckExist(new String[] { __.ChannelID, __.RoleID });
 
         }
 
@@ -183,7 +183,7 @@ namespace NewLife.CMX
         #endregion
 
         #region 业务
-        
+
         #endregion
     }
 }

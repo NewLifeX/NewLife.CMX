@@ -35,6 +35,7 @@ namespace NewLife.CMX
 
             // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
             if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
+            if (isNew || Dirtys[__.Suffix]) CheckExist(__.Suffix);
 
             if (isNew && !Dirtys[__.CreateUserID]) CreateUserID = Admin.Current.ID;
             if (!Dirtys[__.UpdateUserID]) UpdateUserID = Admin.Current.ID;
@@ -176,17 +177,22 @@ namespace NewLife.CMX
                 return Meta.Cache.Entities.Find(_.ID, id);
         }
 
-        /// <summary>根据模型查找</summary>
-        /// <param name="modelid">模型</param>
+        /// <summary>
+        /// 根据扩展名查找
+        /// </summary>
+        /// <param name="Suffix"></param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<Channel> FindAllByModelID(Int32 modelid)
+        public static Channel FindBySuffix(String Suffix)
         {
-            if (Meta.Count >= 1000)
-                return FindAll(_.ModelID, modelid);
-            else // 实体缓存
-                return Meta.Cache.Entities.FindAll(_.ModelID, modelid);
+            if (Meta.Count > 1000)
+                return Find(_.Suffix, Suffix);
+            else
+                return Meta.Cache.Entities.Find(_.Suffix, Suffix);
         }
+
+
+
         #endregion
 
         #region 高级查询
@@ -242,6 +248,29 @@ namespace NewLife.CMX
         #endregion
 
         #region 业务
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj">可以是ID也可以SuffixStr</param>
+        /// <returns></returns>
+        public static String GetListUrl(Object obj)
+        {
+            if (obj == null) return null;
+
+            Channel c = GetModel(obj);
+
+            return c == null ? "" : c.Model.ListTemplatePath;
+        }
+
+        public static Channel GetModel(Object obj)
+        {
+            if (obj == null) return null;
+            Int32 i;
+            if (Int32.TryParse(obj.ToString(), out i))
+                return FindByID(i);
+            else
+                return FindBySuffix(obj.ToString());
+        }
         #endregion
     }
 }
