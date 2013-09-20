@@ -6,11 +6,12 @@ using System.Web.UI.WebControls;
 using NewLife.CMX;
 using NewLife.Xml;
 
-public partial class Admin_Settings_Sys_Config : MyEntityList
+public partial class Admin_Settings_Sys_Config : MyModelEntityList
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         LoadConfig();
+        Manager.ValidatePermission = false;
     }
     void LoadConfig()
     {

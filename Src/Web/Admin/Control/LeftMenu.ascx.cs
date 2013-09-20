@@ -95,11 +95,11 @@ public partial class Admin_LeftMenu : System.Web.UI.UserControl
             set { _Icon = value; }
         }
 
-        //是否包含子菜单
+        /// <summary>是否包含子菜单</summary>
         public Boolean IsChild { get { return (Children == null || Children.Count <= 0) ? false : true; } }
 
         private List<ListMenu> _Children;
-        //子菜单列表
+        /// <summary>子菜单列表</summary>
         public List<ListMenu> Children
         {
             get
@@ -148,12 +148,13 @@ public partial class Admin_LeftMenu : System.Web.UI.UserControl
 
             #region CMX菜单
             List<ChannelRole> crlist = ChannelRole.FindAllByRoleID((icmp.Current as Admin).RoleID);
-
+            Random r = new Random();
             foreach (ChannelRole channel in crlist)
             {
                 ListMenu crlm = ConvertToMenu(null, channel.ChannelName, channel.ChannelName, "#", null);
 
-                crlm.Children.Add(ConvertToMenu(null, channel.Channel.Model.Name, channel.Channel.Model.Name, channel.Channel.Model.ListTemplatePath, null));
+                //crlm.Children.Add(ConvertToMenu(null, channel.ChannelName, channel.ChannelName + channel.Channel.Model.Name, channel.Channel.Model.ListTemplatePath + "?Channel=" + channel.Channel.Suffix, null));
+                crlm.Children.Add(ConvertToMenu(null, channel.ChannelName, channel.ChannelName + r.Next(), "../ListRouting.ashx?Channel=" + channel.Channel.Suffix, null));
 
                 lm.Add(crlm);
             }
@@ -162,7 +163,15 @@ public partial class Admin_LeftMenu : System.Web.UI.UserControl
             return lm;
         }
 
-        //转换为Menu
+        /// <summary>
+        /// 转换为Menu
+        /// </summary>
+        /// <param name="menu"></param>
+        /// <param name="CustomName"></param>
+        /// <param name="CustomKindTitle"></param>
+        /// <param name="CustomUrl"></param>
+        /// <param name="Icon"></param>
+        /// <returns></returns>
         public static ListMenu ConvertToMenu(IMenu menu, String CustomName, String CustomKindTitle, String CustomUrl, String Icon)
         {
             ListMenu lm = new ListMenu();

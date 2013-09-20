@@ -9,7 +9,7 @@
     <link href="images/style.css" rel="stylesheet" type="text/css" />
     <script src="../scripts/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
     <script src="../scripts/ui/js/ligerBuild.min.js" type="text/javascript"></script>
-    <script src="js/function.js" type="text/javascript"></script>
+    <script src="../scripts/dtcms/function.js" type="text/javascript"></script>
 
     <script type="text/javascript">
         var tab = null;

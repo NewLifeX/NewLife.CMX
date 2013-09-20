@@ -6,7 +6,7 @@
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
     <div class="tools_box">
         <div class="tools_bar">
-            <a href="ProductCategoryForm.aspx" class="tools_btn"><span><b class="add">添加产品分类</b></span></a>
+            <a href="ProductCategoryForm.aspx" class="tools_btn listpage"><span><b class="add">添加产品分类</b></span></a>
             <div class="search_box">
                 关键字：<asp:TextBox ID="txtKey" runat="server"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="查询" />
             </div>

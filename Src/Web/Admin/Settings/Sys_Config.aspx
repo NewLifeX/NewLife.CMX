@@ -1,9 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Sys_Config.aspx.cs" Inherits="Admin_Settings_Sys_Config" %>
+﻿<%@ Page Title="系统设置" Language="C#" AutoEventWireup="true" CodeFile="Sys_Config.aspx.cs" Inherits="Admin_Settings_Sys_Config" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+<head runat="server">
 <title>系统参数设置</title>
 <link href="../../scripts/ui/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css" />
 <link href="../images/style.css" rel="stylesheet" type="text/css" />
@@ -11,7 +11,7 @@
 <script type="text/javascript" src="../../scripts/jquery/jquery.validate.min.js"></script> 
 <script type="text/javascript" src="../../scripts/jquery/messages_cn.js"></script>
 <script type="text/javascript" src="../../scripts/ui/js/ligerBuild.min.js"></script>
-<script type="text/javascript" src="../js/function.js"></script>
+<script type="text/javascript" src="../../scripts/dtcms/function.js"></script>
 <script type="text/javascript">
     //表单验证
     $(function () {

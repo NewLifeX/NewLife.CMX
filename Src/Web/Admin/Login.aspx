@@ -13,7 +13,7 @@
     <script type="text/javascript" src="../scripts/jquery/jquery.validate.min.js"></script>
     <script type="text/javascript" src="../scripts/jquery/messages_cn.js"></script>
     <script type="text/javascript" src="../scripts/ui/js/ligerBuild.min.js"></script>
-    <script type="text/javascript" src="js/function.js"></script>
+    <script type="text/javascript" src="../Scripts/dtcms/function.js"></script>
     <script type="text/javascript">
         //表单验证
         $(function () {

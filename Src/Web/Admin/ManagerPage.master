@@ -10,7 +10,8 @@
     <link rel="stylesheet" type="text/css" href="images/style.css" />
     <script type="text/javascript" src='<%=ResolveUrl("../Scripts/jquery/jquery-1.9.1.min.js")%>'></script>
     <script type="text/javascript" src='<%=ResolveUrl("../Scripts/ui/js/ligerBuild.min.js")%>'></script>
-    <script type="text/javascript" src='<%=ResolveUrl("../Admin/js/function.js")%>'></script>
+    <script type="text/javascript" src='<%=ResolveUrl("../Scripts/dtcms/function.js")%>'></script>
+    <script type="text/javascript" src='<%= ResolveUrl("../Scripts/CMXjs.js") %>'></script>
     <style type="text/css">
         .back
         {
