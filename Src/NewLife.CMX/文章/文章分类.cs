@@ -81,16 +81,16 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.ID, value)) { _ID = value; OnPropertyChanged(__.ID); } }
         }
 
-        private Boolean _IsEnable;
-        /// <summary></summary>
-        [DisplayName("IsEnable")]
-        [Description("")]
+        private Boolean _IsEnd;
+        /// <summary>是否最终分类</summary>
+        [DisplayName("是否最终分类")]
+        [Description("是否最终分类")]
         [DataObjectField(false, false, true, 1)]
-        [BindColumn(6, "IsEnable", "", null, "bit", 0, 0, false)]
-        public virtual Boolean IsEnable
+        [BindColumn(6, "IsEnd", "是否最终分类", null, "bit", 0, 0, false)]
+        public virtual Boolean IsEnd
         {
-            get { return _IsEnable; }
-            set { if (OnPropertyChanging(__.IsEnable, value)) { _IsEnable = value; OnPropertyChanged(__.IsEnable); } }
+            get { return _IsEnd; }
+            set { if (OnPropertyChanging(__.IsEnd, value)) { _IsEnd = value; OnPropertyChanged(__.IsEnd); } }
         }
         #endregion
 
@@ -113,7 +113,7 @@ namespace NewLife.CMX
                     case __.Sort : return _Sort;
                     case __.Remark : return _Remark;
                     case __.ID : return _ID;
-                    case __.IsEnable : return _IsEnable;
+                    case __.IsEnd : return _IsEnd;
                     default: return base[name];
                 }
             }
@@ -126,7 +126,7 @@ namespace NewLife.CMX
                     case __.Sort : _Sort = Convert.ToInt32(value); break;
                     case __.Remark : _Remark = Convert.ToString(value); break;
                     case __.ID : _ID = Convert.ToInt32(value); break;
-                    case __.IsEnable : _IsEnable = Convert.ToBoolean(value); break;
+                    case __.IsEnd : _IsEnd = Convert.ToBoolean(value); break;
                     default: base[name] = value; break;
                 }
             }
@@ -152,8 +152,8 @@ namespace NewLife.CMX
             ///<summary>编号</summary>
             public static readonly Field ID = FindByName(__.ID);
 
-            ///<summary></summary>
-            public static readonly Field IsEnable = FindByName(__.IsEnable);
+            ///<summary>是否最终分类</summary>
+            public static readonly Field IsEnd = FindByName(__.IsEnd);
 
             static Field FindByName(String name) { return Meta.Table.FindByName(name); }
         }
@@ -176,8 +176,8 @@ namespace NewLife.CMX
             ///<summary>编号</summary>
             public const String ID = "ID";
 
-            ///<summary></summary>
-            public const String IsEnable = "IsEnable";
+            ///<summary>是否最终分类</summary>
+            public const String IsEnd = "IsEnd";
 
         }
         #endregion
@@ -202,8 +202,8 @@ namespace NewLife.CMX
         /// <summary>编号</summary>
         Int32 ID { get; set; }
 
-        /// <summary></summary>
-        Boolean IsEnable { get; set; }
+        /// <summary>是否最终分类</summary>
+        Boolean IsEnd { get; set; }
         #endregion
 
         #region 获取/设置 字段值

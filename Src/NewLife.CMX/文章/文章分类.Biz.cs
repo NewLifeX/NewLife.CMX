@@ -1,10 +1,4 @@
-﻿/*
- * XCoder v5.1.4992.36291
- * 作者：nnhy/X
- * 时间：2013-09-01 20:13:59
- * 版权：版权所有 (C) 新生命开发团队 2002~2013
-*/
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -18,7 +12,7 @@ using XCode.Configuration;
 namespace NewLife.CMX
 {
     /// <summary>文章分类</summary>
-    public partial class ArticleCategory : Entity<ArticleCategory>
+    public partial class ArticleCategory : EntityTree<ArticleCategory>
     {
         #region 对象操作﻿
 
@@ -34,8 +28,8 @@ namespace NewLife.CMX
             base.Valid(isNew);
 
             // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
-            //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
-            
+            if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
+
         }
 
         ///// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
@@ -56,6 +50,7 @@ namespace NewLife.CMX
         //    entity.ParentID = 0;
         //    entity.Sort = 0;
         //    entity.Remark = "abc";
+        //    entity.IsEnd = true;
         //    entity.Insert();
 
         //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(ArticleCategory).Name, Meta.Table.DataTable.DisplayName);
@@ -78,33 +73,11 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
+        /// <summary>父级名称</summary>
+        public String ParentName { get { return Parent != null ? Parent.Name : ""; } }
         #endregion
 
         #region 扩展查询﻿
-        /// <summary>根据名称查找</summary>
-        /// <param name="name">名称</param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<ArticleCategory> FindAllByName(String name)
-        {
-            if (Meta.Count >= 1000)
-                return FindAll(_.Name, name);
-            else // 实体缓存
-                return Meta.Cache.Entities.FindAll(_.Name, name);
-        }
-
-        /// <summary>根据父类查找</summary>
-        /// <param name="parentid">父类</param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<ArticleCategory> FindAllByParentID(Int32 parentid)
-        {
-            if (Meta.Count >= 1000)
-                return FindAll(_.ParentID, parentid);
-            else // 实体缓存
-                return Meta.Cache.Entities.FindAll(_.ParentID, parentid);
-        }
-
         /// <summary>根据名称、父类查找</summary>
         /// <param name="name">名称</param>
         /// <param name="parentid">父类</param>
@@ -116,6 +89,44 @@ namespace NewLife.CMX
                 return Find(new String[] { _.Name, _.ParentID }, new Object[] { name, parentid });
             else // 实体缓存
                 return Meta.Cache.Entities.Find(e => e.Name == name && e.ParentID == parentid);
+        }
+
+        /// <summary>根据名称查找</summary>
+        /// <param name="name">名称</param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static EntityList<ArticleCategory> FindAllByName(String name)
+        {
+            if (Meta.Count >= 1000)
+                return FindAll(_.Name, name);
+            else // 实体缓存
+                return Meta.Cache.Entities.FindAll(__.Name, name);
+        }
+
+        /// <summary>根据父类查找</summary>
+        /// <param name="parentid">父类</param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static EntityList<ArticleCategory> FindAllByParentID(Int32 parentid)
+        {
+            if (Meta.Count >= 1000)
+                return FindAll(_.ParentID, parentid);
+            else // 实体缓存
+                return Meta.Cache.Entities.FindAll(__.ParentID, parentid);
+        }
+
+        /// <summary>根据编号查找</summary>
+        /// <param name="id">编号</param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static ArticleCategory FindByID(Int32 id)
+        {
+            if (Meta.Count >= 1000)
+                return Find(_.ID, id);
+            else // 实体缓存
+                return Meta.Cache.Entities.Find(__.ID, id);
+            // 单对象缓存
+            //return Meta.SingleCache[id];
         }
         #endregion
 

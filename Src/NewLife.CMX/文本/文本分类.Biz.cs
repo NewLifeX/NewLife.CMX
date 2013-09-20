@@ -1,10 +1,4 @@
-﻿/*
- * XCoder v5.1.4992.36291
- * 作者：nnhy/X
- * 时间：2013-09-01 20:13:59
- * 版权：版权所有 (C) 新生命开发团队 2002~2013
-*/
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -18,7 +12,7 @@ using XCode.Configuration;
 namespace NewLife.CMX
 {
     /// <summary>文本分类</summary>
-    public partial class TextCategory : Entity<TextCategory>
+    public partial class TextCategory : EntityTree<TextCategory>
     {
         #region 对象操作﻿
 
@@ -78,33 +72,11 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
+        /// <summary>父级名称</summary>
+        public String ParentName { get { return Parent != null ? Parent.Name : ""; } }
         #endregion
 
         #region 扩展查询﻿
-        /// <summary>根据名称查找</summary>
-        /// <param name="name">名称</param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<TextCategory> FindAllByName(String name)
-        {
-            if (Meta.Count >= 1000)
-                return FindAll(_.Name, name);
-            else // 实体缓存
-                return Meta.Cache.Entities.FindAll(_.Name, name);
-        }
-
-        /// <summary>根据父类查找</summary>
-        /// <param name="parentid">父类</param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<TextCategory> FindAllByParentID(Int32 parentid)
-        {
-            if (Meta.Count >= 1000)
-                return FindAll(_.ParentID, parentid);
-            else // 实体缓存
-                return Meta.Cache.Entities.FindAll(_.ParentID, parentid);
-        }
-
         /// <summary>根据名称、父类查找</summary>
         /// <param name="name">名称</param>
         /// <param name="parentid">父类</param>
@@ -116,6 +88,44 @@ namespace NewLife.CMX
                 return Find(new String[] { _.Name, _.ParentID }, new Object[] { name, parentid });
             else // 实体缓存
                 return Meta.Cache.Entities.Find(e => e.Name == name && e.ParentID == parentid);
+        }
+
+        /// <summary>根据名称查找</summary>
+        /// <param name="name">名称</param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static EntityList<TextCategory> FindAllByName(String name)
+        {
+            if (Meta.Count >= 1000)
+                return FindAll(_.Name, name);
+            else // 实体缓存
+                return Meta.Cache.Entities.FindAll(__.Name, name);
+        }
+
+        /// <summary>根据父类查找</summary>
+        /// <param name="parentid">父类</param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static EntityList<TextCategory> FindAllByParentID(Int32 parentid)
+        {
+            if (Meta.Count >= 1000)
+                return FindAll(_.ParentID, parentid);
+            else // 实体缓存
+                return Meta.Cache.Entities.FindAll(__.ParentID, parentid);
+        }
+
+        /// <summary>根据编号查找</summary>
+        /// <param name="id">编号</param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static TextCategory FindByID(Int32 id)
+        {
+            if (Meta.Count >= 1000)
+                return Find(_.ID, id);
+            else // 实体缓存
+                return Meta.Cache.Entities.Find(__.ID, id);
+            // 单对象缓存
+            //return Meta.SingleCache[id];
         }
         #endregion
 

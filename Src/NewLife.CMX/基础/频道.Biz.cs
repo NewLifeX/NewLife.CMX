@@ -190,9 +190,6 @@ namespace NewLife.CMX
             else
                 return Meta.Cache.Entities.Find(_.Suffix, Suffix);
         }
-
-
-
         #endregion
 
         #region 高级查询
@@ -253,24 +250,24 @@ namespace NewLife.CMX
         /// </summary>
         /// <param name="obj">可以是ID也可以SuffixStr</param>
         /// <returns></returns>
-        public static String GetListUrl(Object obj)
-        {
-            if (obj == null) return null;
+        //public static String GetListUrl(Object obj)
+        //{
+        //    if (obj == null) return null;
 
-            Channel c = GetModel(obj);
+        //    Channel c = GetModel(obj);
 
-            return c == null ? "" : c.Model.ListTemplatePath;
-        }
+        //    return c == null ? "" : c.Model.ListTemplatePath;
+        //}
 
-        public static Channel GetModel(Object obj)
-        {
-            if (obj == null) return null;
-            Int32 i;
-            if (Int32.TryParse(obj.ToString(), out i))
-                return FindByID(i);
-            else
-                return FindBySuffix(obj.ToString());
-        }
+        //public static Channel GetModel(Object obj)
+        //{
+        //    if (obj == null) return null;
+        //    Int32 i;
+        //    if (Int32.TryParse(obj.ToString(), out i))
+        //        return FindByID(i);
+        //    else
+        //        return FindBySuffix(obj.ToString());
+        //}
         #endregion
     }
 }
