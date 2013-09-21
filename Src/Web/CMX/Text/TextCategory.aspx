@@ -36,7 +36,7 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="文本列表">
                 <ItemTemplate>
-                    <asp:HyperLink ID="articlelist" runat="server" Text='<%# (Boolean)Eval("IsEnd")?"添加/查看文本":"" %>' NavigateUrl='<%# "Text.aspx?CategoryID="+Eval("ID")%>' CssClass="formUrl"></asp:HyperLink>
+                    <asp:HyperLink ID="articlelist" runat="server" Text='<%# (Boolean)Eval("IsEnd")?"添加/查看文本":"" %>' NavigateUrl='<%# "Text.aspx?Name="+Eval("Name")+"&CategoryID="+Eval("ID")%>' CssClass="formUrl"></asp:HyperLink>
                 </ItemTemplate>
                 <ItemStyle HorizontalAlign="Center" />
             </asp:TemplateField>

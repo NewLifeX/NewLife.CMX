@@ -1,4 +1,4 @@
-﻿<%@ Page Title="频道权限管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="ChennalRoleForm.aspx.cs" Inherits="CMX_ChennalRoleForm" %>
+﻿<%@ Page Title="频道权限管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="ChannelRoleForm.aspx.cs" Inherits="CMX_ChannelRoleForm" %>
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="H">
     <title>频道权限管理</title>

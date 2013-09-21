@@ -37,10 +37,10 @@ public partial class CMX_Article : MyModelEntityList<Article>
     }
     protected void ods_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
     {
-        Int32 cid = 0;
+        //Int32 cid = 0;
 
-        Int32.TryParse(Request["CategoryID"], out cid);
+        //Int32.TryParse(Request["CategoryID"], out cid);
 
-        e.InputParameters["CategoryID"] = cid;
+        e.InputParameters["CategoryID"] = WebHelper.RequestInt("CategoryID");
     }
 }

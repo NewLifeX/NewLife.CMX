@@ -1,4 +1,4 @@
-﻿<%@ Page Title="频道权限管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="ChennalRole.aspx.cs" Inherits="CMX_ChennalRole" %>
+﻿<%@ Page Title="频道权限管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="ChannelRole.aspx.cs" Inherits="CMX_ChannelRole" %>
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="H">
     <title>频道权限管理</title>
@@ -6,7 +6,7 @@
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
     <div class="tools_box">
         <div class="tools_bar">
-            <a href="ChennalRoleForm.aspx" class="tools_btn"><span><b class="add">添加频道权限</b></span></a>
+            <a href="ChannelRoleForm.aspx" class="tools_btn"><span><b class="add">添加频道权限</b></span></a>
             <div class="search_box">
                 关键字：<asp:TextBox ID="txtKey" runat="server"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="查询" />
             </div>
@@ -28,7 +28,7 @@
             <asp:BoundField DataField="ChannelName" HeaderText="频道" SortExpression="ChannelID" />
             <asp:TemplateField HeaderText="编辑" SortExpression="Name">
                 <ItemTemplate>
-                    <asp:HyperLink ID="HyperManager" runat="server" Text='编辑' NavigateUrl='<%# "ChennalRoleForm.aspx?ID="+Eval("ID")%>'></asp:HyperLink>
+                    <asp:HyperLink ID="HyperManager" runat="server" Text='编辑' NavigateUrl='<%# "ChannelRoleForm.aspx?ID="+Eval("ID")%>'></asp:HyperLink>
                 </ItemTemplate>
                 <ItemStyle HorizontalAlign="Center" />
             </asp:TemplateField>

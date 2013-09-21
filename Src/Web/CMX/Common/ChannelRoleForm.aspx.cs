@@ -9,7 +9,7 @@ using NewLife.CMX;
 using NewLife.CommonEntity;
 using XCode;
 
-public partial class CMX_ChennalRoleForm : MyEntityForm<ChannelRole>
+public partial class CMX_ChannelRoleForm : MyEntityForm<ChannelRole>
 {
     protected override void OnInit(EventArgs e)
     {

@@ -28,7 +28,6 @@
             <asp:BoundField DataField="ParentName" HeaderText="父类">
                 <ItemStyle HorizontalAlign="Center" Font-Bold="True" />
             </asp:BoundField>
-
             <asp:TemplateField HeaderText="子分类">
                 <ItemTemplate>
                     <asp:HyperLink ID="child" runat="server" Text='<%# (Boolean)Eval("IsEnd")?"":"添加子类" %>' NavigateUrl='<%# "ProductCategoryForm.aspx?ParentID="+Eval("ID")%>' CssClass="formUrl"></asp:HyperLink>
@@ -37,7 +36,7 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="产品列表">
                 <ItemTemplate>
-                    <asp:HyperLink ID="articlelist" runat="server" Text='<%# (Boolean)Eval("IsEnd")?"添加/查看产品":"" %>' NavigateUrl='<%# "Product.aspx?CategoryID="+Eval("ID")%>' CssClass="formUrl"></asp:HyperLink>
+                    <asp:HyperLink ID="articlelist" runat="server" Text='<%# (Boolean)Eval("IsEnd")?"添加/查看产品":"" %>' NavigateUrl='<%# "Product.aspx?Name="+Eval("Name")+"&CategoryID="+Eval("ID")%>' CssClass="formUrl"></asp:HyperLink>
                 </ItemTemplate>
                 <ItemStyle HorizontalAlign="Center" />
             </asp:TemplateField>
