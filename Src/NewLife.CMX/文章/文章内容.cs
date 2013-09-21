@@ -130,14 +130,14 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
-                    case __.ID : return _ID;
-                    case __.ParentID : return _ParentID;
-                    case __.Title : return _Title;
-                    case __.Version : return _Version;
-                    case __.CreateUserID : return _CreateUserID;
-                    case __.CreateUserName : return _CreateUserName;
-                    case __.CreateTime : return _CreateTime;
-                    case __.Content : return _Content;
+                    case __.ID: return _ID;
+                    case __.ParentID: return _ParentID;
+                    case __.Title: return _Title;
+                    case __.Version: return _Version;
+                    case __.CreateUserID: return _CreateUserID;
+                    case __.CreateUserName: return _CreateUserName;
+                    case __.CreateTime: return _CreateTime;
+                    case __.Content: return _Content;
                     default: return base[name];
                 }
             }
@@ -145,14 +145,14 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
-                    case __.ID : _ID = Convert.ToInt32(value); break;
-                    case __.ParentID : _ParentID = Convert.ToInt32(value); break;
-                    case __.Title : _Title = Convert.ToString(value); break;
-                    case __.Version : _Version = Convert.ToInt32(value); break;
-                    case __.CreateUserID : _CreateUserID = Convert.ToInt32(value); break;
-                    case __.CreateUserName : _CreateUserName = Convert.ToString(value); break;
-                    case __.CreateTime : _CreateTime = Convert.ToDateTime(value); break;
-                    case __.Content : _Content = Convert.ToString(value); break;
+                    case __.ID: _ID = Convert.ToInt32(value); break;
+                    case __.ParentID: _ParentID = Convert.ToInt32(value); break;
+                    case __.Title: _Title = Convert.ToString(value); break;
+                    case __.Version: _Version = Convert.ToInt32(value); break;
+                    case __.CreateUserID: _CreateUserID = Convert.ToInt32(value); break;
+                    case __.CreateUserName: _CreateUserName = Convert.ToString(value); break;
+                    case __.CreateTime: _CreateTime = Convert.ToDateTime(value); break;
+                    case __.Content: _Content = Convert.ToString(value); break;
                     default: base[name] = value; break;
                 }
             }

@@ -76,7 +76,7 @@
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="ParentID" DataType="Int32" Description="主题" />
       <Column Name="Title" DataType="String" Length="200" Nullable="False" Description="标题" />
-      <Column Name="Version" DataType="Int32" Description="版本" />
+      <Column Name="Version" DataType="Int32" Description="版本"/>
       <Column Name="CreateUserID" DataType="Int32" Description="创建人" />
       <Column Name="CreateUserName" DataType="String" Description="创建人" />
       <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />

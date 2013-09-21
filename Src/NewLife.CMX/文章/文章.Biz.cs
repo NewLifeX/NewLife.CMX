@@ -79,24 +79,82 @@ namespace NewLife.CMX
         //    return base.Insert();
         //}
 
-        ///// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
-        ///// <returns></returns>
-        //protected override Int32 OnInsert()
-        //{
-        //    return base.OnInsert();
-        //}
+        /// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
+        /// <returns></returns>
+        protected override Int32 OnInsert()
+        {
+            Int32 num = base.OnInsert();
+
+            //Content = Content ?? new ArticleContent();
+
+            ArticleContent.Meta.BeginTrans();
+            try
+            {
+                Content.ID = 0;
+                Content.ParentID = ID;
+                Content.Save();
+                Content.Version = Content.ID;
+                Content.Save();
+
+                ArticleContent.Meta.Commit();
+            }
+            catch (Exception ex)
+            {
+                ArticleContent.Meta.Rollback();
+                throw ex;
+            }
+
+            return num;
+        }
+
+        /// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
+        protected override int OnDelete()
+        {
+            return base.OnDelete();
+        }
+
+        /// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
+        protected override int OnUpdate()
+        {
+
+            ArticleContent.Meta.BeginTrans();
+            try
+            {
+                Content.ID = 0;
+                Content.ParentID = ID;
+                Content.Save();
+                Content.Version = Content.ID;
+                Content.Save();
+
+                ArticleContent.Meta.Commit();
+            }
+            catch (Exception ex)
+            {
+                ArticleContent.Meta.Rollback();
+                throw ex;
+            }
+
+            return base.OnUpdate();
+        }
         #endregion
 
         #region 扩展属性﻿
+        public static String ChannelSuffix;
+
         private ArticleCategory _Category;
-        /// <summary>分类名</summary>
+        /// <summary>分类</summary>
         public ArticleCategory Category
         {
             get
             {
                 if (_Category == null && CategoryID > 0 && !Dirtys.ContainsKey("Category"))
                 {
+                    ArticleCategory.Meta.TableName += ChannelSuffix;
+
                     _Category = ArticleCategory.FindByID(CategoryID);
+
+                    ArticleCategory.Meta.TableName = "";
+
                     Dirtys["Category"] = true;
                 }
                 return _Category;
@@ -104,9 +162,28 @@ namespace NewLife.CMX
             set { _Category = value; }
         }
 
-        /// <summary></summary>
+        /// <summary>分类名</summary>
         public String CategoryName { get { return Category == null ? "未知分类" : Category.Name; } }
 
+
+        private ArticleContent _Content;
+        /// <summary>文章内容</summary>
+        public ArticleContent Content
+        {
+            get
+            {
+                if (_Content == null && Version > 0 && ID > 0 && !Dirtys.ContainsKey("Content"))
+                {
+                    ArticleContent.Meta.TableName += ChannelSuffix;
+
+                    _Content = ArticleContent.FindByParentIDAndVersion(ID, Version);
+
+                    ArticleContent.Meta.TableName = "";
+                }
+                return _Content;
+            }
+            set { _Content = value; }
+        }
         #endregion
 
         #region 扩展查询﻿
