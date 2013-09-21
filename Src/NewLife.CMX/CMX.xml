@@ -55,6 +55,7 @@
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="CategoryID" DataType="Int32" Description="分类" />
+      <Column Name="CategoryName" DataType="String" Description="分类名称" />
       <Column Name="Title" DataType="String" Length="200" Nullable="False" Description="标题" />
       <Column Name="Version" DataType="Int32" Description="最新版本" />
       <Column Name="Hits" DataType="Int32" Description="访问量" />
@@ -107,6 +108,7 @@
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="CategoryID" DataType="Int32" Description="分类" />
+      <Column Name="CategoryName" DataType="String" Description="分类名称" />
       <Column Name="Title" DataType="String" Length="200" Nullable="False" Description="标题" />
       <Column Name="Version" DataType="Int32" Description="最新版本" />
       <Column Name="StatisticsID" DataType="Int32" Description="访问统计" />
@@ -158,6 +160,7 @@
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="CategoryID" DataType="Int32" Description="分类" />
+      <Column Name="CategoryName" DataType="String" Description="分类名称" />
       <Column Name="Title" DataType="String" Length="200" Nullable="False" Description="标题" />
       <Column Name="Version" DataType="Int32" Description="最新版本" />
       <Column Name="Price" DataType="Decimal" Description="价格" />

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Xml.Serialization;
+using NewLife.CMX.Tool;
 using NewLife.CommonEntity;
 using NewLife.Log;
 using NewLife.Web;
@@ -36,8 +37,18 @@ namespace NewLife.CMX
             // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
             //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
 
-            if (isNew && !Dirtys[__.CreateTime]) CreateTime = DateTime.Now;
-            if (!Dirtys[__.UpdateTime]) UpdateTime = DateTime.Now;
+            if (isNew && !Dirtys[__.CreateTime])
+            {
+                CreateTime = DateTime.Now;
+                CreateUserID = Admin.Current.ID;
+                CreateUserName = Admin.Current.DisplayName;
+            }
+            if (!Dirtys[__.UpdateTime])
+            {
+                UpdateTime = DateTime.Now;
+                UpdateUserID = Admin.Current.ID;
+                UpdateUserName = Admin.Current.DisplayName;
+            }
         }
 
         ///// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
@@ -83,56 +94,23 @@ namespace NewLife.CMX
         /// <returns></returns>
         protected override Int32 OnInsert()
         {
+            Version += 1;
+
             Int32 num = base.OnInsert();
 
-            //Content = Content ?? new ArticleContent();
-
-            ArticleContent.Meta.BeginTrans();
-            try
-            {
-                Content.ID = 0;
-                Content.ParentID = ID;
-                Content.Save();
-                Content.Version = Content.ID;
-                Content.Save();
-
-                ArticleContent.Meta.Commit();
-            }
-            catch (Exception ex)
-            {
-                ArticleContent.Meta.Rollback();
-                throw ex;
-            }
+            //SaveContent(Version);
+            CommonTool.SaveModelContent(typeof(ArticleContent), Version, ChannelSuffix, this, null);
 
             return num;
         }
 
         /// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
-        protected override int OnDelete()
-        {
-            return base.OnDelete();
-        }
-
-        /// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
         protected override int OnUpdate()
         {
+            Version += 1;
 
-            ArticleContent.Meta.BeginTrans();
-            try
-            {
-                Content.ID = 0;
-                Content.ParentID = ID;
-                Content.Save();
-                Content.Version = Content.ID;
-                Content.Save();
-
-                ArticleContent.Meta.Commit();
-            }
-            catch (Exception ex)
-            {
-                ArticleContent.Meta.Rollback();
-                throw ex;
-            }
+            //SaveContent(Version);
+            CommonTool.SaveModelContent(typeof(ArticleContent), Version, ChannelSuffix, this, null);
 
             return base.OnUpdate();
         }
@@ -141,48 +119,46 @@ namespace NewLife.CMX
         #region 扩展属性﻿
         public static String ChannelSuffix;
 
-        private ArticleCategory _Category;
-        /// <summary>分类</summary>
-        public ArticleCategory Category
+        private ArticleContent _ArticleContent;
+        /// <summary></summary>
+        public ArticleContent ArticleContent
         {
             get
             {
-                if (_Category == null && CategoryID > 0 && !Dirtys.ContainsKey("Category"))
-                {
-                    ArticleCategory.Meta.TableName += ChannelSuffix;
-
-                    _Category = ArticleCategory.FindByID(CategoryID);
-
-                    ArticleCategory.Meta.TableName = "";
-
-                    Dirtys["Category"] = true;
-                }
-                return _Category;
-            }
-            set { _Category = value; }
-        }
-
-        /// <summary>分类名</summary>
-        public String CategoryName { get { return Category == null ? "未知分类" : Category.Name; } }
-
-
-        private ArticleContent _Content;
-        /// <summary>文章内容</summary>
-        public ArticleContent Content
-        {
-            get
-            {
-                if (_Content == null && Version > 0 && ID > 0 && !Dirtys.ContainsKey("Content"))
+                if (_ArticleContent == null && !Dirtys.ContainsKey("ArticleContent"))
                 {
                     ArticleContent.Meta.TableName += ChannelSuffix;
 
-                    _Content = ArticleContent.FindByParentIDAndVersion(ID, Version);
+                    _ArticleContent = ArticleContent.FindByParentIDAndVersion(ID, Version);
 
+                    if (_ArticleContent == null)
+                    {
+                        _ArticleContent = new ArticleContent();
+                    }
                     ArticleContent.Meta.TableName = "";
                 }
-                return _Content;
+                return _ArticleContent;
             }
-            set { _Content = value; }
+            set { _ArticleContent = value; }
+        }
+
+        private String _ConentTxt;
+        /// <summary></summary>
+        public String ConentTxt
+        {
+            get
+            {
+                if (_ConentTxt == null && !Dirtys.ContainsKey("ConentTxt"))
+                {
+                    _ConentTxt = ArticleContent.Content ?? "";
+                    Dirtys["ConentTxt"] = true;
+                }
+                return _ConentTxt;
+            }
+            set
+            {
+                _ConentTxt = value;
+            }
         }
         #endregion
 
@@ -262,6 +238,35 @@ namespace NewLife.CMX
         #endregion
 
         #region 业务
+        ///// <summary>
+        ///// 保存文章内容
+        ///// </summary>
+        //private void SaveContent(Int32 version)
+        //{
+        //    IEntityOperate ieo = EntityFactory.CreateOperate(typeof(ArticleContent));
+        //    ieo.TableName += ChannelSuffix;
+
+        //    ArticleContent ac = ieo.Create() as ArticleContent;
+
+        //    try
+        //    {
+        //        ac.ParentID = ID;
+        //        ac.Content = ArticleContent.Content;
+        //        ac.Title = Title;
+
+        //        ac.Version = version;
+
+        //        ac.Save();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    finally
+        //    {
+        //        ieo.TableName = "";
+        //    }
+        //}
         #endregion
     }
 }

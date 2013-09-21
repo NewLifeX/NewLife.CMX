@@ -80,6 +80,18 @@ namespace NewLife.CMX
             get { return _ID; }
             set { if (OnPropertyChanging(__.ID, value)) { _ID = value; OnPropertyChanged(__.ID); } }
         }
+
+        private Boolean _IsEnd;
+        /// <summary>是否最终分类</summary>
+        [DisplayName("是否最终分类")]
+        [Description("是否最终分类")]
+        [DataObjectField(false, false, true, 1)]
+        [BindColumn(6, "IsEnd", "是否最终分类", null, "bit", 0, 0, false)]
+        public virtual Boolean IsEnd
+        {
+            get { return _IsEnd; }
+            set { if (OnPropertyChanging(__.IsEnd, value)) { _IsEnd = value; OnPropertyChanged(__.IsEnd); } }
+        }
         #endregion
 
         #region 获取/设置 字段值
@@ -101,6 +113,7 @@ namespace NewLife.CMX
                     case __.Sort : return _Sort;
                     case __.Remark : return _Remark;
                     case __.ID : return _ID;
+                    case __.IsEnd : return _IsEnd;
                     default: return base[name];
                 }
             }
@@ -113,6 +126,7 @@ namespace NewLife.CMX
                     case __.Sort : _Sort = Convert.ToInt32(value); break;
                     case __.Remark : _Remark = Convert.ToString(value); break;
                     case __.ID : _ID = Convert.ToInt32(value); break;
+                    case __.IsEnd : _IsEnd = Convert.ToBoolean(value); break;
                     default: base[name] = value; break;
                 }
             }
@@ -138,6 +152,9 @@ namespace NewLife.CMX
             ///<summary>编号</summary>
             public static readonly Field ID = FindByName(__.ID);
 
+            ///<summary>是否最终分类</summary>
+            public static readonly Field IsEnd = FindByName(__.IsEnd);
+
             static Field FindByName(String name) { return Meta.Table.FindByName(name); }
         }
 
@@ -158,6 +175,9 @@ namespace NewLife.CMX
 
             ///<summary>编号</summary>
             public const String ID = "ID";
+
+            ///<summary>是否最终分类</summary>
+            public const String IsEnd = "IsEnd";
 
         }
         #endregion
@@ -181,6 +201,9 @@ namespace NewLife.CMX
 
         /// <summary>编号</summary>
         Int32 ID { get; set; }
+
+        /// <summary>是否最终分类</summary>
+        Boolean IsEnd { get; set; }
         #endregion
 
         #region 获取/设置 字段值

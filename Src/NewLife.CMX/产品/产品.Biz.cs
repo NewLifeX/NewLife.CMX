@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Xml.Serialization;
+using NewLife.CMX.Tool;
 using NewLife.CommonEntity;
 using NewLife.Log;
 using NewLife.Web;
@@ -38,8 +39,18 @@ namespace NewLife.CMX
 
             // 货币保留6位小数
             if (Dirtys[__.Price]) Price = Math.Round(Price, 6);
-            if (isNew && !Dirtys[__.CreateTime]) CreateTime = DateTime.Now;
-            if (!Dirtys[__.UpdateTime]) UpdateTime = DateTime.Now;
+            if (isNew && !Dirtys[__.CreateTime])
+            {
+                CreateTime = DateTime.Now;
+                CreateUserID = Admin.Current.ID;
+                CreateUserName = Admin.Current.DisplayName;
+            }
+            if (!Dirtys[__.UpdateTime])
+            {
+                UpdateTime = DateTime.Now;
+                UpdateUserID = Admin.Current.ID;
+                UpdateUserName = Admin.Current.DisplayName;
+            }
         }
 
         ///// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
@@ -87,9 +98,77 @@ namespace NewLife.CMX
         //{
         //    return base.OnInsert();
         //}
+
+        /// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
+        /// <returns></returns>
+        protected override Int32 OnInsert()
+        {
+            Version += 1;
+
+            Int32 num = base.OnInsert();
+
+            //SaveContent(Version);
+            CommonTool.SaveModelContent(typeof(ProductContent), Version, ChannelSuffix, this, null);
+
+            return num;
+        }
+
+        /// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
+        protected override int OnUpdate()
+        {
+            Version += 1;
+
+            //SaveContent(Version);
+            CommonTool.SaveModelContent(typeof(ProductContent), Version, ChannelSuffix, this, null);
+
+            return base.OnUpdate();
+        }
         #endregion
 
         #region 扩展属性﻿
+        public static String ChannelSuffix;
+
+        private ProductContent _ProductContent;
+        /// <summary></summary>
+        public ProductContent ProductContent
+        {
+            get
+            {
+                if (_ProductContent == null && !Dirtys.ContainsKey("ProductContent"))
+                {
+                    ProductContent.Meta.TableName += ChannelSuffix;
+
+                    _ProductContent = ProductContent.FindByParentIDAndVersion(ID, Version);
+
+                    if (_ProductContent == null)
+                    {
+                        _ProductContent = new ProductContent();
+                    }
+                    ProductContent.Meta.TableName = "";
+                }
+                return _ProductContent;
+            }
+            set { _ProductContent = value; }
+        }
+
+        private String _ConentTxt;
+        /// <summary></summary>
+        public String ConentTxt
+        {
+            get
+            {
+                if (_ConentTxt == null && !Dirtys.ContainsKey("ConentTxt"))
+                {
+                    _ConentTxt = ProductContent.Content ?? "";
+                    Dirtys["ConentTxt"] = true;
+                }
+                return _ConentTxt;
+            }
+            set
+            {
+                _ConentTxt = value;
+            }
+        }
         #endregion
 
         #region 扩展查询﻿

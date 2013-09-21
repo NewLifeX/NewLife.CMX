@@ -13,33 +13,34 @@ namespace NewLife.CMX
     [DataObject]
     [Description("文本")]
     [BindIndex("IX_Text_CategoryID", false, "CategoryID")]
+    [BindIndex("PK__Text__3214EC272A164134", true, "ID")]
     [BindTable("Text", Description = "文本", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class Text : IText
     {
         #region 属性
-
-        private Int32 _ID;
-        /// <summary>编号</summary>
-        [DisplayName("编号")]
-        [Description("编号")]
-        [DataObjectField(true, true, false, 10)]
-        [BindColumn(1, "ID", "编号", null, "int", 10, 0, false)]
-        public virtual Int32 ID
-        {
-            get { return _ID; }
-            set { if (OnPropertyChanging(__.ID, value)) { _ID = value; OnPropertyChanged(__.ID); } }
-        }
 
         private Int32 _CategoryID;
         /// <summary>分类</summary>
         [DisplayName("分类")]
         [Description("分类")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(2, "CategoryID", "分类", null, "int", 10, 0, false)]
+        [BindColumn(1, "CategoryID", "分类", null, "int", 10, 0, false)]
         public virtual Int32 CategoryID
         {
             get { return _CategoryID; }
             set { if (OnPropertyChanging(__.CategoryID, value)) { _CategoryID = value; OnPropertyChanged(__.CategoryID); } }
+        }
+
+        private String _CategoryName;
+        /// <summary>分类名称</summary>
+        [DisplayName("分类名称")]
+        [Description("分类名称")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn(2, "CategoryName", "分类名称", null, "nvarchar(50)", 0, 0, true)]
+        public virtual String CategoryName
+        {
+            get { return _CategoryName; }
+            set { if (OnPropertyChanging(__.CategoryName, value)) { _CategoryName = value; OnPropertyChanged(__.CategoryName); } }
         }
 
         private String _Title;
@@ -161,6 +162,30 @@ namespace NewLife.CMX
             get { return _Remark; }
             set { if (OnPropertyChanging(__.Remark, value)) { _Remark = value; OnPropertyChanged(__.Remark); } }
         }
+
+        private Int32 _ID;
+        /// <summary>编号</summary>
+        [DisplayName("编号")]
+        [Description("编号")]
+        [DataObjectField(true, true, false, 10)]
+        [BindColumn(13, "ID", "编号", null, "int", 10, 0, false)]
+        public virtual Int32 ID
+        {
+            get { return _ID; }
+            set { if (OnPropertyChanging(__.ID, value)) { _ID = value; OnPropertyChanged(__.ID); } }
+        }
+
+        private Boolean _IsEnd;
+        /// <summary>是否最终分类</summary>
+        [DisplayName("是否最终分类")]
+        [Description("是否最终分类")]
+        [DataObjectField(false, false, true, 1)]
+        [BindColumn(14, "IsEnd", "是否最终分类", null, "bit", 0, 0, false)]
+        public virtual Boolean IsEnd
+        {
+            get { return _IsEnd; }
+            set { if (OnPropertyChanging(__.IsEnd, value)) { _IsEnd = value; OnPropertyChanged(__.IsEnd); } }
+        }
         #endregion
 
         #region 获取/设置 字段值
@@ -177,8 +202,8 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
-                    case __.ID : return _ID;
                     case __.CategoryID : return _CategoryID;
+                    case __.CategoryName : return _CategoryName;
                     case __.Title : return _Title;
                     case __.Version : return _Version;
                     case __.StatisticsID : return _StatisticsID;
@@ -189,6 +214,8 @@ namespace NewLife.CMX
                     case __.UpdateUserName : return _UpdateUserName;
                     case __.UpdateTime : return _UpdateTime;
                     case __.Remark : return _Remark;
+                    case __.ID : return _ID;
+                    case __.IsEnd : return _IsEnd;
                     default: return base[name];
                 }
             }
@@ -196,8 +223,8 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
-                    case __.ID : _ID = Convert.ToInt32(value); break;
                     case __.CategoryID : _CategoryID = Convert.ToInt32(value); break;
+                    case __.CategoryName : _CategoryName = Convert.ToString(value); break;
                     case __.Title : _Title = Convert.ToString(value); break;
                     case __.Version : _Version = Convert.ToInt32(value); break;
                     case __.StatisticsID : _StatisticsID = Convert.ToInt32(value); break;
@@ -208,6 +235,8 @@ namespace NewLife.CMX
                     case __.UpdateUserName : _UpdateUserName = Convert.ToString(value); break;
                     case __.UpdateTime : _UpdateTime = Convert.ToDateTime(value); break;
                     case __.Remark : _Remark = Convert.ToString(value); break;
+                    case __.ID : _ID = Convert.ToInt32(value); break;
+                    case __.IsEnd : _IsEnd = Convert.ToBoolean(value); break;
                     default: base[name] = value; break;
                 }
             }
@@ -218,11 +247,11 @@ namespace NewLife.CMX
         /// <summary>取得文本字段信息的快捷方式</summary>
         public partial class _
         {
-            ///<summary>编号</summary>
-            public static readonly Field ID = FindByName(__.ID);
-
             ///<summary>分类</summary>
             public static readonly Field CategoryID = FindByName(__.CategoryID);
+
+            ///<summary>分类名称</summary>
+            public static readonly Field CategoryName = FindByName(__.CategoryName);
 
             ///<summary>标题</summary>
             public static readonly Field Title = FindByName(__.Title);
@@ -254,17 +283,23 @@ namespace NewLife.CMX
             ///<summary>备注</summary>
             public static readonly Field Remark = FindByName(__.Remark);
 
+            ///<summary>编号</summary>
+            public static readonly Field ID = FindByName(__.ID);
+
+            ///<summary>是否最终分类</summary>
+            public static readonly Field IsEnd = FindByName(__.IsEnd);
+
             static Field FindByName(String name) { return Meta.Table.FindByName(name); }
         }
 
         /// <summary>取得文本字段名称的快捷方式</summary>
         partial class __
         {
-            ///<summary>编号</summary>
-            public const String ID = "ID";
-
             ///<summary>分类</summary>
             public const String CategoryID = "CategoryID";
+
+            ///<summary>分类名称</summary>
+            public const String CategoryName = "CategoryName";
 
             ///<summary>标题</summary>
             public const String Title = "Title";
@@ -296,6 +331,12 @@ namespace NewLife.CMX
             ///<summary>备注</summary>
             public const String Remark = "Remark";
 
+            ///<summary>编号</summary>
+            public const String ID = "ID";
+
+            ///<summary>是否最终分类</summary>
+            public const String IsEnd = "IsEnd";
+
         }
         #endregion
     }
@@ -304,11 +345,11 @@ namespace NewLife.CMX
     public partial interface IText
     {
         #region 属性
-        /// <summary>编号</summary>
-        Int32 ID { get; set; }
-
         /// <summary>分类</summary>
         Int32 CategoryID { get; set; }
+
+        /// <summary>分类名称</summary>
+        String CategoryName { get; set; }
 
         /// <summary>标题</summary>
         String Title { get; set; }
@@ -339,6 +380,12 @@ namespace NewLife.CMX
 
         /// <summary>备注</summary>
         String Remark { get; set; }
+
+        /// <summary>编号</summary>
+        Int32 ID { get; set; }
+
+        /// <summary>是否最终分类</summary>
+        Boolean IsEnd { get; set; }
         #endregion
 
         #region 获取/设置 字段值

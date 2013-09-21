@@ -35,8 +35,13 @@ namespace NewLife.CMX
 
             // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
             //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
-            
-            if (isNew && !Dirtys[__.CreateTime]) CreateTime = DateTime.Now;
+
+            if (isNew && !Dirtys[__.CreateTime])
+            {
+                CreateUserID = Admin.Current.ID;
+                CreateUserName = Admin.Current.DisplayName;
+                CreateTime = DateTime.Now;
+            }
         }
 
         ///// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>

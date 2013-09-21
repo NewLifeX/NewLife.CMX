@@ -49,6 +49,7 @@
     <Compile Include="Manager\SysConfig.cs" />
     <Compile Include="Manager\Admin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tool\CommonTool.cs" />
     <Compile Include="产品\产品.Biz.cs" />
     <Compile Include="产品\产品.cs" />
     <Compile Include="产品\产品内容.Biz.cs" />
