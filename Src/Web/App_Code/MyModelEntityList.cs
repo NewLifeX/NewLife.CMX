@@ -110,11 +110,17 @@ public class MyModelEntityList<TEntity> : MyModelEntityList where TEntity : Enti
 
         if (EntityType.BaseType.GetGenericTypeDefinition() == typeof(EntityTree<>))
         {
-            PropertyInfoX mix = PropertyInfoX.Create(EntityType, "Root");
+            PropertyInfoX pix = PropertyInfoX.Create(EntityType, "Root");
 
-            mix.SetValue(null);
+            pix.SetValue(null);
         }
-        
+        else
+        {
+            FieldInfoX fix = FieldInfoX.Create(EntityType, "ChannelSuffix");
+
+            fix.SetValue(c.Suffix);
+        }
+
         base.OnInit(e);
     }
 

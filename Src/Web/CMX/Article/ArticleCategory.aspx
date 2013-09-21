@@ -2,6 +2,17 @@
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="H">
     <title>文章分类管理</title>
+    <script type="text/javascript">
+        //$(function () {
+        //    $('.displayurl').each(function () {
+        //        var url = $(this).text();
+        //        var str = "javascript:parent.f_addTab('SysModel','系统模型管理','<url>')";
+        //        var param = location;
+        //        var href = str.replace("<url>", url + "&" + param);
+        //        $($($('.displayurl')[0]).parent().find("a")).attr('href', href);
+        //    });
+        //});
+    </script>
 </asp:Content>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
     <div class="tools_box">
@@ -25,7 +36,7 @@
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="Ikey" />
             </asp:BoundField>
             <asp:BoundField DataField="TreeNodeName" HeaderText="名称" />
-           <%-- <asp:TemplateField HeaderText="名称" SortExpression="Name">
+            <%-- <asp:TemplateField HeaderText="名称" SortExpression="Name">
                 <ItemTemplate>
                     <asp:HyperLink ID="HyperNodeName" runat="server" Text='<%# Eval("TreeNodeName") %>'
                         NavigateUrl='<%# "MenuForm.aspx?ID="+Eval("ID") %>'></asp:HyperLink>

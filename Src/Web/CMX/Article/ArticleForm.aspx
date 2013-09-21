@@ -15,7 +15,7 @@
                 <tbody>
         <tr>
             <th>分类：</th>
-            <td><XCL:NumberBox ID="frmCategoryID" runat="server" Width="80px"></XCL:NumberBox></td>
+            <td><asp:Label runat="server" ID="frmCategoryName"></asp:Label></td>
         </tr>
 <tr>
             <th>标题：</th>
