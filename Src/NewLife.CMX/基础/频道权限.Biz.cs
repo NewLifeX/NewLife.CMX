@@ -128,6 +128,19 @@ namespace NewLife.CMX
             else
                 return Meta.Cache.Entities.FindAll(_.RoleID, RoleID);
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="ChannelID"></param>
+        /// <param name="RoleID"></param>
+        public static ChannelRole FindChannelIDAndRoleID(int ChannelID, int RoleID)
+        {
+            if (Meta.Count >= 1000)
+                return Find(new String[] { _.ChannelID, _.RoleID }, new object[] { ChannelID, RoleID });
+            else
+                return Meta.Cache.Entities.Find(e => e.ChannelID == ChannelID && e.RoleID == RoleID);
+        }
         #endregion
 
         #region 高级查询
@@ -185,5 +198,7 @@ namespace NewLife.CMX
         #region 业务
 
         #endregion
+
+
     }
 }

@@ -14,29 +14,20 @@ namespace NewLife.CMX
     [Description("频道")]
     [BindIndex("IU_Channel_Name", true, "Name")]
     [BindIndex("IX_Channel_ModelID", false, "ModelID")]
+    [BindIndex("PK__Channel__3214EC27245D67DE", true, "ID")]
+    [BindRelation("ModelID", false, "Model", "ID")]
+    [BindRelation("ID", true, "ChannelRole", "ChannelID")]
     [BindTable("Channel", Description = "频道", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class Channel : IChannel
     {
         #region 属性
-
-        private Int32 _ID;
-        /// <summary>编号</summary>
-        [DisplayName("编号")]
-        [Description("编号")]
-        [DataObjectField(true, true, false, 10)]
-        [BindColumn(1, "ID", "编号", null, "int", 10, 0, false)]
-        public virtual Int32 ID
-        {
-            get { return _ID; }
-            set { if (OnPropertyChanging(__.ID, value)) { _ID = value; OnPropertyChanged(__.ID); } }
-        }
 
         private String _Name;
         /// <summary>名称</summary>
         [DisplayName("名称")]
         [Description("名称")]
         [DataObjectField(false, false, false, 50)]
-        [BindColumn(2, "Name", "名称", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(1, "Name", "名称", null, "nvarchar(50)", 0, 0, true)]
         public virtual String Name
         {
             get { return _Name; }
@@ -48,7 +39,7 @@ namespace NewLife.CMX
         [DisplayName("模型")]
         [Description("模型")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(3, "ModelID", "模型", null, "int", 10, 0, false)]
+        [BindColumn(2, "ModelID", "模型", null, "int", 10, 0, false)]
         public virtual Int32 ModelID
         {
             get { return _ModelID; }
@@ -59,8 +50,8 @@ namespace NewLife.CMX
         /// <summary>后缀。默认频道后缀为空，扩展频道必须有不同的表后缀</summary>
         [DisplayName("后缀")]
         [Description("后缀。默认频道后缀为空，扩展频道必须有不同的表后缀")]
-        [DataObjectField(false, false, true, 50)]
-        [BindColumn(4, "Suffix", "后缀。默认频道后缀为空，扩展频道必须有不同的表后缀", null, "nvarchar(50)", 0, 0, true)]
+        [DataObjectField(false, false, false, 50)]
+        [BindColumn(3, "Suffix", "后缀。默认频道后缀为空，扩展频道必须有不同的表后缀", null, "nvarchar(50)", 0, 0, true)]
         public virtual String Suffix
         {
             get { return _Suffix; }
@@ -72,7 +63,7 @@ namespace NewLife.CMX
         [DisplayName("启用")]
         [Description("启用")]
         [DataObjectField(false, false, true, 1)]
-        [BindColumn(5, "Enable", "启用", null, "bit", 0, 0, false)]
+        [BindColumn(4, "Enable", "启用", null, "bit", 0, 0, false)]
         public virtual Boolean Enable
         {
             get { return _Enable; }
@@ -84,7 +75,7 @@ namespace NewLife.CMX
         [DisplayName("创建人ID")]
         [Description("创建人ID")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(6, "CreateUserID", "创建人ID", null, "int", 10, 0, false)]
+        [BindColumn(5, "CreateUserID", "创建人ID", null, "int", 10, 0, false)]
         public virtual Int32 CreateUserID
         {
             get { return _CreateUserID; }
@@ -96,7 +87,7 @@ namespace NewLife.CMX
         [DisplayName("创建时间")]
         [Description("创建时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(7, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
+        [BindColumn(6, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
         public virtual DateTime CreateTime
         {
             get { return _CreateTime; }
@@ -108,7 +99,7 @@ namespace NewLife.CMX
         [DisplayName("更新人ID")]
         [Description("更新人ID")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(8, "UpdateUserID", "更新人ID", null, "int", 10, 0, false)]
+        [BindColumn(7, "UpdateUserID", "更新人ID", null, "int", 10, 0, false)]
         public virtual Int32 UpdateUserID
         {
             get { return _UpdateUserID; }
@@ -120,7 +111,7 @@ namespace NewLife.CMX
         [DisplayName("更新时间")]
         [Description("更新时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(9, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
+        [BindColumn(8, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
         public virtual DateTime UpdateTime
         {
             get { return _UpdateTime; }
@@ -132,11 +123,47 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(10, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(9, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Remark
         {
             get { return _Remark; }
             set { if (OnPropertyChanging(__.Remark, value)) { _Remark = value; OnPropertyChanged(__.Remark); } }
+        }
+
+        private Int32 _ID;
+        /// <summary>编号</summary>
+        [DisplayName("编号")]
+        [Description("编号")]
+        [DataObjectField(true, true, false, 10)]
+        [BindColumn(10, "ID", "编号", null, "int", 10, 0, false)]
+        public virtual Int32 ID
+        {
+            get { return _ID; }
+            set { if (OnPropertyChanging(__.ID, value)) { _ID = value; OnPropertyChanged(__.ID); } }
+        }
+
+        private String _ListTemplate;
+        /// <summary>列表模板文件名</summary>
+        [DisplayName("列表模板文件名")]
+        [Description("列表模板文件名")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn(11, "ListTemplate", "列表模板文件名", null, "nvarchar(50)", 0, 0, true)]
+        public virtual String ListTemplate
+        {
+            get { return _ListTemplate; }
+            set { if (OnPropertyChanging(__.ListTemplate, value)) { _ListTemplate = value; OnPropertyChanged(__.ListTemplate); } }
+        }
+
+        private String _FormTemplate;
+        /// <summary>表单模板文件名</summary>
+        [DisplayName("表单模板文件名")]
+        [Description("表单模板文件名")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn(12, "FormTemplate", "表单模板文件名", null, "nvarchar(50)", 0, 0, true)]
+        public virtual String FormTemplate
+        {
+            get { return _FormTemplate; }
+            set { if (OnPropertyChanging(__.FormTemplate, value)) { _FormTemplate = value; OnPropertyChanged(__.FormTemplate); } }
         }
         #endregion
 
@@ -154,7 +181,6 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
-                    case __.ID : return _ID;
                     case __.Name : return _Name;
                     case __.ModelID : return _ModelID;
                     case __.Suffix : return _Suffix;
@@ -164,6 +190,9 @@ namespace NewLife.CMX
                     case __.UpdateUserID : return _UpdateUserID;
                     case __.UpdateTime : return _UpdateTime;
                     case __.Remark : return _Remark;
+                    case __.ID : return _ID;
+                    case __.ListTemplate : return _ListTemplate;
+                    case __.FormTemplate : return _FormTemplate;
                     default: return base[name];
                 }
             }
@@ -171,7 +200,6 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
-                    case __.ID : _ID = Convert.ToInt32(value); break;
                     case __.Name : _Name = Convert.ToString(value); break;
                     case __.ModelID : _ModelID = Convert.ToInt32(value); break;
                     case __.Suffix : _Suffix = Convert.ToString(value); break;
@@ -181,6 +209,9 @@ namespace NewLife.CMX
                     case __.UpdateUserID : _UpdateUserID = Convert.ToInt32(value); break;
                     case __.UpdateTime : _UpdateTime = Convert.ToDateTime(value); break;
                     case __.Remark : _Remark = Convert.ToString(value); break;
+                    case __.ID : _ID = Convert.ToInt32(value); break;
+                    case __.ListTemplate : _ListTemplate = Convert.ToString(value); break;
+                    case __.FormTemplate : _FormTemplate = Convert.ToString(value); break;
                     default: base[name] = value; break;
                 }
             }
@@ -191,9 +222,6 @@ namespace NewLife.CMX
         /// <summary>取得频道字段信息的快捷方式</summary>
         public partial class _
         {
-            ///<summary>编号</summary>
-            public static readonly Field ID = FindByName(__.ID);
-
             ///<summary>名称</summary>
             public static readonly Field Name = FindByName(__.Name);
 
@@ -221,15 +249,21 @@ namespace NewLife.CMX
             ///<summary>备注</summary>
             public static readonly Field Remark = FindByName(__.Remark);
 
+            ///<summary>编号</summary>
+            public static readonly Field ID = FindByName(__.ID);
+
+            ///<summary>列表模板文件名</summary>
+            public static readonly Field ListTemplate = FindByName(__.ListTemplate);
+
+            ///<summary>表单模板文件名</summary>
+            public static readonly Field FormTemplate = FindByName(__.FormTemplate);
+
             static Field FindByName(String name) { return Meta.Table.FindByName(name); }
         }
 
         /// <summary>取得频道字段名称的快捷方式</summary>
         partial class __
         {
-            ///<summary>编号</summary>
-            public const String ID = "ID";
-
             ///<summary>名称</summary>
             public const String Name = "Name";
 
@@ -257,6 +291,15 @@ namespace NewLife.CMX
             ///<summary>备注</summary>
             public const String Remark = "Remark";
 
+            ///<summary>编号</summary>
+            public const String ID = "ID";
+
+            ///<summary>列表模板文件名</summary>
+            public const String ListTemplate = "ListTemplate";
+
+            ///<summary>表单模板文件名</summary>
+            public const String FormTemplate = "FormTemplate";
+
         }
         #endregion
     }
@@ -265,9 +308,6 @@ namespace NewLife.CMX
     public partial interface IChannel
     {
         #region 属性
-        /// <summary>编号</summary>
-        Int32 ID { get; set; }
-
         /// <summary>名称</summary>
         String Name { get; set; }
 
@@ -294,6 +334,15 @@ namespace NewLife.CMX
 
         /// <summary>备注</summary>
         String Remark { get; set; }
+
+        /// <summary>编号</summary>
+        Int32 ID { get; set; }
+
+        /// <summary>列表模板文件名</summary>
+        String ListTemplate { get; set; }
+
+        /// <summary>表单模板文件名</summary>
+        String FormTemplate { get; set; }
         #endregion
 
         #region 获取/设置 字段值
