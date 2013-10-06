@@ -9,8 +9,16 @@ public class FormRouting : IHttpHandler
 {
     public void ProcessRequest(HttpContext context)
     {
+        if (Admin.Current == null) context.Response.Redirect("Default.aspx");
+
         //参数可以频道的ID也可以频道名称也可以扩展名（Suffix）
         Channel channel = Channel.FindBySuffix(context.Request["Channel"]);
+
+        Admin admin = Admin.Current;
+
+        ChannelRole cr = ChannelRole.FindChannelIDAndRoleID(channel.ID, admin.RoleID);
+
+        if (cr == null) context.Response.Redirect("Default.aspx");
 
         if (channel != null)
         {
@@ -38,5 +46,4 @@ public class FormRouting : IHttpHandler
             return false;
         }
     }
-
 }

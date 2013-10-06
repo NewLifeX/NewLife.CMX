@@ -9,10 +9,17 @@ public class ListRouting : IHttpHandler
 {
     public void ProcessRequest(HttpContext context)
     {
-        //参数可以频道的ID也可以频道名称也可以扩展名（Suffix）
-        String channel = context.Request["Channel"];
+        if (Admin.Current == null) context.Response.Redirect("Default.aspx");
 
-        Channel c = Channel.FindBySuffix(channel);
+        //参数可以频道的ID也可以频道名称也可以扩展名（Suffix）
+        Channel c = Channel.FindBySuffix(context.Request["Channel"]);
+
+        Admin admin = Admin.Current;
+
+        ChannelRole cr = ChannelRole.FindChannelIDAndRoleID(c.ID, admin.RoleID);
+
+        if (cr == null) context.Response.Redirect("Default.aspx");
+
 
         if (c != null)
         {
