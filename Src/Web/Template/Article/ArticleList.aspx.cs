@@ -29,15 +29,15 @@ public partial class Template_Article_ArticleList : NewLife.CMX.WebBase.WebPageB
         {
             //List<Int32> categoryids = category.Childs.GetItem<Int32>(ArticleCategory._.ID);
             //List<ArticleCategory> categories = category.Childs.Where(e => e.IsEnd == true).ToList<ArticleCategory>;
-            //TODO
-            foreach (ArticleCategory item in categories)
-            {
-                if (item.IsEnd)
-                {
+            ////TODO
+            //foreach (ArticleCategory item in categories)
+            //{
+            //    if (item.IsEnd)
+            //    {
 
-                }
-                ListArticle.AddRange(GetArticleList(categoryid));
-            }
+            //    }
+            //    ListArticle.AddRange(GetArticleList(categoryid));
+            //}
         }
 
         base.OnInit(e);
