@@ -6,46 +6,62 @@ using System.Web.UI.WebControls;
 using NewLife.CMX;
 using NewLife.Web;
 using NewLife.Linq;
+using XCode;
+using NewLife.Log;
 
 public partial class Template_Article_ArticleList : NewLife.CMX.WebBase.WebPageBase
 {
     public String Suffix { get { return Request["Suffix"]; } }
+
     public Int32 CategoryID { get { return WebHelper.RequestInt("CategoryID"); } }
-    public ArticleCategory category;
-    public List<Article> ListArticle = new List<Article>();
+
+    public ArticleCategory Category;
+
+    public EntityList<Article> ListArticle = new EntityList<Article>();
 
     protected override void OnInit(EventArgs e)
     {
-        ArticleCategory.Meta.TableName += Suffix;
-        Article.Meta.TableName += Suffix;
-
-        category = ArticleCategory.FindByID(CategoryID);
-
-        if (category.IsEnd)
+        try
         {
-            ListArticle.AddRange(GetArticleList(CategoryID));
+            ArticleCategory.Meta.TableName += Suffix;
+            Article.Meta.TableName += Suffix;
+
+            Category = ArticleCategory.FindByID(CategoryID);
+
+            if (Category.IsEnd)
+            {
+                ListArticle.AddRange(GetArticleList(CategoryID));
+            }
+            else
+            {
+                List<ArticleCategory> listcategory = Category.AllChilds;
+
+                foreach (ArticleCategory item in listcategory)
+                {
+                    if (item.IsEnd)
+                    {
+                        ListArticle.AddRange(GetArticleList(item.ID));
+                    }
+                }
+            }
+            base.OnInit(e);
         }
-        else
+        catch (Exception ex)
         {
-            //List<Int32> categoryids = category.Childs.GetItem<Int32>(ArticleCategory._.ID);
-            //List<ArticleCategory> categories = category.Childs.Where(e => e.IsEnd == true).ToList<ArticleCategory>;
-            ////TODO
-            //foreach (ArticleCategory item in categories)
-            //{
-            //    if (item.IsEnd)
-            //    {
-
-            //    }
-            //    ListArticle.AddRange(GetArticleList(categoryid));
-            //}
+            WebHelper.Alert("信息异常，请联系管理员！");
+            XTrace.WriteLine(ex.Message);
+            return;
         }
-
-        base.OnInit(e);
+        finally
+        {
+            ArticleCategory.Meta.TableName = "";
+            Article.Meta.TableName = "";
+        }
     }
 
-    private List<Article> GetArticleList(int categoryid)
+    private EntityList<Article> GetArticleList(int categoryid)
     {
-        List<Article> articles = new List<Article>();
+        EntityList<Article> articles = new EntityList<Article>();
 
         foreach (Article item in Article.FindAllByCategoryID(categoryid))
         {
@@ -57,6 +73,7 @@ public partial class Template_Article_ArticleList : NewLife.CMX.WebBase.WebPageB
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        frmarticle.DataSource = ListArticle;
+        frmarticle.DataBind();
     }
 }

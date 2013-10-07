@@ -9,9 +9,12 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-    
-    </div>
+      <div>
+            <h2><%=Product.Title %></h2>
+            <div>
+                <%=Product.Content %>
+            </div>
+        </div>
     </form>
 </body>
 </html>

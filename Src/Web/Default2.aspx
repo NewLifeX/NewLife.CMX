@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ArticleForm.aspx.cs" Inherits="Template_Article_ArticleForm" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default2.aspx.cs" Inherits="Default2" %>
 
 <!DOCTYPE html>
 
@@ -10,10 +10,8 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <h2><%=Article.Title %></h2>
-            <div>
-                <%=Article.Content %>
-            </div>
+            <a href="Info/XW/1.aspx">点击表单</a>
+            <a href ="List/DWZ/10.aspx">点击列表页</a>
         </div>
     </form>
 </body>

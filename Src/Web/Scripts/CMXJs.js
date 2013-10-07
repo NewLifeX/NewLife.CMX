@@ -12,7 +12,12 @@ $(function () {
         var href = $('.listpage').attr('href');
         var param = location.search;
 
-        if (!href.contains(param)) {
+        //IE10 不支持string.contains()方法
+        //if (!href.contains(param)) {
+        //    $('.listpage').attr('href', href + param);
+        //}
+      
+        if (href.indexOf(param) < 0) {
             $('.listpage').attr('href', href + param);
         }
     }
@@ -23,7 +28,12 @@ $(function () {
             var href = $(this).attr('href');
             var param = location.search.substr(1);
 
-            if (!href.contains(param)) {
+            //IE10 不支持string.contains()方法
+            //if (!href.contains(param)) {
+            //    $(this).attr('href', href + '&' + param);
+            //}
+
+            if (href.indexOf(param) < 0) {
                 $(this).attr('href', href + '&' + param);
             }
         });
