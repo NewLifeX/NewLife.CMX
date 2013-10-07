@@ -7,6 +7,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Text;
 using System.Xml.Serialization;
 using NewLife.CMX.Tool;

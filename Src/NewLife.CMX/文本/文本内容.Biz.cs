@@ -14,6 +14,7 @@ using NewLife.Log;
 using NewLife.Web;
 using XCode;
 using XCode.Configuration;
+using NewLife.Linq;
 
 namespace NewLife.CMX
 {
@@ -113,6 +114,30 @@ namespace NewLife.CMX
                 return Find(new String[] { _.ParentID, _.Version }, new Object[] { parentid, version });
             else // 实体缓存
                 return Meta.Cache.Entities.Find(e => e.ParentID == parentid && e.Version == version);
+        }
+
+        /// <summary>
+        /// 根据标题ID查询最新版本的内容
+        /// </summary>
+        /// <param name="parentid"></param>
+        /// <returns></returns>
+        public static TextContent FindByParentIDAndNewVersion(Int32 parentid)
+        {
+            List<TextContent> entitylist;
+
+            if (Meta.Count >= 1000)
+            {
+                entitylist = FindAll(_.ParentID, parentid);
+            }
+            else
+            {
+                entitylist = Meta.Cache.Entities.FindAll(e => e.ParentID == parentid);
+            }
+
+            if (entitylist == null || entitylist.Count == 0)
+                return null;
+            else
+                return entitylist.OrderBy(e => e.Version).ToArray()[0];
         }
         #endregion
 
