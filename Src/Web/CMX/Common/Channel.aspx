@@ -21,11 +21,11 @@
                 <HeaderStyle Width="20px" />
                 <ItemStyle HorizontalAlign="Center" />
             </asp:TemplateField>--%>
-            <asp:BoundField DataField="ID" HeaderText="编号" SortExpression="ID" InsertVisible="False" ReadOnly="True" >
+            <asp:BoundField DataField="ID" HeaderText="编号" SortExpression="ID" InsertVisible="False" ReadOnly="True">
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="Ikey" />
             </asp:BoundField>
             <asp:BoundField DataField="Name" HeaderText="名称" SortExpression="Name" />
-            <asp:BoundField DataField="ModelName" HeaderText="模型" SortExpression="ModelID"/>
+            <asp:BoundField DataField="ModelName" HeaderText="模型" SortExpression="ModelID" />
             <asp:BoundField DataField="Suffix" HeaderText="后缀" SortExpression="Suffix" />
             <asp:TemplateField HeaderText="启用" SortExpression="Enable">
                 <ItemTemplate>
@@ -34,20 +34,18 @@
                 </ItemTemplate>
                 <ItemStyle HorizontalAlign="Center" />
             </asp:TemplateField>
-            <asp:BoundField DataField="CreateUserName" HeaderText="创建人" SortExpression="CreateUserID" />
-            <asp:BoundField DataField="CreateTime" HeaderText="创建时间" SortExpression="CreateTime" DataFormatString="{0:yyyy-MM-dd}" >
+            <asp:BoundField DataField="ListTemplate" HeaderText="列表模板" SortExpression="ListTemplate" />
+            <asp:BoundField DataField="FormTemplate" HeaderText="表单模板" SortExpression="FormTemplate" />
+            <asp:BoundField DataField="UpdateUserName" HeaderText="更新人" SortExpression="UpdateUserID" />
+            <asp:BoundField DataField="UpdateTime" HeaderText="更新时间" SortExpression="UpdateTime" DataFormatString="{0:yyyy-MM-dd}">
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="120px" />
             </asp:BoundField>
-            <asp:BoundField DataField="UpdateUserName" HeaderText="更新人" SortExpression="UpdateUserID"/>
-            <asp:BoundField DataField="UpdateTime" HeaderText="更新时间" SortExpression="UpdateTime" DataFormatString="{0:yyyy-MM-dd}" >
-                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="120px" />
-            </asp:BoundField>
-                <asp:TemplateField HeaderText="编辑频道" SortExpression="Name">
-                    <ItemTemplate>
-                        <asp:HyperLink ID="HyperManager" runat="server" Text='编辑频道' NavigateUrl='<%# "ChannelForm.aspx?ID="+Eval("ID")%>'></asp:HyperLink>
-                    </ItemTemplate>
-                      <ItemStyle HorizontalAlign="Center" />
-                </asp:TemplateField>
+            <asp:TemplateField HeaderText="编辑频道" SortExpression="Name">
+                <ItemTemplate>
+                    <asp:HyperLink ID="HyperManager" runat="server" Text='编辑频道' NavigateUrl='<%# "ChannelForm.aspx?ID="+Eval("ID")%>'></asp:HyperLink>
+                </ItemTemplate>
+                <ItemStyle HorizontalAlign="Center" />
+            </asp:TemplateField>
             <asp:TemplateField ShowHeader="False" HeaderText="删除">
                 <ItemTemplate>
                     <asp:LinkButton ID="btnDelete" runat="server" CausesValidation="False" CommandName="Delete" OnClientClick='return confirm("确定删除吗？")' Text="删除"></asp:LinkButton>

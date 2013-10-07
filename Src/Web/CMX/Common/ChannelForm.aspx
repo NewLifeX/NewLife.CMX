@@ -31,6 +31,18 @@
                             <asp:TextBox ID="frmSuffix" runat="server" Width="150px"></asp:TextBox></td>
                     </tr>
                     <tr>
+                        <th>列表模板文件名：</th>
+                        <td>
+                            <asp:TextBox ID="frmListTemplate" runat="server" Width="150px"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>表单模板文件名：</th>
+                        <td>
+                            <asp:TextBox ID="frmFormTemplate" runat="server" Width="150px"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
                         <th>启用：</th>
                         <td>
                             <asp:CheckBox ID="frmEnable" runat="server" Text="启用" /></td>
@@ -46,9 +58,9 @@
                             <asp:Label ID="frmCreateTime" runat="server"></asp:Label></td>
                     </tr>
                     <tr>
-                        <th>更新人ID：</th>
+                        <th>更新人：</th>
                         <td>
-                            <asp:Label ID="frmUpdateUserID" runat="server"></asp:Label></td>
+                            <asp:Label ID="frmUpdateUserName" runat="server"></asp:Label></td>
                     </tr>
                     <tr>
                         <th>更新时间：</th>
