@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using System.Web;
 using System.Web.UI;
@@ -7,8 +8,11 @@ using System.Web.UI.WebControls;
 using NewLife.CMX;
 using NewLife.Common;
 using NewLife.CommonEntity;
+using NewLife.Log;
+using NewLife.Reflection;
 using NewLife.Security;
 using NewLife.Web;
+using XCode;
 
 public partial class Admin_LeftMenu : System.Web.UI.UserControl
 {
@@ -95,6 +99,22 @@ public partial class Admin_LeftMenu : System.Web.UI.UserControl
             set { _Icon = value; }
         }
 
+        /// <summary>
+        /// 构造方法
+        /// </summary>
+        public ListMenu() { }
+
+        /// <summary>
+        /// 构造方法
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <param name="Url"></param>
+        public ListMenu(String Name, String Url)
+        {
+            this.Name = Name;
+            this.Url = Url;
+        }
+
         /// <summary>是否包含子菜单</summary>
         public Boolean IsChild { get { return (Children == null || Children.Count <= 0) ? false : true; } }
 
@@ -157,13 +177,65 @@ public partial class Admin_LeftMenu : System.Web.UI.UserControl
                 ListMenu crlm = ConvertToMenu(null, channel.ChannelName, channel.ChannelName, "#", null);
 
                 //crlm.Children.Add(ConvertToMenu(null, channel.ChannelName, channel.ChannelName + channel.Channel.Model.Name, channel.Channel.Model.ListTemplatePath + "?Channel=" + channel.Channel.Suffix, null));
-                crlm.Children.Add(ConvertToMenu(null, channel.ChannelName, channel.ChannelName + r.Next(), "../ListRouting.ashx?Channel=" + channel.Channel.Suffix, null));
+                //crlm.Children.Add(ConvertToMenu(null, channel.ChannelName, channel.ChannelName + r.Next(), "../ListRouting.ashx?Channel=" + channel.Channel.Suffix, null));
+                crlm.Children.Add(ConvertToMenu(null, "分类管理", channel.ChannelName + r.Next(), "../ListRouting.ashx?Channel=" + channel.Channel.Suffix, null));
+
+                List<ListMenu> list = GetModelCategory(channel.Channel.Suffix, channel.Channel.Model.ClassName);
+
+                crlm.Children.AddRange(list);
 
                 lm.Add(crlm);
             }
             #endregion
 
             return lm;
+        }
+
+        /// <summary>
+        /// 临时解决方式，暂时没想到什么好的方法
+        /// </summary>
+        /// <param name="Suffix"></param>
+        /// <returns></returns>
+        private static List<ListMenu> GetModelCategory(String Suffix, String ClassName)
+        {
+            try
+            {
+                Random r = new Random();
+                EntityFactory.CreateOperate(ClassName).TableName += Suffix;
+
+                Type t = EntityFactory.Create(ClassName).GetType();
+
+                List<ListMenu> list = new List<ListMenu>();
+
+                Dictionary<String, String> CategoryDic = t.InvokeMember("FindChildsByNoParent", BindingFlags.InvokeMethod | BindingFlags.Public | BindingFlags.Static, null, null, new Object[] { 0 }) as Dictionary<String, String>;
+
+                foreach (KeyValuePair<String, String> item in CategoryDic)
+                {
+                    ListMenu lm = new ListMenu(item.Value, "../FormRouting.ashx?Channel=" + Suffix + "&CategoryID=" + item.Key + "&Name=" + item.Value.Trim());
+
+                    lm.Title = (item.Value.Trim()) + r.Next();
+
+                    list.Add(lm);
+                }
+                return list;
+            }
+            catch (Exception ex)
+            {
+                XTrace.WriteLine(ex.Message);
+                WebHelper.Alert("请联系管理员！");
+                return null;
+            }
+            finally
+            {
+
+                EntityFactory.CreateOperate(ClassName).TableName = "";
+
+                Type t = EntityFactory.Create(ClassName).GetType();
+
+                PropertyInfoX pix = PropertyInfoX.Create(t, "Root");
+
+                pix.SetValue(null);
+            }
         }
 
         /// <summary>

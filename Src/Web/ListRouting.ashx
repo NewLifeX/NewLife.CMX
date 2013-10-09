@@ -11,7 +11,7 @@ public class ListRouting : IHttpHandler
     {
         if (Admin.Current == null) context.Response.Redirect("Default.aspx");
 
-        //参数可以频道的ID也可以频道名称也可以扩展名（Suffix）
+        //参数频道的扩展名（Suffix）
         Channel c = Channel.FindBySuffix(context.Request["Channel"]);
 
         Admin admin = Admin.Current;
@@ -19,7 +19,6 @@ public class ListRouting : IHttpHandler
         ChannelRole cr = ChannelRole.FindChannelIDAndRoleID(c.ID, admin.RoleID);
 
         if (cr == null) context.Response.Redirect("Default.aspx");
-
 
         if (c != null)
         {
