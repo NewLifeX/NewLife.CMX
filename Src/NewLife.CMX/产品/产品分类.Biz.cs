@@ -29,7 +29,7 @@ namespace NewLife.CMX
 
             // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
             //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
-            
+
         }
 
         ///// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
@@ -127,6 +127,25 @@ namespace NewLife.CMX
                 return Meta.Cache.Entities.Find(__.ID, id);
             // 单对象缓存
             //return Meta.SingleCache[id];
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="parentKey"></param>
+        /// <returns></returns>
+        public static Dictionary<String, String> FindChildsByNoParent(Int32 parentKey)
+        {
+            EntityList<ProductCategory> entitylist = ProductCategory.FindAllChildsNoParent(parentKey);
+
+            Dictionary<String, String> dic = new Dictionary<string, string>();
+
+            foreach (ProductCategory item in entitylist)
+            {
+                dic.Add(item.ID.ToString(), item.TreeNodeName);
+            }
+
+            return dic;
         }
         #endregion
 

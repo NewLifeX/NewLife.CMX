@@ -128,6 +128,25 @@ namespace NewLife.CMX
             // 单对象缓存
             //return Meta.SingleCache[id];
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="parentKey"></param>
+        /// <returns></returns>
+        public static Dictionary<String, String> FindChildsByNoParent(Int32 parentKey)
+        {
+            EntityList<ArticleCategory> entitylist = ArticleCategory.FindAllChildsNoParent(parentKey);
+
+            Dictionary<String, String> dic = new Dictionary<string, string>();
+
+            foreach (ArticleCategory item in entitylist)
+            {
+                dic.Add(item.ID.ToString(), item.TreeNodeName);
+            }
+
+            return dic;
+        }
         #endregion
 
         #region 高级查询
