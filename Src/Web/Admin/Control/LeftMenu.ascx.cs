@@ -180,7 +180,7 @@ public partial class Admin_LeftMenu : System.Web.UI.UserControl
                 //crlm.Children.Add(ConvertToMenu(null, channel.ChannelName, channel.ChannelName + r.Next(), "../ListRouting.ashx?Channel=" + channel.Channel.Suffix, null));
                 crlm.Children.Add(ConvertToMenu(null, "分类管理", channel.ChannelName + r.Next(), "../ListRouting.ashx?Channel=" + channel.Channel.Suffix, null));
 
-                List<ListMenu> list = GetModelCategory(channel.Channel.Suffix, channel.Channel.Model.ClassName);
+                List<ListMenu> list = GetModelCategory2(channel.Channel.Suffix, channel.Channel.Model.ClassName);
 
                 crlm.Children.AddRange(list);
 
@@ -227,7 +227,54 @@ public partial class Admin_LeftMenu : System.Web.UI.UserControl
             }
             finally
             {
+                EntityFactory.CreateOperate(ClassName).TableName = "";
 
+                Type t = EntityFactory.Create(ClassName).GetType();
+
+                PropertyInfoX pix = PropertyInfoX.Create(t, "Root");
+
+                pix.SetValue(null);
+            }
+        }
+
+        /// <summary>
+        /// 临时解决方式，暂时没想到什么好的方法
+        /// </summary>
+        /// <param name="Suffix"></param>
+        /// <returns></returns>
+        private static List<ListMenu> GetModelCategory2(String Suffix, String ClassName)
+        {
+            try
+            {
+                Random r = new Random();
+                EntityFactory.CreateOperate(ClassName).TableName += Suffix;
+
+                Type t = EntityFactory.Create(ClassName).GetType();
+
+                List<ListMenu> list = new List<ListMenu>();
+
+                Dictionary<String, String> CategoryDic = t.BaseType.InvokeMember("FindChildNameAndIDByNoParent", BindingFlags.InvokeMethod | BindingFlags.Public | BindingFlags.Static, null, null, new Object[] { 0 }) as Dictionary<String, String>;
+
+                foreach (KeyValuePair<String, String> item in CategoryDic)
+                {
+                    ListMenu lm = new ListMenu();
+                    lm.Name = item.Value;
+                    lm.Title = (item.Value + r.Next()).Trim();
+
+                    lm.Url = Convert.ToInt32(item.Key) > 0 ? "../FormRouting.ashx?Channel=" + Suffix + "&CategoryID=" + item.Key + "&Name=" + item.Value.Trim() : "#";
+
+                    list.Add(lm);
+                }
+                return list;
+            }
+            catch (Exception ex)
+            {
+                XTrace.WriteLine(ex.Message);
+                WebHelper.Alert("请联系管理员！");
+                return null;
+            }
+            finally
+            {
                 EntityFactory.CreateOperate(ClassName).TableName = "";
 
                 Type t = EntityFactory.Create(ClassName).GetType();

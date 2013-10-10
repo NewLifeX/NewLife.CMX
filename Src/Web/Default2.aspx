@@ -10,8 +10,14 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <a href="Info/XW/1.aspx">点击表单</a>
-            <a href ="List/DWZ/10.aspx">点击列表页</a>
+            <ul>
+                <li>
+                    <a href="Info/XW/1.aspx">点击表单</a>
+                </li>
+                <li>
+                    <a href="List/DWZ/10.aspx">点击列表页</a>
+                </li>
+            </ul>
         </div>
     </form>
 </body>
