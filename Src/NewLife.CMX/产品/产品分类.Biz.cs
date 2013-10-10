@@ -12,7 +12,7 @@ using XCode.Configuration;
 namespace NewLife.CMX
 {
     /// <summary>产品分类</summary>
-    public partial class ProductCategory : EntityTree<ProductCategory>
+    public partial class ProductCategory : ExtendEntityTree<ProductCategory>
     {
         #region 对象操作﻿
 
@@ -129,24 +129,25 @@ namespace NewLife.CMX
             //return Meta.SingleCache[id];
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="parentKey"></param>
-        /// <returns></returns>
-        public static Dictionary<String, String> FindChildsByNoParent(Int32 parentKey)
-        {
-            EntityList<ProductCategory> entitylist = ProductCategory.FindAllChildsNoParent(parentKey);
+        //基类中实现
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="parentKey"></param>
+        ///// <returns></returns>
+        //public static Dictionary<String, String> FindChildsByNoParent(Int32 parentKey)
+        //{
+        //    EntityList<ProductCategory> entitylist = ProductCategory.FindAllChildsNoParent(parentKey);
 
-            Dictionary<String, String> dic = new Dictionary<string, string>();
+        //    Dictionary<String, String> dic = new Dictionary<string, string>();
 
-            foreach (ProductCategory item in entitylist)
-            {
-                dic.Add(item.ID.ToString(), item.TreeNodeName);
-            }
+        //    foreach (ProductCategory item in entitylist)
+        //    {
+        //        dic.Add(item.ID.ToString(), item.TreeNodeName);
+        //    }
 
-            return dic;
-        }
+        //    return dic;
+        //}
         #endregion
 
         #region 高级查询
