@@ -98,12 +98,8 @@ public class MyModelEntityForm<TEntity> : MyModelEntityForm where TEntity : Enti
         }
         catch (Exception)
         {
-
-            throw;
-        }
-        finally
-        {
             EntityFactory.CreateOperate(EntityType).TableName = "";
+            throw;
         }
     }
 

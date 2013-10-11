@@ -6,7 +6,7 @@ html, body
 {
     font-size: 12px;
     font-family: "宋体", Arial;
-    color: #7b7b7b;
+    /*color: #7b7b7b;*/
 }
 
 a
@@ -14,10 +14,10 @@ a
     text-decoration: none;
 }
 
-a:hover
-{
-    text-decoration: underline;
-}
+    a:hover
+    {
+        text-decoration: underline;
+    }
 
 .clearfix:after, .mod:after
 {
@@ -84,7 +84,7 @@ html[xmlns] .clearfix, html[xmlns] .mod
     background: url(../images/index_01.jpg) no-repeat center top;
     /*overflow: hidden;*/
     /*margin: 0 auto;*/
-    margin:auto;
+    margin: auto;
     position: absolute;
     /*top: 0;
     left: 0;*/
@@ -104,157 +104,162 @@ html[xmlns] .clearfix, html[xmlns] .mod
         background: url(../images/index_01.jpg);
     }
 
-#wrpper .header .mod
-{
-    float: left;
-    width: 339px;
-    height: 64px;
-    margin: 61px 0 0 650px;
-    display: inline;
-}
+        #wrpper .header .mod
+        {
+            float: left;
+            width: 339px;
+            height: 64px;
+            margin: 61px 0 0 650px;
+            display: inline;
+        }
 
-#wrpper .header .mod .link
-{
-    float: left;
-    width: 167px;
-    height: 64px;
-}
+            #wrpper .header .mod .link
+            {
+                float: left;
+                width: 167px;
+                height: 64px;
+            }
 
-#wrpper .header .mod .link a
-{
-    float: left;
-    cursor: pointer;
-    width: 83px;
-    height: 32px;
-}
+                #wrpper .header .mod .link a
+                {
+                    float: left;
+                    cursor: pointer;
+                    width: 83px;
+                    height: 32px;
+                }
 
-#wrpper .header .mod .search
-{
-    float: left;
-    width: 172px;
-    height: 20px;
-    padding: 22px 0;
-    display: inline;
-}
+            #wrpper .header .mod .search
+            {
+                float: left;
+                width: 172px;
+                height: 20px;
+                padding: 22px 0;
+                display: inline;
+            }
 
-#wrpper .header .mod .search input
-{
-    float: left;
-    width: 100px;
-    height: 20px;
-    line-height: 20px;
-}
+                #wrpper .header .mod .search input
+                {
+                    float: left;
+                    width: 100px;
+                    height: 20px;
+                    line-height: 20px;
+                }
 
-#wrpper .header .mod form .botton
-{
-    float: left;
-    width: 60px;
-    height: 22px;
-    line-height: 22px;
-    margin-left: 5px;
-    display: inline;
-}
+            #wrpper .header .mod form .botton
+            {
+                float: left;
+                width: 60px;
+                height: 22px;
+                line-height: 22px;
+                margin-left: 5px;
+                display: inline;
+            }
 
-#wrpper .header .nav
-{
-    float: left;
-    width: 817px;
-    height: 40px;
-    margin: 48px 0 0 155px;
-    display: inline;
-}
+        #wrpper .header .nav
+        {
+            float: left;
+            width: 817px;
+            height: 40px;
+            margin: 48px 0 0 155px;
+            display: inline;
+        }
 
-#wrpper .header .nav a
-{
-    cursor: pointer;
-    float: left;
-    text-indent: -999em;
-}
+            #wrpper .header .nav a
+            {
+                cursor: pointer;
+                float: left;
+                text-indent: -999em;
+            }
 
-#wrpper .header .nav a#nav1
-{
-    width: 64px;
-    height: 40px;
-    display: inline;
-}
+                #wrpper .header .nav a#nav1
+                {
+                    width: 64px;
+                    height: 40px;
+                    display: inline;
+                }
 
-#wrpper .header .nav a#nav2
-{
-    width: 119px;
-    height: 40px;
-    display: inline;
-}
+                #wrpper .header .nav a#nav2
+                {
+                    width: 119px;
+                    height: 40px;
+                    display: inline;
+                }
 
-#wrpper .header .nav a#nav3
-{
-    width: 119px;
-    height: 40px;
-    display: inline;
-}
+                #wrpper .header .nav a#nav3
+                {
+                    width: 119px;
+                    height: 40px;
+                    display: inline;
+                }
 
-#wrpper .header .nav a#nav4
-{
-    width: 100px;
-    height: 40px;
-    display: inline;
-}
+                #wrpper .header .nav a#nav4
+                {
+                    width: 100px;
+                    height: 40px;
+                    display: inline;
+                }
 
-#wrpper .header .nav a#nav5
-{
-    width: 102px;
-    height: 40px;
-    display: inline;
-}
+                #wrpper .header .nav a#nav5
+                {
+                    width: 102px;
+                    height: 40px;
+                    display: inline;
+                }
 
-#wrpper .header .nav a#nav6
-{
-    width: 100px;
-    height: 40px;
-    display: inline;
-}
+                #wrpper .header .nav a#nav6
+                {
+                    width: 100px;
+                    height: 40px;
+                    display: inline;
+                }
 
-#wrpper .header .nav a#nav7
-{
-    width: 90px;
-    height: 40px;
-    display: inline;
-}
+                #wrpper .header .nav a#nav7
+                {
+                    width: 90px;
+                    height: 40px;
+                    display: inline;
+                }
 
-#wrpper .header .nav a#nav8
-{
-    width: 122px;
-    height: 40px;
-    display: inline;
-}
+                #wrpper .header .nav a#nav8
+                {
+                    width: 122px;
+                    height: 40px;
+                    display: inline;
+                }
 
+    #wrpper .w1134_1
+    {
+        /*width: 1134px;*/
+        height: 332px;
+        background: url(../images/index_02.jpg);
+    }
 
-#wrpper .w1134_1
-{
-    width: 1134px;
-    height: 332px;
-    background: url(../images/index_02.jpg);
-}
+    #wrpper .w1134_2
+    {
+        /*width: 1134px;*/
+        min-height: 314px;
+        background: url(../images/index_03.jpg);
+    }
 
-#wrpper .w1134_2
-{
-    width: 1134px;
-    height: 314px;
-    background: url(../images/index_03.jpg);
-}
+    #wrpper .ArticleContentList
+    {
+        /*width: 1134px;*/
+        min-height: 270px;
+        background: url(../images/index_04.jpg);
+    }
 
-#wrpper .ArticleContent
-{
-    width: 1134px;
-    height: 270px;
-    background: url(../images/index_04.jpg);
-}
+    #wrpper .foot
+    {
+        /*width: 1134px;*/
+        min-height: 164px;
+        background: url(../images/foot.jpg) repeat-x;
+    }
 
-#wrpper .foot
-{
-    /*width: 1134px;*/
-    min-height: 164px;
-    background: url(../images/foot.jpg) repeat-x;
-}
+    #wrpper .foot1
+    {
+        min-height: 164px;
+        background: url(../images/foot1.jpg) repeat-x;
+    }
 
 .flash
 {
@@ -336,13 +341,13 @@ html[xmlns] .clearfix, html[xmlns] .mod
     margin-left: 352px;
 }
 
-.more a
-{
-    float: left;
-    width: 87px;
-    height: 27px;
-    cursor: pointer;
-}
+    .more a
+    {
+        float: left;
+        width: 87px;
+        height: 27px;
+        cursor: pointer;
+    }
 
 .text
 {
@@ -352,27 +357,27 @@ html[xmlns] .clearfix, html[xmlns] .mod
     margin: 0 0 0 55px;
 }
 
-.text ul
-{
-    float: left;
-    width: 419px;
-    height: 204px;
-    margin: 19px 14px;
-}
+    .text ul
+    {
+        float: left;
+        width: 419px;
+        height: 204px;
+        margin: 19px 14px;
+    }
 
-.text ul li
-{
-    float: left;
-    width: 404px;
-    height: 27px;
-    line-height: 27px;
-    border-bottom: 1px solid #9cc4df;
-    background: url(../images/jt.jpg) no-repeat;
-    padding-left: 15px;
-    margin-top: 5px;
-    font-size: 12px;
-    overflow: hidden;
-}
+        .text ul li
+        {
+            float: left;
+            width: 404px;
+            height: 27px;
+            line-height: 27px;
+            border-bottom: 1px solid #9cc4df;
+            background: url(../images/jt.jpg) no-repeat;
+            padding-left: 15px;
+            margin-top: 5px;
+            font-size: 12px;
+            overflow: hidden;
+        }
 
 .text2
 {
@@ -382,27 +387,27 @@ html[xmlns] .clearfix, html[xmlns] .mod
     margin: 46px 0 0 128px;
 }
 
-.text2 ul
-{
-    float: left;
-    width: 419px;
-    height: 204px;
-    margin: 0 14px;
-}
+    .text2 ul
+    {
+        float: left;
+        width: 419px;
+        height: 204px;
+        margin: 0 14px;
+    }
 
-.text2 ul li
-{
-    float: left;
-    width: 404px;
-    height: 27px;
-    line-height: 27px;
-    border-bottom: 1px solid #9cc4df;
-    background: url(../images/jt.jpg) no-repeat;
-    padding-left: 15px;
-    margin-top: 5px;
-    font-size: 12px;
-    overflow: hidden;
-}
+        .text2 ul li
+        {
+            float: left;
+            width: 404px;
+            height: 27px;
+            line-height: 27px;
+            border-bottom: 1px solid #9cc4df;
+            background: url(../images/jt.jpg) no-repeat;
+            padding-left: 15px;
+            margin-top: 5px;
+            font-size: 12px;
+            overflow: hidden;
+        }
 
 .g1
 {
@@ -426,12 +431,132 @@ html[xmlns] .clearfix, html[xmlns] .mod
     color: #000;
 }
 
-.g2 a
-{
-    color: #000;
-}
+    .g2 a
+    {
+        color: #000;
+    }
 
 .navtitle:hover
 {
-    background:rgba(198,201,206,0.6);
+    background: rgba(198,201,206,0.6);
+}
+
+#wrpper h2
+{
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 80px;
+    text-align: center;
+}
+
+#wrpper .otherInfo
+{
+    float: right;
+    margin-bottom: 5px;
+    margin-right: 80px;
+}
+
+#wrpper .contentLine
+{
+    background-color: blue;
+    clear: both;
+    height: 2px;
+    margin-left: 67px;
+    width: 1000px;
+}
+
+#wrpper #article
+{
+    font-size: 14px;
+    line-height: 23px;
+    margin-left: 80px;
+    padding: 18px 0;
+    width: 820px;
+}
+
+#wrpper .articleContent
+{
+    font-size: 14px;
+    line-height: 25px;
+}
+
+#articlelist
+{
+    min-height: 600px;
+    position: relative;
+}
+
+    #articlelist .articlekind
+    {
+        float: left;
+        width: 390px;
+        min-height: 500px;
+    }
+
+    #articlelist .kind
+    {
+        margin-left: 50px;
+        margin-top: 15px;
+    }
+
+    #articlelist .articletitle
+    {
+        float: right;
+        margin-top: 30px;
+        /*margin-left:100px;*/
+    }
+
+    #articlelist .title
+    {
+    }
+
+        #articlelist .title ul
+        {
+            width: 700px;
+        }
+
+            #articlelist .title ul li
+            {
+                float: none;
+                background: url("../images/jt.jpg") no-repeat scroll 0 0 transparent;
+                border-bottom: 1px solid #9CC4DF;
+                font-size: 12px;
+                height: 30px;
+                line-height: 30px;
+                margin-top: 5px;
+                overflow: hidden;
+                padding-left: 15px;
+            }
+
+    #articlelist .articlekind h1
+    {
+        text-align: center;
+        padding-top: 10px;
+        margin-top: 2px;
+        font-size: 20px;
+        font-weight: bold;
+        background-color: #57A9D8;
+    }
+
+    #articlelist .Paging
+    {
+        position: absolute;
+        right: 350px;
+        bottom: 50px;
+    }
+
+#kindlist ul li
+{
+    float: none;
+}
+
+#kindlist
+{
+    margin-left: 130px;
+    margin-top: 20px;
+}
+
+.date
+{
+    float: right;
 }

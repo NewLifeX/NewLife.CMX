@@ -16,17 +16,29 @@
                 <div class="header">
                     <Custom:HeadControl runat="server" ID="head" />
                 </div>
-                <div>
-                    <table>
-                        <asp:Repeater runat="server" ID="frmarticle" EnableViewState="false">
-                            <ItemTemplate>
-                                <tr>
-                                    <td><a href="<%# ResolveUrl("~/Info/"+Suffix+"/"+Eval("ID")+".aspx")%>"><%# Eval("Title") %></a></td>
-                                    <td></td>
-                                </tr>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    </table>
+                <div id="articlelist">
+                    <div class="articlekind">
+                        <h1>分类名称</h1>
+                        <div id="kindlist">
+                            <%--<ul>
+                                <li>2</li>
+                                <li>3</li>
+                                <li>4</li>
+                            </ul>--%>
+                            <Custom:KindList runat="server" ID="kind" />
+                        </div>
+                    </div>
+                    <div class="articletitle">
+                        <div class="title">
+                            <Custom:ListControl runat="server" ID="NewCenter" />
+                        </div>
+                    </div>
+                    <div class="Paging">
+                        <webdiyer:AspNetPager ID="AspNetPager1" runat="server" HorizontalAlign="Center" PagingButtonSpacing="8px"
+                            OnPageChanged="AspNetPager1_PageChanged" UrlPaging="True" Width="100%" ShowNavigationToolTip="true"
+                            UrlPageIndexName="pageindex" EnableUrlRewriting="true" UrlRewritePattern="">
+                        </webdiyer:AspNetPager>
+                    </div>
                 </div>
                 <div class="foot">
                     <Custom:FootControl runat="server" ID="foot" />

@@ -49,13 +49,13 @@
                         <div class="int">简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</div>
                     </div>
                 </div>
-                <div class="ArticleContent">
+                <div class="ArticleContentList">
                     <div class="text">
-                        <div class="more"><a target="_blank" href="#" title="更多新闻"></a></div>
-                        <Custom:ArticleControl runat="server" ID="NewCenter" ChannelSuffix="SX" Count="6" CategoryName="迎泽区" />
+                        <div class="more"><a target="_blank" href="<%= ResolveUrl("~/List/SX/2.aspx") %>" title="更多新闻"></a></div>
+                        <Custom:ListControl runat="server" ID="NewCenter" ChannelSuffix="SX" Count="6" CategoryName="迎泽区" />
                     </div>
                     <div class="text2">
-                        <Custom:ArticleControl runat="server" ID="ArticleControl1" ChannelSuffix="SX" Count="6" CategoryName="迎泽区" />
+                        <Custom:ListControl runat="server" ID="ArticleControl1" ChannelSuffix="SX" Count="6" CategoryName="迎泽区" />
                     </div>
                 </div>
                 <div class="foot">

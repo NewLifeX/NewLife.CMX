@@ -127,12 +127,8 @@ public class MyModelEntityList<TEntity> : MyModelEntityList where TEntity : Enti
         }
         catch (Exception)
         {
-
-            throw;
-        }
-        finally
-        {
             EntityFactory.CreateOperate(EntityType).TableName = "";
+            throw;
         }
     }
 

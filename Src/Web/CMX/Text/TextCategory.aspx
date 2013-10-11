@@ -7,12 +7,12 @@
     <div class="tools_box">
         <div class="tools_bar">
             <a href="TextCategoryForm.aspx" class="tools_btn listpage"><span><b class="add">添加文本分类</b></span></a>
-            <div class="search_box">
+            <%--<div class="search_box">
                 关键字：<asp:TextBox ID="txtKey" runat="server"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="查询" />
-            </div>
+            </div>--%>
         </div>
     </div>
-    <asp:GridView ID="gv" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="ods" AllowPaging="True" AllowSorting="True" CssClass="msgtable" PageSize="10" CellPadding="0" GridLines="None" EnableModelValidation="True">
+    <asp:GridView ID="gv" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="ods" CssClass="msgtable" CellPadding="0" GridLines="None" EnableModelValidation="True">
         <Columns>
             <%--<asp:TemplateField>
                 <ItemTemplate>

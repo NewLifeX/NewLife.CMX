@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using NewLife.CMX;
+using NewLife.CommonEntity;
 using NewLife.Log;
 using NewLife.Web;
 
@@ -11,14 +12,17 @@ public partial class Template_Article_ArticleForm : NewLife.CMX.WebBase.WebPageB
 {
     public String Suffix { get { return Request["Suffix"]; } }
     public Int32 ArticleContentID { get { return WebHelper.RequestInt("ID"); } }
-    public ArticleContent Article;
+    public ArticleContent ArticleContent;
 
     protected override void OnInit(EventArgs e)
     {
         try
         {
             ArticleContent.Meta.TableName += Suffix;
-            Article = ArticleContent.FindByParentIDAndNewVersion(ArticleContentID);
+
+            ArticleContent = ArticleContent.FindByParentIDAndNewVersion(ArticleContentID);
+       
+            ArticleContent.Suffix = Suffix;
 
             base.OnInit(e);
         }
@@ -36,6 +40,9 @@ public partial class Template_Article_ArticleForm : NewLife.CMX.WebBase.WebPageB
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (!IsPostBack)
+        {
+            Article.UpdateClickHit(Suffix, ArticleContent.ParentID);
+        }
     }
 }

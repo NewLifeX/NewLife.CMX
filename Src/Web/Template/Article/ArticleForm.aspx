@@ -16,13 +16,17 @@
                 <div class="header">
                     <Custom:HeadControl runat="server" ID="head" />
                 </div>
-                <div>
-                    <h2><%=Article.Title %></h2>
-                    <div>
-                        <%=Article.Content %>
+                <div class="contentinfo">
+                    <h2><%=ArticleContent.Title %></h2>
+                    <div class="otherInfo">浏览：<%= ArticleContent.Article.Hits %>&nbsp;次&nbsp;添加时间：【<%= ArticleContent.CreateTime.ToShortDateString() %>】</div>
+                    <div class="contentLine"></div>
+                    <div id="article">
+                        <div id="articleContent">
+                            <%=ArticleContent.Content %>
+                        </div>
                     </div>
                 </div>
-                <div class="foot">
+                <div class="foot1">
                     <Custom:FootControl runat="server" ID="foot" />
                 </div>
             </div>
