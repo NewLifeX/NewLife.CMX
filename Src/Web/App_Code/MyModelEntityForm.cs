@@ -79,21 +79,32 @@ public class MyModelEntityForm<TEntity> : MyModelEntityForm where TEntity : Enti
 
     protected override void OnInit(EventArgs e)
     {
-        Channel c = Channel.FindBySuffix(Request["Channel"]);
-
-        if (c == null) throw new Exception("未知频道");
-        EntityFactory.CreateOperate(EntityType).TableName = "";
-        EntityFactory.CreateOperate(EntityType).TableName += c.Suffix;
-
-
-        if (EntityType.BaseType.GetGenericTypeDefinition() != typeof(EntityTree<>))
+        try
         {
-            FieldInfoX mix = FieldInfoX.Create(EntityType, "ChannelSuffix");
+            Channel c = Channel.FindBySuffix(Request["Channel"]);
 
-            mix.SetValue(c.Suffix);
+            if (c == null) throw new Exception("未知频道");
+            EntityFactory.CreateOperate(EntityType).TableName = "";
+            EntityFactory.CreateOperate(EntityType).TableName += c.Suffix;
+
+            if (EntityType.BaseType.GetGenericTypeDefinition() != typeof(EntityTree<>) && EntityType.BaseType.GetGenericTypeDefinition() != typeof(ExtendEntityTree<>))
+            {
+                FieldInfoX mix = FieldInfoX.Create(EntityType, "ChannelSuffix");
+
+                mix.SetValue(c.Suffix);
+            }
+
+            base.OnInit(e);
         }
+        catch (Exception)
+        {
 
-        base.OnInit(e);
+            throw;
+        }
+        finally
+        {
+            EntityFactory.CreateOperate(EntityType).TableName = "";
+        }
     }
 
     protected override void OnSaveStateComplete(EventArgs e)

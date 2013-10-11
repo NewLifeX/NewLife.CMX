@@ -102,26 +102,38 @@ public class MyModelEntityList<TEntity> : MyModelEntityList where TEntity : Enti
 
     protected override void OnInit(EventArgs e)
     {
-        Channel c = Channel.FindBySuffix(Request["Channel"]);
-
-        if (c == null) throw new Exception("未知频道");
-        EntityFactory.CreateOperate(EntityType).TableName = "";
-        EntityFactory.CreateOperate(EntityType).TableName += c.Suffix;
-
-        if (EntityType.BaseType.GetGenericTypeDefinition() == typeof(EntityTree<>))
+        try
         {
-            PropertyInfoX pix = PropertyInfoX.Create(EntityType, "Root");
+            Channel c = Channel.FindBySuffix(Request["Channel"]);
 
-            pix.SetValue(null);
+            if (c == null) throw new Exception("未知频道");
+            EntityFactory.CreateOperate(EntityType).TableName = "";
+            EntityFactory.CreateOperate(EntityType).TableName += c.Suffix;
+
+            if (EntityType.BaseType.GetGenericTypeDefinition() == typeof(EntityTree<>) || EntityType.BaseType.GetGenericTypeDefinition() == typeof(ExtendEntityTree<>))
+            {
+                PropertyInfoX pix = PropertyInfoX.Create(EntityType, "Root");
+
+                pix.SetValue(null);
+            }
+            else
+            {
+                FieldInfoX fix = FieldInfoX.Create(EntityType, "ChannelSuffix");
+
+                fix.SetValue(c.Suffix);
+            }
+
+            base.OnInit(e);
         }
-        else
+        catch (Exception)
         {
-            FieldInfoX fix = FieldInfoX.Create(EntityType, "ChannelSuffix");
 
-            fix.SetValue(c.Suffix);
+            throw;
         }
-
-        base.OnInit(e);
+        finally
+        {
+            EntityFactory.CreateOperate(EntityType).TableName = "";
+        }
     }
 
     protected override void OnSaveStateComplete(EventArgs e)
