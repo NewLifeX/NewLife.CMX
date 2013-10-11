@@ -44,7 +44,8 @@ namespace NewLife.CMX
                 CreateUserID = Admin.Current.ID;
                 CreateUserName = Admin.Current.DisplayName;
             }
-            if (!Dirtys[__.UpdateTime])
+            //过滤应更新点击而导致的数据验证
+            if (!Dirtys[__.UpdateTime] && Admin.Current != null && !(Dirtys.Count == 1 && Dirtys[_.Hits]))
             {
                 UpdateTime = DateTime.Now;
                 UpdateUserID = Admin.Current.ID;
@@ -99,7 +100,6 @@ namespace NewLife.CMX
 
             Int32 num = base.OnInsert();
 
-            //SaveContent(Version);
             CommonTool.SaveModelContent(typeof(ArticleContent), Version, ChannelSuffix, this, null);
 
             return num;
@@ -108,11 +108,13 @@ namespace NewLife.CMX
         /// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
         protected override int OnUpdate()
         {
-            Version += 1;
+            //过滤只更新点击次数的情况
+            if (Admin.Current != null && !(Dirtys.Count == 1 && Dirtys[_.Hits]))
+            {
+                Version += 1;
 
-            //SaveContent(Version);
-            CommonTool.SaveModelContent(typeof(ArticleContent), Version, ChannelSuffix, this, null);
-
+                CommonTool.SaveModelContent(typeof(ArticleContent), Version, ChannelSuffix, this, null);
+            }
             return base.OnUpdate();
         }
         #endregion
@@ -126,18 +128,30 @@ namespace NewLife.CMX
         {
             get
             {
-                if (_ArticleContent == null && !Dirtys.ContainsKey("ArticleContent"))
+                try
                 {
-                    ArticleContent.Meta.TableName += ChannelSuffix;
-
-                    _ArticleContent = ArticleContent.FindByParentIDAndVersion(ID, Version);
-
-                    if (_ArticleContent == null)
+                    if (_ArticleContent == null && !Dirtys.ContainsKey("ArticleContent"))
                     {
-                        _ArticleContent = new ArticleContent();
+                        ArticleContent.Meta.TableName += ChannelSuffix;
+
+                        _ArticleContent = ArticleContent.FindByParentIDAndVersion(ID, Version);
+
+                        if (_ArticleContent == null)
+                        {
+                            _ArticleContent = new ArticleContent();
+                        }
                     }
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+                finally
+                {
                     ArticleContent.Meta.TableName = "";
                 }
+
                 return _ArticleContent;
             }
             set { _ArticleContent = value; }
@@ -151,7 +165,8 @@ namespace NewLife.CMX
             {
                 if (_ConentTxt == null && !Dirtys.ContainsKey("ConentTxt"))
                 {
-                    _ConentTxt = ArticleContent.Content ?? "";
+                    //_ConentTxt = ArticleContent.Content ?? "";
+                    _ConentTxt = "";
                     Dirtys["ConentTxt"] = true;
                 }
                 return _ConentTxt;
@@ -195,6 +210,18 @@ namespace NewLife.CMX
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="CategoryID"></param>
+        /// <param name="orderClause"></param>
+        /// <param name="startRowIndex"></param>
+        /// <param name="maximumRows"></param>
+        /// <returns></returns>
+        public static EntityList<Article> Search(Int32[] CategoryID, String orderClause, Int32 startRowIndex, Int32 maximumRows)
+        {
+            return FindAll(SearchWhere(CategoryID), orderClause, null, startRowIndex, maximumRows);
+        }
+        /// <summary>
         /// 查询满足条件的记录总数，分页和排序无效，带参数是因为ObjectDataSource要求它跟Search统一
         /// </summary>
         /// <param name="key">关键字</param>
@@ -207,6 +234,11 @@ namespace NewLife.CMX
             return FindCount(SearchWhere(key, CategoryID), null, null, 0, 0);
         }
 
+
+        public static Int32 SearchCount(Int32[] CategoryID, String orderClause, Int32 startRowIndex, Int32 maximumRows)
+        {
+            return FindCount(SearchWhere(CategoryID), null, null, 0, 0);
+        }
         /// <summary>构造搜索条件</summary>
         /// <param name="key">关键字</param>
         /// <returns></returns>
@@ -230,6 +262,18 @@ namespace NewLife.CMX
             var exp = SearchWhereByKeys(key, null);
 
             exp &= _.CategoryID == CategoryID;
+
+            return exp;
+        }
+
+        private static String SearchWhere(Int32[] CategoryID)
+        {
+            //String[] str = Array.ConvertAll(CategoryID, e => e.ToString());
+            //String array = String.Join(",", str);
+            //var exp = SearchWhereByKeys(null, null);
+            //exp=SearchWhere
+            var exp = new WhereExpression();
+            exp &= _.CategoryID.In(CategoryID);
 
             return exp;
         }
@@ -268,6 +312,31 @@ namespace NewLife.CMX
         //        ieo.TableName = "";
         //    }
         //}
+
+        /// <summary>
+        /// 更新点击次数
+        /// </summary>
+        /// <param name="Suffix"></param>
+        /// <param name="ParentID"></param>
+        public static void UpdateClickHit(string Suffix, Int32 ParentID)
+        {
+            try
+            {
+                Meta.TableName += Suffix;
+                var entity = FindByKey(ParentID);
+
+                entity.Hits += 1;
+                entity.Save();
+            }
+            catch (Exception ex)
+            {
+                XTrace.WriteLine(ex.Message);
+            }
+            finally
+            {
+                Meta.TableName = "";
+            }
+        }
         #endregion
     }
 }

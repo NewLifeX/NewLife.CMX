@@ -12,11 +12,19 @@ namespace NewLife.CMX.WebBase
         {
             base.InitializeCulture();
 
-            Page.Load += delegate(object sender, EventArgs e)
-            {
-                if (RewriteHelper != null && Page.Form != null)
-                    Page.Form.Action = String.IsNullOrEmpty(RewriteHelper.FormAction) ? Page.Request.Path : RewriteHelper.FormAction;
-            };
+            //Page.Load += delegate(object sender, EventArgs e)
+            //{
+            //    if (RewriteHelper != null && Page.Form != null)
+            //        Page.Form.Action = String.IsNullOrEmpty(RewriteHelper.FormAction) ? Page.Request.Path : RewriteHelper.FormAction;
+            //};
+
+            Page.Load += Page_Load;
+        }
+
+        void Page_Load(object sender, EventArgs e)
+        {
+            if (RewriteHelper != null && Page.Form != null)
+                Page.Form.Action = String.IsNullOrEmpty(RewriteHelper.FormAction) ? Page.Request.Path : RewriteHelper.FormAction;
         }
 
         /// <summary>

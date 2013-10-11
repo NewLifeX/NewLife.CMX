@@ -88,6 +88,31 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
+        private Article _Article;
+        /// <summary>文章</summary>
+        public Article Article
+        {
+            get
+            {
+                if (_Article == null && ParentID > 0 && !Dirtys.ContainsKey("Article"))
+                {
+                    Article.Meta.TableName += Suffix;
+                    _Article = Article.FindByKey(ParentID);
+                    Dirtys["Article"] = true;
+                    Article.Meta.TableName = "";
+                }
+                return _Article;
+            }
+            set { _Article = value; }
+        }
+
+        private String _Suffix;
+        /// <summary></summary>
+        public String Suffix
+        {
+            get { return _Suffix; }
+            set { _Suffix = value; }
+        }
         #endregion
 
         #region 扩展查询﻿
@@ -137,7 +162,7 @@ namespace NewLife.CMX
             if (entitylist == null || entitylist.Count == 0)
                 return null;
             else
-                return entitylist.OrderBy(e => e.Version).ToArray()[0];
+                return entitylist.OrderByDescending(e => e.Version).ToArray()[0];
         }
         #endregion
 

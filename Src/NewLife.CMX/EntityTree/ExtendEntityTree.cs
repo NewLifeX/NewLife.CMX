@@ -8,7 +8,7 @@ namespace NewLife.CMX
     public class ExtendEntityTree<T> : EntityTree<T> where T : ExtendEntityTree<T>, new()
     {
         /// <summary>
-        /// 
+        /// 查询子类以及子类的ID如果子类不是最终类，返回的时候ID会被改为负数
         /// </summary>
         /// <param name="parentKey"></param>
         /// <returns></returns>

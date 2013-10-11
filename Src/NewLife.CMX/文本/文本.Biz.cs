@@ -124,16 +124,27 @@ namespace NewLife.CMX
         {
             get
             {
-                if (_TextContent == null && !Dirtys.ContainsKey("TextContent"))
+                try
                 {
-                    TextContent.Meta.TableName += ChannelSuffix;
-
-                    _TextContent = TextContent.FindByParentIDAndVersion(ID, Version);
-
-                    if (_TextContent == null)
+                    if (_TextContent == null && !Dirtys.ContainsKey("TextContent"))
                     {
-                        _TextContent = new TextContent();
+                        TextContent.Meta.TableName += ChannelSuffix;
+
+                        _TextContent = TextContent.FindByParentIDAndVersion(ID, Version);
+
+                        if (_TextContent == null)
+                        {
+                            _TextContent = new TextContent();
+                        }
                     }
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+                finally
+                {
                     TextContent.Meta.TableName = "";
                 }
                 return _TextContent;
@@ -149,7 +160,7 @@ namespace NewLife.CMX
             {
                 if (_ConentTxt == null && !Dirtys.ContainsKey("ConentTxt"))
                 {
-                    _ConentTxt = TextContent.Content ?? "";
+                    _ConentTxt = "";
                     Dirtys["ConentTxt"] = true;
                 }
                 return _ConentTxt;
