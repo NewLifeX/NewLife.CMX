@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using NewLife.CMX;
-using NewLife.Web;
-using NewLife.Linq;
-using XCode;
-using NewLife.Log;
 using NewLife.CommonEntity;
+using NewLife.Log;
+using NewLife.Web;
+using XCode;
 
 public partial class Template_Article_ArticleList : NewLife.CMX.WebBase.WebPageBase
 {

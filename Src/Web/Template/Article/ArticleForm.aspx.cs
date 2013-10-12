@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using NewLife.CMX;
-using NewLife.CommonEntity;
 using NewLife.Log;
 using NewLife.Web;
 

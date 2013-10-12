@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.IO;
-using NewLife.Web;
 using System.Text;
-using NewLife.Log;
+using System.Threading;
+using System.Web.UI;
 using NewLife.CMX;
+using NewLife.Log;
+using NewLife.Web;
 
 public partial class Template_List : NewLife.CMX.WebBase.WebPageBase
 {
@@ -51,7 +49,7 @@ public partial class Template_List : NewLife.CMX.WebBase.WebPageBase
         }
 
         StringWriter strWriterHTML = new StringWriter();
-        System.Web.UI.Page aspxPage = new System.Web.UI.Page();
+        Page aspxPage = new Page();
 
         String path = C.ListTemplate + GetRQ();
 
@@ -60,7 +58,7 @@ public partial class Template_List : NewLife.CMX.WebBase.WebPageBase
             //aspxPage.Server.Execute(C.Template + "?Code=" + Code, strWriterHTML);//将aspx页执行产生的html输出到StringWriter中
             aspxPage.Server.Execute(path, strWriterHTML);//将aspx页执行产生的html输出到StringWriter中
         }
-        catch (System.Threading.ThreadAbortException ex)
+        catch (ThreadAbortException ex)
         {
             Response.Redirect(path);
         }
@@ -103,5 +101,4 @@ public partial class Template_List : NewLife.CMX.WebBase.WebPageBase
         Response.Write(Msg);
         Response.End();
     }
-
 }
