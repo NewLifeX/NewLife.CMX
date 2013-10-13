@@ -13,6 +13,7 @@ public partial class Template_Info : Page
     /// <summary>内容ID</summary>
     public Int32 ID
     {
+        
         get { return WebHelper.RequestInt("ID"); }
     }
 

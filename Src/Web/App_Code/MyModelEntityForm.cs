@@ -87,7 +87,7 @@ public class MyModelEntityForm<TEntity> : MyModelEntityForm where TEntity : Enti
             EntityFactory.CreateOperate(EntityType).TableName = "";
             EntityFactory.CreateOperate(EntityType).TableName += c.Suffix;
 
-            if (EntityType.BaseType.GetGenericTypeDefinition() != typeof(EntityTree<>) && EntityType.BaseType.GetGenericTypeDefinition() != typeof(ExtendEntityTree<>))
+            if (EntityType.BaseType.GetGenericTypeDefinition() != typeof(EntityTree<>) && EntityType.BaseType.GetGenericTypeDefinition() != typeof(ModelCategoryEntity<>))
             {
                 FieldInfoX mix = FieldInfoX.Create(EntityType, "ChannelSuffix");
 

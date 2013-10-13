@@ -19,6 +19,8 @@
                 </li>
             </ul>
         </div>
+        <asp:FileUpload runat="server" ID="fu" />
+        <asp:Button ID="bt" runat="server" Text="点击"/>
     </form>
 </body>
 </html>

@@ -1,9 +1,13 @@
-﻿<%@ Page Title="产品管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="ProductForm.aspx.cs" Inherits="CMX_ProductForm"  ValidateRequest="false"%>
+﻿<%@ Page Title="产品管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="ProductForm.aspx.cs" Inherits="CMX_ProductForm" ValidateRequest="false" %>
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="H">
     <title>产品管理</title>
     <script type="text/javascript" charset="utf-8" src="../../UEditor/ueditor.config.js"></script>
     <script type="text/javascript" charset="utf-8" src="../../UEditor/ueditor.all.js"></script>
+    <script type="text/javascript">
+        
+
+    </script>
 </asp:Content>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
     <div id="contentTab">
@@ -37,15 +41,20 @@
                             <XCL:DecimalBox ID="frmPrice" runat="server" Width="80px"></XCL:DecimalBox></td>
                     </tr>
                     <tr>
+                        <th>上传图片：</th>
+                        <td>
+                            <input type="button" value="上传" /></td>
+                    </tr>
+                    <tr>
                         <th>访问统计：</th>
                         <td>
                             <XCL:NumberBox ID="frmStatisticsID" runat="server" Width="80px"></XCL:NumberBox></td>
                     </tr>
-                    <tr>
+                    <%--  <tr>
                         <th>创建人：</th>
                         <td>
                             <XCL:NumberBox ID="frmCreateUserID" runat="server" Width="80px"></XCL:NumberBox></td>
-                    </tr>
+                    </tr>--%>
                     <tr>
                         <th>创建人：</th>
                         <td>
@@ -56,11 +65,11 @@
                         <td>
                             <XCL:DateTimePicker ID="frmCreateTime" runat="server"></XCL:DateTimePicker></td>
                     </tr>
-                    <tr>
+                    <%--  <tr>
                         <th>更新人：</th>
                         <td>
                             <XCL:NumberBox ID="frmUpdateUserID" runat="server" Width="80px"></XCL:NumberBox></td>
-                    </tr>
+                    </tr>--%>
                     <tr>
                         <th>更新人：</th>
                         <td>
@@ -87,7 +96,6 @@
                 </tbody>
             </table>
         </div>
-
         <div class="tab_con">
             <table class="form_table">
                 <col width="180px">
@@ -112,3 +120,4 @@
         </div>
     </div>
 </asp:Content>
+

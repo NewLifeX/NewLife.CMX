@@ -26,7 +26,6 @@ public class FormRouting : IHttpHandler
 
             if (!String.IsNullOrEmpty(url))
             {
-                //context.Request.
                 url += "?" + context.Request.QueryString.ToString();
                 context.Response.Redirect(url);
             }

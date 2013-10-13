@@ -20,11 +20,6 @@
                     <div class="articlekind">
                         <h1>分类名称</h1>
                         <div id="kindlist">
-                            <%--<ul>
-                                <li>2</li>
-                                <li>3</li>
-                                <li>4</li>
-                            </ul>--%>
                             <Custom:KindList runat="server" ID="kind" />
                         </div>
                     </div>

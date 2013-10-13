@@ -26,6 +26,8 @@ public partial class Template_Article_ArticleList : NewLife.CMX.WebBase.WebPageB
 
             Category = ArticleCategory.FindByID(CategoryID);
 
+            NewCenter.ChannelSuffix = Suffix;
+
             if (Category.IsEnd)
             {
                 NewCenter.Scoure = GetArticleList(new int[] { CategoryID });
@@ -35,7 +37,6 @@ public partial class Template_Article_ArticleList : NewLife.CMX.WebBase.WebPageB
                 List<Int32> listcategory = Category.AllChilds.FindAll(ArticleCategory._.IsEnd, true).GetItem<Int32>(ArticleCategory._.ID);
 
                 NewCenter.Scoure = GetArticleList(listcategory.ToArray());
-
             }
             base.OnInit(e);
         }
@@ -106,7 +107,7 @@ public partial class Template_Article_ArticleList : NewLife.CMX.WebBase.WebPageB
             Article.Meta.TableName += Suffix;
 
             Category = ArticleCategory.FindByID(CategoryID);
-
+            
             if (Category.IsEnd)
             {
                 NewCenter.Scoure = GetArticleList(new int[] { CategoryID });
@@ -116,6 +117,7 @@ public partial class Template_Article_ArticleList : NewLife.CMX.WebBase.WebPageB
                 List<Int32> listcategory = Category.AllChilds.FindAll(ArticleCategory._.IsEnd, true).GetItem<Int32>(ArticleCategory._.ID);
                 NewCenter.Scoure = GetArticleList(listcategory.ToArray());
             }
+            NewCenter.ChannelSuffix = Suffix;
         }
         catch (Exception ex)
         {
