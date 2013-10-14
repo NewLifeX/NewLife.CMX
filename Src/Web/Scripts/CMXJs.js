@@ -5,7 +5,6 @@ function getUrlParam(name) {
     if (r != null) return unescape(r[2]); return null; //返回参数值
 }
 
-
 $(function () {
     /*设置添加按钮传递参数*/
     if ($('.listpage')[0] != null) {
@@ -16,7 +15,7 @@ $(function () {
         //if (!href.contains(param)) {
         //    $('.listpage').attr('href', href + param);
         //}
-      
+
         if (href.indexOf(param) < 0) {
             $('.listpage').attr('href', href + param);
         }

@@ -31,7 +31,7 @@ public class ListRouting : IHttpHandler
         }
 
         context.Response.StatusCode = 404;
-        context.Response.Write("未知地址！");
+        //context.Response.Write("未知地址！");
     }
 
     /// <summary>

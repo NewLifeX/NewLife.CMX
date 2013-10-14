@@ -3,6 +3,7 @@ using NewLife.CMX;
 using NewLife.Log;
 using NewLife.Web;
 
+
 public partial class Template_Article_ArticleForm : NewLife.CMX.WebBase.WebPageBase
 {
     public String Suffix { get { return Request["Suffix"]; } }
@@ -18,7 +19,6 @@ public partial class Template_Article_ArticleForm : NewLife.CMX.WebBase.WebPageB
             ArticleContent = ArticleContent.FindByParentIDAndNewVersion(ArticleContentID);
        
             ArticleContent.Suffix = Suffix;
-
             base.OnInit(e);
         }
         catch (Exception ex)
