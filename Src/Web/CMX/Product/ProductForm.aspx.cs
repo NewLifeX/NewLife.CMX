@@ -14,7 +14,7 @@ public partial class CMX_ProductForm : MyModelEntityForm<Product>
     protected override void OnInitComplete(EventArgs e)
     {
         base.OnInitComplete(e);
-
+        frmPhotoPathimg.ImageUrl = Entity.PhotoPath;
         Entity.CategoryName = Entity.CategoryName ?? Request["Name"];
     }
 

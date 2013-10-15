@@ -4,9 +4,41 @@
     <title>产品管理</title>
     <script type="text/javascript" charset="utf-8" src="../../UEditor/ueditor.config.js"></script>
     <script type="text/javascript" charset="utf-8" src="../../UEditor/ueditor.all.js"></script>
+    <script src="../../Scripts/jQueryFormPatch/jQueryFormPatch.js"></script>
+    <script src="../../Scripts/jquery/jquery.form.js"></script>
     <script type="text/javascript">
-        
+        $(function () {
+            $('#upload').click(function () {
+                $('form').ajaxSubmit({
+                    url: "../../UpdateImageLoad.ashx",
+                    type: 'post',
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("error:" + errorThrown);
+                    },
+                    target: ".fu",
+                    success: function (responseText, statusText, xhr, $form) {
 
+                        var jsonarray = $.parseJSON(responseText);
+                        var targetvalue = '';
+                        var length = $('.fu').val().lastIndexOf('\\');
+
+                        if (length > 0) {
+                            targetvalue = $('.fu').val().substr(length + 1);
+                        }
+                        else {
+                            targetvalue = $('.fu').val();
+                        }
+
+                        $.each(jsonarray, function (i, n) {
+                            if (n.key == targetvalue) {
+                                $('.img').attr('src', n.value);
+                                $('.imglabel').val(n.value);
+                            }
+                        });
+                    }
+                });
+            });
+        });
     </script>
 </asp:Content>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
@@ -43,7 +75,10 @@
                     <tr>
                         <th>上传图片：</th>
                         <td>
-                            <input type="button" value="上传" /></td>
+                            <asp:Image ID="frmPhotoPathimg" runat="server" CssClass="img" Width="150px" ImageUrl="#" />
+                            <asp:Label ID="frmPhotoPath1" runat="server" CssClass="imglabel" Text="1ssssssssss">12</asp:Label>
+                            <asp:FileUpload ID="fu" runat="server" CssClass="fu" />
+                            <input type="button" value="上传" id="upload" /></td>
                     </tr>
                     <tr>
                         <th>访问统计：</th>

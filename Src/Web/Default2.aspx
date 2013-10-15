@@ -12,16 +12,32 @@
     <script type="text/javascript">
         $(function () {
             $('#btnajax').click(function () {
+
                 $('#form1').ajaxSubmit({
-                    url: "updateload.ashx?updatePath=''",
+                    url: "UpdateImageLoad.ashx?CustomImagePath=",
                     type: 'post',
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         alert("error:" + errorThrown);
                     },
                     target: ".fb",
                     success: function (responseText, statusText, xhr, $form) {
-                        var i = responseText;
-                        alert(responseText);
+
+                        var jsonarray = $.parseJSON(responseText);
+                        var targetvalue = '';
+                        var length = $('.fb').val().lastIndexOf('\\');
+
+                        if (length > 0) {
+                            targetvalue = $('.fb').val().substr(length + 1);
+                        }
+                        else {
+                            targetvalue = $('.fb').val();
+                        }
+
+                        $.each(jsonarray, function (i, n) {
+                            if (n.key == targetvalue) {
+                                $('.img').attr('src', n.value);
+                            }
+                        });
                     }
                 });
             });
@@ -29,9 +45,11 @@
     </script>
 </head>
 <body>
+
     <form runat="server" id="form1" class="ffo">
         <asp:TextBox ID="tb" runat="server"></asp:TextBox>
         <asp:FileUpload ID="fb" runat="server" CssClass="fb" />
+        <asp:Image ID="img" runat="server" CssClass="img"  Width="150px" ImageUrl="#" />
         <%--<asp:Button ID="bt" runat="server" Text="点击" />--%>
         <input type="button" value="测试" id="btnajax" />
     </form>
