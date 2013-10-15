@@ -37,6 +37,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AjaxStatusEnum\AjaxStatusEnum.cs" />
     <Compile Include="Base\基础信息.Biz.cs" />
     <Compile Include="Base\基础信息.cs" />
     <Compile Include="CMS\SysModel.cs" />
@@ -44,14 +45,16 @@
     <Compile Include="Editor\UEditorAjaxCore.cs" />
     <Compile Include="Editor\UEditorConfig.cs" />
     <Compile Include="Editor\UEUploader.cs" />
-    <Compile Include="EntityTree\ExtendEntityTree.cs" />
+    <Compile Include="ModelBase\ModelCategoryEntity.cs" />
     <Compile Include="Manager\AttachConfig.cs" />
     <Compile Include="Manager\MailConfig.cs" />
     <Compile Include="Manager\SiteConfig.cs" />
     <Compile Include="Manager\SysConfig.cs" />
     <Compile Include="Manager\Admin.cs" />
+    <Compile Include="ModelBase\ModelEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tool\CommonTool.cs" />
+    <Compile Include="Interface\IModel.cs" />
     <Compile Include="WebBase\WebPageBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

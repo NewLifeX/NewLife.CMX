@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Xml.Serialization;
+using NewLife.CMX.ModelBase;
 using NewLife.CMX.Tool;
 using NewLife.CommonEntity;
 using NewLife.Log;
@@ -19,7 +20,7 @@ using XCode.Configuration;
 namespace NewLife.CMX
 {
     /// <summary>产品</summary>
-    public partial class Product : Entity<Product>
+    public partial class Product : ModelEntityBase<Product>
     {
         #region 对象操作﻿
 

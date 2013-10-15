@@ -172,6 +172,7 @@
       <Column Name="UpdateUserName" DataType="String" Description="更新人" />
       <Column Name="UpdateTime" DataType="DateTime" Description="更新时间" />
       <Column Name="Remark" DataType="String" Length="200" Description="备注" />
+      <Column Name="PhotoPath" DataType="String" Length="200" Description="图片路径" />
     </Columns>
     <Indexes>
       <Index Columns="CategoryID" />

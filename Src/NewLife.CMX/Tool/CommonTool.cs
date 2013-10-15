@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Web;
+using NewLife.Log;
 using NewLife.Reflection;
+using NewLife.Serialization.Json;
 using XCode;
 
 namespace NewLife.CMX.Tool
@@ -9,7 +13,7 @@ namespace NewLife.CMX.Tool
     public class CommonTool
     {
         /// <summary>
-        /// 
+        /// 保存模板内容
         /// </summary>
         /// <param name="entityType"></param>
         /// <param name="Version"></param>
@@ -29,17 +33,9 @@ namespace NewLife.CMX.Tool
                 IEntityOperate ieo = EntityFactory.CreateOperate(entityType);
                 ieo.TableName += Suffix;
 
-                //ArticleContent ac = ieo.Create() as ArticleContent;
                 IEntity ientity = ieo.Create();
                 try
                 {
-                    //ac.ParentID = (Int32)entity["ID"];
-                    //ac.Content = entity["ArticleConentTxt"].ToString();
-                    //ac.Title = entity["Title"].ToString();
-
-                    //ac.Version = Version;
-
-                    //ac.Save();
                     ientity["ParentID"] = (Int32)entity["ID"];
                     ientity["Content"] = entity["ConentTxt"].ToString();
                     ientity["Title"] = entity["Title"].ToString();
@@ -55,6 +51,69 @@ namespace NewLife.CMX.Tool
                     ieo.TableName = "";
                 }
             }
+        }
+
+        /// <summary>
+        /// 将字典格式化为json字符串
+        /// </summary>
+        /// <param name="dic"></param>
+        /// <returns></returns>
+        public static String DicToJson(Dictionary<String, String> dic)
+        {
+            SimpleJsonUtil sj = new SimpleJsonUtil();
+
+            List<SimpleJson> list = new List<SimpleJson>();
+
+            foreach (KeyValuePair<String, String> item in dic)
+            {
+                list.Add(sj.Object("key", item.Key, "value", item.Value));
+            }
+
+            return sj.To(sj.Array(list.ToArray()));
+        }
+
+        /// <summary>
+        /// 上传照片
+        /// </summary>
+        /// <param name="file"></param>
+        /// <param name="UploadPath"></param>
+        /// <param name="FailFile"></param>
+        /// <returns></returns>
+        public static Dictionary<String, String> UpLoadImage(HttpFileCollection file, String RootPath, String UploadPath, out List<String> FailFile)
+        {
+            String FilePath, UploadFile;
+            FailFile = new List<string>();
+            Dictionary<String, String> Dic = new Dictionary<string, string>();
+            Random r = new Random();
+
+            for (int i = 0; i < file.Count; i++)
+            {
+                try
+                {
+                    if (String.IsNullOrEmpty(file[i].FileName)) throw new Exception("文件名称不能为空！");
+
+                    FileInfo fi = new FileInfo(file[i].FileName);
+                    String ex = fi.Extension;
+
+                    while (true)
+                    {
+                        FilePath = DateTime.Now.Date.ToString("yyyyMMdd") + "N" + r.Next() + ex;
+                        FilePath = Path.Combine(UploadPath, FilePath);
+
+                        UploadFile = Path.Combine(RootPath, FilePath);
+                        if (!File.Exists(UploadFile)) break;
+                    }
+                    file[i].SaveAs(UploadFile);
+                    //将 \ 改为 /  url识别
+                    Dic.Add(file[i].FileName, "../../" + FilePath.Replace('\\', '/'));
+                }
+                catch (Exception ex)
+                {
+                    FailFile.Add(file[i].FileName);
+                    XTrace.WriteLine(ex.Message);
+                }
+            }
+            return Dic;
         }
     }
 }

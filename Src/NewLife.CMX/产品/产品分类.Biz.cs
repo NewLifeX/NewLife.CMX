@@ -12,7 +12,7 @@ using XCode.Configuration;
 namespace NewLife.CMX
 {
     /// <summary>产品分类</summary>
-    public partial class ProductCategory : ExtendEntityTree<ProductCategory>
+    public partial class ProductCategory : ModelCategoryEntity<ProductCategory>
     {
         #region 对象操作﻿
 

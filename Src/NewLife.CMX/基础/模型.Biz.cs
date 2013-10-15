@@ -21,6 +21,30 @@ namespace NewLife.CMX
     /// <remarks>模型。默认有文章、文本、产品三种模型，可以扩展增加。</remarks>
     public partial class Model : Entity<Model>
     {
+        protected override void InitData()
+        {
+            base.InitData();
+
+            if (Meta.Count > 0) return;
+
+            if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}模型数据......", typeof(Model).Name);
+
+            Meta.BeginTrans();
+            try
+            {
+                EntityList<Model> entityList = new EntityList<Model>();
+                
+                //entityList.Add();
+                //entityList.Add();
+                //entityList.Add();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         #region 对象操作﻿
 
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>

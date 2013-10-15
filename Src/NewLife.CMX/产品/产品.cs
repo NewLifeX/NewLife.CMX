@@ -186,6 +186,18 @@ namespace NewLife.CMX
             get { return _ID; }
             set { if (OnPropertyChanging(__.ID, value)) { _ID = value; OnPropertyChanged(__.ID); } }
         }
+
+        private String _PhotoPath;
+        /// <summary>图片地址</summary>
+        [DisplayName("图片地址")]
+        [Description("图片地址")]
+        [DataObjectField(false, false, true, 200)]
+        [BindColumn(15, "PhotoPath", "图片地址", null, "varchar(200)", 0, 0, false)]
+        public virtual String PhotoPath
+        {
+            get { return _PhotoPath; }
+            set { if (OnPropertyChanging(__.PhotoPath, value)) { _PhotoPath = value; OnPropertyChanged(__.PhotoPath); } }
+        }
         #endregion
 
         #region 获取/设置 字段值
@@ -216,6 +228,7 @@ namespace NewLife.CMX
                     case __.UpdateTime : return _UpdateTime;
                     case __.Remark : return _Remark;
                     case __.ID : return _ID;
+                    case __.PhotoPath : return _PhotoPath;
                     default: return base[name];
                 }
             }
@@ -237,6 +250,7 @@ namespace NewLife.CMX
                     case __.UpdateTime : _UpdateTime = Convert.ToDateTime(value); break;
                     case __.Remark : _Remark = Convert.ToString(value); break;
                     case __.ID : _ID = Convert.ToInt32(value); break;
+                    case __.PhotoPath : _PhotoPath = Convert.ToString(value); break;
                     default: base[name] = value; break;
                 }
             }
@@ -289,6 +303,9 @@ namespace NewLife.CMX
             ///<summary>编号</summary>
             public static readonly Field ID = FindByName(__.ID);
 
+            ///<summary>图片地址</summary>
+            public static readonly Field PhotoPath = FindByName(__.PhotoPath);
+
             static Field FindByName(String name) { return Meta.Table.FindByName(name); }
         }
 
@@ -336,6 +353,9 @@ namespace NewLife.CMX
 
             ///<summary>编号</summary>
             public const String ID = "ID";
+
+            ///<summary>图片地址</summary>
+            public const String PhotoPath = "PhotoPath";
 
         }
         #endregion
@@ -386,6 +406,9 @@ namespace NewLife.CMX
 
         /// <summary>编号</summary>
         Int32 ID { get; set; }
+
+        /// <summary>图片地址</summary>
+        String PhotoPath { get; set; }
         #endregion
 
         #region 获取/设置 字段值

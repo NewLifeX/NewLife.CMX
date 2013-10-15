@@ -12,7 +12,7 @@ using XCode.Configuration;
 namespace NewLife.CMX
 {
     /// <summary>文本分类</summary>
-    public partial class TextCategory : ExtendEntityTree<TextCategory>
+    public partial class TextCategory : ModelCategoryEntity<TextCategory>
     {
         #region 对象操作﻿
 
