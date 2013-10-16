@@ -28,7 +28,9 @@
             <asp:BoundField DataField="CategoryName" HeaderText="分类" SortExpression="CategoryName">
                 <ItemStyle HorizontalAlign="Center" Font-Bold="True" />
             </asp:BoundField>
-            <asp:BoundField DataField="Title" HeaderText="标题" SortExpression="Title" />
+            <asp:BoundField DataField="Title" HeaderText="标题" SortExpression="Title">
+                <ItemStyle HorizontalAlign="Center" Font-Bold="True" />
+            </asp:BoundField>
             <asp:BoundField DataField="Version" HeaderText="最新版本" SortExpression="Version" DataFormatString="{0:n0}">
                 <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
             </asp:BoundField>
@@ -46,7 +48,7 @@
             <asp:BoundField DataField="UpdateTime" HeaderText="更新时间" SortExpression="UpdateTime" DataFormatString="{0:yyyy-MM-dd}">
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="120px" />
             </asp:BoundField>
-            <asp:TemplateField HeaderText="编辑" SortExpression="Name">
+            <asp:TemplateField HeaderText="编辑产品" SortExpression="Name">
                 <ItemTemplate>
                     <asp:HyperLink ID="HyperManager" runat="server" Text='编辑产品' NavigateUrl='<%# "ProductForm.aspx?ID="+Eval("ID")%>' CssClass="formUrl"></asp:HyperLink>
                 </ItemTemplate>
@@ -72,7 +74,7 @@
             <asp:Parameter Name="maximumRows" Type="Int32" />
         </SelectParameters>
     </asp:ObjectDataSource>
-    <XCL:GridViewExtender ID="gvExt" runat="server">
+    <XCL:GridViewExtender ID="gvExt" runat="server" DblClickRowFieldText="编辑产品">
     </XCL:GridViewExtender>
     <div class="line10"></div>
 </asp:Content>

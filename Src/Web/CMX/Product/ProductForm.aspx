@@ -8,7 +8,15 @@
     <script src="../../Scripts/jquery/jquery.form.js"></script>
     <script type="text/javascript">
         $(function () {
+            $('.imglabel').css('display', 'none');
+
             $('#upload').click(function () {
+
+                if (!$('.fu').val()) {
+                    alert('请选择图片！');
+                    return;
+                }
+
                 $('form').ajaxSubmit({
                     url: "../../UpdateImageLoad.ashx",
                     type: 'post',
@@ -33,6 +41,7 @@
                             if (n.key == targetvalue) {
                                 $('.img').attr('src', n.value);
                                 $('.imglabel').val(n.value);
+                                $('.fu').text('');
                             }
                         });
                     }
@@ -62,11 +71,7 @@
                         <td>
                             <asp:TextBox ID="frmTitle" runat="server" Width="300px"></asp:TextBox></td>
                     </tr>
-                    <tr>
-                        <th>最新版本：</th>
-                        <td>
-                            <XCL:NumberBox ID="frmVersion" runat="server" Width="80px"></XCL:NumberBox></td>
-                    </tr>
+
                     <tr>
                         <th>价格：</th>
                         <td>
@@ -76,7 +81,7 @@
                         <th>上传图片：</th>
                         <td>
                             <asp:Image ID="frmPhotoPathimg" runat="server" CssClass="img" Width="150px" ImageUrl="#" />
-                            <asp:Label ID="frmPhotoPath1" runat="server" CssClass="imglabel" Text="1ssssssssss">12</asp:Label>
+                            <asp:TextBox ID="frmPhotoPath" runat="server" CssClass="imglabel"></asp:TextBox>
                             <asp:FileUpload ID="fu" runat="server" CssClass="fu" />
                             <input type="button" value="上传" id="upload" /></td>
                     </tr>
@@ -85,11 +90,6 @@
                         <td>
                             <XCL:NumberBox ID="frmStatisticsID" runat="server" Width="80px"></XCL:NumberBox></td>
                     </tr>
-                    <%--  <tr>
-                        <th>创建人：</th>
-                        <td>
-                            <XCL:NumberBox ID="frmCreateUserID" runat="server" Width="80px"></XCL:NumberBox></td>
-                    </tr>--%>
                     <tr>
                         <th>创建人：</th>
                         <td>
@@ -100,11 +100,6 @@
                         <td>
                             <XCL:DateTimePicker ID="frmCreateTime" runat="server"></XCL:DateTimePicker></td>
                     </tr>
-                    <%--  <tr>
-                        <th>更新人：</th>
-                        <td>
-                            <XCL:NumberBox ID="frmUpdateUserID" runat="server" Width="80px"></XCL:NumberBox></td>
-                    </tr>--%>
                     <tr>
                         <th>更新人：</th>
                         <td>
@@ -116,11 +111,15 @@
                             <XCL:DateTimePicker ID="frmUpdateTime" runat="server"></XCL:DateTimePicker></td>
                     </tr>
                     <tr>
+                        <th>最新版本：</th>
+                        <td>
+                            <XCL:NumberBox ID="frmVersion" runat="server" Width="80px"></XCL:NumberBox></td>
+                    </tr>
+                    <tr>
                         <th>备注：</th>
                         <td>
                             <asp:TextBox ID="frmRemark" runat="server" Width="300px"></asp:TextBox></td>
                     </tr>
-
                     <tr>
                         <th></th>
                         <td>

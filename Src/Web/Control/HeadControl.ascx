@@ -8,7 +8,7 @@
     </div>
     <div class="search">
         <input name="" type="text" />
-        <button name="搜索" class="botton" style="width: 54px;">搜索</button>
+        <button name="搜索" class="button" style="width: 54px;">搜索</button>
     </div>
 </div>
 <div class="nav">

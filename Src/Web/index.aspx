@@ -8,6 +8,9 @@
     <title>东莞市月无声实业</title>
     <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/style/css.css") %>" />
     <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/style/base.css") %>" />
+    <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/style/bootstrap.css") %>" />
+    <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/style/bootstrap-theme.css") %>" />
+    <script type="text/javascript" src="<%= ResolveUrl("~/Scripts/bootstrap/bootstrap.js") %>"></script>
 </head>
 <body>
     <form id="form1" runat="server">
