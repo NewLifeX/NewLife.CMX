@@ -113,7 +113,7 @@ namespace NewLife.CMX
             if (Admin.Current != null && !(Dirtys.Count == 1 && Dirtys[_.Hits]))
             {
                 Version += 1;
-
+               
                 CommonTool.SaveModelContent(typeof(ArticleContent), Version, ChannelSuffix, this, null);
             }
             return base.OnUpdate();

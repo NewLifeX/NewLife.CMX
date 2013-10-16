@@ -104,8 +104,9 @@ namespace NewLife.CMX.Tool
                         if (!File.Exists(UploadFile)) break;
                     }
                     file[i].SaveAs(UploadFile);
-                    //将 \ 改为 /  url识别
-                    Dic.Add(file[i].FileName, "../../" + FilePath.Replace('\\', '/'));
+                    //将 \ 改为 /  url识别,设置设置路径为相对根目录
+                    Dic.Add(file[i].FileName, "/" + FilePath.Replace('\\', '/'));
+                    //Dic.Add(file[i].FileName, Directory.GetCurrentDirectory() + FilePath.Replace('\\', '/'));
                 }
                 catch (Exception ex)
                 {

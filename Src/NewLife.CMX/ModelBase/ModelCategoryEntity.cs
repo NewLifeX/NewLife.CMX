@@ -29,6 +29,7 @@ namespace NewLife.CMX
                 else
                     dic.Add("-" + item["ID"].ToString(), item.TreeNodeName);
             }
+
             return dic;
         }
     }

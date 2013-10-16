@@ -46,6 +46,8 @@ namespace NewLife.CMX.ModelBase
         /// <returns></returns>
         public virtual string GetClassPath()
         {
+
+
             throw new NotImplementedException();
         }
 
