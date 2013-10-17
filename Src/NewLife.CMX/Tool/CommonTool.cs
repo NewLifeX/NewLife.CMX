@@ -79,7 +79,7 @@ namespace NewLife.CMX.Tool
         /// <param name="UploadPath"></param>
         /// <param name="FailFile"></param>
         /// <returns></returns>
-        public static Dictionary<String, String> UpLoadImage(HttpFileCollection file, String RootPath, String UploadPath, out List<String> FailFile)
+        public static Dictionary<String, String> UpLoadImage(HttpFileCollection file, String PhysicsRootPath, String UploadPath, out List<String> FailFile)
         {
             String FilePath, UploadFile;
             FailFile = new List<string>();
@@ -100,12 +100,13 @@ namespace NewLife.CMX.Tool
                         FilePath = DateTime.Now.Date.ToString("yyyyMMdd") + "N" + r.Next() + ex;
                         FilePath = Path.Combine(UploadPath, FilePath);
 
-                        UploadFile = Path.Combine(RootPath, FilePath);
+                        UploadFile = Path.Combine(PhysicsRootPath, FilePath);
                         if (!File.Exists(UploadFile)) break;
                     }
                     file[i].SaveAs(UploadFile);
                     //将 \ 改为 /  url识别,设置设置路径为相对根目录
-                    Dic.Add(file[i].FileName, "/" + FilePath.Replace('\\', '/'));
+
+                    Dic.Add(file[i].FileName, Path.Combine(HttpRuntime.AppDomainAppVirtualPath, FilePath.Replace('\\', '/')));
                     //Dic.Add(file[i].FileName, Directory.GetCurrentDirectory() + FilePath.Replace('\\', '/'));
                 }
                 catch (Exception ex)
