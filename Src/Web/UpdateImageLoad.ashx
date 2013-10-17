@@ -38,6 +38,7 @@ public class UpdateImageLoad : IHttpHandler
             // 获取/创建上传路径
             String CustomImagePath = context.Request["CustomImagePath"];
             String RootPath = context.Request.PhysicalApplicationPath;
+
             String UploadPath = "";
             List<String> FailFile;
             UploadPath = String.IsNullOrEmpty(CustomImagePath) ? DefaultImagePath : CustomImagePath;

@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 using NewLife.Log;
 using NewLife.Web;
 using NewLife.CMX;
+using System.IO;
 
 public partial class CMX_ProductForm : MyModelEntityForm<Product>
 {
@@ -14,7 +15,7 @@ public partial class CMX_ProductForm : MyModelEntityForm<Product>
     protected override void OnInitComplete(EventArgs e)
     {
         base.OnInitComplete(e);
-        frmPhotoPathimg.ImageUrl = Entity.PhotoPath;
+        frmPhotoPathimg.ImageUrl = Path.Combine(Request.ApplicationPath, Entity.PhotoPath);
         Entity.CategoryName = Entity.CategoryName ?? Request["Name"];
     }
 
@@ -28,6 +29,7 @@ public partial class CMX_ProductForm : MyModelEntityForm<Product>
     void EntityForm_OnGetForm(object sender, NewLife.CommonEntity.EntityFormEventArgs e)
     {
         Entity.ConentTxt = Request["MyContent"];
+        Entity.PhotoPath = Entity.PhotoPath.Replace(Request.ApplicationPath + "/", "");
 
     }
 }
