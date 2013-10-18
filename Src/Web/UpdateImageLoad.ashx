@@ -38,7 +38,6 @@ public class UpdateImageLoad : IHttpHandler
             // 获取/创建上传路径
             String CustomImagePath = context.Request["CustomImagePath"];
             String RootPath = context.Request.PhysicalApplicationPath;
-
             String UploadPath = "";
             List<String> FailFile;
             UploadPath = String.IsNullOrEmpty(CustomImagePath) ? DefaultImagePath : CustomImagePath;
@@ -62,7 +61,7 @@ public class UpdateImageLoad : IHttpHandler
             }
 
             //获取到上传成功的文件相对
-            Dictionary<String, String> filePathDic = CommonTool.UpLoadImage(file, RootPath, UploadPath, out FailFile);
+            Dictionary<String, String> filePathDic = HelperTool.UpLoadImage(file, RootPath, UploadPath, out FailFile);
             //部分文件上传失败
             if (FailFile.Count > 0)
             {
@@ -112,7 +111,7 @@ public class UpdateImageLoad : IHttpHandler
         }
         finally
         {
-            context.Response.Write(CommonTool.DicToJson(ResultDic));
+            context.Response.Write(HelperTool.DicToJson(ResultDic));
             context.Response.End();
         }
     }

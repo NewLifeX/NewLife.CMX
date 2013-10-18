@@ -95,8 +95,6 @@ html[xmlns] .clearfix, html[xmlns] .mod
     width: 1134px;
     margin: 0 auto;
     position: relative;
-	top: 0px;
-	left: 0px;
 }
 
     #wrpper .header
@@ -240,7 +238,7 @@ html[xmlns] .clearfix, html[xmlns] .mod
     {
         /*width: 1134px;*/
         min-height: 314px;
-        background: url(../images/index_03.jpg) no-repeat;
+        background: url(../images/index_03.jpg);
     }
 
     #wrpper .ArticleContentList
@@ -376,7 +374,7 @@ html[xmlns] .clearfix, html[xmlns] .mod
             border-bottom: 1px solid #9cc4df;
             background: url(../images/jt.jpg) no-repeat;
             padding-left: 15px;
-           
+            margin-top: 5px;
             font-size: 12px;
             overflow: hidden;
         }
@@ -438,7 +436,7 @@ html[xmlns] .clearfix, html[xmlns] .mod
         color: #000;
     }
 
-/*.navtitle:hover
+.navtitle:hover
 {
     background: rgba(198,201,206,0.6);
 }
@@ -474,7 +472,7 @@ html[xmlns] .clearfix, html[xmlns] .mod
     margin-left: 80px;
     padding: 18px 0;
     width: 820px;
-}*/
+}
 
 #wrpper .articleContent
 {
@@ -562,4 +560,3 @@ html[xmlns] .clearfix, html[xmlns] .mod
 {
     float: right;
 }
-	
