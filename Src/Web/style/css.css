@@ -95,6 +95,8 @@ html[xmlns] .clearfix, html[xmlns] .mod
     width: 1134px;
     margin: 0 auto;
     position: relative;
+	top: 0px;
+	left: 0px;
 }
 
     #wrpper .header
@@ -238,7 +240,7 @@ html[xmlns] .clearfix, html[xmlns] .mod
     {
         /*width: 1134px;*/
         min-height: 314px;
-        background: url(../images/index_03.jpg);
+        background: url(../images/index_03.jpg) no-repeat;
     }
 
     #wrpper .ArticleContentList
@@ -374,7 +376,7 @@ html[xmlns] .clearfix, html[xmlns] .mod
             border-bottom: 1px solid #9cc4df;
             background: url(../images/jt.jpg) no-repeat;
             padding-left: 15px;
-            margin-top: 5px;
+           
             font-size: 12px;
             overflow: hidden;
         }
@@ -436,7 +438,7 @@ html[xmlns] .clearfix, html[xmlns] .mod
         color: #000;
     }
 
-.navtitle:hover
+/*.navtitle:hover
 {
     background: rgba(198,201,206,0.6);
 }
@@ -472,7 +474,7 @@ html[xmlns] .clearfix, html[xmlns] .mod
     margin-left: 80px;
     padding: 18px 0;
     width: 820px;
-}
+}*/
 
 #wrpper .articleContent
 {
@@ -560,3 +562,117 @@ html[xmlns] .clearfix, html[xmlns] .mod
 {
     float: right;
 }
+/*-产品与服务页面-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+.w1134_pro{
+	height:1285px;
+	margin:0 auto;
+	position:relative;
+}
+.w1134_pro .top_image
+{
+	height:120px;
+	background-image:url(../images/top_image.jpg);
+}
+.w1134_pro .conten
+{
+	height:1165px;
+}
+    .conten .list
+	{
+	float:left;
+    width:180px;
+    height:600px;
+    margin-top:15px;
+	margin-left:44px;
+    background-color:#e0e1e3;
+    border:1px solid #95bcf6;
+	}
+.list #pro_title
+{
+   height:53px;
+   background-image:url(images/left-title.jpg);
+   background-repeat:no-repeat;
+   margin:0px;
+}
+.list #pro_title span
+{
+	display:none;
+}
+.list ul
+{
+  padding:10px 0 10px 0;
+  margin:0px;
+  list-style-type:none;
+
+ 
+}
+	.list ul li
+	{
+		font-size:15px;
+	}
+	.list ul ul li
+	{
+		font-size:13px;
+
+	}
+.pro_dr
+{
+	width:690px;
+	height:1150px;
+	float:right;
+	margin:15px 0 0 0;
+}
+.djsb
+{
+	height:283px;
+}
+.djsb_t1
+{
+	height:40px;
+	width:307px;
+	background-image:url(../images/djsb_t1.jpg);
+}
+.pro_dr ul
+	{
+		margin:10px 0 0 0;
+		padding:0px;
+
+}
+	.pro_dr	ul li
+{
+	width:367px; height:120px; border:solid 1px #fff;  position:relative; float:left; padding:4px 4px 4px 170px; display:inline; margin:0 0px 10px 0;
+
+}
+	.pro_dr ul li:hover
+	{
+		border:solid 1px #8BC0F6; background:#F7FAFD;
+	}
+.pro_dr ul li span
+{
+	display:block;width:155px;height:120px;overflow:hidden;position:absolute;left:0px;right: 386px;
+
+}
+    .pro_dr ul li span a
+	{
+	display:block; width:153px; height:118px; border:solid 1px #fff; margin:0; text-indent:-99999em; background-color:#CCCCCC ;
+	}
+.pro_dr ul li p.main-nav
+{ 
+margin:0 0 0 0;
+}
+.pro_dr ul li  p.main-nav a
+{
+font-size:14px; font-weight:bold; color:#c03; padding-top:0px;
+}
+		.pro_dr ul ul
+		{
+			 padding:0px;
+		}
+		.pro_dr ul ul li
+		{
+			height: 18px;
+			font-size: 14px;
+			padding: 0px;
+			margin:0px;
+		}
+	
