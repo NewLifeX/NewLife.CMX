@@ -99,7 +99,7 @@ namespace NewLife.CMX
             Int32 num = base.OnInsert();
 
             //SaveContent(Version);
-            CommonTool.SaveModelContent(typeof(TextContent), Version, ChannelSuffix, this, null);
+            HelperTool.SaveModelContent(typeof(TextContent), Version, ChannelSuffix, this, null);
 
             return num;
         }
@@ -110,7 +110,7 @@ namespace NewLife.CMX
             Version += 1;
 
             //SaveContent(Version);
-            CommonTool.SaveModelContent(typeof(TextContent), Version, ChannelSuffix, this, null);
+            HelperTool.SaveModelContent(typeof(TextContent), Version, ChannelSuffix, this, null);
 
             return base.OnUpdate();
         }
