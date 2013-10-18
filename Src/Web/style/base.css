@@ -15,7 +15,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
         vertical-align: bottom;
     }
 
-ul#nav_ul, #nav_ul li,#nav_ul input
+ul, li, input
 {
     list-style: none;
     float: left;

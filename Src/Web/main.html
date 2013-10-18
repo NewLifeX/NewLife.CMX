@@ -27,17 +27,33 @@
                 </div>
                 <div class="nav">
                     <ul>
-                       <li><a href="servant.html">首页</a></li>
-                       <li><a href="#">关于月无声</a></li>
-                       <li><a href="#">产品与服</a></li>
+                       <li ><a href="#">网站首页</a></li>
+                       <li ><a href="main.html" >关于月无声</a></li>
+                       <li onmouseout=" document.getElementById('list_pro').style.display='none'" onmouseover="this.style.color='';document.getElementById('list_pro').style.display='block'"><a href="#">产品与服务</a></li>
                        <li><a href="#">企业文化</a></li>
                        <li><a href="#">人才招聘</a></li>
-                       <li><a href="#">新闻中心</a></li>
+                       <li onmouseout=" document.getElementById('list_new').style.display='none'" onmouseover="this.style.color='';document.getElementById('list_new').style.display='block'"><a href="#">新闻中心</a></li>
                        <li><a href="#">技术论坛</a></li>
                        <li ><a href="#">月无声商城</a></li>
                    </ul>
                 </div>
-            </div>
+                <div id="draw_menu">
+                    <div id="list_yws" onmouseout="this.style.display='none';" onmouseover="this.style.display='block';" style="display: none;"></div>
+                    <div id="list_pro" onmouseout="this.style.display='none';" onmouseover="this.style.display='block';">
+                        <ul>
+                            <li><a href="#">点胶设备</a></li>
+                        </ul>
+                    </div>
+                    <div id="list_cul" onmouseout="this.style.display='none';" onmouseover="this.style.display='block';"></div>
+                    <div id="list_zp" onmouseout="this.style.display='none';" onmouseover="this.style.display='block';"></div>
+                    <div id="list_new" onmouseout="this.style.display='none';" onmouseover="this.style.display='block';"style="display: none;">
+                        <ul>
+                            <li><a href="#">行业新闻</a></li>
+                             <li><a href="#">企业新闻</a></li>
+                        </ul>
+                    </div>
+                </div>
+           </div>
           
                 <div id="contain_1">
                     <div class="mod1">
