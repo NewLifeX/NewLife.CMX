@@ -6,13 +6,89 @@
     <meta name="description" content="月无声电子设备有限公司坐落在交通方便的东莞市区,毗邻深圳、广州、佛山、惠州等城市。其主要产品有：双液灌胶机，精准双液点胶机，混合管，点胶机,AB胶枪，点胶针头，AB胶筒，点胶针筒，点胶针头，不锈钢压力桶。月无声的点胶设备适用于：环氧树脂，PU，双组份硅胶和其他双组份流体材料。" />
     <title>混合管,灌胶机,AB胶枪,点胶针筒,点胶针头 - 月无声</title>
     <link rel="stylesheet" type="text/css" href="style/css1.css" />
+    <script src="Scripts/jquery/jquery-1.9.1.min.js"></script>
     <!--<link rel="stylesheet" type="text/css" href="style/base.css" />-->
+    <style type="text/css">
+        .child
+        {
+            float: left;
+        }
+
+            .child ul
+            {
+                float: left;
+                margin: 0;
+                padding: 0;
+                width: 115px;
+            }
+
+                .child ul:first-child
+                {
+                    padding-left: 40px;
+                    margin-left: 6px;
+                }
+
+                .child ul li
+                {
+                    clear: both;
+                }
+
+        .nav .child ul li a
+        {
+            height: inherit;
+            line-height: normal;
+        }
+
+            .nav .child ul li a:hover
+            {
+                background: none;
+            }
+
+        .cp li
+        {
+            display: none;
+        }
+
+        .close
+        {
+            display: none;
+        }
+
+        .open
+        {
+            display: block;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $('.child li').attr('class', 'close');
+
+            $(".parent li").each(function () {
+                var key = $(this).attr('class');
+                key = '.' + key + ' li';
+
+                $(this).mouseover(function () {
+                    $(key).each(function () {
+                        $(this).attr('class', 'open');
+                    });
+                });
+
+                $(this).mouseout(function () {
+                    $(key).each(function () {
+                        $(this).attr('class', 'close');
+                    });
+                });
+            });
+        });
+    </script>
 </head>
 <body>
-     <div id="wrap">
+    <div id="wrap">
         <div id="wrpper">
             <div class="header">
-                <div id="logo"><h1>东莞市月无声实业</h1></div>
+                <div id="logo">
+                    <h1>东莞市月无声实业</h1>
+                </div>
                 <div class="mod">
                     <div class="link">
                         <a href="" target="_blank">点胶设备</a>
@@ -26,18 +102,51 @@
                     </form>
                 </div>
                 <div class="nav">
-                    <ul>
-                       <li ><a href="#">网站首页</a></li>
-                       <li ><a href="main.html" >关于月无声</a></li>
-                       <li onmouseout=" document.getElementById('list_pro').style.display='none'" onmouseover="this.style.color='';document.getElementById('list_pro').style.display='block'"><a href="#">产品与服务</a></li>
-                       <li><a href="#">企业文化</a></li>
-                       <li><a href="#">人才招聘</a></li>
-                       <li onmouseout=" document.getElementById('list_new').style.display='none'" onmouseover="this.style.color='';document.getElementById('list_new').style.display='block'"><a href="#">新闻中心</a></li>
-                       <li><a href="#">技术论坛</a></li>
-                       <li ><a href="#">月无声商城</a></li>
-                   </ul>
+                    <div class="parent">
+                        <ul>
+                            <li class="index"><a href="#">网站首页</a></li>
+                            <li class="about"><a href="main.html">关于月无声</a></li>
+                            <!--<li onmouseout=" document.getElementById('list_pro').style.display='none'" onmouseover="this.style.color='';document.getElementById('list_pro').style.display='block'"><a href="#">产品与服务</a></li>-->
+                            <li class="product"><a href="#">产品与服务</a></li>
+                            <li class="com"><a href="#">企业文化</a></li>
+                            <li class="recruitment"><a href="#">人才招聘</a></li>
+                            <!--<li onmouseout=" document.getElementById('list_new').style.display='none'" onmouseover="this.style.color='';document.getElementById('list_new').style.display='block'"><a href="#">新闻中心</a></li>-->
+                            <li class="new"><a href="#">新闻中心</a></li>
+                            <li class="forum"><a href="#">技术论坛</a></li>
+                            <li class="shop"><a href="#">月无声商城</a></li>
+                        </ul>
+                    </div>
+                    <div class="child">
+                        <ul class="index">
+                            <li>首页</li>
+                        </ul>
+                        <ul class="about">
+                            <li>关于月无声</li>
+                        </ul>
+                        <ul class="product">
+                            <li><a href="#">产品服务1</a></li>
+                            <li><a href="#">产品服务2</a></li>
+                            <li><a href="#">产品服务3</a></li>
+                            <li><a href="#">产品服务4</a></li>
+                        </ul>
+                        <ul class="com">
+                            <li>企业文化</li>
+                        </ul>
+                        <ul class="recruitment">
+                            <li>人才招聘</li>
+                        </ul>
+                        <ul class="new">
+                            <li>新闻中心</li>
+                        </ul>
+                        <ul class="forum">
+                            <li>技术论坛</li>
+                        </ul>
+                        <ul class="shop">
+                            <li>商场</li>
+                        </ul>
+                    </div>
                 </div>
-                <div id="draw_menu">
+                <!--<div id="draw_menu">
                     <div id="list_yws" onmouseout="this.style.display='none';" onmouseover="this.style.display='block';" style="display: none;"></div>
                     <div id="list_pro" onmouseout="this.style.display='none';" onmouseover="this.style.display='block';">
                         <ul>
@@ -46,17 +155,17 @@
                     </div>
                     <div id="list_cul" onmouseout="this.style.display='none';" onmouseover="this.style.display='block';"></div>
                     <div id="list_zp" onmouseout="this.style.display='none';" onmouseover="this.style.display='block';"></div>
-                    <div id="list_new" onmouseout="this.style.display='none';" onmouseover="this.style.display='block';"style="display: none;">
+                    <div id="list_new" onmouseout="this.style.display='none';" onmouseover="this.style.display='block';" style="display: none;">
                         <ul>
                             <li><a href="#">行业新闻</a></li>
-                             <li><a href="#">企业新闻</a></li>
+                            <li><a href="#">企业新闻</a></li>
                         </ul>
                     </div>
-                </div>
-           </div>
-          
-                <div id="contain_1">
-                    <div class="mod1">
+                </div>-->
+            </div>
+
+            <div id="contain_1">
+                <div class="mod1">
                     <div class="box">
                         <a href="" target="_blank">
                             <img src="images/1.jpg" width="223" height="123" /></a>
@@ -64,70 +173,70 @@
                     <div class="int">简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</div>
                 </div>
                 <div class="flash"></div>
-                </div>
-                <div id="contain_2">
-                    <div class="mod2">
+            </div>
+            <div id="contain_2">
+                <div class="mod2">
                     <div class="box">
                         <a href="" target="_blank">
                             <img src="images/1.jpg" width="223" height="123" /></a>
                     </div>
                     <div class="int">简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</div>
                 </div>
-                    <div class="mod3">
+                <div class="mod3">
                     <div class="box">
                         <a href="" target="_blank">
                             <img src="images/1.jpg" width="223" height="123" /></a>
                     </div>
                     <div class="int">简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</div>
                 </div>
-                    <div class="mod4">
+                <div class="mod4">
                     <div class="box">
                         <a href="" target="_blank">
                             <img src="images/1.jpg" width="223" height="123" /></a>
                     </div>
                     <div class="int">简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</div>
-                </div>
-                </div>
-                <div id="articleContent">
-                     <div class="text">
-                         <div class="more"><a href="" >更多新闻</a></div>
-                         
-                              <ul>
-                                <li>1</li>
-                                <li>2</li>
-                                <li>3</li>
-                                <li>4</li>
-                                <li>5</li>
-                                <li>6</li>
-                              </ul>
-                       
-                </div>
-                    <div class="text2">
-                         <div class="more2"><a href="" >更多新闻</a></div>
-                         
-                              <ul>
-                                <li>1</li>
-                                <li>2</li>
-                                <li>3</li>
-                                <li>4</li>
-                                <li>5</li>
-                                <li>6</li>
-                              </ul>
-                       
-                </div>
-                </div>
-            <div id="foot">
-                <div class="foot_nav">
-                     <div class="g1" ><a href="#">返回首页</a> | <a href="#">联系我们</a> | <a href="#">友情链接</a> | <a href="#">技术论坛</a> | <a href="#">月无声商城</a> |</div>
-                </div>
-                <div class="address">
-                     版权所有 © 2008-2012 东莞市月无声电子设备有限公司 粤ICP备09218017号<br />
-                    
-                    <br />
-                     地址：东莞市高埗镇冼沙村广场北路宝源工业区  电话：0769-23107897 0769-23107080
                 </div>
             </div>
-            
+            <div id="articleContent">
+                <div class="text">
+                    <div class="more"><a href="">更多新闻</a></div>
+
+                    <ul>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                        <li>6</li>
+                    </ul>
+
+                </div>
+                <div class="text2">
+                    <div class="more2"><a href="">更多新闻</a></div>
+
+                    <ul>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                        <li>6</li>
+                    </ul>
+
+                </div>
+            </div>
+            <div id="foot">
+                <div class="foot_nav">
+                    <div class="g1"><a href="#">返回首页</a> | <a href="#">联系我们</a> | <a href="#">友情链接</a> | <a href="#">技术论坛</a> | <a href="#">月无声商城</a> |</div>
+                </div>
+                <div class="address">
+                    版权所有 © 2008-2012 东莞市月无声电子设备有限公司 粤ICP备09218017号<br />
+
+                    <br />
+                    地址：东莞市高埗镇冼沙村广场北路宝源工业区  电话：0769-23107897 0769-23107080
+                </div>
+            </div>
+
         </div>
     </div>
 </body>
