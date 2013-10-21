@@ -1,17 +1,80 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>东莞市月无声实业</title>
+    <meta name="keywords" content="灌胶机,混合管,AB胶枪,点胶针筒,点胶针头" />
+    <meta name="description" content="月无声电子设备有限公司坐落在交通方便的东莞市区,毗邻深圳、广州、佛山、惠州等城市。其主要产品有：双液灌胶机，精准双液点胶机，混合管，点胶机,AB胶枪，点胶针头，AB胶筒，点胶针筒，点胶针头，不锈钢压力桶。月无声的点胶设备适用于：环氧树脂，PU，双组份硅胶和其他双组份流体材料。" />
+    <title>混合管,灌胶机,AB胶枪,点胶针筒,点胶针头 - 月无声</title>
     <link rel="stylesheet" type="text/css" href="style/css1.css" />
-    
+    <script src="Scripts/jquery/jquery-1.9.1.min.js"></script>
+    <!--<link rel="stylesheet" type="text/css" href="style/base.css" />-->
+    <style type="text/css">
+        
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $('.child li').attr('class', 'close');
+
+            $(".parent li").each(function () {
+                var key = $(this).attr('class');
+                key = '.' + key + ' li';
+
+                $(this).mouseover(function () {
+                    $(key).each(function () {
+                        $(this).attr('class', 'open');
+                    });
+                });
+
+                $(this).mouseout(function () {
+                    $(key).each(function () {
+                        $(this).attr('class', 'close');
+                    });
+                });
+            });
+        });
+/*列表项的js*/
+        var lastFaqClick = null;
+        window.onload = function () {
+            var faq = document.getElementById("faq");
+            var dls = faq.getElementsByTagName("dl");
+            for (var i = 0, dl; dl = dls[i]; i++) {
+                var dt = dl.getElementsByTagName("dt")[0];//取得标题
+                dt.id = "faq_dt_" + (Math.random() * 100);
+                dt.onclick = function () {
+                    var p = this.parentNode;//取得父节点
+                    if (lastFaqClick != null && lastFaqClick.id != this.id) {
+                        var dds = lastFaqClick.parentNode.getElementsByTagName("dd");
+                        for (var i = 0, dd; dd = dds[i]; i++)
+                            dd.style.display = 'none';
+                    }
+                    lastFaqClick = this;
+                    var dds = p.getElementsByTagName("dd");//取得对应子节点，也就是说明部分
+                    var tmpDisplay = 'none';
+                    if (gs(dds[0], 'display') == 'none')
+                        tmpDisplay = 'block';
+                    for (var i = 0; i < dds.length; i++)
+                        dds[i].style.display = tmpDisplay;
+                }
+            }
+        }
+
+        function gs(d, a) {
+            if (d.currentStyle) {
+                var curVal = d.currentStyle[a]
+            } else {
+                var curVal = document.defaultView.getComputedStyle(d, null)[a]
+            }
+            return curVal;
+        }
+    </script>
 </head>
 <body>
-    <body>
-     <div id="wrap">
+    <div id="wrap">
         <div id="wrpper">
             <div class="header">
-                <div id="logo"><h1>东莞市月无声实业</h1></div>
+                <div id="logo">
+                    <h1>东莞市月无声实业</h1>
+                </div>
                 <div class="mod">
                     <div class="link">
                         <a href="" target="_blank">点胶设备</a>
@@ -25,27 +88,80 @@
                     </form>
                 </div>
                 <div class="nav">
-                    <ul>
-                       <li><a href="servant.html">首页</a></li>
-                       <li><a href="#">关于月无声</a></li>
-                       <li><a href="#">产品与服</a></li>
-                       <li><a href="#">企业文化</a></li>
-                       <li><a href="#">人才招聘</a></li>
-                       <li><a href="#">新闻中心</a></li>
-                       <li><a href="#">技术论坛</a></li>
-                       <li ><a href="#">月无声商城</a></li>
-                   </ul>
+                    <div class="parent">
+                        <ul>
+                            <li class="index"><a href="#">网站首页</a></li>
+                            <li class="about"><a href="main.html">关于月无声</a></li>
+                            <!--<li onmouseout=" document.getElementById('list_pro').style.display='none'" onmouseover="this.style.color='';document.getElementById('list_pro').style.display='block'"><a href="#">产品与服务</a></li>-->
+                            <li class="product"><a href="#">产品与服务</a></li>
+                            <li class="com"><a href="#">企业文化</a></li>
+                            <li class="recruitment"><a href="#">人才招聘</a></li>
+                            <!--<li onmouseout=" document.getElementById('list_new').style.display='none'" onmouseover="this.style.color='';document.getElementById('list_new').style.display='block'"><a href="#">新闻中心</a></li>-->
+                            <li class="new"><a href="#">新闻中心</a></li>
+                            <li class="forum"><a href="#">技术论坛</a></li>
+                            <li class="shop"><a href="#">月无声商城</a></li>
+                        </ul>
+                    </div>
+                    <div class="child">
+                        <ul class="index">
+                            <li>首页</li>
+                        </ul>
+                        <ul class="about">
+                            <li>关于月无声</li>
+                        </ul>
+                        <ul class="product">
+                            <li><a href="#">产品服务1</a></li>
+                            <li><a href="#">产品服务2</a></li>
+                            <li><a href="#">产品服务3</a></li>
+                            <li><a href="#">产品服务4</a></li>
+                        </ul>
+                        <ul class="com">
+                            <li>企业文化</li>
+                        </ul>
+                        <ul class="recruitment">
+                            <li>人才招聘</li>
+                        </ul>
+                        <ul class="new">
+                            <li>新闻中心</li>
+                        </ul>
+                        <ul class="forum">
+                            <li>技术论坛</li>
+                        </ul>
+                        <ul class="shop">
+                            <li>商场</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
-            <div class="pro">
+            <div class="mainbody">
                <div class="top_image"></div> 
                <div class="conten">
                    <div class="list">
-                      <div id="pro_title"><span>产品分类</span></div>
-                       <ul>
+                      <div id="list_t"><span><strong>产品分类</strong></span></div>
+                       <div class="list_meu">
+                           <ul id="faq">
+                               <li>
+                                   <dl>
+                                       <dt>点胶设备</dt>
+                                       <dd><a href="#">混合管</a></dd>
+                                       <dd><a href="#">点胶机</a></dd>
+                                       <dd><a href="#">胶枪</a></dd>
+                                       <dd><a href="#">阀门</a></dd>
+                                       <dd><a href="#">压力桶</a></dd>
+                                       <dd><a href="#">针筒</a></dd>
+                                        <dd><a href="#">针头</a></dd>
+                                        <dd><a href="#">转接头</a></dd>
+                                        <dd><a href="#">料管</a></dd>
+                                        <dd><a href="#">各种耗材</a></dd>
+                                   </dl>
+                               </li>
+                           </ul>
+                          </div>
+                       </div>
+                       <!--<ul class="out_meu">
                            <li>点胶设备
-                               <ul>
+                               <ul class="inter_meu">
                                    <li>混合管</li>
                                    <li>点胶机/灌胶机/滴胶机</li>
                                    <li>胶枪/阀门/压力桶</li>
@@ -74,8 +190,7 @@
                                    <li>模型</li>
                                </ul>
                            </li>
-                       </ul>
-                   </div>
+                       </ul>-->
                    <div class="pro_dr">
                        <div class="djsb">
                            <div class="djsb_t1"></div>
@@ -83,18 +198,16 @@
                                <li> <span><a href="#" class="hhg">混合管</a></span>
                                    <p class="main-nav"><a href="#">混合管</a></p>
                                     <ul>
-                                      <li>静态混合管</li>
-                                      <li>动态混合管</li>
-                               </ul>
+                                      <li><a href="#">静态混合管</a></li>
+                                      <li><a href="#">动态混合管</a></li>
+                                    </ul>
                                </li>
                               
                            </ul>
                         </div>
                    </div>
-                   </div>
                </div>
-               
-
+           </div>
         </div>
     </div>
 </body>
