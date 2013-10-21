@@ -37,17 +37,18 @@
             $('#faq').click(function () {
                 icoPlusAndMinus();
             });
+
+            function icoPlusAndMinus() {
+                var icoclass = $('.ico').attr('class');
+                if (icoclass.indexOf('icoMinus') == -1) {
+                    $('.ico').addClass('icoMinus');
+                }
+                else {
+                    $('.ico').removeClass('icoMinus');
+                }
+            }
         });
 
-        function icoPlusAndMinus() {
-            var icoclass = $('.ico').attr('class');
-            if (icoclass.indexOf('icoMinus') == -1) {
-                $('.ico').addClass('icoMinus');
-            }
-            else {
-                $('.ico').removeClass('icoMinus');
-            }
-        }
 
         /*列表项的js*/
         var lastFaqClick = null;
@@ -57,24 +58,22 @@
             for (var i = 0, dl; dl = dls[i]; i++) {
                 var dt = dl.getElementsByTagName("dt")[0];//取得标题
                 dt.id = "faq_dt_" + (Math.random() * 100);
-                dt.onclick = dtclick;
+                dt.onclick = function () {
+                    var p = this.parentNode;//取得父节点
+                    if (lastFaqClick != null && lastFaqClick.id != this.id) {
+                        var dds = lastFaqClick.parentNode.getElementsByTagName("dd");
+                        for (var i = 0, dd; dd = dds[i]; i++)
+                            dd.style.display = 'none';
+                    }
+                    lastFaqClick = this;
+                    var dds = p.getElementsByTagName("dd");//取得对应子节点，也就是说明部分
+                    var tmpDisplay = 'none';
+                    if (gs(dds[0], 'display') == 'none')
+                        tmpDisplay = 'block';
+                    for (var i = 0; i < dds.length; i++)
+                        dds[i].style.display = tmpDisplay;
+                }
             }
-        }
-
-        function dtclick() {
-            var p = this.parentNode;//取得父节点
-            if (lastFaqClick != null && lastFaqClick.id != this.id) {
-                var dds = lastFaqClick.parentNode.getElementsByTagName("dd");
-                for (var i = 0, dd; dd = dds[i]; i++)
-                    dd.style.display = 'none';
-            }
-            lastFaqClick = this;
-            var dds = p.getElementsByTagName("dd");//取得对应子节点，也就是说明部分
-            var tmpDisplay = 'none';
-            if (gs(dds[0], 'display') == 'none')
-                tmpDisplay = 'block';
-            for (var i = 0; i < dds.length; i++)
-                dds[i].style.display = tmpDisplay;
         }
 
         function gs(d, a) {
