@@ -38,7 +38,7 @@ namespace NewLife.CMX.UrlRewrite
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

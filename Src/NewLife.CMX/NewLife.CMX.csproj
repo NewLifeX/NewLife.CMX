@@ -45,6 +45,7 @@
     <Compile Include="Config\CMXConfigBase.cs" />
     <Compile Include="Config\CMXmlConfig.cs" />
     <Compile Include="Config\CommonConfig.cs" />
+    <Compile Include="Config\TemplateConfig.cs" />
     <Compile Include="Editor\UEditorAjaxCore.cs" />
     <Compile Include="Editor\UEditorConfig.cs" />
     <Compile Include="Editor\UEUploader.cs" />
@@ -57,6 +58,8 @@
     <Compile Include="ModelBase\ModelEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interface\IModel.cs" />
+    <Compile Include="TemplateEngine\CMXEngine.cs" />
+    <Compile Include="TemplateEngine\CMXTemplateBase.cs" />
     <Compile Include="Tool\HelperTool.cs">
       <SubType>Code</SubType>
     </Compile>

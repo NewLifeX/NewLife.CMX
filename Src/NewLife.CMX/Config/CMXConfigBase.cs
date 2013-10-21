@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Text;
 using System.Web;
 using System.Xml.Serialization;
@@ -16,11 +17,9 @@ namespace NewLife.CMX.Config
     public class CMXConfigBase : CMXmlConfig<CMXConfigBase>
     {
         #region 属性
-
         [Description("根目录")]
         [XmlIgnore]
         public String CurrentParentPath { get { return _CurrentParentPath; } }
-
         #endregion
 
         #region 构造方法
