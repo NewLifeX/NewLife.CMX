@@ -8,31 +8,7 @@
     <link rel="stylesheet" type="text/css" href="style/css1.css" />
     <script src="Scripts/jquery/jquery-1.9.1.min.js"></script>
     <!--<link rel="stylesheet" type="text/css" href="style/base.css" />-->
-    <style type="text/css">
-        
-    </style>
-    <script type="text/javascript">
-        $(function () {
-            $('.child li').attr('class', 'close');
-
-            $(".parent li").each(function () {
-                var key = $(this).attr('class');
-                key = '.' + key + ' li';
-
-                $(this).mouseover(function () {
-                    $(key).each(function () {
-                        $(this).attr('class', 'open');
-                    });
-                });
-
-                $(this).mouseout(function () {
-                    $(key).each(function () {
-                        $(this).attr('class', 'close');
-                    });
-                });
-            });
-        });
-    </script>
+   <script type="text/javascript" src="style/javascript.js"></script>
 </head>
 <body>
     <div id="wrap">
@@ -58,11 +34,9 @@
                         <ul>
                             <li class="index"><a href="#">网站首页</a></li>
                             <li class="about"><a href="main.html">关于月无声</a></li>
-                            <!--<li onmouseout=" document.getElementById('list_pro').style.display='none'" onmouseover="this.style.color='';document.getElementById('list_pro').style.display='block'"><a href="#">产品与服务</a></li>-->
                             <li class="product"><a href="#">产品与服务</a></li>
                             <li class="com"><a href="#">企业文化</a></li>
                             <li class="recruitment"><a href="#">人才招聘</a></li>
-                            <!--<li onmouseout=" document.getElementById('list_new').style.display='none'" onmouseover="this.style.color='';document.getElementById('list_new').style.display='block'"><a href="#">新闻中心</a></li>-->
                             <li class="new"><a href="#">新闻中心</a></li>
                             <li class="forum"><a href="#">技术论坛</a></li>
                             <li class="shop"><a href="#">月无声商城</a></li>
@@ -73,7 +47,6 @@
                             <li>首页</li>
                         </ul>
                         <ul class="about">
-                            <li>关于月无声</li>
                         </ul>
                         <ul class="product">
                             <li><a href="#">产品服务1</a></li>
@@ -98,22 +71,6 @@
                         </ul>
                     </div>
                 </div>
-                <!--<div id="draw_menu">
-                    <div id="list_yws" onmouseout="this.style.display='none';" onmouseover="this.style.display='block';" style="display: none;"></div>
-                    <div id="list_pro" onmouseout="this.style.display='none';" onmouseover="this.style.display='block';">
-                        <ul>
-                            <li><a href="#">点胶设备</a></li>
-                        </ul>
-                    </div>
-                    <div id="list_cul" onmouseout="this.style.display='none';" onmouseover="this.style.display='block';"></div>
-                    <div id="list_zp" onmouseout="this.style.display='none';" onmouseover="this.style.display='block';"></div>
-                    <div id="list_new" onmouseout="this.style.display='none';" onmouseover="this.style.display='block';" style="display: none;">
-                        <ul>
-                            <li><a href="#">行业新闻</a></li>
-                            <li><a href="#">企业新闻</a></li>
-                        </ul>
-                    </div>
-                </div>-->
             </div>
 
             <div id="index_1">
@@ -125,6 +82,9 @@
                     <div class="int">简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</div>
                 </div>
                 <div class="flash"></div>
+                        <ul class="about">
+                            <li>关于月无声</li>
+                        </ul>
             </div>
             <div id="index_2">
                 <div class="mod2">

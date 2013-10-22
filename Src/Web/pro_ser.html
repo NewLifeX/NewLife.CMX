@@ -1,4 +1,4 @@
-﻿<!<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -8,105 +8,12 @@
     <link rel="stylesheet" type="text/css" href="style/css1.css" />
     <script src="Scripts/jquery/jquery-1.9.1.min.js"></script>
     <!--<link rel="stylesheet" type="text/css" href="style/base.css" />-->
-    <style type="text/css">
-        
-    </style>
-    <script type="text/javascript">
-        $(function () {
-            $('.child li').attr('class', 'close');
-
-            $(".parent li").each(function () {
-                var key = $(this).attr('class');
-                key = '.' + key + ' li';
-
-                $(this).mouseover(function () {
-                    $(key).each(function () {
-                        $(this).attr('class', 'open');
-                    });
-                });
-
-                $(this).mouseout(function () {
-                    $(key).each(function () {
-                        $(this).attr('class', 'close');
-                    });
-                });
-            });
-
-            menulist();
-
-            $('#faq dt').click(function () {
-                icoPlusAndMinus();
-            });
-
-            function icoPlusAndMinus() {
-                var icoclass = $('.ico').attr('class');
-                if (icoclass.indexOf('icoMinus') == -1) {
-                    $('.ico').addClass('icoMinus');
-                }
-                else {
-                    $('.ico').removeClass('icoMinus');
-                }
-            }
-        });
-
-
-        /*列表项的js*/
-        var lastFaqClick = null;
-        function menulist() {
-            var faq = document.getElementById("faq");
-            var dls = faq.getElementsByTagName("dl");
-            for (var i = 0, dl; dl = dls[i]; i++) {
-                var dt = dl.getElementsByTagName("dt")[0];//取得标题
-                dt.id = "faq_dt_" + (Math.random() * 100);
-                dt.onclick = function () {
-                    var p = this.parentNode;//取得父节点
-                    if (lastFaqClick != null && lastFaqClick.id != this.id) {
-                        var dds = lastFaqClick.parentNode.getElementsByTagName("dd");
-                        for (var i = 0, dd; dd = dds[i]; i++)
-                            dd.style.display = 'none';
-                    }
-                    lastFaqClick = this;
-                    var dds = p.getElementsByTagName("dd");//取得对应子节点，也就是说明部分
-                    var tmpDisplay = 'none';
-                    if (gs(dds[0], 'display') == 'none')
-                        tmpDisplay = 'block';
-                    for (var i = 0; i < dds.length; i++)
-                        dds[i].style.display = tmpDisplay;
-                }
-            }
-        }
-
-        function gs(d, a) {
-            if (d.currentStyle) {
-                var curVal = d.currentStyle[a]
-            } else {
-                var curVal = document.defaultView.getComputedStyle(d, null)[a]
-            }
-            return curVal;
-        }
-    </script>
-    <style type="text/css">
-        .ico
-        {
-            background: url("images/togglebar.gif") no-repeat;
-            width: 20px;
-            height: 20px;
-            overflow: hidden;
-            position: absolute;
-            left: 10px;
-            top: 10px;
-        }
-
-        .icoMinus
-        {
-            background-position: 0 -40px;
-        }
-    </style>
+   <script type="text/javascript" src="style/javascript.js"></script>
 </head>
 <body>
     <div id="wrap">
         <div id="wrpper">
-            <div class="header">
+              <div class="header">
                 <div id="logo">
                     <h1>东莞市月无声实业</h1>
                 </div>
@@ -169,8 +76,9 @@
                 </div>
             </div>
 
-            <div class="mainbody">
-                <div class="top_image"></div>
+       <div class="mainbody">
+               <div class="top_image">
+                    <img src="images/top_i3.jpg" width="960" height="120" /></div>
                 <div class="conten">
                     <div class="list">
                         <div id="list_t"><span><strong>产品分类</strong></span></div>
@@ -191,6 +99,15 @@
                                         <dd><a href="#">转接头</a></dd>
                                         <dd><a href="#">料管</a></dd>
                                         <dd><a href="#">各种耗材</a></dd>
+                                        <dt>智能自动化</dt>
+                                        <dd><a href="#">自动化设备</a></dd>
+                                        <dd><a href="#">阿波罗智能控制器</a></dd>
+                                        <dd><a href="#">阿波罗智能物联网网关</a></dd>
+                                         <dt>化工胶水</dt>
+                                        <dd><a href="#">水性万能胶</a></dd>
+                                        <dd><a href="#">点胶机</a></dd>
+                                        <dd><a href="#">胶枪</a></dd>
+                                        <dd><a href="#">阀门</a></dd>
                                     </dl>
                                 </li>
                             </ul>
@@ -211,6 +128,17 @@
                             </ul>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div id="foot">
+                <div class="foot_nav">
+                    <div class="g1"><a href="#">返回首页</a> | <a href="#">联系我们</a> | <a href="#">友情链接</a> | <a href="#">技术论坛</a> | <a href="#">月无声商城</a> |</div>
+                </div>
+                <div class="address">
+                    版权所有 © 2008-2012 东莞市月无声电子设备有限公司 粤ICP备09218017号<br />
+
+                    <br />
+                    地址：东莞市高埗镇冼沙村广场北路宝源工业区  电话：0769-23107897 0769-23107080
                 </div>
             </div>
         </div>

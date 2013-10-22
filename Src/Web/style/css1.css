@@ -373,11 +373,15 @@
 {
     margin: 0 auto;
     position: relative;
+	background: url("../images/mainbg.jpg") no-repeat scroll center top ;
 }
 
     .mainbody .top_image
     {
         height: 120px;
+		width:960px;
+		margin:0 auto;
+	    padding-top:20px;
     }
 
     .mainbody .conten
@@ -387,10 +391,12 @@
 /*左边列表项.......................................................................................................*/
 .conten .list
 {
+	border: 1px solid #95bcf6;
+    background-color: #e0e1e3;
     float: left;
     width: 180px;
     height: 600px;
-    margin: 15px 0 0 0;
+    margin: 15px 0 0 30px;
 }
 
     .conten .list #list_t
@@ -412,8 +418,6 @@
 
 .list .list_meu
 {
-    border: 1px solid #95bcf6;
-    background-color: #e0e1e3;
     margin: 0px;
     position: relative;
 }
@@ -430,6 +434,7 @@
 
 .list ul#faq
 {
+	
     font-size: 16px;
 }
 
@@ -452,7 +457,6 @@
     cursor: pointer;
     line-height: 20px;
     padding: 0;
-    border-bottom: 1px #ccc dotted;
 }
 
 #faq dd
@@ -473,6 +477,22 @@
         color: black;
         text-decoration: none;
     }
+      .ico
+        {
+            background: url("../images/togglebar.gif") no-repeat;
+            width: 20px;
+            height: 20px;
+            overflow: hidden;
+            position: absolute;
+            left: 10px;
+            top: 10px;
+        }
+
+        .icoMinus
+        {
+            background-position: 0 -40px;
+        }
+
 /*.list ul
 {
   padding:10px 0 10px 10px;
@@ -494,7 +514,7 @@
 /*产品与服务右边的产品类表详细内容...................................................................................................................*/
 .pro_dr
 {
-    width: 800px;
+    width: 780px;
     height: 1150px;
     float: right;
     margin: 15px 0 0 0;
