@@ -420,13 +420,27 @@
 {
     margin: 0px;
     position: relative;
+	top: 0px;
+	left: 0px;
+	height: 16px;
 }
+.list_meu{width:180px;margin:0px; float:left;}
+.list_meu dl{margin-left:10px;}
+.list_meu dl dt a{height:24px;line-height:24px;overflow:hidden;color:#3366cc;font-weight:800;}
+.list_meu dl dt a span{display:inline-block;width:13px;height:15px;overflow:hidden;float:left;margin:0 5px 0 0;}
+.list_meu dl dt a.minus span{background:url(../images/showbtn.gif) no-repeat;}
+.list_meu dl dt a.plus span{background:url(../images/hidebtn.gif) no-repeat;}
+.list_meu dl dd{margin:0px;}
+.list_meu dl dd ul{padding:0px; margin:0px; list-style:none;}
+.list_meu dl dd li{height:24px;line-height:24px;padding:0 0 0 18px; padding:0px;}
+.list_meu dl dd li:hover{background-color:#cccccc; width:160px;}
+.list_meu dl dd li a{font-size:12px;text-decoration:none; color:black; margin-left:20px;}
 
-.list_meu ul
+/*.list_meu ul
 {
     margin: 10px;
     padding: 0px;
-    list-style: none;
+   list-style: none;
     width: 138px;
     position:absolute;
     right:0px;
@@ -436,16 +450,17 @@
 {
 	
     font-size: 16px;
+	top: -1px;
 }
 
-#faq li
+ul#faq li
 {
     margin: 0;
     padding: 0;
+	
 }
 
-#faq dl
-{
+#faq {
     margin: 0;
     padding: 0;
     display: inline;
@@ -477,21 +492,20 @@
         color: black;
         text-decoration: none;
     }
-      .ico
+     /* .ico
         {
             background: url("../images/togglebar.gif") no-repeat;
             width: 20px;
             height: 20px;
             overflow: hidden;
             position: absolute;
-            left: 10px;
-            top: 10px;
+            margin:-2px 0 0 -20px;
         }
 
         .icoMinus
         {
-            background-position: 0 -40px;
-        }
+            background-position:0 -40px;
+        }*/
 
 /*.list ul
 {
