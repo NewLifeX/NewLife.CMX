@@ -3,6 +3,7 @@ using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using Microsoft.CSharp;
@@ -10,11 +11,6 @@ using NewLife;
 using NewLife.Collections;
 using NewLife.Log;
 using NewLife.Reflection;
-#if NET4
-using System.Linq;
-#else
-using NewLife.Linq;
-#endif
 
 namespace XTemplate.Templating
 {
@@ -307,7 +303,7 @@ namespace XTemplate.Templating
         /// 添加模版项，实际上是添加到Templates集合中。
         /// 未指定模版名称时，使用模版的散列作为模版名称
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">名称</param>
         /// <param name="content"></param>
         public void AddTemplateItem(String name, String content)
         {
@@ -350,7 +346,7 @@ namespace XTemplate.Templating
         }
 
         /// <summary>查找指定名称的模版</summary>
-        /// <param name="name"></param>
+        /// <param name="name">名称</param>
         /// <returns></returns>
         private TemplateItem FindTemplateItem(String name)
         {
@@ -503,7 +499,7 @@ namespace XTemplate.Templating
 
                 if (item.Vars.ContainsKey(name)) throw new TemplateException(directive.Block, "模版变量" + name + "已存在！");
 
-                Type ptype = TypeX.GetType(type, true);
+                Type ptype = Reflect.GetType(type, true);
                 if (ptype == null) throw new TemplateException(directive.Block, "无法找到模版变量类型" + type + "！");
 
                 // 因为TypeX.GetType的强大，模版可能没有引用程序集和命名空间，甚至type位于未装载的程序集中它也会自动装载，所以这里需要加上
@@ -515,7 +511,7 @@ namespace XTemplate.Templating
 
         /// <summary>导入某类型，导入程序集引用及命名空间引用，主要处理泛型</summary>
         /// <param name="item"></param>
-        /// <param name="type"></param>
+        /// <param name="type">类型</param>
         void ImportType(TemplateItem item, Type type)
         {
             String name = null;
@@ -866,7 +862,7 @@ namespace XTemplate.Templating
 
                 //if (!String.IsNullOrEmpty(tempPath) && !Directory.Exists(tempPath)) Directory.CreateDirectory(tempPath);
 
-                var srcpath = tempPath.CombinePath("src").EnsureDirectory();
+                var srcpath = tempPath.CombinePath("src").EnsureDirectory(false);
 
                 //var files = new List<String>();
                 foreach (var item in tmp.Templates)
@@ -978,7 +974,7 @@ namespace XTemplate.Templating
         }
 
         /// <summary>找到指定文件指定位置上下三行的代码</summary>
-        /// <param name="name"></param>
+        /// <param name="name">名称</param>
         /// <param name="lineNumber"></param>
         /// <returns></returns>
         String FindBlockCode(String name, Int32 lineNumber)

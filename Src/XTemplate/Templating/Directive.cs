@@ -7,8 +7,8 @@ namespace XTemplate.Templating
     internal sealed class Directive
     {
         /// <summary>实例化一个指令对象</summary>
-        /// <param name="name"></param>
-        /// <param name="parameters"></param>
+        /// <param name="name">名称</param>
+        /// <param name="parameters">参数数组</param>
         /// <param name="block"></param>
         public Directive(String name, IDictionary<String, String> parameters, Block block)
         {
