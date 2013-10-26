@@ -7,6 +7,7 @@ using NewLife.Web;
 using XCode;
 using XControl;
 using System.Web;
+using System.Collections.Generic;
 
 /// <summary>实体列表页面基类</summary>
 public abstract class MyEntityList : Page

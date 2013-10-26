@@ -10,6 +10,7 @@ using System.Web;
 using NewLife.CMX;
 using System.Reflection;
 using NewLife.Reflection;
+using System.Collections.Generic;
 
 /// <summary>实体列表页面基类</summary>
 public abstract class MyModelEntityList : Page
