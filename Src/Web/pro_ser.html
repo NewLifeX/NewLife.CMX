@@ -10,28 +10,35 @@
    <script type="text/javascript" src="style/javascript.js"></script>
  
 <script type="text/javascript">
-    function getObject(objectId) {
-        if (document.getElementById && document.getElementById(objectId)) {
-            return document.getElementById(objectId);
-        } else if (document.all && document.all(objectId)) {
-            return document.all(objectId);
-        } else if (document.layers && document.layers[objectId]) {
-            return document.layers[objectId];
-        } else {
-            return false;
-        }
+
+
+    /*高亮*/
+    
+var  $c=function(array){var nArray = [];for (var i=0;i<array.length;i++) nArray.push(array[i]);return nArray;};
+    Array.prototype.each=function(func){
+        for(var i=0,l=this.length;i<l;i++) {func(this[i],i);};
+    };
+    document .getElementsByClassName=function(cn){
+        var hasClass=function(w,Name){
+            var hasClass = false;
+            w.className.split(' ').each(function(s){
+                if (s == Name) hasClass = true;
+            });
+            return hasClass;
+        }; 
+        var elems =document.getElementsByTagName("*")||document.all;
+        var elemList = [];
+        $c(elems).each(function(e){
+            if(hasClass(e,cn)){elemList.push(e);}
+        })
+        return $c(elemList);
+    };		
+    function change_bg(obj){
+        var a=document.getElementsByClassName("nav")[0].getElementsByTagName("a");
+        for(var i=0;i<a.length;i++){a[i].className="";}
+        obj.className="current";
     }
 
-    function showHide(e, objname) {
-        var obj = getObject(objname);
-        if (obj.style.display == "none") {
-            obj.style.display = "block";
-            e.className = "minus";
-        } else {
-            obj.style.display = "none";
-            e.className = "plus";
-        }
-    }
 </script>
 
 </head>
@@ -57,14 +64,14 @@
                 <div class="nav">
                     <div class="parent">
                         <ul>
-                            <li class="index"><a href="#">网站首页</a></li>
-                            <li class="about"><a href="main.html">关于月无声</a></li>
-                            <li class="product"><a href="#">产品与服务</a></li>
-                            <li class="com"><a href="#">企业文化</a></li>
-                            <li class="recruitment"><a href="#">人才招聘</a></li>
-                            <li class="new"><a href="#">新闻中心</a></li>
-                            <li class="forum"><a href="#">技术论坛</a></li>
-                            <li class="shop"><a href="#">月无声商城</a></li>
+                            <li class="index"><a href="#" onclick="change_bg(this)">网站首页</a></li>
+                            <li class="about"><a href="#" onclick="change_bg(this)">关于月无声</a></li>
+                            <li class="product"><a href="#" onclick="change_bg(this)">产品与服务</a></li>
+                            <li class="com"><a href="#" onclick="change_bg(this)">企业文化</a></li>
+                            <li class="recruitment"><a href="#" onclick="change_bg(this)">人才招聘</a></li>
+                            <li class="new"><a href="#" onclick="change_bg(this)">新闻中心</a></li>
+                            <li class="forum"><a href="#" onclick="change_bg(this)">技术论坛</a></li>
+                            <li class="shop"><a href="#" onclick="change_bg(this)">月无声商城</a></li>
                         </ul>
                     </div>
                     <div class="child">

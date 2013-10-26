@@ -87,7 +87,7 @@
         display: inline;
     }
 
-#wrpper .header .nav
+#wrpper .header .nav 
 {
     bottom: 0px;
     height: 72px;
@@ -95,13 +95,13 @@
     float: left;
 }
 
-.nav ul
+.nav  ul
 {
     margin: 0 0 0 6px;
     height: 72px;
 }
 
-    .nav ul li
+    .nav  ul li
     {
         float: left;
         list-style-type: none;
@@ -110,7 +110,7 @@
         text-align: center;
     }
 
-        .nav ul li a
+        .nav  ul li a
         {
             color: #000000;
             text-decoration: none;
@@ -119,10 +119,14 @@
             display: block;
         }
 
-            .nav ul li a:hover
+            .nav  ul li a:hover
             {
                 background: url(../images/nav_hover.jpg);
             }
+		.nav ul li#date
+		{
+			background: url(../images/nav_hover.jpg);
+		}
 /*下拉菜单*/
 .child
 {
