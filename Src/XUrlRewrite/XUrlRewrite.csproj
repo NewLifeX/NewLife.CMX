@@ -42,6 +42,10 @@
     <DocumentationFile>..\..\生成\XUrlRewrite.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NewLife.Core, Version=4.0.5046.37747, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MyDLL\NewLife.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web" />
@@ -63,12 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="UpdateInfo.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\NewLife.Core\NewLife.Core.csproj">
-      <Project>{5813c22e-eeb3-4dee-a45c-bb218041193a}</Project>
-      <Name>NewLife.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
