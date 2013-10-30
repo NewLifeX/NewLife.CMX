@@ -653,69 +653,6 @@
         <member name="P:NewLife.Collections.InterlockedStack`1.UseNodePool">
             <summary>是否使用节点池。采用节点池可以避免分配节点造成的GC压力，但是会让性能有所降低。</summary>
         </member>
-        <member name="T:NewLife.Collections.Triplet">
-            <summary>三个一组</summary>
-        </member>
-        <member name="F:NewLife.Collections.Triplet.First">
-            <summary>第一个</summary>
-        </member>
-        <member name="F:NewLife.Collections.Triplet.Second">
-            <summary>第二个</summary>
-        </member>
-        <member name="F:NewLife.Collections.Triplet.Third">
-            <summary>第三个</summary>
-        </member>
-        <member name="M:NewLife.Collections.Triplet.#ctor">
-            <summary>初始化</summary>
-        </member>
-        <member name="M:NewLife.Collections.Triplet.#ctor(System.Object,System.Object)">
-            <summary>初始化</summary>
-            <param name="x"></param>
-            <param name="y"></param>
-        </member>
-        <member name="M:NewLife.Collections.Triplet.#ctor(System.Object,System.Object,System.Object)">
-            <summary>初始化</summary>
-            <param name="x"></param>
-            <param name="y"></param>
-            <param name="z"></param>
-        </member>
-        <member name="M:NewLife.Collections.Triplet.ToString">
-            <summary>已重载。</summary>
-            <returns></returns>
-        </member>
-        <member name="T:NewLife.Collections.Triplet`3">
-            <summary>泛型三个一组</summary>
-            <typeparam name="TFirst"></typeparam>
-            <typeparam name="TSecond"></typeparam>
-            <typeparam name="TThird"></typeparam>
-        </member>
-        <member name="F:NewLife.Collections.Triplet`3.First">
-            <summary>第一个</summary>
-        </member>
-        <member name="F:NewLife.Collections.Triplet`3.Second">
-            <summary>第二个</summary>
-        </member>
-        <member name="F:NewLife.Collections.Triplet`3.Third">
-            <summary>第三个</summary>
-        </member>
-        <member name="M:NewLife.Collections.Triplet`3.#ctor">
-            <summary>初始化</summary>
-        </member>
-        <member name="M:NewLife.Collections.Triplet`3.#ctor(`0,`1)">
-            <summary>初始化</summary>
-            <param name="x"></param>
-            <param name="y"></param>
-        </member>
-        <member name="M:NewLife.Collections.Triplet`3.#ctor(`0,`1,`2)">
-            <summary>初始化</summary>
-            <param name="x"></param>
-            <param name="y"></param>
-            <param name="z"></param>
-        </member>
-        <member name="M:NewLife.Collections.Triplet`3.ToString">
-            <summary>已重载。</summary>
-            <returns></returns>
-        </member>
         <member name="T:NewLife.Collections.WeakRefDictionary`2">
             <summary>弱引用字典，比较适合用作于缓存。</summary>
             <remarks>经过实验表明，弱引用非常容易被回收</remarks>
@@ -890,20 +827,10 @@
             采用对象容器架构，允许外部重载工具类的各种实现
             </remarks>
         </member>
-        <member name="M:NewLife.Utility.ToInt32(System.Object)">
-            <summary>转为整数</summary>
-            <param name="value">待转换对象</param>
-            <returns></returns>
-        </member>
         <member name="M:NewLife.Utility.ToInt32(System.Object,System.Int32)">
             <summary>转为整数</summary>
             <param name="value">待转换对象</param>
             <param name="defaultValue">默认值。待转换对象无效时使用</param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Utility.ToBoolean(System.Object)">
-            <summary>转为布尔型</summary>
-            <param name="value">待转换对象</param>
             <returns></returns>
         </member>
         <member name="M:NewLife.Utility.ToBoolean(System.Object,System.Boolean)">
@@ -945,6 +872,12 @@
             <summary>转为时间日期</summary>
             <param name="value">待转换对象</param>
             <param name="defaultValue">默认值。待转换对象无效时使用</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.DefaultConvert.ToDBC(System.String)">
+            <summary>全角为半角</summary>
+            <remarks>全角半角的关系是相差0xFEE0</remarks>
+            <param name="str"></param>
             <returns></returns>
         </member>
         <member name="T:NewLife.Compression.ZipException">
@@ -1345,8 +1278,8 @@
         </member>
         <member name="M:NewLife.Compression.ZipFile.#ctor(System.String,System.Text.Encoding)">
             <summary>实例化一个Zip文件对象。延迟到第一次使用<see cref="P:NewLife.Compression.ZipFile.Entries"/>时读取</summary>
-            <param name="fileName"></param>
-            <param name="encoding"></param>
+            <param name="fileName">文件名</param>
+            <param name="encoding">字符串编码</param>
         </member>
         <member name="M:NewLife.Compression.ZipFile.#ctor(System.IO.Stream,System.Text.Encoding)">
             <summary>实例化一个Zip文件对象。延迟到第一次使用<see cref="P:NewLife.Compression.ZipFile.Entries"/>时读取</summary>
@@ -2510,6 +2443,109 @@
             <typeparam name="T"></typeparam>
             <param name="provider"></param>
             <returns></returns>
+        </member>
+        <member name="T:NewLife.Net.ITransport">
+            <summary>传输接口</summary>
+            <remarks>实现者确保数据以包的形式传输，屏蔽数据的粘包和拆包</remarks>
+        </member>
+        <member name="M:NewLife.Net.ITransport.Open">
+            <summary>打开</summary>
+        </member>
+        <member name="M:NewLife.Net.ITransport.Close">
+            <summary>关闭</summary>
+        </member>
+        <member name="M:NewLife.Net.ITransport.Send(System.Byte[],System.Int32,System.Int32)">
+            <summary>写入数据</summary>
+            <param name="buffer">缓冲区</param>
+            <param name="offset">偏移</param>
+            <param name="count">数量</param>
+        </member>
+        <member name="M:NewLife.Net.ITransport.Receive(System.Byte[],System.Int32,System.Int32)">
+            <summary>读取指定长度的数据</summary>
+            <param name="buffer">缓冲区</param>
+            <param name="offset">偏移</param>
+            <param name="count">数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.ITransport.ReceiveAsync">
+            <summary>开始异步接收，数据将在中<see cref="E:NewLife.Net.ITransport.Received"/>返回</summary>
+        </member>
+        <member name="P:NewLife.Net.ITransport.FrameSize">
+            <summary>读取的期望帧长度，小于该长度为未满一帧，读取不做返回</summary>
+        </member>
+        <member name="E:NewLife.Net.ITransport.Received">
+            <summary>数据到达事件</summary>
+        </member>
+        <member name="T:NewLife.Net.TransportEventHandler">
+            <summary>传输口数据到达委托</summary>
+            <param name="transport">传输口</param>
+            <param name="data">收到的数据</param>
+            <returns>要发回去的数据</returns>
+        </member>
+        <member name="T:NewLife.Net.NetUri">
+            <summary>网络资源标识，指定协议、地址、端口、地址族（IPv4/IPv6）</summary>
+            <remarks>
+            仅序列化<see cref="P:NewLife.Net.NetUri.ProtocolType"/>和<see cref="P:NewLife.Net.NetUri.EndPoint"/>，其它均是配角！
+            有可能<see cref="P:NewLife.Net.NetUri.Host"/>代表主机域名，而<see cref="P:NewLife.Net.NetUri.Address"/>指定主机IP地址。
+            </remarks>
+        </member>
+        <member name="M:NewLife.Net.NetUri.#ctor">
+            <summary>实例化</summary>
+        </member>
+        <member name="M:NewLife.Net.NetUri.#ctor(System.String)">
+            <summary>实例化</summary>
+            <param name="uri"></param>
+        </member>
+        <member name="M:NewLife.Net.NetUri.#ctor(System.Net.Sockets.ProtocolType,System.Net.IPEndPoint)">
+            <summary>实例化</summary>
+            <param name="protocol"></param>
+            <param name="endpoint"></param>
+        </member>
+        <member name="M:NewLife.Net.NetUri.#ctor(System.Net.Sockets.ProtocolType,System.Net.IPAddress,System.Int32)">
+            <summary>实例化</summary>
+            <param name="protocol"></param>
+            <param name="address"></param>
+            <param name="port"></param>
+        </member>
+        <member name="M:NewLife.Net.NetUri.Parse(System.String)">
+            <summary>分析</summary>
+            <param name="uri"></param>
+        </member>
+        <member name="M:NewLife.Net.NetUri.Clone">
+            <summary>克隆</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.NetUri.CopyFrom(NewLife.Net.NetUri)">
+            <summary>从另一个对象复制</summary>
+            <param name="uri"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.NetUri.ParseAddress(System.String)">
+            <summary>分析地址</summary>
+            <param name="hostname">主机地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.NetUri.ToString">
+            <summary>已重载。</summary>
+            <returns></returns>
+        </member>
+        <member name="P:NewLife.Net.NetUri.ProtocolType">
+            <summary>协议类型</summary>
+        </member>
+        <member name="P:NewLife.Net.NetUri.Protocol">
+            <summary>协议</summary>
+        </member>
+        <member name="P:NewLife.Net.NetUri.Address">
+            <summary>地址</summary>
+        </member>
+        <member name="P:NewLife.Net.NetUri.Host">
+            <summary>主机</summary>
+        </member>
+        <member name="P:NewLife.Net.NetUri.Port">
+            <summary>端口</summary>
+        </member>
+        <member name="P:NewLife.Net.NetUri.EndPoint">
+            <summary>终结点</summary>
         </member>
         <member name="T:NewLife.Reflection.Action`2">
             <summary>两个参数</summary>
@@ -4514,10 +4550,27 @@
         <member name="T:System.StringHelper">
             <summary>字符串助手类</summary>
         </member>
-        <member name="M:System.StringHelper.EqualIgnoreCase(System.String,System.String)">
-            <summary>忽略大小写的字符串比较</summary>
+        <member name="M:System.StringHelper.EqualIgnoreCase(System.String,System.String[])">
+            <summary>忽略大小写的字符串相等比较，判断是否以任意一个待比较字符串相等</summary>
             <param name="value">数值</param>
-            <param name="str"></param>
+            <param name="strs">待比较字符串数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringHelper.StartsWithIgnoreCase(System.String,System.String[])">
+            <summary>忽略大小写的字符串开始比较，判断是否以任意一个待比较字符串开始</summary>
+            <param name="value">数值</param>
+            <param name="strs">待比较字符串数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringHelper.EndsWithIgnoreCase(System.String,System.String[])">
+            <summary>忽略大小写的字符串结束比较，判断是否以任意一个待比较字符串结束</summary>
+            <param name="value">数值</param>
+            <param name="strs">待比较字符串数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringHelper.IsNullOrEmpty(System.String)">
+            <summary>指示指定的字符串是 null 还是 String.Empty 字符串</summary>
+            <param name="value">指定的字符串</param>
             <returns></returns>
         </member>
         <member name="M:System.StringHelper.IsNullOrWhiteSpace(System.String)">
@@ -4538,36 +4591,10 @@
             <param name="separators"></param>
             <returns></returns>
         </member>
-        <member name="M:System.StringHelper.AppendExceptStart(System.Text.StringBuilder,System.String)">
-            <summary>追加字符串，除了开头</summary>
+        <member name="M:System.StringHelper.AppendSeparate(System.Text.StringBuilder,System.String)">
+            <summary>追加分隔符字符串，除了开头</summary>
             <param name="sb"></param>
             <param name="str"></param>
-            <returns></returns>
-        </member>
-        <member name="M:System.StringHelper.Left(System.String,System.Int32)">
-            <summary>截取左边若干长度字符串</summary>
-            <param name="str"></param>
-            <param name="length"></param>
-            <returns></returns>
-        </member>
-        <member name="M:System.StringHelper.LeftBinary(System.String,System.Int32,System.Boolean)">
-            <summary>截取左边若干长度字符串（二进制计算长度）</summary>
-            <param name="str"></param>
-            <param name="length"></param>
-            <param name="strict">严格模式时，遇到截断位置位于一个字符中间时，忽略该字符，否则包括该字符</param>
-            <returns></returns>
-        </member>
-        <member name="M:System.StringHelper.Right(System.String,System.Int32)">
-            <summary>截取右边若干长度字符串</summary>
-            <param name="str"></param>
-            <param name="length"></param>
-            <returns></returns>
-        </member>
-        <member name="M:System.StringHelper.RightBinary(System.String,System.Int32,System.Boolean)">
-            <summary>截取右边若干长度字符串（二进制计算长度）</summary>
-            <param name="str"></param>
-            <param name="length"></param>
-            <param name="strict">严格模式时，遇到截断位置位于一个字符中间时，忽略该字符，否则包括该字符</param>
             <returns></returns>
         </member>
         <member name="M:System.StringHelper.EnsureStart(System.String,System.String)">
@@ -4580,6 +4607,18 @@
             <summary>确保字符串以指定的另一字符串结束，不区分大小写</summary>
             <param name="str"></param>
             <param name="end"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringHelper.TrimStart(System.String,System.String[])">
+            <summary>从当前字符串开头移除另一字符串，不区分大小写</summary>
+            <param name="str">当前字符串</param>
+            <param name="starts">另一字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringHelper.TrimEnd(System.String,System.String[])">
+            <summary>从当前字符串结尾移除另一字符串，不区分大小写</summary>
+            <param name="str">当前字符串</param>
+            <param name="ends">另一字符串</param>
             <returns></returns>
         </member>
         <member name="M:System.StringHelper.Cut(System.String,System.Int32,System.String)">
@@ -5094,16 +5133,16 @@
         <member name="M:System.IOHelper.CompareTo(System.Byte[],System.Byte[])">
             <summary>比较两个字节数组大小。相等返回0，不等则返回不等的位置，如果位置为0，则返回1。</summary>
             <param name="source"></param>
-            <param name="buffer"></param>
+            <param name="buffer">缓冲区</param>
             <returns></returns>
         </member>
         <member name="M:System.IOHelper.CompareTo(System.Byte[],System.Int64,System.Int64,System.Byte[],System.Int64,System.Int64)">
             <summary>比较两个字节数组大小。相等返回0，不等则返回不等的位置，如果位置为0，则返回1。</summary>
             <param name="source"></param>
             <param name="start"></param>
-            <param name="count"></param>
-            <param name="buffer"></param>
-            <param name="offset"></param>
+            <param name="count">数量</param>
+            <param name="buffer">缓冲区</param>
+            <param name="offset">偏移</param>
             <param name="length"></param>
             <returns></returns>
         </member>
@@ -5116,25 +5155,25 @@
         <member name="M:System.IOHelper.StartsWith(System.IO.Stream,System.Byte[])">
             <summary>一个数据流是否以另一个数组开头。如果成功，指针移到目标之后，否则保持指针位置不变。</summary>
             <param name="source"></param>
-            <param name="buffer"></param>
+            <param name="buffer">缓冲区</param>
             <returns></returns>
         </member>
         <member name="M:System.IOHelper.EndsWith(System.IO.Stream,System.Byte[])">
             <summary>一个数据流是否以另一个数组结尾。如果成功，指针移到目标之后，否则保持指针位置不变。</summary>
             <param name="source"></param>
-            <param name="buffer"></param>
+            <param name="buffer">缓冲区</param>
             <returns></returns>
         </member>
         <member name="M:System.IOHelper.StartsWith(System.Byte[],System.Byte[])">
             <summary>一个数组是否以另一个数组开头</summary>
             <param name="source"></param>
-            <param name="buffer"></param>
+            <param name="buffer">缓冲区</param>
             <returns></returns>
         </member>
         <member name="M:System.IOHelper.EndsWith(System.Byte[],System.Byte[])">
             <summary>一个数组是否以另一个数组结尾</summary>
             <param name="source"></param>
-            <param name="buffer"></param>
+            <param name="buffer">缓冲区</param>
             <returns></returns>
         </member>
         <member name="T:NewLife.Log.TraceStream">
@@ -5142,9 +5181,9 @@
         </member>
         <member name="M:NewLife.Log.TraceStream.Write(System.Byte[],System.Int32,System.Int32)">
             <summary>写入</summary>
-            <param name="buffer"></param>
-            <param name="offset"></param>
-            <param name="count"></param>
+            <param name="buffer">缓冲区</param>
+            <param name="offset">偏移</param>
+            <param name="count">数量</param>
         </member>
         <member name="M:NewLife.Log.TraceStream.WriteByte(System.Byte)">
             <summary>写入一个字节</summary>
@@ -5152,9 +5191,9 @@
         </member>
         <member name="M:NewLife.Log.TraceStream.Read(System.Byte[],System.Int32,System.Int32)">
             <summary>读取</summary>
-            <param name="buffer"></param>
-            <param name="offset"></param>
-            <param name="count"></param>
+            <param name="buffer">缓冲区</param>
+            <param name="offset">偏移</param>
+            <param name="count">数量</param>
             <returns></returns>
         </member>
         <member name="M:NewLife.Log.TraceStream.ReadByte">
@@ -5163,18 +5202,18 @@
         </member>
         <member name="M:NewLife.Log.TraceStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
             <summary>异步开始读</summary>
-            <param name="buffer"></param>
-            <param name="offset"></param>
-            <param name="count"></param>
+            <param name="buffer">缓冲区</param>
+            <param name="offset">偏移</param>
+            <param name="count">数量</param>
             <param name="callback"></param>
             <param name="state"></param>
             <returns></returns>
         </member>
         <member name="M:NewLife.Log.TraceStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
             <summary>异步开始写</summary>
-            <param name="buffer"></param>
-            <param name="offset"></param>
-            <param name="count"></param>
+            <param name="buffer">缓冲区</param>
+            <param name="offset">偏移</param>
+            <param name="count">数量</param>
             <param name="callback"></param>
             <param name="state"></param>
             <returns></returns>
@@ -5190,7 +5229,7 @@
         </member>
         <member name="M:NewLife.Log.TraceStream.Seek(System.Int64,System.IO.SeekOrigin)">
             <summary>设置流位置</summary>
-            <param name="offset"></param>
+            <param name="offset">偏移</param>
             <param name="origin"></param>
             <returns></returns>
         </member>
@@ -6116,7 +6155,7 @@
             <param name="isLoadAssembly">是否从未加载程序集中获取类型。使用仅反射的方法检查目标类型，如果存在，则进行常规加载</param>
             <returns></returns>
         </member>
-        <member name="M:NewLife.Reflection.Reflect.GetMethod(System.Type,System.String,System.Type[])">
+        <member name="M:NewLife.Reflection.Reflect.GetMethodEx(System.Type,System.String,System.Type[])">
             <summary>获取方法</summary>
             <remarks>用于具有多个签名的同名方法的场合，不确定是否存在性能问题，不建议普通场合使用</remarks>
             <param name="type">类型</param>
@@ -6124,13 +6163,13 @@
             <param name="paramTypes">参数类型数组</param>
             <returns></returns>
         </member>
-        <member name="M:NewLife.Reflection.Reflect.GetProperty(System.Type,System.String)">
+        <member name="M:NewLife.Reflection.Reflect.GetPropertyEx(System.Type,System.String)">
             <summary>获取属性</summary>
             <param name="type">类型</param>
             <param name="name">名称</param>
             <returns></returns>
         </member>
-        <member name="M:NewLife.Reflection.Reflect.GetField(System.Type,System.String)">
+        <member name="M:NewLife.Reflection.Reflect.GetFieldEx(System.Type,System.String)">
             <summary>获取字段</summary>
             <param name="type">类型</param>
             <param name="name">名称</param>
@@ -6190,6 +6229,12 @@
             <param name="field">字段</param>
             <returns></returns>
         </member>
+        <member name="M:NewLife.Reflection.Reflect.GetValue(System.Object,System.Reflection.MemberInfo)">
+            <summary>获取目标对象的成员值</summary>
+            <param name="target">目标对象</param>
+            <param name="member">成员</param>
+            <returns></returns>
+        </member>
         <member name="M:NewLife.Reflection.Reflect.SetValue(System.Object,System.String,System.Object)">
             <summary>设置目标对象指定名称的属性/字段值</summary>
             <param name="target">目标对象</param>
@@ -6209,9 +6254,48 @@
             <param name="field">字段</param>
             <param name="value">数值</param>
         </member>
+        <member name="M:NewLife.Reflection.Reflect.SetValue(System.Object,System.Reflection.MemberInfo,System.Object)">
+            <summary>设置目标对象的成员值</summary>
+            <param name="target">目标对象</param>
+            <param name="member">成员</param>
+            <param name="value">数值</param>
+        </member>
+        <member name="M:NewLife.Reflection.Reflect.GetElementTypeEx(System.Type)">
+            <summary>获取一个类型的元素类型</summary>
+            <param name="type">类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Reflection.Reflect.ChangeType(System.Object,System.Type)">
+            <summary>类型转换</summary>
+            <param name="value">数值</param>
+            <param name="conversionType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Reflection.Reflect.ChangeType``1(System.Object)">
+            <summary>类型转换</summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="value">数值</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Reflection.Reflect.GetTypeArray(System.Object[])">
+            <summary>从参数数组中获取类型数组</summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Reflection.Reflect.GetName(System.Type,System.Boolean)">
+            <summary>获取类型的友好名称</summary>
+            <param name="type">指定类型</param>
+            <param name="isfull">是否全名，包含命名空间</param>
+            <returns></returns>
+        </member>
         <member name="M:NewLife.Reflection.Reflect.GetType(System.Object@)">
             <summary>获取类型，如果target是Type类型，则表示要反射的是静态成员</summary>
             <param name="target">目标对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Reflection.Reflect.IsNullable(System.Type)">
+            <summary>判断某个类型是否可空类型</summary>
+            <param name="type">类型</param>
             <returns></returns>
         </member>
         <member name="P:NewLife.Reflection.Reflect.Current">
@@ -6526,7 +6610,7 @@
         <member name="M:NewLife.Security.Crc16.Update(System.IO.Stream,System.Int64)">
             <summary>添加数据流进行校验</summary>
             <param name="stream"></param>
-            <param name="count"></param>
+            <param name="count">数量</param>
         </member>
         <member name="P:NewLife.Security.Crc16.Value">
             <summary>校验值</summary>
@@ -7018,7 +7102,7 @@
         </member>
         <member name="M:NewLife.Serialization.ReaderBase`1.ReadIntBytes(System.Int32)">
             <summary>读取整数的字节数组，某些写入器（如二进制写入器）可能需要改变字节顺序</summary>
-            <param name="count"></param>
+            <param name="count">数量</param>
             <returns></returns>
         </member>
         <member name="M:NewLife.Serialization.ReaderBase`1.ReadInt16">
@@ -7478,7 +7562,7 @@
         </member>
         <member name="M:NewLife.Serialization.BinaryReaderX.ReadIntBytes(System.Int32)">
             <summary>判断字节顺序</summary>
-            <param name="count"></param>
+            <param name="count">数量</param>
             <returns></returns>
         </member>
         <member name="M:NewLife.Serialization.BinaryReaderX.ReadInt16">
@@ -7905,8 +7989,8 @@
         </member>
         <member name="M:NewLife.Serialization.WriterBase`1.Write(System.Byte[],System.Int32)">
             <summary>写入字节数组，自动计算长度</summary>
-            <param name="buffer"></param>
-            <param name="count"></param>
+            <param name="buffer">缓冲区</param>
+            <param name="count">数量</param>
         </member>
         <member name="M:NewLife.Serialization.WriterBase`1.Write(System.Int16)">
             <summary>将 2 字节有符号整数写入当前流，并将流的位置提升 2 个字节。</summary>
@@ -8213,7 +8297,7 @@
         </member>
         <member name="M:NewLife.Serialization.BinaryWriterX.WriteIntBytes(System.Byte[])">
             <summary>判断字节顺序</summary>
-            <param name="buffer"></param>
+            <param name="buffer">缓冲区</param>
         </member>
         <member name="M:NewLife.Serialization.BinaryWriterX.Write(System.Int16)">
             <summary>将 2 字节有符号整数写入当前流，并将流的位置提升 2 个字节。</summary>
@@ -8341,7 +8425,7 @@
         <member name="M:NewLife.Serialization.FieldSizeAttribute.FindReference(System.Object,System.Reflection.MemberInfo,System.Object@)">
             <summary>找到所引用的参考字段</summary>
             <param name="target">目标对象</param>
-            <param name="member"></param>
+            <param name="member">目标对象的成员</param>
             <param name="value">数值</param>
             <returns></returns>
         </member>
@@ -8923,7 +9007,7 @@
         </member>
         <member name="M:NewLife.Serialization.JsonReader.ReadBytes(System.Int32)">
             <summary>读取字节数组</summary>
-            <param name="count"></param>
+            <param name="count">数量</param>
             <returns></returns>
         </member>
         <member name="M:NewLife.Serialization.JsonReader.ReadBoolean">
@@ -9002,7 +9086,7 @@
         </member>
         <member name="M:NewLife.Serialization.JsonReader.ReadChars(System.Int32)">
             <summary>从当前流位置读取字符数组</summary>
-            <param name="count"></param>
+            <param name="count">数量</param>
             <returns></returns>
         </member>
         <member name="M:NewLife.Serialization.JsonReader.ReadGuid">
@@ -9385,7 +9469,7 @@
         </member>
         <member name="M:NewLife.Serialization.TextWriterBase`1.Write(System.Byte[])">
             <summary>将字节数组以[0xff,0xff,0xff]的格式写入</summary>
-            <param name="buffer"></param>
+            <param name="buffer">缓冲区</param>
         </member>
         <member name="M:NewLife.Serialization.TextWriterBase`1.Write(System.Byte[],System.Int32,System.Int32)">
             <summary>将字节数组部分写入当前流。</summary>
@@ -9514,7 +9598,7 @@
             <summary>将 Unicode 字符写入当前流，并根据所使用的 Encoding 和向流中写入的特定字符，提升流的当前位置。</summary>
             <param name="chars"></param>
             <param name="index"></param>
-            <param name="count"></param>
+            <param name="count">数量</param>
         </member>
         <member name="M:NewLife.Serialization.JsonWriter.Write(System.String)">
             <summary>写入字符串</summary>
@@ -9551,7 +9635,7 @@
             <typeparam name="T"></typeparam>
             <param name="array"></param>
             <param name="index"></param>
-            <param name="count"></param>
+            <param name="count">数量</param>
             <returns></returns>
         </member>
         <member name="M:NewLife.Serialization.JsonWriter.WriteDictionary(System.Collections.IDictionary,System.Type,NewLife.Serialization.WriteObjectCallback)">
@@ -9640,14 +9724,14 @@
         </member>
         <member name="M:NewLife.IO.ReadWriteStream.Read(System.Byte[],System.Int32,System.Int32)">
             <summary>从输入流中读取数据</summary>
-            <param name="buffer"></param>
-            <param name="offset"></param>
-            <param name="count"></param>
+            <param name="buffer">缓冲区</param>
+            <param name="offset">偏移</param>
+            <param name="count">数量</param>
             <returns></returns>
         </member>
         <member name="M:NewLife.IO.ReadWriteStream.Seek(System.Int64,System.IO.SeekOrigin)">
             <summary>在输入流中搜索</summary>
-            <param name="offset"></param>
+            <param name="offset">偏移</param>
             <param name="origin"></param>
             <returns></returns>
         </member>
@@ -9657,15 +9741,15 @@
         </member>
         <member name="M:NewLife.IO.ReadWriteStream.Write(System.Byte[],System.Int32,System.Int32)">
             <summary>把数据写入到输出流中</summary>
-            <param name="buffer"></param>
-            <param name="offset"></param>
-            <param name="count"></param>
+            <param name="buffer">缓冲区</param>
+            <param name="offset">偏移</param>
+            <param name="count">数量</param>
         </member>
         <member name="M:NewLife.IO.ReadWriteStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
             <summary>开始异步读操作</summary>
-            <param name="buffer"></param>
-            <param name="offset"></param>
-            <param name="count"></param>
+            <param name="buffer">缓冲区</param>
+            <param name="offset">偏移</param>
+            <param name="count">数量</param>
             <param name="callback"></param>
             <param name="state"></param>
             <returns></returns>
@@ -9677,9 +9761,9 @@
         </member>
         <member name="M:NewLife.IO.ReadWriteStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
             <summary>开始异步写操作</summary>
-            <param name="buffer"></param>
-            <param name="offset"></param>
-            <param name="count"></param>
+            <param name="buffer">缓冲区</param>
+            <param name="offset">偏移</param>
+            <param name="count">数量</param>
             <param name="callback"></param>
             <param name="state"></param>
             <returns></returns>
@@ -9690,9 +9774,9 @@
         </member>
         <member name="M:NewLife.IO.ReadWriteStream.CheckArgument(System.Byte[],System.Int32,System.Int32)">
             <summary>检查参数</summary>
-            <param name="buffer"></param>
-            <param name="offset"></param>
-            <param name="count"></param>
+            <param name="buffer">缓冲区</param>
+            <param name="offset">偏移</param>
+            <param name="count">数量</param>
         </member>
         <member name="P:NewLife.IO.ReadWriteStream.InputStream">
             <summary>输入流</summary>
@@ -9800,9 +9884,6 @@
         </member>
         <member name="P:NewLife.Serialization.ReflectMemberInfo.Member">
             <summary>成员</summary>
-        </member>
-        <member name="P:NewLife.Serialization.ReflectMemberInfo.Mix">
-            <summary>快速反射</summary>
         </member>
         <member name="P:NewLife.Serialization.ReflectMemberInfo.Name">
             <summary>名称</summary>
@@ -10103,18 +10184,6 @@
             <param name="type">类型</param>
             <returns></returns>
         </member>
-        <member name="M:NewLife.Reflection.AssemblyX.FindAllPlugins(System.Type)">
-            <summary>查找所有非系统程序集中的所有插件</summary>
-            <param name="type">类型</param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Reflection.AssemblyX.FindAllPlugins(System.Type,System.Boolean)">
-            <summary>查找所有非系统程序集中的所有插件</summary>
-            <remarks>继承类所在的程序集会引用baseType所在的程序集，利用这一点可以做一定程度的性能优化。</remarks>
-            <param name="baseType"></param>
-            <param name="isLoadAssembly">是否从未加载程序集中获取类型。使用仅反射的方法检查目标类型，如果存在，则进行常规加载</param>
-            <returns></returns>
-        </member>
         <member name="M:NewLife.Reflection.AssemblyX.FindAllPlugins(System.Type,System.Boolean,System.Boolean)">
             <summary>查找所有非系统程序集中的所有插件</summary>
             <remarks>继承类所在的程序集会引用baseType所在的程序集，利用这一点可以做一定程度的性能优化。</remarks>
@@ -10132,10 +10201,6 @@
         <member name="M:NewLife.Reflection.AssemblyX.GetAssemblies(System.AppDomain)">
             <summary>获取指定程序域所有程序集</summary>
             <param name="domain"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Reflection.AssemblyX.GetAssemblies">
-            <summary>获取当前程序域所有程序集</summary>
             <returns></returns>
         </member>
         <member name="M:NewLife.Reflection.AssemblyX.ReflectionOnlyGetAssemblies">
@@ -10193,9 +10258,6 @@
         </member>
         <member name="P:NewLife.Reflection.AssemblyX.Types">
             <summary>类型集合，当前程序集的所有类型，包括私有和内嵌，非内嵌请直接调用Asm.GetTypes()</summary>
-        </member>
-        <member name="P:NewLife.Reflection.AssemblyX.TypeXs">
-            <summary>类型集合，当前程序集的所有类型</summary>
         </member>
         <member name="P:NewLife.Reflection.AssemblyX.IsSystemAssembly">
             <summary>是否系统程序集</summary>
@@ -10685,15 +10747,6 @@
             <param name="args"></param>
             <returns></returns>
         </member>
-        <member name="M:NewLife.Reflection.TypeX.GetElementType">
-            <summary>获取元素类型</summary>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Reflection.TypeX.GetElementType(System.Type)">
-            <summary>获取一个类型的元素类型</summary>
-            <param name="type">类型</param>
-            <returns></returns>
-        </member>
         <member name="M:NewLife.Reflection.TypeX.op_Implicit(NewLife.Reflection.TypeX)~System.Type">
             <summary>类型转换</summary>
             <param name="obj"></param>
@@ -10906,7 +10959,7 @@
         </member>
         <member name="M:NewLife.IO.ReadWriteMemoryStream.SeekForWrite(System.Int64,System.IO.SeekOrigin)">
             <summary>已重载。</summary>
-            <param name="offset"></param>
+            <param name="offset">偏移</param>
             <param name="loc"></param>
             <returns></returns>
         </member>
@@ -10915,9 +10968,9 @@
         </member>
         <member name="M:NewLife.IO.ReadWriteMemoryStream.Read(System.Byte[],System.Int32,System.Int32)">
             <summary>已重载。</summary>
-            <param name="buffer"></param>
-            <param name="offset"></param>
-            <param name="count"></param>
+            <param name="buffer">缓冲区</param>
+            <param name="offset">偏移</param>
+            <param name="count">数量</param>
             <returns></returns>
         </member>
         <member name="M:NewLife.IO.ReadWriteMemoryStream.ReadByte">
@@ -10926,9 +10979,9 @@
         </member>
         <member name="M:NewLife.IO.ReadWriteMemoryStream.Write(System.Byte[],System.Int32,System.Int32)">
             <summary>已重载。</summary>
-            <param name="buffer"></param>
-            <param name="offset"></param>
-            <param name="count"></param>
+            <param name="buffer">缓冲区</param>
+            <param name="offset">偏移</param>
+            <param name="count">数量</param>
         </member>
         <member name="M:NewLife.IO.ReadWriteMemoryStream.WriteByte(System.Byte)">
             <summary>已重载。</summary>
@@ -11398,7 +11451,7 @@
         <member name="M:NewLife.Security.Crc32.Update(System.IO.Stream,System.Int64)">
             <summary>添加数据流进行校验</summary>
             <param name="stream"></param>
-            <param name="count"></param>
+            <param name="count">数量</param>
         </member>
         <member name="P:NewLife.Security.Crc32.Value">
             <summary>校验值</summary>
@@ -11468,8 +11521,8 @@
         <member name="M:NewLife.Security.DataHelper.ToHex(System.Byte[],System.Int32,System.Int32)">
             <summary>把字节数组编码为十六进制字符串</summary>
             <param name="data"></param>
-            <param name="offset"></param>
-            <param name="count"></param>
+            <param name="offset">偏移</param>
+            <param name="count">数量</param>
             <returns></returns>
         </member>
         <member name="M:NewLife.Security.DataHelper.FromHex(System.String)">
