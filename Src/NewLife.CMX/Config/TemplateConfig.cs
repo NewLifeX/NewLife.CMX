@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Reflection;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace NewLife.CMX.Config
 {
@@ -34,15 +36,35 @@ namespace NewLife.CMX.Config
         [Description("模板头")]
         public String HeadTemplate { get { return _HeadTemplate; } set { _HeadTemplate = value; } }
 
-        private Int32 _IsCover = 1;
-        /// <summary>是否覆盖原有模板（0否1是）</summary>
-        [Description("是否覆盖原有模板（0否1是）")]
-        public Int32 IsCover { get { return _IsCover; } set { _IsCover = value; } }
+        private Boolean _IsCover = true;
+        /// <summary>是否覆盖原文件</summary>
+        [Description("是否覆盖原文件")]
+        public Boolean IsCover { get { return _IsCover; } set { _IsCover = value; } }
 
-        private Int32 _IsCreateTemplate = 1;
-        /// <summary>是否创建模板（0否1是）</summary>
-        [Description("是否创建模板（0否1是）")]
-        public Int32 IsCreateTemplate { get { return _IsCreateTemplate; } set { _IsCreateTemplate = value; } }
+        private Boolean _IsCreateTemplate = true;
+        /// <summary>是否创建模板</summary>
+        [Description("是否创建模板")]
+        public Boolean IsCreateTemplate { get { return _IsCreateTemplate; } set { _IsCreateTemplate = value; } }
+
+        private Boolean _IsDebug;
+        /// <summary>是否调试模式</summary>
+        [Description("是否调试模式")]
+        public Boolean IsDebug { get { return _IsDebug; } set { _IsDebug = value; } }
+
+        /// <summary>文件版本</summary>
+        [XmlIgnore]
+        public static String Version { get { return Assembly.GetExecutingAssembly().GetName().Version.ToString(); } }
+
+        private String _CsRootPath = "NewLift.CMX.Web";
+        /// <summary>Cs页面路径</summary>
+        [Description("Cs页面路径")]
+        public String CsRootPath { get { return _CsRootPath; } set { _CsRootPath = value; } }
+
+        private String _IgnoreExtendName;
+        /// <summary>忽略扩展名称(多项请用逗号分隔)</summary>
+        [Description("忽略扩展名称(多项请用逗号分隔)")]
+        public String IgnoreExtendName { get { return _IgnoreExtendName; } set { _IgnoreExtendName = value; } }
+
         #endregion
 
         #region 构造方法

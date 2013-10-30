@@ -17,9 +17,13 @@ namespace NewLife.CMX.TemplateEngine
         /// <summary>参数字典</summary>
         public Dictionary<String, Object> ArgDic { get { return _ArgDic; } set { _ArgDic = value; } }
 
-        private CMXTemplateInfo _CMXTemplate;
-        /// <summary>mo</summary>
-        public CMXTemplateInfo CMXTemplate { get { return _CMXTemplate; } set { _CMXTemplate = value; } }
+        private CMXTemplateInfo _TemplateInfo;
+        /// <summary>模板信息</summary>
+        public CMXTemplateInfo TemplateInfo { get { return _TemplateInfo; } set { _TemplateInfo = value; } }
+
+        //private List<CMXTemplateInfo> _Templates;
+        ///// <summary>模板信息</summary>
+        //public List<CMXTemplateInfo> Templates { get { return _Templates; } set { _Templates = value; } }
         #endregion
 
         #region 初始化
@@ -29,7 +33,7 @@ namespace NewLife.CMX.TemplateEngine
 
             if (Data.ContainsKey("Config")) Config = (TemplateConfig)Data["Config"];
             if (Data.ContainsKey("ArgDic")) ArgDic = (Dictionary<String, Object>)Data["ArgDic"];
-            if (Data.ContainsKey("CMXTemplateInfo")) CMXTemplate = (CMXTemplateInfo)Data["CMXTemplate"];
+            if (Data.ContainsKey("TemplateInfo")) TemplateInfo = (CMXTemplateInfo)Data["TemplateInfo "];
         }
         #endregion
     }
@@ -37,21 +41,11 @@ namespace NewLife.CMX.TemplateEngine
     public class CMXTemplateInfo
     {
         private String _Name;
-
-        public String Name
-        {
-            get { return _Name; }
-            set { _Name = value; }
-        }
+        /// <summary>模板名称</summary>
+        public String Name { get { return _Name; } set { _Name = value; } }
 
         private String _Content;
-
-        public String Content
-        {
-            get { return _Content; }
-            set { _Content = value; }
-        }
+        /// <summary>模板内容</summary>
+        public String Content { get { return _Content; } set { _Content = value; } }
     }
 }
-
-

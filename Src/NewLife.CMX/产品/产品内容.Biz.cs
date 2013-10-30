@@ -14,7 +14,7 @@ using NewLife.Log;
 using NewLife.Web;
 using XCode;
 using XCode.Configuration;
-using NewLife.Linq;
+using System.Linq;
 
 namespace NewLife.CMX
 {

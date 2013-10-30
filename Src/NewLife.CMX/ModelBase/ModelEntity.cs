@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using NewLife.Reflection;
 using XCode;
-using NewLife.Linq;
+using System.Linq;
 
 namespace NewLife.CMX.ModelBase
 {

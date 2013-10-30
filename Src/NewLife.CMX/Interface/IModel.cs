@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using NewLife.Reflection;
-using NewLife.Linq;
+using System.Linq;
 using XCode;
 
 namespace NewLife.CMX
