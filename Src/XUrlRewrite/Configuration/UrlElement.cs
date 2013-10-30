@@ -269,7 +269,7 @@ namespace XUrlRewrite.Configuration
         /// <param name="app"></param>
         /// <param name="cfg"></param>
         /// <returns></returns>
-        internal Boolean RewriteUrl(String path, String query, HttpApplication app, UrlRewriteConfig cfg)
+        public Boolean RewriteUrl(String path, String query, HttpApplication app, UrlRewriteConfig cfg)
         {
             if (RewriteUrlFunc == null)
             {
