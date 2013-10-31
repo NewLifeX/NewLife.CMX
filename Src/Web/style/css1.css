@@ -65,16 +65,7 @@
 }
 #wrpper .header .mod ul li a{text-decoration:none; color:#ffffff; font-size:12px; }
 
-     /*   #wrpper .header .mod .link a
-        {
-            float: left;
-            width: 80px;
-            height: 30px;
-            margin-top: -5px;
-            font-size: 12px;
-		    text-decoration:none ;
-        }*/
-
+  
     #wrpper .header .mod input
     {
         float: left;
@@ -385,6 +376,14 @@
         color: gray;
     }
 /*-产品与服务页面-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+ .top_image
+    {
+        height: 120px;
+		width:960px;
+		margin:0 auto;
+	    padding-top:20px;
+    }
+
 .mainbody
 {
 	width:1021px;
@@ -393,22 +392,11 @@
 	/*background: url("../images/mainbg.jpg") no-repeat scroll center top;*/
 	top: 0px;
 	left: 0px;
+	height: 1306px;
 }
 
-    .mainbody .top_image
-    {
-        height: 120px;
-		width:960px;
-		margin:0 auto;
-	    padding-top:20px;
-    }
-
-    .mainbody .conten
-    {
-        height: 1309px;
-    }
 /*左边列表项.......................................................................................................*/
-.conten .list
+.mainbody .list
 {
 	border: 1px solid #95bcf6;
     background-color: #e0e1e3;
@@ -418,7 +406,7 @@
     margin: 15px 0 0 30px;
 }
 
-    .conten .list #list_t
+    .mainbody .list #list_t
     {
         height: 53px;
         background-image: url(../images/list_bg.jpg);
@@ -426,7 +414,7 @@
         margin: 0px;
     }
 
-        .conten .list #list_t span
+       .list #list_t span
         {
             display: block;
             text-align: center;
@@ -445,7 +433,7 @@
 }
 .list_meu{width:180px;margin:0px; float:left;}
 .list_meu dl{margin-left:10px;}
-.list_meu dl dt a{height:24px;line-height:24px;overflow:hidden;color:#3366cc;font-weight:800;}
+.list_meu dl dt a{height:24px;line-height:24px;overflow:hidden;color:#3366cc;font-weight:800; text-decoration:none;}
 .list_meu dl dt a span{display:inline-block;width:13px;height:15px;overflow:hidden;float:left;margin:0 5px 0 0;}
 .list_meu dl dt a.minus span{background:url(../images/showbtn.gif) no-repeat;}
 .list_meu dl dt a.plus span{background:url(../images/hidebtn.gif) no-repeat;}
@@ -457,12 +445,12 @@
 
 
 /*产品与服务右边的产品类表详细内容...................................................................................................................*/
-.pro_dr
+.content
 {
     width: 780px;
-    height: 1150px;
     float: right;
     margin: 15px 0 0 0;
+	height: 26px;
 }
 
 .djsb
@@ -496,14 +484,14 @@
     background-image: url(../images/t4.jpg);
 }
 
-.pro_dr ul
+.content ul
 {
     margin: 10px 0 0 0;
     padding: 0px;
 	height: 55px;
 }
 
-    .pro_dr ul li
+    .content ul li
     {
         height: 120px;
         border: solid 1px #fff;
@@ -516,7 +504,7 @@
         left: 0px;
 	width: 200px;
 }
-        .pro_dr ul li span
+        .content ul li span
         {
             display: block;
             width: 155px;
@@ -527,7 +515,7 @@
 	top: 6px;
 }
 
-            .pro_dr ul li span a
+            .content ul li span a
             {
                 display: block;
                 width: 153px;
@@ -538,20 +526,20 @@
                 background-color: #CCCCCC;
             }
 
-                .pro_dr ul li span a:hover
+                .content ul li span a:hover
                 {
                     border: solid 1px #f60;
                     width: 153px;
                     height: 118px;
                 }
 
-        .pro_dr ul li p.main-nav
+        .content ul li p.main-nav
         {
             margin: 0 0 0 0;
             width: 192px;
         }
 
-            .pro_dr ul li p.main-nav a
+            .content ul li p.main-nav a
             {
                 font-size: 20px;
                 font-weight: bold;
@@ -560,18 +548,18 @@
                 text-decoration: none;
             }
 
-                .pro_dr ul li p.main-nav a:hover
+                .content ul li p.main-nav a:hover
                 {
                     border-bottom: solid 1px #c03;
                 }
 
-    .pro_dr ul ul
+    .content ul ul
     {
         padding: 0px;
 	width: 105px;
 }
 
-        .pro_dr ul ul li
+        .content ul ul li
         {
             height: 18px;
             font-size: 16px;
@@ -580,13 +568,13 @@
             height: 25px;
         }
 
-            .pro_dr ul ul li a
+            .content ul ul li a
             {
                 text-decoration: none;
                 color: black;
             }
 
-                .pro_dr ul ul li a:hover
+                .content ul ul li a:hover
                 {
                     border-bottom: solid 1px red;
                     color: red;
@@ -594,8 +582,24 @@
 
 
 /*about页面*/
-.about
+.a1
 {
-	width:1021px;
-	margin:0 auto;
+	background:url(../images/about.jpg) no-repeat left;
+	height: 29px;
+}
+	.a1 span,c1 span
+	{
+		float:right;
+		margin-right:20px;
+		font-size:12px;
+		color:gray;
+	}
+.font
+{
+	margin:25px 0 0 0px;
+}
+/*culture页面*/
+.c1
+{
+
 }
