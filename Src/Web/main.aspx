@@ -1,16 +1,18 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="main.aspx.cs" Inherits="main" %>
+
+<!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="灌胶机,混合管,AB胶枪,点胶针筒,点胶针头" />
-    <meta name="description" content="月无声电子设备有限公司坐落在交通方便的东莞市区,毗邻深圳、广州、佛山、惠州等城市。其主要产品有：双液灌胶机，精准双液点胶机，混合管，点胶机,AB胶枪，点胶针头，AB胶筒，点胶针筒，点胶针头，不锈钢压力桶。月无声的点胶设备适用于：环氧树脂，PU，双组份硅胶和其他双组份流体材料。" />
-    <title>混合管,灌胶机,AB胶枪,点胶针筒,点胶针头 - 月无声</title>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+   <title>混合管,灌胶机,AB胶枪,点胶针筒,点胶针头 - 月无声</title>
     <link rel="stylesheet" type="text/css" href="style/css1.css" />
     <script src="Scripts/jquery/jquery-1.9.1.min.js"></script>
    <script type="text/javascript" src="style/javascript.js"></script>
 </head>
 <body>
-    <div id="wrap">
+    <form id="form1" runat="server">
+     <div id="wrap">
         <div id="wrpper">
             <div class="header">
                 <div id="logo">
@@ -149,5 +151,6 @@
 
         </div>
     </div>
+    </form>
 </body>
 </html>

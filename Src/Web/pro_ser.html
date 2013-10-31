@@ -8,39 +8,6 @@
     <link rel="stylesheet" type="text/css" href="style/css1.css" />
     <script src="Scripts/jquery/jquery-1.9.1.min.js"></script>
    <script type="text/javascript" src="style/javascript.js"></script>
- 
-<script type="text/javascript">
-
-
-    /*高亮*/
-    
-var  $c=function(array){var nArray = [];for (var i=0;i<array.length;i++) nArray.push(array[i]);return nArray;};
-    Array.prototype.each=function(func){
-        for(var i=0,l=this.length;i<l;i++) {func(this[i],i);};
-    };
-    document .getElementsByClassName=function(cn){
-        var hasClass=function(w,Name){
-            var hasClass = false;
-            w.className.split(' ').each(function(s){
-                if (s == Name) hasClass = true;
-            });
-            return hasClass;
-        }; 
-        var elems =document.getElementsByTagName("*")||document.all;
-        var elemList = [];
-        $c(elems).each(function(e){
-            if(hasClass(e,cn)){elemList.push(e);}
-        })
-        return $c(elemList);
-    };		
-    function change_bg(obj){
-        var a=document.getElementsByClassName("nav")[0].getElementsByTagName("a");
-        for(var i=0;i<a.length;i++){a[i].className="";}
-        obj.className="current";
-    }
-
-</script>
-
 </head>
 <body>
     <div id="wrap">
@@ -50,12 +17,12 @@ var  $c=function(array){var nArray = [];for (var i=0;i<array.length;i++) nArray.
                     <h1>东莞市月无声实业</h1>
                 </div>
                 <div class="mod">
-                    <div class="link">
-                        <a href="" target="_blank">点胶设备</a>
-                        <a href="" target="_blank">智能自控</a>
-                        <a href="" target="_blank">化工胶水</a>
-                        <a href="" target="_blank">五金模具</a>
-                    </div>
+                    <ul>
+                        <li><a href="#" target="_blank">点胶设备</a></li>
+                        <li><a href="#" target="_blank">智能自控</a></li>
+                        <li><a href="#" target="_blank">化工胶水</a></li>
+                        <li><a href="#" target="_blank">五金模具</a></li>
+                    </ul>
                     <form>
                         <input name="" type="text" />
                         <input name="搜索" type="submit" class="botton" id="搜索" value="提交" />
@@ -132,7 +99,7 @@ var  $c=function(array){var nArray = [];for (var i=0;i<array.length;i++) nArray.
 		                 </dl> 
 	
 		                 <dl> 
-			                <dt><a href="#" class="plus" onclick="showHide(this,'items1');"><span></span>点胶设备</a></dt> 
+			                <dt><a href="#" class="plus" onclick="showHide(this,'items1');"><span></span>阿波罗声控</a></dt> 
 			                <dd id="items1" style="display:none;"> 
 				                  <ul>
 					                 <li><a href="#">自动化设备</a></li>
@@ -141,48 +108,36 @@ var  $c=function(array){var nArray = [];for (var i=0;i<array.length;i++) nArray.
 				                 </ul> 
 			              </dd> 
 		              </dl>
-                           <!-- <div class="ico">
-                            </div>-->
-                            <!--<ul id="faq">
-                                <li><!--<span class="ico"></span>-->
-                                   <!-- <dl>
-                                        <dt>点胶设备</dt>
-                                        <dd><a href="#">混合管</a></dd>
-                                        <dd><a href="#">点胶机</a></dd>
-                                        <dd><a href="#">胶枪</a></dd>
-                                        <dd><a href="#">阀门</a></dd>
-                                        <dd><a href="#">压力桶</a></dd>
-                                        <dd><a href="#">针筒</a></dd>
-                                        <dd><a href="#">针头</a></dd>
-                                        <dd><a href="#">转接头</a></dd>
-                                        <dd><a href="#">料管</a></dd>
-                                        <dd><a href="#">各种耗材</a></dd>
-                                    </dl>
-                                </li>
-                                <li><!--<span class="ico"></span>-->
-                                    <!--<dl>
-                                       <dt>智能自动化</dt>
-                                        <dd><a href="#">自动化设备</a></dd>
-                                        <dd><a href="#">阿波罗智能控制器</a></dd>
-                                        <dd><a href="#">阿波罗智能物联网网关</a></dd>
-                                    </dl>
-                                </li>
-                                <li><!--<span class="ico"></span>-->
-                                   <!-- <dl>
-                                        <dt>化工胶水</dt>
-                                        <dd><a href="#">水性万能胶</a></dd>
-                                        <dd><a href="#">点胶机</a></dd>
-                                        <dd><a href="#">胶枪</a></dd>
-                                        <dd><a href="#">阀门</a></dd>
-                                    </dl>
-                                </li>
-                            </ul> -->
+                      <dl> 
+			                <dt><a href="#" class="plus" onclick="showHide(this,'items2');"><span></span>化工胶水</a></dt> 
+			                <dd id="items2" style="display:none;"> 
+				                  <ul>
+					                 <li><a href="#">水性万能胶</a></li>
+                                     <li><a href="#">手袋专用环保喷胶</a></li>
+                                     <li><a href="#">双组份水性喷胶</a></li>
+                                     <li><a href="#">单组份水性喷胶</a></li>
+				                 </ul> 
+			              </dd> 
+		              </dl>
+                             <dl> 
+			                <dt><a href="#" class="plus" onclick="showHide(this,'items3');"><span></span>五金模具</a></dt> 
+			                <dd id="items3" style="display:none;"> 
+				                  <ul>
+					                 <li><a href="#">水性万能胶</a></li>
+                                     <li><a href="#">手袋专用环保喷胶</a></li>
+                                     <li><a href="#">双组份水性喷胶</a></li>
+                                      <li><a href="#">单组份水性喷胶</a></li>
+				                 </ul> 
+			              </dd> 
+		              </dl>
                         </div>
                     </div>
                     <div class="pro_dr">
+                        
                         <div class="djsb">
-                            <div class="djsb_t1"></div>
-                            <ul>
+                            <div class="p_t1"></div>
+                            <div class="p_c1">
+                              <ul>
                                 <li><span><a href="#" class="hhg">混合管</a></span>
                                     <p class="main-nav"><a href="#">混合管</a></p>
                                     <ul>
@@ -190,9 +145,133 @@ var  $c=function(array){var nArray = [];for (var i=0;i<array.length;i++) nArray.
                                         <li><a href="#">动态混合管</a></li>
                                     </ul>
                                 </li>
-
+                                <li><span><a href="#" class="hhg">点胶机/灌胶机</a></span>
+                                    <p class="main-nav"><a href="#">点胶机/灌胶机</a></p>
+                                    <ul>
+                                        <li><a href="#">双液点胶机</a></li>
+                                        <li><a href="#">单液点胶机</a></li>
+                                    </ul>
+                                </li>
+                                <li><span><a href="#" class="hhg">胶枪/阀门/压力桶</a></span>
+                                    <p class="main-nav"><a href="#">胶枪/阀门/压力桶</a></p>
+                                    <ul>
+                                        <li><a href="#">单液|双液点胶阀枪</a></li>
+                                        <li><a href="#">手动|气动AB胶枪</a></li>
+                                        <li><a href="#">压力桶</a></li>
+                                    </ul>
+                                </li>
+                                <li><span><a href="#" class="hhg">针筒/针头/转接头</a></span>
+                                    <p class="main-nav"><a href="#">针筒/针头/转接头</a></p>
+                                    <ul>
+                                        <li><a href="#">点胶针筒</a></li>
+                                        <li><a href="#">AB胶筒</a></li>
+                                        <li><a href="#">转接头</a></li>
+                                    </ul>
+                                </li>
                             </ul>
-                        </div>
+                          </div>
+                         </div>
+                          <div class="djsb">
+                            <div class="p_t2"></div>
+                            <div class="p_c1">
+                              <ul>
+                                <li><span><a href="#" class="hhg">自动化设备</a></span>
+                                    <p class="main-nav"><a href="#">自动化设备</a></p>
+                                    <ul>
+                                        <li><a href="#">三轴机械手</a></li>
+                                        <li><a href="#">自动点胶机</a></li>
+                                         <li><a href="#">自动生产线</a></li>
+                                    </ul>
+                                </li>
+                                <li><span><a href="#" class="hhg">阿波罗智能控制器</a></span>
+                                    <p class="main-nav"><a href="#">阿波罗智能控制器</a></p>
+                                    <ul>
+                                        <li><a href="#">阿波罗一号</a></li>
+                                        <li><a href="#">阿波罗二号</a></li>
+                                    </ul>
+                                </li>
+                                <li><span><a href="#" class="hhg">阿波罗智能物联网关</a></span>
+                                    <p class="main-nav"><a href="#">阿波罗智能物联网关</a></p>
+                                    <ul>
+                                        <li><a href="#">.....</a></li>
+                                        <li><a href="#">......</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                          </div>
+
+                         </div>
+                          <div class="djsb">
+                            <div class="p_t3"></div>
+                            <div class="p_c1">
+                              <ul>
+                                <li><span><a href="#" class="hhg">水性万能胶</a></span>
+                                    <p class="main-nav"><a href="#">水性万能胶</a></p>
+                                    <ul>
+                                        <li><a href="#">.......</a></li>
+                                        <li><a href="#">......</a></li>
+                                    </ul>
+                                </li>
+                                <li><span><a href="#" class="hhg">手袋专用环保喷胶</a></span>
+                                    <p class="main-nav"><a href="#">手袋专用环保喷胶</a></p>
+                                    <ul>
+                                        <li><a href="#">........</a></li>
+                                        <li><a href="#">......</a></li>
+                                    </ul>
+                                </li>
+                                <li><span><a href="#" class="hhg">双组份水性喷胶</a></span>
+                                    <p class="main-nav"><a href="#">双组份水性喷胶</a></p>
+                                    <ul>
+                                        <li><a href="#">.......</a></li>
+                                        <li><a href="#">.......</a></li>
+                                    </ul>
+                                </li>
+                                <li><span><a href="#" class="hhg">单组份水性喷胶</a></span>
+                                    <p class="main-nav"><a href="#">单组份水性喷胶</a></p>
+                                    <ul>
+                                        <li><a href="#">.......</a></li>
+                                        <li><a href="#">.......</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                          </div>
+                         </div>
+                          <div class="djsb">
+                            <div class="p_t4"></div>
+                            <div class="p_c1">
+                              <ul>
+                                <li><span><a href="#" class="hhg">.....</a></span>
+                                    <p class="main-nav"><a href="#">五金模具</a></p>
+                                    <ul>
+                                        <li><a href="#">.....</a></li>
+                                        <li><a href="#">.....</a></li>
+                                    </ul>
+                                </li>
+                                <li><span><a href="#" class="hhg">....</a></span>
+                                    <p class="main-nav"><a href="#">....</a></p>
+                                    <ul>
+                                        <li><a href="#">....</a></li>
+                                        <li><a href="#">.....</a></li>
+                                    </ul>
+                                </li>
+                                <li><span><a href="#" class="hhg">.....</a></span>
+                                    <p class="main-nav"><a href="#">.....</a></p>
+                                    <ul>
+                                        <li><a href="#">....</a></li>
+                                        <li><a href="#">.....</a></li>
+                                    </ul>
+                                </li>
+                                <li><span><a href="#" class="hhg">.....</a></span>
+                                    <p class="main-nav"><a href="#">.....</a></p>
+                                    <ul>
+                                        <li><a href="#">....</a></li>
+                                        <li><a href="#">....</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                          </div>
+
+                         </div>
                     </div>
                 </div>
             </div>
@@ -207,7 +286,8 @@ var  $c=function(array){var nArray = [];for (var i=0;i<array.length;i++) nArray.
                     地址：东莞市高埗镇冼沙村广场北路宝源工业区  电话：0769-23107897 0769-23107080
                 </div>
             </div>
-        </div>
+        
+      </div>
     </div>
 </body>
 </html>

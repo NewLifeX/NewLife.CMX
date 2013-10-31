@@ -14,16 +14,16 @@
 
 #wrpper
 {
-    width: 1021px;
     margin: 0 auto;
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
 }
 
     #wrpper .header
     {
         width: 1021px;
+		margin:0 auto;
         height: 224px;
         background: url(../images/header.jpg) no-repeat center bottom;
     }
@@ -53,21 +53,27 @@
     display: inline;
 }
 
-    #wrpper .header .mod .link
-    {
-        float: left;
-        width: 160px;
-        height: 64px;
-    }
+#wrpper .header .mod ul{ width:140px; padding:0px; margin:0px;list-style:none; float:left;}
+#wrpper .header .mod ul li{
+	float:left;
+	/*display:block;*/
+	width:70px;
+	padding:0px;
+	
+	list-style-image:url(../images/triangle.png);
+	
+}
+#wrpper .header .mod ul li a{text-decoration:none; color:#ffffff; font-size:12px; }
 
-        #wrpper .header .mod .link a
+     /*   #wrpper .header .mod .link a
         {
             float: left;
             width: 80px;
             height: 30px;
             margin-top: -5px;
             font-size: 12px;
-        }
+		    text-decoration:none ;
+        }*/
 
     #wrpper .header .mod input
     {
@@ -75,14 +81,14 @@
         width: 100px;
         height: 20px;
         line-height: 20px;
+		margin-top:10px;
     }
 
     #wrpper .header .mod form .botton
     {
         float: left;
         width: 60px;
-        height: 22px;
-        line-height: 22px;
+        height: 25px;
         margin-left: 5px;
         display: inline;
     }
@@ -156,6 +162,7 @@
 {
     height: inherit;
     line-height: normal;
+	width: 115px;
 }
 
     .nav .child ul li a:hover
@@ -174,6 +181,11 @@
 }
 
 /*中间主体内容..........................................................................................................................................................................................*/
+#index_1, #index_2,#articleContent,#foot
+{
+	width:1021px;
+	margin:0 auto;
+}
 #index_1
 {
     height: 332px;
@@ -335,7 +347,7 @@
     }
 
 #foot
-{
+{	
     height: 160px;
     margin-top: 20px;
 }
@@ -369,15 +381,18 @@
     {
         width: 460px;
         font-size: 12px;
-        margin: auto;
+        margin: 0 auto;
         color: gray;
     }
 /*-产品与服务页面-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 .mainbody
 {
+	width:1021px;
     margin: 0 auto;
     position: relative;
-	background: url("../images/mainbg.jpg") no-repeat scroll center top ;
+	/*background: url("../images/mainbg.jpg") no-repeat scroll center top;*/
+	top: 0px;
+	left: 0px;
 }
 
     .mainbody .top_image
@@ -390,7 +405,7 @@
 
     .mainbody .conten
     {
-        height: 1165px;
+        height: 1309px;
     }
 /*左边列表项.......................................................................................................*/
 .conten .list
@@ -399,7 +414,7 @@
     background-color: #e0e1e3;
     float: left;
     width: 180px;
-    height: 600px;
+    height: 800px;
     margin: 15px 0 0 30px;
 }
 
@@ -440,94 +455,6 @@
 .list_meu dl dd li:hover{background-color:#cccccc; width:160px;}
 .list_meu dl dd li a{font-size:12px;text-decoration:none; color:black; margin-left:20px;}
 
-/*.list_meu ul
-{
-    margin: 10px;
-    padding: 0px;
-   list-style: none;
-    width: 138px;
-    position:absolute;
-    right:0px;
-}
-
-.list ul#faq
-{
-	
-    font-size: 16px;
-	top: -1px;
-}
-
-ul#faq li
-{
-    margin: 0;
-    padding: 0;
-	
-}
-
-#faq {
-    margin: 0;
-    padding: 0;
-    display: inline;
-}
-
-#faq dt
-{
-    font-weight: bold;
-    cursor: pointer;
-    line-height: 20px;
-    padding: 0;
-}
-
-#faq dd
-{
-    display: none;
-    margin: 0;
-    padding: 5px 0 5px 15px;
-}
-
-    #faq dd:hover
-    {
-        background: #E5ECF9;
-    }
-
-    #faq dd a
-    {
-        font-size: 13px;
-        color: black;
-        text-decoration: none;
-    }
-     /* .ico
-        {
-            background: url("../images/togglebar.gif") no-repeat;
-            width: 20px;
-            height: 20px;
-            overflow: hidden;
-            position: absolute;
-            margin:-2px 0 0 -20px;
-        }
-
-        .icoMinus
-        {
-            background-position:0 -40px;
-        }*/
-
-/*.list ul
-{
-  padding:10px 0 10px 10px;
-  margin:0px;
-  list-style-type:none;
-
-}
-.list ul li
-	{
-		font-size:15px;
-}
-
-.list ul ul li
-	{
-		font-size:13px;
-	}*/
-
 
 /*产品与服务右边的产品类表详细内容...................................................................................................................*/
 .pro_dr
@@ -540,21 +467,40 @@ ul#faq li
 
 .djsb
 {
-    height: 283px;
+    height: 322px;
+}
+.p_t1, .p_t2, .p_t3, .p_t4
+{
+	 height: 40px;
+    width: 307px;
 }
 
-.djsb_t1
+.p_t1
 {
-    height: 40px;
-    width: 307px;
-    background-image: url(../images/djsb_t1.jpg);
+   
+    background-image: url(../images/t1.jpg);
+}
+.p_t2
+{
+   
+    background-image: url(../images/t2.jpg);
+}
+.p_t3
+{
+   
+    background-image: url(../images/t3.jpg);
+}
+.p_t4
+{
+   
+    background-image: url(../images/t4.jpg);
 }
 
 .pro_dr ul
 {
     margin: 10px 0 0 0;
     padding: 0px;
-    width: 112px;
+	height: 55px;
 }
 
     .pro_dr ul li
@@ -568,11 +514,8 @@ ul#faq li
         margin: 0 0px 10px 0;
         top: 0px;
         left: 0px;
-    }
-        /*.pro_dr ul li:hover
-	{
-		border:solid 1px #8BC0F6; background:#F7FAFD;
-	}*/
+	width: 200px;
+}
         .pro_dr ul li span
         {
             display: block;
@@ -580,8 +523,9 @@ ul#faq li
             height: 120px;
             overflow: hidden;
             position: absolute;
-            left: 0px;
-        }
+            left: 4px;
+	top: 6px;
+}
 
             .pro_dr ul li span a
             {
@@ -604,7 +548,7 @@ ul#faq li
         .pro_dr ul li p.main-nav
         {
             margin: 0 0 0 0;
-            width: 109px;
+            width: 192px;
         }
 
             .pro_dr ul li p.main-nav a
@@ -624,7 +568,8 @@ ul#faq li
     .pro_dr ul ul
     {
         padding: 0px;
-    }
+	width: 105px;
+}
 
         .pro_dr ul ul li
         {
@@ -646,3 +591,11 @@ ul#faq li
                     border-bottom: solid 1px red;
                     color: red;
                 }
+
+
+/*about页面*/
+.about
+{
+	width:1021px;
+	margin:0 auto;
+}

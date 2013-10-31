@@ -1,0 +1,519 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>XUrlRewrite</name>
+    </assembly>
+    <members>
+        <member name="T:XUrlRewrite.Entities.ConfigWrap">
+            <summary>
+            模板配置业务包装类,主要用于前端aspx中使用数据绑定
+            </summary>
+        </member>
+        <member name="M:XUrlRewrite.Entities.ConfigWrap.FindTemplateConfig(System.Web.HttpApplication)">
+            <summary>
+            查找指定应用的模板配置
+            </summary>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XUrlRewrite.Entities.ConfigWrap.FindAllUrlElements(System.Web.HttpApplication,System.String)">
+            <summary>
+            查找指定应用,指定类型的模板Url映射配置
+            </summary>
+            <param name="app"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XUrlRewrite.Entities.ConfigWrap.FindUrlElements(System.Web.HttpApplication,System.String)">
+            <summary>
+            查找指定应用,指定url的Url映射配置
+            </summary>
+            <param name="app"></param>
+            <param name="urlkey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XUrlRewrite.Entities.ConfigWrap.UpdateUrlElement(XUrlRewrite.Configuration.UrlElement)">
+            <summary>
+            更新指定Url映射配置(包含添加或修改)
+            TODO 暂时为当前应用,因为数据绑定不方便传递多参数
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XUrlRewrite.Entities.ConfigWrap.RemoveUrlElement(XUrlRewrite.Configuration.UrlElement)">
+            <summary>
+            删除指定Url的Url映射配置
+            </summary>
+            <param name="url"></param>
+        </member>
+        <member name="M:XUrlRewrite.Entities.ConfigWrap.MoveUrlElement(System.Web.HttpApplication,XUrlRewrite.Configuration.UrlElement,System.Int32)">
+            <summary>
+            移动指定应用,指定Url映射配置的顺序,这样会影响到其优先级,越向上的优先级越高
+            
+            
+            </summary>
+            <param name="app"></param>
+            <param name="url"></param>
+            <param name="moveby">移动偏移量,-1即向上1位,+1即向下1位,如果超出则移动到第一位或最后一位</param>
+            <returns></returns>
+        </member>
+        <member name="M:XUrlRewrite.Entities.ConfigWrap.GetLastWriteDateTime(System.Web.HttpApplication)">
+            <summary>
+            获取指定应用的模板配置最后修改时间
+            </summary>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XUrlRewrite.Entities.ConfigWrap.Save(System.Web.HttpApplication)">
+            <summary>
+            保存指定应用的模板配置到配置文件中
+            </summary>
+            <param name="app"></param>
+        </member>
+        <member name="M:XUrlRewrite.Entities.ConfigWrap.GetConfig(System.Web.HttpApplication)">
+            <summary>
+            查找指定应用的模板配置
+            </summary>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XUrlRewrite.Entities.ConfigWrap.UpdateConfig(XUrlRewrite.Configuration.UrlRewriteConfig)">
+            <summary>
+            修改当前应用的模板配置,主要包括全局开关和模板文件目录
+            </summary>
+            <param name="config"></param>
+        </member>
+        <member name="M:XUrlRewrite.Entities.ConfigWrap.Reload(System.Web.HttpApplication)">
+            <summary>
+            重新从配置文件中加载指定引用的模板配置
+            </summary>
+            <param name="app"></param>
+        </member>
+        <member name="T:XUrlRewrite.Configuration.Manager">
+            <summary>
+            模板配置管理
+            </summary>
+        </member>
+        <member name="M:XUrlRewrite.Configuration.Manager.GetConfig(System.Web.HttpApplication)">
+            <summary>
+            获得模板配置信息
+            </summary>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XUrlRewrite.Configuration.Manager.GetConfigManager(System.Web.HttpApplication)">
+            <summary>
+            获得模板配置管理器,可以修改配置文件路径,重新加载配置文件,获取配置文件最后修改时间
+            </summary>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XUrlRewrite.Configuration.Manager.GetTemplateConfig">
+            <summary>
+            获得模板配置信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XUrlRewrite.Configuration.Manager.Save">
+            <summary>
+            保存对模板配置节点的修改
+            </summary>
+        </member>
+        <member name="M:XUrlRewrite.Configuration.Manager.SaveAs(System.String)">
+            <summary>
+            令存对模板配置节点的修改
+            </summary>
+            <param name="filename"></param>
+        </member>
+        <member name="E:XUrlRewrite.Configuration.Manager.LoadConfig">
+            <summary>
+            当模版配置信息重新加载后触发的事件
+            </summary>
+        </member>
+        <member name="P:XUrlRewrite.Configuration.Manager.ConfigFilePath">
+            <summary>
+            配置文件路径
+            </summary>
+        </member>
+        <member name="P:XUrlRewrite.Configuration.Manager.AbsoluteConfigFilePath">
+            <summary>
+            配置文件路径,物理路径
+            </summary>
+        </member>
+        <member name="P:XUrlRewrite.Configuration.Manager.ConfigSectionName">
+            <summary>
+            配置标签名称
+            </summary>
+        </member>
+        <member name="P:XUrlRewrite.Configuration.Manager.LastWriteTime">
+            <summary>
+            获取配置文件最后的修改时间
+            </summary>
+        </member>
+        <member name="P:XUrlRewrite.Configuration.Manager.NeedForReload">
+            <summary>
+            获取或设置是否需要重新读取配置文件
+            </summary>
+        </member>
+        <member name="P:XUrlRewrite.Configuration.Manager.Debug">
+            <summary>
+            是否调试状态的开关
+            </summary>
+        </member>
+        <member name="T:XUrlRewrite.Configuration.UrlRewriteConfig">
+            <summary>
+            模板配置根
+            </summary>
+        </member>
+        <member name="P:XUrlRewrite.Configuration.UrlRewriteConfig.Enabled">
+            <summary>
+            全局开关
+            </summary>
+        </member>
+        <member name="P:XUrlRewrite.Configuration.UrlRewriteConfig.Directory">
+            <summary>
+            模板文件目录
+            </summary>
+        </member>
+        <member name="P:XUrlRewrite.Configuration.UrlRewriteConfig.CustomFilter">
+            <summary>
+            自定义过滤器,用于避免特定请求不使用Url重写
+            </summary>
+            <remarks>
+            格式是完整的类名后跟随方法名,方法需要符合Func&lt;string,string,HttpApplication,bool&gt; 委托的签名
+            </remarks>
+        </member>
+        <member name="P:XUrlRewrite.Configuration.UrlRewriteConfig.Urls">
+            <summary>
+            模板Url映射配置集合
+            </summary>
+        </member>
+        <member name="T:XUrlRewrite.Configuration.UrlCollection">
+            <summary>
+            Url映射配置集合
+            </summary>
+        </member>
+        <member name="M:XUrlRewrite.Configuration.UrlCollection.#ctor">
+            <summary>
+            创建新的Url映射配置
+            </summary>
+        </member>
+        <member name="M:XUrlRewrite.Configuration.UrlCollection.CreateNewElement">
+            <summary>
+            <see cref="M:System.Configuration.ConfigurationElementCollection.CreateNewElement"/>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XUrlRewrite.Configuration.UrlCollection.GetElementKey(System.Configuration.ConfigurationElement)">
+            <summary>
+            
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XUrlRewrite.Configuration.UrlCollection.Add(System.Configuration.ConfigurationElement)">
+            <summary>
+            添加指定Url映射配置
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:XUrlRewrite.Configuration.UrlCollection.Add(System.Configuration.ConfigurationElement,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="element"></param>
+            <param name="throwIfExists"></param>
+        </member>
+        <member name="M:XUrlRewrite.Configuration.UrlCollection.Add(System.Int32,System.Configuration.ConfigurationElement)">
+            <summary>
+            在指定位置添加Url映射配置
+            </summary>
+            <param name="index"></param>
+            <param name="element"></param>
+        </member>
+        <member name="M:XUrlRewrite.Configuration.UrlCollection.Get(System.Int32)">
+            <summary>
+            获取Url映射配置
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XUrlRewrite.Configuration.UrlCollection.RemoveAt(System.Int32)">
+            <summary>
+            删除指定位置的Url映射配置
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="T:XUrlRewrite.Configuration.UrlElement">
+             <summary>
+             Url映射配置元素
+            
+             需要注意的是在配置文件中,xml标签的属性写&amp;符号时需要写为&amp;amp;
+             <see cref="T:System.Text.RegularExpressions.Regex"/>
+             </summary>
+        </member>
+        <member name="M:XUrlRewrite.Configuration.UrlElement.SeparateUrl(System.String,System.String@,System.String@)">
+            <summary>
+            分离指定url中path和query部分
+            </summary>
+            <param name="url"></param>
+            <param name="path">输出path部分</param>
+            <param name="query">输出query部分,不包含?,如果url不存在query部分则返回空白字符串</param>
+        </member>
+        <member name="M:XUrlRewrite.Configuration.UrlElement.ProcessRegexpRewriteURL(System.String,System.String@)">
+            <summary>
+            用于处理正则表达式类型Url重写的方法
+            </summary>
+            <param name="form"></param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XUrlRewrite.Configuration.UrlElement.ProcessNormalRewriteURL(System.String,System.String@)">
+            <summary>
+            用于处理普通Url重写的方法
+            </summary>
+            <param name="form"></param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XUrlRewrite.Configuration.UrlElement.RewriteUrl(System.String,System.String,System.Web.HttpApplication,XUrlRewrite.Configuration.UrlRewriteConfig)">
+            <summary>
+            尝试重写指定路径,如果重写成功返回true,并会调用app.Context.RewritePath实现重写
+            </summary>
+            <param name="path">尝试重写的路径</param>
+            <param name="query">原始的query字符串,如果重写成功会附加到重写目标的query字符串中</param>
+            <param name="app"></param>
+            <param name="cfg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XUrlRewrite.Configuration.UrlElement.ToString">
+            <summary>
+            重写
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:XUrlRewrite.Configuration.UrlElement.Type">
+            <summary>
+            映射类型,主要有normal和regexp,默认regexp
+            </summary>
+        </member>
+        <member name="P:XUrlRewrite.Configuration.UrlElement.Url">
+            <summary>
+            需要重写的Url,如果是regexp类型的话这里是正则表达式
+            </summary>
+        </member>
+        <member name="P:XUrlRewrite.Configuration.UrlElement.To">
+            <summary>
+            Url重写的目标,如果是regexp类型的话这里可以使用$1...9表示正则的子匹配
+            </summary>
+        </member>
+        <member name="P:XUrlRewrite.Configuration.UrlElement.Enabled">
+            <summary>
+            是否启用,默认是
+            </summary>
+        </member>
+        <member name="P:XUrlRewrite.Configuration.UrlElement.RegexFlag">
+            <summary>
+            正则额外标记,主要有i忽略大小 c忽略语言中的区域性差异 m多行模式 s单行模式
+            </summary>
+        </member>
+        <member name="P:XUrlRewrite.Configuration.UrlElement.IgnoreCase">
+            <summary>
+            忽略大小写,仅在普通模式生效
+            </summary>
+        </member>
+        <member name="P:XUrlRewrite.Configuration.UrlElement.Regex">
+            <summary>
+            Url对应的正则对象,如果Type是regexp
+            </summary>
+        </member>
+        <member name="P:XUrlRewrite.Configuration.UrlElement.RegexFlags">
+            <summary>
+            RegexFlag对应的正则选项
+            </summary>
+        </member>
+        <member name="P:XUrlRewrite.Configuration.UrlElement.UpdateKey">
+            <summary>
+            更新时使用,用于保存旧Url
+            </summary>
+        </member>
+        <member name="T:XUrlRewrite.Configuration.UrlElement.ProcessRewriteURL">
+            <summary>
+            处理Url重写的委托
+            </summary>
+            <param name="form">原始输入的url,应该近包含path部分,不能包括query部分</param>
+            <param name="query">重写目标的query部分,如果不存在则为""</param>
+            <returns>重写目标的path部分,如果不符合当前重写规则应该返回null</returns>
+        </member>
+        <member name="T:XUrlRewrite.Entities.FileManager">
+            <summary>
+            模板文件管理业务类
+            </summary>
+        </member>
+        <member name="M:XUrlRewrite.Entities.FileManager.FindAllFiles(System.Web.HttpApplication,System.String)">
+            <summary>
+            查找指定应用在模板目录下,指定子路径的所有模板文件
+            </summary>
+            <param name="app"></param>
+            <param name="path">如果为空白或者null则表示模板目录根路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:XUrlRewrite.Entities.FileManager.CopyFiles(System.Web.HttpApplication,System.Collections.Generic.List{System.IO.FileSystemInfo},System.String,System.Boolean)">
+            <summary>
+            TODO
+            </summary>
+            <param name="app"></param>
+            <param name="files"></param>
+            <param name="path"></param>
+            <param name="removeSource"></param>
+        </member>
+        <member name="M:XUrlRewrite.Entities.FileManager.DeleteFiles(System.Web.HttpApplication,System.Collections.Generic.List{System.IO.FileSystemInfo})">
+            <summary>
+            TODO
+            </summary>
+            <param name="app"></param>
+            <param name="files"></param>
+        </member>
+        <member name="T:XUrlRewrite.Helper.RewriteHelper">
+            <summary>
+            Url重写辅助工具类
+            </summary>
+        </member>
+        <member name="M:XUrlRewrite.Helper.RewriteHelper.#ctor">
+            <summary>
+            构造方法
+            </summary>
+        </member>
+        <member name="M:XUrlRewrite.Helper.RewriteHelper.Create(System.String,System.String,System.String,System.Web.HttpApplication)">
+            <summary>
+            创建Url重写辅助工具,主要用于在模板页解析相对于模板的路径
+            </summary>
+            <param name="fromPath"></param>
+            <param name="fromQuery"></param>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XUrlRewrite.Helper.RewriteHelper.RewriteToInfo(System.String,System.String,System.String)">
+            <summary>
+            设置Url重写的目标地址信息
+            </summary>
+            <param name="rTemplateDir"></param>
+            <param name="rPath"></param>
+            <param name="rQuery"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XUrlRewrite.Helper.RewriteHelper.TraceLog">
+            <summary>
+            输出Url重写跟踪日志
+            </summary>
+        </member>
+        <member name="M:XUrlRewrite.Helper.RewriteHelper.ResolveUrl(System.String)">
+            <summary>
+            解析指定的Url,返回相对于域名根路径的Url,即以/开头的路径
+            </summary>
+            <param name="url">如果以~/开头表示从模板根路径开始, 如果以/开头将原样返回, 其它路径按照相对于当前模板文件的路径决定</param>
+            <returns></returns>
+        </member>
+        <member name="M:XUrlRewrite.Helper.RewriteHelper.ResolveUrlAppRelative(System.String)">
+            <summary>
+            解析指定的Url,返回相对于当前应用的Url,即以~/开头的路径
+            </summary>
+            <param name="url">参见ResolveUrl方法的url参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:XUrlRewrite.Helper.RewriteHelper.ToString">
+            <summary>
+            重写
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:XUrlRewrite.Helper.RewriteHelper.Current">
+            <summary>
+            获取当前请求中的RewriteHelper类,如果不存在会返回空白类,即所有涉及路径的操作和普通Page相关的路径操作一致
+            </summary>
+        </member>
+        <member name="P:XUrlRewrite.Helper.RewriteHelper.Path">
+            <summary>
+            <see cref="P:System.Web.HttpRequest.Path"/>
+            </summary>
+        </member>
+        <member name="P:XUrlRewrite.Helper.RewriteHelper.FilePath">
+            <summary>
+            <see cref="P:System.Web.HttpRequest.FilePath"/>
+            </summary>
+        </member>
+        <member name="P:XUrlRewrite.Helper.RewriteHelper.CurrentExecutionFilePath">
+            <summary>
+            <see cref="P:System.Web.HttpRequest.CurrentExecutionFilePath"/>
+            </summary>
+        </member>
+        <member name="P:XUrlRewrite.Helper.RewriteHelper.AppRelativeCurrentExecutionFilePath">
+            <summary>
+            <see cref="P:System.Web.HttpRequest.AppRelativeCurrentExecutionFilePath"/>
+            </summary>
+        </member>
+        <member name="P:XUrlRewrite.Helper.RewriteHelper.QueryString">
+            <summary>
+            <see cref="P:System.Web.HttpRequest.QueryString"/>
+            </summary>
+        </member>
+        <member name="P:XUrlRewrite.Helper.RewriteHelper.FormAction">
+            <summary>
+            当前模板页form标签合理的action地址
+            </summary>
+        </member>
+        <member name="T:XUrlRewrite.Helper.RewriteHelper.RewriteHelperEmptyWrap">
+            <summary>
+            空重写辅助工具
+            </summary>
+        </member>
+        <member name="T:XUrlRewrite.Helper.HttpModule">
+            <summary>
+            处理模板请求的HttpModule
+            </summary>
+        </member>
+        <member name="M:XUrlRewrite.Helper.HttpModule.Dispose">
+            <summary>
+            您将需要在您网站的 web.config 文件中配置此模块，
+            并向 IIS 注册此模块，然后才能使用。有关详细信息，
+            请参见下面的链接: http://go.microsoft.com/?linkid=8101007
+            </summary>
+        </member>
+        <member name="M:XUrlRewrite.Helper.HttpModule.Init(System.Web.HttpApplication)">
+             <summary>
+            
+             </summary>
+             <param name="context"></param>
+        </member>
+        <member name="M:XUrlRewrite.Helper.HttpModule.ProcessTemplate(System.Object,System.EventArgs)">
+            <summary>
+            处理请求,符合模板中Url映射规则的就会重写Url
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:XUrlRewrite.Helper.HttpModule.IsCustomFilterEnabled(XUrlRewrite.Configuration.Manager,XUrlRewrite.Configuration.UrlRewriteConfig,System.String,System.String,System.Web.HttpApplication)">
+            <summary>
+            获取自定义过滤器是否通过
+            </summary>
+            <param name="manager"></param>
+            <param name="cfg"></param>
+            <param name="path"></param>
+            <param name="query"></param>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="T:XUrlRewrite.Helper.FileInfoDisplay">
+            <summary>
+            显示文件信息的工具类
+            </summary>
+        </member>
+        <member name="M:XUrlRewrite.Helper.FileInfoDisplay.Length(System.Int64)">
+            <summary>
+            显示指定字节大小的文件大小,会自动显示为KB MB GM TB
+            </summary>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
