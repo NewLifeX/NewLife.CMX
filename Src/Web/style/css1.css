@@ -450,7 +450,6 @@
     width: 780px;
     float: right;
     margin: 15px 0 0 0;
-	height: 26px;
 }
 
 .djsb
@@ -513,6 +512,7 @@
             position: absolute;
             left: 4px;
 	top: 6px;
+	right: 215px;
 }
 
             .content ul li span a
@@ -587,7 +587,7 @@
 	background:url(../images/about.jpg) no-repeat left;
 	height: 29px;
 }
-	.a1 span,c1 span
+	.a1 span,.c1 span
 	{
 		float:right;
 		margin-right:20px;
@@ -599,7 +599,67 @@
 	margin:25px 0 0 0px;
 }
 /*culture页面*/
-.c1
+#culture
 {
-
+	 width: 780px;
+    float: right;
+    margin: 15px 0 0 0;
+}
+#culture .c1
+{
+	background:url(../images/c1.jpg) no-repeat left;
+	height: 39px;
+}
+#culture .c2
+	{
+	  margin-top:20px;
+	  height: 167px;
+	}
+.p1,.p2, .p3,.p4
+{
+	float:left;
+	width:164px;
+	height:136px;
+	background:url(../images/cul1.jpg) no-repeat top;
+}
+.p1 img,.p2 img,.p3 img,.p4 img
+{
+	width: 155px;
+    height: 127px;
+    margin:5px;
+}
+.p2, .p3,.p4
+{
+	margin-left:30px;
+}
+#culture .c2 p
+{
+	margin:10px 0 0 20px;
+	color:black;
+}
+#culture .c2 a
+{
+	text-decoration:none;
+}
+#culture .c3
+{
+	margin-top:20px;
+	height:418px;
+}
+#culture .c4
+{
+	float:left;
+	width:306px;
+	height:418px;
+}
+#culture .c4 #c4_t
+{
+	height:35px;
+	background:url(../images/c4_t.jpg)
+}
+#culture .c4 .v1
+{
+margin-top:20px;
+width:164px;
+height:136px;
 }

@@ -127,8 +127,28 @@
 		                  </dl>
                        </div>
                     </div>
-                    <div class="content">
+                    <div id="culture">
                         <div class="c1"><span>当前位置：首页 > 企业文化</span></div>
+                        <div class="c2">
+                          <div class="p1"><a href="" target="_blank">
+                            <img src="images/product/p1.jpg" width="155" height="127" /><p>产品相册</p></a>
+                          </div>
+                          <div class="p2"><a href="" target="_blank">
+                            <img src="images/product/p2.jpg" width="155" height="127" /><p>商业活动</p></div>
+                          <div class="p3"><a href="" target="_blank">
+                            <img src="images/product/p2.jpg" width="155" height="127" /><p>娱乐活动</p></div>
+                          <div class="p4"><a href="" target="_blank">
+                            <img src="images/product/p2.jpg" width="155" height="127" /><p>我们的团队</p></div>
+                        </div>
+                        <div class="c3">
+                            <div class="c4">
+                                <div id="c4_t"></div>
+                                <div class="v1"><p>案例演示</p></div>
+                                <div class="v2"></div>
+                                <div class="v3"></div>
+                            </div>
+                            <div class="c5"></div>
+                        </div>
                   </div>
                     
                   
