@@ -1,4 +1,4 @@
-﻿<%@ Page Title="文章管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="ArticleForm.aspx.cs" Inherits="CMX_ArticleForm" ValidateRequest="false"%>
+﻿<%@ Page Title="文章管理" Language="C#" MasterPageFile="~/Admin/ManagerPage.master" AutoEventWireup="true" CodeFile="ArticleForm.aspx.cs" Inherits="CMX_ArticleForm" ValidateRequest="false" %>
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="H">
     <title>文章管理</title>
@@ -82,7 +82,6 @@
                         <td>
                             <asp:TextBox ID="frmRemark" runat="server" Width="300px"></asp:TextBox></td>
                     </tr>
-
                     <tr>
                         <th></th>
                         <td>
@@ -93,7 +92,6 @@
                 </tbody>
             </table>
         </div>
-
         <div class="tab_con">
             <table class="form_table">
                 <col width="180px">
