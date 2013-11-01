@@ -37,30 +37,6 @@ $(function () {
             }
         });
     }
+
+    
 });
-
-//function UpLoadFile(buttonID, formID, customPath, targetControlID, successFunction, errorFunction) {
-//    $('#' + buttonID).click(function () {
-
-//        successFunction = successFunction ? successFunction : Defautsuccess;
-//        errorFunction = errorFunction ? errorFunction : Defaulterror;
-//        customPath = customPath ? customPath : '';
-
-//        $('#' + formID).ajaxSubmit({
-//            url: 'UpdateImageLoad.ashx?CustomImagePath=' + customPath,
-//            type: "post",
-//            target: "#" + targetControlID,
-//            success: Defautsuccess,
-//            error: Defaulterror,
-//        });
-//    });
-//}
-
-//function Defaulterror(XMLHttpRequest, textStatus, errorThrown) {
-//    alert("error:" + errorThrown);
-//}
-
-//function Defautsuccess(responseText, statusText, xhr, $form) {
-//    var i = responseText;
-//    alert(responseText);
-//}

@@ -45,13 +45,13 @@
     </script>
 </head>
 <body>
-
     <form runat="server" id="form1" class="ffo">
         <asp:TextBox ID="tb" runat="server"></asp:TextBox>
         <asp:FileUpload ID="fb" runat="server" CssClass="fb" />
         <asp:Image ID="img" runat="server" CssClass="img"  Width="150px" ImageUrl="#" />
         <%--<asp:Button ID="bt" runat="server" Text="点击" />--%>
         <input type="button" value="测试" id="btnajax" />
+        <asp:Button ID="model" runat="server" Text="生成模板"  OnClick="model_Click"/>
     </form>
 </body>
 </html>

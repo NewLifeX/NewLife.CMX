@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/style/base.css") %>" />
     <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/style/bootstrap.css") %>" />
     <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/style/bootstrap-theme.css") %>" />
+    <script type="text/javascript" src="<%= ResolveUrl("~/Scripts/jquery/jquery-1.9.1.min.js") %>" />
     <script type="text/javascript" src="<%= ResolveUrl("~/Scripts/bootstrap/bootstrap.js") %>"></script>
 </head>
 <body>
