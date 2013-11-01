@@ -5,13 +5,18 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Xml.Serialization;
+using NewLife.Xml;
 
 namespace NewLife.CMX.Config
 {
+    [XmlConfigFile("config/CMXTemplate.config", 15000)]
+    /// <summary>模板配置</summary>
+    [Description("模板配置")]
+    [Serializable]
     public class TemplateConfig : CMXmlConfig<TemplateConfig>
     {
         #region 属性
-        private String _TemplateStyle;
+        private String _TemplateStyle = "default";
         /// <summary>模板样式</summary>
         [Description("模板样式")]
         public String TemplateStyle { get { return _TemplateStyle; } set { _TemplateStyle = value; } }
@@ -21,12 +26,12 @@ namespace NewLife.CMX.Config
         [Description("模板编号")]
         public String TemplateID { get { return _TemplateID; } set { _TemplateID = value; } }
 
-        private String _TemplateRootPath = Path.Combine(CMXConfigBase.Current.CurrentParentPath, "templates");
+        private String _TemplateRootPath = "templates";
         /// <summary>模板目录</summary>
         [Description("模板根目录")]
         public String TemplateRootPath { get { return _TemplateRootPath; } set { _TemplateRootPath = value; } }
 
-        private String _OutputPath;
+        private String _OutputPath = "outemplates";
         /// <summary>输出文件根目录</summary>
         [Description("输出文件根目录")]
         public String OutputPath { get { return _OutputPath; } set { _OutputPath = value; } }
@@ -60,7 +65,7 @@ namespace NewLife.CMX.Config
         [Description("Cs页面路径")]
         public String CsRootPath { get { return _CsRootPath; } set { _CsRootPath = value; } }
 
-        private String _IgnoreExtendName;
+        private String _IgnoreExtendName = "css,js,jpg,png,gif";
         /// <summary>忽略扩展名称(多项请用逗号分隔)</summary>
         [Description("忽略扩展名称(多项请用逗号分隔)")]
         public String IgnoreExtendName { get { return _IgnoreExtendName; } set { _IgnoreExtendName = value; } }

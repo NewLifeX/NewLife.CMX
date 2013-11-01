@@ -36,10 +36,18 @@ namespace NewLife.CMX.Tool
                 IEntity ientity = ieo.Create();
                 try
                 {
-                    ientity["ParentID"] = (Int32)entity["ID"];
-                    ientity["Content"] = entity["ConentTxt"].ToString();
-                    ientity["Title"] = entity["Title"].ToString();
-                    ientity["Version"] = Version;
+                    //ientity["ParentID"] = (Int32)entity["ID"];
+                    //ientity.Dirtys["ParentID"] = true;
+                    //ientity["Content"] = entity["ConentTxt"].ToString();
+                    //ientity.Dirtys["Content"] = true;
+                    //ientity["Title"] = entity["Title"].ToString();
+                    //ientity.Dirtys["Title"] = true;
+                    //ientity["Version"] = Version;
+                    //ientity.Dirtys["Version"] = true;
+                    ientity.SetItem("ParentID", (Int32)entity["ID"]);
+                    ientity.SetItem("Content", entity["ConentTxt"].ToString());
+                    ientity.SetItem("Title", entity["Title"].ToString());
+                    ientity.SetItem("Version", Version);
                     ientity.Save();
                 }
                 catch (Exception ex)

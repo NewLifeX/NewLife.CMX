@@ -5,6 +5,8 @@ using NewLife.CMX.Config;
 using XTemplate.Templating;
 using System.Linq;
 using System.IO;
+using System.Net;
+using System.Web;
 
 namespace NewLife.CMX.TemplateEngine
 {
@@ -19,9 +21,9 @@ namespace NewLife.CMX.TemplateEngine
         /// <summary>参数字典</summary>
         public Dictionary<String, Object> ArgDic { get { return _ArgDic; } set { _ArgDic = value; } }
 
-        private List<CMXTemplateInfo> _Templates;
-        /// <summary>参数字典</summary>
-        public List<CMXTemplateInfo> Templates { get { return _Templates; } set { _Templates = value; } }
+        //private List<CMXTemplateInfo> _Templates;
+        ///// <summary>参数字典</summary>
+        //public List<CMXTemplateInfo> Templates { get { return _Templates; } set { _Templates = value; } }
         #endregion
 
         #region 构造
@@ -37,7 +39,7 @@ namespace NewLife.CMX.TemplateEngine
         #endregion
 
         #region 生成
-        public String[] Render(String TemplateName)
+        public String[] RenderAll()
         {
             var data = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
             data["Config"] = Config;
@@ -47,25 +49,24 @@ namespace NewLife.CMX.TemplateEngine
             Template.Debug = Config.IsDebug;
             //Dictionary<String, String> templates = new Dictionary<String, String>();
             Boolean IsCover = Config.IsCover;
-            //String TemplatesRootPath = Config.TemplateRootPath;
-            //String TemplateStyle = Config.TemplateStyle;
-            //String TemplateOutputPath = Config.OutputPath;
-            Dictionary<String, String> dic = new Dictionary<string, string>();
+            Dictionary<String, String> tempdic = new Dictionary<string, string>();
 
-            String Templatepath = Config.TemplateRootPath.CombinePath(Config.TemplateStyle);
-            String Outputpath = Config.OutputPath.CombinePath(Config.TemplateStyle);
+            String WebPath = HttpRuntime.AppDomainAppPath;
+            String Templatepath = WebPath.CombinePath(Config.TemplateRootPath, Config.TemplateStyle);
+            String Outputpath = WebPath.CombinePath(Config.OutputPath, Config.TemplateStyle);
 
-            String[] ExtentList = Config.IgnoreExtendName.Split(',');
+
+            String[] ExtentList = String.IsNullOrEmpty(Config.IgnoreExtendName) ? new string[] { } : Config.IgnoreExtendName.Split(',');
 
             //校验模板目录
-            if (!Directory.Exists(Templatepath)) return null;
+            if (!Directory.Exists(Templatepath)) throw new Exception("指定样式模板不存在！");
             //校验模板输出目录
             if (!Directory.Exists(Outputpath)) Directory.CreateDirectory(Outputpath);
-
-            //List<String> TemplateFiles = new List<string>();
-            List<String> IgnoreFile = new List<string>();
-
+            //忽略文件
+            List<String> IgnoreFiles = new List<string>();
+            //获取模板文件夹中的所有文件
             List<String> FileList = Directory.GetFiles(Templatepath).ToList<String>();
+            List<String> ChildDirList = Directory.GetDirectories(Templatepath).ToList<String>();
             #endregion
 
             #region 分类过滤文件
@@ -74,62 +75,69 @@ namespace NewLife.CMX.TemplateEngine
             {
                 if (ExtentList.Contains((new FileInfo(file)).Extension.Substring(1)))
                 {
-                    IgnoreFile.Add(file);
+                    IgnoreFiles.Add(file);
                 }
                 else
                 {
                     FileInfo fi = new FileInfo(file);
                     String content = fi.OpenText().ReadToEnd();
 
-                    dic.Add(fi.Name, content);
-
-                    //TemplateFiles.Add(file);
+                    tempdic.Add(fi.Name, content);
                 }
             }
             #endregion
 
-            #region 复制过滤文件
-            foreach (String file in IgnoreFile)
+            #region 复制过滤文件以及文件夹
+            foreach (String file in IgnoreFiles)
             {
                 FileInfo fi = new FileInfo(file);
-                fi.CopyTo(Outputpath, IsCover);
+                fi.CopyTo(Outputpath.CombinePath(fi.Name), IsCover);
+
+            }
+            //将样式文件夹下的文件夹自动复制到生成的模板文件中
+            //为了方便整理css、js文件
+            foreach (String dir in ChildDirList)
+            {
+                DirectoryInfo di = new DirectoryInfo(dir);
+                Directory.Move(dir, Outputpath.CombinePath(di.Name));
             }
             #endregion
 
             #region 生成文件
-            Template tt = Template.Create(dic);
+            Template tt = Template.Create(tempdic);
+            //编译文件
+            tt.Compile();
+
+            var rs = new List<String>();
+            foreach (TemplateItem item in tt.Templates)
+            {
+                if (item.Included) continue;
+
+                String filename = Path.GetFileName(item.Name);
+
+                filename = Outputpath.CombinePath(filename);
+
+                if (!IsCover && File.Exists(filename)) continue;
+                //生成最终输出内容
+                String tempContent = tt.Render(item.Name, data);
+
+                FileInfo fi = new FileInfo(filename);
+
+                String outfilename = fi.FullName.Replace(fi.Extension, ".aspx");
+
+                File.WriteAllText(outfilename, tempContent, Encoding.UTF8);
+
+                rs.Add(tempContent);
+            }
+            return rs.ToArray();
             #endregion
-
-            //#region 过滤文件
-            ////将不需要编译的文件如css,js等文件过滤出来
-            //foreach (String file in templatefiles)
-            //{
-            //    FileInfo fi = new FileInfo(file);
-            //    if (ExtentList.Contains(fi.Extension.Substring(1))) continue;
-
-            //    CMXTemplateInfo cmxt = new CMXTemplateInfo();
-            //    cmxt.Name = fi.Name;
-            //    cmxt.Content = fi.OpenText().ReadToEnd();
-            //    Templates.Add(cmxt);
-            //}
-            //#endregion
-
-
-
-            return null;
         }
 
-
-
-        public String[] RenderAll()
+        public String[] Render(String TemplateName)
         {
 
             return null;
         }
-        #endregion
-
-        #region 辅助方法
-
         #endregion
     }
 }
