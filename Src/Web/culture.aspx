@@ -141,11 +141,9 @@
                             <img src="images/product/p2.jpg" width="155" height="127" /><p>我们的团队</p></div>
                         </div>
                         <div class="c3">
-                            <div class="c4">
-                                <div id="c4_t"></div>
-                                <div class="v1"><p>案例演示</p></div>
-                                <div class="v2"></div>
-                                <div class="v3"></div>
+                            <div class="video">
+                                <div id="v_t"></div>
+                                <div class="v_con"></div>
                             </div>
                             <div class="c5"></div>
                         </div>
