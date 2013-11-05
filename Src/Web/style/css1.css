@@ -3,7 +3,6 @@
     margin: 0px;
     padding: 0px;
 }
-
 #wrap
 {
     width: 100%;
@@ -35,6 +34,7 @@
     width: 400px;
     height: 90px;
     margin: 30px 0 0 0;
+	display:inline;
 }
 
     #logo h1
@@ -147,11 +147,12 @@
         .child ul li
         {
             clear: both;
-        }
+	height: 69px;
+}
 
 .nav .child ul li a
 {
-    height: inherit;
+    height: 68px;
     line-height: normal;
 	width: 115px;
 }
@@ -339,8 +340,10 @@
 
 #foot
 {	
-    height: 160px;
-    margin-top: 20px;
+    height: auto;
+	clear:both;
+	padding-top:20px;
+	padding-bottom:20px;
 }
 
     #foot .foot_nav
@@ -382,6 +385,7 @@
 		width:960px;
 		margin:0 auto;
 	    padding-top:20px;
+		clear:both;
     }
 
 .mainbody
@@ -389,9 +393,9 @@
 	width:1021px;
     margin: 0 auto;
     position: relative;
-	height: 1306px;
-	top: -1px;
-	left: 0px;
+	height:auto; /*1306px;*/
+	/*top: -1px;
+	left: 0px;*/
 }
 
 /*左边列表项.......................................................................................................*/
@@ -401,8 +405,9 @@
     background-color: #e0e1e3;
     float: left;
     width: 180px;
-    height: 800px;
-    margin: 15px 0 0 30px;
+    height:auto;
+    margin: 15px 0 30px 30px;
+	display:inline;
 }
 
     .mainbody .list #list_t
@@ -428,9 +433,8 @@
     position: relative;
 	top: 0px;
 	left: 0px;
-	height: 16px;
+	height: auto;
 }
-.list_meu{width:180px;margin:0px; float:left;}
 .list_meu dl{margin-left:10px;}
 .list_meu dl dt a{height:24px;line-height:24px;overflow:hidden;color:#3366cc;font-weight:800; text-decoration:none;}
 .list_meu dl dt a span{display:inline-block;width:13px;height:15px;overflow:hidden;float:left;margin:0 5px 0 0;}
@@ -446,10 +450,11 @@
 /*产品与服务右边的产品类表详细内容...................................................................................................................*/
 .content
 {
-    width: 780px;
+    width: 740px;
     float: right;
-    margin: 15px 0 0 0;
+    margin: 15px 40px 0 0;
 	border: 1px solid #cccccc;
+	display:inline;
 }
 
 .djsb
@@ -499,9 +504,6 @@
         padding: 4px 4px 4px 170px;
         display: inline;
         margin: 0 0px 10px 0;
-        top: 0px;
-        left: 0px;
-	width: 200px;
 }
         .content ul li span
         {
@@ -511,8 +513,6 @@
             overflow: hidden;
             position: absolute;
             left: 4px;
-	top: 6px;
-	right: 215px;
 }
 
             .content ul li span a
@@ -536,7 +536,7 @@
         .content ul li p.main-nav
         {
             margin: 0 0 0 0;
-            width: 192px;
+            width: 193px;
         }
 
             .content ul li p.main-nav a
@@ -581,13 +581,14 @@
                 }
 
 
+
 /*about页面*/
 .a1
 {
 	background:url(../images/about.jpg) no-repeat left;
 	height: 29px;
 }
-	.a1 span,.c1 span
+	.a1 span,.c1 span,.e1_right
 	{
 		float:right;
 		margin-right:20px;
@@ -596,22 +597,20 @@
 	}
 .font
 {
-	margin:25px 0 0 0px;
+	margin:20px;
 }
 /*culture页面*/
-#culture
+.photo
 {
-	 width: 780px;
-    float: right;
-    margin: 15px 0 0 0;
-	border: 1px solid #cccccc;
+	margin-left:15px;
 }
-#culture .c1
+
+.content .c1
 {
 	background:url(../images/c1.jpg) no-repeat left;
 	height: 39px;
 }
-#culture .c2
+.content .c2
 	{
 	  margin-top:20px;
 	  height: 167px;
@@ -633,34 +632,80 @@
 {
 	margin-left:30px;
 }
-#culture .c2 p
+.content .c2 p
 {
 	margin:10px 0 0 20px;
 	color:black;
 }
-#culture .c2 a
+.content .c2 a
 {
 	text-decoration:none;
 }
-#culture .c3
+.content .c3
 {
 	margin-top:20px;
 	height:418px;
 }
-#culture .video
+.video, .cul
+{
+	width:343px;
+	height:auto;
+}
+.content .video
 {
 	float:left;
-	width:306px;
-	height:418px;
+	margin-left:15px;
 }
-#culture .video #v_t
+.content .video .v_t
 {
 	height:35px;
-	background:url(../images/c4_t.jpg)
+	background:url(../images/c4_t.jpg) no-repeat;
 }
-#culture .video .v_con
+.content .video .v_con,.cul_con
 {
 margin-top:20px;
-width:300px;
-height:408px;
+width:343px;
+height:auto;
+}
+.cul
+{
+	float:right;
+}
+.content .cul .cul_t
+{
+	height:35px;
+	background:url(../images/cul_t.jpg) no-repeat;
+}
+/*人才招聘页面*/
+.e1
+{
+	background:url(../images/b.jpg) no-repeat left;
+	height: 29px;
+	border-bottom:solid 1px #cccccc;
+}
+	.e1 .e1_left
+	{
+		margin-left:50px; 
+		display:block;
+		font-size:25px;
+		color:#0e53b2;
+		float:left;display:inline;
+	}
+.e2，.news
+{
+	clear:both;
+	margin-left:15px;
+}
+	.e2 .e2_t
+	{
+		text-align:center;
+		font-size:20px;
+		font-weight:bold;
+		display:block;
+		margin-top:15px;
+	}
+.news img
+{
+	margin-left:15px;
+	margin-top:15px;
 }
