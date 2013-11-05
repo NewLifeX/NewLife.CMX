@@ -33,12 +33,12 @@
                 <div class="nav">
                     <div class="parent">
                         <ul>
-                            <li class="index"><a href="#" onclick="change_bg(this)">网站首页</a></li>
-                            <li class="about"><a href="#" onclick="change_bg(this)">关于月无声</a></li>
-                            <li class="product"><a href="#" onclick="change_bg(this)">产品与服务</a></li>
-                            <li class="com"><a href="#" onclick="change_bg(this)">企业文化</a></li>
-                            <li class="recruitment"><a href="#" onclick="change_bg(this)">人才招聘</a></li>
-                            <li class="new"><a href="#" onclick="change_bg(this)">新闻中心</a></li>
+                            <li class="index"><a href="main.aspx" onclick="change_bg(this)">网站首页</a></li>
+                            <li class="about"><a href="about.aspx" onclick="change_bg(this)">关于月无声</a></li>
+                            <li class="product"><a href="pro_ser.html" onclick="change_bg(this)">产品与服务</a></li>
+                            <li class="com"><a href="culture.aspx" onclick="change_bg(this)">企业文化</a></li>
+                            <li class="recruitment"><a href="employ.html" onclick="change_bg(this)">人才招聘</a></li>
+                            <li class="new"><a href="news.html" onclick="change_bg(this)">新闻中心</a></li>
                             <li class="forum"><a href="#" onclick="change_bg(this)">技术论坛</a></li>
                             <li class="shop"><a href="#" onclick="change_bg(this)">月无声商城</a></li>
                         </ul>

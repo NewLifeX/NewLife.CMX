@@ -128,6 +128,7 @@
 .child
 {
     float: left;
+	z-index:100;
 }
 
     .child ul
@@ -457,9 +458,9 @@
 	display:inline;
 }
 
-.djsb
+.pro
 {
-    height: 322px;
+    height: 300px;
 }
 .p_t1, .p_t2, .p_t3, .p_t4
 {
@@ -488,58 +489,59 @@
     background-image: url(../images/t4.jpg);
 }
 
-.content ul
+.content .pro .out1
 {
     margin: 10px 0 0 0;
     padding: 0px;
-	height: 55px;
+	height:300px;
 }
 
-    .content ul li
+     .out2
     {
-        height: 120px;
+        height: 100px;
         border: solid 1px #fff;
         position: relative;
         float: left;
-        padding: 4px 4px 4px 170px;
+        padding: 4px 4px 4px 145px;
         display: inline;
         margin: 0 0px 10px 0;
 }
-        .content ul li span
+        .out2 span
         {
             display: block;
-            width: 155px;
-            height: 120px;
+            width: 120px;
+            height: 100px;
             overflow: hidden;
             position: absolute;
             left: 4px;
+	        top: 4px;
 }
 
-            .content ul li span a
+             .out2 span a
             {
                 display: block;
-                width: 153px;
-                height: 118px;
+                width: 118px;
+                height: 98px;
                 border: solid 1px #fff;
                 margin: 0;
                 text-indent: -99999em;
                 background-color: #CCCCCC;
             }
 
-                .content ul li span a:hover
+                 .out2 span a:hover
                 {
                     border: solid 1px #f60;
-                    width: 153px;
-                    height: 118px;
+                    width: 118px;
+                    height: 98px;
                 }
 
-        .content ul li p.main-nav
+         .out2 p.main-nav
         {
             margin: 0 0 0 0;
             width: 193px;
         }
 
-            .content ul li p.main-nav a
+             p.main-nav a
             {
                 font-size: 20px;
                 font-weight: bold;
@@ -548,33 +550,31 @@
                 text-decoration: none;
             }
 
-                .content ul li p.main-nav a:hover
+                 p.main-nav a:hover
                 {
                     border-bottom: solid 1px #c03;
                 }
 
-    .content ul ul
+     .out1 ul
     {
         padding: 0px;
-	width: 105px;
-}
+	     width: 105px;
+    }
 
-        .content ul ul li
+       .out1  ul li
         {
             height: 18px;
-            font-size: 16px;
-            padding: 0px;
-            margin: 0px;
-            height: 25px;
+            font-size: 14px;  
+			list-style:none;        
         }
 
-            .content ul ul li a
+            .out1 ul li a
             {
                 text-decoration: none;
                 color: black;
             }
 
-                .content ul ul li a:hover
+                .out1 ul li a:hover
                 {
                     border-bottom: solid 1px red;
                     color: red;

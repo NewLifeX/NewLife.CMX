@@ -33,12 +33,12 @@
                 <div class="nav">
                     <div class="parent">
                         <ul>
-                            <li class="index"><a href="#">网站首页</a></li>
-                            <li class="about"><a href="#">关于月无声</a></li>
-                            <li class="product"><a href="#">产品与服务</a></li>
-                            <li class="com"><a href="#">企业文化</a></li>
-                            <li class="recruitment"><a href="#">人才招聘</a></li>
-                            <li class="new"><a href="#">新闻中心</a></li>
+                            <li class="index"><a href="main.aspx">网站首页</a></li>
+                            <li class="about"><a href="about.aspx">关于月无声</a></li>
+                            <li class="product"><a href="pro_ser.html">产品与服务</a></li>
+                            <li class="com"><a href="culture.aspx">企业文化</a></li>
+                            <li class="recruitment"><a href="employ.html">人才招聘</a></li>
+                            <li class="new"><a href="news.html">新闻中心</a></li>
                             <li class="forum"><a href="#">技术论坛</a></li>
                             <li class="shop"><a href="#">月无声商城</a></li>
                         </ul>
