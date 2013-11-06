@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>东莞市月无声实业</title>
+    <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/style/css.css") %>" />
+    <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/style/base.css") %>" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="wrap">
+            <div id="wrpper">
+                <div class="header">
+                </div>
+                <div id="articlelist">
+                    <div class="articlekind">
+                        <h1>分类名称</h1>
+                        <div id="kindlist">
+                            <#
+                                foreach(Category c in (ArgDic["CategoryList"] as List<Category>))
+                                {#>
+                                    <ul>
+                                        <li><a href="<#= c.ID#>"><#= c.Name#></a></li>
+                                    </ul>
+                                <#}
+                            #>
+                            <!--<Custom:KindList runat="server" ID="kind" />-->
+                        </div>
+                    </div>
+                    <div class="articletitle">
+                        <div class="title">
+                            <!--<Custom:ListControl runat="server" ID="NewCenter" />-->
+                            <#
+                                foreach(Article a in (ArgDic["Articles"] as List<Article>)){#>
+                                    <ul>
+                                         <li><a target="_blank" href="<#= a.ID#>"><#= a.Title#></a><label class="date" ><#= a.UpdateTime.ToString("yyyy-MM-dd")#></label></li>
+                                    </ul>
+                            <#}#>
+                        </div>
+                    </div>
+                  <!--  <div class="Paging">
+                        <webdiyer:AspNetPager ID="AspNetPager1" runat="server" HorizontalAlign="Center" PagingButtonSpacing="8px"
+                            OnPageChanged="AspNetPager1_PageChanged" UrlPaging="True" Width="100%" ShowNavigationToolTip="true"
+                            UrlPageIndexName="pageindex" EnableUrlRewriting="true" UrlRewritePattern="">
+                        </webdiyer:AspNetPager>
+                    </div>-->
+                </div>
+                <div class="foot">
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
