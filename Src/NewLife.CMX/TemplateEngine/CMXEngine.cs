@@ -39,104 +39,92 @@ namespace NewLife.CMX.TemplateEngine
         #endregion
 
         #region 生成
-        public String[] RenderAll()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="TemplateName"></param>
+        /// <returns></returns>
+        public String Render(String TemplateName)
         {
             var data = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
             data["Config"] = Config;
             data["ArgDic"] = ArgDic;
 
             #region 获取模板资源文件
-            Template.Debug = Config.IsDebug;
-            //Dictionary<String, String> templates = new Dictionary<String, String>();
-            Boolean IsCover = Config.IsCover;
-            Dictionary<String, String> tempdic = new Dictionary<string, string>();
+            Template.Debug = true;
+            Dictionary<String, String> tempdic = new Dictionary<String, String>();
+            //Boolean IsCover = Config.IsCover;
+            //Dictionary<String, String> tempdic = new Dictionary<string, string>();
 
             String WebPath = HttpRuntime.AppDomainAppPath;
             String Templatepath = WebPath.CombinePath(Config.TemplateRootPath, Config.TemplateStyle);
-            String Outputpath = WebPath.CombinePath(Config.OutputPath, Config.TemplateStyle);
-
-
-            String[] ExtentList = String.IsNullOrEmpty(Config.IgnoreExtendName) ? new string[] { } : Config.IgnoreExtendName.Split(',');
+            //String Outputpath = WebPath.CombinePath(Config.OutputPath, Config.TemplateStyle);
 
             //校验模板目录
             if (!Directory.Exists(Templatepath)) throw new Exception("指定样式模板不存在！");
-            //校验模板输出目录
-            if (!Directory.Exists(Outputpath)) Directory.CreateDirectory(Outputpath);
-            //忽略文件
-            List<String> IgnoreFiles = new List<string>();
-            //获取模板文件夹中的所有文件
-            List<String> FileList = Directory.GetFiles(Templatepath).ToList<String>();
-            List<String> ChildDirList = Directory.GetDirectories(Templatepath).ToList<String>();
+            //校验请求文件
+            String RequestFile = Templatepath.CombinePath(TemplateName);
+            FileInfo fi = new FileInfo(RequestFile);
+            if (!fi.Exists) throw new Exception("请求地址不存在!");
+
+
+            ////校验模板输出目录
+            //if (!Directory.Exists(Outputpath)) Directory.CreateDirectory(Outputpath);
+            ////忽略文件
+            //List<String> IgnoreFiles = new List<string>();
+            ////获取模板文件夹中的所有文件
+            //List<String> FileList = Directory.GetFiles(Templatepath).ToList<String>();
+            //List<String> ChildDirList = Directory.GetDirectories(Templatepath).ToList<String>();
             #endregion
 
-            #region 分类过滤文件
+            #region 过滤忽略文件
             //将不需要编译的文件如css,js等文件过滤出来
-            foreach (String file in FileList)
-            {
-                if (ExtentList.Contains((new FileInfo(file)).Extension.Substring(1)))
-                {
-                    IgnoreFiles.Add(file);
-                }
-                else
-                {
-                    FileInfo fi = new FileInfo(file);
-                    String content = fi.OpenText().ReadToEnd();
+            //foreach (String file in FileList)
+            //{
+            //    if (ExtentList.Contains((new FileInfo(file)).Extension.Substring(1)))
+            //    {
+            //        IgnoreFiles.Add(file);
+            //    }
+            //    else
+            //    {
+            //        FileInfo fi = new FileInfo(file);
+            //        String content = fi.OpenText().ReadToEnd();
 
-                    tempdic.Add(fi.Name, content);
-                }
-            }
-            #endregion
+            //        tempdic.Add(fi.Name, content);
+            //    }
+            //}
 
-            #region 复制过滤文件以及文件夹
-            foreach (String file in IgnoreFiles)
-            {
-                FileInfo fi = new FileInfo(file);
-                fi.CopyTo(Outputpath.CombinePath(fi.Name), IsCover);
+            //获取忽略文件类型数组
+            String[] IgnoreExtentList = String.IsNullOrEmpty(Config.IgnoreExtendName) ? new string[] { } : Config.IgnoreExtendName.Split(',');
+            //如果是忽略列表中的文件直接返回
+            String TempContent = File.ReadAllText(fi.FullName, Encoding.UTF8);
 
-            }
-            //将样式文件夹下的文件夹自动复制到生成的模板文件中
-            //为了方便整理css、js文件
-            foreach (String dir in ChildDirList)
-            {
-                DirectoryInfo di = new DirectoryInfo(dir);
-                Directory.Move(dir, Outputpath.CombinePath(di.Name));
-            }
+            if (IgnoreExtentList.Contains(fi.Extension.Substring(1))) return TempContent;
+
+            tempdic.Add(TemplateName, TempContent);
             #endregion
 
             #region 生成文件
+
+            List<String> imports = Config.ImportsAssembly.Split(",").ToList();
+            //添加程序集引用
+            Template.Imports.AddRange(imports);
+
             Template tt = Template.Create(tempdic);
             //编译文件
             tt.Compile();
 
-            var rs = new List<String>();
-            foreach (TemplateItem item in tt.Templates)
+            String ResultContent = tt.Render(TemplateName, data);
+
+            if (Config.IsDebug)
             {
-                if (item.Included) continue;
-
-                String filename = Path.GetFileName(item.Name);
-
-                filename = Outputpath.CombinePath(filename);
-
-                if (!IsCover && File.Exists(filename)) continue;
-                //生成最终输出内容
-                String tempContent = tt.Render(item.Name, data);
-
-                FileInfo fi = new FileInfo(filename);
-
-                String outfilename = fi.FullName.Replace(fi.Extension, ".aspx");
-
-                File.WriteAllText(outfilename, tempContent, Encoding.UTF8);
-
-                rs.Add(tempContent);
+                String Outputpath = WebPath.CombinePath(Config.OutputPath, Config.TemplateStyle);
+                Outputpath = Outputpath.CombinePath(TemplateName);
+                File.WriteAllText(Outputpath, ResultContent, Encoding.UTF8);
             }
-            return rs.ToArray();
+
+            return ResultContent;
             #endregion
-        }
-
-        public String[] Render(String TemplateName)
-        {
-
-            return null;
         }
         #endregion
     }
