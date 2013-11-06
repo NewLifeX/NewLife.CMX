@@ -451,21 +451,23 @@
 /*产品与服务右边的产品类表详细内容...................................................................................................................*/
 .content
 {
-    width: 740px;
+    width: 770px;
     float: right;
-    margin: 15px 40px 0 0;
+    margin: 15px 30px 0 0;
 	border: 1px solid #cccccc;
 	display:inline;
 }
 
 .pro
 {
-    height: 300px;
+    height: auto;
 }
 .p_t1, .p_t2, .p_t3, .p_t4
 {
 	 height: 40px;
     width: 307px;
+	clear:both;
+	margin-left:4px;
 }
 
 .p_t1
@@ -489,35 +491,34 @@
     background-image: url(../images/t4.jpg);
 }
 
-.content .pro .out1
+.pro  ul
 {
     margin: 10px 0 0 0;
     padding: 0px;
-	height:300px;
 }
 
-     .out2
+    .pro ul li
     {
         height: 100px;
         border: solid 1px #fff;
         position: relative;
         float: left;
-        padding: 4px 4px 4px 145px;
+        padding: 4px 4px 4px 130px;
         display: inline;
-        margin: 0 0px 10px 0;
+        margin: 0 0 10px 0;
 }
-        .out2 span
+        .pro ul li span
         {
             display: block;
             width: 120px;
             height: 100px;
             overflow: hidden;
             position: absolute;
-            left: 4px;
-	        top: 4px;
+            left: 5px;
+	top: 4px;
 }
 
-             .out2 span a
+        /*    .pro ul li span a
             {
                 display: block;
                 width: 118px;
@@ -525,62 +526,69 @@
                 border: solid 1px #fff;
                 margin: 0;
                 text-indent: -99999em;
-                background-color: #CCCCCC;
-            }
+            }*/
 
-                 .out2 span a:hover
+                .pro ul li span a:hover
                 {
                     border: solid 1px #f60;
                     width: 118px;
                     height: 98px;
                 }
 
-         .out2 p.main-nav
+        .pro ul li p.main-nav
         {
             margin: 0 0 0 0;
-            width: 193px;
+            width: 120px;
         }
 
-             p.main-nav a
+            .pro ul li p.main-nav a
             {
-                font-size: 20px;
+                font-size: 14px;
                 font-weight: bold;
                 color: #c03;
                 padding-top: 0px;
-                text-decoration: none;
+               
             }
+a:link
+{
+	text-decoration: none;
+}
 
-                 p.main-nav a:hover
+                .content ul li p.main-nav a:hover
                 {
                     border-bottom: solid 1px #c03;
                 }
 
-     .out1 ul
+    .pro ul ul
     {
-        padding: 0px;
-	     width: 105px;
+        padding:0px;
+	    width: 110px;
     }
 
-       .out1  ul li
+        .pro ul ul li
         {
+            font-size: 14px;
+            padding: 0px;
+            margin: 0px;
             height: 18px;
-            font-size: 14px;  
-			list-style:none;        
+			clear:both;
         }
 
-            .out1 ul li a
-            {
-                text-decoration: none;
-                color: black;
+           .pro ul ul li a
+            {         
+                color:black;
             }
-
-                .out1 ul li a:hover
+			 
+                .pro ul ul li a:hover
                 {
                     border-bottom: solid 1px red;
                     color: red;
                 }
 
-
+/*/a.hhg
+{
+	background:url(../images/pro_ser/1.jpg);
+}*
 
 /*about页面*/
 .a1
