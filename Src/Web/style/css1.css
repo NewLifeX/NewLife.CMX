@@ -451,7 +451,7 @@
 /*产品与服务右边的产品类表详细内容...................................................................................................................*/
 .content
 {
-    width: 770px;
+    width: 760px;
     float: right;
     margin: 15px 30px 0 0;
 	border: 1px solid #cccccc;
@@ -461,13 +461,14 @@
 .pro
 {
     height: auto;
+	margin:10px 0 20px 20px; 
 }
 .p_t1, .p_t2, .p_t3, .p_t4
 {
 	 height: 40px;
     width: 307px;
 	clear:both;
-	margin-left:4px;
+	margin:0 0 10px 5px;
 }
 
 .p_t1
@@ -496,7 +497,14 @@
     margin: 10px 0 0 0;
     padding: 0px;
 }
-
+ .pro .u1
+{
+	height: 223px;
+}
+.pro .u2
+{
+   height: 111px;
+}
     .pro ul li
     {
         height: 100px;
@@ -505,7 +513,6 @@
         float: left;
         padding: 4px 4px 4px 130px;
         display: inline;
-        margin: 0 0 10px 0;
 }
         .pro ul li span
         {
@@ -538,8 +545,9 @@
         .pro ul li p.main-nav
         {
             margin: 0 0 0 0;
-            width: 120px;
-        }
+            width: 98px;
+	height: 13px;
+}
 
             .pro ul li p.main-nav a
             {
@@ -562,7 +570,7 @@ a:link
     .pro ul ul
     {
         padding:0px;
-	    width: 110px;
+	    width: 102px;
     }
 
         .pro ul ul li
@@ -572,7 +580,7 @@ a:link
             margin: 0px;
             height: 18px;
 			clear:both;
-        }
+}
 
            .pro ul ul li a
             {         

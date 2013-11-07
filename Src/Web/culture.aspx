@@ -135,22 +135,24 @@
                                <img src="images/product/p1.jpg" width="155" height="127" /><p>产品相册</p></a>
                                </div>-->
                                <div class="p2"><a href="" target="_blank">
-                                 <img src="images/product/p2.jpg" width="155" height="127" /><p>商业活动</p></div>
+                                 <img src="images/photo/1.jpg" width="155" height="127" /><p>商业活动</p></div>
                                <div class="p3"><a href="" target="_blank">
-                                 <img src="images/product/p2.jpg" width="155" height="127" /><p>娱乐活动</p></div>
+                                 <img src="images/photo/2.jpg" width="155" height="127" /><p>娱乐活动</p></div>
                                <div class="p4"><a href="" target="_blank">
-                                 <img src="images/product/p2.jpg" width="155" height="127" /><p>我们的团队</p></div>
+                                 <img src="images/photo/3.jpg" width="155" height="127" /><p>我们的团队</p></div>
                                </div>
                         </div>
                         <div class="c3">
                             <div class="video">
                                 <div class="v_t"></div>
                                 <div class="v_con">
+                                    <img src="images/product/video.jpg" width="343"  />
                                 </div>
                             </div>
                             <div class="cul">
                                 <div class="cul_t"></div>
                                 <div class="cul_con">
+                                    <img src="images/product/hot.jpg" width="343"  />
                                 </div>
                             </div>
                         </div>
