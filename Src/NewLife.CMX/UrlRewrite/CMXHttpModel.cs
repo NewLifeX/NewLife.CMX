@@ -6,6 +6,7 @@ using XUrlRewrite.Configuration;
 using System.Reflection;
 using NewLife.CMX.Tool;
 using NewLife.CMX.Config;
+using System.Collections.Generic;
 using System.IO;
 
 namespace NewLife.CMX.UrlRewrite
@@ -30,11 +31,13 @@ namespace NewLife.CMX.UrlRewrite
 
             httpApplication.Context.Server.ClearError();
 
-            HttpContext.Current.Response.Redirect(CMXConfigBase.Current.CurrentParentPath.CombinePath("Index.aspx"));
+            HttpContext.Current.Response.Redirect(CMXConfigBase.Current.CurrentRootPath.CombinePath("Index.aspx"));
         }
 
         private void ReUrl_BeginRequest(object sender, EventArgs e)
         {
+            //Dictionary<String, String> dic = new Dictionary<string, string>();
+
             HttpApplication app = sender as HttpApplication;
             Manager manager = Manager.GetConfigManager(app);
             UrlRewriteConfig cfg = manager.GetTemplateConfig();
@@ -49,11 +52,14 @@ namespace NewLife.CMX.UrlRewrite
                         if (_url is UrlElement)
                         {
                             UrlElement url = (UrlElement)_url;
+                            //url.RewriteUrl(path, query, app, cfg, out dic);
                             if (url.Enabled && url.RewriteUrl(path, query, app, cfg)) break;
                         }
                     }
                 }
             }
+
+
         }
 
         static bool[] IsBindReload = { false };
@@ -164,7 +170,7 @@ namespace NewLife.CMX.UrlRewrite
 
         public void Dispose()
         {
-            
+
         }
     }
 }

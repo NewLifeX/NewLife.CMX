@@ -19,7 +19,7 @@ namespace NewLife.CMX.Config
         #region 属性
         [Description("根目录")]
         [XmlIgnore]
-        public String CurrentParentPath { get { return _CurrentParentPath; } }
+        public String CurrentRootPath { get { return _CurrentParentPath; } }
         #endregion
 
         #region 构造方法

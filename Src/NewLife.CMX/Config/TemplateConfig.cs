@@ -70,11 +70,16 @@ namespace NewLife.CMX.Config
         [Description("忽略扩展名称(多项请用逗号分隔)")]
         public String IgnoreExtendName { get { return _IgnoreExtendName; } set { _IgnoreExtendName = value; } }
 
-
         private String _ImportsAssembly = "NewLife.CMX";
         /// <summary>忽略扩展名称(多项请用逗号分隔)</summary>
         [Description("引入的程序集(多项请用逗号分隔)")]
         public String ImportsAssembly { get { return _ImportsAssembly; } set { _ImportsAssembly = value; } }
+
+        private String _SysRootPath = CMXConfigBase.Current.CurrentRootPath;
+        /// <summary>系统根目录</summary>
+        [Description("系统根目录")]
+        [XmlIgnore]
+        public String SysRootPath { get { return _SysRootPath; } set { _SysRootPath = value; } }
         #endregion
 
         #region 构造方法
