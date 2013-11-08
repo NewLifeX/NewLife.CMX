@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Text;
@@ -310,6 +311,57 @@ namespace XUrlRewrite.Configuration
                 return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="query"></param>
+        /// <param name="app"></param>
+        /// <param name="cfg"></param>
+        /// <returns></returns>
+        public Dictionary<String, String> RewriteUrl(String path, String query, HttpApplication app, UrlRewriteConfig cfg, out Dictionary<String, String> dic
+)
+        {
+            dic = new Dictionary<string, string>();
+
+            if (RewriteUrlFunc == null)
+            {
+                switch (this.Type)
+                {
+                    case "normal":
+                        RewriteUrlFunc = ProcessNormalRewriteURL;
+                        break;
+                    case "regex":
+                    case "regexp":
+                        RewriteUrlFunc = ProcessRegexpRewriteURL;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            String queryString = "";
+            String filePath = RewriteUrlFunc != null ? RewriteUrlFunc(path, out queryString) : null;
+            if (filePath != null)
+            {
+                RewriteHelper.Create(path, query, ToString(), app)
+                    .RewriteToInfo(cfg.Directory, filePath, queryString)
+                    .TraceLog();
+                if (File.Exists(app.Server.MapPath(cfg.Directory + filePath)))
+                {
+                    if (!string.IsNullOrEmpty(query))
+                    {
+                        queryString = (queryString + "&" + query).TrimStart('&');
+                    }
+
+                    dic.Add("path", cfg.Directory + filePath);
+                    dic.Add("query", queryString);
+                    return dic;
+                }
+            }
+            return dic;
         }
 
         /// <summary>
