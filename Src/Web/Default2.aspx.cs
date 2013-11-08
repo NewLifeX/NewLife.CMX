@@ -18,6 +18,6 @@ public partial class Default2 : System.Web.UI.Page
     {
         CMXEngine engine = new CMXEngine(TemplateConfig.Current);
 
-        engine.RenderAll();
+        //engine.RenderAll();
     }
 }

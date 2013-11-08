@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading;
 using System.Web.UI;
 using NewLife.CMX;
+using NewLife.CMX.Config;
 using NewLife.Log;
+using NewLife.Reflection;
 using NewLife.Web;
 
 public partial class Template_List : NewLife.CMX.WebBase.WebPageBase
@@ -48,19 +51,17 @@ public partial class Template_List : NewLife.CMX.WebBase.WebPageBase
             Err("未绑定模版！");
         }
 
-        StringWriter strWriterHTML = new StringWriter();
-        Page aspxPage = new Page();
-
-        String path = C.ListTemplate + GetRQ();
-
+        String content = "";
         try
         {
-            //aspxPage.Server.Execute(C.Template + "?Code=" + Code, strWriterHTML);//将aspx页执行产生的html输出到StringWriter中
-            aspxPage.Server.Execute(path, strWriterHTML);//将aspx页执行产生的html输出到StringWriter中
+            TypeX type = TypeX.GetType("NewLife.CMX.Web." + C.ListTemplate);
+            MethodInfoX mix = type.GetMethod("Process", new Type[] { typeof(Dictionary<String, Object>) });
+            Dictionary<String, Object> dic = GetQueryDic();
+            content = mix.Invoke(type.CreateInstance(), dic).ToString();
         }
         catch (ThreadAbortException ex)
         {
-            Response.Redirect(path);
+            Response.Redirect(CMXConfigBase.Current.CurrentRootPath + "/Index.aspx");
         }
         catch (Exception ex)
         {
@@ -70,29 +71,23 @@ public partial class Template_List : NewLife.CMX.WebBase.WebPageBase
             Err("编译出错！");
         }
 
-        Response.Write(strWriterHTML);
+        Response.Write(content);
     }
 
     /// <summary>
-    /// 获取QueryString
+    /// 
     /// </summary>
     /// <returns></returns>
-    private String GetRQ()
+    private Dictionary<String, Object> GetQueryDic()
     {
-        StringBuilder sb = new StringBuilder();
-        if (Request.QueryString.Count > 0)
-        {
-            sb.Append("?");
+        Dictionary<String, Object> dic = new Dictionary<string, object>();
 
-            foreach (String item in Request.QueryString.AllKeys)
-            {
-                if (sb.Length > 1)
-                    sb.Append("&");
-                sb.AppendFormat("{0}={1}", item, Request.QueryString[item]);
-            }
+        foreach (String item in Request.QueryString.AllKeys)
+        {
+            dic.Add(item, Request.QueryString[item]);
         }
 
-        return sb.ToString();
+        return dic;
     }
 
     private void Err(String Msg)

@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading;
 using System.Web.UI;
 using NewLife.CMX;
 using NewLife.Log;
+using NewLife.Reflection;
 using NewLife.Web;
 
 public partial class Template_Info : Page
@@ -13,7 +15,7 @@ public partial class Template_Info : Page
     /// <summary>内容ID</summary>
     public Int32 ID
     {
-        
+
         get { return WebHelper.RequestInt("ID"); }
     }
 
@@ -56,7 +58,12 @@ public partial class Template_Info : Page
 
         StringWriter strWriterHTML = new StringWriter();
         Page aspxPage = new Page();
+
         String path = C.FormTemplate + GetRQ();
+
+       
+
+
         try
         {
             aspxPage.Server.Execute(path, strWriterHTML);//将aspx页执行产生的html输出到StringWriter中
@@ -93,6 +100,22 @@ public partial class Template_Info : Page
             }
         }
         return sb.ToString();
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    private Dictionary<String, Object> GetQueryDic()
+    {
+        Dictionary<String, Object> dic = new Dictionary<string, object>();
+
+        foreach (String item in Request.QueryString.AllKeys)
+        {
+            dic.Add(item, Request.QueryString[item]);
+        }
+
+        return dic;
     }
 
     private void Err(String Msg)
