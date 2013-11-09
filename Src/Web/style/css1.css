@@ -133,7 +133,6 @@ a:link
 .child
 {
     float: left;
-	z-index:100;
 }
 
     .child ul
@@ -385,16 +384,7 @@ a:link
         color: gray;
     }
 /*-产品与服务页面-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
- .top_image
-    {
-        height: 120px;
-		width:960px;
-		margin:0 auto;
-	    padding-top:20px;
-		clear:both;
-    }
-
-.mainbody
+ .mainbody
 {
 	width:1021px;
     margin: 0 auto;
@@ -402,6 +392,22 @@ a:link
 	height:auto; /*1306px;*/
 	/*top: -1px;
 	left: 0px;*/
+}
+.top_image
+    {
+        height: 120px;
+		width:960px;
+		margin:0 auto;
+	    padding-top:20px;
+		clear:both;
+		
+    }
+	.top_image img
+	{
+		position:absolute;
+		z-index:-1;
+	top: 19px;
+	left: 30px;
 }
 
 /*左边列表项.......................................................................................................*/
@@ -436,7 +442,7 @@ a:link
 	left: 0px;
 	height: auto;
 }
-.list_meu ul.list_01
+.list_meu ul.meu_01
 {
 	padding:0px;
 	margin:0px;
@@ -445,7 +451,7 @@ ul, li
 {
 	list-style:none;
 }
-ul.list_01 li.active
+ul.meu_01 li.meu_02
 {
 	background:url(../images/active.jpg) no-repeat;
 	height:auto;
