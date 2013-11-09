@@ -78,10 +78,19 @@
             <div id="index_1">
                 <div class="mod1">
                     <div class="box">
-                        <a href="" target="_blank">
-                            <img src="images/1.jpg" width="223" height="123" /></a>
+                        <a href="#" target="_blank">
+                            <img src="images/mod1.jpg" width="223" height="123" /></a>
                     </div>
-                    <div class="int">简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</div>
+                    <div class="int">专业生产各种点胶设备、耗材等，并提供非标定做。常规产品有:
+                        <a href="#">混合管</a>
+                        <a href="#">点胶机</a>
+                        <a href="#">胶枪</a>
+                        <a href="#">压力桶</a>
+                        <a href="#">点胶针头</a>
+                        <a href="#">AB胶筒</a>
+                        <a href="#">转接头</a>
+                        <a href="#">&gt;&gt;更多...</a>
+                    </div>
                 </div>
                 <div class="flash"></div>
                         
@@ -90,28 +99,35 @@
                 <div class="mod2">
                     <div class="box">
                         <a href="" target="_blank">
-                            <img src="images/1.jpg" width="223" height="123" /></a>
+                            <img src="images/mod2.jpg" width="223" height="123" /></a>
                     </div>
-                    <div class="int">简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</div>
+                    <div class="int">智能自动化设备是我公司自主研发生产的产品，主要有：
+                        <a href="#">“阿波罗”工业控制器</a><br/>
+                        <a href="#">物联网网关</a>
+                        <a href="#">自动化设备</a>
+                        <a href="#">&gt;&gt;更多...</a>
+                    </div>
                 </div>
                 <div class="mod3">
                     <div class="box">
                         <a href="" target="_blank">
-                            <img src="images/1.jpg" width="223" height="123" /></a>
+                            <img src="images/mod3.jpg" width="223" height="123" /></a>
                     </div>
-                    <div class="int">简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</div>
+                    <div class="int">水性喷胶与油性喷胶相比具有环保无毒、耐高温、防火区静电，无味零voc等优点，水性喷胶有：
+                        <a href="#">水性万能胶</a>
+                        <a href="#">单组份水性喷胶</a>
+                        <a href="#">&gt;&gt;更多...</a>
+                    </div>
                 </div>
                 <div class="mod4">
                     <div class="box">
-                        <a href="" target="_blank">
-                            <img src="images/1.jpg" width="223" height="123" /></a>
-                    </div>
+                        &nbsp;</div>
                     <div class="int">简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</div>
                 </div>
             </div>
             <div id="articleContent">
                 <div class="text">
-                    <div class="more"><a href="">更多新闻</a></div>
+                    <div class="more"><a href="">&gt;&gt;更多新闻</a></div>
 
                     <ul>
                         <li>1</li>
@@ -124,15 +140,15 @@
 
                 </div>
                 <div class="text2">
-                    <div class="more2"><a href="">更多新闻</a></div>
+                    <div class="more2"><a href="">&gt;&gt;更多新闻</a></div>
 
                     <ul>
-                        <li>1</li>
                         <li>2</li>
                         <li>3</li>
                         <li>4</li>
                         <li>5</li>
                         <li>6</li>
+                        <li>1</li>
                     </ul>
 
                 </div>

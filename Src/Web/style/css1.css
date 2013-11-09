@@ -3,6 +3,11 @@
     margin: 0px;
     padding: 0px;
 }
+a:link
+{
+	text-decoration: none;
+	color:black;
+}
 #wrap
 {
     width: 100%;
@@ -220,7 +225,6 @@
     font-size: 12px;
     overflow: hidden;
 }
-
 .flash
 {
     float: left;
@@ -304,9 +308,9 @@
 {
     text-decoration: none;
     color: black;
-    margin: 8px 0 0 350px;
+    margin: 8px 0 0 345px;
     display: inherit;
-    width: 68px;
+    width: 85px;
 }
 
     #articleContent .more a:hover, .more2 a:hover
@@ -323,6 +327,7 @@
     margin: 10px 0 0 5px;
     padding-left: 10px;
     border: 1px solid gray;
+	display:inline;
 }
 
     #articleContent ul li
@@ -411,32 +416,42 @@
 	display:inline;
 }
 
-    .mainbody .list #list_t
+    .mainbody .list h3
     {
-        height: 53px;
-        background-image: url(../images/list_bg.jpg);
-        background-repeat: no-repeat;
+        height:28px; /*53px;*/
+        background: url(../images/list_bg.jpg) no-repeat;
         margin: 0px;
+		text-align: center;
+         line-height: 28px;
+         color: white;
+         font-size: 16px;
+		 font-family:"微软雅黑","宋体";
     }
-
-       .list #list_t span
-        {
-            display: block;
-            text-align: center;
-            line-height: 53px;
-            color: white;
-            font-size: 22px;
-        }
 
 .list .list_meu
 {
     margin: 0px;
     position: relative;
-	top: 0px;
+	top: -1px;
 	left: 0px;
 	height: auto;
 }
-.list_meu dl{margin-left:10px;}
+.list_meu ul.list_01
+{
+	padding:0px;
+	margin:0px;
+}
+ul, li
+{
+	list-style:none;
+}
+ul.list_01 li.active
+{
+	background:url(../images/active.jpg) no-repeat;
+	height:auto;
+	line-height:32px;
+}
+.list_meu dl{margin-left:10px; display:block;}
 .list_meu dl dt a{height:24px;line-height:24px;overflow:hidden;color:#3366cc;font-weight:800; text-decoration:none;}
 .list_meu dl dt a span{display:inline-block;width:13px;height:15px;overflow:hidden;float:left;margin:0 5px 0 0;}
 .list_meu dl dt a.minus span{background:url(../images/showbtn.gif) no-repeat;}
@@ -446,6 +461,16 @@
 .list_meu dl dd li{height:24px;line-height:24px;padding:0 0 0 18px; padding:0px;}
 .list_meu dl dd li:hover{background-color:#cccccc; width:160px;}
 .list_meu dl dd li a{font-size:12px;text-decoration:none; color:black; margin-left:20px;}
+/*.list_meu dl{margin-left:10px;}
+.list_meu dl dt a{height:24px;line-height:24px;overflow:hidden;color:#3366cc;font-weight:800; text-decoration:none;}
+.list_meu dl dt a span{display:inline-block;width:13px;height:15px;overflow:hidden;float:left;margin:0 5px 0 0;}
+.list_meu dl dt a.minus span{background:url(../images/showbtn.gif) no-repeat;}
+.list_meu dl dt a.plus span{background:url(../images/hidebtn.gif) no-repeat;}
+.list_meu dl dd{margin:0px;}
+.list_meu dl dd ul{padding:0px; margin:0px; list-style:none;}
+.list_meu dl dd li{height:24px;line-height:24px;padding:0 0 0 18px; padding:0px;}
+.list_meu dl dd li:hover{background-color:#cccccc; width:160px;}
+.list_meu dl dd li a{font-size:12px;text-decoration:none; color:black; margin-left:20px;}*/
 
 
 /*产品与服务右边的产品类表详细内容...................................................................................................................*/
@@ -546,8 +571,8 @@
         {
             margin: 0 0 0 0;
             width: 98px;
-	height: 13px;
-}
+	        height: 13px;
+         }
 
             .pro ul li p.main-nav a
             {
@@ -556,11 +581,8 @@
                 color: #c03;
                 padding-top: 0px;
                
-            }
-a:link
-{
-	text-decoration: none;
-}
+             }
+
 
                 .content ul li p.main-nav a:hover
                 {
@@ -607,7 +629,6 @@ a:link
 	.a1 span,.c1 span,.e1_right
 	{
 		float:right;
-		margin-right:20px;
 		font-size:12px;
 		color:gray;
 	}
@@ -625,6 +646,7 @@ a:link
 {
 	background:url(../images/c1.jpg) no-repeat left;
 	height: 39px;
+	margin-right:15px;
 }
 .content .c2
 	{
@@ -646,7 +668,7 @@ a:link
 }
 .p2, .p3,.p4
 {
-	margin-left:30px;
+	margin-left:25px;
 }
 .content .c2 p
 {
@@ -659,7 +681,7 @@ a:link
 }
 .content .c3
 {
-	margin-top:20px;
+	margin-top:30px;
 	height:418px;
 }
 .video, .cul
@@ -692,12 +714,13 @@ height:auto;
 	height:35px;
 	background:url(../images/cul_t.jpg) no-repeat;
 }
-/*人才招聘页面*/
+/*人才招聘/新闻页面*/
 .e1
 {
 	background:url(../images/b.jpg) no-repeat left;
 	height: 29px;
 	border-bottom:solid 1px #cccccc;
+	margin:15px 15px 0 15px;
 }
 	.e1 .e1_left
 	{
@@ -707,10 +730,10 @@ height:auto;
 		color:#0e53b2;
 		float:left;display:inline;
 	}
-.e2，.news
+.e2,.news
 {
 	clear:both;
-	margin-left:15px;
+	margin:20px 15px 30px 15px;
 }
 	.e2 .e2_t
 	{
@@ -718,8 +741,8 @@ height:auto;
 		font-size:20px;
 		font-weight:bold;
 		display:block;
-		margin-top:15px;
 	}
+	
 .news img
 {
 	margin-left:15px;

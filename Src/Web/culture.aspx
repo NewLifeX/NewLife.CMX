@@ -131,9 +131,9 @@
                         <div class="photo">
                             <div class="c1"><span>当前位置：首页 > 企业文化</span></div>
                             <div class="c2">
-                               <!--<div class="p1"><a href="" target="_blank">
+                               <div class="p1"><a href="" target="_blank">
                                <img src="images/product/p1.jpg" width="155" height="127" /><p>产品相册</p></a>
-                               </div>-->
+                               </div>
                                <div class="p2"><a href="" target="_blank">
                                  <img src="images/photo/1.jpg" width="155" height="127" /><p>商业活动</p></div>
                                <div class="p3"><a href="" target="_blank">
