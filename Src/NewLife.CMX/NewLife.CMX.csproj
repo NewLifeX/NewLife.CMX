@@ -47,6 +47,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\MyDLL\XCode.dll</HintPath>
     </Reference>
+    <Reference Include="XTemplate">
+      <HintPath>..\DLL\XTemplate.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AjaxStatusEnum\AjaxStatusEnum.cs" />
@@ -114,10 +117,6 @@
     <Compile Include="文章\文章统计.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\XTemplate\XTemplate.csproj">
-      <Project>{55ba37ee-01a2-438f-a0fb-6b57440bf2f0}</Project>
-      <Name>XTemplate</Name>
-    </ProjectReference>
     <ProjectReference Include="..\XUrlRewrite\XUrlRewrite.csproj">
       <Project>{f962c060-315f-4f85-9f6f-8e488a9b79ea}</Project>
       <Name>XUrlRewrite</Name>
