@@ -3,14 +3,10 @@
     margin: 0px;
     padding: 0px;
 }
-* html ul, li
+ul, li
 {
 	list-style:none;
 }
-* html li a
-	{
-	   color:black;
-	}
 a:link
 {
 	text-decoration: none;
@@ -333,6 +329,11 @@ a:link
 {
     height: 270px;
 }
+	#articleContent a
+	{
+		text-decoration:none;
+		color:black;
+	}
 
 .text
 {
