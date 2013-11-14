@@ -7,11 +7,16 @@ ul, li
 {
 	list-style:none;
 }
-a:link
+body a
 {
 	text-decoration: none;
 	color:black;
 }
+/*a:link
+{
+	text-decoration: none;
+	color:black;
+}*/
 #wrap
 {
     width: 100%;
@@ -33,7 +38,7 @@ a:link
         width: 1021px;
 		margin:0 auto;
         height: 224px;
-        background: url(../images/header.jpg) no-repeat center bottom;
+        background: url(../images/header.jpg) no-repeat center ;
     }
 
 #logo
@@ -290,6 +295,7 @@ a:link
     height: 290px;
     margin-top: 20px;
     display: inline;
+	
 }
 
 #index_2
@@ -329,11 +335,6 @@ a:link
 {
     height: 270px;
 }
-	#articleContent a
-	{
-		text-decoration:none;
-		color:black;
-	}
 
 .text
 {
