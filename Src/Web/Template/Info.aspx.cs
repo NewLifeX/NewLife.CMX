@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading;
 using System.Web.UI;
 using NewLife.CMX;
+using NewLife.CMX.Config;
+using NewLife.CMX.Web;
 using NewLife.Log;
 using NewLife.Reflection;
 using NewLife.Web;
@@ -19,19 +21,25 @@ public partial class Template_Info : Page
         get { return WebHelper.RequestInt("ID"); }
     }
 
-    /// <summary>扩展名</summary>
-    public String Suffix
+    /// <summary>类编码</summary>
+    private String Suffix
     {
         get { return Request["Suffix"]; }
     }
 
+    /// <summary>请求地址</summary>
+    private String Address
+    {
+        get { return Request["Address"]; }
+    }
+
     private Channel _C;
     /// <summary>频道</summary>
-    public Channel C
+    private Channel C
     {
         get
         {
-            if (_C == null && !String.IsNullOrEmpty(Suffix))
+            if (_C == null & !String.IsNullOrEmpty(Suffix))
             {
                 _C = Channel.FindBySuffix(Suffix);
             }
@@ -39,6 +47,7 @@ public partial class Template_Info : Page
         }
         set { _C = value; }
     }
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -51,34 +60,30 @@ public partial class Template_Info : Page
         {
             Err("未知的参数！");
         }
-        else if (String.IsNullOrEmpty(C.FormTemplate))
-        {
-            Err("未绑定模版！");
-        }
 
-        StringWriter strWriterHTML = new StringWriter();
-        Page aspxPage = new Page();
-
-        String path = C.FormTemplate + GetRQ();
-
-       
-
-
+        String content = "";
         try
         {
-            aspxPage.Server.Execute(path, strWriterHTML);//将aspx页执行产生的html输出到StringWriter中
+            TypeX type = TypeX.GetType("NewLife.CMX.Web." + Address);
+            IModelContent iml = type.CreateInstance() as IModelContent;
+            //Dictionary<String, Object> dic = GetQueryDic();
+            iml.Suffix = Suffix;
+            iml.Address = Address;
+            iml.ID = ID;
+            content = iml.Process();
         }
-        catch (ThreadAbortException ex)
+        catch (ThreadAbortException)
         {
-            Response.Redirect(path);
+            Response.Redirect(CMXConfigBase.Current.CurrentRootPath + "/Index.aspx");
         }
         catch (Exception err)
         {
             XTrace.WriteException(err);
+
             Err("编译出错！");
         }
 
-        Response.Write(strWriterHTML);
+        Response.Write(content);
     }
 
     /// <summary>

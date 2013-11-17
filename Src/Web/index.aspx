@@ -55,7 +55,7 @@
                 </div>
                 <div class="ArticleContentList">
                     <div class="text">
-                        <div class="more"><a target="_blank" href="<%= ResolveUrl("~/List/SX/2.aspx") %>" title="更多新闻"></a></div>
+                        <div class="more"><a target="_blank" href="<%= ResolveUrl("~/List/SX/2/ArticleModelList.aspx") %>" title="更多新闻"></a></div>
                         <Custom:ListControl runat="server" ID="NewCenter" ChannelSuffix="SX" Count="6" CategoryName="迎泽区" />
                     </div>
                     <div class="text2">

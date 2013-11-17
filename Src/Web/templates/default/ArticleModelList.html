@@ -19,8 +19,8 @@
                         <h1>分类名称</h1>
                         <div id="kindlist">
                             <ul>
-                                <#foreach(ArticleCategory c in (ArgDic["CategoryList"] as List<ArticleCategory>)){#>
-                                            <li><a href="<#= c.ID#>"><#= c.Name#></a></li>
+                                <#foreach(IEntityTree c in ListCategory){#>
+                                            <li><a href='<#= c["ID"]#>'><#= c["Name"]#></a></li>
                                     <#}#>                            
                             </ul>
                         </div>
@@ -29,8 +29,8 @@
                         <div class="title">
                             <ul>
                            <#
-                                foreach(Article a in (ArgDic["ArticleList"] as List<Article>)){#>
-                                         <li><a target="_blank" href="<#= a.ID#>"><#= a.Title#></a><label class="date" ><#= a.UpdateTime.ToString("yyyy-MM-dd")#></label></li>
+                                foreach(IEntity a in ListData){#>
+                                         <li><a target="_blank" href='<#= a["ID"]#>'><#= a["Title"]#></a><label class="date" ><#= ((DateTime)a["UpdateTime"]).ToString("yyyy-MM-dd")#></label></li>
                             <#}#>
                             </ul>
                         </div>

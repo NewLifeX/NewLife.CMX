@@ -6,6 +6,7 @@ using System.Threading;
 using System.Web.UI;
 using NewLife.CMX;
 using NewLife.CMX.Config;
+using NewLife.CMX.Web;
 using NewLife.Log;
 using NewLife.Reflection;
 using NewLife.Web;
@@ -13,20 +14,26 @@ using NewLife.Web;
 public partial class Template_List : NewLife.CMX.WebBase.WebPageBase
 {
     /// <summary>ID</summary>
-    public Int32 CategoryID
+    private Int32 CategoryID
     {
         get { return WebHelper.RequestInt("CategoryID"); }
     }
 
     /// <summary>类编码</summary>
-    public String Suffix
+    private String Suffix
     {
         get { return Request["Suffix"]; }
     }
 
+    /// <summary>请求地址</summary>
+    private String Address
+    {
+        get { return Request["Address"]; }
+    }
+
     private Channel _C;
     /// <summary>频道</summary>
-    public Channel C
+    private Channel C
     {
         get
         {
@@ -54,12 +61,15 @@ public partial class Template_List : NewLife.CMX.WebBase.WebPageBase
         String content = "";
         try
         {
-            TypeX type = TypeX.GetType("NewLife.CMX.Web." + C.ListTemplate);
-            MethodInfoX mix = type.GetMethod("Process", new Type[] { typeof(Dictionary<String, Object>) });
-            Dictionary<String, Object> dic = GetQueryDic();
-            content = mix.Invoke(type.CreateInstance(), dic).ToString();
+            TypeX type = TypeX.GetType("NewLife.CMX.Web." + Address);
+            IModeList iml = type.CreateInstance() as IModeList;
+            //Dictionary<String, Object> dic = GetQueryDic();
+            iml.Suffix = Suffix;
+            iml.Address = Address;
+            iml.CategoryID = CategoryID;
+            content = iml.Process();
         }
-        catch (ThreadAbortException ex)
+        catch (ThreadAbortException)
         {
             Response.Redirect(CMXConfigBase.Current.CurrentRootPath + "/Index.aspx");
         }
