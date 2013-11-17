@@ -58,8 +58,6 @@ namespace NewLife.CMX.UrlRewrite
                     }
                 }
             }
-
-
         }
 
         static bool[] IsBindReload = { false };

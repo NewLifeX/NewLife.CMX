@@ -22,22 +22,6 @@ namespace NewLife.CMX.ModelBase
         private String _Name;
         /// <summary>名称</summary>
         public String Name { get { return _Name; } set { _Name = value; } }
-        
-        private String _Hit;
-        /// <summary>点击</summary>
-        public String Hit { get { return _Hit; } set { _Hit = value; } }
-
-        private String _CategoryName;
-        /// <summary>分类</summary>
-        public String CategoryName { get { return _CategoryName; } set { _CategoryName = value; } }
-
-        private String _Content;
-        /// <summary>内容</summary>
-        public String Content { get { return _Content; } set { _Content = value; } }
-
-        private String _CreateTime;
-        /// <summary>创建时间</summary>
-        public String CreateTime { get { return _CreateTime; } set { _CreateTime = value; } }
 
         private String _ClassName;
         /// <summary>模型类名</summary>
@@ -63,6 +47,8 @@ namespace NewLife.CMX.ModelBase
         /// <returns></returns>
         public virtual string GetClassPath()
         {
+
+
             throw new NotImplementedException();
         }
 
@@ -81,14 +67,10 @@ namespace NewLife.CMX.ModelBase
         /// 获取所有模型类
         /// </summary>
         /// <returns></returns>
-        public static List<IModelClass> GetAllModel()
+        public static List<IModel> GetAllModel()
         {
-            return AssemblyX.FindAllPlugins(typeof(IModelClass), true).Select(t => TypeX.CreateInstance(t) as IModelClass).ToList();
+            return AssemblyX.FindAllPlugins(typeof(IModel), true).Select(t => TypeX.CreateInstance(t) as IModel).ToList();
         }
-        #endregion
-
-        #region 获取指定属性
-        
         #endregion
     }
 }

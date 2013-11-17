@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using NewLife.CMX.Interface;
 using XCode;
 
 namespace NewLife.CMX
 {
-    public abstract class ModelCategoryEntity<T> : EntityTree<T> where T : ModelCategoryEntity<T>, new()
+    public abstract class ModelCategoryEntity<T> : EntityTree<T>,IModelCategory where T : ModelCategoryEntity<T>, new()
     {
         /// <summary>
         /// 查询子类以及子类的ID如果子类不是最终类，返回的时候ID会被改为负数

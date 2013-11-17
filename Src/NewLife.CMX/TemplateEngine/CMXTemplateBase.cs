@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using NewLife.CMX.Config;
+using XCode;
 using XTemplate.Templating;
 
 namespace NewLife.CMX.TemplateEngine
@@ -17,9 +18,13 @@ namespace NewLife.CMX.TemplateEngine
         /// <summary>参数字典</summary>
         public Dictionary<String, Object> ArgDic { get { return _ArgDic; } set { _ArgDic = value; } }
 
-        //private List<ModelDataBase> _ModelDB;
-        ///// <summary>模板数据</summary>
-        //public List<ModelDataBase> ModelDB { get { return _ModelDB; } set { _ModelDB = value; } }
+        private List<IEntity> _ListData;
+        /// <summary>数据列表</summary>
+        public List<IEntity> ListData { get { return _ListData; } set { _ListData = value; } }
+
+        private List<IEntityTree> _ListCategory;
+        /// <summary>分类列表</summary>
+        public List<IEntityTree> ListCategory { get { return _ListCategory; } set { _ListCategory = value; } }
 
         #endregion
 
@@ -27,11 +32,11 @@ namespace NewLife.CMX.TemplateEngine
         public override void Initialize()
         {
             base.Initialize();
-
+            
             if (Data.ContainsKey("Config")) Config = (TemplateConfig)Data["Config"];
             if (Data.ContainsKey("ArgDic")) ArgDic = (Dictionary<String, Object>)Data["ArgDic"];
-            //if (Data.ContainsKey("ModelDB")) ModelDB = (List<ModelDataBase>)Data["ModelDB"];
-            //if (Data.ContainsKey("TemplateInfo")) TemplateInfo = (CMXTemplateInfo)Data["TemplateInfo "];
+            if (Data.ContainsKey("ListData")) ListData = (List<IEntity>)Data["ListData"];
+            if (Data.ContainsKey("ListCategory")) ListCategory = (List<IEntityTree>)Data["ListCategory"];
         }
         #endregion
     }

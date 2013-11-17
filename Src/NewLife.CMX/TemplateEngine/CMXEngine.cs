@@ -7,6 +7,7 @@ using System.Linq;
 using System.IO;
 using System.Net;
 using System.Web;
+using XCode;
 
 namespace NewLife.CMX.TemplateEngine
 {
@@ -21,9 +22,14 @@ namespace NewLife.CMX.TemplateEngine
         /// <summary>参数字典</summary>
         public Dictionary<String, Object> ArgDic { get { return _ArgDic; } set { _ArgDic = value; } }
 
-        private List<ModelDataBase> _ModelDB;
-        /// <summary>模板数据</summary>
-        public List<ModelDataBase> ModelDB { get { return _ModelDB; } set { _ModelDB = value; } }
+        private List<IEntity> _ListData;
+        /// <summary>数据列表</summary>
+        public List<IEntity> ListData { get { return _ListData; } set { _ListData = value; } }
+
+        private List<IEntityTree> _ListCategory;
+        /// <summary>分类列表</summary>
+        public List<IEntityTree> ListCategory { get { return _ListCategory; } set { _ListCategory = value; } }
+
         #endregion
 
         #region 构造
@@ -49,7 +55,8 @@ namespace NewLife.CMX.TemplateEngine
             var data = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
             data["Config"] = Config;
             data["ArgDic"] = ArgDic;
-            //data["ModelDB"] = ModelDB;
+            data["ListData"] = ListData;
+            data["ListCategory"] = ListCategory;
 
             #region 获取模板资源文件
             Template.Debug = true;
