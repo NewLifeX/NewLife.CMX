@@ -6,28 +6,25 @@ using System.Web;
 using System.Web.UI;
 using NewLife.CMX.Config;
 using NewLife.CMX.TemplateEngine;
-using NewLife.CMX.Web.Interface;
+using NewLife.CMX.Web;
 using NewLife.Web;
+using XCode;
 
 namespace NewLife.CMX.Web
 {
     /// <summary>
     /// 
     /// </summary>
-    public class ArticleModelList : IModeProcess
+    public class ArticleModelList : IModeList
     {
         /// <summary>
         /// 
         /// </summary>
         /// <param name="dic"></param>
-        public String Process(Dictionary<string, object> paramsdic)
+        public String Process()
         {
             try
             {
-                String Suffix = paramsdic["Suffix"].ToString();
-                Int32 CategoryID = 0;
-                Int32.TryParse(paramsdic["CategoryID"].ToString(), out CategoryID);
-
                 Article.Meta.TableName += Suffix;
                 ArticleCategory.Meta.TableName += Suffix;
 
@@ -51,22 +48,19 @@ namespace NewLife.CMX.Web
                     Articles = Article.FindAllByCategoryID(first.ID);
                 }
 
-                dic.Add("ArticleList", Articles);
-                dic.Add("CategoryList", Categories);
+                //dic.Add("ListCategory",Categories);
+                //dic.Add("ListData",Articles);
+                //dic.Add("ArticleList", Articles);
+                //dic.Add("CategoryList", Categories);
+
+                List<IEntity> listentity = Articles.ConvertAll<IEntity>(e => e as IEntity);
+                List<IEntityTree> listcategory = Categories.ConvertAll<IEntityTree>(e => e as IEntityTree);
 
                 CMXEngine engine = new CMXEngine(TemplateConfig.Current);
-                engine.ArgDic = dic;
-                String content = engine.Render("ArticleModelList.html");
-
-                //Byte[] b = Encoding.UTF8.GetBytes(content);
-
-                //MemoryStream ms = new MemoryStream();
-                //StreamWriter sw = new StreamWriter(ms);
-
-                //HttpResponse hr = new HttpResponse(sw);
-                //hr.Write(content);
-                //hr.Flush();
-                //hr.End();
+                //engine.ArgDic = dic;
+                engine.ListData = listentity;
+                engine.ListCategory = listcategory;
+                String content = engine.Render(Address + ".html");
 
                 return content;
             }
@@ -79,6 +73,30 @@ namespace NewLife.CMX.Web
                 Article.Meta.TableName = "";
                 ArticleCategory.Meta.TableName = "";
             }
+        }
+
+        private String _Suffix;
+        /// <summary></summary>
+        public String Suffix
+        {
+            get { return _Suffix; }
+            set { _Suffix = value; }
+        }
+
+        private int _CategoryID;
+        /// <summary></summary>
+        public int CategoryID
+        {
+            get { return _CategoryID; }
+            set { _CategoryID = value; }
+        }
+
+        private String _Address;
+        /// <summary></summary>
+        public String Address
+        {
+            get { return _Address; }
+            set { _Address = value; }
         }
     }
 }

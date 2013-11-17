@@ -46,8 +46,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArticleModelContent.cs" />
     <Compile Include="ArticleModelList.cs" />
-    <Compile Include="Interface\IModeProcess.cs" />
+    <Compile Include="Interface\IModelContent.cs" />
+    <Compile Include="Interface\IModeList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
