@@ -74,26 +74,14 @@ namespace NewLife.CMX.Web
 
         private String _Suffix;
         /// <summary></summary>
-        public String Suffix
-        {
-            get { return _Suffix; }
-            set { _Suffix = value; }
-        }
+        public String Suffix { get { return _Suffix; } set { _Suffix = value; } }
 
         private int _CategoryID;
         /// <summary></summary>
-        public int CategoryID
-        {
-            get { return _CategoryID; }
-            set { _CategoryID = value; }
-        }
+        public int CategoryID { get { return _CategoryID; } set { _CategoryID = value; } }
 
         private String _Address;
         /// <summary></summary>
-        public String Address
-        {
-            get { return _Address; }
-            set { _Address = value; }
-        }
+        public String Address { get { return _Address; } set { _Address = value; } }
     }
 }
