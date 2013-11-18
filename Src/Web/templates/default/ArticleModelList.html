@@ -12,7 +12,6 @@
         <div id="wrap">
             <div id="wrpper">
                 <div class="header">
-                    
                 </div>
                 <div id="articlelist">
                     <div class="articlekind">
@@ -20,22 +19,22 @@
                         <div id="kindlist">
                             <ul>
                                 <#foreach(IEntityTree c in ListCategory){#>
-                                            <li><a href='<#= c["ID"]#>'><#= c["Name"]#></a></li>
-                                    <#}#>                            
+                                <li><a href='<#= Config.SysRootPath#>List/<#= ArgDic["Suffix"]#>/<#= c["ID"]#>/<#=ArgDic["Address"]#>.aspx'><#= c["Name"]#></a></li>
+                                <#}#>                            
                             </ul>
                         </div>
                     </div>
                     <div class="articletitle">
                         <div class="title">
                             <ul>
-                           <#
-                                foreach(IEntity a in ListData){#>
-                                         <li><a target="_blank" href='<#= a["ID"]#>'><#= a["Title"]#></a><label class="date" ><#= ((DateTime)a["UpdateTime"]).ToString("yyyy-MM-dd")#></label></li>
-                            <#}#>
+                                <#
+                                foreach(IEntity a in ListEntity){#>
+                                <li><a target="_blank" href='<#= Config.SysRootPath#>Info/<#= ArgDic["Suffix"]#>/<#= a["ID"]#>/ArticleModelContent.aspx'><#= a["Title"]#></a><label class="date"><#= ((DateTime)a["UpdateTime"]).ToString("yyyy-MM-dd")#></label></li>
+                                <#}#>
                             </ul>
                         </div>
                     </div>
-                  <!--  <div class="Paging">
+                    <!--  <div class="Paging">
                         <webdiyer:AspNetPager ID="AspNetPager1" runat="server" HorizontalAlign="Center" PagingButtonSpacing="8px"
                             OnPageChanged="AspNetPager1_PageChanged" UrlPaging="True" Width="100%" ShowNavigationToolTip="true"
                             UrlPageIndexName="pageindex" EnableUrlRewriting="true" UrlRewritePattern="">
@@ -43,7 +42,6 @@
                     </div>-->
                 </div>
                 <div class="foot">
-  
                 </div>
             </div>
         </div>

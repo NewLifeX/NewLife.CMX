@@ -51,7 +51,6 @@ public partial class Template_Info : Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
         if (C == null)
         {
             Err("未确定的频道！");
@@ -66,7 +65,7 @@ public partial class Template_Info : Page
         {
             TypeX type = TypeX.GetType("NewLife.CMX.Web." + Address);
             IModelContent iml = type.CreateInstance() as IModelContent;
-            //Dictionary<String, Object> dic = GetQueryDic();
+
             iml.Suffix = Suffix;
             iml.Address = Address;
             iml.ID = ID;

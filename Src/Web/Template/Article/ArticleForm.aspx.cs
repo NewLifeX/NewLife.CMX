@@ -16,8 +16,8 @@ public partial class Template_Article_ArticleForm : NewLife.CMX.WebBase.WebPageB
         {
             ArticleContent.Meta.TableName += Suffix;
 
+
             ArticleContent = ArticleContent.FindByParentIDAndNewVersion(ArticleContentID);
-       
             ArticleContent.Suffix = Suffix;
             base.OnInit(e);
         }
