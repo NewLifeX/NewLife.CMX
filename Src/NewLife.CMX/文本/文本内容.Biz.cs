@@ -88,6 +88,31 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
+        private Text _Text;
+        /// <summary>文章</summary>
+        public Text Text
+        {
+            get
+            {
+                if (_Text == null && ParentID > 0 && !Dirtys.ContainsKey("Text"))
+                {
+                    Text.Meta.TableName += Suffix;
+                    _Text = Text.FindByKey(ParentID);
+                    Dirtys["Text"] = true;
+                    Text.Meta.TableName = "";
+                }
+                return _Text;
+            }
+            set { _Text = value; }
+        }
+
+        private String _Suffix;
+        /// <summary></summary>
+        public String Suffix { get { return _Suffix; } set { _Suffix = value; } }
+
+        private Int32 _Hit;
+        /// <summary>点击次数</summary>
+        public Int32 Hit { get { return _Hit; } set { _Hit = value; } }
         #endregion
 
         #region 扩展查询﻿

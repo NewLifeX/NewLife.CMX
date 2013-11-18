@@ -106,12 +106,28 @@ namespace NewLife.CMX
             set { _Article = value; }
         }
 
+        //public String Suffix { get { return Article == null ? "" : Article.ChannelSuffix; } }
         private String _Suffix;
         /// <summary></summary>
         public String Suffix
         {
             get { return _Suffix; }
             set { _Suffix = value; }
+        }
+
+        private Int32 _Hits;
+        /// <summary>点击次数</summary>
+        public Int32 Hits
+        {
+            get
+            {
+                if (Article != null && !Dirtys.ContainsKey("Hits"))
+                {
+                    _Hits = Article.Hits;
+                    Dirtys["Hits"] = true;
+                }
+                return _Hits;
+            }
         }
         #endregion
 

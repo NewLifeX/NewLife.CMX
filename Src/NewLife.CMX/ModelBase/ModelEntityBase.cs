@@ -22,7 +22,7 @@ namespace NewLife.CMX.ModelBase
         private String _Name;
         /// <summary>名称</summary>
         public String Name { get { return _Name; } set { _Name = value; } }
-        
+
         private String _Hit;
         /// <summary>点击</summary>
         public String Hit { get { return _Hit; } set { _Hit = value; } }
@@ -88,7 +88,7 @@ namespace NewLife.CMX.ModelBase
         #endregion
 
         #region 获取指定属性
-        
+
         #endregion
     }
 }

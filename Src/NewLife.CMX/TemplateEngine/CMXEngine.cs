@@ -18,17 +18,21 @@ namespace NewLife.CMX.TemplateEngine
         /// <summary>模板配置</summary>
         public TemplateConfig Config { get { return _Config; } set { _Config = value; } }
 
-        private Dictionary<String, Object> _ArgDic;
+        private Dictionary<String, String> _ArgDic;
         /// <summary>参数字典</summary>
-        public Dictionary<String, Object> ArgDic { get { return _ArgDic; } set { _ArgDic = value; } }
+        public Dictionary<String, String> ArgDic { get { return _ArgDic; } set { _ArgDic = value; } }
 
-        private List<IEntity> _ListData;
+        private List<IEntity> _ListEntity;
         /// <summary>数据列表</summary>
-        public List<IEntity> ListData { get { return _ListData; } set { _ListData = value; } }
+        public List<IEntity> ListEntity { get { return _ListEntity; } set { _ListEntity = value; } }
 
         private List<IEntityTree> _ListCategory;
         /// <summary>分类列表</summary>
         public List<IEntityTree> ListCategory { get { return _ListCategory; } set { _ListCategory = value; } }
+
+        private IEntity _Entity;
+        /// <summary>实体数据</summary>
+        public IEntity Entity { get { return _Entity; } set { _Entity = value; } }
 
         #endregion
 
@@ -55,8 +59,9 @@ namespace NewLife.CMX.TemplateEngine
             var data = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
             data["Config"] = Config;
             data["ArgDic"] = ArgDic;
-            data["ListData"] = ListData;
+            data["ListEntity"] = ListEntity;
             data["ListCategory"] = ListCategory;
+            data["Entity"] = Entity;
 
             #region 获取模板资源文件
             Template.Debug = true;
@@ -85,7 +90,6 @@ namespace NewLife.CMX.TemplateEngine
             #endregion
 
             #region 生成文件
-
             List<String> imports = Config.ImportsAssembly.Split(",").ToList();
             //添加程序集引用
             Template.Imports.AddRange(imports);

@@ -88,6 +88,24 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
+        private Product _Product;
+        /// <summary>产品</summary>
+        public Product Product
+        {
+            get
+            {
+                if (_Product == null && ParentID > 0 && !Dirtys.ContainsKey("Product"))
+                {
+                    _Product = Product.FindByKey(ParentID);
+                    Dirtys["Product"] = true;
+                }
+                return _Product;
+            }
+            set { _Product = value; }
+        }
+
+        public Decimal Price { get { return Product != null ? Product.Price : 0; } }
+
         #endregion
 
         #region 扩展查询﻿
