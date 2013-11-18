@@ -246,7 +246,7 @@ body a
 #index_1
 {
     height: 332px;
-    background: url(../images/mod_1.jpg);
+    background: url(../images/mod_1.jpg) no-repeat;
 }
 
 .mod1
@@ -291,12 +291,37 @@ body a
 .flash
 {
     float: left;
-    width: 708px;
-    height: 290px;
-    margin-top: 20px;
+    width: 710px;
+    height: 293px;
+    margin: 25px 0 0 0px;
     display: inline;
 	
 }
+.hot-event{position:relative;height:293px;width:710px;margin:0 auto;}
+.hot-event .switch-tab{text-align:center;position:absolute;bottom:26px;
+left:42%;z-index:999;
+	height: 3152px;
+}
+.hot-event .switch-tab a{margin:0 2px;display:inline-block;width:15px;height:15px;line-height:99em;overflow:hidden;background-image:url(../images/flash/bg.png);background-position:-161px 0;}
+.hot-event .switch-tab .current{background-image:url(../images/flash/bg.png);background-position:-195px 0;}
+.hot-event .switch-nav{
+	position:absolute;
+	right:17px;
+	top:200px;
+	z-index:2;
+	width:50px;
+	height:50px;
+}
+.hot-event .switch-nav .i-prev{background-image:url(../images/flash/bg.png);background-position:-127px 0;}
+.hot-event .switch-nav .prev{border-radius:3px 0 0 3px;border-width:1px;}
+.hot-event .switch-nav .next{border-radius:0 3px 3px 0;border-width:1px 1px 1px 0;}
+.hot-event .switch-nav .i-next{background-image:url(../images/flash/bg.png);background-position:-144px 0;}
+.hot-event .switch-nav a{display:inline-block;padding:7px 16px;background:rgba(0,0,0,.3);border-style:solid;border-color:rgba(255,255,255,.6);}
+/*.hot-event .switch-nav a.prev{height:50px;}*/
+.hot-event .switch-nav a:hover{background:rgba(0,0,0,.2);}
+.hot-event .event-item{height:293px;width:710px;position:absolute;z-index:1;left:0;top:0;}
+.ico{display:inline-block;width:16px;height:16px;line-height:999em;overflow:hidden;}
+
 
 #index_2
 {

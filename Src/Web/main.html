@@ -8,6 +8,52 @@
     <link rel="stylesheet" type="text/css" href="style/css1.css" />
     <script src="Scripts/jquery/jquery-1.9.1.min.js"></script>
    <script type="text/javascript" src="style/javascript.js"></script>
+    <script type="text/javascript">
+         (function ($) {
+            $.fn.extend({
+                "nav": function (con) {
+                    var $this = $(this), $nav = $this.find('.switch-tab'), t = (con && con.t) || 3000, a = (con && con.a) || 500, i = 0, autoChange = function () {
+                        $nav.find('a:eq(' + (i + 1 === 5 ? 0 : i + 1) + ')').addClass('current').siblings().removeClass('current');
+                        $this.find('.event-item:eq(' + i + ')').css('display', 'none').end().find('.event-item:eq(' + (i + 1 === 5 ? 0 : i + 1) + ')').css({
+                            display: 'block',
+                            opacity: 0
+                        }).animate({
+                            opacity: 1
+                        }, a, function () {
+                            i = i + 1 === 5 ? 0 : i + 1;
+                        }).siblings('.event-item').css({
+                            display: 'none',
+                            opacity: 0
+                        });
+                    }, st = setInterval(autoChange, t);
+                    $this.hover(function () {
+                        clearInterval(st);
+                        return false;
+                    }, function () {
+                        st = setInterval(autoChange, t);
+                        return false;
+                    }).find('.switch-nav>a').bind('click', function () {
+                        var current = $nav.find('.current').index();
+                        i = $(this).attr('class') === 'prev' ? current - 2 : current;
+                        autoChange();
+                        return false;
+                    }).end().find('.switch-tab>a').bind('click', function () {
+                        i = $(this).index() - 1;
+                        autoChange();
+                        return false;
+                    });
+                    return $this;
+                }
+            });
+        }(jQuery));
+
+        $(document).ready(function () {
+            $('.hot-event').nav({
+                t: 2000,	//轮播时间
+                a: 1000  //过渡时间
+            });
+        });
+    </script>
 </head>
 <body>
     <div id="wrap">
@@ -41,10 +87,7 @@
                             <li class="shop"><a href="#" onclick="change_bg(this)">月无声商城</a></li>
                         </ul>
                     </div>
-                    <div class="child">
-                        <!--<ul class="index">
-                            <li>首页</li>
-                        </ul>-->
+                    <!--<div class="child">
                         <ul class="about">
                             <li><a href="#">公司简介</a></li>
                             <li><a href="#">部门介绍</a></li>
@@ -89,24 +132,12 @@
                                 </dl>
                             </li>
                         </ul>
-                       <!--<ul class="com">
-                            <li>企业文化</li>
-                        </ul>-->
-                       <!--<ul class="recruitment">
-                            <li>人才招聘</li>
-                        </ul>-->
                         <ul class="new">
                             <li><a href="#">公司新闻</a></li>
                             <li><a href="#">行业新闻</a></li>
                             <li><a href="#">咨询中心</a></li>
                         </ul>
-                       <!-- <ul class="forum">
-                            <li>技术论坛</li>
-                        </ul>-->
-                        <!--<ul class="shop">
-                            <li>月无声商场</li>
-                        </ul>-->
-                    </div>
+                    </div>-->
                 </div>
             </div>
 
@@ -127,7 +158,23 @@
                         <a href="#">&gt;&gt;更多...</a>
                     </div>
                 </div>
-                <div class="flash"></div>
+               <div class="flash">
+                  <div class="hot-event">
+		             <div class="switch-nav"><a href="#" onclick="return false;" class="prev"><i class="ico i-prev">上一个</i></a><a href="#" onclick="return false;" class="next"><i class="ico i-next">下一个</i></a></div>
+	                 <div class="event-item"><a href="#"><img src="images/flash/1.jpg"  style="width: 710px; height: 293px;" alt="点胶设备" /></a></div>
+		             <div class="event-item"><a href="#"><img src="images/flash/1.jpg"  width="710" height="293" alt="阿波罗声控" /></a></div>
+		             <div class="event-item"><a href="#"><img src="images/flash/1.jpg"  width="710" height="293" alt="化工胶水" /></a></div>
+		             <div class="event-item"><a href="#"><img src="images/flash/1.jpg"  width="710" height="293" alt="五金模具" /></a></div>
+		             <div class="event-item"><a href="#"><img src="images/flash/1.jpg"  width="710" height="293" alt="月无声" /></a></div>
+		             <div class="switch-tab">
+			             <a href="javascript:void(0);" onclick="return false;" class="current">1</a>
+			             <a href="javascript:void(0);" onclick="return false;">2</a>
+			             <a href="javascript:void(0);" onclick="return false;">3</a>
+			             <a href="javascript:void(0);" onclick="return false;">4</a>
+			             <a href="javascript:void(0);" onclick="return false;">5</a>
+		              </div>
+                   </div>
+                </div>
                         
             </div>
             <div id="index_2">
