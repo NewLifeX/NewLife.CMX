@@ -31,7 +31,7 @@ namespace NewLife.CMX.Web
                 List<Article> Articles;
                 List<ArticleCategory> Categories;
 
-                Dictionary<String, Object> dic = new Dictionary<string, object>();
+                //Dictionary<String, Object> dic = new Dictionary<string, object>();
                 ArticleCategory ac = ArticleCategory.FindByID(CategoryID);
                 if (ac.IsEnd)
                 {
@@ -48,23 +48,20 @@ namespace NewLife.CMX.Web
                     Articles = Article.FindAllByCategoryID(first.ID);
                 }
 
-                //dic.Add("ListCategory",Categories);
-                //dic.Add("ListData",Articles);
-                //dic.Add("ArticleList", Articles);
-                //dic.Add("CategoryList", Categories);
-
-                List<IEntity> listentity = Articles.ConvertAll<IEntity>(e => e as IEntity);
-                List<IEntityTree> listcategory = Categories.ConvertAll<IEntityTree>(e => e as IEntityTree);
+                Dictionary<String, String> dic = new Dictionary<string, string>();
+                dic.Add("Address", Address);
+                dic.Add("CategoryID", CategoryID.ToString());
+                dic.Add("Suffix", Suffix);
 
                 CMXEngine engine = new CMXEngine(TemplateConfig.Current);
-                //engine.ArgDic = dic;
-                engine.ListData = listentity;
-                engine.ListCategory = listcategory;
+                engine.ArgDic = dic;
+                engine.ListEntity = Articles.ConvertAll<IEntity>(e => e as IEntity);
+                engine.ListCategory = Categories.ConvertAll<IEntityTree>(e => e as IEntityTree);
                 String content = engine.Render(Address + ".html");
 
                 return content;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
