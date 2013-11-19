@@ -207,6 +207,11 @@ body a
 		{
 			width:60px;
 		}
+.child ul.product li dl
+{
+	margin:0;
+	padding:0px;
+}
 	.child ul.product li dl dt
 	{
 		height:20px;
@@ -433,7 +438,7 @@ left:42%;z-index:999;
 {	
     height: auto;
 	clear:both;
-	padding-top:20px;
+	padding-top:15px;
 	padding-bottom:20px;
 }
 
@@ -484,7 +489,7 @@ left:42%;z-index:999;
         height: 120px;
 		width:1021px;
 		margin:0 auto;
-	    padding-top:20px;
+	    padding-top:10px;
 		clear:both;
 		
     }
@@ -520,6 +525,7 @@ left:42%;z-index:999;
 .list .list_meu
 {
     margin: 0px;
+	padding:0px;
     position: relative;
 	top: -2px;
 	left: 0px;
@@ -546,6 +552,9 @@ left:42%;z-index:999;
 	height:79px;
 	background:url(../images/list_phone.gif) no-repeat top;
 }
+.list .list_meu ul{padding:0px;margin:0px;}
+.list .list_meu ul li{height: 30px;overflow: hidden;}
+.list .list_meu ul li a{ display:block; text-align:center;margin-top:10px;}
 .list_meu dl{margin:0 0 0 10px; display:block;}
 .list_meu dl dt{padding-top:20px;}
 .list_meu dl dt a{height:24px;line-height:24px;overflow:hidden;color:#3366cc;font-weight:800; text-decoration:none;}
@@ -835,4 +844,62 @@ border:solid 1px #f0f0f0;
 {
 	margin-left:15px;
 	margin-top:15px;
+}
+/*ArticleModeList.html...................................................................................................*/
+
+.content .articletitle
+    {
+    }
+
+        .content .articletitle ul
+        {
+            width: 700px;
+        }
+
+            .content .articletitle ul li
+            {
+                float: none;
+                background: url("../images/jt.jpg") no-repeat scroll 0 0 transparent;
+                border-bottom: 1px solid #9CC4DF;
+                font-size: 12px;
+                height: 30px;
+                line-height: 30px;
+                margin-top: 5px;
+                overflow: hidden;
+                padding-left: 15px;
+            }
+				.content .articletitle ul li a:hover
+				{
+					border-bottom:solid 1px blue;
+					color:#0361c1;
+				}
+.date
+{
+    float: right;
+}
+.switch_meu
+{
+	width:700px;
+	margin:0 auto;
+	text-align:center;
+	padding-bottom:10px;
+}
+	.switch_meu .page-num
+	{
+		width:30px;
+	}
+/*ArticleModelContent.html...................................................................................................*/
+.mainbody h2
+{
+	 font-size: 24px;
+    font-weight: bold;
+    margin:10px 0 10px 0;
+    text-align: center;
+}
+.mainbody .otherInfo
+{
+text-align:center;
+padding-bottom:10px;
+font-size:12px;
+color:gray;
 }
