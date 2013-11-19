@@ -6,7 +6,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Web", "Web\", "{0173B5B3-3287-48BE-A136-C258C35E4210}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv2.0"
-		ProjectReferences = "{4c2cf9bb-b920-43f5-9d87-b7288e416795}|NewLife.CMX.dll;{F962C060-315F-4F85-9F6F-8E488A9B79EA}|XUrlRewrite.dll;"
+		ProjectReferences = "{4c2cf9bb-b920-43f5-9d87-b7288e416795}|NewLife.CMX.dll;{F962C060-315F-4F85-9F6F-8E488A9B79EA}|XUrlRewrite.dll;{d22f1350-d58b-44e5-b6bb-1d2a5e7fcc66}|NewLife.CMX.Web.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/Web"
 		Debug.AspNetCompiler.PhysicalPath = "Web\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Web\"
@@ -31,6 +31,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewLife.CommonEntity", "NewLife.CommonEntity\NewLife.CommonEntity.csproj", "{50D7FAE5-2304-4395-A6FA-7D35279D9D84}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUrlRewrite", "XUrlRewrite\XUrlRewrite.csproj", "{F962C060-315F-4F85-9F6F-8E488A9B79EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewLife.CMX.Web", "NewLife.CMX.Web\NewLife.CMX.Web.csproj", "{D22F1350-D58B-44E5-B6BB-1D2A5E7FCC66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -88,6 +90,14 @@ Global
 		{F962C060-315F-4F85-9F6F-8E488A9B79EA}.Net4Release|Any CPU.Build.0 = Release|Any CPU
 		{F962C060-315F-4F85-9F6F-8E488A9B79EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F962C060-315F-4F85-9F6F-8E488A9B79EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D22F1350-D58B-44E5-B6BB-1D2A5E7FCC66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D22F1350-D58B-44E5-B6BB-1D2A5E7FCC66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D22F1350-D58B-44E5-B6BB-1D2A5E7FCC66}.Net4Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D22F1350-D58B-44E5-B6BB-1D2A5E7FCC66}.Net4Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D22F1350-D58B-44E5-B6BB-1D2A5E7FCC66}.Net4Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D22F1350-D58B-44E5-B6BB-1D2A5E7FCC66}.Net4Release|Any CPU.Build.0 = Release|Any CPU
+		{D22F1350-D58B-44E5-B6BB-1D2A5E7FCC66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D22F1350-D58B-44E5-B6BB-1D2A5E7FCC66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
