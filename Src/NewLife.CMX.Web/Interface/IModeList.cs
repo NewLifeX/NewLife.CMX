@@ -13,6 +13,10 @@ namespace NewLife.CMX.Web
 
         String Address { get; set; }
 
+        Int32 Pageindex { get; set; }
+
+        Int32 RecordNum { get; set; }
+
         String Process();
     }
 }

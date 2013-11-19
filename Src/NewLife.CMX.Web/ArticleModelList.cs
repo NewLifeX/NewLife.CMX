@@ -31,11 +31,10 @@ namespace NewLife.CMX.Web
                 List<Article> Articles;
                 List<ArticleCategory> Categories;
 
-                //Dictionary<String, Object> dic = new Dictionary<string, object>();
                 ArticleCategory ac = ArticleCategory.FindByID(CategoryID);
                 if (ac.IsEnd)
                 {
-                    Articles = Article.FindAllByCategoryID(CategoryID);
+                    Articles = Article.Search(null, CategoryID, null, Pageindex, RecordNum);
                     Categories = ArticleCategory.FindAllChildsNoParent(ac.ParentID);
                 }
                 else
@@ -45,13 +44,15 @@ namespace NewLife.CMX.Web
                         return art.IsEnd == true;
                     });
                     ArticleCategory first = Categories[0];
-                    Articles = Article.FindAllByCategoryID(first.ID);
+                    Articles = Article.Search(null, first.ID, null, Pageindex, RecordNum);
                 }
 
                 Dictionary<String, String> dic = new Dictionary<string, string>();
                 dic.Add("Address", Address);
                 dic.Add("CategoryID", CategoryID.ToString());
                 dic.Add("Suffix", Suffix);
+                dic.Add("Pageindex", Pageindex.ToString());
+                dic.Add("RecordNum", RecordNum.ToString());
 
                 CMXEngine engine = new CMXEngine(TemplateConfig.Current);
                 engine.ArgDic = dic;
@@ -83,5 +84,13 @@ namespace NewLife.CMX.Web
         private String _Address;
         /// <summary></summary>
         public String Address { get { return _Address; } set { _Address = value; } }
+
+        private Int32 _Pageindex;
+        /// <summary>页面索引</summary>
+        public Int32 Pageindex { get { return _Pageindex; } set { _Pageindex = value; } }
+
+        private Int32 _RecordNum;
+        /// <summary>记录数</summary>
+        public Int32 RecordNum { get { return _RecordNum; } set { _RecordNum = value; } }
     }
 }
