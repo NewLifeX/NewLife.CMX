@@ -80,6 +80,11 @@ namespace NewLife.CMX.Config
         [Description("系统根目录")]
         [XmlIgnore]
         public String SysRootPath { get { return _SysRootPath; } set { _SysRootPath = value; } }
+
+        private Int32 _RecordNum = 10;
+        /// <summary>页面显示记录条数</summary>
+        [Description("页面显示记录条数")]
+        public Int32 RecordNum { get { return _RecordNum; } set { _RecordNum = value; } }
         #endregion
 
         #region 构造方法
