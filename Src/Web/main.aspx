@@ -1,15 +1,18 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="main.aspx.cs" Inherits="main" %>
+
+<!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+<head id="Head1" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="灌胶机,混合管,AB胶枪,点胶针筒,点胶针头" />
     <meta name="description" content="月无声电子设备有限公司坐落在交通方便的东莞市区,毗邻深圳、广州、佛山、惠州等城市。其主要产品有：双液灌胶机，精准双液点胶机，混合管，点胶机,AB胶枪，点胶针头，AB胶筒，点胶针筒，点胶针头，不锈钢压力桶。月无声的点胶设备适用于：环氧树脂，PU，双组份硅胶和其他双组份流体材料。" />
     <title>混合管,灌胶机,AB胶枪,点胶针筒,点胶针头 - 月无声</title>
-    <link rel="stylesheet" type="text/css" href="style/css1.css" />
-    <script src="Scripts/jquery/jquery-1.9.1.min.js"></script>
-   <script type="text/javascript" src="Scripts/javascript.js"></script>
+    <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/style/css1.css") %>" />
+     <script type="text/javascript" src="<%= ResolveUrl("~/Scripts/jquery/jquery-1.9.1.min.js") %>" />
+    <script type="text/javascript" src="<%= ResolveUrl("~/Scripts/javascript.js") %>"></script>
     <script type="text/javascript">
-         (function ($) {
+        (function ($) {
             $.fn.extend({
                 "nav": function (con) {
                     var $this = $(this), $nav = $this.find('.switch-tab'), t = (con && con.t) || 3000, a = (con && con.a) || 500, i = 0, autoChange = function () {
@@ -56,6 +59,7 @@
     </script>
 </head>
 <body>
+    <form id="form1" runat="server">
     <div id="wrap">
         <div id="wrpper">
             <div class="header">
@@ -87,7 +91,7 @@
                             <li class="shop"><a href="#" onclick="change_bg(this)">月无声商城</a></li>
                         </ul>
                     </div>
-                    <!--<div class="child">
+                   <div class="child">
                         <ul class="about">
                             <li><a href="#">公司简介</a></li>
                             <li><a href="#">部门介绍</a></li>
@@ -137,7 +141,7 @@
                             <li><a href="#">行业新闻</a></li>
                             <li><a href="#">咨询中心</a></li>
                         </ul>
-                    </div>-->
+                    </div>
                 </div>
             </div>
 
@@ -209,7 +213,7 @@
             </div>
             <div id="articleContent">
                 <div class="text">
-                    <div class="more"><a target="_blank" href="#">&gt;&gt;更多新闻</a></div>
+                    <div class="more"><a target="_blank" href="<%= ResolveUrl("~/List/SX/2/ArticleModelList.aspx") %>">&gt;&gt;更多新闻</a></div>
 
                     <ul>
                         <li>1</li>
@@ -222,7 +226,7 @@
 
                 </div>
                 <div class="text2">
-                    <div class="more2"><a href="">&gt;&gt;更多新闻</a></div>
+                    <div class="more2"><a href="<%= ResolveUrl("~/List/SX/2/ArticleModelList.aspx") %>">&gt;&gt;更多新闻</a></div>
 
                     <ul>
                         <li>2</li>
@@ -249,5 +253,6 @@
 
         </div>
     </div>
+</form>
 </body>
 </html>
