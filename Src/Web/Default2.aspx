@@ -43,6 +43,18 @@
             });
         });
     </script>
+    <style type="text/css">
+        .tt
+        {
+            color:red;
+        }
+
+            .tt:hover
+            {
+                
+            }
+
+    </style>
 </head>
 <body>
     <form runat="server" id="form1" class="ffo">
@@ -52,6 +64,10 @@
         <%--<asp:Button ID="bt" runat="server" Text="点击" />--%>
         <input type="button" value="测试" id="btnajax" />
         <asp:Button ID="model" runat="server" Text="生成模板"  OnClick="model_Click"/>
+
+
+        <input type="button" value="点击" class="tt"/>
+        <div class="tt1">aa</div>
     </form>
 </body>
 </html>

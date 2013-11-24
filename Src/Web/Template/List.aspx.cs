@@ -31,6 +31,18 @@ public partial class Template_List : NewLife.CMX.WebBase.WebPageBase
         get { return Request["Address"]; }
     }
 
+    /// <summary>分页索引</summary>
+    private Int32 PageIndex
+    {
+        get { return WebHelper.RequestInt("Pageindex"); }
+    }
+
+    /// <summary>记录数</summary>
+    private Int32 RecordNum
+    {
+        get { return WebHelper.RequestInt("RecordNum"); }
+    }
+
     private Channel _C;
     /// <summary>频道</summary>
     private Channel C
@@ -67,6 +79,8 @@ public partial class Template_List : NewLife.CMX.WebBase.WebPageBase
             iml.Suffix = Suffix;
             iml.Address = Address;
             iml.CategoryID = CategoryID;
+            iml.Pageindex = PageIndex;
+            iml.RecordNum = RecordNum;
             content = iml.Process();
         }
         catch (ThreadAbortException)

@@ -11,7 +11,7 @@ using XCode;
 
 public partial class CMX_ArticleForm : MyModelEntityForm<Article>
 {
-    public String ContentTxt { get { return Entity.ArticleContent.Content ?? ""; } }
+    //public String ContentTxt { get { return Entity.ArticleContent.Content ?? ""; } }
 
     protected override void OnInitComplete(EventArgs e)
     {
