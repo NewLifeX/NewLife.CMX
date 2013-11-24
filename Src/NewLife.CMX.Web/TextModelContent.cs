@@ -25,11 +25,13 @@ namespace NewLife.CMX.Web
         {
             try
             {
-                TextContent.Meta.TableName += Suffix;
-                TextContent Ac = TextContent.FindByParentIDAndNewVersion(ID);
+                //TextContent.Meta.TableName += Suffix;
+                //TextContent Ac = TextContent.FindByParentIDAndNewVersion(ID);
+                Text.Meta.TableName += Suffix;
+                Text text = Text.FindByKey(ID);
 
-                if (Ac == null) return "不存在该记录！";
-                Ac.Suffix = Suffix;
+                if (text == null) return "不存在该记录！";
+                //Ac.Suffix = Suffix;
 
                 Dictionary<String, String> dic = new Dictionary<string, string>();
                 dic.Add("Address", Address);
@@ -38,7 +40,7 @@ namespace NewLife.CMX.Web
 
                 CMXEngine engine = new CMXEngine(TemplateConfig.Current);
                 engine.ArgDic = dic;
-                engine.Entity = Ac as IEntity;
+                engine.Entity = text as IEntity;
 
                 String content = engine.Render(Address + ".html");
                 return content;
@@ -49,7 +51,7 @@ namespace NewLife.CMX.Web
             }
             finally
             {
-                TextContent.Meta.TableName = "";
+                Text.Meta.TableName = "";
             }
         }
     }
