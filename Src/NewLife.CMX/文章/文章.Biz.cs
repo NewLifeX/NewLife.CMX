@@ -166,8 +166,8 @@ namespace NewLife.CMX
             {
                 if (_ConentTxt == null && !Dirtys.ContainsKey("ConentTxt"))
                 {
-                    //_ConentTxt = ArticleContent.Content ?? "";
-                    _ConentTxt = "";
+                    _ConentTxt = ArticleContent.Content ?? "";
+                    //_ConentTxt = "";
                     Dirtys["ConentTxt"] = true;
                 }
                 return _ConentTxt;
