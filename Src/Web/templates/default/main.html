@@ -209,29 +209,29 @@
             </div>
             <div id="articleContent">
                 <div class="text">
-                    <div class="more"><a target="_blank" href="#">&gt;&gt;更多新闻</a></div>
-
-                    <ul>
+                    <div class="more"><a target="_blank" href="<%= ResolveUrl("~/List/SX/2/ArticleModelList.aspx") %>">&gt;&gt;更多新闻</a></div>
+                    <Custom:ListControl runat="server" ID="NewCenter" ChannelSuffix="SX" Count="6" CategoryName="迎泽区" />
+                    <!--<ul>
                         <li>1</li>
                         <li>2</li>
                         <li>3</li>
                         <li>4</li>
                         <li>5</li>
                         <li>6</li>
-                    </ul>
+                    </ul>-->
 
                 </div>
                 <div class="text2">
                     <div class="more2"><a href="">&gt;&gt;更多新闻</a></div>
-
-                    <ul>
+                    <Custom:ListControl runat="server" ID="ArticleControl1" ChannelSuffix="SX" Count="6" CategoryName="迎泽区" />
+                    <!--<ul>
                         <li>2</li>
                         <li>3</li>
                         <li>4</li>
                         <li>5</li>
                         <li>6</li>
                         <li>1</li>
-                    </ul>
+                    </ul>-->
 
                 </div>
             </div>
