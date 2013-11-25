@@ -387,10 +387,10 @@ ul.product li#product_01
     {
         text-align: center;
         position: absolute;
-        bottom: 26px;
-        left: 42%;
+        bottom: 5px;
+        left: 35%;
         z-index: 999;
-        height: 3152px;
+        height: 45px;
     }
 
         .hot-event .switch-tab a
@@ -414,8 +414,8 @@ ul.product li#product_01
     .hot-event .switch-nav
     {
         position: absolute;
-        right: 17px;
-        top: 200px;
+        right: 20px;
+        top: 230px;
         z-index: 2;
     }
 
