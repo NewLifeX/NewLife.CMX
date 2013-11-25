@@ -150,9 +150,15 @@
                             <div class="e1_left"><strong>新闻中心</strong></div>
                             <div class="e1_right">当前位置：首页 > 新闻中心</div>
                         </div>
-                        <div class="news">
-                          <img src="images/product/news.jpg"  />
+                         <div class="articletitle">
+                            <ul>
+                                <#
+                                foreach(IEntity a in ListEntity){#>
+                                <li><a target="_blank" href='<#= Config.SysRootPath#>Info/<#= ArgDic["Suffix"]#>/<#= a["ID"]#>/ArticleModelContent.aspx'><#= a["Title"]#></a><label class="date"><#= ((DateTime)a["UpdateTime"]).ToString("yyyy-MM-dd")#></label></li>
+                                <#}#>
+                            </ul>
                         </div>
+                        <div class="switch_meu">12345..&nbsp;&nbsp第&nbsp<input class="page-num" value="2" name="page" type="text">&nbsp页&nbsp;&nbsp共10页</div>
                   </div>
             </div>
             <div id="foot">
