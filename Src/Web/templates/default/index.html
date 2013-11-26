@@ -9,7 +9,7 @@
     <script src="<#= Config.SysRootPath #>Scripts/jquery/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="<#= Config.SysRootPath #>Scripts/javascript.js"></script>
     <script type="text/javascript">
-         (function ($) {
+        (function ($) {
             $.fn.extend({
                 "nav": function (con) {
                     var $this = $(this), $nav = $this.find('.switch-tab'), t = (con && con.t) || 3000, a = (con && con.a) || 500, i = 0, autoChange = function () {
@@ -74,17 +74,17 @@
                         <input name="搜索" type="submit" class="botton" id="搜索" value="搜索" />
                     </form>
                 </div>
-                    <div class="nav">
+                <div class="nav">
                     <div class="parent">
                         <ul>
-                            <li class="index"><a href="main.html" onclick="change_bg(this)">网站首页</a></li>
-                            <li class="about"><a href="about.html" onclick="change_bg(this)">关于月无声</a></li>
-                            <li class="product"><a href="pro_ser.html" onclick="change_bg(this)">产品与服务</a></li>
-                            <li class="com"><a href="culture.html" onclick="change_bg(this)">企业文化</a></li>
-                            <li class="recruitment"><a href="employ.html" onclick="change_bg(this)">人才招聘</a></li>
-                            <li class="new"><a href="news.html" onclick="change_bg(this)">新闻中心</a></li>
-                            <li class="forum"><a href="#" onclick="change_bg(this)">技术论坛</a></li>
-                            <li class="shop"><a href="#" onclick="change_bg(this)">月无声商城</a></li>
+                            <li class="index"><a href="main.html">网站首页</a></li>
+                            <li class="about"><a href="about.html">关于月无声</a></li>
+                            <li class="product"><a href="pro_ser.html">产品与服务</a></li>
+                            <li class="com"><a href="culture.html">企业文化</a></li>
+                            <li class="recruitment"><a href="employ.html">人才招聘</a></li>
+                            <li class="new"><a href="news.html">新闻中心</a></li>
+                            <li class="forum"><a href="#">技术论坛</a></li>
+                            <li class="shop"><a href="#">月无声商城</a></li>
                         </ul>
                     </div>
                     <div class="child">
@@ -109,10 +109,10 @@
                                 </dl>
                             </li>
                             <li><a href="#">智能自动化</a>
-                                <dl >
+                                <dl>
                                     <dt><a href="#">自动化设备</a></dt>
                                     <dt><a href="#">阿波罗智能控制器</a></dt>
-                                    <dt><a href="#">阿波罗物联网网关</a></dt>                                  
+                                    <dt><a href="#">阿波罗物联网网关</a></dt>
                                 </dl>
                             </li>
                             <li><a href="#">化工胶水</a>
@@ -121,14 +121,14 @@
                                     <dt><a href="#">单组份水性喷胶</a></dt>
                                     <dt><a href="#">双组份水性喷胶</a></dt>
                                     <dt><a href="#">手袋专用环保喷胶</a></dt>
-                                                                      
+
                                 </dl>
                             </li>
                             <li><a href="#">五金模具</a>
-                                <dl >
+                                <dl>
                                     <dt><a href="#">塑料</a></dt>
                                     <dt><a href="#">塑料</a></dt>
-                                    <dt><a href="#">塑料</a></dt>                                  
+                                    <dt><a href="#">塑料</a></dt>
                                 </dl>
                             </li>
                         </ul>
@@ -147,7 +147,8 @@
                         <a href="#" target="_blank">
                             <img src="images/mod1.jpg" width="223" height="123" /></a>
                     </div>
-                    <div class="int">专业生产各种点胶设备、耗材等，并提供非标定做。常规产品有:
+                    <div class="int">
+                        专业生产各种点胶设备、耗材等，并提供非标定做。常规产品有:
                         <a href="#">混合管</a>
                         <a href="#">点胶机</a>
                         <a href="#">胶枪</a>
@@ -158,24 +159,39 @@
                         <a href="#">&gt;&gt;更多...</a>
                     </div>
                 </div>
-               <div class="flash">
-                  <div class="hot-event">
-		             <!--<div class="switch-nav"><a href="#" onclick="return false;" class="prev"><i class="ico i-prev">上一个</i></a><a href="#" onclick="return false;" class="next"><i class="ico i-next">下一个</i></a></div>-->
-	                 <div class="event-item"><a href="#"><img src="images/flash/1.jpg"  style="width: 710px; height: 293px;" alt="点胶设备" /></a></div>
-		             <div class="event-item"><a href="#"><img src="images/flash/1.jpg"  width="710" height="293" alt="阿波罗声控" /></a></div>
-		             <div class="event-item"><a href="#"><img src="images/flash/1.jpg"  width="710" height="293" alt="化工胶水" /></a></div>
-		             <div class="event-item"><a href="#"><img src="images/flash/1.jpg"  width="710" height="293" alt="五金模具" /></a></div>
-		             <div class="event-item"><a href="#"><img src="images/flash/1.jpg"  width="710" height="293" alt="月无声" /></a></div>
-		             <div class="switch-tab">
-			             <a href="javascript:void(0);" onclick="return false;" class="current">1</a>
-			             <a href="javascript:void(0);" onclick="return false;">2</a>
-			             <a href="javascript:void(0);" onclick="return false;">3</a>
-			             <a href="javascript:void(0);" onclick="return false;">4</a>
-			             <a href="javascript:void(0);" onclick="return false;">5</a>
-		              </div>
-                   </div>
+                <div class="flash">
+                    <div class="hot-event">
+                        <!--<div class="switch-nav"><a href="#" onclick="return false;" class="prev"><i class="ico i-prev">上一个</i></a><a href="#" onclick="return false;" class="next"><i class="ico i-next">下一个</i></a></div>-->
+                        <div class="event-item">
+                            <a href="#">
+                                <img src="images/flash/1.jpg" style="width: 710px; height: 293px;" alt="点胶设备" /></a>
+                        </div>
+                        <div class="event-item">
+                            <a href="#">
+                                <img src="images/flash/1.jpg" width="710" height="293" alt="阿波罗声控" /></a>
+                        </div>
+                        <div class="event-item">
+                            <a href="#">
+                                <img src="images/flash/1.jpg" width="710" height="293" alt="化工胶水" /></a>
+                        </div>
+                        <div class="event-item">
+                            <a href="#">
+                                <img src="images/flash/1.jpg" width="710" height="293" alt="五金模具" /></a>
+                        </div>
+                        <div class="event-item">
+                            <a href="#">
+                                <img src="images/flash/1.jpg" width="710" height="293" alt="月无声" /></a>
+                        </div>
+                        <div class="switch-tab">
+                            <a href="javascript:void(0);" onclick="return false;" class="current">1</a>
+                            <a href="javascript:void(0);" onclick="return false;">2</a>
+                            <a href="javascript:void(0);" onclick="return false;">3</a>
+                            <a href="javascript:void(0);" onclick="return false;">4</a>
+                            <a href="javascript:void(0);" onclick="return false;">5</a>
+                        </div>
+                    </div>
                 </div>
-                        
+
             </div>
             <div id="index_2">
                 <div class="mod2">
@@ -183,8 +199,9 @@
                         <a href="" target="_blank">
                             <img src="images/mod2.jpg" width="223" height="123" /></a>
                     </div>
-                    <div class="int">智能自动化设备是我公司自主研发生产的产品，主要有：
-                        <a href="#">“阿波罗”工业控制器</a><br/>
+                    <div class="int">
+                        智能自动化设备是我公司自主研发生产的产品，主要有：
+                        <a href="#">“阿波罗”工业控制器</a><br />
                         <a href="#">物联网网关</a>
                         <a href="#">自动化设备</a>
                         <a href="#">&gt;&gt;更多...</a>
@@ -195,7 +212,8 @@
                         <a href="" target="_blank">
                             <img src="images/mod3.jpg" width="223" height="123" /></a>
                     </div>
-                    <div class="int">水性喷胶与油性喷胶相比具有环保无毒、耐高温、防火区静电，无味零voc等优点，水性喷胶有：
+                    <div class="int">
+                        水性喷胶与油性喷胶相比具有环保无毒、耐高温、防火区静电，无味零voc等优点，水性喷胶有：
                         <a href="#">水性万能胶</a>
                         <a href="#">单组份水性喷胶</a>
                         <a href="#">&gt;&gt;更多...</a>
@@ -203,36 +221,35 @@
                 </div>
                 <div class="mod4">
                     <div class="box">
-                        &nbsp;</div>
-                    <div class="int">简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</div>
+                        &nbsp;
+                    </div>
+                    <div class="int">简介</div>
                 </div>
             </div>
             <div id="articleContent">
                 <div class="text">
-                    <div class="more"><a target="_blank" href="<%= ResolveUrl("~/List/SX/2/ArticleModelList.aspx") %>">&gt;&gt;更多新闻</a></div>
-                    <Custom:ListControl runat="server" ID="NewCenter" ChannelSuffix="SX" Count="6" CategoryName="迎泽区" />
-                    <!--<ul>
+                    <div class="more"><a target="_blank" href="<#= Config.SysRootPath #>List/SX/2/ArticleModelList.aspx">更多&gt;&gt;</a></div>
+                    <!--<Custom:ListControl runat="server" ID="NewCenter" ChannelSuffix="SX" Count="6" CategoryName="迎泽区" />-->
+                    <ul>
                         <li>1</li>
                         <li>2</li>
                         <li>3</li>
                         <li>4</li>
                         <li>5</li>
                         <li>6</li>
-                    </ul>-->
-
+                    </ul>
                 </div>
                 <div class="text2">
-                    <div class="more2"><a href="">&gt;&gt;更多新闻</a></div>
-                    <Custom:ListControl runat="server" ID="ArticleControl1" ChannelSuffix="SX" Count="6" CategoryName="迎泽区" />
-                    <!--<ul>
+                    <div class="more2"><a href="#">更多&gt;&gt;</a></div>
+                    <!-- <custom:listcontrol runat="server" id="ArticleControl1" channelsuffix="SX" count="6" categoryname="迎泽区" />-->
+                    <ul>
                         <li>2</li>
                         <li>3</li>
                         <li>4</li>
                         <li>5</li>
                         <li>6</li>
                         <li>1</li>
-                    </ul>-->
-
+                    </ul>
                 </div>
             </div>
             <div id="foot">

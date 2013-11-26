@@ -34,13 +34,23 @@ public partial class Template_List : NewLife.CMX.WebBase.WebPageBase
     /// <summary>分页索引</summary>
     private Int32 PageIndex
     {
-        get { return WebHelper.RequestInt("Pageindex"); }
+        get
+        {
+            Int32 i = WebHelper.RequestInt("Pageindex");
+            if (i == 0) i = 1;
+            return i;
+        }
     }
 
     /// <summary>记录数</summary>
     private Int32 RecordNum
     {
-        get { return WebHelper.RequestInt("RecordNum"); }
+        get
+        {
+            Int32 i = WebHelper.RequestInt("RecordNum");
+            if (i == 0) i = TemplateConfig.Current.RecordNum;
+            return i;
+        }
     }
 
     private Channel _C;

@@ -549,15 +549,17 @@ ul.product li#product_01
 
 #articleContent .more a, .more2 a
 {
-    margin: 8px 0 0 345px;
+    margin: 5px 0 0 390px;
     display: inherit;
-    width: 85px;
+    color:white;
+    font-size:11pt;
+    /*width: 85px;*/
 }
 
     #articleContent .more a:hover, .more2 a:hover
     {
-        color: blue;
-        border-bottom: solid 1px blue;
+        color: red;
+        /*border-bottom: solid 1px blue;*/
     }
 
 #articleContent ul
