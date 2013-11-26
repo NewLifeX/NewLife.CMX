@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="ArticleModelContent.cs" />
     <Compile Include="ArticleModelList.cs" />
+    <Compile Include="Common.cs" />
+    <Compile Include="Interface\ICommon.cs" />
     <Compile Include="Interface\IModelContent.cs" />
     <Compile Include="Interface\IModeList.cs" />
     <Compile Include="ProductModelContent.cs" />
