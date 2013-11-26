@@ -28,8 +28,8 @@ namespace NewLife.CMX.Web
             try
             {
                 Article.Meta.TableName += Suffix;
-
                 Article article = Article.FindByKey(ID);
+                Article.ChannelSuffix = Suffix;
                 //ArticleContent.Meta.TableName += Suffix;
                 //ArticleContent Ac = ArticleContent.FindByParentIDAndNewVersion(ID);
 
@@ -40,6 +40,7 @@ namespace NewLife.CMX.Web
                 dic.Add("Address", Address);
                 dic.Add("ID", ID.ToString());
                 dic.Add("Suffix", Suffix);
+                dic.Add("foot",)
 
                 CMXEngine engine = new CMXEngine(TemplateConfig.Current);
                 engine.ArgDic = dic;

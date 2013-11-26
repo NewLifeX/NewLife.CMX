@@ -27,7 +27,7 @@ namespace NewLife.CMX.Web
             {
                 Product.Meta.TableName += Suffix;
                 Product product = Product.FindByKey(ID);
-
+                Product.ChannelSuffix = Suffix;
                 if (product == null) return "不存在该记录！";
 
                 Dictionary<String, String> dic = new Dictionary<string, string>();

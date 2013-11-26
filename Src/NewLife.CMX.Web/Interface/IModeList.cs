@@ -17,6 +17,10 @@ namespace NewLife.CMX.Web
 
         Int32 RecordNum { get; set; }
 
+        String Foot { get; set; }
+
+        String Header { get; set; }
+
         String Process();
     }
 }

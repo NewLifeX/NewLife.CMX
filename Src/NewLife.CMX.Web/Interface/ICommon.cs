@@ -9,5 +9,9 @@ namespace NewLife.CMX.Web
         String Process();
 
         string Address { get; set; }
+
+        String Foot { get; set; }
+
+        String Header { get; set; }
     }
 }

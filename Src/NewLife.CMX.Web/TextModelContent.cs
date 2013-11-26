@@ -29,7 +29,7 @@ namespace NewLife.CMX.Web
                 //TextContent Ac = TextContent.FindByParentIDAndNewVersion(ID);
                 Text.Meta.TableName += Suffix;
                 Text text = Text.FindByKey(ID);
-
+                Text.ChannelSuffix = Suffix;
                 if (text == null) return "不存在该记录！";
                 //Ac.Suffix = Suffix;
 
