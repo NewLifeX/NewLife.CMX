@@ -85,43 +85,6 @@ public partial class Template_Info : Page
         Response.Write(content);
     }
 
-    /// <summary>
-    /// 获取QueryString
-    /// </summary>
-    /// <returns></returns>
-    private String GetRQ()
-    {
-        StringBuilder sb = new StringBuilder();
-        if (Request.QueryString.Count > 0)
-        {
-            sb.Append("?");
-
-            foreach (String item in Request.QueryString.AllKeys)
-            {
-                if (sb.Length > 1)
-                    sb.Append("&");
-                sb.AppendFormat("{0}={1}", item, Request.QueryString[item]);
-            }
-        }
-        return sb.ToString();
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
-    private Dictionary<String, Object> GetQueryDic()
-    {
-        Dictionary<String, Object> dic = new Dictionary<string, object>();
-
-        foreach (String item in Request.QueryString.AllKeys)
-        {
-            dic.Add(item, Request.QueryString[item]);
-        }
-
-        return dic;
-    }
-
     private void Err(String Msg)
     {
         Response.Clear();
