@@ -123,6 +123,38 @@ namespace NewLife.CMX
         #region 扩展属性﻿
         public static String ChannelSuffix;
 
+        private Channel _Channel;
+        /// <summary>频道</summary>
+        public Channel Channel
+        {
+            get
+            {
+                if (_Channel == null && ChannelSuffix != null && !Dirtys.ContainsKey("Channel"))
+                {
+                    _Channel = Channel.FindBySuffix(ChannelSuffix);
+                    Dirtys["Channel"] = true;
+                }
+                return _Channel;
+            }
+            set { _Channel = value; }
+        }
+
+        private String _ChannelName;
+        /// <summary>频道名</summary>
+        public String ChannelName
+        {
+            get
+            {
+                if (!Dirtys.ContainsKey("ChannelName"))
+                {
+                    _ChannelName = Channel == null ? "" : Channel.Name;
+                    Dirtys["ChannelName"] = true;
+                }
+                return _ChannelName;
+            }
+            set { _ChannelName = value; }
+        }
+
         private ArticleContent _ArticleContent;
         /// <summary></summary>
         public ArticleContent ArticleContent
@@ -134,7 +166,6 @@ namespace NewLife.CMX
                     if (_ArticleContent == null && !Dirtys.ContainsKey("ArticleContent"))
                     {
                         ArticleContent.Meta.TableName += ChannelSuffix;
-
                         _ArticleContent = ArticleContent.FindByParentIDAndVersion(ID, Version);
 
                         if (_ArticleContent == null)
@@ -145,7 +176,6 @@ namespace NewLife.CMX
                 }
                 catch (Exception)
                 {
-
                     throw;
                 }
                 finally
