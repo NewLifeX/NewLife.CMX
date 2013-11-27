@@ -85,6 +85,21 @@ namespace NewLife.CMX.Config
         /// <summary>页面显示记录条数</summary>
         [Description("页面显示记录条数")]
         public Int32 RecordNum { get { return _RecordNum; } set { _RecordNum = value; } }
+
+        private String _HeaderAddress = "Header.html";
+        /// <summary>页面头路径</summary>
+        [Description("页面头路径")]
+        public String HeaderAddress { get { return _HeaderAddress; } set { _HeaderAddress = value; } }
+
+        private String _FootAddress = "Foot.html";
+        /// <summary>页脚路径</summary>
+        [Description("页脚路径")]
+        public String FootAddress { get { return _FootAddress; } set { _FootAddress = value; } }
+
+        private String _LeftAddress = "LeftMenu.html";
+        /// <summary>左侧导航栏地址</summary>
+        [Description("左侧导航栏地址")]
+        public String LeftAddress { get { return _LeftAddress; } set { _LeftAddress = value; } }
         #endregion
 
         #region 构造方法
