@@ -77,7 +77,6 @@ function showHide(e, objname) {
     }
 }
 
-
 /*列表项的js*/
 //var lastFaqClick = null;
 //function menulist() {

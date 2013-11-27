@@ -11,87 +11,7 @@
 <body>
     <div id="wrap">
         <div id="wrpper">
-            <div class="header">
-                <div id="logo">
-                    <h1>东莞市月无声实业</h1>
-                </div>
-                <div class="mod">
-                    <ul>
-                        <li><a href="#" target="_blank">点胶设备</a></li>
-                        <li><a href="#" target="_blank">智能自控</a></li>
-                        <li><a href="#" target="_blank">化工胶水</a></li>
-                        <li><a href="#" target="_blank">五金模具</a></li>
-                    </ul>
-                    <form>
-                        <input name="" type="text" />
-                        <input name="搜索" type="submit" class="botton" id="搜索" value="搜索" />
-                    </form>
-                </div>
-                <div class="nav">
-                    <div class="parent">
-                        <ul>
-                            <li class="index"><a href="main.html" onclick="change_bg(this)">网站首页</a></li>
-                            <li class="about"><a href="about.html" onclick="change_bg(this)">关于月无声</a></li>
-                            <li class="product"><a href="pro_ser.html" onclick="change_bg(this)">产品与服务</a></li>
-                            <li class="com"><a href="culture.html" onclick="change_bg(this)">企业文化</a></li>
-                            <li class="recruitment"><a href="employ.html" onclick="change_bg(this)">人才招聘</a></li>
-                            <li class="new"><a href="news.html" onclick="change_bg(this)">新闻中心</a></li>
-                            <li class="forum"><a href="#" onclick="change_bg(this)">技术论坛</a></li>
-                            <li class="shop"><a href="#" onclick="change_bg(this)">月无声商城</a></li>
-                        </ul>
-                    </div>
-                    <div class="child">
-                        <ul class="about">
-                            <li><a href="#">公司简介</a></li>
-                            <li><a href="#">部门介绍</a></li>
-                            <li><a href="#">公司荣誉</a></li>
-                            <li><a href="#">联系我们</a></li>
-                        </ul>
-                        <ul class="product">
-                            <li id="product_01"><a href="#">点胶设备</a>
-                                <dl>
-                                    <dt><a href="#">混合管</a></dt>
-                                    <dt><a href="#">点胶机</a></dt>
-                                    <dt><a href="#">点胶针头</a></dt>
-                                    <dt><a href="#">压力桶</a></dt>
-                                    <dt><a href="#">AB胶筒</a></dt>
-                                    <dt><a href="#">胶枪</a></dt>
-                                    <dt><a href="#">点胶阀门</a></dt>
-                                    <dt><a href="#">转接头</a></dt>
-                                    <dt><a href="#">密封件</a></dt>
-                                </dl>
-                            </li>
-                            <li><a href="#">智能自动化</a>
-                                <dl>
-                                    <dt><a href="#">自动化设备</a></dt>
-                                    <dt><a href="#">阿波罗智能控制器</a></dt>
-                                    <dt><a href="#">阿波罗物联网网关</a></dt>
-                                </dl>
-                            </li>
-                            <li><a href="#">化工胶水</a>
-                                <dl>
-                                    <dt><a href="#">水性万能胶</a></dt>
-                                    <dt><a href="#">单组份水性喷胶</a></dt>
-                                    <dt><a href="#">双组份水性喷胶</a></dt>
-                                    <dt><a href="#">手袋专用环保喷胶</a></dt>
-                                </dl>
-                            </li>
-                            <li><a href="#">五金模具</a>
-                                <dl>
-                                    <dt><a href="#">塑料</a></dt>
-                                    <dt><a href="#">塑料</a></dt>
-                                    <dt><a href="#">塑料</a></dt>
-                                </dl>
-                            </li>
-                        </ul>
-                        <ul class="new">
-                            <li><a href="#">公司新闻</a></li>
-                            <li><a href="#">行业新闻</a></li>
-                            <li><a href="#">咨询中心</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <#= ArgDic["Header"]#>
             <div class="mainbody">
                 <div class="top_image">
                     <img src="<#= Config.SysRootPath #>images/top_i2.jpg" width="1021" height="120" />
@@ -122,7 +42,7 @@
                     </div>
                 </div>
             </div>
-            <div id="foot">
+            <!--<div id="foot">
                 <div class="foot_nav">
                     <div class="g1"><a href="#">返回首页</a> | <a href="#">联系我们</a> | <a href="#">友情链接</a> | <a href="#">技术论坛</a> | <a href="#">月无声商城</a> |</div>
                 </div>
@@ -131,7 +51,8 @@
                     <br />
                     地址：东莞市高埗镇冼沙村广场北路宝源工业区  电话：0769-23107897 0769-23107080
                 </div>
-            </div>
+            </div>-->
+            <#= ArgDic["Foot"]#>
         </div>
     </div>
 </body>

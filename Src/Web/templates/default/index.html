@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -6,59 +6,13 @@
     <meta name="description" content="月无声电子设备有限公司坐落在交通方便的东莞市区,毗邻深圳、广州、佛山、惠州等城市。其主要产品有：双液灌胶机，精准双液点胶机，混合管，点胶机,AB胶枪，点胶针头，AB胶筒，点胶针筒，点胶针头，不锈钢压力桶。月无声的点胶设备适用于：环氧树脂，PU，双组份硅胶和其他双组份流体材料。" />
     <title>混合管,灌胶机,AB胶枪,点胶针筒,点胶针头 - 月无声</title>
     <link rel="stylesheet" type="text/css" href="<#= Config.SysRootPath #>style/css1.css" />
-    <script src="<#= Config.SysRootPath #>Scripts/jquery/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="<#= Config.SysRootPath #>Scripts/jquery/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="<#= Config.SysRootPath #>Scripts/javascript.js"></script>
-    <script type="text/javascript">
-        (function ($) {
-            $.fn.extend({
-                "nav": function (con) {
-                    var $this = $(this), $nav = $this.find('.switch-tab'), t = (con && con.t) || 3000, a = (con && con.a) || 500, i = 0, autoChange = function () {
-                        $nav.find('a:eq(' + (i + 1 === 5 ? 0 : i + 1) + ')').addClass('current').siblings().removeClass('current');
-                        $this.find('.event-item:eq(' + i + ')').css('display', 'none').end().find('.event-item:eq(' + (i + 1 === 5 ? 0 : i + 1) + ')').css({
-                            display: 'block',
-                            opacity: 0
-                        }).animate({
-                            opacity: 1
-                        }, a, function () {
-                            i = i + 1 === 5 ? 0 : i + 1;
-                        }).siblings('.event-item').css({
-                            display: 'none',
-                            opacity: 0
-                        });
-                    }, st = setInterval(autoChange, t);
-                    $this.hover(function () {
-                        clearInterval(st);
-                        return false;
-                    }, function () {
-                        st = setInterval(autoChange, t);
-                        return false;
-                    }).find('.switch-nav>a').bind('click', function () {
-                        var current = $nav.find('.current').index();
-                        i = $(this).attr('class') === 'prev' ? current - 2 : current;
-                        autoChange();
-                        return false;
-                    }).end().find('.switch-tab>a').bind('click', function () {
-                        i = $(this).index() - 1;
-                        autoChange();
-                        return false;
-                    });
-                    return $this;
-                }
-            });
-        }(jQuery));
-
-        $(document).ready(function () {
-            $('.hot-event').nav({
-                t: 2000,	//轮播时间
-                a: 1000  //过渡时间
-            });
-        });
-    </script>
 </head>
 <body>
     <div id="wrap">
         <div id="wrpper">
-            <div class="header">
+            <!-- <div class="header">
                 <div id="logo">
                     <h1>东莞市月无声实业</h1>
                 </div>
@@ -139,8 +93,8 @@
                         </ul>
                     </div>
                 </div>
-            </div>
-
+            </div>-->
+            <#= ArgDic["Header"]#>
             <div id="index_1">
                 <div class="mod1">
                     <div class="box">
@@ -191,7 +145,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <div id="index_2">
                 <div class="mod2">
@@ -252,18 +205,17 @@
                     </ul>
                 </div>
             </div>
-            <div id="foot">
+            <!--<div id="foot">
                 <div class="foot_nav">
                     <div class="g1"><a href="#">返回首页</a> | <a href="#">联系我们</a> | <a href="#">友情链接</a> | <a href="#">技术论坛</a> | <a href="#">月无声商城</a> |</div>
                 </div>
                 <div class="address">
                     版权所有 © 2008-2012 东莞市月无声电子设备有限公司 粤ICP备09218017号<br />
-
                     <br />
                     地址：东莞市高埗镇冼沙村广场北路宝源工业区  电话：0769-23107897 0769-23107080
                 </div>
-            </div>
-
+            </div>-->
+            <#= ArgDic["Foot"]#>
         </div>
     </div>
 </body>
