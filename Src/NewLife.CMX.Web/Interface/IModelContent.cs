@@ -13,10 +13,10 @@ namespace NewLife.CMX.Web
 
         String Address { get; set; }
 
-        String Process();
-
         String Foot { get; set; }
 
         String Header { get; set; }
+
+        String Process();
     }
 }

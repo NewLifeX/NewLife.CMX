@@ -46,18 +46,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArticleModelContent.cs" />
-    <Compile Include="ArticleModelList.cs" />
-    <Compile Include="Common.cs" />
-    <Compile Include="Header.cs" />
+    <Compile Include="ModeProcess\ArticleModelContent.cs" />
+    <Compile Include="ModeProcess\ArticleModelList.cs" />
+    <Compile Include="Base\CommonBase.cs" />
+    <Compile Include="Base\ModelContentBase.cs" />
+    <Compile Include="Base\ModelListBase.cs" />
+    <Compile Include="ModeProcess\Common.cs" />
+    <Compile Include="ModeProcess\FootContent.cs" />
+    <Compile Include="ModeProcess\HeaderContent.cs" />
     <Compile Include="Interface\ICommon.cs" />
     <Compile Include="Interface\IModelContent.cs" />
     <Compile Include="Interface\IModeList.cs" />
-    <Compile Include="ProductModelContent.cs" />
-    <Compile Include="ProductModelList.cs" />
+    <Compile Include="ModeProcess\LeftMenuContent.cs" />
+    <Compile Include="ModeProcess\ProductModelContent.cs" />
+    <Compile Include="ModeProcess\ProductModelList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TextModelContent.cs" />
-    <Compile Include="TextModelList.cs" />
+    <Compile Include="ModeProcess\TextModelContent.cs" />
+    <Compile Include="ModeProcess\TextModelList.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NewLife.CMX\NewLife.CMX.csproj">
