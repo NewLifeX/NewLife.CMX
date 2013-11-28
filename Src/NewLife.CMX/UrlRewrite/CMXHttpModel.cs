@@ -31,7 +31,7 @@ namespace NewLife.CMX.UrlRewrite
 
             httpApplication.Context.Server.ClearError();
 
-            HttpContext.Current.Response.Redirect(CMXConfigBase.Current.CurrentRootPath.CombinePath("Index.aspx"));
+            HttpContext.Current.Response.Redirect(CMXConfigBase.Current.CurrentRootPath.CombinePath("Index.html"));
         }
 
         private void ReUrl_BeginRequest(object sender, EventArgs e)
