@@ -551,8 +551,8 @@ ul.product li#product_01
 {
     margin: 5px 0 0 390px;
     display: inherit;
-    color:white;
-    font-size:11pt;
+    color: white;
+    font-size: 11pt;
     /*width: 85px;*/
 }
 
@@ -689,6 +689,11 @@ ul.product li#product_01
     border-right: solid 1px #afdff5;
     background-color: #f0fafd;
 }
+
+    .list .list_meu a
+    {
+        cursor: pointer;
+    }
 
 .list .list_bottom
 {

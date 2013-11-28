@@ -1,7 +1,7 @@
 ﻿<div class="list">
     <h3>关于月无声</h3>
     <div class="list_meu">
-        <dl>
+        <!--<dl>
             <dt><a class="minus" onclick="showHide(this,'items0');"><span></span>关于月无声</a></dt>
             <dd id="items0">
                 <ul>
@@ -9,8 +9,24 @@
                     <li><a href="#">公司荣誉</a></li>
                 </ul>
             </dd>
-        </dl>
-        <dl>
+        </dl>-->
+        <# int num=0;
+        foreach(IEntityTree item in ListCategory)
+        {#>
+            <dl>
+                <dt><a class="<# if(num>=1){#>plus<#}else{#>minus<#}#>" onclick="showHide(this,'it<#= num#>');"><span></span><#= item["Name"]#></a></dt>
+                <dd id="it<#= num#>" <# if(num>=1){#>style="display:none;"<#}#>>
+                    <ul>
+                        <# foreach(IEntityTree child in item.Childs)
+                        {#>
+                        <li><a href="#"><#= child["Name"]#></a></li>
+                        <#}#>
+                    </ul>
+                </dd>
+            </dl>
+        <# num+=1;
+        }#>
+       <!--<dl>
             <dt><a class="plus" onclick="showHide(this,'items1');"><span></span>点胶设备事业部</a></dt>
             <dd id="items1" style="display: none;">
                 <ul>
@@ -18,8 +34,8 @@
                     <li><a href="#">发展历史</a></li>
                 </ul>
             </dd>
-        </dl>
-        <dl>
+        </dl>-->
+        <!--<dl>
             <dt><a class="plus" onclick="showHide(this,'items2');"><span></span>智能声控事业部</a></dt>
             <dd id="items2" style="display: none;">
                 <ul>
@@ -45,7 +61,7 @@
                     <li><a href="#">产品性能</a></li>
                 </ul>
             </dd>
-        </dl>
+        </dl>-->
     </div>
     <div class="list_bottom"></div>
     <div class="list_shadow"></div>
