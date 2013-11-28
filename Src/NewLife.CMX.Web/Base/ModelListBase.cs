@@ -57,13 +57,13 @@ namespace NewLife.CMX.Web
 
         private String _LeftMenu;
         /// <summary></summary>
-        public String LeftMenu
+        public virtual String LeftMenu
         {
             get
             {
                 if (Suffix != null && _LeftMenu == null)
                 {
-                    _LeftMenu = LeftMenuContent.GetContent(Suffix);
+                    _LeftMenu = LeftMenuContent.GetContent(Suffix, CategoryID);
                 }
                 return _LeftMenu;
             }

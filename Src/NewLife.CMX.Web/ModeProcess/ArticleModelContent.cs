@@ -15,8 +15,11 @@ namespace NewLife.CMX.Web
             try
             {
                 Article.Meta.TableName += Suffix;
+                ArticleCategory.Meta.TableName += Suffix;
                 Article article = Article.FindByKey(ID);
                 Article.ChannelSuffix = Suffix;
+
+                LeftMenu = LeftMenuContent.GetContent(Suffix, article.CategoryID);
 
                 if (article == null) return "不存在该记录！";
 
@@ -24,6 +27,9 @@ namespace NewLife.CMX.Web
                 dic.Add("Address", Address);
                 dic.Add("ID", ID.ToString());
                 dic.Add("Suffix", Suffix);
+                dic.Add("Header", Header);
+                dic.Add("Foot", Foot);
+                dic.Add("LeftMenu", LeftMenu);
 
                 CMXEngine engine = new CMXEngine(TemplateConfig.Current);
                 engine.ArgDic = dic;
@@ -39,6 +45,7 @@ namespace NewLife.CMX.Web
             finally
             {
                 Article.Meta.TableName = "";
+                ArticleCategory.Meta.TableName = "";
             }
         }
     }
