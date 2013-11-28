@@ -53,11 +53,14 @@ namespace NewLife.CMX.Web
                 dic.Add("RecordNum", RecordNum.ToString());
                 dic.Add("Header", Header);
                 dic.Add("Foot", Foot);
+                dic.Add("LeftMenu", LeftMenu);
 
                 CMXEngine engine = new CMXEngine(TemplateConfig.Current);
                 engine.ArgDic = dic;
-                engine.ListEntity = Articles.ConvertAll<IEntity>(e => e as IEntity);
-                engine.ListCategory = Categories.ConvertAll<IEntityTree>(e => e as IEntityTree);
+                //engine.ListEntity = Articles.ConvertAll<IEntity>(e => e as IEntity);
+                engine.ListEntity = Articles as IEntityList;
+                //engine.ListCategory = Categories.ConvertAll<IEntityTree>(e => e as IEntityTree);
+                engine.ListCategory = Categories as IEntityList;
                 String content = engine.Render(Address + ".html");
 
                 return content;

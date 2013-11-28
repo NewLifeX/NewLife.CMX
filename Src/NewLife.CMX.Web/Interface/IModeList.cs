@@ -21,6 +21,8 @@ namespace NewLife.CMX.Web
 
         String Header { get; set; }
 
+        String LeftMenu { get; set; }
+
         String Process();
     }
 }

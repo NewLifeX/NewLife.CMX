@@ -47,6 +47,21 @@ namespace NewLife.CMX.Web
             set { _Header = value; }
         }
 
+        private String _LeftMenu;
+        /// <summary></summary>
+        public String LeftMenu
+        {
+            get
+            {
+                if (Suffix != null && _LeftMenu == null)
+                {
+                    _LeftMenu = LeftMenuContent.GetContent(Suffix);
+                }
+                return _LeftMenu;
+            }
+            set { _LeftMenu = value; }
+        }
+
         /// <summary>
         ///  处理方法
         /// </summary>

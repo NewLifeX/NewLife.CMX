@@ -11,7 +11,7 @@ namespace NewLife.CMX.Web
         public static String GetContent()
         {
             CMXEngine engine = new CMXEngine(TemplateConfig.Current);
-            String content = engine.Render(TemplateConfig.Current.HeaderAddress);
+            String content = engine.Render( "Header.html");
 
             return content;
         }

@@ -46,8 +46,10 @@ namespace NewLife.CMX.Web
 
                 CMXEngine engine = new CMXEngine(TemplateConfig.Current);
                 engine.ArgDic = dic;
-                engine.ListEntity = texts.ConvertAll<IEntity>(e => e as IEntity);
-                engine.ListCategory = Categories.ConvertAll<IEntityTree>(e => e as IEntityTree);
+                //engine.ListEntity = texts.ConvertAll<IEntity>(e => e as IEntity);
+                engine.ListEntity = texts as IEntityList;
+                //engine.ListCategory = Categories.ConvertAll<IEntityTree>(e => e as IEntityTree);
+                engine.ListCategory = Categories as IEntityList;
                 String content = engine.Render(Address + ".html");
 
                 return content;
