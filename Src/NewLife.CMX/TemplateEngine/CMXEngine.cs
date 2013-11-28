@@ -22,18 +22,17 @@ namespace NewLife.CMX.TemplateEngine
         /// <summary>参数字典</summary>
         public Dictionary<String, String> ArgDic { get { return _ArgDic; } set { _ArgDic = value; } }
 
-        private List<IEntity> _ListEntity;
+        private IEntityList _ListEntity;
         /// <summary>数据列表</summary>
-        public List<IEntity> ListEntity { get { return _ListEntity; } set { _ListEntity = value; } }
+        public IEntityList ListEntity { get { return _ListEntity; } set { _ListEntity = value; } }
 
-        private List<IEntityTree> _ListCategory;
+        private IEntityList _ListCategory;
         /// <summary>分类列表</summary>
-        public List<IEntityTree> ListCategory { get { return _ListCategory; } set { _ListCategory = value; } }
+        public IEntityList ListCategory { get { return _ListCategory; } set { _ListCategory = value; } }
 
         private IEntity _Entity;
         /// <summary>实体数据</summary>
         public IEntity Entity { get { return _Entity; } set { _Entity = value; } }
-
         #endregion
 
         #region 构造
@@ -106,7 +105,6 @@ namespace NewLife.CMX.TemplateEngine
                 Outputpath = Outputpath.CombinePath(TemplateName);
                 File.WriteAllText(Outputpath, ResultContent, Encoding.UTF8);
             }
-
             return ResultContent;
             #endregion
         }
