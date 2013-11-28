@@ -73,7 +73,7 @@ public partial class Template_Info : Page
         }
         catch (ThreadAbortException)
         {
-            Response.Redirect(CMXConfigBase.Current.CurrentRootPath + "/Index.aspx");
+            Response.Redirect(CMXConfigBase.Current.CurrentRootPath + "/Index.html");
         }
         catch (Exception err)
         {

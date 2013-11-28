@@ -14,12 +14,12 @@
         foreach(IEntityTree item in ListCategory)
         {#>
             <dl>
-                <dt><a class="<# if(num>=1){#>plus<#}else{#>minus<#}#>" onclick="showHide(this,'it<#= num#>');"><span></span><#= item["Name"]#></a></dt>
-                <dd id="it<#= num#>" <# if(num>=1){#>style="display:none;"<#}#>>
+                <dt><a class='<# if(ArgDic["SelectedCategory"]=="0"){ if(num>=1){#>plus<#}else{#>minus<#}}else{if(ArgDic["SelectedCategory"].ToString()==item["ID"].ToString()){#>minus<#}else{#>plus<#}}#>' onclick="showHide(this,'it<#= num#>');"><span></span><#= item["Name"]#></a></dt>
+                <dd id="it<#= num#>" <# if(ArgDic["SelectedCategory"]=="0"){if(num>=1){#>style="display:none;"<#}}else{if(ArgDic["SelectedCategory"].ToString()!=item["ID"].ToString()){#>style="display:none;"<#}}#>>
                     <ul>
                         <# foreach(IEntityTree child in item.Childs)
                         {#>
-                        <li><a href="#"><#= child["Name"]#></a></li>
+                        <li><a href='<#= Config.SysRootPath #>List/<#= ArgDic["Suffix"]#>/<#= child["ID"]#>/<#= ArgDic["ModelAddress"]#>'><#= child["Name"]#></a></li>
                         <#}#>
                     </ul>
                 </dd>

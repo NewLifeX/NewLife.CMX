@@ -95,7 +95,7 @@ public partial class Template_List : NewLife.CMX.WebBase.WebPageBase
         }
         catch (ThreadAbortException)
         {
-            Response.Redirect(CMXConfigBase.Current.CurrentRootPath + "/Index.aspx");
+            Response.Redirect(CMXConfigBase.Current.CurrentRootPath + "/Index.html");
         }
         catch (Exception ex)
         {

@@ -27,7 +27,7 @@
                         <ul>
                             <#
                                 foreach(IEntity a in ListEntity){#>
-                                <li><a target="_blank" href='<#= Config.SysRootPath#>Info/<#= ArgDic["Suffix"]#>/<#= a["ID"]#>/ArticleModelContent.aspx'><#= a["Title"]#></a><label class="date"><#= ((DateTime)a["UpdateTime"]).ToString("yyyy-MM-dd")#></label></li>
+                                <li><a target="_blank" href='<#= Config.SysRootPath#>Info/<#= ArgDic["Suffix"]#>/<#= a["ID"]#>/ArticleModelContent.html'><#= a["Title"]#></a><label class="date"><#= ((DateTime)a["UpdateTime"]).ToString("yyyy-MM-dd")#></label></li>
                             <#}#>
                         </ul>
                     </div>
