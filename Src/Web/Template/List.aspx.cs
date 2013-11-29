@@ -37,7 +37,8 @@ public partial class Template_List : NewLife.CMX.WebBase.WebPageBase
         get
         {
             Int32 i = WebHelper.RequestInt("Pageindex");
-            if (i == 0) i = 1;
+            //设置查询开始记录数，索引从0开始
+            //if (i == 0) i = 1;
             return i;
         }
     }
@@ -102,7 +103,8 @@ public partial class Template_List : NewLife.CMX.WebBase.WebPageBase
             // 不要随便拦截异常而无所作为，会害死人的
             XTrace.WriteException(ex);
 
-            Err("编译出错！");
+            //Err("编译出错！");
+            Err(ex.Message);
         }
 
         Response.Write(content);

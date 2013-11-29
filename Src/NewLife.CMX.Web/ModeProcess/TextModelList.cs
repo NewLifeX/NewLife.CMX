@@ -16,11 +16,12 @@ namespace NewLife.CMX.Web
                 Text.Meta.TableName += Suffix;
                 TextCategory.Meta.TableName += Suffix;
 
-                List<Text> texts;
-                List<TextCategory> Categories;
+                EntityList<Text> texts;
+                EntityList<TextCategory> Categories;
 
+                //Channel channel = Channel.FindBySuffix(Suffix);
                 TextCategory tc = TextCategory.FindByID(CategoryID);
-                if (tc.IsEnd)
+                if (tc != null && tc.IsEnd)
                 {
                     texts = Text.Search(null, CategoryID, null, Pageindex, RecordNum);
                     Categories = TextCategory.FindAllChildsNoParent(tc.ParentID);
@@ -43,13 +44,16 @@ namespace NewLife.CMX.Web
                 dic.Add("RecordNum", RecordNum.ToString());
                 dic.Add("Header", Header);
                 dic.Add("Foot", Foot);
+                dic.Add("LeftMenu", LeftMenu);
+                dic.Add("ContentAddress", channel.FormTemplate);
+                dic.Add("ChannelName", ChannelName);
 
                 CMXEngine engine = new CMXEngine(TemplateConfig.Current);
                 engine.ArgDic = dic;
                 //engine.ListEntity = texts.ConvertAll<IEntity>(e => e as IEntity);
                 engine.ListEntity = texts as IEntityList;
-                //engine.ListCategory = Categories.ConvertAll<IEntityTree>(e => e as IEntityTree);
-                engine.ListCategory = Categories as IEntityList;
+                engine.ListCategory = Categories.ConvertAll<IEntityTree>(e => e as IEntityTree);
+                //engine.ListCategory = Categories;
                 String content = engine.Render(Address + ".html");
 
                 return content;

@@ -1,5 +1,5 @@
 ﻿<div class="list">
-    <h3>关于月无声</h3>
+    <h3><#= ArgDic["MenuTitle"]#></h3>
     <div class="list_meu">
         <!--<dl>
             <dt><a class="minus" onclick="showHide(this,'items0');"><span></span>关于月无声</a></dt>
@@ -19,7 +19,7 @@
                     <ul>
                         <# foreach(IEntityTree child in item.Childs)
                         {#>
-                        <li><a href='<#= Config.SysRootPath #>List/<#= ArgDic["Suffix"]#>/<#= child["ID"]#>/<#= ArgDic["ModelAddress"]#>'><#= child["Name"]#></a></li>
+                        <li><a href='<#= Config.SysRootPath #>/List/<#= ArgDic["Suffix"]#>/<#= child["ID"]#>/<#= ArgDic["ModelAddress"]#>'><#= child["Name"]#></a></li>
                         <#}#>
                     </ul>
                 </dd>

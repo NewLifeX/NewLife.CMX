@@ -23,6 +23,8 @@ namespace NewLife.CMX.Web
 
         String LeftMenu { get; set; }
 
+        String ChannelName { get; set; }
+
         String Process();
     }
 }

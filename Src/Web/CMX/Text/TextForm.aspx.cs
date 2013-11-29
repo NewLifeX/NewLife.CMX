@@ -9,7 +9,7 @@ using NewLife.CMX;
 
 public partial class CMX_TextForm : MyModelEntityForm<Text>
 {
-    public String ContentTxt { get { return Entity.TextContent.Content??""; } }
+    //public String ContentTxt { get { return Entity.TextContent.Content??""; } }
 
     protected override void OnInitComplete(EventArgs e)
     {

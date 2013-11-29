@@ -10,7 +10,7 @@ using System.IO;
 
 public partial class CMX_ProductForm : MyModelEntityForm<Product>
 {
-    public String ContentTxt { get { return Entity.ProductContent.Content ?? ""; } }
+    //public String ContentTxt { get { return Entity.ProductContent.Content ?? ""; } }
 
     protected override void OnInitComplete(EventArgs e)
     {

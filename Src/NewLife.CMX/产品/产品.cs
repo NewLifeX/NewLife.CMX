@@ -44,11 +44,11 @@ namespace NewLife.CMX
         }
 
         private String _Title;
-        /// <summary>标题</summary>
-        [DisplayName("标题")]
-        [Description("标题")]
+        /// <summary>名称</summary>
+        [DisplayName("名称")]
+        [Description("名称")]
         [DataObjectField(false, false, false, 200)]
-        [BindColumn(3, "Title", "标题", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(3, "Title", "名称", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Title
         {
             get { return _Title; }
@@ -267,7 +267,7 @@ namespace NewLife.CMX
             ///<summary>分类名称</summary>
             public static readonly Field CategoryName = FindByName(__.CategoryName);
 
-            ///<summary>标题</summary>
+            ///<summary>名称</summary>
             public static readonly Field Title = FindByName(__.Title);
 
             ///<summary>最新版本</summary>
@@ -318,7 +318,7 @@ namespace NewLife.CMX
             ///<summary>分类名称</summary>
             public const String CategoryName = "CategoryName";
 
-            ///<summary>标题</summary>
+            ///<summary>名称</summary>
             public const String Title = "Title";
 
             ///<summary>最新版本</summary>
@@ -371,7 +371,7 @@ namespace NewLife.CMX
         /// <summary>分类名称</summary>
         String CategoryName { get; set; }
 
-        /// <summary>标题</summary>
+        /// <summary>名称</summary>
         String Title { get; set; }
 
         /// <summary>最新版本</summary>

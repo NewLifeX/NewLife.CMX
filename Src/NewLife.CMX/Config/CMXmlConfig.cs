@@ -15,7 +15,7 @@ namespace NewLife.CMX.Config
             var file = _.ConfigFile;
             if (!file.IsNullOrWhiteSpace())
             {
-                if (typeof(T) != typeof(CMXConfigBase)) file = HelperTool.GetFullPath(CMXConfigBase.Current.CurrentRootPath + _.ConfigFile);
+                if (typeof(T) != typeof(CMXConfigBase)) file = HelperTool.GetFullPath(CMXConfigBase.Current.CurrentRootPath + "/"+_.ConfigFile);
                 if (!File.Exists(file)) file = _.ConfigFile.GetFullPath();
                 _.ConfigFile = file;
             }

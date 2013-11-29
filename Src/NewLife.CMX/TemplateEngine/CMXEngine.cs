@@ -26,9 +26,9 @@ namespace NewLife.CMX.TemplateEngine
         /// <summary>数据列表</summary>
         public IEntityList ListEntity { get { return _ListEntity; } set { _ListEntity = value; } }
 
-        private IEntityList _ListCategory;
+        private List<IEntityTree> _ListCategory;
         /// <summary>分类列表</summary>
-        public IEntityList ListCategory { get { return _ListCategory; } set { _ListCategory = value; } }
+        public List<IEntityTree> ListCategory { get { return _ListCategory; } set { _ListCategory = value; } }
 
         private IEntity _Entity;
         /// <summary>实体数据</summary>

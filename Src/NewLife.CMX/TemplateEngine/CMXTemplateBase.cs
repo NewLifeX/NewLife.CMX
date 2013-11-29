@@ -22,9 +22,9 @@ namespace NewLife.CMX.TemplateEngine
         /// <summary>数据列表</summary>
         public IEntityList ListEntity { get { return _ListEntity; } set { _ListEntity = value; } }
 
-        private IEntityList _ListCategory;
+        private List<IEntityTree> _ListCategory;
         /// <summary>分类列表</summary>
-        public IEntityList ListCategory { get { return _ListCategory; } set { _ListCategory = value; } }
+        public List<IEntityTree> ListCategory { get { return _ListCategory; } set { _ListCategory = value; } }
 
         private IEntity _Entity;
         /// <summary>实体数据</summary>
@@ -39,7 +39,7 @@ namespace NewLife.CMX.TemplateEngine
             if (Data.ContainsKey("Config")) Config = (TemplateConfig)Data["Config"];
             if (Data.ContainsKey("ArgDic")) ArgDic = (Dictionary<String, String>)Data["ArgDic"];
             if (Data.ContainsKey("ListEntity")) ListEntity = (IEntityList)Data["ListEntity"];
-            if (Data.ContainsKey("ListCategory")) ListCategory = (IEntityList)Data["ListCategory"];
+            if (Data.ContainsKey("ListCategory")) ListCategory = (List<IEntityTree>)Data["ListCategory"];
             if (Data.ContainsKey("Entity")) Entity = (IEntity)Data["Entity"];
         }
         #endregion

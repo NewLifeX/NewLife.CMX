@@ -26,7 +26,8 @@ namespace NewLife.CMX.Config
         static String _CurrentParentPath;
         static CMXConfigBase()
         {
-            _CurrentParentPath = HttpRuntime.AppDomainAppVirtualPath.EnsureEnd("/");
+            //_CurrentParentPath = HttpRuntime.AppDomainAppVirtualPath.EnsureEnd("/");
+            _CurrentParentPath = HttpRuntime.AppDomainAppVirtualPath;
         }
         #endregion
     }

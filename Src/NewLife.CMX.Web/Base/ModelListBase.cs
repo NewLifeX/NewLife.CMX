@@ -70,6 +70,23 @@ namespace NewLife.CMX.Web
             set { _LeftMenu = value; }
         }
 
+        public Channel channel
+        {
+            get { return Channel.FindBySuffix(Suffix); }
+        }
+
+        private String _ChannelName;
+        /// <summary></summary>
+        public String ChannelName
+        {
+            get
+            {
+                if (_ChannelName == null) _ChannelName = channel == null ? "" : channel.Name;
+                return _ChannelName;
+            }
+            set { _ChannelName = value; }
+        }
+
         public abstract string Process();
     }
 }

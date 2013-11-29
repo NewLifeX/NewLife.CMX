@@ -14,6 +14,7 @@ namespace NewLife.CMX.Web
             try
             {
                 Text.Meta.TableName += Suffix;
+                TextCategory.Meta.TableName += Suffix;
                 Text text = Text.FindByKey(ID);
                 Text.ChannelSuffix = Suffix;
 
@@ -43,6 +44,7 @@ namespace NewLife.CMX.Web
             finally
             {
                 Text.Meta.TableName = "";
+                TextCategory.Meta.TableName = "";
             }
         }
     }

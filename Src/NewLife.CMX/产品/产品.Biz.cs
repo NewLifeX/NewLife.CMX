@@ -151,7 +151,7 @@ namespace NewLife.CMX
         {
             get
             {
-                if (!Dirtys.ContainsKey("ChannelName"))
+                if (_ChannelName == null && !Dirtys.ContainsKey("ChannelName"))
                 {
                     _ChannelName = Channel == null ? "" : Channel.Name;
                     Dirtys["ChannelName"] = true;
@@ -202,7 +202,8 @@ namespace NewLife.CMX
             {
                 if (_ConentTxt == null && !Dirtys.ContainsKey("ConentTxt"))
                 {
-                    _ConentTxt = "";
+                    _ConentTxt = ProductContent.Content ?? "";
+                    //_ConentTxt = "";
                     Dirtys["ConentTxt"] = true;
                 }
                 return _ConentTxt;
