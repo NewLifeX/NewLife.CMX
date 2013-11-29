@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>混合管,灌胶机,AB胶枪,点胶针筒,点胶针头 - 月无声</title>
+    <link rel="stylesheet" type="text/css" href="<#= Config.SysRootPath #>/style/css1.css" />
+    <script src="<#= Config.SysRootPath #>/Scripts/jquery/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="<#= Config.SysRootPath #>/Scripts/javascript.js"></script>
+</head>
+<body>
+    <div id="wrap">
+        <div id="wrpper">
+            <#= ArgDic["Header"]#>
+            <div class="mainbody">
+                <div class="top_image">
+                    <img src="<#= Config.SysRootPath #>/images/top_i2.jpg" width="1021" height="120" />
+                </div>
+                <#= ArgDic["LeftMenu"]#>
+                <div class="content">
+                    <div class="e1">
+                        <div class="e1_left"><strong><#= Entity["ChannelName"]#></strong></div>
+                        <div class="e1_right">当前位置：首页 > <#= Entity["ChannelName"]#>> <#= Entity["CategoryName"]#></div>
+                    </div>
+                    <h2><#= Entity["Title"]#>
+                    </h2>
+                    <div class="otherInfo">浏览：<#= Entity["Hits"]#>&nbsp;次&nbsp;添加时间：【<#= ((DateTime)Entity["CreateTime"]).ToShortDateString()#>】</div>
+                    <div id="article">
+                        <!--<div id="articleContent">-->
+                            <#= Entity["ConentTxt"]#>
+                        <!--</div>-->
+                    </div>
+                </div>
+            </div>
+            <#= ArgDic["Foot"]#>
+        </div>
+    </div>
+</body>
+</html>
