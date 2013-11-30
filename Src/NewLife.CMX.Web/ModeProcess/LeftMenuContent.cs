@@ -35,14 +35,15 @@ namespace NewLife.CMX.Web
             IEntityList list = ieo.FindAll("ParentID", 0);
             //var jj = list.ToList().OrderBy(e => e["ID"]).ToList();
 
-            dic.Add("Suffix", Suffix);
+            //dic.Add("Suffix", Suffix);
             dic.Add("ModelAddress", channel.ListTemplate);
             dic.Add("SelectedCategory", id);
             dic.Add("MenuTitle", channel.Name);
 
-            CMXEngine engine = new CMXEngine(TemplateConfig.Current);
+            CMXEngine engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
             engine.ListCategory = list.ToList().OrderBy(e => e["ID"]).ToList().ConvertAll<IEntityTree>(e => e as IEntityTree);
             engine.ArgDic = dic;
+            engine.Suffix = Suffix;
 
             String content = engine.Render(TemplateConfig.Current.LeftAddress);
 

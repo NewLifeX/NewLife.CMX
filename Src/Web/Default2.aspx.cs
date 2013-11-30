@@ -11,12 +11,12 @@ public partial class Default2 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-       
+
     }
 
     protected void model_Click(object sender, EventArgs e)
     {
-        CMXEngine engine = new CMXEngine(TemplateConfig.Current);
+        CMXEngine engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
 
         //engine.RenderAll();
     }

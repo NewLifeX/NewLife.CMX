@@ -171,6 +171,7 @@ namespace NewLife.CMX
                 {
                     if (_ProductContent == null && !Dirtys.ContainsKey("ProductContent"))
                     {
+                        ProductContent.Meta.TableName = "";
                         ProductContent.Meta.TableName += ChannelSuffix;
 
                         _ProductContent = ProductContent.FindByParentIDAndVersion(ID, Version);

@@ -63,6 +63,7 @@
     <Compile Include="Config\CommonConfig.cs" />
     <Compile Include="Config\TemplateConfig.cs" />
     <Compile Include="Config\UploadImage.cs" />
+    <Compile Include="Config\WebSettingConfig.cs" />
     <Compile Include="Editor\UEditorAjaxCore.cs" />
     <Compile Include="Editor\UEditorConfig.cs" />
     <Compile Include="Editor\UEUploader.cs" />

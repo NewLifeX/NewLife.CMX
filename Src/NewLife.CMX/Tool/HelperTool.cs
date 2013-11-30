@@ -31,7 +31,6 @@ namespace NewLife.CMX.Tool
             else
             {
                 IEntityOperate ieo = EntityFactory.CreateOperate(entityType);
-                ieo.TableName += Suffix;
 
                 IEntity ientity = ieo.Create();
                 try
@@ -45,14 +44,19 @@ namespace NewLife.CMX.Tool
                     //ientity["Version"] = Version;
                     //ientity.Dirtys["Version"] = true;
                     ientity.SetItem("ParentID", (Int32)entity["ID"]);
+                    //如果contentTxt为空的时候，在访问该属性的时候会触发基类中的扩展属性。
+                    //由于扩展属性中内容属性为了防止出错，在查询完成会自动恢复数据连接。
                     ientity.SetItem("Content", entity["ConentTxt"].ToString());
                     ientity.SetItem("Title", entity["Title"].ToString());
                     ientity.SetItem("Version", Version);
+                    //为了防止用户没有添加数据内容而导致数据表连接被重置的情况发生
+                    //修改表的连接操作放在数据保存前
+                    ieo.TableName += Suffix;
                     ientity.Save();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    throw ex;
+                    throw;
                 }
                 finally
                 {

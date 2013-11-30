@@ -10,7 +10,7 @@ namespace NewLife.CMX.Web
     {
         public static String GetContent()
         {
-            CMXEngine engine = new CMXEngine(TemplateConfig.Current);
+            CMXEngine engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
             String content = engine.Render(TemplateConfig.Current.FootAddress);
 
             return content;

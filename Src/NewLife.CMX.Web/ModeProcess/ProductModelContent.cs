@@ -13,6 +13,7 @@ namespace NewLife.CMX.Web
         {
             try
             {
+                Product.Meta.TableName = "";
                 Product.Meta.TableName += Suffix;
                 Product product = Product.FindByKey(ID);
                 Product.ChannelSuffix = Suffix;
@@ -24,14 +25,15 @@ namespace NewLife.CMX.Web
                 Dictionary<String, String> dic = new Dictionary<string, string>();
                 dic.Add("Address", Address);
                 dic.Add("ID", ID.ToString());
-                dic.Add("Suffix", Suffix);
-                dic.Add("Header", Header);
-                dic.Add("Foot", Foot);
-                dic.Add("LeftMenu", LeftMenu);
+                //dic.Add("Suffix", Suffix);
 
-                CMXEngine engine = new CMXEngine(TemplateConfig.Current);
+                CMXEngine engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
                 engine.ArgDic = dic;
+                engine.Header = Header;
+                engine.Foot = Foot;
+                engine.LeftMenu = LeftMenu;
                 engine.Entity = product as IEntity;
+                engine.Suffix = Suffix;
 
                 String content = engine.Render(Address + ".html");
                 return content;

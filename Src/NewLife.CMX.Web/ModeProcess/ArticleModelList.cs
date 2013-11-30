@@ -23,18 +23,22 @@ namespace NewLife.CMX.Web
         {
             try
             {
+                Article.Meta.TableName = "";
+                ArticleCategory.Meta.TableName = "";
                 Article.Meta.TableName += Suffix;
                 ArticleCategory.Meta.TableName += Suffix;
 
                 EntityList<Article> Articles;
+                Int32 CountNum = 0;
                 EntityList<ArticleCategory> Categories;
 
                 //Channel channel = Channel.FindBySuffix(Suffix);
                 ArticleCategory ac = ArticleCategory.FindByID(CategoryID);
                 if (ac != null && ac.IsEnd)
                 {
-                    Articles = Article.Search(null, CategoryID, null, Pageindex, RecordNum);
+                    Articles = Article.Search(null, CategoryID, null, Pageindex * RecordNum, RecordNum);
                     Categories = ArticleCategory.FindAllChildsNoParent(ac.ParentID);
+                    CountNum = Article.SearchCount(new int[] { CategoryID }, null, 0, 0);
                 }
                 else
                 {
@@ -43,23 +47,27 @@ namespace NewLife.CMX.Web
                         return art.IsEnd == true;
                     });
                     ArticleCategory first = Categories[0];
-                    Articles = Article.Search(null, first.ID, null, Pageindex, RecordNum);
+                    Articles = Article.Search(null, first.ID, null, Pageindex * RecordNum, RecordNum);
+                    CountNum = Article.SearchCount(new int[] { first.ID }, null, 0, 0);
                 }
+
+                CountNum = CountNum / 10 + 1;
 
                 Dictionary<String, String> dic = new Dictionary<string, string>();
                 dic.Add("Address", Address);
                 dic.Add("CategoryID", CategoryID.ToString());
-                dic.Add("Suffix", Suffix);
                 dic.Add("Pageindex", Pageindex.ToString());
                 dic.Add("RecordNum", RecordNum.ToString());
-                dic.Add("Header", Header);
-                dic.Add("Foot", Foot);
-                dic.Add("LeftMenu", LeftMenu);
                 dic.Add("ContentAddress", channel.FormTemplate);
                 dic.Add("ChannelName", ChannelName);
+                dic.Add("CountNum", CountNum.ToString());
 
-                CMXEngine engine = new CMXEngine(TemplateConfig.Current);
+                CMXEngine engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
                 engine.ArgDic = dic;
+                engine.Header = Header;
+                engine.Foot = Foot;
+                engine.LeftMenu = LeftMenu;
+                engine.Suffix = Suffix;
                 //engine.ListEntity = Articles.ConvertAll<IEntity>(e => e as IEntity);
                 engine.ListEntity = Articles as IEntityList;
                 engine.ListCategory = Categories.ConvertAll<IEntityTree>(e => e as IEntityTree);

@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="灌胶机,混合管,AB胶枪,点胶针筒,点胶针头" />
-    <meta name="description" content="月无声电子设备有限公司坐落在交通方便的东莞市区,毗邻深圳、广州、佛山、惠州等城市。其主要产品有：双液灌胶机，精准双液点胶机，混合管，点胶机,AB胶枪，点胶针头，AB胶筒，点胶针筒，点胶针头，不锈钢压力桶。月无声的点胶设备适用于：环氧树脂，PU，双组份硅胶和其他双组份流体材料。" />
-    <title>混合管,灌胶机,AB胶枪,点胶针筒,点胶针头 - 月无声</title>
+    <title><#= WebSettingConfig.Title#></title>
+    <meta name="keywords" content="<#= WebSettingConfig.Keywords#>" />
+    <meta name="description" content="<#= WebSettingConfig.Description#>" />
     <link rel="stylesheet" type="text/css" href="<#= Config.SysRootPath #>/style/css1.css" />
     <script type="text/javascript" src="<#= Config.SysRootPath #>/Scripts/jquery/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="<#= Config.SysRootPath #>/Scripts/javascript.js"></script>
@@ -12,30 +12,33 @@
 <body>
     <div id="wrap">
         <div id="wrpper">
-            <#= ArgDic["Header"]#>
+            <#= Header#>
              <div class="mainbody">
                  <div class="top_image">
                      <img src="<#= Config.SysRootPath #>/images/top_i3.jpg" width="1021" height="120" />
                  </div>
-                 <#= ArgDic["LeftMenu"]#>
+                 <#= LeftMenu#>
                  <div class="content">
                      <div class="pro">
                          <div class="p_t1"><strong><#= ArgDic["ChannelName"]#></strong><span>当前位置：首页 > <#= ArgDic["ChannelName"]#></span></div>
                          <ul class="u1">
                              <# foreach(IEntity entity in ListEntity){#>
                              <li><span>
-                                    <img src='<#= Config.SysRootPath+entity["PhotoPath"]#>' width="118" height="98" /></span>
+                                 <img src='<#= Config.SysRootPath+entity["PhotoPath"]#>' width="118" height="98" /></span>
                                  <p class="main-nav"><a href="#"><#= entity["Title"]#></a></p>
                                  <ul>
                                      <li><a href="javascript:void();"><#= entity["CategoryName"]#></a></li>
                                  </ul>
-                                 </li>
+                             </li>
                              <#}#>
                          </ul>
                      </div>
+                     <div class="switch_meu">
+                         <a href='javascript:void(0);'>首页</a>&nbsp;<a href="javascript:void(0);">上一页</a>&nbsp;&nbsp;1/<#= ArgDic["CountNum"]#>页&nbsp;<a href='javascript:void(0);'>下一页</a>&nbsp;<a href='javascript:void(0);'>尾页</a>&nbsp;<input type="text" value="" class="page-num"/>&nbsp;<a href="javascript:void(0);">Go</a>
+                     </div>
                  </div>
              </div>
-            <#= ArgDic["Foot"]#>
+            <#= Foot#>
         </div>
     </div>
 </body>

@@ -13,8 +13,11 @@ namespace NewLife.CMX.Web
         {
             try
             {
+                Text.Meta.TableName = "";
+                TextCategory.Meta.TableName = "";
                 Text.Meta.TableName += Suffix;
                 TextCategory.Meta.TableName += Suffix;
+
                 Text text = Text.FindByKey(ID);
                 Text.ChannelSuffix = Suffix;
 
@@ -25,14 +28,15 @@ namespace NewLife.CMX.Web
                 Dictionary<String, String> dic = new Dictionary<string, string>();
                 dic.Add("Address", Address);
                 dic.Add("ID", ID.ToString());
-                dic.Add("Suffix", Suffix);
-                dic.Add("Header", Header);
-                dic.Add("Foot", Foot);
-                dic.Add("LeftMenu", LeftMenu);
+                //dic.Add("Suffix", Suffix);
 
-                CMXEngine engine = new CMXEngine(TemplateConfig.Current);
+                CMXEngine engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
                 engine.ArgDic = dic;
+                engine.Header = Header;
+                engine.Foot = Foot;
+                engine.LeftMenu = LeftMenu;
                 engine.Entity = text as IEntity;
+                engine.Suffix = Suffix;
 
                 String content = engine.Render(Address + ".html");
                 return content;

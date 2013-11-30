@@ -118,6 +118,8 @@ namespace NewLife.CMX
             }
             return base.OnUpdate();
         }
+
+
         #endregion
 
         #region 扩展属性﻿
@@ -165,6 +167,7 @@ namespace NewLife.CMX
                 {
                     if (_ArticleContent == null && !Dirtys.ContainsKey("ArticleContent"))
                     {
+                        ArticleContent.Meta.TableName = "";
                         ArticleContent.Meta.TableName += ChannelSuffix;
                         _ArticleContent = ArticleContent.FindByParentIDAndVersion(ID, Version);
 

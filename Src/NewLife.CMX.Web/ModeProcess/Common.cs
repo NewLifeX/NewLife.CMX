@@ -12,14 +12,13 @@ namespace NewLife.CMX.Web
         {
             try
             {
-                CMXEngine engine = new CMXEngine(TemplateConfig.Current);
+                CMXEngine engine = new CMXEngine(TemplateConfig.Current,WebSettingConfig.Current);
                 Dictionary<String, String> dic = new Dictionary<string, string>();
-                dic.Add("Foot", Foot);
-                dic.Add("Header", Header);
                 dic.Add("Address", Address);
 
                 engine.ArgDic = dic;
-
+                engine.Header = Header;
+                engine.Foot = Foot;
                 String content = engine.Render(Address + ".html");
 
                 return content;

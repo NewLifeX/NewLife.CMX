@@ -3,7 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>混合管,灌胶机,AB胶枪,点胶针筒,点胶针头 - 月无声</title>
+    <title><#= WebSettingConfig.Title#></title>
+    <meta name="keywords" content="<#= WebSettingConfig.Keywords#>" />
+    <meta name="description" content="<#= WebSettingConfig.Description#>" />
     <link rel="stylesheet" type="text/css" href="<#= Config.SysRootPath #>/style/css1.css" />
     <script src="<#= Config.SysRootPath #>/Scripts/jquery/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="<#= Config.SysRootPath #>/Scripts/javascript.js"></script>
@@ -11,23 +13,12 @@
 <body>
     <div id="wrap">
         <div id="wrpper">
-            <#= ArgDic["Header"]#>
+            <#= Header#>
             <div class="mainbody">
                 <div class="top_image">
                     <img src="<#= Config.SysRootPath #>/images/top_i2.jpg" width="1021" height="120" />
                 </div>
-               <!-- <div class="list">
-                    <h3>分类名称</h3>
-                    <div class="list_meu">
-                        <ul>
-                            <li><a href="#">迎泽区</a></li>
-                        </ul>
-                    </div>
-                    <div class="list_bottom"></div>
-                    <div class="list_shadow"></div>
-                    <div class="list_phone"></div>
-                </div>-->
-                <#= ArgDic["LeftMenu"]#>
+                <#= LeftMenu#>
                 <div class="content">
                     <div class="e1">
                         <div class="e1_left"><strong><#= Entity["ChannelName"]#></strong></div>
@@ -37,23 +28,11 @@
                     </h2>
                     <div class="otherInfo">浏览：<#= Entity["Hits"]#>&nbsp;次&nbsp;添加时间：【<#= ((DateTime)Entity["CreateTime"]).ToShortDateString()#>】</div>
                     <div id="article">
-                       <!-- <div id="articleContent">-->
-                            <#= Entity["ConentTxt"]#>
-                        <!--</div>-->
+                        <#= Entity["ConentTxt"]#>
                     </div>
                 </div>
             </div>
-            <!--<div id="foot">
-                <div class="foot_nav">
-                    <div class="g1"><a href="#">返回首页</a> | <a href="#">联系我们</a> | <a href="#">友情链接</a> | <a href="#">技术论坛</a> | <a href="#">月无声商城</a> |</div>
-                </div>
-                <div class="address">
-                    版权所有 © 2008-2012 东莞市月无声电子设备有限公司 粤ICP备09218017号<br />
-                    <br />
-                    地址：东莞市高埗镇冼沙村广场北路宝源工业区  电话：0769-23107897 0769-23107080
-                </div>
-            </div>-->
-            <#= ArgDic["Foot"]#>
+            <#= Foot#>
         </div>
     </div>
 </body>

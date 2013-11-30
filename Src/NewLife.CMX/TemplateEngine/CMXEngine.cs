@@ -18,6 +18,22 @@ namespace NewLife.CMX.TemplateEngine
         /// <summary>模板配置</summary>
         public TemplateConfig Config { get { return _Config; } set { _Config = value; } }
 
+        private WebSettingConfig _WebSettingConfig;
+        /// <summary>网站配置信息</summary>
+        public WebSettingConfig WebSettingConfig { get { return _WebSettingConfig; } set { _WebSettingConfig = value; } }
+
+        private String _LeftMenu;
+        /// <summary>左侧导航菜单</summary>
+        public String LeftMenu { get { return _LeftMenu; } set { _LeftMenu = value; } }
+
+        private String _Header;
+        /// <summary>页头</summary>
+        public String Header { get { return _Header; } set { _Header = value; } }
+
+        private String _Foot;
+        /// <summary>页脚</summary>
+        public String Foot { get { return _Foot; } set { _Foot = value; } }
+
         private Dictionary<String, String> _ArgDic;
         /// <summary>参数字典</summary>
         public Dictionary<String, String> ArgDic { get { return _ArgDic; } set { _ArgDic = value; } }
@@ -33,6 +49,10 @@ namespace NewLife.CMX.TemplateEngine
         private IEntity _Entity;
         /// <summary>实体数据</summary>
         public IEntity Entity { get { return _Entity; } set { _Entity = value; } }
+
+        private String _Suffix;
+        /// <summary>扩展名称</summary>
+        public String Suffix { get { return _Suffix; } set { _Suffix = value; } }
         #endregion
 
         #region 构造
@@ -41,9 +61,10 @@ namespace NewLife.CMX.TemplateEngine
             Template.BaseClassName = typeof(CMXTemplateBase).FullName;
         }
 
-        public CMXEngine(TemplateConfig config)
+        public CMXEngine(TemplateConfig config, WebSettingConfig setting)
         {
             Config = config;
+            WebSettingConfig = setting;
         }
         #endregion
 
@@ -57,10 +78,15 @@ namespace NewLife.CMX.TemplateEngine
         {
             var data = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
             data["Config"] = Config;
+            data["WebSettingConfig"] = WebSettingConfig;
+            data["Header"] = Header;
+            data["Foot"] = Foot;
+            data["LeftMenu"] = LeftMenu;
             data["ArgDic"] = ArgDic;
             data["ListEntity"] = ListEntity;
             data["ListCategory"] = ListCategory;
             data["Entity"] = Entity;
+            data["Suffix"] = Suffix;
 
             #region 获取模板资源文件
             Template.Debug = true;
