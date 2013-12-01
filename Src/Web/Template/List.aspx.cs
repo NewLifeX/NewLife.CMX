@@ -38,7 +38,8 @@ public partial class Template_List : NewLife.CMX.WebBase.WebPageBase
         {
             Int32 i = WebHelper.RequestInt("Pageindex");
             //设置查询开始记录数，索引从0开始
-            //if (i == 0) i = 1;
+            //i = i > 0 ? i - 1 : 0;
+            if (i == 0) i = 1;
             return i;
         }
     }

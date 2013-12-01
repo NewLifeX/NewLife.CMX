@@ -34,7 +34,7 @@
                          </ul>
                      </div>
                      <div class="switch_meu">
-                         <a href='javascript:void(0);'>首页</a>&nbsp;<a href="javascript:void(0);">上一页</a>&nbsp;&nbsp;1/<#= ArgDic["CountNum"]#>页&nbsp;<a href='javascript:void(0);'>下一页</a>&nbsp;<a href='javascript:void(0);'>尾页</a>&nbsp;<input type="text" value="" class="page-num"/>&nbsp;<a href="javascript:void(0);">Go</a>
+                         <a href='<#= ArgDic["FirstUrl"]#>'>首页</a>&nbsp;<a href='<#= ArgDic["BeforeUrl"]#>'>上一页</a>&nbsp;&nbsp;<#= ArgDic["CurrentPage"]#>/<#= ArgDic["PageCount"]#>页&nbsp;<a href='<#= ArgDic["NextUrl"]#>'>下一页</a>&nbsp;<a href='<#= ArgDic["LastUrl"]#>'>尾页</a>&nbsp;<input type="text" value="" class="page-num" />&nbsp;<a href="javascript:void(0);">Go</a>
                      </div>
                  </div>
              </div>
