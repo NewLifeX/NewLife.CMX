@@ -87,6 +87,16 @@ namespace NewLife.CMX.Web
             set { _ChannelName = value; }
         }
 
+        /// <summary></summary>
+        public virtual Int32 BeforePage { get { return Pageindex > 1 ? Pageindex - 1 : 0; } }
+
+        /// <summary></summary>
+        public virtual Int32 NextPage { get { return PageCount > 1 ? Pageindex + 1 : 0; } }
+
+        private Int32 _PageCount = 1;
+        /// <summary></summary>
+        public virtual Int32 PageCount { get { return _PageCount; } set { _PageCount = value; } }
+
         public abstract string Process();
     }
 }

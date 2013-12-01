@@ -25,6 +25,12 @@ namespace NewLife.CMX.Web
 
         String ChannelName { get; set; }
 
+        Int32 BeforePage { get; }
+
+        Int32 NextPage { get; }
+
+        Int32 PageCount { get; set; }
+
         String Process();
     }
 }

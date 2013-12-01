@@ -18,7 +18,6 @@ namespace NewLife.CMX.Web
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="dic"></param>
         override public String Process()
         {
             try
@@ -36,7 +35,8 @@ namespace NewLife.CMX.Web
                 ArticleCategory ac = ArticleCategory.FindByID(CategoryID);
                 if (ac != null && ac.IsEnd)
                 {
-                    Articles = Article.Search(null, CategoryID, null, Pageindex * RecordNum, RecordNum);
+
+                    Articles = Article.Search(null, CategoryID, null, (Pageindex > 0 ? Pageindex - 1 : 0) * RecordNum, RecordNum);
                     Categories = ArticleCategory.FindAllChildsNoParent(ac.ParentID);
                     CountNum = Article.SearchCount(new int[] { CategoryID }, null, 0, 0);
                 }
@@ -47,11 +47,11 @@ namespace NewLife.CMX.Web
                         return art.IsEnd == true;
                     });
                     ArticleCategory first = Categories[0];
-                    Articles = Article.Search(null, first.ID, null, Pageindex * RecordNum, RecordNum);
+                    Articles = Article.Search(null, first.ID, null, (Pageindex > 0 ? Pageindex - 1 : 0) * RecordNum, RecordNum);
                     CountNum = Article.SearchCount(new int[] { first.ID }, null, 0, 0);
                 }
 
-                CountNum = CountNum / 10 + 1;
+                PageCount = CountNum / 10 + (CountNum % 10 > 0 ? 1 : 0);
 
                 Dictionary<String, String> dic = new Dictionary<string, string>();
                 dic.Add("Address", Address);
@@ -60,7 +60,12 @@ namespace NewLife.CMX.Web
                 dic.Add("RecordNum", RecordNum.ToString());
                 dic.Add("ContentAddress", channel.FormTemplate);
                 dic.Add("ChannelName", ChannelName);
-                dic.Add("CountNum", CountNum.ToString());
+                dic.Add("PageCount", PageCount.ToString());
+                dic.Add("CurrentPage", (Pageindex > 0 ? Pageindex : 1) + "");
+                dic.Add("BeforeUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Suffix + "_" + BeforePage + "/" + CategoryID + "/" + channel.ListTemplate);
+                dic.Add("NextUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Suffix + "_" + NextPage + "/" + CategoryID + "/" + channel.ListTemplate);
+                dic.Add("FirstUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Suffix + "/" + CategoryID + "/" + channel.ListTemplate);
+                dic.Add("LastUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Suffix + "_" + PageCount + "/" + CategoryID + "/" + channel.ListTemplate);
 
                 CMXEngine engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
                 engine.ArgDic = dic;
