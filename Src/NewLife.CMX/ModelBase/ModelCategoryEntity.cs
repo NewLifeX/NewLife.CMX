@@ -56,5 +56,19 @@ namespace NewLife.CMX
             }
             return dic;
         }
+
+        /// <summary>
+        /// 查询所有不是终节点的节点
+        /// </summary>
+        /// <param name="parentkey"></param>
+        /// <returns></returns>
+        public static EntityList<T> FindAllByNoEnd(Int32 parentkey)
+        {
+            EntityList<T> entitylist = FindAllChildsByParent(parentkey);
+
+            entitylist.RemoveAll(e => (Boolean)e["IsEnd"] == true);
+
+            return entitylist;
+        }
     }
 }

@@ -114,6 +114,66 @@ namespace NewLife.CMX
             get { return _Content; }
             set { if (OnPropertyChanging(__.Content, value)) { _Content = value; OnPropertyChanged(__.Content); } }
         }
+
+        private String _Specification;
+        /// <summary>规格参数</summary>
+        [DisplayName("规格参数")]
+        [Description("规格参数")]
+        [DataObjectField(false, false, true, -1)]
+        [BindColumn(9, "Specification", "规格参数", null, "ntext", 0, 0, true)]
+        public virtual String Specification
+        {
+            get { return _Specification; }
+            set { if (OnPropertyChanging(__.Specification, value)) { _Specification = value; OnPropertyChanged(__.Specification); } }
+        }
+
+        private String _Feature;
+        /// <summary>功能特点</summary>
+        [DisplayName("功能特点")]
+        [Description("功能特点")]
+        [DataObjectField(false, false, true, -1)]
+        [BindColumn(10, "Feature", "功能特点", null, "ntext", 0, 0, true)]
+        public virtual String Feature
+        {
+            get { return _Feature; }
+            set { if (OnPropertyChanging(__.Feature, value)) { _Feature = value; OnPropertyChanged(__.Feature); } }
+        }
+
+        private String _App;
+        /// <summary>推荐应用</summary>
+        [DisplayName("推荐应用")]
+        [Description("推荐应用")]
+        [DataObjectField(false, false, true, -1)]
+        [BindColumn(11, "App", "推荐应用", null, "ntext", 0, 0, true)]
+        public virtual String App
+        {
+            get { return _App; }
+            set { if (OnPropertyChanging(__.App, value)) { _App = value; OnPropertyChanged(__.App); } }
+        }
+
+        private String _Fitting;
+        /// <summary>相关配件</summary>
+        [DisplayName("相关配件")]
+        [Description("相关配件")]
+        [DataObjectField(false, false, true, -1)]
+        [BindColumn(12, "Fitting", "相关配件", null, "ntext", 0, 0, true)]
+        public virtual String Fitting
+        {
+            get { return _Fitting; }
+            set { if (OnPropertyChanging(__.Fitting, value)) { _Fitting = value; OnPropertyChanged(__.Fitting); } }
+        }
+
+        private String _Video;
+        /// <summary>产品视频</summary>
+        [DisplayName("产品视频")]
+        [Description("产品视频")]
+        [DataObjectField(false, false, true, -1)]
+        [BindColumn(13, "Video", "产品视频", null, "ntext", 0, 0, true)]
+        public virtual String Video
+        {
+            get { return _Video; }
+            set { if (OnPropertyChanging(__.Video, value)) { _Video = value; OnPropertyChanged(__.Video); } }
+        }
         #endregion
 
         #region 获取/设置 字段值
@@ -130,14 +190,19 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
-                    case __.ID : return _ID;
-                    case __.ParentID : return _ParentID;
-                    case __.Title : return _Title;
-                    case __.Version : return _Version;
-                    case __.CreateUserID : return _CreateUserID;
-                    case __.CreateUserName : return _CreateUserName;
-                    case __.CreateTime : return _CreateTime;
-                    case __.Content : return _Content;
+                    case __.ID: return _ID;
+                    case __.ParentID: return _ParentID;
+                    case __.Title: return _Title;
+                    case __.Version: return _Version;
+                    case __.CreateUserID: return _CreateUserID;
+                    case __.CreateUserName: return _CreateUserName;
+                    case __.CreateTime: return _CreateTime;
+                    case __.Content: return _Content;
+                    case __.Specification: return _Specification;
+                    case __.Feature: return _Feature;
+                    case __.App: return _App;
+                    case __.Fitting: return _Fitting;
+                    case __.Video: return _Video;
                     default: return base[name];
                 }
             }
@@ -145,14 +210,19 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
-                    case __.ID : _ID = Convert.ToInt32(value); break;
-                    case __.ParentID : _ParentID = Convert.ToInt32(value); break;
-                    case __.Title : _Title = Convert.ToString(value); break;
-                    case __.Version : _Version = Convert.ToInt32(value); break;
-                    case __.CreateUserID : _CreateUserID = Convert.ToInt32(value); break;
-                    case __.CreateUserName : _CreateUserName = Convert.ToString(value); break;
-                    case __.CreateTime : _CreateTime = Convert.ToDateTime(value); break;
-                    case __.Content : _Content = Convert.ToString(value); break;
+                    case __.ID: _ID = Convert.ToInt32(value); break;
+                    case __.ParentID: _ParentID = Convert.ToInt32(value); break;
+                    case __.Title: _Title = Convert.ToString(value); break;
+                    case __.Version: _Version = Convert.ToInt32(value); break;
+                    case __.CreateUserID: _CreateUserID = Convert.ToInt32(value); break;
+                    case __.CreateUserName: _CreateUserName = Convert.ToString(value); break;
+                    case __.CreateTime: _CreateTime = Convert.ToDateTime(value); break;
+                    case __.Content: _Content = Convert.ToString(value); break;
+                    case __.Specification: _Specification = Convert.ToString(value); break;
+                    case __.Feature: _Feature = Convert.ToString(value); break;
+                    case __.App: _Feature = Convert.ToString(value); break;
+                    case __.Fitting: _Fitting = Convert.ToString(value); break;
+                    case __.Video: _Video = Convert.ToString(value); break;
                     default: base[name] = value; break;
                 }
             }
@@ -187,6 +257,21 @@ namespace NewLife.CMX
             ///<summary>内容</summary>
             public static readonly Field Content = FindByName(__.Content);
 
+            ///<summary>参数规格</summary>
+            public static readonly Field Specification = FindByName(__.Specification);
+
+            ///<summary>功能特点</summary>
+            public static readonly Field Feature = FindByName(__.Feature);
+
+            ///<summary>推荐应用</summary>
+            public static readonly Field App = FindByName(__.App);
+
+            ///<summary>相关配件</summary>
+            public static readonly Field Fitting = FindByName(__.Fitting);
+
+            ///<summary>产品视频</summary>
+            public static readonly Field Video = FindByName(__.Video);
+
             static Field FindByName(String name) { return Meta.Table.FindByName(name); }
         }
 
@@ -217,6 +302,20 @@ namespace NewLife.CMX
             ///<summary>内容</summary>
             public const String Content = "Content";
 
+            ///<summary>参数规格</summary>
+            public const String Specification = "Specification";
+
+            ///<summary>功能特点</summary>
+            public const String Feature = "Feature";
+
+            ///<summary>推荐应用</summary>
+            public const String App = "App";
+
+            ///<summary>相关配件</summary>
+            public const String Fitting = "Fitting";
+
+            ///<summary>产品视频</summary>
+            public const String Video = "Video";
         }
         #endregion
     }
@@ -248,6 +347,21 @@ namespace NewLife.CMX
 
         /// <summary>内容</summary>
         String Content { get; set; }
+
+        ///<summary>参数规格</summary>
+        String Specification { get; set; }
+
+        ///<summary>功能特点</summary>
+        String Feature { get; set; }
+
+        ///<summary>推荐应用</summary>
+        String App { get; set; }
+
+        ///<summary>相关配件</summary>
+        String Fitting { get; set; }
+
+        ///<summary>产品视频</summary>
+        String Video { get; set; }
         #endregion
 
         #region 获取/设置 字段值

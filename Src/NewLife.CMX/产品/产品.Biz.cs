@@ -109,7 +109,7 @@ namespace NewLife.CMX
             Int32 num = base.OnInsert();
 
             //SaveContent(Version);
-            HelperTool.SaveModelContent(typeof(ProductContent), Version, ChannelSuffix, this, null);
+            HelperTool.SaveModelProductContent(typeof(ProductContent), Version, ChannelSuffix, this, null);
 
             return num;
         }
@@ -120,7 +120,7 @@ namespace NewLife.CMX
             Version += 1;
 
             //SaveContent(Version);
-            HelperTool.SaveModelContent(typeof(ProductContent), Version, ChannelSuffix, this, null);
+            HelperTool.SaveModelProductContent(typeof(ProductContent), Version, ChannelSuffix, this, null);
 
             return base.OnUpdate();
         }
@@ -213,6 +213,86 @@ namespace NewLife.CMX
             {
                 _ConentTxt = value;
             }
+        }
+
+        private String _ProductGG;
+        /// <summary>规格参数</summary>
+        public String ProductGG
+        {
+            get
+            {
+                if (_ProductGG == null && !Dirtys.ContainsKey("ProductGG"))
+                {
+                    _ProductGG = ProductContent.Specification ?? "";
+                    Dirtys["ProductGG"] = true;
+                }
+                return _ProductGG;
+            }
+            set { _ProductGG = value; }
+        }
+
+        private String _ProductTD;
+        /// <summary>产品特点</summary>
+        public String ProductTD
+        {
+            get
+            {
+                if (_ProductTD == null && !Dirtys.ContainsKey("ProductTD"))
+                {
+                    _ProductTD = ProductContent.Feature ?? "";
+                    Dirtys.ContainsKey("ProductTD");
+                }
+                return _ProductTD;
+            }
+            set { _ProductTD = value; }
+        }
+
+        private String _ProductYY;
+        /// <summary>推荐应用</summary>
+        public String ProductYY
+        {
+            get
+            {
+                if (_ProductYY == null && !Dirtys.ContainsKey("ProductYY"))
+                {
+                    _ProductYY = ProductContent.App ?? "";
+                    Dirtys["ProductYY"] = true;
+                }
+                return _ProductYY;
+            }
+            set { _ProductYY = value; }
+        }
+
+        private String _ProductPJ;
+        /// <summary>相关配件</summary>
+        public String ProductPJ
+        {
+            get
+            {
+                if (_ProductPJ == null && !Dirtys.ContainsKey("ProductPJ"))
+                {
+                    _ProductPJ = ProductContent.Fitting ?? "";
+                    Dirtys["ProductPJ"] = true;
+                }
+                return _ProductPJ;
+            }
+            set { _ProductPJ = value; }
+        }
+
+        private String _ProductSP;
+        /// <summary>产品视频</summary>
+        public String ProductSP
+        {
+            get
+            {
+                if (_ProductSP == null && !Dirtys.ContainsKey("ProductSP"))
+                {
+                    _ProductSP = ProductContent.Video ?? "";
+                    Dirtys["ProductSP"] = true;
+                }
+                return _ProductSP;
+            }
+            set { _ProductSP = value; }
         }
         #endregion
 
