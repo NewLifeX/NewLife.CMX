@@ -27,7 +27,7 @@ namespace NewLife.CMX.Web
         public virtual Int32 RecordNum { get { return _RecordNum; } set { _RecordNum = value; } }
 
         private string _Foot;
-        /// <summary></summary>
+        /// <summary>页尾</summary>
         public virtual string Foot
         {
             get
@@ -43,7 +43,7 @@ namespace NewLife.CMX.Web
         }
 
         private string _Header;
-        /// <summary></summary>
+        /// <summary>页头</summary>
         public virtual string Header
         {
             get
@@ -56,7 +56,7 @@ namespace NewLife.CMX.Web
         }
 
         private String _LeftMenu;
-        /// <summary></summary>
+        /// <summary>左侧导航</summary>
         public virtual String LeftMenu
         {
             get
@@ -70,13 +70,14 @@ namespace NewLife.CMX.Web
             set { _LeftMenu = value; }
         }
 
+        /// <summary>频道</summary>
         public Channel channel
         {
             get { return Channel.FindBySuffix(Suffix); }
         }
 
         private String _ChannelName;
-        /// <summary></summary>
+        /// <summary>频道名称</summary>
         public String ChannelName
         {
             get
@@ -87,14 +88,14 @@ namespace NewLife.CMX.Web
             set { _ChannelName = value; }
         }
 
-        /// <summary></summary>
+        /// <summary>上一页</summary>
         public virtual Int32 BeforePage { get { return Pageindex > 1 ? Pageindex - 1 : 0; } }
 
-        /// <summary></summary>
+        /// <summary>下一页</summary>
         public virtual Int32 NextPage { get { return PageCount > 1 ? Pageindex + 1 : 0; } }
 
         private Int32 _PageCount = 1;
-        /// <summary></summary>
+        /// <summary>总页数</summary>
         public virtual Int32 PageCount { get { return _PageCount; } set { _PageCount = value; } }
 
         public abstract string Process();

@@ -35,7 +35,6 @@ namespace NewLife.CMX.Web
                 ArticleCategory ac = ArticleCategory.FindByID(CategoryID);
                 if (ac != null && ac.IsEnd)
                 {
-
                     Articles = Article.Search(null, CategoryID, null, (Pageindex > 0 ? Pageindex - 1 : 0) * RecordNum, RecordNum);
                     Categories = ArticleCategory.FindAllChildsNoParent(ac.ParentID);
                     CountNum = Article.SearchCount(new int[] { CategoryID }, null, 0, 0);

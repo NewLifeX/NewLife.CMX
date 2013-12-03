@@ -47,21 +47,6 @@ namespace NewLife.CMX.Web
             set { _Header = value; }
         }
 
-        //private String _LeftMenu;
-        ///// <summary></summary>
-        //public virtual String LeftMenu
-        //{
-        //    get
-        //    {
-        //        if (Suffix != null && _LeftMenu == null)
-        //        {
-        //            _LeftMenu = LeftMenuContent.GetContent(Suffix, 0, ID);
-        //        }
-        //        return _LeftMenu;
-        //    }
-        //    set { _LeftMenu = value; }
-        //}
-
         private String _LeftMenu;
         /// <summary></summary>
         public virtual String LeftMenu { get { return _LeftMenu; } set { _LeftMenu = value; } }
