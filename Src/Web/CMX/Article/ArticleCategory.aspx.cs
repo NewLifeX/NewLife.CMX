@@ -12,4 +12,9 @@ public partial class CMX_ArticleCategory : MyModelEntityList<ArticleCategory>
     {
 
     }
+
+    protected void ods_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
+    {
+        e.InputParameters["parentKey"] = WebHelper.RequestInt("CID");
+    }
 }

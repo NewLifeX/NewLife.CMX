@@ -35,4 +35,9 @@ public partial class CMX_ProductCategory : MyModelEntityList<ProductCategory>
     protected void Page_Load(object sender, EventArgs e)
     {
     }
+    protected void ods_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
+    {
+
+        e.InputParameters["parentKey"] = WebHelper.RequestInt("CID");
+    }
 }

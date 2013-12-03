@@ -59,7 +59,7 @@
         </EmptyDataTemplate>
     </asp:GridView>
     <asp:ObjectDataSource ID="ods" runat="server" DeleteMethod="Delete" SelectMethod="FindAllChildsNoParent"
-        EnableViewState="False">
+        EnableViewState="False" OnSelecting="ods_Selecting">
         <SelectParameters>
             <asp:Parameter DefaultValue="0" Name="parentKey" Type="Object" />
         </SelectParameters>
