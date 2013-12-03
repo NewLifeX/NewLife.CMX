@@ -24,7 +24,7 @@
                             <XCL:DropDownList ID="frmParentID" runat="server" DataTextField="TreeNodeName2" DataValueField="ID" CssClass="select2"
                                 AppendDataBoundItems="True" DataSourceID="ods">
                             </XCL:DropDownList>
-                            <asp:ObjectDataSource ID="ods" runat="server" SelectMethod="FindAllChildsByParent">
+                            <asp:ObjectDataSource ID="ods" runat="server" SelectMethod="FindAllByNoEnd">
                                 <SelectParameters>
                                     <asp:Parameter DefaultValue="0" Name="parentKey" Type="Int32" />
                                 </SelectParameters>
