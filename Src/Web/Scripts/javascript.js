@@ -76,68 +76,6 @@ function showHide(e, objname) {
         e.className = "plus";
     }
 }
-
-/*列表项的js*/
-//var lastFaqClick = null;
-//function menulist() {
-//    var faq = document.getElementById("faq");
-//    var dls = faq.getElementsByTagName("dl");
-//    for (var i = 0, dl; dl = dls[i]; i++) {
-//        var dt = dl.getElementsByTagName("dt")[0];//取得标题
-//        dt.id = "faq_dt_" + (Math.random() * 100);
-//        dt.onclick = function () {
-//            var p = this.parentNode;//取得父节点
-//            if (lastFaqClick != null && lastFaqClick.id != this.id) {
-//                var dds = lastFaqClick.parentNode.getElementsByTagName("dd");
-//                for (var i = 0, dd; dd = dds[i]; i++)
-//                    dd.style.display = 'none';
-//            }
-//            lastFaqClick = this;
-//            var dds = p.getElementsByTagName("dd");//取得对应子节点，也就是说明部分
-//            var tmpDisplay = 'none';
-//            if (gs(dds[0], 'display') == 'none')
-//                tmpDisplay = 'block';
-//            for (var i = 0; i < dds.length; i++)
-//                dds[i].style.display = tmpDisplay;
-//        }
-//    }
-//}
-
-//function gs(d, a) {
-//    if (d.currentStyle) {
-//        var curVal = d.currentStyle[a]
-//    } else {
-//        var curVal = document.defaultView.getComputedStyle(d, null)[a]
-//    }
-//    return curVal;
-//}
-
-/*导航高亮*/
-
-//var $c = function (array) { var nArray = []; for (var i = 0; i < array.length; i++) nArray.push(array[i]); return nArray; };
-//Array.prototype.each = function (func) {
-//    for (var i = 0, l = this.length; i < l; i++) { func(this[i], i); };
-//};
-//document.getElementsByClassName = function (cn) {
-//    var hasClass = function (w, Name) {
-//        var hasClass = false;
-//        w.className.split(' ').each(function (s) {
-//            if (s == Name) hasClass = true;
-//        });
-//        return hasClass;
-//    };
-//    var elems = document.getElementsByTagName("*") || document.all;
-//    var elemList = [];
-//    $c(elems).each(function (e) {
-//        if (hasClass(e, cn)) { elemList.push(e); }
-//    })
-//    return $c(elemList);
-//};
-//function change_bg(obj) {
-//    var a = document.getElementsByClassName("nav")[0].getElementsByTagName("a");
-//    for (var i = 0; i < a.length; i++) { a[i].className = ""; }
-//    obj.className = "current";
-//}
 /*flash*/
 (function ($) {
     $.fn.extend({
@@ -179,7 +117,7 @@ function showHide(e, objname) {
 
 $(document).ready(function () {
     $('.hot-event').nav({
-        t: 2000,	//轮播时间
-        a: 1000  //过渡时间
+        t: 3000,	//轮播时间
+        a: 300  //过渡时间
     });
 });
