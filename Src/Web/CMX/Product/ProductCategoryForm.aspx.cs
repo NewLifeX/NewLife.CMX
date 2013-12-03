@@ -15,7 +15,8 @@ public partial class CMX_ProductCategoryForm : MyModelEntityForm<ProductCategory
 
         //只有新添加数据才可以设置是否最终分类
         //任意一个分类的子分类不允许 既有最终分类 又有不是最终分类的情况
-        if (!EntityForm.IsNew || Entity.Childs.Count > 0) frmIsEnd.Enabled = false;
+        if (!EntityForm.IsNew||(EntityForm.IsNew&&Entity.Parent.Childs.Count > 0 && !Entity.Parent.Childs[0].IsEnd)) frmIsEnd.Enabled = false;
+       
     }
 
     protected void Page_Load(object sender, EventArgs e)
