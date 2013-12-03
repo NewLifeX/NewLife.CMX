@@ -55,6 +55,11 @@
         <ul class="tab_nav">
             <li class="selected"><a onclick="tabs('#contentTab',0);" href="javascript:;">编辑产品</a></li>
             <li><a onclick="tabs('#contentTab',1);" href="javascript:void(0);">编辑产品内容</a></li>
+            <li><a onclick="tabs('#contentTab',2);" href="javascript:void(0);">编辑产品参数</a></li>
+            <li><a onclick="tabs('#contentTab',3);" href="javascript:void(0);">功能特点</a></li>
+            <li><a onclick="tabs('#contentTab',4);" href="javascript:void(0);">推荐应用</a></li>
+            <li><a onclick="tabs('#contentTab',5);" href="javascript:void(0);">相关配件</a></li>
+            <li><a onclick="tabs('#contentTab',6);" href="javascript:void(0);">产品视频</a></li>
         </ul>
         <div class="tab_con" style="display: block;">
             <table class="form_table">
@@ -145,6 +150,116 @@
                                 <script type="text/javascript">
                                     //实例化编辑器
                                     UE.getEditor('editor');
+                                </script>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tab_con">
+            <table class="form_table">
+                <col width="180px">
+                <col>
+                <tbody>
+                    <tr>
+                        <th>相关参数</th>
+                        <td>
+                            <div>
+                                <div>
+                                    <script id="editor1" type="text/plain" style="width: 1076px;" name="myContent2"><%=Entity.ProductGG %></script>
+                                </div>
+                                <script type="text/javascript">
+                                    //实例化编辑器
+                                    UE.getEditor('editor1');
+                                </script>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tab_con">
+            <table class="form_table">
+                <col width="180px">
+                <col>
+                <tbody>
+                    <tr>
+                        <th>产品特点</th>
+                        <td>
+                            <div>
+                                <div>
+                                    <script id="editor2" type="text/plain" style="width: 1076px;" name="myContent3"><%=Entity.ProductTD %></script>
+                                </div>
+                                <script type="text/javascript">
+                                    //实例化编辑器
+                                    UE.getEditor('editor2');
+                                </script>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tab_con">
+            <table class="form_table">
+                <col width="180px">
+                <col>
+                <tbody>
+                    <tr>
+                        <th>推荐应用</th>
+                        <td>
+                            <div>
+                                <div>
+                                    <script id="editor3" type="text/plain" style="width: 1076px;" name="myContent4"><%=Entity.ProductYY %></script>
+                                </div>
+                                <script type="text/javascript">
+                                    //实例化编辑器
+                                    UE.getEditor('editor3');
+                                </script>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tab_con">
+            <table class="form_table">
+                <col width="180px">
+                <col>
+                <tbody>
+                    <tr>
+                        <th>相关配件</th>
+                        <td>
+                            <div>
+                                <div>
+                                    <script id="editor4" type="text/plain" style="width: 1076px;" name="myContent5"><%=Entity.ProductPJ %></script>
+                                </div>
+                                <script type="text/javascript">
+                                    //实例化编辑器
+                                    UE.getEditor('editor4');
+                                </script>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tab_con">
+            <table class="form_table">
+                <col width="180px">
+                <col>
+                <tbody>
+                    <tr>
+                        <th>产品视频</th>
+                        <td>
+                            <div>
+                                <div>
+                                    <script id="editor5" type="text/plain" style="width: 1076px;" name="myContent6"><%=Entity.ProductSP %></script>
+                                </div>
+                                <script type="text/javascript">
+                                    //实例化编辑器
+                                    UE.getEditor('editor5');
                                 </script>
                             </div>
                         </td>
