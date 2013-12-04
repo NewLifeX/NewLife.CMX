@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using NewLife.CMX;
+using NewLife.CMX.Config;
 using NewLife.Xml;
 
 public partial class Admin_Settings_Sys_Config : MyModelEntityList
@@ -57,6 +58,7 @@ public partial class Admin_Settings_Sys_Config : MyModelEntityList
         webstatus.SelectedIndex = ssc.WebStatus;
         webclosereason.Text = ssc.CloseReason;
         webcountcode.Text = ssc.CountCode;
+
         MailConfig mc = MailConfig.Current;
         emailstmp.Text = mc.Stmp;
         emailport.Text = mc.Port.ToString();
@@ -64,6 +66,20 @@ public partial class Admin_Settings_Sys_Config : MyModelEntityList
         emailusername.Text = mc.Username;
         emailpassword.Text = mc.Password;
         emailnickname.Text = mc.Nickname;
+
+        WebSettingConfig wsc = WebSettingConfig.Current;
+        wsindex.Text = wsc.Index;
+        wscontact.Text = wsc.Contact;
+        wsforum.Text = wsc.Forum;
+        wsshop.Text = wsc.Shop;
+        wscopyright.Text = wsc.Copyright;
+        wsaddress.Text = wsc.Address;
+        wstel.Text = wsc.Tel;
+        wsicp.Text = wsc.ICP;
+        wstitle.Text = wsc.Title;
+        wskeywords.Text = wsc.Keywords;
+        wsdescription.Text = wsc.Description;
+
     }
 
     protected void btnSubmit_Click(object sender, EventArgs e)
@@ -90,7 +106,7 @@ public partial class Admin_Settings_Sys_Config : MyModelEntityList
         ac.ImgMaxHeight = Convert.ToInt32(attachimgmaxheight.Text.Trim());
         ac.ImgMaxWidth = Convert.ToInt32(attachimgmaxwidth.Text.Trim());
         ac.ThumbnailHeight = Convert.ToInt32(thumbnailheight.Text.Trim());
-        ac.ThumbnailWidth= Convert.ToInt32(thumbnailwidth.Text.Trim());
+        ac.ThumbnailWidth = Convert.ToInt32(thumbnailwidth.Text.Trim());
         ac.WatermarkType = Convert.ToInt32(watermarktype.Text.Trim());
         ac.WatermarkPosition = Convert.ToInt32(watermarkposition.Text.Trim());
         ac.WatermarkImgQuality = Convert.ToInt32(watermarkimgquality.Text.Trim());
@@ -100,7 +116,7 @@ public partial class Admin_Settings_Sys_Config : MyModelEntityList
         ac.WatermarkFont = watermarkfont.Text.Trim();
         ac.WatermarkFontSize = Convert.ToInt32(watermarkfontsize.Text.Trim());
         ac.Save();
-        
+
         SysConfig ssc = SysConfig.Current;
         ssc.Path = webpath.Text.Trim();
         ssc.ManagePath = webmanagepath.Text.Trim();
@@ -122,5 +138,19 @@ public partial class Admin_Settings_Sys_Config : MyModelEntityList
         mc.Password = emailpassword.Text.Trim();
         mc.Nickname = emailnickname.Text.Trim();
         mc.Save();
+
+        WebSettingConfig wsc = WebSettingConfig.Current;
+        wsc.Index = wsindex.Text;
+        wsc.Contact = wscontact.Text;
+        wsc.Forum = wsforum.Text;
+        wsc.Shop = wsshop.Text;
+        wsc.Copyright = wscopyright.Text;
+        wsc.Address = wsaddress.Text;
+        wsc.Tel = wstel.Text;
+        wsc.ICP = wsicp.Text;
+        wsc.Title = wstitle.Text;
+        wsc.Keywords = wskeywords.Text;
+        wsc.Description = wsdescription.Text;
+        wsc.Save();
     }
 }
