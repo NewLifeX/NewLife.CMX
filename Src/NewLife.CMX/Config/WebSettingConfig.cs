@@ -21,7 +21,7 @@ namespace NewLife.CMX.Config
         public String Contact { get { return _Contact; } set { _Contact = value; } }
 
         private String _Forum = "#";
-        /// <summary>论坛</summary>
+        /// <summary>论坛地址</summary>
         public String Forum { get { return _Forum; } set { _Forum = value; } }
 
         private String _Shop = "#";
@@ -55,9 +55,5 @@ namespace NewLife.CMX.Config
         private String _Description = "月无声电子设备有限公司坐落在交通方便的东莞市区,毗邻深圳、广州、佛山、惠州等城市。其主要产品有：双液灌胶机，精准双液点胶机，混合管，点胶机,AB胶枪，点胶针头，AB胶筒，点胶针筒，点胶针头，不锈钢压力桶。月无声的点胶设备适用于：环氧树脂，PU，双组份硅胶和其他双组份流体材料。";
         /// <summary>描述</summary>
         public String Description { get { return _Description; } set { _Description = value; } }
-
-        public String _GoPage = CMXConfigBase.Current.CurrentRootPath + "/GoPageUrl.ashx";
-        /// <summary>跳转页面地址</summary>
-        public String GoPage { get { return _GoPage; } set { _GoPage = value; } }
     }
 }

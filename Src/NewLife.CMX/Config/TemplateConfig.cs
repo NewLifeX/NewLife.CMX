@@ -100,6 +100,11 @@ namespace NewLife.CMX.Config
         /// <summary>左侧导航栏地址</summary>
         [Description("左侧导航栏地址")]
         public String LeftAddress { get { return _LeftAddress; } set { _LeftAddress = value; } }
+
+        public String _GoPage = CMXConfigBase.Current.CurrentRootPath + "/GoPageUrl.ashx";
+        /// <summary>跳转页面地址</summary>
+        [Description("跳转页面处理地址")]
+        public String GoPage { get { return _GoPage; } set { _GoPage = value; } }
         #endregion
 
         #region 构造方法

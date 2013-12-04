@@ -220,7 +220,7 @@ namespace NewLife.CMX
                     case __.Content: _Content = Convert.ToString(value); break;
                     case __.Specification: _Specification = Convert.ToString(value); break;
                     case __.Feature: _Feature = Convert.ToString(value); break;
-                    case __.App: _Feature = Convert.ToString(value); break;
+                    case __.App: _App = Convert.ToString(value); break;
                     case __.Fitting: _Fitting = Convert.ToString(value); break;
                     case __.Video: _Video = Convert.ToString(value); break;
                     default: base[name] = value; break;

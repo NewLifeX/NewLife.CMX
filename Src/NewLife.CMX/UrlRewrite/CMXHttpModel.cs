@@ -19,9 +19,14 @@ namespace NewLife.CMX.UrlRewrite
         /// <param name="context"></param>
         public void Init(HttpApplication context)
         {
-            context.BeginRequest += new EventHandler(ReUrl_BeginRequest);
+            context.BeginRequest += ReUrl_BeginRequest;
 
-            context.Error += new EventHandler(Application_OnError);
+            context.Error += Application_OnError;
+
+            //CMXConfigBase cb = CMXConfigBase.Current;
+            //WebSettingConfig wc = WebSettingConfig.Current;
+            //TemplateConfig tc = TemplateConfig.Current;
+
         }
 
         private void Application_OnError(object sender, EventArgs e)

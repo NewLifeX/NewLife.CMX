@@ -28,6 +28,7 @@ namespace NewLife.CMX.Config
         {
             //_CurrentParentPath = HttpRuntime.AppDomainAppVirtualPath.EnsureEnd("/");
             _CurrentParentPath = HttpRuntime.AppDomainAppVirtualPath;
+            if (_CurrentParentPath == "/") _CurrentParentPath = "";
         }
         #endregion
     }

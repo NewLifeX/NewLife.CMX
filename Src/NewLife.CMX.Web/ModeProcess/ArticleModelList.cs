@@ -27,9 +27,9 @@ namespace NewLife.CMX.Web
                 Article.Meta.TableName += Suffix;
                 ArticleCategory.Meta.TableName += Suffix;
 
-                EntityList<Article> Articles;
                 Int32 CountNum = 0;
-                EntityList<ArticleCategory> Categories;
+                EntityList<Article> Articles = new EntityList<Article>();
+                EntityList<ArticleCategory> Categories = new EntityList<ArticleCategory>();
 
                 //Channel channel = Channel.FindBySuffix(Suffix);
                 ArticleCategory ac = ArticleCategory.FindByID(CategoryID);
@@ -45,9 +45,13 @@ namespace NewLife.CMX.Web
                     {
                         return art.IsEnd == true;
                     });
-                    ArticleCategory first = Categories[0];
-                    Articles = Article.Search(null, first.ID, null, (Pageindex > 0 ? Pageindex - 1 : 0) * RecordNum, RecordNum);
-                    CountNum = Article.SearchCount(new int[] { first.ID }, null, 0, 0);
+
+                    if (Categories != null && Categories.Count > 0)
+                    {
+                        ArticleCategory first = Categories[0];
+                        Articles = Article.Search(null, first.ID, null, (Pageindex > 0 ? Pageindex - 1 : 0) * RecordNum, RecordNum);
+                        CountNum = Article.SearchCount(new int[] { first.ID }, null, 0, 0);
+                    }
                 }
 
                 PageCount = CountNum / 10 + (CountNum % 10 > 0 ? 1 : 0);
@@ -59,8 +63,8 @@ namespace NewLife.CMX.Web
                 dic.Add("RecordNum", RecordNum.ToString());
                 dic.Add("ContentAddress", channel.FormTemplate);
                 dic.Add("ChannelName", ChannelName);
-                dic.Add("PageCount", PageCount.ToString());
-                dic.Add("CurrentPage", (Pageindex > 0 ? Pageindex : 1) + "");
+                dic.Add("PageCount", PageCount > 0 ? PageCount + "" : "1");
+                dic.Add("CurrentPage", Pageindex > 0 ? Pageindex + "" : "1");
                 dic.Add("BeforeUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Suffix + "_" + BeforePage + "/" + CategoryID + "/" + channel.ListTemplate);
                 dic.Add("NextUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Suffix + "_" + NextPage + "/" + CategoryID + "/" + channel.ListTemplate);
                 dic.Add("FirstUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Suffix + "/" + CategoryID + "/" + channel.ListTemplate);
@@ -72,10 +76,9 @@ namespace NewLife.CMX.Web
                 engine.Foot = Foot;
                 engine.LeftMenu = LeftMenu;
                 engine.Suffix = Suffix;
-                //engine.ListEntity = Articles.ConvertAll<IEntity>(e => e as IEntity);
+                
                 engine.ListEntity = Articles as IEntityList;
                 engine.ListCategory = Categories.ConvertAll<IEntityTree>(e => e as IEntityTree);
-                //engine.ListCategory = Categories;
                 String content = engine.Render(Address + ".html");
 
                 return content;

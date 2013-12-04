@@ -72,7 +72,6 @@ public partial class Template_List : NewLife.CMX.WebBase.WebPageBase
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
         if (C == null)
         {
             Err("未确定的频道！");

@@ -25,17 +25,13 @@ namespace NewLife.CMX.Web
 
             if (CategoryID != 0)
             {
-                var i = ieo.Find("ID", CategoryID);
                 IEntityTree entity = ieo.Find("ID", CategoryID) as IEntityTree;
 
-                if (entity.Parent != null)
-                    id = entity.Parent["ID"].ToString();
+                if (entity.Parent != null) id = entity.Parent["ID"].ToString();
             }
 
             IEntityList list = ieo.FindAll("ParentID", 0);
-            //var jj = list.ToList().OrderBy(e => e["ID"]).ToList();
 
-            //dic.Add("Suffix", Suffix);
             dic.Add("ModelAddress", channel.ListTemplate);
             dic.Add("SelectedCategory", id);
             dic.Add("MenuTitle", channel.Name);

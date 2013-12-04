@@ -56,7 +56,7 @@ $(function () {
     //列表页中的go跳转
     $('.page-num').change(function () {
         if (parseInt($('.page-num').val()) && parseInt($('.page-num').val()) <= parseInt($('.pagecount').text())) {
-            var targetUrl = $('.page-num').attr('TarUrl');
+            var targetUrl = $('.page-num').attr('tarurl');
             $.get(
                 targetUrl,
                 { PageNum: $('.page-num').val(), urldata: location.href, pagecount: $('.pagecount').text() },

@@ -35,6 +35,5 @@ public partial class CMX_ProductForm : MyModelEntityForm<Product>
         Entity.ProductYY = Request["MyContent4"];
         Entity.ProductPJ = Request["MyContent5"];
         Entity.ProductSP = Request["MyContent6"];
-
     }
 }
