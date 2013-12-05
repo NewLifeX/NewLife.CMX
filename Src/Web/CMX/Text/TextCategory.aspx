@@ -2,6 +2,22 @@
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="H">
     <title>文本分类管理</title>
+     <script type="text/javascript">
+         $(function () {
+             var url = $('.tools_btn').attr('href').split("&");
+
+             var value = '';
+             $(url).each(function () {
+                 var i = this.match(/CID\=([^_\.]*)/);
+                 if (i && i.length > 1) value = i[1];
+             });
+
+             if (value) {
+                 var newurl = $('.tools_btn').attr('href') + "&ParentID=" + value;
+                 $('.tools_btn').attr('href', newurl);
+             }
+         });
+    </script>
 </asp:Content>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
     <div class="tools_box">

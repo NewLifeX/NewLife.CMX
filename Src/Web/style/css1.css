@@ -736,15 +736,14 @@ ul.product li#product_01
 
 .list_meu dl
 {
-    margin: 0 0 0 10px;
+    margin: 0 0 0 0;
     display: block;
 }
 
     .list_meu dl dt
     {
-        padding-top: 20px;
+        padding: 20px 0 0 10px;
     }
-
         .list_meu dl dt a
         {
             height: 24px;
@@ -784,30 +783,23 @@ ul.product li#product_01
         {
             padding: 0px;
             margin: 0px;
-            list-style: none;
         }
 
         .list_meu dl dd li
         {
             height: 24px;
-            line-height: 24px;
-            padding: 0 0 0 18px;
-            padding: 0px;
+            padding:0;
+			border-bottom:1px solid #eee;		
         }
-
-            .list_meu dl dd li:hover
-            {
-                background-color: #cccccc;
-                width: 160px;
-            }
-
+			.list_meu dl dd li:hover
+			{
+              background-color: #d5e8fa;
+			}
             .list_meu dl dd li a
             {
-                font-size: 12px;
-                text-decoration: none;
-                color: black;
-                margin-left: 20px;
+                font-size: 14px;
             }
+
 
 /*产品与服务右边的产品类表详细内容...................................................................................................................*/
 .content

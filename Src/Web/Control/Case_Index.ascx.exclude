@@ -1,0 +1,28 @@
+﻿<%@ control language="C#" autoeventwireup="true" inherits="Public_Case_Index, App_Web_pcmqk25j" %>
+<script runat="server">
+
+  
+</script>
+
+<asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand">
+    <ItemTemplate>
+        <div class="case_img_text">
+            <div class="case_img">
+                <img src="<%#Eval("newspicpath") %>" width="130" height="84" alt="" />
+            </div>
+            <div class="case_text">
+                <strong><a href="Newsdetail.aspx?id=<%#Eval("newsid") %>">
+                    <%#Eval("newstitle") %>
+                </a></strong>
+                <br />
+                <%# StringCheck.Getsub(70,Func.NoHTML(Eval("newscontent").ToString()))%>
+                <br />
+                <p class="text_right">
+                    <a href="Casedetail.aspx?id=<%#Eval("newsid") %>">
+                        <img src="images/arrow.jpg" alt="" class="img_middle" />查看全文</a></p>
+            </div>
+            <div class="clearboth">
+            </div>
+        </div>
+    </ItemTemplate>
+</asp:Repeater>

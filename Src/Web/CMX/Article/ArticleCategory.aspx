@@ -3,15 +3,20 @@
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="H">
     <title>文章分类管理</title>
     <script type="text/javascript">
-        //$(function () {
-        //    $('.displayurl').each(function () {
-        //        var url = $(this).text();
-        //        var str = "javascript:parent.f_addTab('SysModel','系统模型管理','<url>')";
-        //        var param = location;
-        //        var href = str.replace("<url>", url + "&" + param);
-        //        $($($('.displayurl')[0]).parent().find("a")).attr('href', href);
-        //    });
-        //});
+        $(function () {
+            var url = $('.tools_btn').attr('href').split("&");
+
+            var value = '';
+            $(url).each(function () {
+                var i = this.match(/CID\=([^_\.]*)/);
+                if (i && i.length > 1) value = i[1];
+            });
+
+            if (value) {
+                var newurl = $('.tools_btn').attr('href') + "&ParentID=" + value;
+                $('.tools_btn').attr('href', newurl);
+            }
+        });
     </script>
 </asp:Content>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">

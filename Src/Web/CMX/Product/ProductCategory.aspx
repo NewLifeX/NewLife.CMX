@@ -2,12 +2,28 @@
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="H">
     <title>产品分类管理</title>
+    <script type="text/javascript">
+        $(function () {
+            var url = $('.tools_btn').attr('href').split("&");
+
+            var value = '';
+            $(url).each(function () {
+                var i = this.match(/CID\=([^_\.]*)/);
+                if (i && i.length > 1) value = i[1];
+            });
+
+            if (value) {
+                var newurl = $('.tools_btn').attr('href') + "&ParentID=" + value;
+                $('.tools_btn').attr('href', newurl);
+            }
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
     <div class="tools_box">
         <div class="tools_bar">
             <a href="ProductCategoryForm.aspx" class="tools_btn listpage"><span><b class="add">添加产品分类</b></span></a>
-           <%-- <div class="search_box">
+            <%-- <div class="search_box">
                 关键字：<asp:TextBox ID="txtKey" runat="server"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="查询" />
             </div>--%>
         </div>

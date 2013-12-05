@@ -6,7 +6,7 @@
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="C">
     <div id="contentTab">
         <ul class="tab_nav">
-            <li class="selected"><a onclick="tabs('#contentTab',0);" href="javascript:;">编辑产品分类</a></li>
+            <li class="selected"><a onclick="tabs('#contentTab',0);" href="javascript:void(0);">编辑产品分类</a></li>
         </ul>
         <div class="tab_con" style="display: block;">
             <table class="form_table">

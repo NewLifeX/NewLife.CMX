@@ -1,0 +1,5 @@
+F:\Src\NewLife.CMX\obj\Debug\NewLife.CMX.csprojResolveAssemblyReference.cache
+F:\Bin\NewLife.CMX.dll
+F:\Bin\NewLife.CMX.pdb
+F:\Src\NewLife.CMX\obj\Debug\NewLife.CMX.dll
+F:\Src\NewLife.CMX\obj\Debug\NewLife.CMX.pdb
