@@ -9,7 +9,7 @@
             <div class="tools_bar">
                 <a href="SysModelForm.aspx" class="tools_btn"><span><b class="add">添加模型</b></span></a>
                 <div class="search_box">
-                    <asp:TextBox ID="txtKey" runat="server" CssClass="txtInput"></asp:TextBox>
+                    <asp:TextBox ID="txtKey" runat="server" CssClass="form-control" Width="200px"></asp:TextBox>
                     <asp:Button ID="btnSearch" runat="server" Text="搜 索" CssClass="btnSearch" />
                 </div>
             </div>

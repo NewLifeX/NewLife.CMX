@@ -9,7 +9,7 @@
             <div class="tools_bar">
                 <div class="search_box">
                     角色：
-                    <asp:TextBox ID="txtName" runat="server" CssClass="txtInput"></asp:TextBox>
+                    <asp:TextBox ID="txtName" runat="server" CssClass="form-control" Width="200px"></asp:TextBox>
                     <asp:Button ID="btnSearch" runat="server" Text="添 加" CssClass="btnSearch" OnClick="btnAdd_Click" />&nbsp;模版角色：<asp:TextBox ID="txtRoleTemplate" runat="server" CssClass="textfield"></asp:TextBox>
                     &nbsp;<asp:Button ID="btnCopyRole" runat="server" Text="批量复制权限"
                         OnClientClick='return confirm("确定批量操作吗？")' CssClass="btnSearch" OnClick="btnCopyRole_Click" />

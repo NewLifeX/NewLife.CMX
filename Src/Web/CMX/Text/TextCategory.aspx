@@ -66,7 +66,7 @@
                 <ItemTemplate>
                     <asp:LinkButton ID="btnDelete" runat="server" CausesValidation="False" CommandName="Delete" OnClientClick='return confirm("确定删除吗？")' Text="删除"></asp:LinkButton>
                 </ItemTemplate>
-                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="30px" />
+                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="40px" />
             </asp:TemplateField>
         </Columns>
         <EmptyDataTemplate>

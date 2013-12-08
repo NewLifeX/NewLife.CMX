@@ -124,6 +124,9 @@ img.spec_photo{ border:1px solid #ccc; height:20px; vertical-align:middle; width
 .select_box{ padding:0 10px; _padding:3px 10px 0 10px; height:28px; _height:25px; line-height:27px; border-top:1px solid #EDECFF; font-family:'宋体'; background:url(tools_bg.gif) left -80px repeat-x; overflow:hidden; }
 .select_box input{vertical-align:middle;}
 
+.search_box .textfield{vertical-align:middle;}
+.search_box .Wdate{vertical-align:middle;}
+
 select.select,select.select2{ height:22px; line-height:22px; border:1px solid #E1E1E1; color:#7A7A7A; background:#FAFAFA; vertical-align:middle; }
 select.select{padding:1px;}
 select.select2{padding:2px;}

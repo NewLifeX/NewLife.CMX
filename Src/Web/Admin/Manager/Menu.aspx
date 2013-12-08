@@ -9,8 +9,7 @@
             <a href="MenuForm.aspx" class="tools_btn"><span><b class="add">添加菜单</b></span></a>
             <div class="search_box">
                 <asp:Label ID="Label_Info" runat="server" ForeColor="Red"></asp:Label>
-                &nbsp;&nbsp;&nbsp;<asp:Button ID="Button2" runat="server" Text="导出" CssClass="btnSearch"
-                    OnClick="Button2_Click" />
+                &nbsp;&nbsp;&nbsp;<asp:Button ID="Button2" runat="server" Text="导出" OnClick="Button2_Click" CssClass="btnSearch" />
                 &nbsp;&nbsp;&nbsp;
                 <asp:FileUpload ID="FileUpload1" CssClass="btnSearch" runat="server" />
                 &nbsp;<asp:Button ID="Button3" runat="server" Text="导入" CssClass="btnSearch" OnClick="Button3_Click" />
