@@ -13,18 +13,28 @@ namespace NewLife.CMX
     [DataObject]
     [Description("文章")]
     [BindIndex("IX_Article_CategoryID", false, "CategoryID")]
-    [BindIndex("PK__Article__3214EC2732AB8735", true, "ID")]
     [BindTable("Article", Description = "文章", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class Article : IArticle
     {
         #region 属性
+        private Int32 _ID;
+        /// <summary>编号</summary>
+        [DisplayName("编号")]
+        [Description("编号")]
+        [DataObjectField(true, true, false, 10)]
+        [BindColumn(1, "ID", "编号", null, "int", 10, 0, false)]
+        public virtual Int32 ID
+        {
+            get { return _ID; }
+            set { if (OnPropertyChanging(__.ID, value)) { _ID = value; OnPropertyChanged(__.ID); } }
+        }
 
         private Int32 _CategoryID;
         /// <summary>分类</summary>
         [DisplayName("分类")]
         [Description("分类")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(1, "CategoryID", "分类", null, "int", 10, 0, false)]
+        [BindColumn(2, "CategoryID", "分类", null, "int", 10, 0, false)]
         public virtual Int32 CategoryID
         {
             get { return _CategoryID; }
@@ -36,7 +46,7 @@ namespace NewLife.CMX
         [DisplayName("分类名称")]
         [Description("分类名称")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(2, "CategoryName", "分类名称", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(3, "CategoryName", "分类名称", null, "nvarchar(50)", 0, 0, true)]
         public virtual String CategoryName
         {
             get { return _CategoryName; }
@@ -48,7 +58,7 @@ namespace NewLife.CMX
         [DisplayName("标题")]
         [Description("标题")]
         [DataObjectField(false, false, false, 200)]
-        [BindColumn(3, "Title", "标题", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(4, "Title", "标题", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Title
         {
             get { return _Title; }
@@ -60,7 +70,7 @@ namespace NewLife.CMX
         [DisplayName("最新版本")]
         [Description("最新版本")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(4, "Version", "最新版本", null, "int", 10, 0, false)]
+        [BindColumn(5, "Version", "最新版本", null, "int", 10, 0, false)]
         public virtual Int32 Version
         {
             get { return _Version; }
@@ -72,7 +82,7 @@ namespace NewLife.CMX
         [DisplayName("访问量")]
         [Description("访问量")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(5, "Hits", "访问量", null, "int", 10, 0, false)]
+        [BindColumn(6, "Hits", "访问量", null, "int", 10, 0, false)]
         public virtual Int32 Hits
         {
             get { return _Hits; }
@@ -84,7 +94,7 @@ namespace NewLife.CMX
         [DisplayName("访问统计")]
         [Description("访问统计")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(6, "StatisticsID", "访问统计", null, "int", 10, 0, false)]
+        [BindColumn(7, "StatisticsID", "访问统计", null, "int", 10, 0, false)]
         public virtual Int32 StatisticsID
         {
             get { return _StatisticsID; }
@@ -96,7 +106,7 @@ namespace NewLife.CMX
         [DisplayName("创建人")]
         [Description("创建人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(7, "CreateUserID", "创建人", null, "int", 10, 0, false)]
+        [BindColumn(8, "CreateUserID", "创建人", null, "int", 10, 0, false)]
         public virtual Int32 CreateUserID
         {
             get { return _CreateUserID; }
@@ -108,7 +118,7 @@ namespace NewLife.CMX
         [DisplayName("创建人")]
         [Description("创建人")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(8, "CreateUserName", "创建人", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(9, "CreateUserName", "创建人", null, "nvarchar(50)", 0, 0, true)]
         public virtual String CreateUserName
         {
             get { return _CreateUserName; }
@@ -120,7 +130,7 @@ namespace NewLife.CMX
         [DisplayName("创建时间")]
         [Description("创建时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(9, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
+        [BindColumn(10, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
         public virtual DateTime CreateTime
         {
             get { return _CreateTime; }
@@ -132,7 +142,7 @@ namespace NewLife.CMX
         [DisplayName("更新人")]
         [Description("更新人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(10, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
+        [BindColumn(11, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
         public virtual Int32 UpdateUserID
         {
             get { return _UpdateUserID; }
@@ -144,7 +154,7 @@ namespace NewLife.CMX
         [DisplayName("更新人")]
         [Description("更新人")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(11, "UpdateUserName", "更新人", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(12, "UpdateUserName", "更新人", null, "nvarchar(50)", 0, 0, true)]
         public virtual String UpdateUserName
         {
             get { return _UpdateUserName; }
@@ -156,7 +166,7 @@ namespace NewLife.CMX
         [DisplayName("更新时间")]
         [Description("更新时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(12, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
+        [BindColumn(13, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
         public virtual DateTime UpdateTime
         {
             get { return _UpdateTime; }
@@ -168,23 +178,11 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(13, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(14, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Remark
         {
             get { return _Remark; }
             set { if (OnPropertyChanging(__.Remark, value)) { _Remark = value; OnPropertyChanged(__.Remark); } }
-        }
-
-        private Int32 _ID;
-        /// <summary>编号</summary>
-        [DisplayName("编号")]
-        [Description("编号")]
-        [DataObjectField(true, true, false, 10)]
-        [BindColumn(14, "ID", "编号", null, "int", 10, 0, false)]
-        public virtual Int32 ID
-        {
-            get { return _ID; }
-            set { if (OnPropertyChanging(__.ID, value)) { _ID = value; OnPropertyChanged(__.ID); } }
         }
         #endregion
 
@@ -202,6 +200,7 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
+                    case __.ID : return _ID;
                     case __.CategoryID : return _CategoryID;
                     case __.CategoryName : return _CategoryName;
                     case __.Title : return _Title;
@@ -215,7 +214,6 @@ namespace NewLife.CMX
                     case __.UpdateUserName : return _UpdateUserName;
                     case __.UpdateTime : return _UpdateTime;
                     case __.Remark : return _Remark;
-                    case __.ID : return _ID;
                     default: return base[name];
                 }
             }
@@ -223,6 +221,7 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
+                    case __.ID : _ID = Convert.ToInt32(value); break;
                     case __.CategoryID : _CategoryID = Convert.ToInt32(value); break;
                     case __.CategoryName : _CategoryName = Convert.ToString(value); break;
                     case __.Title : _Title = Convert.ToString(value); break;
@@ -236,7 +235,6 @@ namespace NewLife.CMX
                     case __.UpdateUserName : _UpdateUserName = Convert.ToString(value); break;
                     case __.UpdateTime : _UpdateTime = Convert.ToDateTime(value); break;
                     case __.Remark : _Remark = Convert.ToString(value); break;
-                    case __.ID : _ID = Convert.ToInt32(value); break;
                     default: base[name] = value; break;
                 }
             }
@@ -247,6 +245,9 @@ namespace NewLife.CMX
         /// <summary>取得文章字段信息的快捷方式</summary>
         public partial class _
         {
+            ///<summary>编号</summary>
+            public static readonly Field ID = FindByName(__.ID);
+
             ///<summary>分类</summary>
             public static readonly Field CategoryID = FindByName(__.CategoryID);
 
@@ -286,15 +287,15 @@ namespace NewLife.CMX
             ///<summary>备注</summary>
             public static readonly Field Remark = FindByName(__.Remark);
 
-            ///<summary>编号</summary>
-            public static readonly Field ID = FindByName(__.ID);
-
             static Field FindByName(String name) { return Meta.Table.FindByName(name); }
         }
 
         /// <summary>取得文章字段名称的快捷方式</summary>
         partial class __
         {
+            ///<summary>编号</summary>
+            public const String ID = "ID";
+
             ///<summary>分类</summary>
             public const String CategoryID = "CategoryID";
 
@@ -334,9 +335,6 @@ namespace NewLife.CMX
             ///<summary>备注</summary>
             public const String Remark = "Remark";
 
-            ///<summary>编号</summary>
-            public const String ID = "ID";
-
         }
         #endregion
     }
@@ -345,6 +343,9 @@ namespace NewLife.CMX
     public partial interface IArticle
     {
         #region 属性
+        /// <summary>编号</summary>
+        Int32 ID { get; set; }
+
         /// <summary>分类</summary>
         Int32 CategoryID { get; set; }
 
@@ -383,9 +384,6 @@ namespace NewLife.CMX
 
         /// <summary>备注</summary>
         String Remark { get; set; }
-
-        /// <summary>编号</summary>
-        Int32 ID { get; set; }
         #endregion
 
         #region 获取/设置 字段值

@@ -12,21 +12,31 @@ namespace NewLife.CMX
     [Serializable]
     [DataObject]
     [Description("文章分类")]
-    [BindIndex("IU_ArticleCategory_ParentID_Name", true, "ParentID,Name")]
     [BindIndex("IX_ArticleCategory_Name", false, "Name")]
     [BindIndex("IX_ArticleCategory_ParentID", false, "ParentID")]
-    [BindIndex("PK__ArticleC__3214EC273864608B", true, "ID")]
+    [BindIndex("IU_ArticleCategory_ParentID_Name", true, "ParentID,Name")]
     [BindTable("ArticleCategory", Description = "文章分类", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class ArticleCategory : IArticleCategory
     {
         #region 属性
+        private Int32 _ID;
+        /// <summary>编号</summary>
+        [DisplayName("编号")]
+        [Description("编号")]
+        [DataObjectField(true, true, false, 10)]
+        [BindColumn(1, "ID", "编号", null, "int", 10, 0, false)]
+        public virtual Int32 ID
+        {
+            get { return _ID; }
+            set { if (OnPropertyChanging(__.ID, value)) { _ID = value; OnPropertyChanged(__.ID); } }
+        }
 
         private String _Name;
         /// <summary>名称</summary>
         [DisplayName("名称")]
         [Description("名称")]
         [DataObjectField(false, false, false, 50)]
-        [BindColumn(1, "Name", "名称", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(2, "Name", "名称", null, "nvarchar(50)", 0, 0, true)]
         public virtual String Name
         {
             get { return _Name; }
@@ -38,11 +48,23 @@ namespace NewLife.CMX
         [DisplayName("父类")]
         [Description("父类")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(2, "ParentID", "父类", null, "int", 10, 0, false)]
+        [BindColumn(3, "ParentID", "父类", null, "int", 10, 0, false)]
         public virtual Int32 ParentID
         {
             get { return _ParentID; }
             set { if (OnPropertyChanging(__.ParentID, value)) { _ParentID = value; OnPropertyChanged(__.ParentID); } }
+        }
+
+        private Boolean _IsEnd;
+        /// <summary>是否最终分类</summary>
+        [DisplayName("是否最终分类")]
+        [Description("是否最终分类")]
+        [DataObjectField(false, false, true, 1)]
+        [BindColumn(4, "IsEnd", "是否最终分类", null, "bit", 0, 0, false)]
+        public virtual Boolean IsEnd
+        {
+            get { return _IsEnd; }
+            set { if (OnPropertyChanging(__.IsEnd, value)) { _IsEnd = value; OnPropertyChanged(__.IsEnd); } }
         }
 
         private Int32 _Sort;
@@ -50,7 +72,7 @@ namespace NewLife.CMX
         [DisplayName("排序")]
         [Description("排序")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(3, "Sort", "排序", null, "int", 10, 0, false)]
+        [BindColumn(5, "Sort", "排序", null, "int", 10, 0, false)]
         public virtual Int32 Sort
         {
             get { return _Sort; }
@@ -62,35 +84,11 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(4, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(6, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Remark
         {
             get { return _Remark; }
             set { if (OnPropertyChanging(__.Remark, value)) { _Remark = value; OnPropertyChanged(__.Remark); } }
-        }
-
-        private Int32 _ID;
-        /// <summary>编号</summary>
-        [DisplayName("编号")]
-        [Description("编号")]
-        [DataObjectField(true, true, false, 10)]
-        [BindColumn(5, "ID", "编号", null, "int", 10, 0, false)]
-        public virtual Int32 ID
-        {
-            get { return _ID; }
-            set { if (OnPropertyChanging(__.ID, value)) { _ID = value; OnPropertyChanged(__.ID); } }
-        }
-
-        private Boolean _IsEnd;
-        /// <summary>是否最终分类</summary>
-        [DisplayName("是否最终分类")]
-        [Description("是否最终分类")]
-        [DataObjectField(false, false, true, 1)]
-        [BindColumn(6, "IsEnd", "是否最终分类", null, "bit", 0, 0, false)]
-        public virtual Boolean IsEnd
-        {
-            get { return _IsEnd; }
-            set { if (OnPropertyChanging(__.IsEnd, value)) { _IsEnd = value; OnPropertyChanged(__.IsEnd); } }
         }
         #endregion
 
@@ -108,12 +106,12 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
+                    case __.ID : return _ID;
                     case __.Name : return _Name;
                     case __.ParentID : return _ParentID;
+                    case __.IsEnd : return _IsEnd;
                     case __.Sort : return _Sort;
                     case __.Remark : return _Remark;
-                    case __.ID : return _ID;
-                    case __.IsEnd : return _IsEnd;
                     default: return base[name];
                 }
             }
@@ -121,12 +119,12 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
+                    case __.ID : _ID = Convert.ToInt32(value); break;
                     case __.Name : _Name = Convert.ToString(value); break;
                     case __.ParentID : _ParentID = Convert.ToInt32(value); break;
+                    case __.IsEnd : _IsEnd = Convert.ToBoolean(value); break;
                     case __.Sort : _Sort = Convert.ToInt32(value); break;
                     case __.Remark : _Remark = Convert.ToString(value); break;
-                    case __.ID : _ID = Convert.ToInt32(value); break;
-                    case __.IsEnd : _IsEnd = Convert.ToBoolean(value); break;
                     default: base[name] = value; break;
                 }
             }
@@ -137,11 +135,17 @@ namespace NewLife.CMX
         /// <summary>取得文章分类字段信息的快捷方式</summary>
         public partial class _
         {
+            ///<summary>编号</summary>
+            public static readonly Field ID = FindByName(__.ID);
+
             ///<summary>名称</summary>
             public static readonly Field Name = FindByName(__.Name);
 
             ///<summary>父类</summary>
             public static readonly Field ParentID = FindByName(__.ParentID);
+
+            ///<summary>是否最终分类</summary>
+            public static readonly Field IsEnd = FindByName(__.IsEnd);
 
             ///<summary>排序</summary>
             public static readonly Field Sort = FindByName(__.Sort);
@@ -149,35 +153,29 @@ namespace NewLife.CMX
             ///<summary>备注</summary>
             public static readonly Field Remark = FindByName(__.Remark);
 
-            ///<summary>编号</summary>
-            public static readonly Field ID = FindByName(__.ID);
-
-            ///<summary>是否最终分类</summary>
-            public static readonly Field IsEnd = FindByName(__.IsEnd);
-
             static Field FindByName(String name) { return Meta.Table.FindByName(name); }
         }
 
         /// <summary>取得文章分类字段名称的快捷方式</summary>
         partial class __
         {
+            ///<summary>编号</summary>
+            public const String ID = "ID";
+
             ///<summary>名称</summary>
             public const String Name = "Name";
 
             ///<summary>父类</summary>
             public const String ParentID = "ParentID";
 
+            ///<summary>是否最终分类</summary>
+            public const String IsEnd = "IsEnd";
+
             ///<summary>排序</summary>
             public const String Sort = "Sort";
 
             ///<summary>备注</summary>
             public const String Remark = "Remark";
-
-            ///<summary>编号</summary>
-            public const String ID = "ID";
-
-            ///<summary>是否最终分类</summary>
-            public const String IsEnd = "IsEnd";
 
         }
         #endregion
@@ -187,23 +185,23 @@ namespace NewLife.CMX
     public partial interface IArticleCategory
     {
         #region 属性
+        /// <summary>编号</summary>
+        Int32 ID { get; set; }
+
         /// <summary>名称</summary>
         String Name { get; set; }
 
         /// <summary>父类</summary>
         Int32 ParentID { get; set; }
 
+        /// <summary>是否最终分类</summary>
+        Boolean IsEnd { get; set; }
+
         /// <summary>排序</summary>
         Int32 Sort { get; set; }
 
         /// <summary>备注</summary>
         String Remark { get; set; }
-
-        /// <summary>编号</summary>
-        Int32 ID { get; set; }
-
-        /// <summary>是否最终分类</summary>
-        Boolean IsEnd { get; set; }
         #endregion
 
         #region 获取/设置 字段值

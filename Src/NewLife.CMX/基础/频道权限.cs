@@ -12,12 +12,11 @@ namespace NewLife.CMX
     [Serializable]
     [DataObject]
     [Description("频道权限")]
-    [BindIndex("IX_ChennalRole_RoleID", false, "RoleID")]
+    [BindIndex("IX_ChannelRole_RoleID", false, "RoleID")]
     [BindTable("ChannelRole", Description = "频道权限", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
-    public partial class ChannelRole : IChennalRole
+    public partial class ChannelRole : IChannelRole
     {
         #region 属性
-
         private Int32 _ID;
         /// <summary>编号</summary>
         [DisplayName("编号")]
@@ -121,7 +120,7 @@ namespace NewLife.CMX
     }
 
     /// <summary>频道权限接口</summary>
-    public partial interface IChennalRole
+    public partial interface IChannelRole
     {
         #region 属性
         /// <summary>编号</summary>

@@ -15,9 +15,6 @@ namespace NewLife.CMX
     [BindTable("TextStatistics", Description = "文本统计", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class TextStatistics : ITextStatistics
     {
-        #region 属性
-        #endregion
-
 
         #region 字段名
         /// <summary>取得文本统计字段信息的快捷方式</summary>
@@ -36,8 +33,7 @@ namespace NewLife.CMX
     /// <summary>文本统计接口</summary>
     public partial interface ITextStatistics
     {
-        #region 属性        
-        #endregion
+        #region 属性        #endregion
 
         #region 获取/设置 字段值
         /// <summary>获取/设置 字段值。</summary>
