@@ -277,6 +277,55 @@ Channel：
   </tr>
 </table>
 
+ChannelRole：
+<strong>频道权限 （ChannelRole）</strong> <BR>
+<table border="0" cellspacing="0" class="dbtable">
+  <tr align="center" valign="middle" class="caption">
+    <td width="150">中文名</td>
+    <td width="150">英文名</td>
+    <td width="150">字段名</td>
+    <td width="75">数据类型</td>
+    <td width="75">大小</td>
+    <td width="75">是否主键</td>
+    <td width="75">是否唯一</td>
+    <td width="75">是否必填</td>
+    <td width="75">默认值</td>
+  </tr>
+  <tr class="dbbody">
+    <td>编号</td>
+    <td>ID</td>
+    <td>ID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td width="75"></td>
+  </tr>
+  <tr class="dbbody">
+    <td>角色ID</td>
+    <td>RoleID</td>
+    <td>RoleID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td width="75"></td>
+  </tr>
+  <tr class="dbbody">
+    <td>频道ID</td>
+    <td>ChannelID</td>
+    <td>ChannelID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td width="75"></td>
+  </tr>
+</table>
+
 ArticleCategory：
 <strong>文章分类 （ArticleCategory）</strong> <BR>
 <table border="0" cellspacing="0" class="dbtable">
@@ -319,6 +368,17 @@ ArticleCategory：
     <td>ParentID</td>
     <td>Int32</td>
     <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td width="75"></td>
+  </tr>
+  <tr class="dbbody">
+    <td>是否最终分类</td>
+    <td>IsEnd</td>
+    <td>IsEnd</td>
+    <td>Boolean</td>
+    <td>1</td>
     <td align="center">&nbsp;</td>
     <td align="center">&nbsp;</td>
     <td align="center">&nbsp;</td>
@@ -379,6 +439,17 @@ Article：
     <td>CategoryID</td>
     <td>Int32</td>
     <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td width="75"></td>
+  </tr>
+  <tr class="dbbody">
+    <td>分类名称</td>
+    <td>CategoryName</td>
+    <td>CategoryName</td>
+    <td>String</td>
+    <td>50</td>
     <td align="center">&nbsp;</td>
     <td align="center">&nbsp;</td>
     <td align="center">&nbsp;</td>
@@ -675,6 +746,17 @@ TextCategory：
     <td width="75"></td>
   </tr>
   <tr class="dbbody">
+    <td>是否最终分类</td>
+    <td>IsEnd</td>
+    <td>IsEnd</td>
+    <td>Boolean</td>
+    <td>1</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td width="75"></td>
+  </tr>
+  <tr class="dbbody">
     <td>排序</td>
     <td>Sort</td>
     <td>Sort</td>
@@ -729,6 +811,17 @@ Text：
     <td>CategoryID</td>
     <td>Int32</td>
     <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td width="75"></td>
+  </tr>
+  <tr class="dbbody">
+    <td>分类名称</td>
+    <td>CategoryName</td>
+    <td>CategoryName</td>
+    <td>String</td>
+    <td>50</td>
     <td align="center">&nbsp;</td>
     <td align="center">&nbsp;</td>
     <td align="center">&nbsp;</td>
@@ -1014,6 +1107,17 @@ ProductCategory：
     <td width="75"></td>
   </tr>
   <tr class="dbbody">
+    <td>是否最终分类</td>
+    <td>IsEnd</td>
+    <td>IsEnd</td>
+    <td>Boolean</td>
+    <td>1</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td width="75"></td>
+  </tr>
+  <tr class="dbbody">
     <td>排序</td>
     <td>Sort</td>
     <td>Sort</td>
@@ -1068,6 +1172,17 @@ Product：
     <td>CategoryID</td>
     <td>Int32</td>
     <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td width="75"></td>
+  </tr>
+  <tr class="dbbody">
+    <td>分类名称</td>
+    <td>CategoryName</td>
+    <td>CategoryName</td>
+    <td>String</td>
+    <td>50</td>
     <td align="center">&nbsp;</td>
     <td align="center">&nbsp;</td>
     <td align="center">&nbsp;</td>
@@ -1194,6 +1309,17 @@ Product：
     <td align="center">&nbsp;</td>
     <td width="75"></td>
   </tr>
+  <tr class="dbbody">
+    <td>图片路径</td>
+    <td>PhotoPath</td>
+    <td>PhotoPath</td>
+    <td>String</td>
+    <td>200</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td width="75"></td>
+  </tr>
 </table>
 
 ProductContent：
@@ -1241,6 +1367,61 @@ ProductContent：
     <td align="center">&nbsp;</td>
     <td align="center">&nbsp;</td>
     <td align="center">是</td>
+    <td width="75"></td>
+  </tr>
+  <tr class="dbbody">
+    <td>规格参数</td>
+    <td>Specification</td>
+    <td>Specification</td>
+    <td>String</td>
+    <td>-1</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td width="75"></td>
+  </tr>
+  <tr class="dbbody">
+    <td>功能特点</td>
+    <td>Feature</td>
+    <td>Feature</td>
+    <td>String</td>
+    <td>-1</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td width="75"></td>
+  </tr>
+  <tr class="dbbody">
+    <td>推荐应用</td>
+    <td>App</td>
+    <td>App</td>
+    <td>String</td>
+    <td>-1</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td width="75"></td>
+  </tr>
+  <tr class="dbbody">
+    <td>相关配件</td>
+    <td>Fitting</td>
+    <td>Fitting</td>
+    <td>String</td>
+    <td>-1</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td width="75"></td>
+  </tr>
+  <tr class="dbbody">
+    <td>产品视频</td>
+    <td>Video</td>
+    <td>Video</td>
+    <td>String</td>
+    <td>-1</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
     <td width="75"></td>
   </tr>
   <tr class="dbbody">
@@ -1313,54 +1494,5 @@ ProductStatistics：
     <td width="75">是否唯一</td>
     <td width="75">是否必填</td>
     <td width="75">默认值</td>
-  </tr>
-</table>
-
-ChennalRole：
-<strong>频道权限 （ChennalRole）</strong> <BR>
-<table border="0" cellspacing="0" class="dbtable">
-  <tr align="center" valign="middle" class="caption">
-    <td width="150">中文名</td>
-    <td width="150">英文名</td>
-    <td width="150">字段名</td>
-    <td width="75">数据类型</td>
-    <td width="75">大小</td>
-    <td width="75">是否主键</td>
-    <td width="75">是否唯一</td>
-    <td width="75">是否必填</td>
-    <td width="75">默认值</td>
-  </tr>
-  <tr class="dbbody">
-    <td>编号</td>
-    <td>ID</td>
-    <td>ID</td>
-    <td>Int32</td>
-    <td>10</td>
-    <td align="center">是</td>
-    <td align="center">是</td>
-    <td align="center">是</td>
-    <td width="75"></td>
-  </tr>
-  <tr class="dbbody">
-    <td>角色ID</td>
-    <td>RoleID</td>
-    <td>RoleID</td>
-    <td>Int32</td>
-    <td>10</td>
-    <td align="center">&nbsp;</td>
-    <td align="center">&nbsp;</td>
-    <td align="center">&nbsp;</td>
-    <td width="75"></td>
-  </tr>
-  <tr class="dbbody">
-    <td>频道ID</td>
-    <td>ChannelID</td>
-    <td>ChannelID</td>
-    <td>Int32</td>
-    <td>10</td>
-    <td align="center">&nbsp;</td>
-    <td align="center">&nbsp;</td>
-    <td align="center">&nbsp;</td>
-    <td width="75"></td>
   </tr>
 </table>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Tables Version="8.9.5000.39464">
+<Tables Version="8.9.5093.29179">
   <Table Name="Model" Description="模型。默认有文章、文本、产品三种模型，可以扩展增加。" DbType="SqlServer" 实体分类="基础" 页面分类="Common">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
@@ -36,12 +36,22 @@
       <Index Columns="ModelID" />
     </Indexes>
   </Table>
+  <Table Name="ChannelRole" Description="频道权限" DbType="SqlServer" 实体分类="基础" 页面分类="Common">
+    <Columns>
+      <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
+      <Column Name="RoleID" DataType="Int32" Description="角色ID" />
+      <Column Name="ChannelID" DataType="Int32" Description="频道ID" />
+    </Columns>
+    <Indexes>
+      <Index Columns="RoleID" />
+    </Indexes>
+  </Table>
   <Table Name="ArticleCategory" Description="文章分类" DbType="SqlServer" 实体分类="文章" 页面分类="Article" 基类="EntityTree">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Nullable="False" Description="名称" />
       <Column Name="ParentID" DataType="Int32" Description="父类" />
-      <Column Name="IsEnd" DataType="Boolean" Description="是否最终分类"/>
+      <Column Name="IsEnd" DataType="Boolean" Description="是否最终分类" />
       <Column Name="Sort" DataType="Int32" Description="排序" />
       <Column Name="Remark" DataType="String" Length="200" Description="备注" />
     </Columns>
@@ -77,7 +87,7 @@
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="ParentID" DataType="Int32" Description="主题" />
       <Column Name="Title" DataType="String" Length="200" Nullable="False" Description="标题" />
-      <Column Name="Version" DataType="Int32" Description="版本"/>
+      <Column Name="Version" DataType="Int32" Description="版本" />
       <Column Name="CreateUserID" DataType="Int32" Description="创建人" />
       <Column Name="CreateUserName" DataType="String" Description="创建人" />
       <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
@@ -94,7 +104,7 @@
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Nullable="False" Description="名称" />
       <Column Name="ParentID" DataType="Int32" Description="父类" />
-      <Column Name="IsEnd" DataType="Boolean" Description="是否最终分类"/>
+      <Column Name="IsEnd" DataType="Boolean" Description="是否最终分类" />
       <Column Name="Sort" DataType="Int32" Description="排序" />
       <Column Name="Remark" DataType="String" Length="200" Description="备注" />
     </Columns>
@@ -146,7 +156,7 @@
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Nullable="False" Description="名称" />
       <Column Name="ParentID" DataType="Int32" Description="父类" />
-      <Column Name="IsEnd" DataType="Boolean" Description="是否最终分类"/>
+      <Column Name="IsEnd" DataType="Boolean" Description="是否最终分类" />
       <Column Name="Sort" DataType="Int32" Description="排序" />
       <Column Name="Remark" DataType="String" Length="200" Description="备注" />
     </Columns>
@@ -183,6 +193,11 @@
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="ParentID" DataType="Int32" Description="主题" />
       <Column Name="Title" DataType="String" Length="200" Nullable="False" Description="标题" />
+      <Column Name="Specification" DataType="String" Length="-1" Description="规格参数" />
+      <Column Name="Feature" DataType="String" Length="-1" Description="功能特点" />
+      <Column Name="App" DataType="String" Length="-1" Description="推荐应用" />
+      <Column Name="Fitting" DataType="String" Length="-1" Description="相关配件" />
+      <Column Name="Video" DataType="String" Length="-1" Description="产品视频" />
       <Column Name="Version" DataType="Int32" Description="版本" />
       <Column Name="CreateUserID" DataType="Int32" Description="创建人" />
       <Column Name="CreateUserName" DataType="String" Description="创建人" />
@@ -195,14 +210,4 @@
     </Indexes>
   </Table>
   <Table Name="ProductStatistics" Description="产品统计" DbType="SqlServer" 实体分类="产品" 页面分类="Product" 基类="Statistics" />
-  <Table Name="ChennalRole" Description="频道权限" DbType="SqlServer" 实体分类="基础" 页面分类="Common">
-    <Columns>
-      <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
-      <Column Name="RoleID" DataType="Int32" Description="角色ID" />
-      <Column Name="ChannelID" DataType="Int32" Description="频道ID" />
-    </Columns>
-    <Indexes>
-      <Index Columns="RoleID" />
-    </Indexes>
-  </Table>
 </Tables>

@@ -15,9 +15,6 @@ namespace NewLife.CMX
     [BindTable("ProductStatistics", Description = "产品统计", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class ProductStatistics : IProductStatistics
     {
-        #region 属性
-        #endregion
-
 
         #region 字段名
         /// <summary>取得产品统计字段信息的快捷方式</summary>
@@ -36,8 +33,7 @@ namespace NewLife.CMX
     /// <summary>产品统计接口</summary>
     public partial interface IProductStatistics
     {
-        #region 属性        
-        #endregion
+        #region 属性        #endregion
 
         #region 获取/设置 字段值
         /// <summary>获取/设置 字段值。</summary>
