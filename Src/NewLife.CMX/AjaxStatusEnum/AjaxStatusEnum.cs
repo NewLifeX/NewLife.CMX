@@ -4,7 +4,8 @@ using System.Text;
 
 namespace NewLife.CMX
 {
-    public enum AjaxStatusEnum
+    /// <summary>Ajax状态</summary>
+    public enum AjaxStatus
     {
         /// <summary>无配置</summary>
         NoConfig = 0,

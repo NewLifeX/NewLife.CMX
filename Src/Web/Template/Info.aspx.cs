@@ -13,14 +13,6 @@ using NewLife.Web;
 
 public partial class Template_Info : Page
 {
-
-    /// <summary>内容ID</summary>
-    public Int32 ID
-    {
-
-        get { return WebHelper.RequestInt("ID"); }
-    }
-
     /// <summary>类编码</summary>
     private String Suffix
     {
@@ -51,14 +43,11 @@ public partial class Template_Info : Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        Int32 id = WebHelper.RequestInt("ID");
         if (C == null)
-        {
             Err("未确定的频道！");
-        }
-        else if (ID <= 0)
-        {
+        else if (id <= 0)
             Err("未知的参数！");
-        }
 
         String content = "";
         try
@@ -68,7 +57,7 @@ public partial class Template_Info : Page
 
             iml.Suffix = Suffix;
             iml.Address = Address;
-            iml.ID = ID;
+            iml.ID = id;
             content = iml.Process();
         }
         catch (ThreadAbortException)
