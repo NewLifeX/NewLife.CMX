@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 using NewLife.Xml;
 
 namespace NewLife.CMX.Config
@@ -44,7 +42,7 @@ namespace NewLife.CMX.Config
         /// <summary>备案信息</summary>
         public String ICP { get { return _ICP; } set { _ICP = value; } }
 
-        private String _Title = "月无声实业";
+        private String _Title = "月无声电子设备有限公司";
         /// <summary>标题</summary>
         public String Title { get { return _Title; } set { _Title = value; } }
 

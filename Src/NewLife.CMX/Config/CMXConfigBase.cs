@@ -7,7 +7,6 @@ using System.Web;
 using System.Xml.Serialization;
 using NewLife.Xml;
 
-
 namespace NewLife.CMX.Config
 {
     [XmlConfigFile("config/CMX.config", 15000)]
