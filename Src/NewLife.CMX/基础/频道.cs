@@ -79,11 +79,11 @@ namespace NewLife.CMX
         }
 
         private String _FormTemplate;
-        /// <summary>表单页</summary>
-        [DisplayName("表单页")]
-        [Description("表单页")]
-        [DataObjectField(false, false, true, 200)]
-        [BindColumn(6, "FormTemplate", "表单页", null, "nvarchar(200)", 0, 0, true)]
+        /// <summary>表单模版</summary>
+        [DisplayName("表单模版")]
+        [Description("表单模版")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn(6, "FormTemplate", "表单模版", null, "nvarchar(50)", 0, 0, true)]
         public virtual String FormTemplate
         {
             get { return _FormTemplate; }
@@ -91,11 +91,11 @@ namespace NewLife.CMX
         }
 
         private String _ListTemplate;
-        /// <summary>列表页</summary>
-        [DisplayName("列表页")]
-        [Description("列表页")]
-        [DataObjectField(false, false, true, 200)]
-        [BindColumn(7, "ListTemplate", "列表页", null, "nvarchar(200)", 0, 0, true)]
+        /// <summary>列表模版</summary>
+        [DisplayName("列表模版")]
+        [Description("列表模版")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn(7, "ListTemplate", "列表模版", null, "nvarchar(50)", 0, 0, true)]
         public virtual String ListTemplate
         {
             get { return _ListTemplate; }
@@ -233,10 +233,10 @@ namespace NewLife.CMX
             ///<summary>启用</summary>
             public static readonly Field Enable = FindByName(__.Enable);
 
-            ///<summary>表单页</summary>
+            ///<summary>表单模版</summary>
             public static readonly Field FormTemplate = FindByName(__.FormTemplate);
 
-            ///<summary>列表页</summary>
+            ///<summary>列表模版</summary>
             public static readonly Field ListTemplate = FindByName(__.ListTemplate);
 
             ///<summary>创建人ID</summary>
@@ -275,10 +275,10 @@ namespace NewLife.CMX
             ///<summary>启用</summary>
             public const String Enable = "Enable";
 
-            ///<summary>表单页</summary>
+            ///<summary>表单模版</summary>
             public const String FormTemplate = "FormTemplate";
 
-            ///<summary>列表页</summary>
+            ///<summary>列表模版</summary>
             public const String ListTemplate = "ListTemplate";
 
             ///<summary>创建人ID</summary>
@@ -319,10 +319,10 @@ namespace NewLife.CMX
         /// <summary>启用</summary>
         Boolean Enable { get; set; }
 
-        /// <summary>表单页</summary>
+        /// <summary>表单模版</summary>
         String FormTemplate { get; set; }
 
-        /// <summary>列表页</summary>
+        /// <summary>列表模版</summary>
         String ListTemplate { get; set; }
 
         /// <summary>创建人ID</summary>

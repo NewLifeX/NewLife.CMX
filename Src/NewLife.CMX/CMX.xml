@@ -25,6 +25,8 @@
       <Column Name="ModelID" DataType="Int32" Description="模型" />
       <Column Name="Suffix" DataType="String" Description="后缀。默认频道后缀为空，扩展频道必须有不同的表后缀" />
       <Column Name="Enable" DataType="Boolean" Description="启用" />
+      <Column Name="FormTemplate" DataType="String" Description="表单模版" />
+      <Column Name="ListTemplate" DataType="String" Description="列表模版" />
       <Column Name="CreateUserID" DataType="Int32" Description="创建人ID" />
       <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
       <Column Name="UpdateUserID" DataType="Int32" Description="更新人ID" />
