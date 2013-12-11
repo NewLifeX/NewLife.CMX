@@ -1,8 +1,6 @@
 ﻿using System;
-using NewLife.Configuration;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Web;
 using NewLife.CMX.Tool;
 using NewLife.Log;
@@ -25,6 +23,7 @@ namespace NewLife.CMX.Web.Handlers
         Success,
     }
 
+    /// <summary>图片上传</summary>
     public class UpdateImageLoad : IHttpHandler
     {
         private String _DefaultImagePath;
