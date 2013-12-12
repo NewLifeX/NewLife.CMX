@@ -293,7 +293,7 @@ namespace NewLife.CMX
         public static Product FindByID(Int32 id)
         {
             if (Meta.Count >= 1000)
-                return Find(__.ID, id);
+                return Meta.SingleCache[id];
             else
                 return Meta.Cache.Entities.Find(__.ID, id);
         }
