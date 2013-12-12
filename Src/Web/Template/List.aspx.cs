@@ -28,7 +28,17 @@ public partial class Template_List : NewLife.CMX.WebBase.WebPageBase
     /// <summary>请求地址</summary>
     private String Address
     {
-        get { return Request["Address"]; }
+        get
+        {
+            String ad = Request["Address"];
+
+            if (string.IsNullOrEmpty(ad))
+            {
+                ad = C.FormTemplate;
+                ad = ad.Substring(0, ad.IndexOf('.'));
+            }
+            return ad;
+        }
     }
 
     /// <summary>分页索引</summary>
@@ -65,6 +75,16 @@ public partial class Template_List : NewLife.CMX.WebBase.WebPageBase
             {
                 _C = Channel.FindBySuffix(Suffix);
             }
+
+            if (_C == null)
+            {
+                Err("未确定的频道！");
+            }
+            else if (String.IsNullOrEmpty(_C.ListTemplate))
+            {
+                Err("未绑定模版！");
+            }
+
             return _C;
         }
         set { _C = value; }
@@ -72,59 +92,50 @@ public partial class Template_List : NewLife.CMX.WebBase.WebPageBase
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (C == null)
-        {
-            Err("未确定的频道！");
-        }
-        else if (String.IsNullOrEmpty(C.ListTemplate))
-        {
-            Err("未绑定模版！");
-        }
-
         String content = "";
-        try
-        {
-            TypeX type = TypeX.GetType("NewLife.CMX.Web." + Address);
-            IModeList iml = type.CreateInstance() as IModeList;
-            //Dictionary<String, Object> dic = GetQueryDic();
-            iml.Suffix = Suffix;
-            iml.Address = Address;
-            iml.CategoryID = CategoryID;
-            iml.Pageindex = PageIndex;
-            iml.RecordNum = RecordNum;
-            content = iml.Process();
-        }
-        catch (ThreadAbortException)
-        {
-            Response.Redirect(CMXConfigBase.Current.CurrentRootPath + "/Index.html");
-        }
-        catch (Exception ex)
-        {
-            // 不要随便拦截异常而无所作为，会害死人的
-            XTrace.WriteException(ex);
+        //try
+        //{
+        TypeX type = TypeX.GetType("NewLife.CMX.Web." + Address);
+        IModeList iml = type.CreateInstance() as IModeList;
+        //Dictionary<String, Object> dic = GetQueryDic();
+        iml.Suffix = Suffix;
+        iml.Address = Address;
+        iml.CategoryID = CategoryID;
+        iml.Pageindex = PageIndex;
+        iml.RecordNum = RecordNum;
+        content = iml.Process();
+        //}
+        //catch (ThreadAbortException)
+        //{
+        //    Response.Redirect(CMXConfigBase.Current.CurrentRootPath + "/Index.html");
+        //}
+        //catch (Exception ex)
+        //{
+        //    // 不要随便拦截异常而无所作为，会害死人的
+        //    XTrace.WriteException(ex);
 
-            //Err("编译出错！");
-            Err(ex.Message);
-        }
+        //    //Err("编译出错！");
+        //    Err(ex.Message);
+        //}
 
         Response.Write(content);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
-    private Dictionary<String, Object> GetQueryDic()
-    {
-        Dictionary<String, Object> dic = new Dictionary<string, object>();
+    ///// <summary>
+    ///// 
+    ///// </summary>
+    ///// <returns></returns>
+    //private Dictionary<String, Object> GetQueryDic()
+    //{
+    //    Dictionary<String, Object> dic = new Dictionary<string, object>();
 
-        foreach (String item in Request.QueryString.AllKeys)
-        {
-            dic.Add(item, Request.QueryString[item]);
-        }
+    //    foreach (String item in Request.QueryString.AllKeys)
+    //    {
+    //        dic.Add(item, Request.QueryString[item]);
+    //    }
 
-        return dic;
-    }
+    //    return dic;
+    //}
 
     private void Err(String Msg)
     {

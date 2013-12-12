@@ -20,23 +20,23 @@ public partial class Template_Common : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         String content = "";
-        try
-        {
-            TypeX type = TypeX.GetType("NewLife.CMX.Web.Common");
-            ICommon iml = type.CreateInstance() as ICommon;
-            iml.Address = Address;
-            content = iml.Process();
-        }
-        catch (ThreadAbortException)
-        {
-            Response.Redirect(CMXConfigBase.Current.CurrentRootPath + "/Index.html");
-        }
-        catch (Exception err)
-        {
-            XTrace.WriteException(err);
+        //try
+        //{
+        TypeX type = TypeX.GetType("NewLife.CMX.Web.Common");
+        ICommon iml = type.CreateInstance() as ICommon;
+        iml.Address = Address;
+        content = iml.Process();
+        //}
+        //catch (ThreadAbortException)
+        //{
+        //    Response.Redirect(CMXConfigBase.Current.CurrentRootPath + "/Index.html");
+        //}
+        //catch (Exception err)
+        //{
+        //    XTrace.WriteException(err);
 
-            Err("编译出错！");
-        }
+        //    Err("编译出错！");
+        //}
         Response.Write(content);
     }
 

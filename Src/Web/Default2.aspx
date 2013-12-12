@@ -5,10 +5,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
-    <script src="Scripts/jquery/jquery-1.9.1.min.js"></script>
-    <script src="Scripts/jQueryFormPatch/jQueryFormPatch.js"></script>
-    <script src="Scripts/jquery/jquery.form.js"></script>
+    <title></title>    
+    <%--<link href="style/bootstrap.css" rel="stylesheet" type="text/css"/>--%>
+    <script src="Scripts/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="Scripts/jQueryFormPatch/jQueryFormPatch.js" type="text/javascript"></script>
+   <%-- <script src="Scripts/bootstrap/bootstrap.js" type="text/javascript"></script>--%>
+    <script src="Scripts/jquery/jquery.form.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $('#btnajax').click(function () {
@@ -68,6 +70,9 @@
 
         <input type="button" value="点击" class="tt"/>
         <div class="tt1">aa</div>
+
+
+        <input type="text"  placeholder="Email" />
     </form>
 </body>
 </html>
