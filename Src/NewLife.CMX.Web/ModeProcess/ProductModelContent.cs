@@ -15,7 +15,7 @@ namespace NewLife.CMX.Web
             {
                 Product.Meta.TableName = "";
                 Product.Meta.TableName += Suffix;
-                Product product = Product.FindByKey(ID);
+                var product = Product.FindByID(ID);
                 Product.ChannelSuffix = Suffix;
 
                 LeftMenu = LeftMenuContent.GetContent(Suffix, product.CategoryID);

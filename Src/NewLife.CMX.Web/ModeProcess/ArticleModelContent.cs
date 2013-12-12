@@ -19,7 +19,7 @@ namespace NewLife.CMX.Web
                 Article.Meta.TableName += Suffix;
                 ArticleCategory.Meta.TableName += Suffix;
 
-                Article article = Article.FindByKey(ID);
+                var article = Article.FindByID(ID);
                 Article.ChannelSuffix = Suffix;
 
                 LeftMenu = LeftMenuContent.GetContent(Suffix, article.CategoryID);

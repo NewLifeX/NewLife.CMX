@@ -97,7 +97,7 @@ namespace NewLife.CMX
                 if (_Text == null && ParentID > 0 && !Dirtys.ContainsKey("Text"))
                 {
                     Text.Meta.TableName += Suffix;
-                    _Text = Text.FindByKey(ParentID);
+                    _Text = Text.FindByID(ParentID);
                     Dirtys["Text"] = true;
                     Text.Meta.TableName = "";
                 }
@@ -116,6 +116,18 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展查询﻿
+        /// <summary>根据ID查询</summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static TextContent FindByID(Int32 id)
+        {
+            if (Meta.Count >= 1000)
+                return Find(__.ID, id);
+            else
+                return Meta.Cache.Entities.Find(__.ID, id);
+        }
+
         /// <summary>根据主题查找</summary>
         /// <param name="parentid">主题</param>
         /// <returns></returns>

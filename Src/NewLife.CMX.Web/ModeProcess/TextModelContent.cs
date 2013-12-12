@@ -18,7 +18,7 @@ namespace NewLife.CMX.Web
                 Text.Meta.TableName += Suffix;
                 TextCategory.Meta.TableName += Suffix;
 
-                Text text = Text.FindByKey(ID);
+                var text = Text.FindByID(ID);
                 Text.ChannelSuffix = Suffix;
 
                 LeftMenu = LeftMenuContent.GetContent(Suffix, text.CategoryID);

@@ -98,7 +98,7 @@ namespace NewLife.CMX
             {
                 if (_Model == null && ModelID > 0 && !Dirtys.ContainsKey("Model"))
                 {
-                    _Model = Model.FindByKey(ModelID);
+                    _Model = Model.FindByID(ModelID);
                     Dirtys["Model"] = true;
                 }
                 return _Model;

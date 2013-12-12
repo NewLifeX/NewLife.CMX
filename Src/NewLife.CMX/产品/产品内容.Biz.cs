@@ -90,7 +90,7 @@ namespace NewLife.CMX
             {
                 if (_Product == null && ParentID > 0 && !Dirtys.ContainsKey("Product"))
                 {
-                    _Product = Product.FindByKey(ParentID);
+                    _Product = Product.FindByID(ParentID);
                     Dirtys["Product"] = true;
                 }
                 return _Product;
