@@ -1,49 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using NewLife.CMX.Config;
 using NewLife.CMX.TemplateEngine;
 using XCode;
-using System.Linq;
 
 namespace NewLife.CMX.Web
 {
     public class LeftMenuContent
     {
-        /// <summary>
-        /// 
-        /// </summary>
+        /// <summary>获取菜单内容</summary>
         /// <returns></returns>
         public static String GetContent(String Suffix, Int32 CategoryID)
         {
-            Channel channel = Channel.FindBySuffix(Suffix);
-            Dictionary<String, String> dic = new Dictionary<String, String>();
-            String classname = channel.Model.ClassName;
-            String id = "0";
+            var channel = Channel.FindBySuffix(Suffix);
+            var dic = new Dictionary<String, String>();
+            var classname = channel.Model.ClassName;
+            var id = "0";
 
-            IEntityOperate ieo = EntityFactory.CreateOperate(classname);
+            var ieo = EntityFactory.CreateOperate(classname);
 
             if (CategoryID != 0)
             {
-                IEntityTree entity = ieo.Find("ID", CategoryID) as IEntityTree;
-
-                if (entity.Parent != null) id = entity.Parent["ID"].ToString();
+                var entity = ieo.Find("ID", CategoryID) as IEntityTree;
+                if (entity != null && entity.Parent != null) id = entity.Parent["ID"].ToString();
             }
 
-            IEntityList list = ieo.FindAll("ParentID", 0);
+            var list = ieo.FindAll("ParentID", 0);
 
             dic.Add("ModelAddress", channel.ListTemplate);
             dic.Add("SelectedCategory", id);
             dic.Add("MenuTitle", channel.Name);
 
-            CMXEngine engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
+            var engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
             engine.ListCategory = list.ToList().OrderBy(e => e["ID"]).ToList().ConvertAll<IEntityTree>(e => e as IEntityTree);
             engine.ArgDic = dic;
             engine.Suffix = Suffix;
 
-            String content = engine.Render(TemplateConfig.Current.LeftAddress);
-
-            return content;
+            return engine.Render(TemplateConfig.Current.LeftAddress);
         }
     }
 }
