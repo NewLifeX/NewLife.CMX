@@ -22,16 +22,17 @@ namespace NewLife.CMX.UrlRewrite
 
         private void Application_OnError(object sender, EventArgs e)
         {
-            var CurrentUrl = HelperTool.GetRequestUrl();
+            //var CurrentUrl = HelperTool.GetRequestUrl();
             var httpApplication = sender as HttpApplication;
             var context = httpApplication.Context;
+            if (context.Request["error"] == "1") return;
 
             var ex = context.Server.GetLastError();
             if (ex != null) XTrace.WriteException(ex);
 
             context.Server.ClearError();
 
-            context.Response.Redirect(CMXConfigBase.Current.CurrentRootPath.CombinePath("Index.html"));
+            context.Response.Redirect(CMXConfigBase.Current.CurrentRootPath.CombinePath("Index.html?error=1"));
         }
 
         private void ReUrl_BeginRequest(object sender, EventArgs e)
