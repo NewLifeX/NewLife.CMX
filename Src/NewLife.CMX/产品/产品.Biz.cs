@@ -323,6 +323,8 @@ namespace NewLife.CMX
         [DataObjectMethod(DataObjectMethodType.Select, true)]
         public static EntityList<Product> Search(String key, Int32 CategoryID, String orderClause, Int32 startRowIndex, Int32 maximumRows)
         {
+            if (Meta.Count < 1000 && key.IsNullOrWhiteSpace()) return FindAllByCategoryID(CategoryID).Page(startRowIndex, maximumRows);
+
             return FindAll(SearchWhere(key, CategoryID), orderClause, null, startRowIndex, maximumRows);
         }
 
@@ -336,6 +338,8 @@ namespace NewLife.CMX
         /// <returns>记录数</returns>
         public static Int32 SearchCount(String key, Int32 CategoryID, String orderClause, Int32 startRowIndex, Int32 maximumRows)
         {
+            if (Meta.Count < 1000 && key.IsNullOrWhiteSpace()) return FindAllByCategoryID(CategoryID).Count;
+
             return FindCount(SearchWhere(key, CategoryID), null, null, 0, 0);
         }
 

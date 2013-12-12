@@ -5,17 +5,10 @@
  * 版权：版权所有 (C) 新生命开发团队 2002~2013
 */
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
-using System.Xml.Serialization;
 using NewLife.CMX.ModelBase;
 using NewLife.CMX.Tool;
-using NewLife.CommonEntity;
-using NewLife.Log;
-using NewLife.Web;
 using XCode;
-using XCode.Configuration;
 
 namespace NewLife.CMX
 {
@@ -227,9 +220,9 @@ namespace NewLife.CMX
         public static EntityList<Text> FindAllByCategoryID(Int32 categoryid)
         {
             if (Meta.Count >= 1000)
-                return FindAll(_.CategoryID, categoryid);
+                return FindAll(__.CategoryID, categoryid);
             else // 实体缓存
-                return Meta.Cache.Entities.FindAll(_.CategoryID, categoryid);
+                return Meta.Cache.Entities.FindAll(__.CategoryID, categoryid);
         }
         #endregion
 
@@ -247,6 +240,8 @@ namespace NewLife.CMX
         [DataObjectMethod(DataObjectMethodType.Select, true)]
         public static EntityList<Text> Search(String key, Int32 CategoryID, String orderClause, Int32 startRowIndex, Int32 maximumRows)
         {
+            if (Meta.Count < 1000 && key.IsNullOrWhiteSpace()) return FindAllByCategoryID(CategoryID).Page(startRowIndex, maximumRows);
+
             return FindAll(SearchWhere(key, CategoryID), orderClause, null, startRowIndex, maximumRows);
         }
 
@@ -260,6 +255,8 @@ namespace NewLife.CMX
         /// <returns>记录数</returns>
         public static Int32 SearchCount(String key, Int32 CategoryID, String orderClause, Int32 startRowIndex, Int32 maximumRows)
         {
+            if (Meta.Count < 1000 && key.IsNullOrWhiteSpace()) return FindAllByCategoryID(CategoryID).Count;
+
             return FindCount(SearchWhere(key, CategoryID), null, null, 0, 0);
         }
 
