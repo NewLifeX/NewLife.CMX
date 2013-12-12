@@ -151,6 +151,18 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展查询﻿
+        /// <summary>根据ID查询</summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static Model FindByID(Int32 id)
+        {
+            if (Meta.Count >= 1000)
+                return Find(__.ID, id);
+            else
+                return Meta.Cache.Entities.Find(__.ID, id);
+        }
+
         /// <summary>根据名称查找</summary>
         /// <param name="name">名称</param>
         /// <returns></returns>

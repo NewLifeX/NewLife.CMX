@@ -56,17 +56,13 @@
     <Compile Include="Base\基础信息.Biz.cs" />
     <Compile Include="Base\基础信息.cs" />
     <Compile Include="CMS\SysModel.cs" />
-    <Compile Include="Common\ModelKinds.cs" />
     <Compile Include="Config\CMXConfigBase.cs" />
     <Compile Include="Config\CMXmlConfig.cs" />
-    <Compile Include="Config\CommonConfig.cs" />
     <Compile Include="Config\TemplateConfig.cs" />
-    <Compile Include="Config\UploadImage.cs" />
     <Compile Include="Config\WebSettingConfig.cs" />
     <Compile Include="Editor\UEditorAjaxCore.cs" />
     <Compile Include="Editor\UEditorConfig.cs" />
     <Compile Include="Editor\UEUploader.cs" />
-    <Compile Include="Interface\IModelCategory.cs" />
     <Compile Include="Interface\IModelClass.cs" />
     <Compile Include="ModelBase\ModelCategoryEntity.cs" />
     <Compile Include="Manager\AttachConfig.cs" />
@@ -82,7 +78,6 @@
     <Compile Include="Tool\HelperTool.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tool\TemplateRescources.cs" />
     <Compile Include="UrlRewrite\CMXHttpModel.cs" />
     <Compile Include="WebBase\WebPageBase.cs">
       <SubType>ASPXCodeBehind</SubType>

@@ -6,7 +6,7 @@ using XCode;
 
 namespace NewLife.CMX
 {
-    public abstract class ModelCategoryEntity<T> : EntityTree<T>, IModelCategory where T : ModelCategoryEntity<T>, new()
+    public abstract class ModelCategoryEntity<T> : EntityTree<T>/*, IModelCategory*/ where T : ModelCategoryEntity<T>, new()
     {
         /// <summary>
         /// 查询所有子孙类以及子孙类的ID如果子类不是最终类，返回的时候ID会被改为负数

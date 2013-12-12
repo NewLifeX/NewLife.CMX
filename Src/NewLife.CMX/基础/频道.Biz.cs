@@ -149,6 +149,18 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展查询﻿
+        /// <summary>根据ID查询</summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static Channel FindByID(Int32 id)
+        {
+            if (Meta.Count >= 1000)
+                return Find(__.ID, id);
+            else
+                return Meta.Cache.Entities.Find(__.ID, id);
+        }
+
         /// <summary>根据名称查找</summary>
         /// <param name="name">名称</param>
         /// <returns></returns>
@@ -161,20 +173,6 @@ namespace NewLife.CMX
                 return Meta.Cache.Entities.Find(_.Name, name);
             // 单对象缓存
             //return Meta.SingleCache[name];
-        }
-
-        /// <summary>
-        /// 根据ID查询
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static Channel FindByID(Int32 id)
-        {
-            if (Meta.Count >= 1000)
-                return Find(_.ID, id);
-            else
-                return Meta.Cache.Entities.Find(_.ID, id);
         }
 
         /// <summary>

@@ -7,14 +7,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
-using System.Xml.Serialization;
-using NewLife.CommonEntity;
-using NewLife.Log;
-using NewLife.Web;
-using XCode;
-using XCode.Configuration;
 using System.Linq;
+using XCode;
 
 namespace NewLife.CMX
 {
@@ -109,6 +103,18 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展查询﻿
+        /// <summary>根据ID查询</summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static ProductContent FindByID(Int32 id)
+        {
+            if (Meta.Count >= 1000)
+                return Find(__.ID, id);
+            else
+                return Meta.Cache.Entities.Find(__.ID, id);
+        }
+
         /// <summary>根据主题查找</summary>
         /// <param name="parentid">主题</param>
         /// <returns></returns>

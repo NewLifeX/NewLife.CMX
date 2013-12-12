@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Web;
 using NewLife.Log;
 using NewLife.Reflection;
@@ -12,9 +11,7 @@ namespace NewLife.CMX.Tool
 {
     public class HelperTool
     {
-        /// <summary>
-        /// 保存模板内容
-        /// </summary>
+        /// <summary>保存模板内容</summary>
         /// <param name="entityType"></param>
         /// <param name="Version"></param>
         /// <param name="Suffix"></param>
@@ -30,9 +27,9 @@ namespace NewLife.CMX.Tool
             }
             else
             {
-                IEntityOperate ieo = EntityFactory.CreateOperate(entityType);
+                var ieo = EntityFactory.CreateOperate(entityType);
 
-                IEntity ientity = ieo.Create();
+                var ientity = ieo.Create();
                 try
                 {
                     //ientity["ParentID"] = (Int32)entity["ID"];
@@ -54,10 +51,6 @@ namespace NewLife.CMX.Tool
                     ieo.TableName += Suffix;
                     ientity.Save();
                 }
-                catch (Exception)
-                {
-                    throw;
-                }
                 finally
                 {
                     ieo.TableName = "";
@@ -65,9 +58,7 @@ namespace NewLife.CMX.Tool
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
+        /// <summary></summary>
         /// <param name="entityType"></param>
         /// <param name="Version"></param>
         /// <param name="Suffix"></param>
@@ -81,9 +72,9 @@ namespace NewLife.CMX.Tool
             }
             else
             {
-                IEntityOperate ieo = EntityFactory.CreateOperate(entityType);
+                var ieo = EntityFactory.CreateOperate(entityType);
 
-                IEntity ientity = ieo.Create();
+                var ientity = ieo.Create();
                 try
                 {
                     ientity.SetItem("ParentID", (Int32)entity["ID"]);
@@ -102,10 +93,6 @@ namespace NewLife.CMX.Tool
                     ieo.TableName += Suffix;
                     ientity.Save();
                 }
-                catch (Exception)
-                {
-                    throw;
-                }
                 finally
                 {
                     ieo.TableName = "";
@@ -113,9 +100,7 @@ namespace NewLife.CMX.Tool
             }
         }
 
-        /// <summary>
-        /// 上传照片
-        /// </summary>
+        /// <summary>上传照片</summary>
         /// <param name="file"></param>
         /// <param name="UploadPath"></param>
         /// <param name="FailFile"></param>
@@ -124,8 +109,8 @@ namespace NewLife.CMX.Tool
         {
             String FilePath, UploadFile;
             FailFile = new List<string>();
-            Dictionary<String, String> Dic = new Dictionary<string, string>();
-            Random r = new Random();
+            var Dic = new Dictionary<string, string>();
+            var r = new Random();
 
             for (int i = 0; i < file.Count; i++)
             {
@@ -154,24 +139,22 @@ namespace NewLife.CMX.Tool
                 catch (Exception ex)
                 {
                     FailFile.Add(file[i].FileName);
-                    XTrace.WriteLine(ex.Message);
+                    XTrace.WriteException(ex);
                 }
             }
             return Dic;
         }
 
-        /// <summary>
-        /// 将字典格式化为json字符串
-        /// </summary>
+        /// <summary>将字典格式化为json字符串</summary>
         /// <param name="dic"></param>
         /// <returns></returns>
         public static String DicToJson(Dictionary<String, String> dic)
         {
-            SimpleJsonUtil sj = new SimpleJsonUtil();
+            var sj = new SimpleJsonUtil();
 
-            List<SimpleJson> list = new List<SimpleJson>();
+            var list = new List<SimpleJson>();
 
-            foreach (KeyValuePair<String, String> item in dic)
+            foreach (var item in dic)
             {
                 list.Add(sj.Object("key", item.Key, "value", item.Value));
             }
@@ -180,23 +163,16 @@ namespace NewLife.CMX.Tool
         }
 
 
-        /// <summary>
-        /// 获取完整的路径
-        /// </summary>
+        /// <summary>获取完整的路径</summary>
         /// <param name="strPath"></param>
         /// <returns></returns>
         public static String GetFullPath(String strPath)
         {
+            if (HttpContext.Current != null) return HttpContext.Current.Server.MapPath(strPath);
 
-            if (HttpContext.Current != null)
-            {
-                return HttpContext.Current.Server.MapPath(strPath);
-            }
             strPath = strPath.Replace("/", "\\");
-            if (strPath.StartsWith("\\"))
-            {
-                strPath = strPath.TrimStart('\\');
-            }
+            if (strPath.StartsWith("\\")) strPath = strPath.TrimStart('\\');
+
             return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, strPath);
         }
 

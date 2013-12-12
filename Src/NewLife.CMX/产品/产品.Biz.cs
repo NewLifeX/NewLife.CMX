@@ -5,17 +5,10 @@
  * 版权：版权所有 (C) 新生命开发团队 2002~2013
 */
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
-using System.Xml.Serialization;
 using NewLife.CMX.ModelBase;
 using NewLife.CMX.Tool;
-using NewLife.CommonEntity;
-using NewLife.Log;
-using NewLife.Web;
 using XCode;
-using XCode.Configuration;
 
 namespace NewLife.CMX
 {
@@ -104,7 +97,7 @@ namespace NewLife.CMX
         /// <returns></returns>
         protected override Int32 OnInsert()
         {
-            Version += 1;
+            Version++;
 
             Int32 num = base.OnInsert();
 
@@ -117,7 +110,7 @@ namespace NewLife.CMX
         /// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
         protected override int OnUpdate()
         {
-            Version += 1;
+            Version++;
 
             //SaveContent(Version);
             HelperTool.SaveModelProductContent(typeof(ProductContent), Version, ChannelSuffix, this, null);
@@ -181,10 +174,6 @@ namespace NewLife.CMX
                             _ProductContent = new ProductContent();
                         }
                     }
-                }
-                catch (Exception)
-                {
-                    throw;
                 }
                 finally
                 {
@@ -297,6 +286,18 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展查询﻿
+        /// <summary>根据ID查询</summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static Product FindByID(Int32 id)
+        {
+            if (Meta.Count >= 1000)
+                return Find(__.ID, id);
+            else
+                return Meta.Cache.Entities.Find(__.ID, id);
+        }
+
         /// <summary>根据分类查找</summary>
         /// <param name="categoryid">分类</param>
         /// <returns></returns>
@@ -304,15 +305,13 @@ namespace NewLife.CMX
         public static EntityList<Product> FindAllByCategoryID(Int32 categoryid)
         {
             if (Meta.Count >= 1000)
-                return FindAll(_.CategoryID, categoryid);
+                return FindAll(__.CategoryID, categoryid);
             else // 实体缓存
-                return Meta.Cache.Entities.FindAll(_.CategoryID, categoryid);
+                return Meta.Cache.Entities.FindAll(__.CategoryID, categoryid);
         }
         #endregion
 
         #region 高级查询
-        // 以下为自定义高级查询的例子
-
         /// <summary>
         /// 查询满足条件的记录集，分页、排序
         /// </summary>
@@ -340,24 +339,6 @@ namespace NewLife.CMX
             return FindCount(SearchWhere(key, CategoryID), null, null, 0, 0);
         }
 
-        /// <summary>构造搜索条件</summary>
-        /// <param name="key">关键字</param>
-        /// <returns></returns>
-        private static String SearchWhere(String key)
-        {
-            // WhereExpression重载&和|运算符，作为And和Or的替代
-            // SearchWhereByKeys系列方法用于构建针对字符串字段的模糊搜索
-            var exp = SearchWhereByKeys(key, null);
-
-            // 以下仅为演示，Field（继承自FieldItem）重载了==、!=、>、<、>=、<=等运算符（第4行）
-            //if (userid > 0) exp &= _.OperatorID == userid;
-            //if (isSign != null) exp &= _.IsSign == isSign.Value;
-            //if (start > DateTime.MinValue) exp &= _.OccurTime >= start;
-            //if (end > DateTime.MinValue) exp &= _.OccurTime < end.AddDays(1).Date;
-
-            return exp;
-        }
-
         /// <summary>
         /// 重载
         /// </summary>
@@ -370,12 +351,8 @@ namespace NewLife.CMX
             // SearchWhereByKeys系列方法用于构建针对字符串字段的模糊搜索
             var exp = SearchWhereByKeys(key, null);
 
-            // 以下仅为演示，Field（继承自FieldItem）重载了==、!=、>、<、>=、<=等运算符（第4行）
-            //if (userid > 0) exp &= _.OperatorID == userid;
-            //if (isSign != null) exp &= _.IsSign == isSign.Value;
-            //if (start > DateTime.MinValue) exp &= _.OccurTime >= start;
-            //if (end > DateTime.MinValue) exp &= _.OccurTime < end.AddDays(1).Date;
             exp &= _.CategoryID == CategoryID;
+
             return exp;
         }
         #endregion

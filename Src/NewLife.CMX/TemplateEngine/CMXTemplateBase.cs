@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using NewLife.CMX.Config;
 using XCode;
 using XTemplate.Templating;
