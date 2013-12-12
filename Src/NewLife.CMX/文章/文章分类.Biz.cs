@@ -1,13 +1,6 @@
 ﻿﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
-using System.Xml.Serialization;
-using NewLife.CommonEntity;
-using NewLife.Log;
-using NewLife.Web;
 using XCode;
-using XCode.Configuration;
 
 namespace NewLife.CMX
 {
@@ -78,6 +71,20 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展查询﻿
+        /// <summary>根据编号查找</summary>
+        /// <param name="id">编号</param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static ArticleCategory FindByID(Int32 id)
+        {
+            if (Meta.Count >= 1000)
+                return Find(__.ID, id);
+            else // 实体缓存
+                return Meta.Cache.Entities.Find(__.ID, id);
+            // 单对象缓存
+            //return Meta.SingleCache[id];
+        }
+
         /// <summary>根据名称、父类查找</summary>
         /// <param name="name">名称</param>
         /// <param name="parentid">父类</param>
@@ -113,20 +120,6 @@ namespace NewLife.CMX
                 return FindAll(_.ParentID, parentid);
             else // 实体缓存
                 return Meta.Cache.Entities.FindAll(__.ParentID, parentid);
-        }
-
-        /// <summary>根据编号查找</summary>
-        /// <param name="id">编号</param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static ArticleCategory FindByID(Int32 id)
-        {
-            if (Meta.Count >= 1000)
-                return Find(_.ID, id);
-            else // 实体缓存
-                return Meta.Cache.Entities.Find(__.ID, id);
-            // 单对象缓存
-            //return Meta.SingleCache[id];
         }
 
         //基类中实现
