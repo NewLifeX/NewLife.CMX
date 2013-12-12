@@ -200,14 +200,11 @@ namespace NewLife.CMX.Tool
             return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, strPath);
         }
 
-        /// <summary>
-        /// 获取请求地址
-        /// </summary>
+        /// <summary>获取请求地址</summary>
         /// <returns></returns>
-        public static String GetReques()
+        public static String GetRequestUrl()
         {
             return HttpContext.Current.Request.Url.ToString();
         }
-
     }
 }

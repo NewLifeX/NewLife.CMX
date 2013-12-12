@@ -1,51 +1,44 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
 using System.Web;
+using NewLife.CMX.Config;
+using NewLife.CMX.Tool;
 using NewLife.Log;
 using NewLife.Reflection;
 using XUrlRewrite.Configuration;
-using System.Reflection;
-using NewLife.CMX.Tool;
-using NewLife.CMX.Config;
-using System.Collections.Generic;
-using System.IO;
 
 namespace NewLife.CMX.UrlRewrite
 {
     public class CMXHttpModel : IHttpModule
     {
-        /// <summary>
-        /// 
-        /// </summary>
+        /// <summary>初始化</summary>
         /// <param name="context"></param>
         public void Init(HttpApplication context)
         {
             context.BeginRequest += ReUrl_BeginRequest;
-
             context.Error += Application_OnError;
-
-            //CMXConfigBase cb = CMXConfigBase.Current;
-            //WebSettingConfig wc = WebSettingConfig.Current;
-            //TemplateConfig tc = TemplateConfig.Current;
-
         }
 
         private void Application_OnError(object sender, EventArgs e)
         {
-            String CurrentUrl = HelperTool.GetReques();
-            HttpApplication httpApplication = (HttpApplication)sender;
+            var CurrentUrl = HelperTool.GetRequestUrl();
+            var httpApplication = sender as HttpApplication;
+            var context = httpApplication.Context;
 
-            httpApplication.Context.Server.ClearError();
+            var ex = context.Server.GetLastError();
+            if (ex != null) XTrace.WriteException(ex);
 
-            HttpContext.Current.Response.Redirect(CMXConfigBase.Current.CurrentRootPath.CombinePath("Index.html"));
+            context.Server.ClearError();
+
+            context.Response.Redirect(CMXConfigBase.Current.CurrentRootPath.CombinePath("Index.html"));
         }
 
         private void ReUrl_BeginRequest(object sender, EventArgs e)
         {
-            //Dictionary<String, String> dic = new Dictionary<string, string>();
-
-            HttpApplication app = sender as HttpApplication;
-            Manager manager = Manager.GetConfigManager(app);
-            UrlRewriteConfig cfg = manager.GetTemplateConfig();
+            var app = sender as HttpApplication;
+            var manager = Manager.GetConfigManager(app);
+            var cfg = manager.GetTemplateConfig();
             if (null != cfg && cfg.Enabled)
             {
                 String path = app.Request.AppRelativeCurrentExecutionFilePath.Substring(1);
@@ -56,7 +49,7 @@ namespace NewLife.CMX.UrlRewrite
                     {
                         if (_url is UrlElement)
                         {
-                            UrlElement url = (UrlElement)_url;
+                            var url = (UrlElement)_url;
                             //url.RewriteUrl(path, query, app, cfg, out dic);
                             if (url.Enabled && url.RewriteUrl(path, query, app, cfg)) break;
                         }
@@ -69,9 +62,7 @@ namespace NewLife.CMX.UrlRewrite
         static Func<string, string, HttpApplication, bool>[] CustomFilterFunc = { null };
         static bool NeedLoadAssembly = true;
 
-        /// <summary>
-        /// 获取自定义过滤器是否通过
-        /// </summary>
+        /// <summary>获取自定义过滤器是否通过</summary>
         /// <param name="manager"></param>
         /// <param name="cfg"></param>
         /// <param name="path"></param>
@@ -86,7 +77,7 @@ namespace NewLife.CMX.UrlRewrite
                 {
                     if (!IsBindReload[0])
                     {
-                        manager.LoadConfig += delegate(object sender1, EventArgs e1) { CustomFilterFunc[0] = null; };
+                        manager.LoadConfig += (s, e) => { CustomFilterFunc[0] = null; };
                         IsBindReload[0] = true;
                     }
                 }
@@ -130,50 +121,44 @@ namespace NewLife.CMX.UrlRewrite
                 NeedLoadAssembly = false;
             }
             catch (Exception) { }
+
             if (type == null)
             {
                 if (Manager.Debug) XTrace.WriteLine("Url重写配置的自定义过滤器类型{0}不存在,或不是有效的类", typeName);
                 return EmptyCustomFilterFunc;
             }
 
-            MethodInfoX methodInfoX = null;
-            try
-            {
-                methodInfoX = MethodInfoX.Create(type, method, new Type[] { typeof(string), typeof(string), typeof(HttpApplication) });
-            }
-            catch (Exception) { }
-            if (methodInfoX == null)
+            var mi = type.GetMethodEx(method, typeof(string), typeof(string), typeof(HttpApplication));
+            //MethodInfoX methodInfoX = null;
+            //try
+            //{
+            //    methodInfoX = MethodInfoX.Create(type, method, new Type[] { typeof(string), typeof(string), typeof(HttpApplication) });
+            //}
+            //catch (Exception) { }
+
+            if (mi == null)
             {
                 if (Manager.Debug) XTrace.WriteLine("Url重写配置的自定义过滤器方法static bool {0}(string, string, HttpApplication)不存在", method);
                 return EmptyCustomFilterFunc;
             }
 
-            if (!methodInfoX.Method.IsStatic)
+            if (!mi.IsStatic)
             {
                 if (Manager.Debug) XTrace.WriteLine("Url重写配置的自定义过滤器方法不是静态方法", method);
                 return EmptyCustomFilterFunc;
             }
 
-            if ((methodInfoX.Method as MethodInfo).ReturnType != typeof(bool))
+            if (mi.ReturnType != typeof(bool))
             {
                 if (Manager.Debug) XTrace.WriteLine("Url重写配置的自定义过滤器方法返回值不是bool", method);
                 return EmptyCustomFilterFunc;
             }
 
-            return delegate(string path, string query, HttpApplication app)
-            {
-                return (bool)methodInfoX.Invoke(null, path, query, app);
-            };
+            return (path, query, app) => (bool)Reflect.Invoke(null, mi, path, query, app);
         }
 
-        private static bool EmptyCustomFilterFunc(string path, string query, HttpApplication app)
-        {
-            return true;
-        }
+        private static bool EmptyCustomFilterFunc(string path, string query, HttpApplication app) { return true; }
 
-        public void Dispose()
-        {
-
-        }
+        public void Dispose() { }
     }
 }
