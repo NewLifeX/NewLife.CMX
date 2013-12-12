@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Text;
+using System.Linq;
 using System.Xml.Serialization;
 using NewLife.CMX.ModelBase;
 using NewLife.CMX.Tool;
@@ -232,9 +233,9 @@ namespace NewLife.CMX
         public static EntityList<Article> FindAllByCategoryID(Int32 categoryid)
         {
             if (Meta.Count >= 1000)
-                return FindAll(_.CategoryID, categoryid);
+                return FindAll(__.CategoryID, categoryid);
             else // 实体缓存
-                return Meta.Cache.Entities.FindAll(_.CategoryID, categoryid);
+                return Meta.Cache.Entities.FindAll(__.CategoryID, categoryid);
         }
         #endregion
 
@@ -252,7 +253,24 @@ namespace NewLife.CMX
         [DataObjectMethod(DataObjectMethodType.Select, true)]
         public static EntityList<Article> Search(String key, Int32 CategoryID, String orderClause, Int32 startRowIndex, Int32 maximumRows)
         {
+            if (Meta.Count < 1000 && key.IsNullOrWhiteSpace()) return FindAllByCategoryID(CategoryID).Page(startRowIndex, maximumRows);
+
             return FindAll(SearchWhere(key, CategoryID), orderClause, null, startRowIndex, maximumRows);
+        }
+
+        /// <summary>
+        /// 查询满足条件的记录总数，分页和排序无效，带参数是因为ObjectDataSource要求它跟Search统一
+        /// </summary>
+        /// <param name="key">关键字</param>
+        /// <param name="orderClause">排序，不带Order By</param>
+        /// <param name="startRowIndex">开始行，0表示第一行</param>
+        /// <param name="maximumRows">最大返回行数，0表示所有行</param>
+        /// <returns>记录数</returns>
+        public static Int32 SearchCount(String key, Int32 CategoryID, String orderClause, Int32 startRowIndex, Int32 maximumRows)
+        {
+            if (Meta.Count < 1000 && key.IsNullOrWhiteSpace()) return FindAllByCategoryID(CategoryID).Count;
+
+            return FindCount(SearchWhere(key, CategoryID), null, null, 0, 0);
         }
 
         /// <summary>
@@ -265,26 +283,18 @@ namespace NewLife.CMX
         /// <returns></returns>
         public static EntityList<Article> Search(Int32[] CategoryID, String orderClause, Int32 startRowIndex, Int32 maximumRows)
         {
+            if (Meta.Count < 1000) return Meta.Cache.Entities.FindAll(e => Array.IndexOf(CategoryID, e.CategoryID) >= 0).Page(startRowIndex, maximumRows);
+
             return FindAll(SearchWhere(CategoryID), orderClause, null, startRowIndex, maximumRows);
         }
-        /// <summary>
-        /// 查询满足条件的记录总数，分页和排序无效，带参数是因为ObjectDataSource要求它跟Search统一
-        /// </summary>
-        /// <param name="key">关键字</param>
-        /// <param name="orderClause">排序，不带Order By</param>
-        /// <param name="startRowIndex">开始行，0表示第一行</param>
-        /// <param name="maximumRows">最大返回行数，0表示所有行</param>
-        /// <returns>记录数</returns>
-        public static Int32 SearchCount(String key, Int32 CategoryID, String orderClause, Int32 startRowIndex, Int32 maximumRows)
-        {
-            return FindCount(SearchWhere(key, CategoryID), null, null, 0, 0);
-        }
-
 
         public static Int32 SearchCount(Int32[] CategoryID, String orderClause, Int32 startRowIndex, Int32 maximumRows)
         {
+            if (Meta.Count < 1000) return Meta.Cache.Entities.FindAll(e => Array.IndexOf(CategoryID, e.CategoryID) >= 0).Count;
+
             return FindCount(SearchWhere(CategoryID), null, null, 0, 0);
         }
+
         /// <summary>构造搜索条件</summary>
         /// <param name="key">关键字</param>
         /// <returns></returns>
@@ -376,7 +386,7 @@ namespace NewLife.CMX
             }
             catch (Exception ex)
             {
-                XTrace.WriteLine(ex.Message);
+                XTrace.WriteException(ex);
             }
             finally
             {
