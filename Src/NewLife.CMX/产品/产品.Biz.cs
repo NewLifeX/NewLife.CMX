@@ -185,7 +185,7 @@ namespace NewLife.CMX
         }
 
         private String _ConentTxt;
-        /// <summary></summary>
+        /// <summary>产品内容</summary>
         public String ConentTxt
         {
             get

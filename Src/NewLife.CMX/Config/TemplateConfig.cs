@@ -103,6 +103,10 @@ namespace NewLife.CMX.Config
         /// <summary>跳转页面地址</summary>
         [Description("跳转页面处理地址")]
         public String GoPage { get { return _GoPage; } set { _GoPage = value; } }
+
+        private String _ErrorPage = "Index.html";
+        [Description("错误转向页")]
+        public String ErrorPage { get { return _ErrorPage; } set { _ErrorPage = value; } }
         #endregion
 
         #region 构造方法

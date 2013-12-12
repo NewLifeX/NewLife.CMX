@@ -12,6 +12,7 @@ namespace NewLife.CMX.Config
     {
         private String _ImagePath = "UploadImage";
         /// <summary>图片目录</summary>
+        [Description("图片目录")]
         public String ImagePath { get { return _ImagePath; } set { _ImagePath = value; } }
     }
 }
