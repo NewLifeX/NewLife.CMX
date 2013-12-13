@@ -37,6 +37,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Handlers\GoPageUrl.cs" />
     <Compile Include="Handlers\UpdateImageLoad.cs" />
     <Compile Include="ModeProcess\ArticleModelContent.cs" />
     <Compile Include="ModeProcess\ArticleModelList.cs" />
@@ -73,6 +74,10 @@
       <Project>{b49aba5a-c5da-45f4-87f1-b435ec51d710}</Project>
       <Name>XCode</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Handlers\FormRouting.cs" />
+    <Compile Include="Handlers\ListRouting.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
