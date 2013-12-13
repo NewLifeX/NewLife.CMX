@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Text;
-using System.Web;
 using NewLife.CMX.Config;
-using XCode;
 using XTemplate.Templating;
+using System.Linq;
+using System.IO;
+using System.Net;
+using System.Web;
+using XCode;
 
 namespace NewLife.CMX.TemplateEngine
 {
@@ -88,7 +89,7 @@ namespace NewLife.CMX.TemplateEngine
             data["Suffix"] = Suffix;
 
             #region 获取模板资源文件
-            Template.Debug = true;
+            Template.Debug = TemplateConfig.Current.IsDebug;
             Dictionary<String, String> tempdic = new Dictionary<String, String>();
 
             String WebPath = HttpRuntime.AppDomainAppPath;

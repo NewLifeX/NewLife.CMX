@@ -1,58 +1,77 @@
 ﻿using System;
-using System.IO;
-using System.Reflection;
 using System.Web;
-using NewLife.CMX.Config;
-using NewLife.CMX.Tool;
 using NewLife.Log;
 using NewLife.Reflection;
 using XUrlRewrite.Configuration;
+using System.Reflection;
+using NewLife.CMX.Tool;
+using NewLife.CMX.Config;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading;
 
 namespace NewLife.CMX.UrlRewrite
 {
     public class CMXHttpModel : IHttpModule
     {
-        /// <summary>初始化</summary>
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="context"></param>
         public void Init(HttpApplication context)
         {
             context.BeginRequest += ReUrl_BeginRequest;
             context.Error += Application_OnError;
+
+            //CMXConfigBase cb = CMXConfigBase.Current;
+            //WebSettingConfig wc = WebSettingConfig.Current;
+            //TemplateConfig tc = TemplateConfig.Current;
+
         }
 
         private void Application_OnError(object sender, EventArgs e)
         {
-            //var CurrentUrl = HelperTool.GetRequestUrl();
-            var httpApplication = sender as HttpApplication;
-            var context = httpApplication.Context;
-            if (context.Request["error"] == "1") return;
 
-            var ex = context.Server.GetLastError();
-            if (ex != null) XTrace.WriteException(ex);
 
-            context.Server.ClearError();
+            Exception ex = ((HttpApplication)sender).Context.Error;
 
-            context.Response.Redirect(CMXConfigBase.Current.CurrentRootPath.CombinePath("Index.html?error=1"));
+            //if (!(ex is ThreadAbortException))
+            //{
+            //    XTrace.WriteLine("路由异常：" + ex.Message);
+            //}
+            XTrace.WriteLine("路由异常：" + ex.Message);
+
+            String CurrentUrl = HelperTool.GetReques();
+            HttpApplication httpApplication = (HttpApplication)sender;
+
+            httpApplication.Context.Server.ClearError();
+
+            HttpContext.Current.Response.Redirect(CMXConfigBase.Current.CurrentRootPath.CombinePath(TemplateConfig.Current.ErrorPage));
         }
 
         private void ReUrl_BeginRequest(object sender, EventArgs e)
         {
-            var app = sender as HttpApplication;
-            var manager = Manager.GetConfigManager(app);
-            var cfg = manager.GetTemplateConfig();
-            if (null != cfg && cfg.Enabled)
+            //Dictionary<String, String> dic = new Dictionary<string, string>();
+            HttpApplication app = sender as HttpApplication;
+
+            if (!app.Request.AppRelativeCurrentExecutionFilePath.EndsWith(".ashx"))
             {
-                String path = app.Request.AppRelativeCurrentExecutionFilePath.Substring(1);
-                String query = app.Request.QueryString.ToString();
-                if (IsCustomFilterEnabled(manager, cfg, path, query, app))
+                Manager manager = Manager.GetConfigManager(app);
+                UrlRewriteConfig cfg = manager.GetTemplateConfig();
+                if (null != cfg && cfg.Enabled)
                 {
-                    foreach (Object _url in cfg.Urls)
+                    String path = app.Request.AppRelativeCurrentExecutionFilePath.Substring(1);
+                    String query = app.Request.QueryString.ToString();
+                    if (IsCustomFilterEnabled(manager, cfg, path, query, app))
                     {
-                        if (_url is UrlElement)
+                        foreach (Object _url in cfg.Urls)
                         {
-                            var url = (UrlElement)_url;
-                            //url.RewriteUrl(path, query, app, cfg, out dic);
-                            if (url.Enabled && url.RewriteUrl(path, query, app, cfg)) break;
+                            if (_url is UrlElement)
+                            {
+                                UrlElement url = (UrlElement)_url;
+                                //url.RewriteUrl(path, query, app, cfg, out dic);
+                                if (url.Enabled && url.RewriteUrl(path, query, app, cfg)) break;
+                            }
                         }
                     }
                 }
@@ -63,7 +82,9 @@ namespace NewLife.CMX.UrlRewrite
         static Func<string, string, HttpApplication, bool>[] CustomFilterFunc = { null };
         static bool NeedLoadAssembly = true;
 
-        /// <summary>获取自定义过滤器是否通过</summary>
+        /// <summary>
+        /// 获取自定义过滤器是否通过
+        /// </summary>
         /// <param name="manager"></param>
         /// <param name="cfg"></param>
         /// <param name="path"></param>
@@ -78,7 +99,7 @@ namespace NewLife.CMX.UrlRewrite
                 {
                     if (!IsBindReload[0])
                     {
-                        manager.LoadConfig += (s, e) => { CustomFilterFunc[0] = null; };
+                        manager.LoadConfig += delegate(object sender1, EventArgs e1) { CustomFilterFunc[0] = null; };
                         IsBindReload[0] = true;
                     }
                 }
@@ -122,44 +143,50 @@ namespace NewLife.CMX.UrlRewrite
                 NeedLoadAssembly = false;
             }
             catch (Exception) { }
-
             if (type == null)
             {
                 if (Manager.Debug) XTrace.WriteLine("Url重写配置的自定义过滤器类型{0}不存在,或不是有效的类", typeName);
                 return EmptyCustomFilterFunc;
             }
 
-            var mi = type.GetMethodEx(method, typeof(string), typeof(string), typeof(HttpApplication));
-            //MethodInfoX methodInfoX = null;
-            //try
-            //{
-            //    methodInfoX = MethodInfoX.Create(type, method, new Type[] { typeof(string), typeof(string), typeof(HttpApplication) });
-            //}
-            //catch (Exception) { }
-
-            if (mi == null)
+            MethodInfoX methodInfoX = null;
+            try
+            {
+                methodInfoX = MethodInfoX.Create(type, method, new Type[] { typeof(string), typeof(string), typeof(HttpApplication) });
+            }
+            catch (Exception) { }
+            if (methodInfoX == null)
             {
                 if (Manager.Debug) XTrace.WriteLine("Url重写配置的自定义过滤器方法static bool {0}(string, string, HttpApplication)不存在", method);
                 return EmptyCustomFilterFunc;
             }
 
-            if (!mi.IsStatic)
+            if (!methodInfoX.Method.IsStatic)
             {
                 if (Manager.Debug) XTrace.WriteLine("Url重写配置的自定义过滤器方法不是静态方法", method);
                 return EmptyCustomFilterFunc;
             }
 
-            if (mi.ReturnType != typeof(bool))
+            if ((methodInfoX.Method as MethodInfo).ReturnType != typeof(bool))
             {
                 if (Manager.Debug) XTrace.WriteLine("Url重写配置的自定义过滤器方法返回值不是bool", method);
                 return EmptyCustomFilterFunc;
             }
 
-            return (path, query, app) => (bool)Reflect.Invoke(null, mi, path, query, app);
+            return delegate(string path, string query, HttpApplication app)
+            {
+                return (bool)methodInfoX.Invoke(null, path, query, app);
+            };
         }
 
-        private static bool EmptyCustomFilterFunc(string path, string query, HttpApplication app) { return true; }
+        private static bool EmptyCustomFilterFunc(string path, string query, HttpApplication app)
+        {
+            return true;
+        }
 
-        public void Dispose() { }
+        public void Dispose()
+        {
+
+        }
     }
 }
