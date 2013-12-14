@@ -20,7 +20,7 @@ namespace NewLife.CMX.Web
 
                 EntityList<Text> texts = new EntityList<Text>();
                 Int32 CountNum = 0;
-                EntityList<TextCategory> Categories = new EntityList<TextCategory>();
+                var Categories = new EntityList<TextCategory>();
 
                 //Channel channel = Channel.FindBySuffix(Suffix);
                 TextCategory tc = TextCategory.FindByID(CategoryID);
@@ -47,7 +47,7 @@ namespace NewLife.CMX.Web
 
                 Int32 PageCount = CountNum / 10 + CountNum % 10 > 0 ? 1 : 0;
 
-                Dictionary<String, String> dic = new Dictionary<string, string>();
+                var dic = new Dictionary<string, string>();
                 dic.Add("Address", Address);
                 dic.Add("CategoryID", CategoryID.ToString());
                 dic.Add("Pageindex", Pageindex.ToString());
@@ -61,7 +61,7 @@ namespace NewLife.CMX.Web
                 dic.Add("FirstUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Suffix + "/" + CategoryID + "/" + channel.ListTemplate);
                 dic.Add("LastUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Suffix + "_" + PageCount + "/" + CategoryID + "/" + channel.ListTemplate);
 
-                CMXEngine engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
+                var engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
                 engine.ArgDic = dic;
                 engine.Header = Header;
                 engine.Foot = Foot;
@@ -74,10 +74,6 @@ namespace NewLife.CMX.Web
                 String content = engine.Render(Address + ".html");
 
                 return content;
-            }
-            catch (Exception)
-            {
-                throw;
             }
             finally
             {
