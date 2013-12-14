@@ -1,7 +1,7 @@
 ﻿/*
- * XCoder v5.1.4992.36291
- * 作者：nnhy/X
- * 时间：2013-09-01 20:13:59
+ * XCoder v6.0.5096.30596
+ * 作者：nnhy/X2
+ * 时间：2013-12-14 17:00:07
  * 版权：版权所有 (C) 新生命开发团队 2002~2013
 */
 ﻿using System;
@@ -17,10 +17,15 @@ using XCode.Configuration;
 
 namespace NewLife.CMX
 {
-    /// <summary>文章统计</summary>
-    public partial class ArticleStatistics : Statistics<ArticleStatistics>
+    /// <summary>实体内容</summary>
+    public partial class EntityContent<TEntity> : Entity<TEntity> where TEntity : EntityContent<TEntity>, new()
     {
         #region 对象操作﻿
+        static EntityContent()
+        {
+            // 用于引发基类的静态构造函数，所有层次的泛型实体类都应该有一个
+            TEntity entity = new TEntity();
+        }
 
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
         /// <param name="isNew"></param>
@@ -36,6 +41,7 @@ namespace NewLife.CMX
             // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
             //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
             
+            if (isNew && !Dirtys[__.CreateTime]) CreateTime = DateTime.Now;
         }
 
         ///// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
@@ -49,12 +55,19 @@ namespace NewLife.CMX
         //    if (Meta.Count > 0) return;
 
         //    // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
-        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(ArticleStatistics).Name, Meta.Table.DataTable.DisplayName);
+        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
 
-        //    var entity = new ArticleStatistics();
+        //    var entity = new EntityContent();
+        //    entity.ParentID = 0;
+        //    entity.Title = "abc";
+        //    entity.Version = 0;
+        //    entity.CreateUserID = 0;
+        //    entity.CreateUserName = "abc";
+        //    entity.CreateTime = DateTime.Now;
+        //    entity.Content = "abc";
         //    entity.Insert();
 
-        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(ArticleStatistics).Name, Meta.Table.DataTable.DisplayName);
+        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
         //}
 
 
@@ -77,6 +90,42 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展查询﻿
+        /// <summary>根据ID查询</summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static TEntity FindByID(Int32 id)
+        {
+            if (Meta.Count >= 1000)
+                return Meta.SingleCache[id];
+            else
+                return Meta.Cache.Entities.Find(__.ID, id);
+        }
+
+        /// <summary>根据主题查找</summary>
+        /// <param name="parentid">主题</param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static EntityList<TEntity> FindAllByParentID(Int32 parentid)
+        {
+            if (Meta.Count >= 1000)
+                return FindAll(_.ParentID, parentid);
+            else // 实体缓存
+                return Meta.Cache.Entities.FindAll(__.ParentID, parentid);
+        }
+
+        /// <summary>根据主题、版本查找</summary>
+        /// <param name="parentid">主题</param>
+        /// <param name="version">版本</param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static TEntity FindByParentIDAndVersion(Int32 parentid, Int32 version)
+        {
+            if (Meta.Count >= 1000)
+                return Find(new String[] { _.ParentID, _.Version }, new Object[] { parentid, version });
+            else // 实体缓存
+                return Meta.Cache.Entities.Find(e => e.ParentID == parentid && e.Version == version);
+        }
         #endregion
 
         #region 高级查询
@@ -91,7 +140,7 @@ namespace NewLife.CMX
         ///// <param name="maximumRows">最大返回行数，0表示所有行</param>
         ///// <returns>实体集</returns>
         //[DataObjectMethod(DataObjectMethodType.Select, true)]
-        //public static EntityList<ArticleStatistics> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
+        //public static EntityList<TEntity> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
         //{
         //    return FindAll(SearchWhere(key), orderClause, null, startRowIndex, maximumRows);
         //}

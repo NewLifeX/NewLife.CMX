@@ -5,7 +5,7 @@ using XCode;
 namespace NewLife.CMX
 {
     /// <summary>文本分类</summary>
-    public partial class TextCategory : ModelCategoryEntity<TextCategory>
+    public partial class TextCategory : EntityCategory<TextCategory>
     {
         #region 对象操作﻿
 
@@ -55,76 +55,7 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展查询﻿
-        /// <summary>根据名称、父类查找</summary>
-        /// <param name="name">名称</param>
-        /// <param name="parentid">父类</param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static TextCategory FindByNameAndParentID(String name, Int32 parentid)
-        {
-            if (Meta.Count >= 1000)
-                return Find(new String[] { _.Name, _.ParentID }, new Object[] { name, parentid });
-            else // 实体缓存
-                return Meta.Cache.Entities.Find(e => e.Name == name && e.ParentID == parentid);
-        }
-
-        /// <summary>根据名称查找</summary>
-        /// <param name="name">名称</param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<TextCategory> FindAllByName(String name)
-        {
-            if (Meta.Count >= 1000)
-                return FindAll(_.Name, name);
-            else // 实体缓存
-                return Meta.Cache.Entities.FindAll(__.Name, name);
-        }
-
-        /// <summary>根据父类查找</summary>
-        /// <param name="parentid">父类</param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<TextCategory> FindAllByParentID(Int32 parentid)
-        {
-            if (Meta.Count >= 1000)
-                return FindAll(_.ParentID, parentid);
-            else // 实体缓存
-                return Meta.Cache.Entities.FindAll(__.ParentID, parentid);
-        }
-
-        /// <summary>根据编号查找</summary>
-        /// <param name="id">编号</param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static TextCategory FindByID(Int32 id)
-        {
-            if (Meta.Count >= 1000)
-                return Find(_.ID, id);
-            else // 实体缓存
-                return Meta.Cache.Entities.Find(__.ID, id);
-            // 单对象缓存
-            //return Meta.SingleCache[id];
-        }
-
-        //基类中实现
-        ///// <summary>
-        /////  
-        ///// </summary>
-        ///// <param name="parentKey"></param>
-        ///// <returns></returns>
-        //public static Dictionary<String, String> FindChildsByNoParent(Int32 parentKey)
-        //{
-        //    EntityList<TextCategory> entitylist = TextCategory.FindAllChildsNoParent(parentKey);
-
-        //    Dictionary<String, String> dic = new Dictionary<string, string>();
-
-        //    foreach (TextCategory item in entitylist)
-        //    {
-        //        dic.Add(item.ID.ToString(), item.TreeNodeName);
-        //    }
-
-        //    return dic;
-        //}
+       
         #endregion
 
         #region 高级查询

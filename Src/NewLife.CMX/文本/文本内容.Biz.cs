@@ -19,7 +19,7 @@ using System.Linq;
 namespace NewLife.CMX
 {
     /// <summary>文本内容</summary>
-    public partial class TextContent : Entity<TextContent>
+    public partial class TextContent : EntityContent<TextContent>
     {
         #region 对象操作﻿
 
@@ -116,43 +116,7 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展查询﻿
-        /// <summary>根据ID查询</summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static TextContent FindByID(Int32 id)
-        {
-            if (Meta.Count >= 1000)
-                return Meta.SingleCache[id];
-            else
-                return Meta.Cache.Entities.Find(__.ID, id);
-        }
-
-        /// <summary>根据主题查找</summary>
-        /// <param name="parentid">主题</param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<TextContent> FindAllByParentID(Int32 parentid)
-        {
-            if (Meta.Count >= 1000)
-                return FindAll(_.ParentID, parentid);
-            else // 实体缓存
-                return Meta.Cache.Entities.FindAll(_.ParentID, parentid);
-        }
-
-        /// <summary>根据主题、版本查找</summary>
-        /// <param name="parentid">主题</param>
-        /// <param name="version">版本</param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static TextContent FindByParentIDAndVersion(Int32 parentid, Int32 version)
-        {
-            if (Meta.Count >= 1000)
-                return Find(new String[] { _.ParentID, _.Version }, new Object[] { parentid, version });
-            else // 实体缓存
-                return Meta.Cache.Entities.Find(e => e.ParentID == parentid && e.Version == version);
-        }
-
+       
         /// <summary>
         /// 根据标题ID查询最新版本的内容
         /// </summary>

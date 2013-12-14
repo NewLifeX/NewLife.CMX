@@ -13,7 +13,7 @@ using XCode;
 namespace NewLife.CMX
 {
     /// <summary>产品</summary>
-    public partial class Product : ModelEntityBase<Product>
+    public partial class Product : EntityTitle<Product>
     {
         #region 对象操作﻿
 
@@ -286,29 +286,6 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展查询﻿
-        /// <summary>根据ID查询</summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static Product FindByID(Int32 id)
-        {
-            if (Meta.Count >= 1000)
-                return Meta.SingleCache[id];
-            else
-                return Meta.Cache.Entities.Find(__.ID, id);
-        }
-
-        /// <summary>根据分类查找</summary>
-        /// <param name="categoryid">分类</param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<Product> FindAllByCategoryID(Int32 categoryid)
-        {
-            if (Meta.Count >= 1000)
-                return FindAll(__.CategoryID, categoryid);
-            else // 实体缓存
-                return Meta.Cache.Entities.FindAll(__.CategoryID, categoryid);
-        }
         #endregion
 
         #region 高级查询

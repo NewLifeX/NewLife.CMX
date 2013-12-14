@@ -18,7 +18,7 @@ using XCode.Configuration;
 namespace NewLife.CMX
 {
     /// <summary>文本统计</summary>
-    public partial class TextStatistics : Entity<TextStatistics>
+    public partial class TextStatistics : Statistics<TextStatistics>
     {
         #region 对象操作﻿
 

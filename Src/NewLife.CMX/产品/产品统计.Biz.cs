@@ -18,7 +18,7 @@ using XCode.Configuration;
 namespace NewLife.CMX
 {
     /// <summary>产品统计</summary>
-    public partial class ProductStatistics : Entity<ProductStatistics>
+    public partial class ProductStatistics : Statistics<ProductStatistics>
     {
         #region 对象操作﻿
 
