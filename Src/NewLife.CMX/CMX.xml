@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Tables Version="8.9.5093.29179">
+<Tables Version="8.10.5095.36942">
   <Table Name="Model" Description="模型。默认有文章、文本、产品三种模型，可以扩展增加。" DbType="SqlServer" 实体分类="基础" 页面分类="Common">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
@@ -48,7 +48,7 @@
       <Index Columns="RoleID" />
     </Indexes>
   </Table>
-  <Table Name="EntityCategory" Description="实体分类" 实体分类="基类" 页面分类="Base" 基类="EntityTree">
+  <Table Name="EntityCategory" Description="实体分类" BaseType="EntityTree" 实体分类="基类" 页面分类="Base" 抽象="true">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Nullable="False" Description="名称" />
@@ -63,7 +63,7 @@
       <Index Columns="ParentID,Name" Unique="True" />
     </Indexes>
   </Table>
-  <Table Name="EntityTitle" Description="实体标题" 实体分类="基类" 页面分类="Base">
+  <Table Name="EntityTitle" Description="实体标题" 实体分类="基类" 页面分类="Base" 抽象="true">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="CategoryID" DataType="Int32" Description="分类" />
@@ -83,7 +83,7 @@
       <Index Columns="CategoryID" />
     </Indexes>
   </Table>
-  <Table Name="EntityContent" Description="实体内容" 实体分类="基类" 页面分类="Base">
+  <Table Name="EntityContent" Description="实体内容" 实体分类="基类" 页面分类="Base" 抽象="true">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="ParentID" DataType="Int32" Description="主题" />
@@ -99,27 +99,27 @@
       <Index Columns="ParentID,Version" Unique="True" />
     </Indexes>
   </Table>
-  <Table Name="ArticleCategory" Description="文章分类" DbType="SqlServer" 实体分类="文章" 页面分类="Article" 基类="EntityCategory" />
-  <Table Name="Article" Description="文章" DbType="SqlServer" 实体分类="文章" 页面分类="Article" 基类="EntityTitle">
+  <Table Name="ArticleCategory" Description="文章分类" DbType="SqlServer" BaseType="EntityCategory" 实体分类="文章" 页面分类="Article" />
+  <Table Name="Article" Description="文章" DbType="SqlServer" BaseType="EntityTitle" 实体分类="文章" 页面分类="Article">
     <Columns>
       <Column Name="Hits" DataType="Int32" Description="访问量" />
     </Columns>
   </Table>
-  <Table Name="ArticleContent" Description="文章内容" DbType="SqlServer" 实体分类="文章" 页面分类="Article" 基类="EntityContent" />
-  <Table Name="ArticleStatistics" Description="文章统计" DbType="SqlServer" 实体分类="文章" 页面分类="Article" 基类="Statistics" />
-  <Table Name="TextCategory" Description="文本分类" DbType="SqlServer" 实体分类="文本" 页面分类="Text" 基类="EntityCategory" />
-  <Table Name="Text" Description="文本" DbType="SqlServer" 实体分类="文本" 页面分类="Text" 基类="EntityTitle" />
-  <Table Name="TextContent" Description="文本内容" DbType="SqlServer" 实体分类="文本" 页面分类="Text" 基类="EntityContent" />
-  <Table Name="TextStatistics" Description="文本统计" DbType="SqlServer" 实体分类="文本" 页面分类="Text" 基类="Statistics" />
-  <Table Name="ProductCategory" Description="产品分类" DbType="SqlServer" 实体分类="产品" 页面分类="Product" 基类="EntityCategory" />
-  <Table Name="Product" Description="产品" DbType="SqlServer" 实体分类="产品" 页面分类="Product" 基类="EntityTitle">
+  <Table Name="ArticleContent" Description="文章内容" DbType="SqlServer" BaseType="EntityContent" 实体分类="文章" 页面分类="Article" />
+  <Table Name="ArticleStatistics" Description="文章统计" DbType="SqlServer" BaseType="Statistics" 实体分类="文章" 页面分类="Article" />
+  <Table Name="TextCategory" Description="文本分类" DbType="SqlServer" BaseType="EntityCategory" 实体分类="文本" 页面分类="Text" />
+  <Table Name="Text" Description="文本" DbType="SqlServer" BaseType="EntityTitle" 实体分类="文本" 页面分类="Text" />
+  <Table Name="TextContent" Description="文本内容" DbType="SqlServer" BaseType="EntityContent" 实体分类="文本" 页面分类="Text" />
+  <Table Name="TextStatistics" Description="文本统计" DbType="SqlServer" BaseType="Statistics" 实体分类="文本" 页面分类="Text" />
+  <Table Name="ProductCategory" Description="产品分类" DbType="SqlServer" BaseType="EntityCategory" 实体分类="产品" 页面分类="Product" />
+  <Table Name="Product" Description="产品" DbType="SqlServer" BaseType="EntityTitle" 实体分类="产品" 页面分类="Product">
     <Columns>
       <Column Name="Hits" DataType="Int32" Description="访问量" />
       <Column Name="Price" DataType="Decimal" Description="价格" />
       <Column Name="PhotoPath" DataType="String" Length="200" Description="图片路径" />
     </Columns>
   </Table>
-  <Table Name="ProductContent" Description="产品内容" DbType="SqlServer" 实体分类="产品" 页面分类="Product" 基类="EntityContent">
+  <Table Name="ProductContent" Description="产品内容" DbType="SqlServer" BaseType="EntityContent" 实体分类="产品" 页面分类="Product">
     <Columns>
       <Column Name="Specification" DataType="String" Length="-1" Description="规格参数" />
       <Column Name="Feature" DataType="String" Length="-1" Description="功能特点" />
@@ -128,5 +128,5 @@
       <Column Name="Video" DataType="String" Length="-1" Description="产品视频" />
     </Columns>
   </Table>
-  <Table Name="ProductStatistics" Description="产品统计" DbType="SqlServer" 实体分类="产品" 页面分类="Product" 基类="Statistics" />
+  <Table Name="ProductStatistics" Description="产品统计" DbType="SqlServer" BaseType="Statistics" 实体分类="产品" 页面分类="Product" />
 </Tables>
