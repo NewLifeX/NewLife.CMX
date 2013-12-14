@@ -41,7 +41,7 @@ namespace NewLife.CMX.UrlRewrite
             //}
             XTrace.WriteLine("路由异常：" + ex.Message);
 
-            String CurrentUrl = HelperTool.GetReques();
+            String CurrentUrl = HelperTool.GetRequestUrl();
             HttpApplication httpApplication = (HttpApplication)sender;
 
             httpApplication.Context.Server.ClearError();
