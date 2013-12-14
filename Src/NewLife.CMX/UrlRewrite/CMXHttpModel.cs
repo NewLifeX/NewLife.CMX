@@ -31,8 +31,6 @@ namespace NewLife.CMX.UrlRewrite
 
         private void Application_OnError(object sender, EventArgs e)
         {
-
-
             Exception ex = ((HttpApplication)sender).Context.Error;
 
             //if (!(ex is ThreadAbortException))
