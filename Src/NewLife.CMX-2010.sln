@@ -6,7 +6,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Web", "Web\", "{0173B5B3-3287-48BE-A136-C258C35E4210}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv2.0"
-		ProjectReferences = "{4c2cf9bb-b920-43f5-9d87-b7288e416795}|NewLife.CMX.dll;{50D7FAE5-2304-4395-A6FA-7D35279D9D84}|NewLife.CommonEntity.dll;{5813C22E-EEB3-4DEE-A45C-BB218041193A}|NewLife.Core.dll;{B49ABA5A-C5DA-45F4-87F1-B435EC51D710}|XCode.dll;"
+		ProjectReferences = "{4c2cf9bb-b920-43f5-9d87-b7288e416795}|NewLife.CMX.dll;{50D7FAE5-2304-4395-A6FA-7D35279D9D84}|NewLife.CommonEntity.dll;{5813C22E-EEB3-4DEE-A45C-BB218041193A}|NewLife.Core.dll;{B49ABA5A-C5DA-45F4-87F1-B435EC51D710}|XCode.dll;{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}|XTemplate.dll;{F962C060-315F-4F85-9F6F-8E488A9B79EA}|XUrlRewrite.dll;{D22F1350-D58B-44E5-B6BB-1D2A5E7FCC66}|NewLife.CMX.Web.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/Web"
 		Debug.AspNetCompiler.PhysicalPath = "Web\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Web\"
@@ -29,6 +29,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XCode", "XCode\XCode.csproj", "{B49ABA5A-C5DA-45F4-87F1-B435EC51D710}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewLife.CommonEntity", "NewLife.CommonEntity\NewLife.CommonEntity.csproj", "{50D7FAE5-2304-4395-A6FA-7D35279D9D84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewLife.CMX.Web", "NewLife.CMX.Web\NewLife.CMX.Web.csproj", "{D22F1350-D58B-44E5-B6BB-1D2A5E7FCC66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUrlRewrite", "XUrlRewrite\XUrlRewrite.csproj", "{F962C060-315F-4F85-9F6F-8E488A9B79EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XTemplate", "XTemplate\XTemplate.csproj", "{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,6 +84,30 @@ Global
 		{50D7FAE5-2304-4395-A6FA-7D35279D9D84}.Net4Release|Any CPU.Build.0 = Net4Release|Any CPU
 		{50D7FAE5-2304-4395-A6FA-7D35279D9D84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50D7FAE5-2304-4395-A6FA-7D35279D9D84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D22F1350-D58B-44E5-B6BB-1D2A5E7FCC66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D22F1350-D58B-44E5-B6BB-1D2A5E7FCC66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D22F1350-D58B-44E5-B6BB-1D2A5E7FCC66}.Net4Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D22F1350-D58B-44E5-B6BB-1D2A5E7FCC66}.Net4Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D22F1350-D58B-44E5-B6BB-1D2A5E7FCC66}.Net4Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D22F1350-D58B-44E5-B6BB-1D2A5E7FCC66}.Net4Release|Any CPU.Build.0 = Release|Any CPU
+		{D22F1350-D58B-44E5-B6BB-1D2A5E7FCC66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D22F1350-D58B-44E5-B6BB-1D2A5E7FCC66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F962C060-315F-4F85-9F6F-8E488A9B79EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F962C060-315F-4F85-9F6F-8E488A9B79EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F962C060-315F-4F85-9F6F-8E488A9B79EA}.Net4Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F962C060-315F-4F85-9F6F-8E488A9B79EA}.Net4Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F962C060-315F-4F85-9F6F-8E488A9B79EA}.Net4Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F962C060-315F-4F85-9F6F-8E488A9B79EA}.Net4Release|Any CPU.Build.0 = Release|Any CPU
+		{F962C060-315F-4F85-9F6F-8E488A9B79EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F962C060-315F-4F85-9F6F-8E488A9B79EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}.Net4Debug|Any CPU.ActiveCfg = Net4Debug|Any CPU
+		{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}.Net4Debug|Any CPU.Build.0 = Net4Debug|Any CPU
+		{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}.Net4Release|Any CPU.ActiveCfg = Net4Release|Any CPU
+		{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}.Net4Release|Any CPU.Build.0 = Net4Release|Any CPU
+		{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
