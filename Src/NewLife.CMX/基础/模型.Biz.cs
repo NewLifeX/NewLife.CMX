@@ -14,6 +14,7 @@ using NewLife.Log;
 using NewLife.Web;
 using XCode;
 using XCode.Configuration;
+using NewLife.Reflection;
 
 namespace NewLife.CMX
 {
@@ -21,32 +22,7 @@ namespace NewLife.CMX
     /// <remarks>模型。默认有文章、文本、产品三种模型，可以扩展增加。</remarks>
     public partial class Model : Entity<Model>
     {
-        protected override void InitData()
-        {
-            base.InitData();
-
-            if (Meta.Count > 0) return;
-
-            if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}模型数据......", typeof(Model).Name);
-
-            Meta.BeginTrans();
-            try
-            {
-                EntityList<Model> entityList = new EntityList<Model>();
-                
-                //entityList.Add();
-                //entityList.Add();
-                //entityList.Add();
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
         #region 对象操作﻿
-
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
         /// <param name="isNew"></param>
         public override void Valid(Boolean isNew)
@@ -66,48 +42,36 @@ namespace NewLife.CMX
             if (!Dirtys[__.UpdateTime]) UpdateTime = DateTime.Now;
         }
 
-        ///// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //protected override void InitData()
-        //{
-        //    base.InitData();
+        /// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void InitData()
+        {
+            base.InitData();
 
-        //    // InitData一般用于当数据表没有数据时添加一些默认数据，该实体类的任何第一次数据库操作都会触发该方法，默认异步调用
-        //    // Meta.Count是快速取得表记录数
-        //    if (Meta.Count > 0) return;
+            // InitData一般用于当数据表没有数据时添加一些默认数据，该实体类的任何第一次数据库操作都会触发该方法，默认异步调用
+            // Meta.Count是快速取得表记录数
+            if (Meta.Count > 0) return;
 
-        //    // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
-        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Model).Name, Meta.Table.DataTable.DisplayName);
+            // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
+            if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Model).Name, Meta.Table.DataTable.DisplayName);
 
-        //    var entity = new Model();
-        //    entity.Name = "abc";
-        //    entity.Enable = true;
-        //    entity.CreateUserID = 0;
-        //    entity.CreateUserName = "abc";
-        //    entity.CreateTime = DateTime.Now;
-        //    entity.UpdateUserID = 0;
-        //    entity.UpdateUserName = "abc";
-        //    entity.UpdateTime = DateTime.Now;
-        //    entity.Remark = "abc";
-        //    entity.Insert();
+            //Add("文本");
+            //Add("文章");
+            //Add("产品");
+            foreach (var item in AssemblyX.FindAllPlugins(typeof(IEntityTitle), true))
+            {
+                var dis = item.GetCustomAttribute<DisplayNameAttribute>();
+                var des = item.GetCustomAttribute<DescriptionAttribute>();
 
-        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Model).Name, Meta.Table.DataTable.DisplayName);
-        //}
+                var entity = new Model();
+                entity.Name = dis != null ? dis.DisplayName : (des != null ? des.Description : item.Name);
+                entity.ClassName = item.FullName;
+                entity.Enable = true;
+                entity.Save();
+            }
 
-
-        ///// <summary>已重载。基类先调用Valid(true)验证数据，然后在事务保护内调用OnInsert</summary>
-        ///// <returns></returns>
-        //public override Int32 Insert()
-        //{
-        //    return base.Insert();
-        //}
-
-        ///// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
-        ///// <returns></returns>
-        //protected override Int32 OnInsert()
-        //{
-        //    return base.OnInsert();
-        //}
+            if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Model).Name, Meta.Table.DataTable.DisplayName);
+        }
         #endregion
 
         #region 扩展属性﻿
@@ -185,6 +149,15 @@ namespace NewLife.CMX
         #endregion
 
         #region 业务
+        public static Model Add(String name)
+        {
+            var entity = new Model();
+            entity.Name = name;
+            entity.Enable = true;
+            entity.Save();
+
+            return entity;
+        }
         #endregion
     }
 }
