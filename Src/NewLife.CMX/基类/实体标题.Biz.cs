@@ -8,18 +8,27 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using NewLife.Reflection;
 using System.Xml.Serialization;
 using NewLife.CommonEntity;
 using NewLife.Log;
 using NewLife.Web;
 using XCode;
 using XCode.Configuration;
+using System.Linq;
 
 namespace NewLife.CMX
 {
     /// <summary>实体标题</summary>
     public partial class EntityTitle<TEntity> : Entity<TEntity> where TEntity : EntityTitle<TEntity>, new()
     {
+        #region 配套类型
+        /// <summary>配套的分类类型</summary>
+        protected static Type TCategory = (typeof(TEntity).Name + "Category").GetTypeEx();
+        /// <summary>配套的内容类型</summary>
+        protected static Type TContent = (typeof(TEntity).Name + "Content").GetTypeEx();
+        #endregion
+
         #region 对象操作﻿
         static EntityTitle()
         {
@@ -40,42 +49,40 @@ namespace NewLife.CMX
 
             // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
             //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
-            
+
             if (isNew && !Dirtys[__.CreateTime]) CreateTime = DateTime.Now;
             if (!Dirtys[__.UpdateTime]) UpdateTime = DateTime.Now;
         }
 
-        ///// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //protected override void InitData()
-        //{
-        //    base.InitData();
+        /// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void InitData()
+        {
+            base.InitData();
 
-        //    // InitData一般用于当数据表没有数据时添加一些默认数据，该实体类的任何第一次数据库操作都会触发该方法，默认异步调用
-        //    // Meta.Count是快速取得表记录数
-        //    if (Meta.Count > 0) return;
+            // InitData一般用于当数据表没有数据时添加一些默认数据，该实体类的任何第一次数据库操作都会触发该方法，默认异步调用
+            // Meta.Count是快速取得表记录数
+            if (Meta.Count > 0) return;
 
-        //    // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
-        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
+            // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
+            if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
 
-        //    var entity = new EntityTitle();
-        //    entity.CategoryID = 0;
-        //    entity.CategoryName = "abc";
-        //    entity.Title = "abc";
-        //    entity.Version = 0;
-        //    entity.StatisticsID = 0;
-        //    entity.CreateUserID = 0;
-        //    entity.CreateUserName = "abc";
-        //    entity.CreateTime = DateTime.Now;
-        //    entity.UpdateUserID = 0;
-        //    entity.UpdateUserName = "abc";
-        //    entity.UpdateTime = DateTime.Now;
-        //    entity.Remark = "abc";
-        //    entity.Insert();
+            // 配套的分类
+            var eop = EntityFactory.CreateOperate(TCategory);
+            var cat = eop.FindAllWithCache().FirstOrDefault() as IEntityCategory;
+            var des = typeof(TEntity).GetCustomAttribute<DescriptionAttribute>();
 
-        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
-        //}
+            var entity = new TEntity();
+            entity.CategoryID = cat.ID;
+            entity.CategoryName = cat.Name;
+            entity.Title = des.Description + "1";
+            entity.Insert();
 
+            entity.Title = des.Description + "2";
+            entity.Insert();
+
+            if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
+        }
 
         ///// <summary>已重载。基类先调用Valid(true)验证数据，然后在事务保护内调用OnInsert</summary>
         ///// <returns></returns>
