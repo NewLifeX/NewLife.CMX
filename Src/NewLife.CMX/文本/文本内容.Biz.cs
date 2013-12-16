@@ -53,30 +53,6 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展查询﻿
-       
-        /// <summary>
-        /// 根据标题ID查询最新版本的内容
-        /// </summary>
-        /// <param name="parentid"></param>
-        /// <returns></returns>
-        public static TextContent FindByParentIDAndNewVersion(Int32 parentid)
-        {
-            List<TextContent> entitylist;
-
-            if (Meta.Count >= 1000)
-            {
-                entitylist = FindAll(__.ParentID, parentid);
-            }
-            else
-            {
-                entitylist = Meta.Cache.Entities.FindAll(e => e.ParentID == parentid);
-            }
-
-            if (entitylist == null || entitylist.Count == 0)
-                return null;
-            else
-                return entitylist.OrderBy(e => e.Version).ToArray()[0];
-        }
         #endregion
 
         #region 高级查询
