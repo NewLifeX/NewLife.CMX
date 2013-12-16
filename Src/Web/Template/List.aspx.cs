@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Threading;
-using System.Web.UI;
 using NewLife.CMX;
 using NewLife.CMX.Config;
 using NewLife.CMX.Web;
-using NewLife.Log;
 using NewLife.Reflection;
 using NewLife.Web;
+using NewLife.CMX.WebBase;
 
-public partial class Template_List : NewLife.CMX.WebBase.WebPageBase
+public partial class Template_List : WebPageBase
 {
     /// <summary>ID</summary>
     private Int32 CategoryID
@@ -120,22 +115,6 @@ public partial class Template_List : NewLife.CMX.WebBase.WebPageBase
 
         Response.Write(content);
     }
-
-    ///// <summary>
-    ///// 
-    ///// </summary>
-    ///// <returns></returns>
-    //private Dictionary<String, Object> GetQueryDic()
-    //{
-    //    Dictionary<String, Object> dic = new Dictionary<string, object>();
-
-    //    foreach (String item in Request.QueryString.AllKeys)
-    //    {
-    //        dic.Add(item, Request.QueryString[item]);
-    //    }
-
-    //    return dic;
-    //}
 
     private void Err(String Msg)
     {
