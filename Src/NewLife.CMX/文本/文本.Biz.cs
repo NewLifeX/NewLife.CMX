@@ -16,59 +16,6 @@ namespace NewLife.CMX
     public partial class Text : EntityTitle<Text, TextCategory, TextContent>
     {
         #region 对象操作﻿
-
-        /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
-        /// <param name="isNew"></param>
-        public override void Valid(Boolean isNew)
-        {
-            // 这里验证参数范围，建议抛出参数异常，指定参数名，前端用户界面可以捕获参数异常并聚焦到对应的参数输入框
-            //if (String.IsNullOrEmpty(Name)) throw new ArgumentNullException(__.Name, _.Name.DisplayName + "无效！");
-            //if (!isNew && ID < 1) throw new ArgumentOutOfRangeException(__.ID, _.ID.DisplayName + "必须大于0！");
-
-            // 建议先调用基类方法，基类方法会对唯一索引的数据进行验证
-            base.Valid(isNew);
-
-            // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
-            //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
-
-            //if (isNew && !Dirtys[__.CreateTime])
-            //{
-            //    CreateTime = DateTime.Now;
-            //    CreateUserID = Admin.Current.ID;
-            //    CreateUserName = Admin.Current.DisplayName;
-            //}
-            //if (!Dirtys[__.UpdateTime])
-            //{
-            //    UpdateTime = DateTime.Now;
-            //    UpdateUserID = Admin.Current.ID;
-            //    UpdateUserName = Admin.Current.DisplayName;
-            //}
-        }
-
-        ///// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
-        ///// <returns></returns>
-        //protected override Int32 OnInsert()
-        //{
-        //    Version += 1;
-
-        //    Int32 num = base.OnInsert();
-
-        //    //SaveContent(Version);
-        //    HelperTool.SaveModelContent(typeof(TextContent), Version, ChannelSuffix, this, null);
-
-        //    return num;
-        //}
-
-        ///// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
-        //protected override int OnUpdate()
-        //{
-        //    Version += 1;
-
-        //    //SaveContent(Version);
-        //    HelperTool.SaveModelContent(typeof(TextContent), Version, ChannelSuffix, this, null);
-
-        //    return base.OnUpdate();
-        //}
         #endregion
 
         #region 扩展属性﻿

@@ -87,6 +87,39 @@ namespace NewLife.CMX
             set { _Content = value; }
         }
         #endregion
+
+        #region 对象操作
+        /// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
+        /// <returns></returns>
+        protected override Int32 OnInsert()
+        {
+            if (!Dirtys["Version"]) Version = 1;
+
+            Int32 num = base.OnInsert();
+
+            HelperTool.SaveModelContent(typeof(TContent), Version, ChannelSuffix, this, null);
+
+            return num;
+        }
+
+        /// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
+        protected override int OnUpdate()
+        {
+            if (Dirtys["Content"])
+            {
+                if (!Dirtys["Version"]) Version++;
+
+                HelperTool.SaveModelContent(typeof(TContent), Version, ChannelSuffix, this, null);
+            }
+
+            return base.OnUpdate();
+        }
+
+        protected override int OnDelete()
+        {
+            return base.OnDelete();
+        }
+        #endregion
     }
 
     /// <summary>实体标题</summary>
@@ -119,31 +152,6 @@ namespace NewLife.CMX
                 UpdateUserID = mp.Current.ID;
                 UpdateUserName = mp.Current.ToString();
             }
-        }
-
-        /// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
-        /// <returns></returns>
-        protected override Int32 OnInsert()
-        {
-            Version += 1;
-
-            Int32 num = base.OnInsert();
-
-            //SaveContent(Version);
-            HelperTool.SaveModelContent(typeof(TextContent), Version, ChannelSuffix, this, null);
-
-            return num;
-        }
-
-        /// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
-        protected override int OnUpdate()
-        {
-            Version += 1;
-
-            //SaveContent(Version);
-            HelperTool.SaveModelContent(typeof(TextContent), Version, ChannelSuffix, this, null);
-
-            return base.OnUpdate();
         }
         #endregion
 

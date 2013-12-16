@@ -16,7 +16,6 @@ namespace NewLife.CMX
     public partial class Product : EntityTitle<Product, ProductCategory, ProductContent>
     {
         #region 对象操作﻿
-
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
         /// <param name="isNew"></param>
         public override void Valid(Boolean isNew)
@@ -33,127 +32,10 @@ namespace NewLife.CMX
 
             // 货币保留6位小数
             if (Dirtys[__.Price]) Price = Math.Round(Price, 6);
-            if (isNew && !Dirtys[__.CreateTime])
-            {
-                CreateTime = DateTime.Now;
-                CreateUserID = Admin.Current.ID;
-                CreateUserName = Admin.Current.DisplayName;
-            }
-            if (!Dirtys[__.UpdateTime])
-            {
-                UpdateTime = DateTime.Now;
-                UpdateUserID = Admin.Current.ID;
-                UpdateUserName = Admin.Current.DisplayName;
-            }
-        }
-
-        ///// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //protected override void InitData()
-        //{
-        //    base.InitData();
-
-        //    // InitData一般用于当数据表没有数据时添加一些默认数据，该实体类的任何第一次数据库操作都会触发该方法，默认异步调用
-        //    // Meta.Count是快速取得表记录数
-        //    if (Meta.Count > 0) return;
-
-        //    // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
-        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Product).Name, Meta.Table.DataTable.DisplayName);
-
-        //    var entity = new Product();
-        //    entity.CategoryID = 0;
-        //    entity.Title = "abc";
-        //    entity.Version = 0;
-        //    entity.Price = 0;
-        //    entity.StatisticsID = 0;
-        //    entity.CreateUserID = 0;
-        //    entity.CreateUserName = "abc";
-        //    entity.CreateTime = DateTime.Now;
-        //    entity.UpdateUserID = 0;
-        //    entity.UpdateUserName = "abc";
-        //    entity.UpdateTime = DateTime.Now;
-        //    entity.Remark = "abc";
-        //    entity.Insert();
-
-        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Product).Name, Meta.Table.DataTable.DisplayName);
-        //}
-
-
-        ///// <summary>已重载。基类先调用Valid(true)验证数据，然后在事务保护内调用OnInsert</summary>
-        ///// <returns></returns>
-        //public override Int32 Insert()
-        //{
-        //    return base.Insert();
-        //}
-
-        ///// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
-        ///// <returns></returns>
-        //protected override Int32 OnInsert()
-        //{
-        //    return base.OnInsert();
-        //}
-
-        /// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
-        /// <returns></returns>
-        protected override Int32 OnInsert()
-        {
-            Version++;
-
-            Int32 num = base.OnInsert();
-
-            //SaveContent(Version);
-            HelperTool.SaveModelProductContent(typeof(ProductContent), Version, ChannelSuffix, this, null);
-
-            return num;
-        }
-
-        /// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
-        protected override int OnUpdate()
-        {
-            Version++;
-
-            //SaveContent(Version);
-            HelperTool.SaveModelProductContent(typeof(ProductContent), Version, ChannelSuffix, this, null);
-
-            return base.OnUpdate();
         }
         #endregion
 
         #region 扩展属性﻿
-        //public static String ChannelSuffix;
-
-        //private Channel _Channel;
-        ///// <summary>频道</summary>
-        //public Channel Channel
-        //{
-        //    get
-        //    {
-        //        if (_Channel == null && ChannelSuffix != null && !Dirtys.ContainsKey("Channel"))
-        //        {
-        //            _Channel = Channel.FindBySuffix(ChannelSuffix);
-        //            Dirtys["Channel"] = true;
-        //        }
-        //        return _Channel;
-        //    }
-        //    set { _Channel = value; }
-        //}
-
-        //private String _ChannelName;
-        ///// <summary>频道名</summary>
-        //public String ChannelName
-        //{
-        //    get
-        //    {
-        //        if (_ChannelName == null && !Dirtys.ContainsKey("ChannelName"))
-        //        {
-        //            _ChannelName = Channel == null ? "" : Channel.Name;
-        //            Dirtys["ChannelName"] = true;
-        //        }
-        //        return _ChannelName;
-        //    }
-        //    set { _ChannelName = value; }
-        //}
-
         private ProductContent _ProductContent;
         /// <summary></summary>
         public ProductContent ProductContent
