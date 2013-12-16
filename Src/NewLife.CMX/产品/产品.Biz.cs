@@ -6,8 +6,6 @@
 */
 ﻿using System;
 using System.ComponentModel;
-using NewLife.CMX.ModelBase;
-using NewLife.CMX.Tool;
 using XCode;
 
 namespace NewLife.CMX

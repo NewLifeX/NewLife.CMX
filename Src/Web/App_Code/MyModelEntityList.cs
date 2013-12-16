@@ -111,7 +111,7 @@ public class MyModelEntityList<TEntity> : MyModelEntityList where TEntity : Enti
             EntityFactory.CreateOperate(EntityType).TableName = "";
             EntityFactory.CreateOperate(EntityType).TableName += c.Suffix;
 
-            if (EntityType.BaseType.GetGenericTypeDefinition() == typeof(EntityTree<>) || EntityType.BaseType.GetGenericTypeDefinition() == typeof(ModelCategoryEntity<>))
+            if (EntityType.BaseType.GetGenericTypeDefinition() == typeof(EntityTree<>) || EntityType.BaseType.GetGenericTypeDefinition() == typeof(EntityCategory<>))
             {
                 PropertyInfoX pix = PropertyInfoX.Create(EntityType, "Root");
 
