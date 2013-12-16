@@ -13,7 +13,7 @@ using XCode;
 namespace NewLife.CMX
 {
     /// <summary>产品</summary>
-    public partial class Product : EntityTitle<Product>
+    public partial class Product : EntityTitle<Product, ProductCategory, ProductContent>
     {
         #region 对象操作﻿
 
@@ -120,39 +120,39 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
-        public static String ChannelSuffix;
+        //public static String ChannelSuffix;
 
-        private Channel _Channel;
-        /// <summary>频道</summary>
-        public Channel Channel
-        {
-            get
-            {
-                if (_Channel == null && ChannelSuffix != null && !Dirtys.ContainsKey("Channel"))
-                {
-                    _Channel = Channel.FindBySuffix(ChannelSuffix);
-                    Dirtys["Channel"] = true;
-                }
-                return _Channel;
-            }
-            set { _Channel = value; }
-        }
+        //private Channel _Channel;
+        ///// <summary>频道</summary>
+        //public Channel Channel
+        //{
+        //    get
+        //    {
+        //        if (_Channel == null && ChannelSuffix != null && !Dirtys.ContainsKey("Channel"))
+        //        {
+        //            _Channel = Channel.FindBySuffix(ChannelSuffix);
+        //            Dirtys["Channel"] = true;
+        //        }
+        //        return _Channel;
+        //    }
+        //    set { _Channel = value; }
+        //}
 
-        private String _ChannelName;
-        /// <summary>频道名</summary>
-        public String ChannelName
-        {
-            get
-            {
-                if (_ChannelName == null && !Dirtys.ContainsKey("ChannelName"))
-                {
-                    _ChannelName = Channel == null ? "" : Channel.Name;
-                    Dirtys["ChannelName"] = true;
-                }
-                return _ChannelName;
-            }
-            set { _ChannelName = value; }
-        }
+        //private String _ChannelName;
+        ///// <summary>频道名</summary>
+        //public String ChannelName
+        //{
+        //    get
+        //    {
+        //        if (_ChannelName == null && !Dirtys.ContainsKey("ChannelName"))
+        //        {
+        //            _ChannelName = Channel == null ? "" : Channel.Name;
+        //            Dirtys["ChannelName"] = true;
+        //        }
+        //        return _ChannelName;
+        //    }
+        //    set { _ChannelName = value; }
+        //}
 
         private ProductContent _ProductContent;
         /// <summary></summary>

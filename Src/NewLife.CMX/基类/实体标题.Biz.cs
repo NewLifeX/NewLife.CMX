@@ -5,55 +5,25 @@
  * 版权：版权所有 (C) 新生命开发团队 2002~2013
 */
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
-using NewLife.Reflection;
-using System.Xml.Serialization;
+using System.Linq;
+using NewLife.CMX.Tool;
 using NewLife.CommonEntity;
 using NewLife.Log;
-using NewLife.Web;
+using NewLife.Reflection;
 using XCode;
-using XCode.Configuration;
-using System.Linq;
 
 namespace NewLife.CMX
 {
     /// <summary>实体标题</summary>
-    public partial class EntityTitle<TEntity> : Entity<TEntity> where TEntity : EntityTitle<TEntity>, new()
+    /// <typeparam name="TEntity"></typeparam>
+    /// <typeparam name="TCategory"></typeparam>
+    /// <typeparam name="TContent"></typeparam>
+    public abstract class EntityTitle<TEntity, TCategory, TContent> : EntityTitle<TEntity>
+        where TEntity : EntityTitle<TEntity>, new()
+        where TCategory : EntityCategory<TCategory>, new()
+        where TContent : EntityContent<TContent>, new()
     {
-        #region 配套类型
-        /// <summary>配套的分类类型</summary>
-        protected static Type TCategory = (typeof(TEntity).Name + "Category").GetTypeEx();
-        /// <summary>配套的内容类型</summary>
-        protected static Type TContent = (typeof(TEntity).Name + "Content").GetTypeEx();
-        #endregion
-
-        #region 对象操作﻿
-        static EntityTitle()
-        {
-            // 用于引发基类的静态构造函数，所有层次的泛型实体类都应该有一个
-            TEntity entity = new TEntity();
-        }
-
-        /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
-        /// <param name="isNew"></param>
-        public override void Valid(Boolean isNew)
-        {
-            // 这里验证参数范围，建议抛出参数异常，指定参数名，前端用户界面可以捕获参数异常并聚焦到对应的参数输入框
-            //if (String.IsNullOrEmpty(Name)) throw new ArgumentNullException(__.Name, _.Name.DisplayName + "无效！");
-            //if (!isNew && ID < 1) throw new ArgumentOutOfRangeException(__.ID, _.ID.DisplayName + "必须大于0！");
-
-            // 建议先调用基类方法，基类方法会对唯一索引的数据进行验证
-            base.Valid(isNew);
-
-            // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
-            //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
-
-            if (isNew && !Dirtys[__.CreateTime]) CreateTime = DateTime.Now;
-            if (!Dirtys[__.UpdateTime]) UpdateTime = DateTime.Now;
-        }
-
         /// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void InitData()
@@ -68,8 +38,8 @@ namespace NewLife.CMX
             if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
 
             // 配套的分类
-            var eop = EntityFactory.CreateOperate(TCategory);
-            var cat = eop.FindAllWithCache().FirstOrDefault() as IEntityCategory;
+            EntityCategory<TCategory>.Meta.WaitForInitData();
+            var cat = EntityCategory<TCategory>.FindAllWithCache().ToList().FirstOrDefault() as IEntityCategory;
             var des = typeof(TEntity).GetCustomAttribute<DescriptionAttribute>();
 
             var entity = new TEntity();
@@ -84,22 +54,120 @@ namespace NewLife.CMX
             if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
         }
 
-        ///// <summary>已重载。基类先调用Valid(true)验证数据，然后在事务保护内调用OnInsert</summary>
-        ///// <returns></returns>
-        //public override Int32 Insert()
-        //{
-        //    return base.Insert();
-        //}
+        #region 扩展属性
+        private TCategory _Category;
+        /// <summary>分类</summary>
+        public TCategory Category
+        {
+            get
+            {
+                if (_Category == null && CategoryID > 0 && !Dirtys.ContainsKey("Category"))
+                {
+                    _Category = EntityCategory<TCategory>.FindByID(CategoryID);
+                    Dirtys["Category"] = true;
+                }
+                return _Category;
+            }
+            set { _Category = value; }
+        }
 
-        ///// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
-        ///// <returns></returns>
-        //protected override Int32 OnInsert()
-        //{
-        //    return base.OnInsert();
-        //}
+        private TContent _Content;
+        /// <summary>内容</summary>
+        public TContent Content
+        {
+            get
+            {
+                if (_Content == null && !Dirtys.ContainsKey("Content"))
+                {
+                    _Content = EntityContent<TContent>.FindLastByParentID(ID);
+                    Dirtys["Content"] = true;
+                }
+                return _Content;
+            }
+            set { _Content = value; }
+        }
+        #endregion
+    }
+
+    /// <summary>实体标题</summary>
+    public partial class EntityTitle<TEntity> : Entity<TEntity> where TEntity : EntityTitle<TEntity>, new()
+    {
+        #region 对象操作﻿
+        static EntityTitle()
+        {
+            // 用于引发基类的静态构造函数，所有层次的泛型实体类都应该有一个
+            TEntity entity = new TEntity();
+        }
+
+        /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
+        /// <param name="isNew"></param>
+        public override void Valid(Boolean isNew)
+        {
+            // 建议先调用基类方法，基类方法会对唯一索引的数据进行验证
+            base.Valid(isNew);
+
+            var mp = ManageProvider.Provider;
+            if (isNew && !Dirtys[__.CreateTime])
+            {
+                CreateTime = DateTime.Now;
+                CreateUserID = mp.Current.ID;
+                CreateUserName = mp.Current.ToString();
+            }
+            if (!Dirtys[__.UpdateTime])
+            {
+                UpdateTime = DateTime.Now;
+                UpdateUserID = mp.Current.ID;
+                UpdateUserName = mp.Current.ToString();
+            }
+        }
+
+        /// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
+        /// <returns></returns>
+        protected override Int32 OnInsert()
+        {
+            Version += 1;
+
+            Int32 num = base.OnInsert();
+
+            //SaveContent(Version);
+            HelperTool.SaveModelContent(typeof(TextContent), Version, ChannelSuffix, this, null);
+
+            return num;
+        }
+
+        /// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
+        protected override int OnUpdate()
+        {
+            Version += 1;
+
+            //SaveContent(Version);
+            HelperTool.SaveModelContent(typeof(TextContent), Version, ChannelSuffix, this, null);
+
+            return base.OnUpdate();
+        }
         #endregion
 
         #region 扩展属性﻿
+        public static String ChannelSuffix;
+
+        private Channel _Channel;
+        /// <summary>频道</summary>
+        public Channel Channel
+        {
+            get
+            {
+                if (_Channel == null && ChannelSuffix != null && !Dirtys.ContainsKey("Channel"))
+                {
+                    _Channel = Channel.FindBySuffix(ChannelSuffix);
+                    Dirtys["Channel"] = true;
+                }
+                return _Channel;
+            }
+            set { _Channel = value; }
+        }
+
+        /// <summary>频道名</summary>
+        public String ChannelName { get { return Channel != null ? Channel.Name : null; } }
         #endregion
 
         #region 扩展查询﻿

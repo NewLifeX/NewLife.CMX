@@ -5,6 +5,7 @@
  * 版权：版权所有 (C) 新生命开发团队 2002~2013
 */
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -14,6 +15,7 @@ using NewLife.Log;
 using NewLife.Web;
 using XCode;
 using XCode.Configuration;
+using XCode.Cache;
 
 namespace NewLife.CMX
 {
@@ -21,10 +23,22 @@ namespace NewLife.CMX
     public partial class EntityContent<TEntity> : Entity<TEntity> where TEntity : EntityContent<TEntity>, new()
     {
         #region 对象操作﻿
+        /// <summary>根据ParentID缓存最后版本</summary>
+        static SingleEntityCache<Int32, TEntity> _cache;
+
         static EntityContent()
         {
             // 用于引发基类的静态构造函数，所有层次的泛型实体类都应该有一个
             TEntity entity = new TEntity();
+
+            _cache = new SingleEntityCache<int, TEntity>();
+            _cache.AllowNull = true;
+            _cache.AutoSave = false;
+            _cache.FindKeyMethod = id =>
+            {
+                var list = FindAllByName(__.ParentID, id, _.Version.Desc(), 0, 1);
+                return list.Count > 0 ? list[0] : null;
+            };
         }
 
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
@@ -40,50 +54,9 @@ namespace NewLife.CMX
 
             // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
             //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
-            
+
             if (isNew && !Dirtys[__.CreateTime]) CreateTime = DateTime.Now;
         }
-
-        ///// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //protected override void InitData()
-        //{
-        //    base.InitData();
-
-        //    // InitData一般用于当数据表没有数据时添加一些默认数据，该实体类的任何第一次数据库操作都会触发该方法，默认异步调用
-        //    // Meta.Count是快速取得表记录数
-        //    if (Meta.Count > 0) return;
-
-        //    // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
-        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
-
-        //    var entity = new EntityContent();
-        //    entity.ParentID = 0;
-        //    entity.Title = "abc";
-        //    entity.Version = 0;
-        //    entity.CreateUserID = 0;
-        //    entity.CreateUserName = "abc";
-        //    entity.CreateTime = DateTime.Now;
-        //    entity.Content = "abc";
-        //    entity.Insert();
-
-        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
-        //}
-
-
-        ///// <summary>已重载。基类先调用Valid(true)验证数据，然后在事务保护内调用OnInsert</summary>
-        ///// <returns></returns>
-        //public override Int32 Insert()
-        //{
-        //    return base.Insert();
-        //}
-
-        ///// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
-        ///// <returns></returns>
-        //protected override Int32 OnInsert()
-        //{
-        //    return base.OnInsert();
-        //}
         #endregion
 
         #region 扩展属性﻿
@@ -122,9 +95,21 @@ namespace NewLife.CMX
         public static TEntity FindByParentIDAndVersion(Int32 parentid, Int32 version)
         {
             if (Meta.Count >= 1000)
-                return Find(new String[] { _.ParentID, _.Version }, new Object[] { parentid, version });
+                return Find(new String[] { __.ParentID, __.Version }, new Object[] { parentid, version });
             else // 实体缓存
                 return Meta.Cache.Entities.Find(e => e.ParentID == parentid && e.Version == version);
+        }
+
+        /// <summary>根据ParentID查询最后版本</summary>
+        /// <param name="parentid"></param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static TEntity FindLastByParentID(Int32 parentid)
+        {
+            if (Meta.Count >= 1000)
+                return _cache[parentid];
+            else
+                return Meta.Cache.Entities.FindAll(__.ParentID, parentid).Sort(__.Version, true).ToList().FirstOrDefault();
         }
         #endregion
 
