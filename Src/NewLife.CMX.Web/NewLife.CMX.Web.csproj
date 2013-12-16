@@ -39,6 +39,7 @@
   <ItemGroup>
     <Compile Include="Handlers\GoPageUrl.cs" />
     <Compile Include="Handlers\UpdateImageLoad.cs" />
+    <Compile Include="ListMenu.cs" />
     <Compile Include="ModeProcess\ArticleModelContent.cs" />
     <Compile Include="ModeProcess\ArticleModelList.cs" />
     <Compile Include="Base\CommonBase.cs" />

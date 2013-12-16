@@ -31,20 +31,18 @@ namespace NewLife.CMX.UrlRewrite
 
         private void Application_OnError(object sender, EventArgs e)
         {
-            Exception ex = ((HttpApplication)sender).Context.Error;
+#if !DEBUG
+            var app = (HttpApplication)sender;
+            var ex = app.Context.Error;
 
-            //if (!(ex is ThreadAbortException))
-            //{
-            //    XTrace.WriteLine("路由异常：" + ex.Message);
-            //}
             XTrace.WriteLine("路由异常：" + ex.Message);
 
-            String CurrentUrl = HelperTool.GetRequestUrl();
-            HttpApplication httpApplication = (HttpApplication)sender;
+            //String CurrentUrl = HelperTool.GetRequestUrl();
 
-            httpApplication.Context.Server.ClearError();
+            app.Context.Server.ClearError();
 
             HttpContext.Current.Response.Redirect(CMXConfigBase.Current.CurrentRootPath.CombinePath(TemplateConfig.Current.ErrorPage));
+#endif
         }
 
         private void ReUrl_BeginRequest(object sender, EventArgs e)
