@@ -84,8 +84,7 @@ public class MyModelEntityForm<TEntity> : MyModelEntityForm where TEntity : Enti
             Channel c = Channel.FindBySuffix(Request["Channel"]);
 
             if (c == null) throw new Exception("未知频道");
-            EntityFactory.CreateOperate(EntityType).TableName = "";
-            EntityFactory.CreateOperate(EntityType).TableName += c.Suffix;
+            EntityFactory.CreateOperate(EntityType).TableName = c.Suffix;
 
             if (EntityType.BaseType.GetGenericTypeDefinition() != typeof(EntityTree<>) && EntityType.BaseType.GetGenericTypeDefinition() != typeof(EntityCategory<>))
             {
