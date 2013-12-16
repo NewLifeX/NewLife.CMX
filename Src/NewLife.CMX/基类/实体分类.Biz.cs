@@ -170,56 +170,7 @@ namespace NewLife.CMX
         #endregion
 
         #region 高级查询
-        /// <summary>查询所有子孙类以及子孙类的ID如果子类不是最终类，返回的时候ID会被改为负数</summary>
-        /// <param name="parentKey"></param>
-        /// <returns></returns>
-        public static Dictionary<Int32, String> FindAllChildsNameAndIDByNoParent(Int32 parentKey)
-        {
-            var entity = Meta.Factory.Default as TEntity;
-            var list = FindAllChildsNoParent(parentKey);
-            var dic = new Dictionary<Int32, String>();
-
-            foreach (var item in list)
-            {
-                if (item.IsEnd)
-                    dic.Add(item.ID, item.TreeNodeName);
-                else
-                    dic.Add(-item.ID, item.TreeNodeName);
-            }
-
-            return dic;
-        }
-
-        /// <summary>查询子类以及子类的ID如果子类不是最终类，返回的时候ID会被改为负数</summary>
-        /// <param name="parentKey"></param>
-        /// <returns></returns>
-        public static Dictionary<Int32, String> FindChildNameAndIDByNoParent(Int32 parentKey, Int32 deepth)
-        {
-            var entity = Meta.Factory.Default as TEntity;
-            var list = FindAllChildsNoParent(parentKey);
-            var dic = new Dictionary<Int32, string>();
-
-            foreach (TEntity item in list)
-            {
-                if (item.Deepth > deepth) continue;
-
-                if (item.IsEnd)
-                    dic.Add(item.ID, item.TreeNodeName);
-                else
-                    dic.Add(-item.ID, item.TreeNodeName);
-            }
-            return dic;
-        }
-
-        /// <summary>查询所有不是终节点的节点</summary>
-        /// <param name="parentkey"></param>
-        /// <returns></returns>
-        public static EntityList<TEntity> FindAllByNoEnd(Int32 parentkey)
-        {
-            var entitylist = FindAllChildsByParent(parentkey);
-            entitylist.RemoveAll(e => e.IsEnd);
-            return entitylist;
-        }
+        
         #endregion
 
         #region 扩展操作
