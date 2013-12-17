@@ -36,8 +36,8 @@
                 <ItemTemplate>
                     <asp:CheckBox ID="cb" CssClass="checkall" runat="server" />
                 </ItemTemplate>
-                <HeaderStyle Width="20px" />
-                <ItemStyle HorizontalAlign="Center" />
+                <HeaderStyle Width="20px" CssClass="checker"/>
+                <ItemStyle HorizontalAlign="Center"/>
             </asp:TemplateField>
             <asp:BoundField DataField="ID" HeaderText="编号" SortExpression="ID" InsertVisible="False"
                 ReadOnly="True">

@@ -86,7 +86,7 @@ public class MyModelEntityForm<TEntity> : MyModelEntityForm where TEntity : Enti
             if (c == null) throw new Exception("未知频道");
             //在某些不知名的情况下会出现表名没有被恢复的情况，所以添加预先重置连接名
             EntityFactory.CreateOperate(EntityType).TableName = "";
-            EntityFactory.CreateOperate(EntityType).TableName = c.Suffix;
+            EntityFactory.CreateOperate(EntityType).TableName += c.Suffix;
 
             if (EntityType.BaseType.GetGenericTypeDefinition() != typeof(EntityTree<>) && EntityType.BaseType.GetGenericTypeDefinition() != typeof(EntityCategory<>))
             {

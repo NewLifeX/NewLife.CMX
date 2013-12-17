@@ -208,6 +208,7 @@ a.files, a.files input{ outline:none;/*ff*/hide-focus:expression(this.hideFocus=
 =============================================*/
 .msgtable,.form_table{ width:100%; border:1px solid #EDECFF; font-family:Verdana, Geneva, sans-serif; }
 .msgtable th{ padding:0.5em; font-weight:700; background:url(tools_bg.gif) left -150px repeat-x; }
+.msgtable th.checker{padding-top: 0px; padding-bottom: 0px;}
 .msgtable td{ padding:0.4em; border-bottom:1px solid #F3F3F3; }
 .msgtable .tr_odd_bg{ background:#F9F9F9; }
 .msgtable .tr_hover_col{ background:#EAEAEA; }

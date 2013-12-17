@@ -64,7 +64,6 @@
                 <asp:Parameter Name="orderClause" Type="String" />
                 <asp:Parameter Name="startRowIndex" Type="Int32" />
                 <asp:Parameter Name="maximumRows" Type="Int32" />
-
             </SelectParameters>
         </asp:ObjectDataSource>
         <XCL:GridViewExtender ID="gvExt" runat="server">

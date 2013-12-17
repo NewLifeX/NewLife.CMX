@@ -25,7 +25,7 @@
                     <ItemTemplate>
                         <asp:CheckBox ID="cb" runat="server" />
                     </ItemTemplate>
-                    <HeaderStyle Width="20px" />
+                    <HeaderStyle Width="20px" CssClass="checker"/>
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:TemplateField>
                 <asp:BoundField DataField="ID" HeaderText="编号" InsertVisible="False" ReadOnly="True"
@@ -33,10 +33,9 @@
                     <HeaderStyle Width="40px" />
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="key" />
                 </asp:BoundField>
-
                 <asp:BoundField DataField="Name" HeaderText="名称" SortExpression="Name" />
                 <asp:TemplateField HeaderText="权限设置" SortExpression="Name">
-                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="60px" />
+                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="90px" />
                     <ItemTemplate>
                         <asp:HyperLink ID="HyperManager" runat="server" Text='权限设置' NavigateUrl='<%# "RoleMenuForm.aspx?ID="+Eval("ID") %>'></asp:HyperLink>
                     </ItemTemplate>
