@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using NewLife.CMX.Config;
-using NewLife.CMX.Web;
-using NewLife.Log;
+using NewLife.CMX;
 using NewLife.Reflection;
-using NewLife.Web;
 
 public partial class Template_Common : System.Web.UI.Page
 {
