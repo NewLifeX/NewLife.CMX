@@ -208,7 +208,7 @@ namespace NewLife.CMX.Web
             try
             {
                 Random r = new Random();
-                eop.TableName = Suffix;
+                eop.TableName += Suffix;
 
                 var list = new List<ListMenu>();
 
