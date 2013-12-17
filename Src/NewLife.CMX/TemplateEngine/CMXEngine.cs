@@ -128,6 +128,7 @@ namespace NewLife.CMX.TemplateEngine
             if (Config.IsDebug)
             {
                 String Outputpath = WebPath.CombinePath(Config.OutputPath, Config.TemplateStyle);
+                if (!Directory.Exists(Outputpath)) Directory.CreateDirectory(Outputpath);
                 Outputpath = Outputpath.CombinePath(TemplateName);
                 File.WriteAllText(Outputpath, ResultContent, Encoding.UTF8);
             }
