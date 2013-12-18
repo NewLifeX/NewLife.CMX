@@ -19,7 +19,7 @@ namespace NewLife.CMX.TemplateEngine
         {
             Channel c = Channel.FindBySuffix(Suffix);
 
-            if (c == null)
+            if (c != null)
             {
                 TypeX type = TypeX.GetType("NewLife.CMX.Web." + c.ListTemplate.Substring(0, c.ListTemplate.IndexOf('.')));
 
