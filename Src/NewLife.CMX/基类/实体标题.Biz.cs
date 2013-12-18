@@ -63,8 +63,21 @@ namespace NewLife.CMX
             {
                 if (_Category == null && CategoryID > 0 && !Dirtys.ContainsKey("Category"))
                 {
-                    _Category = EntityCategory<TCategory>.FindByID(CategoryID);
-                    Dirtys["Category"] = true;
+                    try
+                    {
+                        EntityFactory.CreateOperate(typeof(TCategory)).TableName += ChannelSuffix;
+                        _Category = EntityCategory<TCategory>.FindByID(CategoryID);
+                        if (_Category == null) _Category = new TCategory();
+                        Dirtys["Category"] = true;
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                    finally
+                    {
+                        EntityFactory.CreateOperate(typeof(TCategory)).TableName = "";
+                    }
                 }
                 return _Category;
             }
@@ -73,14 +86,27 @@ namespace NewLife.CMX
 
         private TContent _Content;
         /// <summary>内容</summary>
-        public TContent Content
+        public TContent Content 
         {
             get
             {
                 if (_Content == null && !Dirtys.ContainsKey("Content"))
                 {
-                    _Content = EntityContent<TContent>.FindLastByParentID(ID);
-                    Dirtys["Content"] = true;
+                    try
+                    {
+                        EntityFactory.CreateOperate(typeof(TContent)).TableName += ChannelSuffix;
+                        _Content = EntityContent<TContent>.FindLastByParentID(ID);
+                        if (_Content == null) _Content = new TContent();
+                        Dirtys["Content"] = true;
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                    finally
+                    {
+                        EntityFactory.CreateOperate(typeof(TContent)).TableName = "";
+                    }
                 }
                 return _Content;
             }

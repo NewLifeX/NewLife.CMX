@@ -34,35 +34,35 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
-        private ProductContent _ProductContent;
-        /// <summary></summary>
-        public ProductContent ProductContent
-        {
-            get
-            {
-                try
-                {
-                    if (_ProductContent == null && !Dirtys.ContainsKey("ProductContent"))
-                    {
-                        ProductContent.Meta.TableName = "";
-                        ProductContent.Meta.TableName += ChannelSuffix;
+        //private ProductContent _ProductContent;
+        ///// <summary></summary>
+        //public ProductContent ProductContent
+        //{
+        //    get
+        //    {
+        //        try
+        //        {
+        //            if (_ProductContent == null && !Dirtys.ContainsKey("ProductContent"))
+        //            {
+        //                ProductContent.Meta.TableName = "";
+        //                ProductContent.Meta.TableName += ChannelSuffix;
 
-                        _ProductContent = ProductContent.FindByParentIDAndVersion(ID, Version);
+        //                _ProductContent = ProductContent.FindByParentIDAndVersion(ID, Version);
 
-                        if (_ProductContent == null)
-                        {
-                            _ProductContent = new ProductContent();
-                        }
-                    }
-                }
-                finally
-                {
-                    ProductContent.Meta.TableName = "";
-                }
-                return _ProductContent;
-            }
-            set { _ProductContent = value; }
-        }
+        //                if (_ProductContent == null)
+        //                {
+        //                    _ProductContent = new ProductContent();
+        //                }
+        //            }
+        //        }
+        //        finally
+        //        {
+        //            ProductContent.Meta.TableName = "";
+        //        }
+        //        return _ProductContent;
+        //    }
+        //    set { _ProductContent = value; }
+        //}
 
         private String _ConentTxt;
         /// <summary>产品内容</summary>
@@ -72,7 +72,7 @@ namespace NewLife.CMX
             {
                 if (_ConentTxt == null && !Dirtys.ContainsKey("ConentTxt"))
                 {
-                    _ConentTxt = ProductContent.Content ?? "";
+                    _ConentTxt = Content.Content ?? "";
                     //_ConentTxt = "";
                     Dirtys["ConentTxt"] = true;
                 }
@@ -92,7 +92,7 @@ namespace NewLife.CMX
             {
                 if (_ProductGG == null && !Dirtys.ContainsKey("ProductGG"))
                 {
-                    _ProductGG = ProductContent.Specification ?? "";
+                    _ProductGG = Content.Specification ?? "";
                     Dirtys["ProductGG"] = true;
                 }
                 return _ProductGG;
@@ -108,7 +108,7 @@ namespace NewLife.CMX
             {
                 if (_ProductTD == null && !Dirtys.ContainsKey("ProductTD"))
                 {
-                    _ProductTD = ProductContent.Feature ?? "";
+                    _ProductTD = Content.Feature ?? "";
                     Dirtys.ContainsKey("ProductTD");
                 }
                 return _ProductTD;
@@ -124,7 +124,7 @@ namespace NewLife.CMX
             {
                 if (_ProductYY == null && !Dirtys.ContainsKey("ProductYY"))
                 {
-                    _ProductYY = ProductContent.App ?? "";
+                    _ProductYY = Content.App ?? "";
                     Dirtys["ProductYY"] = true;
                 }
                 return _ProductYY;
@@ -140,7 +140,7 @@ namespace NewLife.CMX
             {
                 if (_ProductPJ == null && !Dirtys.ContainsKey("ProductPJ"))
                 {
-                    _ProductPJ = ProductContent.Fitting ?? "";
+                    _ProductPJ = Content.Fitting ?? "";
                     Dirtys["ProductPJ"] = true;
                 }
                 return _ProductPJ;
@@ -156,7 +156,7 @@ namespace NewLife.CMX
             {
                 if (_ProductSP == null && !Dirtys.ContainsKey("ProductSP"))
                 {
-                    _ProductSP = ProductContent.Video ?? "";
+                    _ProductSP = Content.Video ?? "";
                     Dirtys["ProductSP"] = true;
                 }
                 return _ProductSP;

@@ -17,40 +17,40 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
-        private TextContent _TextContent;
-        /// <summary></summary>
-        public TextContent TextContent
-        {
-            get
-            {
-                try
-                {
-                    if (_TextContent == null && !Dirtys.ContainsKey("TextContent"))
-                    {
-                        TextContent.Meta.TableName = "";
-                        TextContent.Meta.TableName += ChannelSuffix;
+        //private TextContent _TextContent;
+        ///// <summary></summary>
+        //public TextContent TextContent
+        //{
+        //    get
+        //    {
+        //        try
+        //        {
+        //            if (_TextContent == null && !Dirtys.ContainsKey("TextContent"))
+        //            {
+        //                TextContent.Meta.TableName = "";
+        //                TextContent.Meta.TableName += ChannelSuffix;
 
-                        _TextContent = TextContent.FindByParentIDAndVersion(ID, Version);
+        //                _TextContent = TextContent.FindByParentIDAndVersion(ID, Version);
 
-                        if (_TextContent == null)
-                        {
-                            _TextContent = new TextContent();
-                        }
-                    }
-                }
-                catch (Exception)
-                {
+        //                if (_TextContent == null)
+        //                {
+        //                    _TextContent = new TextContent();
+        //                }
+        //            }
+        //        }
+        //        catch (Exception)
+        //        {
 
-                    throw;
-                }
-                finally
-                {
-                    TextContent.Meta.TableName = "";
-                }
-                return _TextContent;
-            }
-            set { _TextContent = value; }
-        }
+        //            throw;
+        //        }
+        //        finally
+        //        {
+        //            TextContent.Meta.TableName = "";
+        //        }
+        //        return _TextContent;
+        //    }
+        //    set { _TextContent = value; }
+        //}
 
         private String _ConentTxt;
         /// <summary></summary>
@@ -60,16 +60,12 @@ namespace NewLife.CMX
             {
                 if (_ConentTxt == null && !Dirtys.ContainsKey("ConentTxt"))
                 {
-                    _ConentTxt = TextContent.Content ?? "";
-                    //_ConentTxt = "";
+                    _ConentTxt = Content.Content ?? "";
                     Dirtys["ConentTxt"] = true;
                 }
                 return _ConentTxt;
             }
-            set
-            {
-                _ConentTxt = value;
-            }
+            set { _ConentTxt = value; }
         }
         #endregion
 
