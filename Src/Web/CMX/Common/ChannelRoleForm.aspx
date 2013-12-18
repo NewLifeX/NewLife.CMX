@@ -30,15 +30,19 @@
                         </td>
                     </tr>
 
-                    <tr>
+                    <%--<tr>
                         <th></th>
                         <td>
                             <asp:Button ID="btnSave" runat="server" CausesValidation="True" Text='保存' />
                             &nbsp;<asp:Button ID="btnCopy" runat="server" CausesValidation="True" Text='另存为新频道权限' />
                         </td>
-                    </tr>
+                    </tr>--%>
                 </tbody>
             </table>
+        </div>
+        <div class="foot_btn_box">
+            <asp:Button ID="Button1" runat="server" CausesValidation="True" Text='保存' CssClass="btnSubmit" />
+            &nbsp;<asp:Button ID="Button2" runat="server" CausesValidation="True" Text='另存为新频道权限' CssClass="btnSubmit" />
         </div>
     </div>
 </asp:Content>

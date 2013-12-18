@@ -42,16 +42,15 @@
                     <ItemTemplate>
                         <asp:HyperLink ID="HyperManager" runat="server" Text='编辑' NavigateUrl='<%# "SysModelForm.aspx?ID="+Eval("ID") %>'></asp:HyperLink>
                     </ItemTemplate>
-                      <ItemStyle HorizontalAlign="Center" />
+                      <ItemStyle HorizontalAlign="Center" Width="60px"/>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="删除" ShowHeader="False">
                     <ItemTemplate>
                         <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Delete"
                             OnClientClick="return confirm('确定删除？');" Text="删除"></asp:LinkButton>
                     </ItemTemplate>
-                      <ItemStyle HorizontalAlign="Center" />
+                      <ItemStyle HorizontalAlign="Center" Width="60px"/>
                 </asp:TemplateField>
-                <asp:CheckBoxField />
             </Columns>
             <EmptyDataTemplate>
                 没有符合条件的数据！

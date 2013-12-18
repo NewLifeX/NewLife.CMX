@@ -73,7 +73,8 @@
 
             </div>
             <div class="login_copyright">
-                Copyright © 2009 - 2012 dtcms.net Inc. All Rights Reserved.<br />
+                <label id="copyright" runat="server"></label>
+                <br />
             </div>
         </div>
     </form>

@@ -27,6 +27,6 @@ public partial class CMX_TextForm : MyModelEntityForm<Text>
 
     void EntityForm_OnGetForm(object sender, NewLife.CommonEntity.EntityFormEventArgs e)
     {
-        Entity.ConentTxt = Request["MyContent"];
+        Entity.Content.Content = Request["MyContent"];
     }
 }

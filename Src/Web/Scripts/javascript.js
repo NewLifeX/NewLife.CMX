@@ -132,7 +132,7 @@ function showHide(e, objname) {
 
 $(document).ready(function () {
     $('.hot-event').nav({
-        t: 3000,	//轮播时间
-        a: 300  //过渡时间
+        t: 5500,	//轮播时间
+        a: 1500  //过渡时间
     });
 });

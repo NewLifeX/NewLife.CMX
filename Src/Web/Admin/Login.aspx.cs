@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using XCode;
+using NewLife.CMX.Config;
 
 public partial class Admin_Login : System.Web.UI.Page
 {
@@ -35,6 +36,8 @@ public partial class Admin_Login : System.Web.UI.Page
                     }
                 }
             }
+
+            copyright.InnerText = WebSettingConfig.Current.Copyright;
         }
     }
     protected void btnSubmit_Click(object sender, EventArgs e)

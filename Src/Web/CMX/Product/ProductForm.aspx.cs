@@ -29,11 +29,11 @@ public partial class CMX_ProductForm : MyModelEntityForm<Product>
 
     void EntityForm_OnGetForm(object sender, NewLife.CommonEntity.EntityFormEventArgs e)
     {
-        Entity.ConentTxt = Request["MyContent"];
-        Entity.ProductGG = Request["MyContent2"];
-        Entity.ProductTD = Request["MyContent3"];
-        Entity.ProductYY = Request["MyContent4"];
-        Entity.ProductPJ = Request["MyContent5"];
-        Entity.ProductSP = Request["MyContent6"];
+        Entity.Content.Content = Request["MyContent"];
+        Entity.Content.Specification = Request["MyContent2"];
+        Entity.Content.Feature = Request["MyContent3"];
+        Entity.Content.App = Request["MyContent4"];
+        Entity.Content.Fitting = Request["MyContent5"];
+        Entity.Content.Video = Request["MyContent6"];
     }
 }

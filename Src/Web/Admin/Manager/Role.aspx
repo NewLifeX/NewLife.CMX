@@ -41,7 +41,7 @@
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:CommandField HeaderText="编辑" ShowEditButton="True">
-                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="60px" />
+                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="100px" />
                 </asp:CommandField>
                 <asp:TemplateField HeaderText="删除" ShowHeader="False">
                     <ItemTemplate>

@@ -16,7 +16,7 @@
                     <tr>
                         <th>名称：</th>
                         <td>
-                            <asp:TextBox ID="frmName" runat="server" Width="150px"></asp:TextBox></td>
+                            <asp:TextBox ID="frmName" runat="server" Width="300px" CssClass="form-control"></asp:TextBox></td>
                     </tr>
                     <tr>
                         <th>模型：</th>
@@ -28,18 +28,18 @@
                     <tr>
                         <th>后缀：</th>
                         <td>
-                            <asp:TextBox ID="frmSuffix" runat="server" Width="150px"></asp:TextBox></td>
+                            <asp:TextBox ID="frmSuffix" runat="server" Width="300px" CssClass="form-control"></asp:TextBox></td>
                     </tr>
                     <tr>
                         <th>列表模板文件名：</th>
                         <td>
-                            <asp:TextBox ID="frmListTemplate" runat="server" Width="150px"></asp:TextBox>
+                            <asp:TextBox ID="frmListTemplate" runat="server" Width="300px" CssClass="form-control"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <th>表单模板文件名：</th>
                         <td>
-                            <asp:TextBox ID="frmFormTemplate" runat="server" Width="150px"></asp:TextBox>
+                            <asp:TextBox ID="frmFormTemplate" runat="server" Width="300px" CssClass="form-control"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -70,17 +70,21 @@
                     <tr>
                         <th>备注：</th>
                         <td>
-                            <asp:TextBox ID="frmRemark" runat="server" Width="300px"></asp:TextBox></td>
+                            <asp:TextBox ID="frmRemark" runat="server" Width="300px" CssClass="form-control" TextMode="MultiLine"></asp:TextBox></td>
                     </tr>
-                    <tr>
+                    <%--<tr>
                         <th></th>
                         <td>
-                            <asp:Button ID="btnSave" runat="server" CausesValidation="True" Text='保存' />
-                            &nbsp;<asp:Button ID="btnCopy" runat="server" CausesValidation="True" Text='另存为新频道' />
+                            <asp:Button ID="btnSave" runat="server" CausesValidation="True" Text='保存' CssClass="btnSubmit" />
+                            &nbsp;<asp:Button ID="btnCopy" runat="server" CausesValidation="True" Text='另存为新频道' CssClass="btnSubmit" />
                         </td>
-                    </tr>
+                    </tr>--%>
                 </tbody>
             </table>
+        </div>
+        <div class="foot_btn_box">
+            <asp:Button ID="Button1" runat="server" CausesValidation="True" Text='保存' CssClass="btnSubmit" />
+            &nbsp;<asp:Button ID="Button2" runat="server" CausesValidation="True" Text='另存为新频道' CssClass="btnSubmit" />
         </div>
     </div>
 </asp:Content>

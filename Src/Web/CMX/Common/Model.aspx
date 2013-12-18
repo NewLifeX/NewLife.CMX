@@ -26,7 +26,7 @@
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="Ikey" />
             </asp:BoundField>
             <asp:BoundField DataField="Name" HeaderText="名称" SortExpression="Name" />
-            <asp:BoundField DataField="ClassName" HeaderText="类名" SortExpression="ClassName" />
+            <asp:BoundField DataField="ClassName" HeaderText="分类名" SortExpression="ClassName" />
             <asp:BoundField DataField="ListTemplatePath" HeaderText="分类页" SortExpression="ListTemplatePath" />
             <asp:BoundField DataField="CreateUserName" HeaderText="创建人" SortExpression="CreateUserID" />
             <asp:BoundField DataField="CreateTime" HeaderText="创建时间" SortExpression="CreateTime" DataFormatString="{0:yyyy-MM-dd}">

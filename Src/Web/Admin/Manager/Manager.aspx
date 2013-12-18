@@ -80,7 +80,7 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="编辑" SortExpression="Name">
                 <ItemTemplate>
-                    <asp:HyperLink ID="HyperManager" runat="server" Text='编辑管理员' NavigateUrl='<%# "ManagerForm.aspx?ID="+Eval("ID") %>'></asp:HyperLink>
+                    <asp:HyperLink ID="HyperManager" runat="server" Text='编辑' NavigateUrl='<%# "ManagerForm.aspx?ID="+Eval("ID") %>'></asp:HyperLink>
                 </ItemTemplate>
                 <ItemStyle HorizontalAlign="Center" />
             </asp:TemplateField>

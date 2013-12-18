@@ -188,7 +188,7 @@
                 </div>
             </div>
             <div position="bottom" class="footer">
-                <div class="copyright">Copyright &copy; 2009 - 2012.  All Rights Reserved.</div>
+                <div class="copyright"><label runat="server" id="copyright"></label></div>
             </div>
         </div>
     </form>

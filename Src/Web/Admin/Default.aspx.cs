@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Text;
+using NewLife.CMX.Config;
 
 public partial class Admin_Default : Page
 {
@@ -12,6 +13,7 @@ public partial class Admin_Default : Page
     protected void Page_Load(object sender, EventArgs e)
     {
         if (admin == null) Response.Redirect("Login.aspx");
+        copyright.InnerText = WebSettingConfig.Current.Copyright;
     }
 
     public String SysMenu
