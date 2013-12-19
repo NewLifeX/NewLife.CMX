@@ -2,19 +2,29 @@
 $(function () {
     $('.child ul').addClass('close');/*查找ID为.child li的ID，并修改它的class（类）为colse类*/
 
+    /*解决鼠标移出菜单后隐藏二级菜单*/
+    $('.nav').mouseleave(function () {
+        $('.child ul').removeClass('open');
+        $('.parent li').removeClass('ulhover');
+    });
+
     $(".parent li").each(function () {
         var $title = $(this);
         var key = $title.attr('class');
         var ulkey = '.child .' + key;
 
         $title.mouseover(function () {
-
             $('.child ul').removeClass('open');
-
             $(ulkey).addClass('open');
+            $title.addClass('ulhover');
+        });
+
+        $title.mouseleave(function () {
+            $('.parent li').removeClass('ulhover');
         });
 
         $('.child ul').mouseover(function () {
+            b = false;
             var keys = $(this).attr('class');
             var keyarray = keys.split(/\s+/);
             var pks = $('.parent li');
@@ -29,12 +39,12 @@ $(function () {
             });
         });
 
-        $('.child ul').mouseleave(function () {
-            $('.parent li').each(function () {
-                $(this).removeClass('ulhover');
-            });
-            $(this).removeClass('open');
-        });
+        //$('.child ul').mouseleave(function () {
+        //    $('.parent li').each(function () {
+        //        $(this).removeClass('ulhover');
+        //    });
+        //    $(this).removeClass('open');
+        //});
     });
     /*实现展开收缩符号功能.......................................................*/
     //menulist();
