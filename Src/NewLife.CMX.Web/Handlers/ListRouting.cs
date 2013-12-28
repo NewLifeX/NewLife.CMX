@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Web;
+using NewLife.Web;
 
 namespace NewLife.CMX.Web.Handlers
 {
@@ -9,10 +10,12 @@ namespace NewLife.CMX.Web.Handlers
     {
         public void ProcessRequest(HttpContext context)
         {
-            if (Admin.Current == null) context.Response.Redirect("Default.aspx");
+            if (Admin.Current == null) context.Response.Redirect("Login.aspx");
 
             //参数频道的扩展名（Suffix）
-            Channel c = Channel.FindBySuffix(context.Request["Channel"]);
+            //Channel c = Channel.FindBySuffix(context.Request["Channel"]);
+            //由于默认频道的存在，默认频道是没有后缀扩展名。所以需要先根据频道扩展名查询，如果没有扩展名在使用模型编号查询
+            Channel c = Channel.FindBySuffixOrModel(context.Request["Channel"], WebHelper.RequestInt("ModelID"));
 
             Admin admin = Admin.Current;
 
@@ -22,7 +25,7 @@ namespace NewLife.CMX.Web.Handlers
 
             if (c != null)
             {
-                String url = c.Model.ListTemplatePath;
+                String url = c.Model.CategoryTemplatePath;
 
                 if (String.IsNullOrEmpty(url)) return;
 
@@ -43,7 +46,7 @@ namespace NewLife.CMX.Web.Handlers
         {
             Channel c = Channel.FindByID(channelid);
 
-            return c == null ? "" : c.Model.ListTemplatePath;
+            return c == null ? "" : c.Model.CategoryTemplatePath;
         }
 
         /// <summary>
@@ -54,15 +57,9 @@ namespace NewLife.CMX.Web.Handlers
         {
             Channel c = Channel.FindBySuffix(channelname);
 
-            return c == null ? "" : c.Model.ListTemplatePath;
+            return c == null ? "" : c.Model.CategoryTemplatePath;
         }
 
-        public bool IsReusable
-        {
-            get
-            {
-                return false;
-            }
-        }
+        public bool IsReusable { get { return false; } }
     }
 }

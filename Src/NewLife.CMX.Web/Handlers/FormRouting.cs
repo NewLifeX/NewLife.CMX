@@ -2,49 +2,51 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Web;
+using NewLife.Web;
 
 namespace NewLife.CMX.Web.Handlers
 {
     public class FormRouting : IHttpHandler
-{
-    public void ProcessRequest(HttpContext context)
     {
-        if (Admin.Current == null) context.Response.Redirect("Default.aspx");
-
-        //参数频道扩展名（Suffix）
-        Channel channel = Channel.FindBySuffix(context.Request["Channel"]);
-
-        Admin admin = Admin.Current;
-
-        ChannelRole cr = ChannelRole.FindChannelIDAndRoleID(channel.ID, admin.RoleID);
-
-        if (cr == null) context.Response.Redirect("Default.aspx");
-
-        if (channel != null)
+        public void ProcessRequest(HttpContext context)
         {
-            String url = channel.Model.FormTemplatePath;
+            if (Admin.Current == null) context.Response.Redirect("Default.aspx");
 
-            if (!String.IsNullOrEmpty(url))
+            //参数频道扩展名（Suffix）
+            //Channel channel = Channel.FindBySuffix(context.Request["Channel"]);
+            Channel channel = Channel.FindBySuffixOrModel(context.Request["Channel"], WebHelper.RequestInt("ModelID"));
+
+            Admin admin = Admin.Current;
+
+            ChannelRole cr = ChannelRole.FindChannelIDAndRoleID(channel.ID, admin.RoleID);
+
+            if (cr == null) context.Response.Redirect("Default.aspx");
+
+            if (channel != null)
             {
-                url += "?" + context.Request.QueryString.ToString();
-                context.Response.Redirect(url);
+                String url = channel.Model.TitleTemplatePath;
+
+                if (!String.IsNullOrEmpty(url))
+                {
+                    url += "?" + context.Request.QueryString.ToString();
+                    context.Response.Redirect(url);
+                }
+                else
+                {
+                    context.Response.Write("路径地址无法解析");
+                }
             }
-            else
+            context.Response.StatusCode = 404;
+            context.Response.Write("未知地址！");
+            context.Response.End();
+        }
+
+        public bool IsReusable
+        {
+            get
             {
-                context.Response.Write("路径地址无法解析");
+                return false;
             }
         }
-        context.Response.StatusCode = 404;
-        context.Response.Write("未知地址！");
-        context.Response.End();
     }
-
-    public bool IsReusable
-    {
-        get
-        {
-            return false;
-        }
-    }
-}
 }
