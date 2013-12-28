@@ -30,11 +30,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NewLife.CommonEntity, Version=2.8.5108.16595, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MyDLL\NewLife.CommonEntity.dll</HintPath>
+    </Reference>
+    <Reference Include="NewLife.Core, Version=4.0.5108.16592, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MyDLL\NewLife.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
+    <Reference Include="XCode, Version=8.10.5108.16594, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MyDLL\XCode.dll</HintPath>
+    </Reference>
+    <Reference Include="XTemplate, Version=1.9.5098.37707, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MyDLL\XTemplate.dll</HintPath>
+    </Reference>
+    <Reference Include="XUrlRewrite, Version=1.1.5098.37752, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MyDLL\XUrlRewrite.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\基础信息.Biz.cs" />
@@ -42,6 +62,7 @@
     <Compile Include="CMS\SysModel.cs" />
     <Compile Include="Common\ModelKinds.cs" />
     <Compile Include="Config\CMXConfigBase.cs" />
+    <Compile Include="Config\CMXDefaultModelConfig.cs" />
     <Compile Include="Config\CMXmlConfig.cs" />
     <Compile Include="Config\CommonConfig.cs" />
     <Compile Include="Config\TemplateConfig.cs" />
@@ -50,8 +71,9 @@
     <Compile Include="Editor\UEditorAjaxCore.cs" />
     <Compile Include="Editor\UEditorConfig.cs" />
     <Compile Include="Editor\UEUploader.cs" />
-    <Compile Include="Interface\IModelCategory.cs" />
-    <Compile Include="Interface\IModelClass.cs" />
+    <Compile Include="Interface\ICommon.cs" />
+    <Compile Include="Interface\IModelContent.cs" />
+    <Compile Include="Interface\IModeList.cs" />
     <Compile Include="Manager\AttachConfig.cs" />
     <Compile Include="Manager\MailConfig.cs" />
     <Compile Include="Manager\SiteConfig.cs" />
@@ -59,8 +81,8 @@
     <Compile Include="Manager\Admin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplateEngine\CMXEngine.cs" />
+    <Compile Include="TemplateEngine\CMXExtend.cs" />
     <Compile Include="TemplateEngine\CMXTemplateBase.cs" />
-    <Compile Include="TemplateEngine\ModelDataBase.cs" />
     <Compile Include="Tool\HelperTool.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -125,28 +147,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\NewLife.CommonEntity\NewLife.CommonEntity.csproj">
-      <Project>{50D7FAE5-2304-4395-A6FA-7D35279D9D84}</Project>
-      <Name>NewLife.CommonEntity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NewLife.Core\NewLife.Core.csproj">
-      <Project>{5813C22E-EEB3-4DEE-A45C-BB218041193A}</Project>
-      <Name>NewLife.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XCode\XCode.csproj">
-      <Project>{B49ABA5A-C5DA-45F4-87F1-B435EC51D710}</Project>
-      <Name>XCode</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XTemplate\XTemplate.csproj">
-      <Project>{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}</Project>
-      <Name>XTemplate</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XUrlRewrite\XUrlRewrite.csproj">
-      <Project>{F962C060-315F-4F85-9F6F-8E488A9B79EA}</Project>
-      <Name>XUrlRewrite</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

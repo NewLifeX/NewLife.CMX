@@ -12,6 +12,7 @@ namespace NewLife.CMX
     [Serializable]
     [DataObject]
     [Description("文本分类")]
+    [DisplayName("文本模型")]
     [BindTable("TextCategory", Description = "文本分类", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class TextCategory : ITextCategory
     {

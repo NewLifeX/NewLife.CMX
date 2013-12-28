@@ -114,36 +114,36 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.Remark, value)) { _Remark = value; OnPropertyChanged(__.Remark); } }
         }
 
-        private String _FormTemplatePath;
-        /// <summary>表单页</summary>
-        [DisplayName("表单页")]
-        [Description("表单页")]
+        private String _TitleTemplatePath;
+        /// <summary>标题页</summary>
+        [DisplayName("标题页")]
+        [Description("标题页")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(9, "FormTemplatePath", "表单页", null, "nvarchar(200)", 0, 0, true)]
-        public virtual String FormTemplatePath
+        [BindColumn(9, "TitleTemplatePath", "标题页", null, "nvarchar(200)", 0, 0, true)]
+        public virtual String TitleTemplatePath
         {
-            get { return _FormTemplatePath; }
-            set { if (OnPropertyChanging(__.FormTemplatePath, value)) { _FormTemplatePath = value; OnPropertyChanged(__.FormTemplatePath); } }
+            get { return _TitleTemplatePath; }
+            set { if (OnPropertyChanging(__.TitleTemplatePath, value)) { _TitleTemplatePath = value; OnPropertyChanged(__.TitleTemplatePath); } }
         }
 
-        private String _ListTemplatePath;
-        /// <summary>列表页</summary>
-        [DisplayName("列表页")]
-        [Description("列表页")]
+        private String _CategoryTemplatePath;
+        /// <summary>分类页</summary>
+        [DisplayName("分类页")]
+        [Description("分类页")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(10, "ListTemplatePath", "列表页", null, "nvarchar(200)", 0, 0, true)]
-        public virtual String ListTemplatePath
+        [BindColumn(10, "CategoryTemplatePath", "分类页", null, "nvarchar(200)", 0, 0, true)]
+        public virtual String CategoryTemplatePath
         {
-            get { return _ListTemplatePath; }
-            set { if (OnPropertyChanging(__.ListTemplatePath, value)) { _ListTemplatePath = value; OnPropertyChanged(__.ListTemplatePath); } }
+            get { return _CategoryTemplatePath; }
+            set { if (OnPropertyChanging(__.CategoryTemplatePath, value)) { _CategoryTemplatePath = value; OnPropertyChanged(__.CategoryTemplatePath); } }
         }
 
         private String _ClassName;
-        /// <summary>类名</summary>
-        [DisplayName("类名")]
-        [Description("类名")]
+        /// <summary>分类名</summary>
+        [DisplayName("分类名")]
+        [Description("分类名")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(11, "ClassName", "类名", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(11, "ClassName", "分类名", null, "nvarchar(200)", 0, 0, true)]
         public virtual String ClassName
         {
             get { return _ClassName; }
@@ -173,8 +173,8 @@ namespace NewLife.CMX
                     case __.UpdateUserID : return _UpdateUserID;
                     case __.UpdateTime : return _UpdateTime;
                     case __.Remark : return _Remark;
-                    case __.FormTemplatePath : return _FormTemplatePath;
-                    case __.ListTemplatePath : return _ListTemplatePath;
+                    case __.TitleTemplatePath : return _TitleTemplatePath;
+                    case __.CategoryTemplatePath : return _CategoryTemplatePath;
                     case __.ClassName : return _ClassName;
                     default: return base[name];
                 }
@@ -191,8 +191,8 @@ namespace NewLife.CMX
                     case __.UpdateUserID : _UpdateUserID = Convert.ToInt32(value); break;
                     case __.UpdateTime : _UpdateTime = Convert.ToDateTime(value); break;
                     case __.Remark : _Remark = Convert.ToString(value); break;
-                    case __.FormTemplatePath : _FormTemplatePath = Convert.ToString(value); break;
-                    case __.ListTemplatePath : _ListTemplatePath = Convert.ToString(value); break;
+                    case __.TitleTemplatePath : _TitleTemplatePath = Convert.ToString(value); break;
+                    case __.CategoryTemplatePath : _CategoryTemplatePath = Convert.ToString(value); break;
                     case __.ClassName : _ClassName = Convert.ToString(value); break;
                     default: base[name] = value; break;
                 }
@@ -228,13 +228,13 @@ namespace NewLife.CMX
             ///<summary>备注</summary>
             public static readonly Field Remark = FindByName(__.Remark);
 
-            ///<summary>表单页</summary>
-            public static readonly Field FormTemplatePath = FindByName(__.FormTemplatePath);
+            ///<summary>标题页</summary>
+            public static readonly Field TitleTemplatePath = FindByName(__.TitleTemplatePath);
 
-            ///<summary>列表页</summary>
-            public static readonly Field ListTemplatePath = FindByName(__.ListTemplatePath);
+            ///<summary>分类页</summary>
+            public static readonly Field CategoryTemplatePath = FindByName(__.CategoryTemplatePath);
 
-            ///<summary>类名</summary>
+            ///<summary>分类名</summary>
             public static readonly Field ClassName = FindByName(__.ClassName);
 
             static Field FindByName(String name) { return Meta.Table.FindByName(name); }
@@ -267,13 +267,13 @@ namespace NewLife.CMX
             ///<summary>备注</summary>
             public const String Remark = "Remark";
 
-            ///<summary>表单页</summary>
-            public const String FormTemplatePath = "FormTemplatePath";
+            ///<summary>标题页</summary>
+            public const String TitleTemplatePath = "TitleTemplatePath";
 
-            ///<summary>列表页</summary>
-            public const String ListTemplatePath = "ListTemplatePath";
+            ///<summary>分类页</summary>
+            public const String CategoryTemplatePath = "CategoryTemplatePath";
 
-            ///<summary>类名</summary>
+            ///<summary>分类名</summary>
             public const String ClassName = "ClassName";
 
         }
@@ -309,13 +309,13 @@ namespace NewLife.CMX
         /// <summary>备注</summary>
         String Remark { get; set; }
 
-        /// <summary>表单页</summary>
-        String FormTemplatePath { get; set; }
+        /// <summary>标题页</summary>
+        String TitleTemplatePath { get; set; }
 
-        /// <summary>列表页</summary>
-        String ListTemplatePath { get; set; }
+        /// <summary>分类页</summary>
+        String CategoryTemplatePath { get; set; }
 
-        /// <summary>类名</summary>
+        /// <summary>分类名</summary>
         String ClassName { get; set; }
         #endregion
 

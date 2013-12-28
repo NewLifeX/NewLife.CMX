@@ -15,6 +15,7 @@ using NewLife.Web;
 using XCode;
 using XCode.Configuration;
 using NewLife.Reflection;
+using NewLife.CMX.Config;
 
 namespace NewLife.CMX
 {
@@ -58,7 +59,7 @@ namespace NewLife.CMX
             //Add("文本");
             //Add("文章");
             //Add("产品");
-            foreach (var item in AssemblyX.FindAllPlugins(typeof(IEntityTitle), true))
+            foreach (var item in AssemblyX.FindAllPlugins(typeof(IEntityCategory), true))
             {
                 var dis = item.GetCustomAttribute<DisplayNameAttribute>();
                 var des = item.GetCustomAttribute<DescriptionAttribute>();
@@ -66,6 +67,24 @@ namespace NewLife.CMX
                 var entity = new Model();
                 entity.Name = dis != null ? dis.DisplayName : (des != null ? des.Description : item.Name);
                 entity.ClassName = item.FullName;
+
+                switch (item.Name)
+                {
+                    case "ArticleCategory":
+                        entity.CategoryTemplatePath = CMXConfigBase.Current.CurrentRootPath + "/CMX/Article/" + CMXDefaultArticleModelConfig.Current.CategoryTemplatePath;
+                        entity.TitleTemplatePath = CMXConfigBase.Current.CurrentRootPath + "/CMX/Article/" + CMXDefaultArticleModelConfig.Current.TitleTemplatePath;
+                        break;
+                    case "ProductCategory":
+                        entity.CategoryTemplatePath = CMXConfigBase.Current.CurrentRootPath + "/CMX/Product/" + CMXDefaultProductModelConfig.Current.CategoryTemplatePath;
+                        entity.TitleTemplatePath = CMXConfigBase.Current.CurrentRootPath + "/CMX/Product/" + CMXDefaultProductModelConfig.Current.TitleTemplatePath;
+                        break;
+                    case "TextCategory":
+                        entity.CategoryTemplatePath = CMXConfigBase.Current.CurrentRootPath + "/CMX/Text/" + CMXDefaultTextModelConfig.Current.CategoryTemplatePath;
+                        entity.TitleTemplatePath = CMXConfigBase.Current.CurrentRootPath + "/CMX/Text/" + CMXDefaultTextModelConfig.Current.TitleTemplatePath;
+                        break;
+                    default:
+                        break;
+                }
                 entity.Enable = true;
                 entity.Save();
             }

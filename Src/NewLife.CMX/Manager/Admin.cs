@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using NewLife.CommonEntity;
 using XCode;
@@ -36,5 +37,35 @@ namespace NewLife.CMX
         #endregion
     }
 
-    public class XManagerProvider : CommonManageProvider<Admin>, ICommonManageProvider { }
+    public class XManagerProvider : CommonManageProvider<Admin>, ICommonManageProvider
+    {
+        /// <summary>获取指定菜单下，当前用户有权访问的子菜单。</summary>
+        /// <param name="menuid"></param>
+        /// <returns></returns>
+        new public IList<IMenu> GetMySubMenus(Int32 menuid)
+        {
+            var provider = this as ICommonManageProvider;
+            var root = provider.MenuRoot;
+
+            // 当前用户
+            var admin = provider.Current as IAdministrator;
+            if (admin == null || admin.Role == null) return null;
+
+            IMenu menu = null;
+
+            // 找到菜单
+            if (menuid > 0) menu = FindByMenuID(menuid);
+
+            if (menu == null)
+            {
+                menu = root;
+                if (menu == null || menu.Childs == null || menu.Childs.Count < 1) return null;
+                //menu = menu.Childs[0];
+                //if (menu == null) return null;
+                return menu.Childs;
+            }
+
+            return admin.Role.GetMySubMenus(menu.ID);
+        }
+    }
 }
