@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using NewLife.CMX.Web;
 
 public partial class Admin_LeftMenu : System.Web.UI.UserControl
@@ -46,6 +47,19 @@ public partial class Admin_LeftMenu : System.Web.UI.UserControl
             {
                 foreach (ListMenu child in menu.Children)
                 {
+                    if (!String.IsNullOrEmpty(child.Url))
+                    {
+                        Regex r = new Regex(@"((\.\./)*)Admin/(.*)|((\.\./)*)CMX/(.*)");
+                        Match m = r.Match(child.Url);
+                        if (m.Groups.Count > 1)
+                        {
+                            if (!String.IsNullOrEmpty(m.Groups[1].ToString()))
+                                child.Url = child.Url.Replace(m.Groups[1].ToString(), "../");
+                            if (!String.IsNullOrEmpty(m.Groups[4].ToString()))
+                                child.Url = child.Url.Replace(m.Groups[4].ToString(), "../");
+                        }
+                    }
+
                     sb.AppendLine(listart + "<a class=\"l-link\" href=\"javascript:f_addTab('" + child.Title + "','" + child.Name + "','" + child.Url + "')\">" + child.Name + "</a>" + liend);
                 }
             }

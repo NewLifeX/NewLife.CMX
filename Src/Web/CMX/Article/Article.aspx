@@ -10,7 +10,7 @@
             <a href="ArticleForm.aspx" class="tools_btn listpage"><span><b class="add">添加文章</b></span></a>
             <div class="search_box">
                 关键字：<asp:TextBox ID="txtKey" runat="server" CssClass="form-control"></asp:TextBox>
-                &nbsp;<asp:Button ID="btnSearch" runat="server" Text="查询" CssClass="btnSearch"/>
+                &nbsp;<asp:Button ID="btnSearch" runat="server" Text="查询" CssClass="btnSearch" />
             </div>
         </div>
     </div>
@@ -27,17 +27,19 @@
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="Ikey" />
             </asp:BoundField>
             <asp:BoundField DataField="CategoryName" HeaderText="分类" SortExpression="CategoryName">
-                <ItemStyle HorizontalAlign="Center" Font-Bold="True" />
+                <ItemStyle HorizontalAlign="Center" />
             </asp:BoundField>
-            <asp:BoundField DataField="Title" HeaderText="标题" SortExpression="Title" />
+            <asp:BoundField DataField="Title" HeaderText="标题" SortExpression="Title">
+                <ItemStyle HorizontalAlign="Center" />
+            </asp:BoundField>
             <asp:BoundField DataField="Version" HeaderText="最新版本" SortExpression="Version" DataFormatString="{0:n0}">
-                <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
+                <ItemStyle HorizontalAlign="Center" />
             </asp:BoundField>
             <asp:BoundField DataField="Hits" HeaderText="访问量" SortExpression="Hits" DataFormatString="{0:n0}">
-                <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
+                <ItemStyle HorizontalAlign="Center" />
             </asp:BoundField>
             <asp:BoundField DataField="StatisticsID" HeaderText="访问统计" SortExpression="StatisticsID" DataFormatString="{0:n0}">
-                <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
+                <ItemStyle HorizontalAlign="Center" />
             </asp:BoundField>
             <%--<asp:BoundField DataField="CreateUserID" HeaderText="创建人" SortExpression="CreateUserID" DataFormatString="{0:n0}">
                 <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
@@ -63,7 +65,7 @@
                 <ItemTemplate>
                     <asp:LinkButton ID="btnDelete" runat="server" CausesValidation="False" CommandName="Delete" OnClientClick='return confirm("确定删除吗？")' Text="删除"></asp:LinkButton>
                 </ItemTemplate>
-                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="40px" />
+                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="50px" />
             </asp:TemplateField>
         </Columns>
         <EmptyDataTemplate>
