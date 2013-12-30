@@ -37,7 +37,7 @@ namespace NewLife.CMX
             if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
 
             // 配套的分类
-            EntityCategory<TCategory>.Meta.WaitForInitData();
+            //EntityCategory<TCategory>.Meta.WaitForInitData();
             var cat = EntityCategory<TCategory>.FindAllWithCache().ToList().FirstOrDefault() as IEntityCategory;
             var des = typeof(TEntity).GetCustomAttribute<DescriptionAttribute>();
 
@@ -62,17 +62,17 @@ namespace NewLife.CMX
             {
                 if (_Category == null && CategoryID > 0 && !Dirtys.ContainsKey("Category"))
                 {
-                    try
-                    {
-                        EntityFactory.CreateOperate(typeof(TCategory)).TableName += ChannelSuffix;
-                        _Category = EntityCategory<TCategory>.FindByID(CategoryID);
-                        if (_Category == null) _Category = new TCategory();
-                        Dirtys["Category"] = true;
-                    }
-                    finally
-                    {
-                        EntityFactory.CreateOperate(typeof(TCategory)).TableName = "";
-                    }
+                    //try
+                    //{
+                    //    EntityFactory.CreateOperate(typeof(TCategory)).TableName += ChannelSuffix;
+                    _Category = EntityCategory<TCategory>.FindByID(CategoryID);
+                    if (_Category == null) _Category = new TCategory();
+                    Dirtys["Category"] = true;
+                    //}
+                    //finally
+                    //{
+                    //    EntityFactory.CreateOperate(typeof(TCategory)).TableName = "";
+                    //}
                 }
                 return _Category;
             }
@@ -87,21 +87,37 @@ namespace NewLife.CMX
             {
                 if (_Content == null && !Dirtys.ContainsKey("Content"))
                 {
-                    try
-                    {
-                        EntityFactory.CreateOperate(typeof(TContent)).TableName += ChannelSuffix;
-                        _Content = EntityContent<TContent>.FindLastByParentID(ID);
-                        if (_Content == null) _Content = new TContent();
-                        Dirtys["Content"] = true;
-                    }
-                    finally
-                    {
-                        EntityFactory.CreateOperate(typeof(TContent)).TableName = "";
-                    }
+                    //try
+                    //{
+                    //    EntityFactory.CreateOperate(typeof(TContent)).TableName += ChannelSuffix;
+                    _Content = EntityContent<TContent>.FindLastByParentID(ID);
+                    if (_Content == null) _Content = new TContent();
+                    Dirtys["Content"] = true;
+                    //}
+                    //finally
+                    //{
+                    //    EntityFactory.CreateOperate(typeof(TContent)).TableName = "";
+                    //}
                 }
                 return _Content;
             }
             set { _Content = value; }
+        }
+
+        private String _ConentText;
+        /// <summary>内容文本</summary>
+        public String ConentText
+        {
+            get
+            {
+                if (_ConentText == null && !Dirtys.ContainsKey("ConentText"))
+                {
+                    _ConentText = Content.Content ?? "";
+                    Dirtys["ConentText"] = true;
+                }
+                return _ConentText;
+            }
+            set { _ConentText = value; }
         }
         #endregion
 
@@ -114,7 +130,12 @@ namespace NewLife.CMX
 
             Int32 num = base.OnInsert();
 
-            HelperTool.SaveModelContent(typeof(TContent), Version, ChannelSuffix, this, null);
+            //HelperTool.SaveModelContent(typeof(TContent), Version, ChannelSuffix, this, null);
+            var entity = Content;
+            entity.ParentID = ID;
+            entity.Title = Title;
+            entity.Version = Version;
+            entity.Insert();
 
             return num;
         }
@@ -122,11 +143,23 @@ namespace NewLife.CMX
         /// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
         protected override int OnUpdate()
         {
-            if (Dirtys["Content"])
-            {
-                if (!Dirtys["Version"]) Version++;
+            //if (Dirtys["Content"])
+            //{
+            //    if (!Dirtys["Version"]) Version++;
 
-                HelperTool.SaveModelContent(typeof(TContent), Version, ChannelSuffix, this, null);
+            //    HelperTool.SaveModelContent(typeof(TContent), Version, ChannelSuffix, this, null);
+            //}
+
+            // 如果内容数据有修改，插入新内容
+            if ((Content as IEntity).Dirtys.Any(e => e.Value))
+            {
+                Content.ID = 0;
+                Content.ParentID = ID;
+                Content.Version++;
+                Content.Title = Title;
+                Content.Insert();
+
+                this.Version = Content.Version;
             }
 
             return base.OnUpdate();

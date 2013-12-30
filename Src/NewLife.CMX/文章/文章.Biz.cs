@@ -18,24 +18,24 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
-        private String _ConentTxt;
-        /// <summary></summary>
-        public String ConentTxt
-        {
-            get
-            {
-                if (_ConentTxt == null && !Dirtys.ContainsKey("ConentTxt"))
-                {
-                    _ConentTxt = Content.Content ?? "";
-                    Dirtys["ConentTxt"] = true;
-                }
-                return _ConentTxt;
-            }
-            set
-            {
-                _ConentTxt = value;
-            }
-        }
+        //private String _ConentTxt;
+        ///// <summary></summary>
+        //public String ConentTxt
+        //{
+        //    get
+        //    {
+        //        if (_ConentTxt == null && !Dirtys.ContainsKey("ConentTxt"))
+        //        {
+        //            _ConentTxt = Content.Content ?? "";
+        //            Dirtys["ConentTxt"] = true;
+        //        }
+        //        return _ConentTxt;
+        //    }
+        //    set
+        //    {
+        //        _ConentTxt = value;
+        //    }
+        //}
         #endregion
 
         #region 扩展查询﻿
