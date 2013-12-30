@@ -123,7 +123,7 @@ namespace NewLife.CMX.Web
         private static List<ListMenu> GetModelCategory3(Channel chn, Int32 Deepth)
         {
             IModelProvider provider = chn.Model.Provider;
-            var eop = EntityFactory.CreateOperate(provider.CategoryType);
+            var eop = EntityFactory.CreateOperate(provider.CategoryType) as ICategoryOperate;
             var t = eop.Default.GetType();
             try
             {
@@ -133,9 +133,10 @@ namespace NewLife.CMX.Web
 
                 var list = new List<ListMenu>();
 
-                var CategoryDic = t.BaseType.InvokeMember("FindChildNameAndIDByNoParent", BindingFlags.InvokeMethod | BindingFlags.Public | BindingFlags.Static, null, null, new Object[] { 0, 2 }) as Dictionary<Int32, String>;
+                //var dic = t.BaseType.InvokeMember("FindChildNameAndIDByNoParent", BindingFlags.InvokeMethod | BindingFlags.Public | BindingFlags.Static, null, null, new Object[] { 0, 2 }) as Dictionary<Int32, String>;
+                var dic = eop.FindChildNameAndIDByNoParent(0, 2);
 
-                foreach (var item in CategoryDic)
+                foreach (var item in dic)
                 {
                     var lm = new ListMenu();
                     lm.Name = item.Value;
