@@ -104,20 +104,20 @@ namespace NewLife.CMX
             set { _Content = value; }
         }
 
-        private String _ConentText;
+        private String _ContentText;
         /// <summary>内容文本</summary>
-        public String ConentText
+        public String ContentText
         {
             get
             {
-                if (_ConentText == null && !Dirtys.ContainsKey("ConentText"))
+                if (_ContentText == null && !Dirtys.ContainsKey("ContentText"))
                 {
-                    _ConentText = Content.Content ?? "";
-                    Dirtys["ConentText"] = true;
+                    _ContentText = Content.Content ?? "";
+                    Dirtys["ContentText"] = true;
                 }
-                return _ConentText;
+                return _ContentText;
             }
-            set { _ConentText = value; }
+            set { _ContentText = value; }
         }
         #endregion
 

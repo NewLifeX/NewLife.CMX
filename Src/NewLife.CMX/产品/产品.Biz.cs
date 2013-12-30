@@ -34,55 +34,25 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
-        //private ProductContent _ProductContent;
-        ///// <summary></summary>
-        //public ProductContent ProductContent
+        //private String _ConentTxt;
+        ///// <summary>产品内容</summary>
+        //public String ConentTxt
         //{
         //    get
         //    {
-        //        try
+        //        if (_ConentTxt == null && !Dirtys.ContainsKey("ConentTxt"))
         //        {
-        //            if (_ProductContent == null && !Dirtys.ContainsKey("ProductContent"))
-        //            {
-        //                ProductContent.Meta.TableName = "";
-        //                ProductContent.Meta.TableName += ChannelSuffix;
-
-        //                _ProductContent = ProductContent.FindByParentIDAndVersion(ID, Version);
-
-        //                if (_ProductContent == null)
-        //                {
-        //                    _ProductContent = new ProductContent();
-        //                }
-        //            }
+        //            _ConentTxt = Content.Content ?? "";
+        //            //_ConentTxt = "";
+        //            Dirtys["ConentTxt"] = true;
         //        }
-        //        finally
-        //        {
-        //            ProductContent.Meta.TableName = "";
-        //        }
-        //        return _ProductContent;
+        //        return _ConentTxt;
         //    }
-        //    set { _ProductContent = value; }
+        //    set
+        //    {
+        //        _ConentTxt = value;
+        //    }
         //}
-
-        private String _ConentTxt;
-        /// <summary>产品内容</summary>
-        public String ConentTxt
-        {
-            get
-            {
-                if (_ConentTxt == null && !Dirtys.ContainsKey("ConentTxt"))
-                {
-                    _ConentTxt = Content.Content ?? "";
-                    //_ConentTxt = "";
-                    Dirtys["ConentTxt"] = true;
-                }
-                return _ConentTxt;
-            }
-            set
-            {
-                _ConentTxt = value;
-            }
-        }
 
         private String _ProductGG;
         /// <summary>规格参数</summary>
