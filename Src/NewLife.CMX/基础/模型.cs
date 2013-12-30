@@ -115,11 +115,11 @@ namespace NewLife.CMX
         }
 
         private String _TitleTemplatePath;
-        /// <summary>标题页</summary>
-        [DisplayName("标题页")]
-        [Description("标题页")]
+        /// <summary>标题页模版</summary>
+        [DisplayName("标题页模版")]
+        [Description("标题页模版")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(9, "TitleTemplatePath", "标题页", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(9, "TitleTemplatePath", "标题页模版", null, "nvarchar(200)", 0, 0, true)]
         public virtual String TitleTemplatePath
         {
             get { return _TitleTemplatePath; }
@@ -127,11 +127,11 @@ namespace NewLife.CMX
         }
 
         private String _CategoryTemplatePath;
-        /// <summary>分类页</summary>
-        [DisplayName("分类页")]
-        [Description("分类页")]
+        /// <summary>分类页模版</summary>
+        [DisplayName("分类页模版")]
+        [Description("分类页模版")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(10, "CategoryTemplatePath", "分类页", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(10, "CategoryTemplatePath", "分类页模版", null, "nvarchar(200)", 0, 0, true)]
         public virtual String CategoryTemplatePath
         {
             get { return _CategoryTemplatePath; }
@@ -139,11 +139,11 @@ namespace NewLife.CMX
         }
 
         private String _ClassName;
-        /// <summary>分类名</summary>
-        [DisplayName("分类名")]
-        [Description("分类名")]
+        /// <summary>类名</summary>
+        [DisplayName("类名")]
+        [Description("类名")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(11, "ClassName", "分类名", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(11, "ClassName", "类名", null, "nvarchar(200)", 0, 0, true)]
         public virtual String ClassName
         {
             get { return _ClassName; }
@@ -228,13 +228,13 @@ namespace NewLife.CMX
             ///<summary>备注</summary>
             public static readonly Field Remark = FindByName(__.Remark);
 
-            ///<summary>标题页</summary>
+            ///<summary>标题页模版</summary>
             public static readonly Field TitleTemplatePath = FindByName(__.TitleTemplatePath);
 
-            ///<summary>分类页</summary>
+            ///<summary>分类页模版</summary>
             public static readonly Field CategoryTemplatePath = FindByName(__.CategoryTemplatePath);
 
-            ///<summary>分类名</summary>
+            ///<summary>类名</summary>
             public static readonly Field ClassName = FindByName(__.ClassName);
 
             static Field FindByName(String name) { return Meta.Table.FindByName(name); }
@@ -267,13 +267,13 @@ namespace NewLife.CMX
             ///<summary>备注</summary>
             public const String Remark = "Remark";
 
-            ///<summary>标题页</summary>
+            ///<summary>标题页模版</summary>
             public const String TitleTemplatePath = "TitleTemplatePath";
 
-            ///<summary>分类页</summary>
+            ///<summary>分类页模版</summary>
             public const String CategoryTemplatePath = "CategoryTemplatePath";
 
-            ///<summary>分类名</summary>
+            ///<summary>类名</summary>
             public const String ClassName = "ClassName";
 
         }
@@ -309,13 +309,13 @@ namespace NewLife.CMX
         /// <summary>备注</summary>
         String Remark { get; set; }
 
-        /// <summary>标题页</summary>
+        /// <summary>标题页模版</summary>
         String TitleTemplatePath { get; set; }
 
-        /// <summary>分类页</summary>
+        /// <summary>分类页模版</summary>
         String CategoryTemplatePath { get; set; }
 
-        /// <summary>分类名</summary>
+        /// <summary>类名</summary>
         String ClassName { get; set; }
         #endregion
 

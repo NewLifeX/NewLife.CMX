@@ -10,8 +10,8 @@
       <Column Name="UpdateUserID" DataType="Int32" Description="更新人ID" />
       <Column Name="UpdateTime" DataType="DateTime" Description="更新时间" />
       <Column Name="Remark" DataType="String" Length="200" Description="备注" />
-      <Column Name="FormTemplatePath" DataType="String" Length="200" Description="表单页" />
-      <Column Name="ListTemplatePath" DataType="String" Length="200" Description="列表页" />
+      <Column Name="TitleTemplatePath" DataType="String" Length="200" Description="标题页模版" />
+      <Column Name="CategoryTemplatePath" DataType="String" Length="200" Description="分类页模版" />
       <Column Name="ClassName" DataType="String" Length="200" Description="类名" />
     </Columns>
     <Indexes>

@@ -28,20 +28,19 @@ public abstract class MyEntityList : Page
             return ManageProvider.Provider.Current as IAdministrator;
         }
     }
-    protected override void OnInit(EventArgs e)
-    {
-        if (System.Web.HttpContext.Current != null)
-        {
-            base.OnInit(e);
-            this.Error += new System.EventHandler(this.Page_Error);
-        }
-    }
-    protected virtual void Page_Error(object sender, System.EventArgs e)
-    {
-        // Exception ex = Server.GetLastError();
-        WebHelper.AlertAndEnd("系统错误！");
-        Server.ClearError();
-    }
+
+    //protected override void OnInit(EventArgs e)
+    //{
+    //    base.OnInit(e);
+    //    this.Error += new System.EventHandler(this.Page_Error);
+    //}
+
+    //protected virtual void Page_Error(object sender, System.EventArgs e)
+    //{
+    //    // Exception ex = Server.GetLastError();
+    //    WebHelper.AlertAndEnd("系统错误！");
+    //    Server.ClearError();
+    //}
 
     protected override void OnPreInit(EventArgs e)
     {
