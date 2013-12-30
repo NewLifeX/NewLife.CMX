@@ -152,7 +152,7 @@
                     <a target="_blank" href="#">预览网站</a> | 
                     <asp:LinkButton ID="lbtnExit" runat="server" onclick="lbtnExit_Click">安全退出</asp:LinkButton>
                     </div>
-                    <a class="logo">DTcms Logo</a>
+                    <a class="logo">Logo</a>
                 </div>
             </div>
             <!--左边-->

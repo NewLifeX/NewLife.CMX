@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Reflection;
 using NewLife.Common;
@@ -66,6 +67,23 @@ namespace NewLife.CMX.Web
             Int32 mid = WebHelper.RequestInt("ID");
 
             var menus = icmp.GetMySubMenus(mid);
+
+            #region 特殊处理模型频道管理
+            var cmx = menus.FirstOrDefault(m => m.Name == "CMX");
+            if (cmx != null)
+            {
+                var com = cmx.Childs.FirstOrDefault(m => m.Name == "Common");
+                if (com != null)
+                {
+                    com.ParentID = cmx.ParentID;
+                    com.Name = "模型频道管理";
+                    com.Save();
+                }
+
+                cmx.IsShow = false;
+                cmx.Save();
+            }
+            #endregion
 
             #region 系统菜单
             if (menus != null)
