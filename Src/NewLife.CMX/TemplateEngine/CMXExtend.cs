@@ -23,7 +23,8 @@ namespace NewLife.CMX.TemplateEngine
 
                 var iml = type.CreateInstance() as IModeList;
 
-                iml.Suffix = Suffix;
+                iml.ChannelID = chn.ID;
+                //iml.Suffix = Suffix;
                 iml.Address = TemplateName;
                 iml.CategoryID = CategoryID;
                 iml.RecordNum = RecordCount;

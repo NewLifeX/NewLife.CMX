@@ -1,10 +1,9 @@
 ﻿using System;
 using NewLife.CMX;
 using NewLife.CMX.Config;
-using NewLife.CMX.Web;
+using NewLife.CMX.WebBase;
 using NewLife.Reflection;
 using NewLife.Web;
-using NewLife.CMX.WebBase;
 
 public partial class Template_List : WebPageBase
 {
@@ -93,7 +92,8 @@ public partial class Template_List : WebPageBase
         TypeX type = TypeX.GetType("NewLife.CMX.Web." + Address);
         IModeList iml = type.CreateInstance() as IModeList;
         //Dictionary<String, Object> dic = GetQueryDic();
-        iml.Suffix = Suffix;
+        iml.ChannelID = C.ID;
+        //iml.Suffix = Suffix;
         iml.Address = Address;
         iml.CategoryID = CategoryID;
         iml.Pageindex = PageIndex;

@@ -22,7 +22,7 @@ namespace NewLife.CMX.Web
                 Int32 CountNum = 0;
                 var Categories = new EntityList<TextCategory>();
 
-                //Channel channel = Channel.FindBySuffix(Suffix);
+                //Channel Channel = Channel.FindBySuffix(Suffix);
                 TextCategory tc = TextCategory.FindByID(CategoryID);
                 if (tc != null && tc.IsEnd)
                 {
@@ -52,14 +52,14 @@ namespace NewLife.CMX.Web
                 dic.Add("CategoryID", CategoryID.ToString());
                 dic.Add("Pageindex", Pageindex.ToString());
                 dic.Add("RecordNum", RecordNum.ToString());
-                dic.Add("ContentAddress", channel.FormTemplate);
+                dic.Add("ContentAddress", Channel.FormTemplate);
                 dic.Add("ChannelName", ChannelName);
                 dic.Add("PageCount", PageCount > 0 ? PageCount + "" : "1");
                 dic.Add("CurrentPage", (Pageindex > 0 ? Pageindex : 1) + "");
-                dic.Add("BeforeUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Suffix + "_" + BeforePage + "/" + CategoryID + "/" + channel.ListTemplate);
-                dic.Add("NextUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Suffix + "_" + NextPage + "/" + CategoryID + "/" + channel.ListTemplate);
-                dic.Add("FirstUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Suffix + "/" + CategoryID + "/" + channel.ListTemplate);
-                dic.Add("LastUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Suffix + "_" + PageCount + "/" + CategoryID + "/" + channel.ListTemplate);
+                dic.Add("BeforeUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Suffix + "_" + BeforePage + "/" + CategoryID + "/" + Channel.ListTemplate);
+                dic.Add("NextUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Suffix + "_" + NextPage + "/" + CategoryID + "/" + Channel.ListTemplate);
+                dic.Add("FirstUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Suffix + "/" + CategoryID + "/" + Channel.ListTemplate);
+                dic.Add("LastUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Suffix + "_" + PageCount + "/" + CategoryID + "/" + Channel.ListTemplate);
 
                 var engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
                 engine.ArgDic = dic;

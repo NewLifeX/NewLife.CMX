@@ -5,7 +5,13 @@ namespace NewLife.CMX
     public interface IModeList
     {
         /// <summary></summary>
-        String Suffix { get; set; }
+        Int32 ChannelID { get; set; }
+
+        /// <summary></summary>
+        Channel Channel { get; }
+
+        ///// <summary></summary>
+        //String Suffix { get; set; }
 
         /// <summary></summary>
         Int32 CategoryID { get; set; }

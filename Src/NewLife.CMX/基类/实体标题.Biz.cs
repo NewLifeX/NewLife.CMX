@@ -230,14 +230,20 @@ namespace NewLife.CMX
             if (isNew && !Dirtys[__.CreateTime])
             {
                 CreateTime = DateTime.Now;
-                CreateUserID = mp.Current.ID;
-                CreateUserName = mp.Current.ToString();
+                if (mp.Current != null)
+                {
+                    CreateUserID = mp.Current.ID;
+                    CreateUserName = mp.Current.ToString();
+                }
             }
             if (!Dirtys[__.UpdateTime])
             {
                 UpdateTime = DateTime.Now;
-                UpdateUserID = mp.Current.ID;
-                UpdateUserName = mp.Current.ToString();
+                if (mp.Current != null)
+                {
+                    UpdateUserID = mp.Current.ID;
+                    UpdateUserName = mp.Current.ToString();
+                }
             }
         }
         #endregion
