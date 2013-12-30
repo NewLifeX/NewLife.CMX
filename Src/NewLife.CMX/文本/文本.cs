@@ -8,11 +8,11 @@ using XCode.DataAccessLayer;
 
 namespace NewLife.CMX
 {
-    /// <summary>文本模型</summary>
+    /// <summary>文本</summary>
     [Serializable]
     [DataObject]
-    [Description("文本模型")]
-    [BindTable("Text", Description = "文本模型", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
+    [Description("文本")]
+    [BindTable("Text", Description = "文本", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class Text : IText
     {
         #region 字段名
@@ -107,7 +107,7 @@ namespace NewLife.CMX
         #endregion
     }
 
-    /// <summary>文本模型接口</summary>
+    /// <summary>文本接口</summary>
     public partial interface IText : IEntityTitle
     {
     }

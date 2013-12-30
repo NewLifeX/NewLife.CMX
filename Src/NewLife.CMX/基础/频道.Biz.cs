@@ -22,7 +22,6 @@ namespace NewLife.CMX
     public partial class Channel : Entity<Channel>
     {
         #region 对象操作﻿
-
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
         /// <param name="isNew"></param>
         public override void Valid(Boolean isNew)

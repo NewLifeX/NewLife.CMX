@@ -12,7 +12,6 @@ namespace NewLife.CMX
     [Serializable]
     [DataObject]
     [Description("产品分类")]
-    [DisplayName("产品模型")]
     [BindTable("ProductCategory", Description = "产品分类", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class ProductCategory : IProductCategory
     {

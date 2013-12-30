@@ -8,11 +8,11 @@ using XCode.DataAccessLayer;
 
 namespace NewLife.CMX
 {
-    /// <summary>产品模型</summary>
+    /// <summary>产品</summary>
     [Serializable]
     [DataObject]
-    [Description("产品模型")]
-    [BindTable("Product", Description = "产品模型", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
+    [Description("产品")]
+    [BindTable("Product", Description = "产品", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class Product : IProduct
     {
         #region 属性
@@ -196,7 +196,7 @@ namespace NewLife.CMX
         #endregion
     }
 
-    /// <summary>产品模型接口</summary>
+    /// <summary>产品接口</summary>
     public partial interface IProduct : IEntityTitle
     {
         #region 属性
