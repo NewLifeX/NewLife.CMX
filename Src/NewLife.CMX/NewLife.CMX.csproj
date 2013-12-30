@@ -57,6 +57,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="产品\ProductProvider.cs" />
+    <Compile Include="文本\TextProvider.cs" />
     <Compile Include="文章\ArticleProvider.cs" />
     <Compile Include="Base\基础信息.Biz.cs" />
     <Compile Include="Base\基础信息.cs" />

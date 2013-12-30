@@ -15,18 +15,19 @@ namespace NewLife.CMX.Web
         {
             var channel = Channel.FindBySuffix(Suffix);
             var dic = new Dictionary<String, String>();
-            var classname = channel.Model.ClassName;
+            //var classname = channel.Model.ClassName;
             var id = "0";
 
-            var ieo = EntityFactory.CreateOperate(classname);
+            //var eop = EntityFactory.CreateOperate(classname);
+            var eop = EntityFactory.CreateOperate(channel.Model.Provider.TitleType);
 
             if (CategoryID != 0)
             {
-                var entity = ieo.Find("ID", CategoryID) as IEntityTree;
+                var entity = eop.Find("ID", CategoryID) as IEntityTree;
                 if (entity != null && entity.Parent != null) id = entity.Parent["ID"].ToString();
             }
 
-            var list = ieo.FindAll("ParentID", 0);
+            var list = eop.FindAll("ParentID", 0);
 
             dic.Add("ModelAddress", channel.ListTemplate);
             dic.Add("SelectedCategory", id);

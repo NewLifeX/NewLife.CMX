@@ -103,7 +103,7 @@ namespace NewLife.CMX.Web
 
                 crlm.Children.Add(ConvertToMenu(null, "分类管理", channel.ChannelName + r.Next(), "../ListRouting.ashx?Channel=" + channel.Channel.Suffix + "&ModelID=" + channel.Channel.ModelID, null));
 
-                var list = GetModelCategory3(channel.Channel.Suffix, channel.Channel.Model.ClassName, channel.Channel.ModelID, 2);
+                var list = GetModelCategory3(channel.Channel.Suffix, channel.Channel.Model.Provider, channel.Channel.ModelID, 2);
 
                 if (list != null) crlm.Children.AddRange(list);
 
@@ -201,12 +201,12 @@ namespace NewLife.CMX.Web
         /// 查询指定深度的所有子菜单
         /// </summary>
         /// <param name="Suffix"></param>
-        /// <param name="ClassName"></param>
+        /// <param name="provider"></param>
         /// <param name="Deepth"></param>
         /// <returns></returns>
-        private static List<ListMenu> GetModelCategory3(String Suffix, String ClassName, Int32 ModelID, Int32 Deepth)
+        private static List<ListMenu> GetModelCategory3(String Suffix, IModelProvider provider, Int32 ModelID, Int32 Deepth)
         {
-            var eop = EntityFactory.CreateOperate(ClassName);
+            var eop = EntityFactory.CreateOperate(provider.TitleType);
             var t = eop.Default.GetType();
             try
             {

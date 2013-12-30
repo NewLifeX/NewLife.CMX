@@ -10,7 +10,6 @@ using System.Linq;
 using NewLife.CMX.Tool;
 using NewLife.CommonEntity;
 using NewLife.Log;
-using NewLife.Reflection;
 using XCode;
 
 namespace NewLife.CMX
@@ -70,10 +69,6 @@ namespace NewLife.CMX
                         if (_Category == null) _Category = new TCategory();
                         Dirtys["Category"] = true;
                     }
-                    catch (Exception)
-                    {
-                        throw;
-                    }
                     finally
                     {
                         EntityFactory.CreateOperate(typeof(TCategory)).TableName = "";
@@ -98,10 +93,6 @@ namespace NewLife.CMX
                         _Content = EntityContent<TContent>.FindLastByParentID(ID);
                         if (_Content == null) _Content = new TContent();
                         Dirtys["Content"] = true;
-                    }
-                    catch (Exception)
-                    {
-                        throw;
                     }
                     finally
                     {
@@ -182,6 +173,7 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
+        [ThreadStatic]
         public static String ChannelSuffix;
 
         private Channel _Channel;

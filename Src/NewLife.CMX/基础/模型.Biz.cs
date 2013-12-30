@@ -5,8 +5,10 @@
  * 版权：版权所有 (C) 新生命开发团队 2002~2013
 */
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using NewLife.CMX.Config;
+using NewLife.Exceptions;
 using NewLife.Log;
 using NewLife.Reflection;
 using XCode;
@@ -49,40 +51,7 @@ namespace NewLife.CMX
 
             // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
             if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Model).Name, Meta.Table.DataTable.DisplayName);
-
-            //Add("文本");
-            //Add("文章");
-            //Add("产品");
-            foreach (var item in AssemblyX.FindAllPlugins(typeof(IEntityCategory), true))
-            {
-                var dis = item.GetCustomAttribute<DisplayNameAttribute>();
-                var des = item.GetCustomAttribute<DescriptionAttribute>();
-
-                var entity = new Model();
-                entity.Name = dis != null ? dis.DisplayName : (des != null ? des.Description : item.Name);
-                entity.ClassName = item.FullName;
-
-                switch (item.Name)
-                {
-                    case "ArticleCategory":
-                        entity.CategoryTemplatePath = CMXConfigBase.Current.CurrentRootPath + "/CMX/Article/" + CMXDefaultArticleModelConfig.Current.CategoryTemplatePath;
-                        entity.TitleTemplatePath = CMXConfigBase.Current.CurrentRootPath + "/CMX/Article/" + CMXDefaultArticleModelConfig.Current.TitleTemplatePath;
-                        break;
-                    case "ProductCategory":
-                        entity.CategoryTemplatePath = CMXConfigBase.Current.CurrentRootPath + "/CMX/Product/" + CMXDefaultProductModelConfig.Current.CategoryTemplatePath;
-                        entity.TitleTemplatePath = CMXConfigBase.Current.CurrentRootPath + "/CMX/Product/" + CMXDefaultProductModelConfig.Current.TitleTemplatePath;
-                        break;
-                    case "TextCategory":
-                        entity.CategoryTemplatePath = CMXConfigBase.Current.CurrentRootPath + "/CMX/Text/" + CMXDefaultTextModelConfig.Current.CategoryTemplatePath;
-                        entity.TitleTemplatePath = CMXConfigBase.Current.CurrentRootPath + "/CMX/Text/" + CMXDefaultTextModelConfig.Current.TitleTemplatePath;
-                        break;
-                    default:
-                        break;
-                }
-                entity.Enable = true;
-                entity.Save();
-            }
-
+            Scan();
             if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Model).Name, Meta.Table.DataTable.DisplayName);
         }
         #endregion
@@ -170,6 +139,81 @@ namespace NewLife.CMX
             entity.Save();
 
             return entity;
+        }
+
+        /// <summary>扫描所有模型提供者，并添加到数据库</summary>
+        /// <returns></returns>
+        public static Int32 Scan()
+        {
+            var count = 0;
+
+            foreach (var item in Providers)
+            {
+                var entity = FindByName(item.Value.Name);
+                if (entity == null) entity = new Model();
+                entity.Name = item.Value.Name;
+                entity.ClassName = item.Key;
+
+                //switch (item.Name)
+                //{
+                //    case "ArticleCategory":
+                //        entity.CategoryTemplatePath = CMXConfigBase.Current.CurrentRootPath + "/CMX/Article/" + CMXDefaultArticleModelConfig.Current.CategoryTemplatePath;
+                //        entity.TitleTemplatePath = CMXConfigBase.Current.CurrentRootPath + "/CMX/Article/" + CMXDefaultArticleModelConfig.Current.TitleTemplatePath;
+                //        break;
+                //    case "ProductCategory":
+                //        entity.CategoryTemplatePath = CMXConfigBase.Current.CurrentRootPath + "/CMX/Product/" + CMXDefaultProductModelConfig.Current.CategoryTemplatePath;
+                //        entity.TitleTemplatePath = CMXConfigBase.Current.CurrentRootPath + "/CMX/Product/" + CMXDefaultProductModelConfig.Current.TitleTemplatePath;
+                //        break;
+                //    case "TextCategory":
+                //        entity.CategoryTemplatePath = CMXConfigBase.Current.CurrentRootPath + "/CMX/Text/" + CMXDefaultTextModelConfig.Current.CategoryTemplatePath;
+                //        entity.TitleTemplatePath = CMXConfigBase.Current.CurrentRootPath + "/CMX/Text/" + CMXDefaultTextModelConfig.Current.TitleTemplatePath;
+                //        break;
+                //    default:
+                //        break;
+                //}
+                entity.Enable = true;
+                entity.Save();
+
+                count++;
+            }
+
+            return count;
+        }
+        #endregion
+
+        #region 模型提供者
+        private static Dictionary<String, IModelProvider> _Providers;
+        /// <summary>模型提供者集合</summary>
+        public static Dictionary<String, IModelProvider> Providers
+        {
+            get
+            {
+                if (_Providers == null)
+                {
+                    var dic = new Dictionary<String, IModelProvider>(StringComparer.InvariantCultureIgnoreCase);
+                    foreach (var item in typeof(IModelProvider).GetAllSubclasses(true))
+                    {
+                        var model = item.CreateInstance() as IModelProvider;
+                        dic.Add(item.FullName, model);
+                    }
+                    _Providers = dic;
+                }
+                return _Providers;
+            }
+        }
+
+        private IModelProvider _Provider;
+        /// <summary>模型提供者</summary>
+        public IModelProvider Provider
+        {
+            get
+            {
+                if (_Provider == null)
+                {
+                    if (!Providers.TryGetValue(ClassName, out _Provider)) throw new XException("找不到模型提供者{0}", ClassName);
+                }
+                return _Provider;
+            }
         }
         #endregion
     }

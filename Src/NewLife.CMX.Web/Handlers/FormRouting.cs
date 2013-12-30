@@ -41,12 +41,6 @@ namespace NewLife.CMX.Web.Handlers
             context.Response.End();
         }
 
-        public bool IsReusable
-        {
-            get
-            {
-                return false;
-            }
-        }
+        public bool IsReusable { get { return false; } }
     }
 }

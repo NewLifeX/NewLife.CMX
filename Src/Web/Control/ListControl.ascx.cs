@@ -50,11 +50,13 @@ public partial class Control_ArticleControl : System.Web.UI.UserControl
         }
         else
         {
-            Channel c = Channel.FindBySuffix(ChannelSuffix);
+            Channel chn = Channel.FindBySuffix(ChannelSuffix);
+            Type type = chn.Model.Provider.CategoryType;
+            IEntityOperate eop = EntityFactory.CreateOperate(type);
             try
             {
-                EntityFactory.CreateOperate(c.Model.ClassName.Replace("Category", "")).TableName += ChannelSuffix;
-                Content.DataSource = EntityFactory.CreateOperate(c.Model.ClassName.Replace("Category", "")).FindAll("CategoryName='" + CategoryName + "'", null, null, 0, Count);
+                eop.TableName += ChannelSuffix;
+                Content.DataSource = eop.FindAll("CategoryName='" + CategoryName + "'", null, null, 0, Count);
                 Content.DataBind();
             }
             catch (Exception ex)
@@ -63,8 +65,7 @@ public partial class Control_ArticleControl : System.Web.UI.UserControl
             }
             finally
             {
-                if (c != null)
-                    EntityFactory.CreateOperate(c.Model.ClassName.Replace("Category", "")).TableName = "";
+                eop.TableName = "";
             }
         }
     }

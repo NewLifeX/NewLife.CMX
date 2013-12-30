@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using NewLife.CMX.Config;
 using NewLife.CMX.TemplateEngine;
 
@@ -10,23 +9,15 @@ namespace NewLife.CMX.Web
     {
         override public string Process()
         {
-            try
-            {
-                CMXEngine engine = new CMXEngine(TemplateConfig.Current,WebSettingConfig.Current);
-                Dictionary<String, String> dic = new Dictionary<string, string>();
-                dic.Add("Address", Address);
+            var engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
+            var dic = new Dictionary<string, string>();
+            dic.Add("Address", Address);
 
-                engine.ArgDic = dic;
-                engine.Header = Header;
-                engine.Foot = Foot;
-                String content = engine.Render(Address + ".html");
+            engine.ArgDic = dic;
+            engine.Header = Header;
+            engine.Foot = Foot;
 
-                return content;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return engine.Render(Address + ".html");
         }
     }
 }

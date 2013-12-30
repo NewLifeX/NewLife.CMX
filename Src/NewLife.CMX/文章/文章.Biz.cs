@@ -18,40 +18,6 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
-        //private ArticleContent _ArticleContent;
-        ///// <summary></summary>
-        //public ArticleContent ArticleContent
-        //{
-        //    get
-        //    {
-        //        try
-        //        {
-        //            if (_ArticleContent == null && !Dirtys.ContainsKey("ArticleContent"))
-        //            {
-        //                ArticleContent.Meta.TableName = "";
-        //                ArticleContent.Meta.TableName += ChannelSuffix;
-        //                _ArticleContent = ArticleContent.FindByParentIDAndVersion(ID, Version);
-
-        //                if (_ArticleContent == null)
-        //                {
-        //                    _ArticleContent = new ArticleContent();
-        //                }
-        //            }
-        //        }
-        //        catch (Exception)
-        //        {
-        //            throw;
-        //        }
-        //        finally
-        //        {
-        //            ArticleContent.Meta.TableName = "";
-        //        }
-
-        //        return _ArticleContent;
-        //    }
-        //    set { _ArticleContent = value; }
-        //}
-
         private String _ConentTxt;
         /// <summary></summary>
         public String ConentTxt

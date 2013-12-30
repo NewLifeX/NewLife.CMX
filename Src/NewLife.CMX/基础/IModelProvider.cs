@@ -27,7 +27,7 @@ namespace NewLife.CMX
     /// <typeparam name="TTitle"></typeparam>
     /// <typeparam name="TCategory"></typeparam>
     /// <typeparam name="TContent"></typeparam>
-    public abstract class ModelProvider<TTitle, TCategory, TContent>
+    public abstract class ModelProvider<TTitle, TCategory, TContent> : IModelProvider
     {
         #region 属性
         private String _Name;
