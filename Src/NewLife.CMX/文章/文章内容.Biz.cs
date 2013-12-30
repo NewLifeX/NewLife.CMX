@@ -33,10 +33,8 @@ namespace NewLife.CMX
             {
                 if (_Article == null && ParentID > 0 && !Dirtys.ContainsKey("Article"))
                 {
-                    Article.Meta.TableName += Suffix;
                     _Article = Article.FindByID(ParentID);
                     Dirtys["Article"] = true;
-                    Article.Meta.TableName = "";
                 }
                 return _Article;
             }
@@ -44,13 +42,13 @@ namespace NewLife.CMX
         }
 
         //public String Suffix { get { return Article == null ? "" : Article.ChannelSuffix; } }
-        private String _Suffix;
-        /// <summary></summary>
-        public String Suffix
-        {
-            get { return _Suffix; }
-            set { _Suffix = value; }
-        }
+        //private String _Suffix;
+        ///// <summary></summary>
+        //public String Suffix
+        //{
+        //    get { return _Suffix; }
+        //    set { _Suffix = value; }
+        //}
 
         private Int32 _Hits;
         /// <summary>点击次数</summary>

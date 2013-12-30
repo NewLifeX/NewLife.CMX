@@ -178,22 +178,10 @@ namespace NewLife.CMX
         /// <param name="ParentID"></param>
         public static void UpdateClickHit(string Suffix, Int32 ParentID)
         {
-            try
-            {
-                Meta.TableName += Suffix;
-                var entity = FindByID(ParentID);
+            var entity = FindByID(ParentID);
 
-                entity.Hits += 1;
-                entity.Save();
-            }
-            catch (Exception ex)
-            {
-                XTrace.WriteException(ex);
-            }
-            finally
-            {
-                Meta.TableName = "";
-            }
+            entity.Hits++;
+            entity.Save();
         }
         #endregion
     }

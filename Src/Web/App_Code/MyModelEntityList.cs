@@ -126,7 +126,7 @@ public class MyModelEntityList<TEntity> : MyModelEntityList where TEntity : Enti
         //        fix.SetValue(chn.Suffix);
         //    }
 
-        //    base.OnInit(e);
+        base.OnInit(e);
         //}
         //catch (Exception)
         //{
@@ -139,11 +139,13 @@ public class MyModelEntityList<TEntity> : MyModelEntityList where TEntity : Enti
     {
         base.OnSaveStateComplete(e);
         //EntityFactory.CreateOperate(EntityType).TableName = "";
+        Model.FindProvider(EntityType).CurrentChannel = 0;
     }
 
     protected override void OnUnload(EventArgs e)
     {
         //EntityFactory.CreateOperate(EntityType).TableName = "";
+        Model.FindProvider(EntityType).CurrentChannel = 0;
         base.OnUnload(e);
     }
 }
