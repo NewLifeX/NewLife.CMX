@@ -149,9 +149,11 @@ namespace NewLife.CMX
 
             foreach (var item in Providers)
             {
-                var entity = FindByName(item.Value.Name);
+                var model = item.Value;
+
+                var entity = FindByName(model.Name);
                 if (entity == null) entity = new Model();
-                entity.Name = item.Value.Name;
+                entity.Name = model.Name;
                 entity.ClassName = item.Key;
 
                 //switch (item.Name)
@@ -171,6 +173,8 @@ namespace NewLife.CMX
                 //    default:
                 //        break;
                 //}
+                entity.TitleTemplatePath = model.TitleType.Name + ".aspx";
+                entity.CategoryTemplatePath = model.CategoryType.Name + ".aspx";
                 entity.Enable = true;
                 entity.Save();
 
