@@ -31,20 +31,22 @@ public abstract class MyModelEntityList : Page
             return ManageProvider.Provider.Current as IAdministrator;
         }
     }
-    protected override void OnInit(EventArgs e)
-    {
-        if (System.Web.HttpContext.Current != null)
-        {
-            base.OnInit(e);
-            this.Error += new System.EventHandler(this.Page_Error);
-        }
-    }
-    protected virtual void Page_Error(object sender, System.EventArgs e)
-    {
-        // Exception ex = Server.GetLastError();
-        WebHelper.AlertAndEnd("系统错误！");
-        Server.ClearError();
-    }
+
+    // 如果不写日志，就不要拦截异常，否则压根就不知道哪里出错！
+    //protected override void OnInit(EventArgs e)
+    //{
+    //    if (System.Web.HttpContext.Current != null)
+    //    {
+    //        base.OnInit(e);
+    //        this.Error += new System.EventHandler(this.Page_Error);
+    //    }
+    //}
+    //protected virtual void Page_Error(object sender, System.EventArgs e)
+    //{
+    //    // Exception ex = Server.GetLastError();
+    //    WebHelper.AlertAndEnd("系统错误！");
+    //    Server.ClearError();
+    //}
 
     protected override void OnPreInit(EventArgs e)
     {
@@ -105,11 +107,12 @@ public class MyModelEntityList<TEntity> : MyModelEntityList where TEntity : Enti
     {
         try
         {
-            Channel c = Channel.FindBySuffix(Request["Channel"]);
+            Channel chn = Channel.FindBySuffix(Request["Channel"]);
 
-            if (c == null) throw new Exception("未知频道");
+            if (chn == null) throw new Exception("未知频道");
+
             EntityFactory.CreateOperate(EntityType).TableName = "";
-            EntityFactory.CreateOperate(EntityType).TableName += c.Suffix;
+            EntityFactory.CreateOperate(EntityType).TableName += chn.Suffix;
 
             if (EntityType.BaseType.GetGenericTypeDefinition() == typeof(EntityTree<>) || EntityType.BaseType.GetGenericTypeDefinition() == typeof(EntityCategory<>))
             {
@@ -121,7 +124,7 @@ public class MyModelEntityList<TEntity> : MyModelEntityList where TEntity : Enti
             {
                 FieldInfoX fix = FieldInfoX.Create(EntityType, "ChannelSuffix");
 
-                fix.SetValue(c.Suffix);
+                fix.SetValue(chn.Suffix);
             }
 
             base.OnInit(e);
