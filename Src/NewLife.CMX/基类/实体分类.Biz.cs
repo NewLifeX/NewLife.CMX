@@ -120,18 +120,18 @@ namespace NewLife.CMX
         /// <summary>查询所有子孙类以及子孙类的ID如果子类不是最终类，返回的时候ID会被改为负数</summary>
         /// <param name="parentKey"></param>
         /// <returns></returns>
-        public static Dictionary<String, String> FindAllChildsNameAndIDByNoParent(Int32 parentKey)
+        public static Dictionary<Int32, String> FindAllChildsNameAndIDByNoParent(Int32 parentKey)
         {
             var entity = Meta.Factory.Default as TEntity;
             var list = FindAllChildsNoParent(parentKey);
-            var dic = new Dictionary<String, String>();
+            var dic = new Dictionary<Int32, String>();
 
             foreach (TEntity item in list)
             {
                 if (item.IsEnd)
-                    dic.Add(item.ID.ToString(), item.TreeNodeName);
+                    dic.Add(item.ID, item.TreeNodeName);
                 else
-                    dic.Add("-" + item.ID, item.TreeNodeName);
+                    dic.Add(-item.ID, item.TreeNodeName);
             }
 
             return dic;
@@ -140,20 +140,20 @@ namespace NewLife.CMX
         /// <summary>查询子类以及子类的ID如果子类不是最终类，返回的时候ID会被改为负数</summary>
         /// <param name="parentKey"></param>
         /// <returns></returns>
-        public static Dictionary<String, String> FindChildNameAndIDByNoParent(Int32 parentKey, Int32 deepth)
+        public static Dictionary<Int32, String> FindChildNameAndIDByNoParent(Int32 parentKey, Int32 deepth)
         {
             var entity = Meta.Factory.Default as TEntity;
             var list = FindAllChildsNoParent(parentKey);
-            var dic = new Dictionary<string, string>();
+            var dic = new Dictionary<Int32, String>();
 
             foreach (TEntity item in list)
             {
                 if (item.Deepth > deepth) continue;
 
                 if (item.IsEnd)
-                    dic.Add(item.ID.ToString(), item.TreeNodeName);
+                    dic.Add(item.ID, item.TreeNodeName);
                 else
-                    dic.Add("-" + item.ID, item.TreeNodeName);
+                    dic.Add(-item.ID, item.TreeNodeName);
             }
             return dic;
         }

@@ -173,8 +173,8 @@ namespace NewLife.CMX
                 //    default:
                 //        break;
                 //}
-                entity.TitleTemplatePath = model.TitleType.Name + ".aspx";
-                entity.CategoryTemplatePath = model.CategoryType.Name + ".aspx";
+                entity.TitleTemplatePath = String.Format("CMX/{0}/{0}.aspx", model.TitleType.Name);
+                entity.CategoryTemplatePath = String.Format("CMX/{0}/{1}.aspx", model.TitleType.Name, model.CategoryType.Name);
                 entity.Enable = true;
                 entity.Save();
 

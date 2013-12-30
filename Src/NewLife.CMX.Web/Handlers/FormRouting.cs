@@ -12,20 +12,16 @@ namespace NewLife.CMX.Web.Handlers
         {
             if (Admin.Current == null) context.Response.Redirect("Default.aspx");
 
-            //参数频道扩展名（Suffix）
-            //Channel channel = Channel.FindBySuffix(context.Request["Channel"]);
-            Channel channel = Channel.FindBySuffixOrModel(context.Request["Channel"], WebHelper.RequestInt("ModelID"));
+            var cid = WebHelper.RequestInt("Channel");
+            var chn = Channel.FindByID(cid);
+            //Channel chn = Channel.FindBySuffixOrModel(context.Request["Channel"], WebHelper.RequestInt("ModelID"));
 
-            Admin admin = Admin.Current;
-
-            ChannelRole cr = ChannelRole.FindChannelIDAndRoleID(channel.ID, admin.RoleID);
-
-            if (cr == null) context.Response.Redirect("Default.aspx");
-
-            if (channel != null)
+            if (chn != null)
             {
-                String url = channel.Model.TitleTemplatePath;
+                ChannelRole cr = ChannelRole.FindChannelIDAndRoleID(chn.ID, Admin.Current.RoleID);
+                if (cr == null) context.Response.Redirect("Default.aspx");
 
+                String url = chn.Model.TitleTemplatePath;
                 if (!String.IsNullOrEmpty(url))
                 {
                     url += "?" + context.Request.QueryString.ToString();

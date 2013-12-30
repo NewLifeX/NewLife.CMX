@@ -82,8 +82,8 @@ namespace NewLife.CMX
                 //    default:
                 //        break;
                 //}
-                entity.ListTemplate = item.Provider.TitleType.Name + "ModelList.html";
-                entity.FormTemplate = item.Provider.TitleType.Name + "ModelContent.html";
+                entity.ListTemplate = String.Format("CMX/{0}/{0}ModelList.html", item.Provider.TitleType.Name);
+                entity.FormTemplate = String.Format("CMX/{0}/{0}ModelContent.html", item.Provider.TitleType.Name);
                 entity.Name = "默认" + item.Name.Replace("模型", "频道");
                 entity.Enable = true;
                 entity.Save();
