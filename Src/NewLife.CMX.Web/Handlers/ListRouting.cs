@@ -12,7 +12,7 @@ namespace NewLife.CMX.Web.Handlers
         {
             if (Admin.Current == null) context.Response.Redirect("Login.aspx");
 
-            var cid = WebHelper.RequestInt("Channel");
+            var cid = WebHelper.RequestInt("ChannelID");
             var chn = Channel.FindByID(cid);
             ////由于默认频道的存在，默认频道是没有后缀扩展名。所以需要先根据频道扩展名查询，如果没有扩展名在使用模型编号查询
             //Channel chn = Channel.FindBySuffixOrModel(context.Request["Channel"], WebHelper.RequestInt("ModelID"));

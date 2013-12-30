@@ -12,7 +12,7 @@ namespace NewLife.CMX.Web.Handlers
         {
             if (Admin.Current == null) context.Response.Redirect("Default.aspx");
 
-            var cid = WebHelper.RequestInt("Channel");
+            var cid = WebHelper.RequestInt("ChannelID");
             var chn = Channel.FindByID(cid);
             //Channel chn = Channel.FindBySuffixOrModel(context.Request["Channel"], WebHelper.RequestInt("ModelID"));
 

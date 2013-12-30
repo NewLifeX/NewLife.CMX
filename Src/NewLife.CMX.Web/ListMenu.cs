@@ -102,7 +102,7 @@ namespace NewLife.CMX.Web
 
                 var crlm = ConvertToMenu(null, chn.Name, chn.Name, "#", null);
 
-                crlm.Children.Add(ConvertToMenu(null, "分类管理", chn.Name + r.Next(), "../ListRouting.ashx?Channel=" + chn.ID + "&ModelID=" + chn.ModelID, null));
+                crlm.Children.Add(ConvertToMenu(null, "分类管理", chn.Name + r.Next(), "../ListRouting.ashx?ChannelID=" + chn.ID + "&ModelID=" + chn.ModelID, null));
 
                 var list = GetModelCategory3(chn, 2);
                 if (list != null) crlm.Children.AddRange(list);
@@ -142,8 +142,8 @@ namespace NewLife.CMX.Web
                     lm.Title = (item.Value + r.Next()).Trim();
 
                     lm.Url = item.Key > 0
-                        ? "../FormRouting.ashx?Channel=" + chn.ID + "&CategoryID=" + item.Key + "&Name=" + item.Value.Trim() + "&ModelID=" + chn.ModelID
-                        : "../ListRouting.ashx?Channel=" + chn.ID + "&CID=" + -item.Key + "&ModelID=" + chn.ModelID;
+                        ? "../FormRouting.ashx?ChannelID=" + chn.ID + "&CategoryID=" + item.Key + "&Name=" + item.Value.Trim() + "&ModelID=" + chn.ModelID
+                        : "../ListRouting.ashx?ChannelID=" + chn.ID + "&CID=" + -item.Key + "&ModelID=" + chn.ModelID;
 
                     list.Add(lm);
                 }
