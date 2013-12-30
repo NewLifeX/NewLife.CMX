@@ -173,40 +173,39 @@ namespace NewLife.CMX
 
         #region 频道
         /// <summary>采用线程静态，避免影响其它线程</summary>
-        [ThreadStatic]
-        private static String ChannelSuffix;
+        //[ThreadStatic]
+        //private static String ChannelSuffix;
 
-        /// <summary>设置频道后缀，指定标题、分类、内容数据表，仅本线程有效</summary>
-        /// <param name="suffix"></param>
-        public static void SetChannelSuffix(String suffix)
-        {
-            //if (ChannelSuffix == suffix) return;
+        ///// <summary>设置频道后缀，指定标题、分类、内容数据表，仅本线程有效</summary>
+        ///// <param name="suffix"></param>
+        //public static void SetChannelSuffix(String suffix)
+        //{
+        //    //if (ChannelSuffix == suffix) return;
 
-            ChannelSuffix = suffix;
+        //    ChannelSuffix = suffix;
 
-            Meta.TableName = Meta.Table.TableName + suffix;
-            EntityCategory<TCategory>.Meta.TableName = EntityCategory<TCategory>.Meta.Table.TableName + suffix;
-            EntityContent<TContent>.Meta.TableName = EntityContent<TContent>.Meta.Table.TableName + suffix;
-        }
+        //    Meta.TableName = Meta.Table.TableName + suffix;
+        //    EntityCategory<TCategory>.Meta.TableName = EntityCategory<TCategory>.Meta.Table.TableName + suffix;
+        //    EntityContent<TContent>.Meta.TableName = EntityContent<TContent>.Meta.Table.TableName + suffix;
+        //}
 
-        private Channel _Channel;
-        /// <summary>频道</summary>
-        public Channel Channel
-        {
-            get
-            {
-                if (_Channel == null && ChannelSuffix != null && !Dirtys.ContainsKey("Channel"))
-                {
-                    _Channel = Channel.FindBySuffix(ChannelSuffix);
-                    Dirtys["Channel"] = true;
-                }
-                return _Channel;
-            }
-            set { _Channel = value; }
-        }
+        //private Channel _Channel;
+        ///// <summary>频道</summary>
+        //public Channel Channel
+        //{
+        //    get
+        //    {
+        //        if (_Channel == null && !Dirtys.ContainsKey("Channel"))
+        //        {
+        //            _Channel = Channel.FindByID(ModelProvider<TEntity, TCategory, TContent>.CurrentChannel);
+        //            Dirtys["Channel"] = true;
+        //        }
+        //        return _Channel;
+        //    }
+        //}
 
-        /// <summary>频道名</summary>
-        public String ChannelName { get { return Channel != null ? Channel.Name : null; } }
+        ///// <summary>频道名</summary>
+        //public String ChannelName { get { return Channel != null ? Channel.Name : null; } }
         #endregion
     }
 

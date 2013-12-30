@@ -8,12 +8,13 @@ using NewLife.CMX.CMS;
 
 public partial class Admin_Manager_SysModel : MyEntityList<SysModel>
 {
-    protected override void Page_Error(object sender, EventArgs e)
-    {
-        //base.Page_Error(sender, e);
-        WebHelper.AlertAndEnd("系统模型不能删除！");
-        Server.ClearError();
-    }
+    //protected override void Page_Error(object sender, EventArgs e)
+    //{
+    //    //base.Page_Error(sender, e);
+    //    WebHelper.AlertAndEnd("系统模型不能删除！");
+    //    Server.ClearError();
+    //}
+
     protected void Page_Load(object sender, EventArgs e)
     {
 

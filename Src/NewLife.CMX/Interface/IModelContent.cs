@@ -4,8 +4,11 @@ namespace NewLife.CMX
 {
     public interface IModelContent
     {
-        /// <summary>频道扩展名</summary>
-        String Suffix { get; set; }
+        /// <summary>频道编号</summary>
+        Int32 ChannelID { get; set; }
+
+        ///// <summary>频道扩展名</summary>
+        //String Suffix { get; set; }
 
         /// <summary>对象编号</summary>
         Int32 ID { get; set; }

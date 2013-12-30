@@ -8,14 +8,15 @@ namespace NewLife.CMX.Web
 {
     public class ProductModelContent : ModelContentBase
     {
-        override public string Process()
+        public override string Process()
         {
-            Product.SetChannelSuffix(Suffix);
+            ArticleProvider.CurrentChannel = ChannelID;
+            //Product.SetChannelSuffix(Suffix);
 
             var product = Product.FindByID(ID);
             if (product == null) return "不存在该记录！";
 
-            LeftMenu = LeftMenuContent.GetContent(Suffix, product.CategoryID);
+            LeftMenu = LeftMenuContent.GetContent(Channel, product.CategoryID);
 
             var dic = new Dictionary<string, string>();
             dic.Add("Address", Address);
@@ -28,7 +29,7 @@ namespace NewLife.CMX.Web
             engine.Foot = Foot;
             engine.LeftMenu = LeftMenu;
             engine.Entity = product as IEntity;
-            engine.Suffix = Suffix;
+            engine.Suffix = Channel.Suffix;
 
             String content = engine.Render(Address + ".html");
             return content;

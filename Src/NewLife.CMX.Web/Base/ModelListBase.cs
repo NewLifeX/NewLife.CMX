@@ -62,7 +62,7 @@ namespace NewLife.CMX.Web
             {
                 if (Suffix != null && _LeftMenu == null)
                 {
-                    _LeftMenu = LeftMenuContent.GetContent(Suffix, CategoryID);
+                    _LeftMenu = LeftMenuContent.GetContent(channel, CategoryID);
                 }
                 return _LeftMenu;
             }

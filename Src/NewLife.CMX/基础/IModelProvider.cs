@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 
 namespace NewLife.CMX
 {
@@ -21,6 +19,11 @@ namespace NewLife.CMX
         /// <summary>内容实体类</summary>
         Type ContentType { get; }
         #endregion
+
+        #region 当前频道
+        /// <summary>当前频道</summary>
+        Int32 CurrentChannel { get; set; }
+        #endregion
     }
 
     /// <summary>模型提供者泛型基类</summary>
@@ -28,6 +31,9 @@ namespace NewLife.CMX
     /// <typeparam name="TCategory"></typeparam>
     /// <typeparam name="TContent"></typeparam>
     public abstract class ModelProvider<TTitle, TCategory, TContent> : IModelProvider
+        where TTitle : EntityTitle<TTitle>, new()
+        where TCategory : EntityCategory<TCategory>, new()
+        where TContent : EntityContent<TContent>, new()
     {
         #region 属性
         private String _Name;
@@ -55,6 +61,40 @@ namespace NewLife.CMX
 
         /// <summary>内容实体类</summary>
         public virtual Type ContentType { get { return typeof(TContent); } }
+        #endregion
+
+        #region 当前频道
+        [ThreadStatic]
+        private static Int32 _Current;
+        /// <summary>当前频道</summary>
+        public static Int32 CurrentChannel
+        {
+            get { return _Current; }
+            set
+            {
+                if (value != 0)
+                {
+                    _Current = value;
+
+                    var chn = Channel.FindByID(value);
+                    if (chn != null)
+                    {
+                        var suffix = chn.Suffix;
+                        EntityTitle<TTitle>.Meta.TableName = EntityTitle<TTitle>.Meta.Table.TableName + suffix;
+                        EntityCategory<TCategory>.Meta.TableName = EntityCategory<TCategory>.Meta.Table.TableName + suffix;
+                        EntityContent<TContent>.Meta.TableName = EntityContent<TContent>.Meta.Table.TableName + suffix;
+                    }
+                }
+                else
+                {
+                    EntityTitle<TTitle>.Meta.TableName = null;
+                    EntityCategory<TCategory>.Meta.TableName = null;
+                    EntityContent<TContent>.Meta.TableName = null;
+                }
+            }
+        }
+
+        Int32 IModelProvider.CurrentChannel { get { return CurrentChannel; } set { CurrentChannel = value; } }
         #endregion
     }
 }

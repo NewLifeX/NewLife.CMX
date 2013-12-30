@@ -11,9 +11,9 @@ namespace NewLife.CMX.Web
     {
         /// <summary>获取菜单内容</summary>
         /// <returns></returns>
-        public static String GetContent(String Suffix, Int32 CategoryID)
+        public static String GetContent(Channel channel, Int32 CategoryID)
         {
-            var channel = Channel.FindBySuffix(Suffix);
+            //var channel = Channel.FindBySuffix(Suffix);
             var dic = new Dictionary<String, String>();
             //var classname = channel.Model.ClassName;
             var id = "0";
@@ -36,7 +36,7 @@ namespace NewLife.CMX.Web
             var engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
             engine.ListCategory = list.ToList().OrderBy(e => e["ID"]).ToList().ConvertAll<IEntityTree>(e => e as IEntityTree);
             engine.ArgDic = dic;
-            engine.Suffix = Suffix;
+            engine.Suffix = channel.Suffix;
 
             return engine.Render(TemplateConfig.Current.LeftAddress);
         }
