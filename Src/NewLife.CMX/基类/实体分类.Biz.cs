@@ -128,10 +128,10 @@ namespace NewLife.CMX
 
             foreach (TEntity item in list)
             {
-                if (Convert.ToBoolean(item["IsEnd"]))
-                    dic.Add(item["ID"].ToString(), item.TreeNodeName);
+                if (item.IsEnd)
+                    dic.Add(item.ID.ToString(), item.TreeNodeName);
                 else
-                    dic.Add("-" + item["ID"].ToString(), item.TreeNodeName);
+                    dic.Add("-" + item.ID, item.TreeNodeName);
             }
 
             return dic;
@@ -150,10 +150,10 @@ namespace NewLife.CMX
             {
                 if (item.Deepth > deepth) continue;
 
-                if (Convert.ToBoolean(item["IsEnd"]))
-                    dic.Add(item["ID"].ToString(), item.TreeNodeName);
+                if (item.IsEnd)
+                    dic.Add(item.ID.ToString(), item.TreeNodeName);
                 else
-                    dic.Add("-" + item["ID"].ToString(), item.TreeNodeName);
+                    dic.Add("-" + item.ID, item.TreeNodeName);
             }
             return dic;
         }
@@ -164,7 +164,7 @@ namespace NewLife.CMX
         public static EntityList<TEntity> FindAllByNoEnd(Int32 parentkey)
         {
             var entitylist = FindAllChildsByParent(parentkey);
-            entitylist.RemoveAll(e => (Boolean)e["IsEnd"]);
+            entitylist.RemoveAll(e => e.IsEnd);
             return entitylist;
         }
         #endregion

@@ -206,7 +206,7 @@ namespace NewLife.CMX.Web
         /// <returns></returns>
         private static List<ListMenu> GetModelCategory3(String Suffix, IModelProvider provider, Int32 ModelID, Int32 Deepth)
         {
-            var eop = EntityFactory.CreateOperate(provider.TitleType);
+            var eop = EntityFactory.CreateOperate(provider.CategoryType);
             var t = eop.Default.GetType();
             try
             {
@@ -232,7 +232,7 @@ namespace NewLife.CMX.Web
             }
             catch (Exception ex)
             {
-                XTrace.WriteLine(ex.Message);
+                XTrace.WriteException(ex);
                 WebHelper.Alert("请联系管理员！");
                 return null;
             }
