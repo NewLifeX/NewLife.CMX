@@ -161,8 +161,7 @@ namespace NewLife.CMX.Tool
 
             return sj.To(sj.Array(list.ToArray()));
         }
-
-
+        
         /// <summary>获取完整的路径</summary>
         /// <param name="strPath"></param>
         /// <returns></returns>
@@ -174,13 +173,6 @@ namespace NewLife.CMX.Tool
             if (strPath.StartsWith("\\")) strPath = strPath.TrimStart('\\');
 
             return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, strPath);
-        }
-
-        /// <summary>获取请求地址</summary>
-        /// <returns></returns>
-        public static String GetRequestUrl()
-        {
-            return HttpContext.Current.Request.Url.ToString();
         }
     }
 }

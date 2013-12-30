@@ -83,7 +83,6 @@
     <Compile Include="Tool\HelperTool.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tool\TemplateRescources.cs" />
     <Compile Include="UrlRewrite\CMXHttpModel.cs" />
     <Compile Include="WebBase\WebPageBase.cs">
       <SubType>ASPXCodeBehind</SubType>
