@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace NewLife.CMX.Web
 {
     public abstract class ModelListBase : IModeList
     {
+        #region 属性
         private String _Suffix;
         /// <summary></summary>
         public virtual String Suffix { get { return _Suffix; } set { _Suffix = value; } }
@@ -97,7 +96,10 @@ namespace NewLife.CMX.Web
         private Int32 _PageCount = 1;
         /// <summary>总页数</summary>
         public virtual Int32 PageCount { get { return _PageCount; } set { _PageCount = value; } }
+        #endregion
 
-        public abstract string Process();
+        #region 方法
+        public abstract String Process();
+        #endregion
     }
 }
