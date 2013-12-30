@@ -219,6 +219,21 @@ namespace NewLife.CMX
                 return _Provider;
             }
         }
+
+        /// <summary>根据类型查找该类型所属模型提供者</summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static IModelProvider FindProvider(Type type)
+        {
+            foreach (var model in Providers.Values)
+            {
+                if (model.TitleType == type ||
+                    model.CategoryType == type ||
+                    model.ContentType == type) return model;
+            }
+
+            return null;
+        }
         #endregion
     }
 }

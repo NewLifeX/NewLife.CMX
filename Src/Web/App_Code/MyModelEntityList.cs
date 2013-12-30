@@ -1,16 +1,12 @@
 ﻿﻿﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Web.UI;
-using NewLife.Collections;
+using NewLife.CMX;
 using NewLife.CommonEntity;
 using NewLife.Web;
 using XCode;
 using XControl;
-using System.Web;
-using NewLife.CMX;
-using System.Reflection;
-using NewLife.Reflection;
-using System.Collections.Generic;
 
 /// <summary>实体列表页面基类</summary>
 public abstract class MyModelEntityList : Page
@@ -105,46 +101,49 @@ public class MyModelEntityList<TEntity> : MyModelEntityList where TEntity : Enti
 
     protected override void OnInit(EventArgs e)
     {
-        try
-        {
-            Channel chn = Channel.FindBySuffix(Request["Channel"]);
+        //try
+        //{
+        Channel chn = Channel.FindByID(WebHelper.RequestInt("ChannelID"));
+        //if (chn == null) chn = Channel.FindBySuffix(Request["Channel"]);
+        if (chn == null) throw new Exception("未知频道");
 
-            if (chn == null) throw new Exception("未知频道");
+        IModelProvider provider = Model.FindProvider(EntityType);
+        if (provider != null) provider.CurrentChannel = chn.ID;
 
-            EntityFactory.CreateOperate(EntityType).TableName = "";
-            EntityFactory.CreateOperate(EntityType).TableName += chn.Suffix;
+        //    EntityFactory.CreateOperate(EntityType).TableName = "";
+        //    EntityFactory.CreateOperate(EntityType).TableName += chn.Suffix;
 
-            if (EntityType.BaseType.GetGenericTypeDefinition() == typeof(EntityTree<>) || EntityType.BaseType.GetGenericTypeDefinition() == typeof(EntityCategory<>))
-            {
-                PropertyInfoX pix = PropertyInfoX.Create(EntityType, "Root");
+        //    if (EntityType.BaseType.GetGenericTypeDefinition() == typeof(EntityTree<>) || EntityType.BaseType.GetGenericTypeDefinition() == typeof(EntityCategory<>))
+        //    {
+        //        PropertyInfoX pix = PropertyInfoX.Create(EntityType, "Root");
 
-                pix.SetValue(null);
-            }
-            else
-            {
-                FieldInfoX fix = FieldInfoX.Create(EntityType, "ChannelSuffix");
+        //        pix.SetValue(null);
+        //    }
+        //    else
+        //    {
+        //        FieldInfoX fix = FieldInfoX.Create(EntityType, "ChannelSuffix");
 
-                fix.SetValue(chn.Suffix);
-            }
+        //        fix.SetValue(chn.Suffix);
+        //    }
 
-            base.OnInit(e);
-        }
-        catch (Exception)
-        {
-            EntityFactory.CreateOperate(EntityType).TableName = "";
-            throw;
-        }
+        //    base.OnInit(e);
+        //}
+        //catch (Exception)
+        //{
+        //    EntityFactory.CreateOperate(EntityType).TableName = "";
+        //    throw;
+        //}
     }
 
     protected override void OnSaveStateComplete(EventArgs e)
     {
         base.OnSaveStateComplete(e);
-        EntityFactory.CreateOperate(EntityType).TableName = "";
+        //EntityFactory.CreateOperate(EntityType).TableName = "";
     }
 
     protected override void OnUnload(EventArgs e)
     {
-        EntityFactory.CreateOperate(EntityType).TableName = "";
+        //EntityFactory.CreateOperate(EntityType).TableName = "";
         base.OnUnload(e);
     }
 }
