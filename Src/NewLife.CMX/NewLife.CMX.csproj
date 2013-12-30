@@ -57,6 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="文章\ArticleProvider.cs" />
     <Compile Include="Base\基础信息.Biz.cs" />
     <Compile Include="Base\基础信息.cs" />
     <Compile Include="CMS\SysModel.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Editor\UEditorAjaxCore.cs" />
     <Compile Include="Editor\UEditorConfig.cs" />
     <Compile Include="Editor\UEUploader.cs" />
+    <Compile Include="基础\IModelProvider.cs" />
     <Compile Include="Interface\ICommon.cs" />
     <Compile Include="Interface\IModelContent.cs" />
     <Compile Include="Interface\IModeList.cs" />
