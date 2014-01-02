@@ -7,6 +7,7 @@
     <div class="tools_box">
         <div class="tools_bar">
             <a href="ModelForm.aspx" class="tools_btn"><span><b class="add">添加模型</b></span></a>
+            <a href="?act=scan" class="tools_btn"><span><b class="refresh">扫描模型</b></span></a>
             <div class="search_box">
                 关键字：<asp:TextBox ID="txtKey" runat="server" CssClass="form-control"></asp:TextBox>
                 &nbsp;<asp:Button ID="btnSearch" runat="server" Text="查询" CssClass="btnSearch"/>
