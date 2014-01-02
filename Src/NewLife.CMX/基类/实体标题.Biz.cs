@@ -7,7 +7,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
-using NewLife.CMX.Tool;
 using NewLife.CommonEntity;
 using NewLife.Log;
 using XCode;
@@ -62,17 +61,8 @@ namespace NewLife.CMX
             {
                 if (_Category == null && CategoryID > 0 && !Dirtys.ContainsKey("Category"))
                 {
-                    //try
-                    //{
-                    //    EntityFactory.CreateOperate(typeof(TCategory)).TableName += ChannelSuffix;
                     _Category = EntityCategory<TCategory>.FindByID(CategoryID);
-                    if (_Category == null) _Category = new TCategory();
                     Dirtys["Category"] = true;
-                    //}
-                    //finally
-                    //{
-                    //    EntityFactory.CreateOperate(typeof(TCategory)).TableName = "";
-                    //}
                 }
                 return _Category;
             }
@@ -87,17 +77,9 @@ namespace NewLife.CMX
             {
                 if (_Content == null && !Dirtys.ContainsKey("Content"))
                 {
-                    //try
-                    //{
-                    //    EntityFactory.CreateOperate(typeof(TContent)).TableName += ChannelSuffix;
                     _Content = EntityContent<TContent>.FindLastByParentID(ID);
                     if (_Content == null) _Content = new TContent();
                     Dirtys["Content"] = true;
-                    //}
-                    //finally
-                    //{
-                    //    EntityFactory.CreateOperate(typeof(TContent)).TableName = "";
-                    //}
                 }
                 return _Content;
             }
@@ -117,7 +99,7 @@ namespace NewLife.CMX
                 }
                 return _ContentText;
             }
-            set { _ContentText = value; }
+            set { _ContentText = value; Content.Content = value; }
         }
         #endregion
 
@@ -167,12 +149,14 @@ namespace NewLife.CMX
 
         protected override int OnDelete()
         {
+            Content.Delete();
+
             return base.OnDelete();
         }
         #endregion
 
         #region 频道
-        /// <summary>采用线程静态，避免影响其它线程</summary>
+        ///// <summary>采用线程静态，避免影响其它线程</summary>
         //[ThreadStatic]
         //private static String ChannelSuffix;
 
@@ -278,52 +262,6 @@ namespace NewLife.CMX
         #endregion
 
         #region 高级查询
-        // 以下为自定义高级查询的例子
-
-        ///// <summary>
-        ///// 查询满足条件的记录集，分页、排序
-        ///// </summary>
-        ///// <param name="key">关键字</param>
-        ///// <param name="orderClause">排序，不带Order By</param>
-        ///// <param name="startRowIndex">开始行，0表示第一行</param>
-        ///// <param name="maximumRows">最大返回行数，0表示所有行</param>
-        ///// <returns>实体集</returns>
-        //[DataObjectMethod(DataObjectMethodType.Select, true)]
-        //public static EntityList<TEntity> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
-        //{
-        //    return FindAll(SearchWhere(key), orderClause, null, startRowIndex, maximumRows);
-        //}
-
-        ///// <summary>
-        ///// 查询满足条件的记录总数，分页和排序无效，带参数是因为ObjectDataSource要求它跟Search统一
-        ///// </summary>
-        ///// <param name="key">关键字</param>
-        ///// <param name="orderClause">排序，不带Order By</param>
-        ///// <param name="startRowIndex">开始行，0表示第一行</param>
-        ///// <param name="maximumRows">最大返回行数，0表示所有行</param>
-        ///// <returns>记录数</returns>
-        //public static Int32 SearchCount(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
-        //{
-        //    return FindCount(SearchWhere(key), null, null, 0, 0);
-        //}
-
-        /// <summary>构造搜索条件</summary>
-        /// <param name="key">关键字</param>
-        /// <returns></returns>
-        private static String SearchWhere(String key)
-        {
-            // WhereExpression重载&和|运算符，作为And和Or的替代
-            // SearchWhereByKeys系列方法用于构建针对字符串字段的模糊搜索
-            var exp = SearchWhereByKeys(key, null);
-
-            // 以下仅为演示，Field（继承自FieldItem）重载了==、!=、>、<、>=、<=等运算符（第4行）
-            //if (userid > 0) exp &= _.OperatorID == userid;
-            //if (isSign != null) exp &= _.IsSign == isSign.Value;
-            //if (start > DateTime.MinValue) exp &= _.OccurTime >= start;
-            //if (end > DateTime.MinValue) exp &= _.OccurTime < end.AddDays(1).Date;
-
-            return exp;
-        }
         #endregion
 
         #region 扩展操作
