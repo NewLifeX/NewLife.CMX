@@ -207,42 +207,47 @@ namespace NewLife.CMX
                 return Meta.Cache.Entities.Find(__.Suffix, Suffix);
         }
 
-        /// <summary>
-        /// 优先使用频道扩展名查询，在没有频道扩展名的前提下再使用模型编号查询
-        /// 注意如果频道扩展名为空的情况下，只使用模型编号查询，返回的对象为所有使用该模型的频道中ID最后的一个
-        /// </summary>
-        /// <param name="Suffix"></param>
-        /// <param name="ModelID"></param>
-        /// <returns></returns>
-        public static Channel FindBySuffixOrModel(String Suffix, Int32 ModelID = 0)
+        public static Int32 FindCountByModel(Int32 modelid)
         {
-            if (String.IsNullOrEmpty(Suffix) && ModelID == 0) return new Channel();
-
-            if (!String.IsNullOrEmpty(Suffix) && ModelID > 0) return FindBySuffixAndModel(Suffix, ModelID);
-
-            if (!String.IsNullOrEmpty(Suffix)) return FindBySuffix(Suffix);
-
-            if (Meta.Count > 1000)
-                return Find(__.ModelID, ModelID);
-            else
-                return Meta.Cache.Entities.Find(__.ModelID, ModelID);
+            return FindCount(__.ModelID, modelid);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Suffix"></param>
-        /// <param name="ModelID"></param>
-        /// <returns></returns>
-        public static Channel FindBySuffixAndModel(String Suffix, Int32 ModelID)
-        {
-            if (String.IsNullOrEmpty(Suffix) || ModelID < 1) return new Channel();
+        ///// <summary>
+        ///// 优先使用频道扩展名查询，在没有频道扩展名的前提下再使用模型编号查询
+        ///// 注意如果频道扩展名为空的情况下，只使用模型编号查询，返回的对象为所有使用该模型的频道中ID最后的一个
+        ///// </summary>
+        ///// <param name="Suffix"></param>
+        ///// <param name="ModelID"></param>
+        ///// <returns></returns>
+        //public static Channel FindBySuffixOrModel(String Suffix, Int32 ModelID = 0)
+        //{
+        //    if (String.IsNullOrEmpty(Suffix) && ModelID == 0) return new Channel();
 
-            if (Meta.Count > 1000)
-                return Find(new String[] { __.Suffix, __.ModelID }, new Object[] { Suffix, ModelID });
-            else
-                return Meta.Cache.Entities.Find(e => (e.Suffix == Suffix && e.ModelID == ModelID));
-        }
+        //    if (!String.IsNullOrEmpty(Suffix) && ModelID > 0) return FindBySuffixAndModel(Suffix, ModelID);
+
+        //    if (!String.IsNullOrEmpty(Suffix)) return FindBySuffix(Suffix);
+
+        //    if (Meta.Count > 1000)
+        //        return Find(__.ModelID, ModelID);
+        //    else
+        //        return Meta.Cache.Entities.Find(__.ModelID, ModelID);
+        //}
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="Suffix"></param>
+        ///// <param name="ModelID"></param>
+        ///// <returns></returns>
+        //public static Channel FindBySuffixAndModel(String Suffix, Int32 ModelID)
+        //{
+        //    if (String.IsNullOrEmpty(Suffix) || ModelID < 1) return new Channel();
+
+        //    if (Meta.Count > 1000)
+        //        return Find(new String[] { __.Suffix, __.ModelID }, new Object[] { Suffix, ModelID });
+        //    else
+        //        return Meta.Cache.Entities.Find(e => (e.Suffix == Suffix && e.ModelID == ModelID));
+        //}
         #endregion
 
         #region 高级查询

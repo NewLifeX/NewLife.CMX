@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Web;
 using NewLife.Web;
 
@@ -40,9 +38,9 @@ namespace NewLife.CMX.Web.Handlers
         /// <param name="channelid"></param>
         public static String GetUrl(Int32 channelid)
         {
-            Channel c = Channel.FindByID(channelid);
+            var chn = Channel.FindByID(channelid);
 
-            return c == null ? "" : c.Model.CategoryTemplatePath;
+            return chn == null ? "" : chn.Model.CategoryTemplatePath;
         }
 
         /// <summary>
@@ -51,9 +49,9 @@ namespace NewLife.CMX.Web.Handlers
         /// <param name="channelname"></param>
         public static String GetUrl(String channelname)
         {
-            Channel c = Channel.FindBySuffix(channelname);
+            var chn = Channel.FindByName(channelname);
 
-            return c == null ? "" : c.Model.CategoryTemplatePath;
+            return chn == null ? "" : chn.Model.CategoryTemplatePath;
         }
 
         public bool IsReusable { get { return false; } }
