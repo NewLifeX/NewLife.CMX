@@ -7,6 +7,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using NewLife.CMX.Tool;
 using NewLife.CommonEntity;
 using NewLife.Log;
 using NewLife.Reflection;

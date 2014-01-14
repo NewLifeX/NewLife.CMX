@@ -57,6 +57,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="基类\ICategoryOperate.cs" />
+    <Compile Include="产品\ProductProvider.cs" />
+    <Compile Include="基类\统计.Biz.cs" />
+    <Compile Include="基类\统计.cs" />
+    <Compile Include="文本\TextProvider.cs" />
+    <Compile Include="文章\ArticleProvider.cs" />
     <Compile Include="Base\基础信息.Biz.cs" />
     <Compile Include="Base\基础信息.cs" />
     <Compile Include="CMS\SysModel.cs" />
