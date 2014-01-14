@@ -1,0 +1,212 @@
+﻿body {
+    font-family:@微软雅黑;
+    font-size:14px;
+    margin:0; 
+    padding:0;
+}
+*
+{
+     margin:0;
+     padding:0;
+     border:none;
+ }
+ul
+{
+    list-style:none;
+}
+div
+{
+     margin:0 auto;
+ }
+.top 
+{
+    width:100%; 
+    height:36px;
+    background:#048BB6;
+ }
+.top p
+{
+     width:1004px;
+     margin:0 auto;
+     text-align:left;
+     font-weight:bold;
+     font-size:15px; 
+     font-family:@宋体;
+     color:White;
+     line-height:36px;
+}
+ .head
+ {    
+     width:100%;
+     height:120px;
+     background:#0D9FDB;                                                           
+}
+.headcont
+{
+    width:1004px;
+    height:120px;  
+    background:url(../images/djimages/headbg.jpg) no-repeat;
+    margin:0 auto;
+}
+.headcont img{ float:left;}
+.headcont  .txt
+{ 
+    display:block;
+    width:208px;
+    margin-left:240px;
+    background:none;
+    margin-top:64px;
+    height:21px; 
+    float:left;
+ }
+.headcont .btn
+{ 
+    width:60px;
+    height:23px;
+    background:none;
+    margin-top:60px;
+    cursor:pointer;
+    margin-left:20px;
+    float:left;
+}
+.nav 
+{ 
+    width:1004px;
+    height:70px;
+    background:url(../images/djimages/navbg.jpg) no-repeat;
+    margin:0 auto;
+}
+.outmenu{ width:100%; height:180px; background:#0D9FDB;}
+.menu
+{
+    font-family: arial, sans-serif;
+    width: 1004px;
+    margin: 0;
+  
+}
+
+.menu ul
+{
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+.menu ul li
+{
+    float: left;
+    position: relative;
+    width:167px;
+    height:68px;
+    line-height:68px;
+    text-align:center;
+}
+.menu ul li a, .menu ul li a:visited
+{
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+   
+}
+.menu ul li ul
+{
+    display: none;
+}
+
+.menu ul li:hover a
+{
+    color: #fff;
+    background: #069ACA;
+}
+
+.menu ul li:hover ul
+{
+    display: block;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 105px;
+   
+   
+}
+.menu ul li:hover ul li a
+{
+    display: block;
+    background: #fff;
+    color: #000;
+}
+.menu ul li:hover ul li a:hover
+{
+    background: #EAEAEA;
+    color: #000;
+}
+.swf ,.swf2
+{
+     width:998px; height:258px; background:url(../images/djimages/swfbg.jpg) no-repeat; margin:0 auto;
+     margin-top:-112px;
+     padding:3px;
+    
+}
+.swf2
+{
+    height:146px;
+    background:url(../images/djimages/swfbg2.jpg) no-repeat; 
+}
+.mid{ width:979px; margin:0 auto; margin-top:6px; height:600px;}
+.foot{ width:976px; height:104px; background:#0D9FDB; border:1px solid #fff; margin:0 auto; text-align:center;}
+.foot ul{ width:380px; margin:0 auto; height:60px; }
+.foot ul li{ float:left; margin-left:10px; margin-top:25px;}
+.foot ul li a ,.foot ul li span{ color:White; text-decoration:none;font-size:12px;}
+.foot ul li a:hover{ color:Red;}
+.foot ul li span{ margin-left:10px;}
+.foot p{ width:980px; text-align:center; height:40px;color:White; font-size:12px;}
+.left{ width:200px; float:left; background:#E7E8EA; height:596px;}
+.left p{ width:200px; height:35px;background:url(../images/djimages/lefttitlebg.jpg) no-repeat;
+         font-size:16px; font-family:@微软雅黑; font-weight:bold; color:White; line-height:35px; padding-left:10px;}
+.left ul
+{
+     width:200px;     
+ }
+ .left ul  li
+ {
+    height:40px;
+    background:url(../images/djimages/borderbg.jpg) no-repeat;
+    background-position:bottom;
+    line-height:40px;
+    list-style-image:url(../images/djimages/listimg.jpg);
+    padding-left:15px;
+    list-style-position:inside;
+  }
+   .left2 ul  li
+   {
+     list-style-image:url(../images/djimages/listimg2.gif);  
+   }
+
+  .left ul  li a
+  {
+     text-decoration:none;
+     color:#333;
+     font-size:15px; 
+     padding-left:0px;  
+   }
+  .left  span
+  {
+     display:block;
+     font-size:13px;
+     color:#333;
+     line-height:190%;
+     width:180px;
+     margin:0 auto;
+     margin-top:7px;    
+  }
+.right{ width:751px; float:right; height:596px; }
+.right .ptitle
+{
+    width:751px;
+    height:38px;
+    background:url(../images/djimages/rigtitle.jpg) no-repeat;
+    color:White;
+    font-size:12px;
+    line-height:38px;
+    padding-left:10px;
+ }
