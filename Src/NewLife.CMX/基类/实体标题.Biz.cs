@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Linq;
 using NewLife.CommonEntity;
 using NewLife.Log;
+using NewLife.Reflection;
 using XCode;
 
 namespace NewLife.CMX
@@ -36,7 +37,7 @@ namespace NewLife.CMX
             if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
 
             // 配套的分类
-            //EntityCategory<TCategory>.Meta.WaitForInitData();
+            EntityCategory<TCategory>.Meta.WaitForInitData();
             var cat = EntityCategory<TCategory>.FindAllWithCache().ToList().FirstOrDefault() as IEntityCategory;
             var des = typeof(TEntity).GetCustomAttribute<DescriptionAttribute>();
 
@@ -61,6 +62,17 @@ namespace NewLife.CMX
             {
                 if (_Category == null && CategoryID > 0 && !Dirtys.ContainsKey("Category"))
                 {
+                    try
+                    {
+                        EntityFactory.CreateOperate(typeof(TCategory)).TableName += ChannelSuffix;
+                        _Category = EntityCategory<TCategory>.FindByID(CategoryID);
+                        if (_Category == null) _Category = new TCategory();
+                        Dirtys["Category"] = true;
+                    }
+                    finally
+                    {
+                        EntityFactory.CreateOperate(typeof(TCategory)).TableName = "";
+                    }
                     _Category = EntityCategory<TCategory>.FindByID(CategoryID);
                     Dirtys["Category"] = true;
                 }
@@ -77,6 +89,17 @@ namespace NewLife.CMX
             {
                 if (_Content == null && !Dirtys.ContainsKey("Content"))
                 {
+                    try
+                    {
+                        EntityFactory.CreateOperate(typeof(TContent)).TableName += ChannelSuffix;
+                        _Content = EntityContent<TContent>.FindLastByParentID(ID);
+                        if (_Content == null) _Content = new TContent();
+                        Dirtys["Content"] = true;
+                    }
+                    finally
+                    {
+                        EntityFactory.CreateOperate(typeof(TContent)).TableName = "";
+                    }
                     _Content = EntityContent<TContent>.FindLastByParentID(ID);
                     if (_Content == null) _Content = new TContent();
                     Dirtys["Content"] = true;
@@ -112,12 +135,7 @@ namespace NewLife.CMX
 
             Int32 num = base.OnInsert();
 
-            //HelperTool.SaveModelContent(typeof(TContent), Version, ChannelSuffix, this, null);
-            var entity = Content;
-            entity.ParentID = ID;
-            entity.Title = Title;
-            entity.Version = Version;
-            entity.Insert();
+            HelperTool.SaveModelContent(typeof(TContent), Version, ChannelSuffix, this, null);
 
             return num;
         }
@@ -125,23 +143,11 @@ namespace NewLife.CMX
         /// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
         protected override int OnUpdate()
         {
-            //if (Dirtys["Content"])
-            //{
-            //    if (!Dirtys["Version"]) Version++;
-
-            //    HelperTool.SaveModelContent(typeof(TContent), Version, ChannelSuffix, this, null);
-            //}
-
-            // 如果内容数据有修改，插入新内容
-            if ((Content as IEntity).Dirtys.Any(e => e.Value))
+            if (Dirtys["Content"])
             {
-                Content.ID = 0;
-                Content.ParentID = ID;
-                Content.Version++;
-                Content.Title = Title;
-                Content.Insert();
+                if (!Dirtys["Version"]) Version++;
 
-                this.Version = Content.Version;
+                HelperTool.SaveModelContent(typeof(TContent), Version, ChannelSuffix, this, null);
             }
 
             return base.OnUpdate();
@@ -214,25 +220,39 @@ namespace NewLife.CMX
             if (isNew && !Dirtys[__.CreateTime])
             {
                 CreateTime = DateTime.Now;
-                if (mp.Current != null)
-                {
-                    CreateUserID = mp.Current.ID;
-                    CreateUserName = mp.Current.ToString();
-                }
+                CreateUserID = mp.Current.ID;
+                CreateUserName = mp.Current.ToString();
             }
             if (!Dirtys[__.UpdateTime])
             {
                 UpdateTime = DateTime.Now;
-                if (mp.Current != null)
-                {
-                    UpdateUserID = mp.Current.ID;
-                    UpdateUserName = mp.Current.ToString();
-                }
+                UpdateUserID = mp.Current.ID;
+                UpdateUserName = mp.Current.ToString();
             }
         }
         #endregion
 
         #region 扩展属性﻿
+        public static String ChannelSuffix;
+
+        private Channel _Channel;
+        /// <summary>频道</summary>
+        public Channel Channel
+        {
+            get
+            {
+                if (_Channel == null && ChannelSuffix != null && !Dirtys.ContainsKey("Channel"))
+                {
+                    _Channel = Channel.FindBySuffix(ChannelSuffix);
+                    Dirtys["Channel"] = true;
+                }
+                return _Channel;
+            }
+            set { _Channel = value; }
+        }
+
+        /// <summary>频道名</summary>
+        public String ChannelName { get { return Channel != null ? Channel.Name : null; } }
         #endregion
 
         #region 扩展查询﻿

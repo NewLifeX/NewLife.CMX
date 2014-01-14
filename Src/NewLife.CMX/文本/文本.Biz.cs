@@ -17,21 +17,56 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
-        //private String _ConentTxt;
+        //private TextContent _TextContent;
         ///// <summary></summary>
-        //public String ConentTxt
+        //public TextContent TextContent
         //{
         //    get
         //    {
-        //        if (_ConentTxt == null && !Dirtys.ContainsKey("ConentTxt"))
+        //        try
         //        {
-        //            _ConentTxt = Content.Content ?? "";
-        //            Dirtys["ConentTxt"] = true;
+        //            if (_TextContent == null && !Dirtys.ContainsKey("TextContent"))
+        //            {
+        //                TextContent.Meta.TableName = "";
+        //                TextContent.Meta.TableName += ChannelSuffix;
+
+        //                _TextContent = TextContent.FindByParentIDAndVersion(ID, Version);
+
+        //                if (_TextContent == null)
+        //                {
+        //                    _TextContent = new TextContent();
+        //                }
+        //            }
         //        }
-        //        return _ConentTxt;
+        //        catch (Exception)
+        //        {
+
+        //            throw;
+        //        }
+        //        finally
+        //        {
+        //            TextContent.Meta.TableName = "";
+        //        }
+        //        return _TextContent;
         //    }
-        //    set { _ConentTxt = value; }
+        //    set { _TextContent = value; }
         //}
+
+        private String _ConentTxt;
+        /// <summary></summary>
+        public String ConentTxt
+        {
+            get
+            {
+                if (_ConentTxt == null && !Dirtys.ContainsKey("ConentTxt"))
+                {
+                    _ConentTxt = Content.Content ?? "";
+                    Dirtys["ConentTxt"] = true;
+                }
+                return _ConentTxt;
+            }
+            set { _ConentTxt = value; }
+        }
         #endregion
 
         #region 扩展查询﻿

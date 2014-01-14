@@ -19,6 +19,8 @@ namespace NewLife.CMX
     [DataObject]
     [Description("基础信息")]
     [BindIndex("IX_BaseInfo", true, "Name")]
+    [BindIndex("PK__BaseInfo__3214EC270AD2A005", true, "ID")]
+    [BindIndex("PK_BaseInfo", true, "ID")]
     [BindTable("BaseInfo", Description = "基础信息", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class BaseInfo<TEntity> : IBaseInfo
     {

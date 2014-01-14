@@ -1,9 +1,14 @@
 ﻿using System;
-using System.Reflection;
 using System.Web;
 using NewLife.Log;
 using NewLife.Reflection;
 using XUrlRewrite.Configuration;
+using System.Reflection;
+using NewLife.CMX.Tool;
+using NewLife.CMX.Config;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading;
 
 namespace NewLife.CMX.UrlRewrite
 {
@@ -21,6 +26,7 @@ namespace NewLife.CMX.UrlRewrite
             //CMXConfigBase cb = CMXConfigBase.Current;
             //WebSettingConfig wc = WebSettingConfig.Current;
             //TemplateConfig tc = TemplateConfig.Current;
+
         }
 
         private void Application_OnError(object sender, EventArgs e)
@@ -42,12 +48,12 @@ namespace NewLife.CMX.UrlRewrite
         private void ReUrl_BeginRequest(object sender, EventArgs e)
         {
             //Dictionary<String, String> dic = new Dictionary<string, string>();
-            var app = sender as HttpApplication;
+            HttpApplication app = sender as HttpApplication;
 
             if (!app.Request.AppRelativeCurrentExecutionFilePath.EndsWith(".ashx"))
             {
                 Manager manager = Manager.GetConfigManager(app);
-                var cfg = manager.GetTemplateConfig();
+                UrlRewriteConfig cfg = manager.GetTemplateConfig();
                 if (null != cfg && cfg.Enabled)
                 {
                     String path = app.Request.AppRelativeCurrentExecutionFilePath.Substring(1);
@@ -118,13 +124,13 @@ namespace NewLife.CMX.UrlRewrite
             }
         }
 
-        private static Func<string, string, HttpApplication, bool> GetCustomFilterFunc(string methodName)
+        private static Func<string, string, HttpApplication, bool> GetCustomFilterFunc(string method)
         {
-            if (string.IsNullOrEmpty(methodName)) return EmptyCustomFilterFunc;
+            if (string.IsNullOrEmpty(method)) return EmptyCustomFilterFunc;
 
-            int n = methodName.LastIndexOf('.');
-            string typeName = methodName.Substring(0, n);
-            methodName = methodName.Substring(n + 1);
+            int n = method.LastIndexOf('.');
+            string typeName = method.Substring(0, n);
+            method = method.Substring(n + 1);
 
             Type type = null;
             try
@@ -139,33 +145,44 @@ namespace NewLife.CMX.UrlRewrite
                 return EmptyCustomFilterFunc;
             }
 
-            var method = type.GetMethodEx(methodName, new Type[] { typeof(string), typeof(string), typeof(HttpApplication) });
-            if (method == null)
+            MethodInfoX methodInfoX = null;
+            try
             {
-                if (Manager.Debug) XTrace.WriteLine("Url重写配置的自定义过滤器方法static bool {0}(string, string, HttpApplication)不存在", methodName);
+                methodInfoX = MethodInfoX.Create(type, method, new Type[] { typeof(string), typeof(string), typeof(HttpApplication) });
+            }
+            catch (Exception) { }
+            if (methodInfoX == null)
+            {
+                if (Manager.Debug) XTrace.WriteLine("Url重写配置的自定义过滤器方法static bool {0}(string, string, HttpApplication)不存在", method);
                 return EmptyCustomFilterFunc;
             }
 
-            if (!method.IsStatic)
+            if (!methodInfoX.Method.IsStatic)
             {
-                if (Manager.Debug) XTrace.WriteLine("Url重写配置的自定义过滤器方法不是静态方法", methodName);
+                if (Manager.Debug) XTrace.WriteLine("Url重写配置的自定义过滤器方法不是静态方法", method);
                 return EmptyCustomFilterFunc;
             }
 
-            if (method.ReturnType != typeof(bool))
+            if ((methodInfoX.Method as MethodInfo).ReturnType != typeof(bool))
             {
-                if (Manager.Debug) XTrace.WriteLine("Url重写配置的自定义过滤器方法返回值不是bool", methodName);
+                if (Manager.Debug) XTrace.WriteLine("Url重写配置的自定义过滤器方法返回值不是bool", method);
                 return EmptyCustomFilterFunc;
             }
 
             return delegate(string path, string query, HttpApplication app)
             {
-                return (bool)Reflect.Invoke(null, method, path, query, app);
+                return (bool)methodInfoX.Invoke(null, path, query, app);
             };
         }
 
-        private static bool EmptyCustomFilterFunc(string path, string query, HttpApplication app) { return true; }
+        private static bool EmptyCustomFilterFunc(string path, string query, HttpApplication app)
+        {
+            return true;
+        }
 
-        public void Dispose() { }
+        public void Dispose()
+        {
+
+        }
     }
 }

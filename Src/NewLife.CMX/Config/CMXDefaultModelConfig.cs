@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Text;
 using NewLife.Xml;
 
 namespace NewLife.CMX.Config
@@ -7,10 +9,10 @@ namespace NewLife.CMX.Config
     [XmlConfigFile("config/DefaultArticle.config", 15000)]
     public class CMXDefaultArticleModelConfig : CMXmlConfig<CMXDefaultArticleModelConfig>
     {
-        private String _ClassName = "Article";
+        private String _CategroyClassName = "Article";
         /// <summary>类名</summary>
         [Description("类名")]
-        public String ClassName { get { return _ClassName; } set { _ClassName = value; } }
+        public String ClassName { get { return _CategroyClassName; } set { _CategroyClassName = value; } }
 
         private String _CategoryName = "ArticleCategory";
         /// <summary>分类名</summary>
@@ -37,7 +39,7 @@ namespace NewLife.CMX.Config
         [Description("列表模板路径")]
         public String ContentModelPath { get { return _ContentModelPath; } set { _ContentModelPath = value; } }
 
-        private String _Suffix;
+        private String _Suffix = "";
         /// <summary>扩展名称</summary>
         [Description("扩展名称")]
         public String Suffix { get { return _Suffix; } set { _Suffix = value; } }
@@ -46,10 +48,10 @@ namespace NewLife.CMX.Config
     [XmlConfigFile("config/DefaultProduct.config", 15000)]
     public class CMXDefaultProductModelConfig : CMXmlConfig<CMXDefaultProductModelConfig>
     {
-        private String _ClassName = "Product";
+        private String _CategroyClassName = "Product";
         /// <summary>类名</summary>
         [Description("类名")]
-        public String ClassName { get { return _ClassName; } set { _ClassName = value; } }
+        public String ClassName { get { return _CategroyClassName; } set { _CategroyClassName = value; } }
 
         private String _CategoryName = "ProductCategory";
         /// <summary>分类名</summary>
@@ -85,10 +87,10 @@ namespace NewLife.CMX.Config
     [XmlConfigFile("config/DefaultText.config", 15000)]
     public class CMXDefaultTextModelConfig : CMXmlConfig<CMXDefaultTextModelConfig>
     {
-        private String _ClassName = "Text";
+        private String _CategroyClassName = "Text";
         /// <summary>类名</summary>
         [Description("类名")]
-        public String ClassName { get { return _ClassName; } set { _ClassName = value; } }
+        public String ClassName { get { return _CategroyClassName; } set { _CategroyClassName = value; } }
 
         private String _CategoryName = "TextCategory";
         /// <summary>分类名</summary>

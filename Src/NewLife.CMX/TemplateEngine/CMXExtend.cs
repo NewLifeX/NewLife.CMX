@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using NewLife.Reflection;
 
 namespace NewLife.CMX.TemplateEngine
@@ -15,27 +17,25 @@ namespace NewLife.CMX.TemplateEngine
         /// <returns></returns>
         public static String Extend(String TemplateName, String Suffix, Int32 CategoryID, Int32 RecordCount)
         {
-            var chn = Channel.FindBySuffix(Suffix);
+            Channel c = Channel.FindBySuffix(Suffix);
 
-            if (chn != null)
+            if (c != null)
             {
-                var type = TypeX.GetType("NewLife.CMX.Web." + chn.ListTemplate.Substring(0, chn.ListTemplate.IndexOf('.')));
+                TypeX type = TypeX.GetType("NewLife.CMX.Web." + c.ListTemplate.Substring(0, c.ListTemplate.IndexOf('.')));
 
-                var iml = type.CreateInstance() as IModeList;
+                IModeList iml = type.CreateInstance() as IModeList;
 
-                iml.ChannelID = chn.ID;
-                //iml.Suffix = Suffix;
+                iml.Suffix = Suffix;
                 iml.Address = TemplateName;
                 iml.CategoryID = CategoryID;
                 iml.RecordNum = RecordCount;
-
                 return iml.Process();
             }
             switch (Suffix)
             {
                 case "Common":
-                    var type = TypeX.GetType("NewLife.CMX.Web.Common");
-                    var ic = type.CreateInstance() as ICommon;
+                    TypeX type = TypeX.GetType("NewLife.CMX.Web.Common");
+                    ICommon ic = type.CreateInstance() as ICommon;
                     return ic.Process();
                 default:
                     return null;

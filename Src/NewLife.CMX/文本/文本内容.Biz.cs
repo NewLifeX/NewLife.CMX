@@ -5,6 +5,16 @@
  * 版权：版权所有 (C) 新生命开发团队 2002~2013
 */
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Text;
+using System.Xml.Serialization;
+using NewLife.CommonEntity;
+using NewLife.Log;
+using NewLife.Web;
+using XCode;
+using XCode.Configuration;
+using System.Linq;
 
 namespace NewLife.CMX
 {
@@ -23,17 +33,19 @@ namespace NewLife.CMX
             {
                 if (_Text == null && ParentID > 0 && !Dirtys.ContainsKey("Text"))
                 {
+                    Text.Meta.TableName += Suffix;
                     _Text = Text.FindByID(ParentID);
                     Dirtys["Text"] = true;
+                    Text.Meta.TableName = "";
                 }
                 return _Text;
             }
             set { _Text = value; }
         }
 
-        //private String _Suffix;
-        ///// <summary></summary>
-        //public String Suffix { get { return _Suffix; } set { _Suffix = value; } }
+        private String _Suffix;
+        /// <summary></summary>
+        public String Suffix { get { return _Suffix; } set { _Suffix = value; } }
 
         private Int32 _Hit;
         /// <summary>点击次数</summary>

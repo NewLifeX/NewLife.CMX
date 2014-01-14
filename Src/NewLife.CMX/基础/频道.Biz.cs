@@ -22,6 +22,7 @@ namespace NewLife.CMX
     public partial class Channel : Entity<Channel>
     {
         #region 对象操作﻿
+
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
         /// <param name="isNew"></param>
         public override void Valid(Boolean isNew)
@@ -62,28 +63,26 @@ namespace NewLife.CMX
                 var entity = new Channel();
                 entity.ModelID = item.ID;
 
-                //switch (item.Name)
-                //{
-                //    case "文章模型":
-                //        entity.FormTemplate = CMXDefaultArticleModelConfig.Current.ContentModelPath;
-                //        entity.ListTemplate = CMXDefaultArticleModelConfig.Current.ListModelPath;
-                //        entity.Suffix = CMXDefaultArticleModelConfig.Current.Suffix;
-                //        break;
-                //    case "文本模型":
-                //        entity.FormTemplate = CMXDefaultTextModelConfig.Current.ContentModelPath;
-                //        entity.ListTemplate = CMXDefaultTextModelConfig.Current.ListModelPath;
-                //        entity.Suffix = CMXDefaultTextModelConfig.Current.Suffix;
-                //        break;
-                //    case "产品模型":
-                //        entity.FormTemplate = CMXDefaultProductModelConfig.Current.ContentModelPath;
-                //        entity.ListTemplate = CMXDefaultProductModelConfig.Current.ListModelPath;
-                //        entity.Suffix = CMXDefaultProductModelConfig.Current.Suffix;
-                //        break;
-                //    default:
-                //        break;
-                //}
-                entity.ListTemplate = String.Format("CMX/{0}/{0}ModelList.html", item.Provider.TitleType.Name);
-                entity.FormTemplate = String.Format("CMX/{0}/{0}ModelContent.html", item.Provider.TitleType.Name);
+                switch (item.Name)
+                {
+                    case "文章模型":
+                        entity.FormTemplate = CMXDefaultArticleModelConfig.Current.ContentModelPath;
+                        entity.ListTemplate = CMXDefaultArticleModelConfig.Current.ListModelPath;
+                        entity.Suffix = CMXDefaultArticleModelConfig.Current.Suffix;
+                        break;
+                    case "文本模型":
+                        entity.FormTemplate = CMXDefaultTextModelConfig.Current.ContentModelPath;
+                        entity.ListTemplate = CMXDefaultTextModelConfig.Current.ListModelPath;
+                        entity.Suffix = CMXDefaultTextModelConfig.Current.Suffix;
+                        break;
+                    case "产品模型":
+                        entity.FormTemplate = CMXDefaultProductModelConfig.Current.ContentModelPath;
+                        entity.ListTemplate = CMXDefaultProductModelConfig.Current.ListModelPath;
+                        entity.Suffix = CMXDefaultProductModelConfig.Current.Suffix;
+                        break;
+                    default:
+                        break;
+                }
                 entity.Name = "默认" + item.Name.Replace("模型", "频道");
                 entity.Enable = true;
                 entity.Save();
@@ -207,6 +206,15 @@ namespace NewLife.CMX
                 return Meta.Cache.Entities.Find(__.Suffix, Suffix);
         }
 
+        /// <summary>
+        /// 优先使用频道扩展名查询，在没有频道扩展名的前提下再使用模型编号查询
+        //1/ 注意如果频道扩展名为空的情况下，只使用模型编号查询，返回的对象为所有使用该模型的频道中ID最后的一个
+        /// </summary>
+        /// 
+        /// <param name="Suffix"></param>
+        /// <param name="ModelID"></param>
+        /// <returns></returns>
+        public static Channel FindBySuffixOrModel(String Suffix, Int32 ModelID = 0)
         public static Int32 FindCountByModel(Int32 modelid)
         {
             return FindCount(__.ModelID, modelid);
@@ -225,14 +233,41 @@ namespace NewLife.CMX
 
         //    if (!String.IsNullOrEmpty(Suffix) && ModelID > 0) return FindBySuffixAndModel(Suffix, ModelID);
 
+            return FindBySuffixAndModel(Suffix, ModelID);
+
+            //if (Meta.Count > 1000)
+            //    return Find(__.ModelID, ModelID);
+            //else
+            //    return Meta.Cache.Entities.Find(__.ModelID, ModelID);
+        }
         //    if (!String.IsNullOrEmpty(Suffix)) return FindBySuffix(Suffix);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Suffix"></param>
+        /// <param name="ModelID"></param>
+        /// <returns></returns>
+        public static Channel FindBySuffixAndModel(String Suffix, Int32 ModelID)
+        {
+            if (String.IsNullOrEmpty(Suffix) && ModelID < 1) return new Channel();
         //    if (Meta.Count > 1000)
         //        return Find(__.ModelID, ModelID);
         //    else
         //        return Meta.Cache.Entities.Find(__.ModelID, ModelID);
         //}
 
+            //if (Meta.Count > 1000)
+            //    return Find(new String[] { __.Suffix, __.ModelID }, new Object[] { Suffix, ModelID });
+            //else
+            //    return Meta.Cache.Entities.Find(e => (e.Suffix == Suffix && e.ModelID == ModelID));
+            
+            //由于数据库中""与null在查询语句中的差异
+            if (Suffix == null)
+                return Find(new WhereExpression(_.Suffix.IsNull() & _.ModelID == ModelID));
+            else
+                return Find(new String[] { __.Suffix, __.ModelID }, new Object[] { Suffix, ModelID });
+        }
         ///// <summary>
         ///// 
         ///// </summary>

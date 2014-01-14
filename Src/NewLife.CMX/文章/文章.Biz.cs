@@ -18,24 +18,58 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
-        //private String _ConentTxt;
+        //private ArticleContent _ArticleContent;
         ///// <summary></summary>
-        //public String ConentTxt
+        //public ArticleContent ArticleContent
         //{
         //    get
         //    {
-        //        if (_ConentTxt == null && !Dirtys.ContainsKey("ConentTxt"))
+        //        try
         //        {
-        //            _ConentTxt = Content.Content ?? "";
-        //            Dirtys["ConentTxt"] = true;
+        //            if (_ArticleContent == null && !Dirtys.ContainsKey("ArticleContent"))
+        //            {
+        //                ArticleContent.Meta.TableName = "";
+        //                ArticleContent.Meta.TableName += ChannelSuffix;
+        //                _ArticleContent = ArticleContent.FindByParentIDAndVersion(ID, Version);
+
+        //                if (_ArticleContent == null)
+        //                {
+        //                    _ArticleContent = new ArticleContent();
+        //                }
+        //            }
         //        }
-        //        return _ConentTxt;
+        //        catch (Exception)
+        //        {
+        //            throw;
+        //        }
+        //        finally
+        //        {
+        //            ArticleContent.Meta.TableName = "";
+        //        }
+
+        //        return _ArticleContent;
         //    }
-        //    set
-        //    {
-        //        _ConentTxt = value;
-        //    }
+        //    set { _ArticleContent = value; }
         //}
+
+        private String _ConentTxt;
+        /// <summary></summary>
+        public String ConentTxt
+        {
+            get
+            {
+                if (_ConentTxt == null && !Dirtys.ContainsKey("ConentTxt"))
+                {
+                    _ConentTxt = Content.Content ?? "";
+                    Dirtys["ConentTxt"] = true;
+                }
+                return _ConentTxt;
+            }
+            set
+            {
+                _ConentTxt = value;
+            }
+        }
         #endregion
 
         #region 扩展查询﻿
@@ -178,10 +212,22 @@ namespace NewLife.CMX
         /// <param name="ParentID"></param>
         public static void UpdateClickHit(string Suffix, Int32 ParentID)
         {
-            var entity = FindByID(ParentID);
+            try
+            {
+                Meta.TableName += Suffix;
+                var entity = FindByID(ParentID);
 
-            entity.Hits++;
-            entity.Save();
+                entity.Hits += 1;
+                entity.Save();
+            }
+            catch (Exception ex)
+            {
+                XTrace.WriteException(ex);
+            }
+            finally
+            {
+                Meta.TableName = "";
+            }
         }
         #endregion
     }
