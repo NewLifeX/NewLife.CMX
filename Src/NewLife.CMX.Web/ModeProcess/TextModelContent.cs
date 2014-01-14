@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using NewLife.CMX.Config;
 using NewLife.CMX.TemplateEngine;
 using XCode;
@@ -8,31 +9,43 @@ namespace NewLife.CMX.Web
 {
     public class TextModelContent : ModelContentBase
     {
-        public override string Process()
+        override public string Process()
         {
-            ArticleProvider.CurrentChannel = ChannelID;
-            //Text.SetChannelSuffix(Suffix);
+            try
+            {
+                Text.Meta.TableName = "";
+                TextCategory.Meta.TableName = "";
+                Text.Meta.TableName += Suffix;
+                TextCategory.Meta.TableName += Suffix;
 
-            var text = Text.FindByID(ID);
-            if (text == null) return "不存在该记录！";
+                var text = Text.FindByID(ID);
+                Text.ChannelSuffix = Suffix;
 
-            LeftMenu = LeftMenuContent.GetContent(Channel, text.CategoryID);
+                LeftMenu = LeftMenuContent.GetContent(Suffix, text.CategoryID);
 
-            var dic = new Dictionary<string, string>();
-            dic.Add("Address", Address);
-            dic.Add("ID", ID.ToString());
-            //dic.Add("Suffix", Suffix);
+                if (text == null) return "不存在该记录！";
 
-            var engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
-            engine.ArgDic = dic;
-            engine.Header = Header;
-            engine.Foot = Foot;
-            engine.LeftMenu = LeftMenu;
-            engine.Entity = text as IEntity;
-            engine.Suffix = Channel.Suffix;
+                Dictionary<String, String> dic = new Dictionary<string, string>();
+                dic.Add("Address", Address);
+                dic.Add("ID", ID.ToString());
+                //dic.Add("Suffix", Suffix);
 
-            String content = engine.Render(Address + ".html");
-            return content;
+                CMXEngine engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
+                engine.ArgDic = dic;
+                engine.Header = Header;
+                engine.Foot = Foot;
+                engine.LeftMenu = LeftMenu;
+                engine.Entity = text as IEntity;
+                engine.Suffix = Suffix;
+
+                String content = engine.Render(Address + ".html");
+                return content;
+            }
+            finally
+            {
+                Text.Meta.TableName = "";
+                TextCategory.Meta.TableName = "";
+            }
         }
     }
 }

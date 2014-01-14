@@ -31,7 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NewLife.Core, Version=4.0.5102.38734, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="NewLife.CommonEntity, Version=2.8.5109.42113, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MyDLL\NewLife.CommonEntity.dll</HintPath>
+    </Reference>
+    <Reference Include="NewLife.Core, Version=4.0.5109.42109, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\MyDLL\NewLife.Core.dll</HintPath>
     </Reference>
@@ -39,6 +43,10 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
+    <Reference Include="XCode, Version=8.10.5109.42112, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MyDLL\XCode.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Handlers\GoPageUrl.cs" />
@@ -67,14 +75,6 @@
     <ProjectReference Include="..\NewLife.CMX\NewLife.CMX.csproj">
       <Project>{4c2cf9bb-b920-43f5-9d87-b7288e416795}</Project>
       <Name>NewLife.CMX</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NewLife.CommonEntity\NewLife.CommonEntity.csproj">
-      <Project>{50d7fae5-2304-4395-a6fa-7d35279d9d84}</Project>
-      <Name>NewLife.CommonEntity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XCode\XCode.csproj">
-      <Project>{b49aba5a-c5da-45f4-87f1-b435ec51d710}</Project>
-      <Name>XCode</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

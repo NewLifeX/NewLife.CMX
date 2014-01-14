@@ -1,38 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using NewLife.CMX.Config;
 using NewLife.CMX.TemplateEngine;
+using NewLife.CMX.Web;
 using XCode;
 
 namespace NewLife.CMX.Web
 {
     public class ArticleModelContent : ModelContentBase
     {
-        public override string Process()
+        override public string Process()
         {
-            ArticleProvider.CurrentChannel = ChannelID;
-            //Article.SetChannelSuffix(Suffix);
+            try
+            {
+                Article.Meta.TableName = "";
+                ArticleCategory.Meta.TableName = "";
+                Article.Meta.TableName += Suffix;
+                ArticleCategory.Meta.TableName += Suffix;
 
-            var article = Article.FindByID(ID);
-            if (article == null) return "不存在该记录！";
+                var article = Article.FindByID(ID);
+                Article.ChannelSuffix = Suffix;
 
-            LeftMenu = LeftMenuContent.GetContent(Channel, article.CategoryID);
+                LeftMenu = LeftMenuContent.GetContent(Suffix, article.CategoryID);
 
-            var dic = new Dictionary<String, String>();
-            dic.Add("Address", Address);
-            dic.Add("ID", ID.ToString());
-            //dic.Add("Suffix", Suffix);
+                if (article == null) return "不存在该记录！";
 
-            var engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
-            engine.ArgDic = dic;
-            engine.Header = Header;
-            engine.Foot = Foot;
-            engine.LeftMenu = LeftMenu;
-            engine.Suffix = Channel.Suffix;
-            engine.Entity = article;
+                Dictionary<String, String> dic = new Dictionary<string, string>();
+                dic.Add("Address", Address);
+                dic.Add("ID", ID.ToString());
+                //dic.Add("Suffix", Suffix);
 
-            String content = engine.Render(Address + ".html");
-            return content;
+                CMXEngine engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
+                engine.ArgDic = dic;
+                engine.Header = Header;
+                engine.Foot = Foot;
+                engine.LeftMenu = LeftMenu;
+                engine.Suffix = Suffix;
+                engine.Entity = article as IEntity;
+
+                String content = engine.Render(Address + ".html");
+                return content;
+            }
+            finally
+            {
+                Article.Meta.TableName = "";
+                ArticleCategory.Meta.TableName = "";
+            }
         }
     }
 }

@@ -12,16 +12,20 @@ namespace NewLife.CMX.Web.Handlers
         {
             if (Admin.Current == null) context.Response.Redirect("Default.aspx");
 
-            var cid = WebHelper.RequestInt("ChannelID");
-            var chn = Channel.FindByID(cid);
-            //Channel chn = Channel.FindBySuffixOrModel(context.Request["Channel"], WebHelper.RequestInt("ModelID"));
+            //参数频道扩展名（Suffix）
+            //Channel channel = Channel.FindBySuffix(context.Request["Channel"]);
+            Channel channel = Channel.FindBySuffixOrModel(context.Request["Channel"], WebHelper.RequestInt("ModelID"));
 
-            if (chn != null)
+            Admin admin = Admin.Current;
+
+            ChannelRole cr = ChannelRole.FindChannelIDAndRoleID(channel.ID, admin.RoleID);
+
+            if (cr == null) context.Response.Redirect("Default.aspx");
+
+            if (channel != null)
             {
-                ChannelRole cr = ChannelRole.FindChannelIDAndRoleID(chn.ID, Admin.Current.RoleID);
-                if (cr == null) context.Response.Redirect("Default.aspx");
+                String url = channel.Model.TitleTemplatePath;
 
-                String url = chn.Model.TitleTemplatePath;
                 if (!String.IsNullOrEmpty(url))
                 {
                     url += "?" + context.Request.QueryString.ToString();
@@ -37,6 +41,12 @@ namespace NewLife.CMX.Web.Handlers
             context.Response.End();
         }
 
-        public bool IsReusable { get { return false; } }
+        public bool IsReusable
+        {
+            get
+            {
+                return false;
+            }
+        }
     }
 }

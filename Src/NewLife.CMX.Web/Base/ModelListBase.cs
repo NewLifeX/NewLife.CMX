@@ -1,18 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace NewLife.CMX.Web
 {
     public abstract class ModelListBase : IModeList
     {
-        #region 属性
-        private Int32 _ChannelID;
-        /// <summary>频道编号</summary>
-        public Int32 ChannelID { get { return _ChannelID; } set { _ChannelID = value; } }
-
-        private Channel _Channel;
-        /// <summary>频道</summary>
-        public Channel Channel { get { return _Channel ?? (_Channel = Channel.FindByID(ChannelID)); } }
-
         private String _Suffix;
         /// <summary></summary>
         public virtual String Suffix { get { return _Suffix; } set { _Suffix = value; } }
@@ -70,18 +63,18 @@ namespace NewLife.CMX.Web
             {
                 if (Suffix != null && _LeftMenu == null)
                 {
-                    _LeftMenu = LeftMenuContent.GetContent(Channel, CategoryID);
+                    _LeftMenu = LeftMenuContent.GetContent(Suffix, CategoryID);
                 }
                 return _LeftMenu;
             }
             set { _LeftMenu = value; }
         }
 
-        ///// <summary>频道</summary>
-        //public Channel channel
-        //{
-        //    get { return Channel.FindBySuffix(Suffix); }
-        //}
+        /// <summary>频道</summary>
+        public Channel channel
+        {
+            get { return Channel.FindBySuffix(Suffix); }
+        }
 
         private String _ChannelName;
         /// <summary>频道名称</summary>
@@ -89,7 +82,7 @@ namespace NewLife.CMX.Web
         {
             get
             {
-                if (_ChannelName == null) _ChannelName = Channel == null ? "" : Channel.Name;
+                if (_ChannelName == null) _ChannelName = channel == null ? "" : channel.Name;
                 return _ChannelName;
             }
             set { _ChannelName = value; }
@@ -104,10 +97,7 @@ namespace NewLife.CMX.Web
         private Int32 _PageCount = 1;
         /// <summary>总页数</summary>
         public virtual Int32 PageCount { get { return _PageCount; } set { _PageCount = value; } }
-        #endregion
 
-        #region 方法
-        public abstract String Process();
-        #endregion
+        public abstract string Process();
     }
 }
