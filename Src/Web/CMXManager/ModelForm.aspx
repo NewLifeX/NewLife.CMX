@@ -44,12 +44,12 @@
                             <asp:Label ID="frmUpdateTime" runat="server"></asp:Label></td>
                     </tr>
                     <tr>
-                        <th>标题页模版：</th>
+                        <th>标题页：</th>
                         <td>
                             <asp:TextBox ID="frmTitleTemplatePath" runat="server" Width="300px" CssClass="form-control"></asp:TextBox></td>
                     </tr>
                     <tr>
-                        <th>分类页模版：</th>
+                        <th>分类页：</th>
                         <td>
                             <asp:TextBox ID="frmCategoryTemplatePath" runat="server" Width="300px" CssClass="form-control"></asp:TextBox></td>
                     </tr>

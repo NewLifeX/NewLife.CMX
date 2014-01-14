@@ -3,7 +3,7 @@
     margin: 0px;
     padding: 0px;
 }
-
+ *{border: none;}
 ul, li
 {
     list-style: none;
@@ -204,11 +204,11 @@ body a
     margin-top: 0px;
     border-top: #ffffff 1px solid;
 }
-
-    .nav .child ul li a:hover
-    {
-        background: none;
+.nav .child ul li a
+{
+     height:35px;
     }
+ 
 
 .child ul.index
 {
@@ -219,7 +219,6 @@ body a
 {
     margin-left: 155px;
 }
-
 .child ul.product
 {
     margin-left: 270px;
@@ -293,7 +292,7 @@ ul.product li#product_01
 
             .child ul.product li dl dt a:hover
             {
-                color: #0f6bdd;
+                color:Red;
             }
 
 
@@ -975,7 +974,7 @@ ul.product li#product_01
     {
         width: 155px;
         height: 127px;
-        margin: 5px;
+        padding: 5px;
     }
 
 .p2, .p3, .p4
@@ -998,6 +997,7 @@ ul.product li#product_01
 {
     margin-top: 30px;
     height: 451px;
+    float:left;
 }
 
 .video, .cul
@@ -1171,3 +1171,9 @@ ul.product li#product_01
     font-size: 12px;
     color: gray;
 }
+.child ul li a{ display:block; width:115px; height:35px; }
+.child ul li a:hover{ color:red; background:white; }
+
+
+
+

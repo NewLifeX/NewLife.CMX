@@ -79,49 +79,45 @@ public class MyModelEntityForm<TEntity> : MyModelEntityForm where TEntity : Enti
 
     protected override void OnInit(EventArgs e)
     {
-        //try
-        //{
-        Channel chn = Channel.FindByID(WebHelper.RequestInt("ChannelID"));
-        //if (chn == null) chn = Channel.FindBySuffix(Request["Channel"]);
-        if (chn == null) throw new Exception("未知频道");
+        try
+        {
+            //Channel c = Channel.FindBySuffix(Request["Channel"]);
+            Channel c = Channel.FindBySuffixOrModel(Request["Channel"], WebHelper.RequestInt("ModelID"));
 
-        IModelProvider provider = Model.FindProvider(EntityType);
-        if (provider != null) provider.CurrentChannel = chn.ID;
+            if (c == null) throw new Exception("未知频道");
+            //在某些不知名的情况下会出现表名没有被恢复的情况，所以添加预先重置连接名
+            EntityFactory.CreateOperate(EntityType).TableName = "";
+            EntityFactory.CreateOperate(EntityType).TableName += c.Suffix;
 
-        //Channel c = Channel.FindBySuffix(Request["Channel"]);
+            if (EntityType.BaseType.GetGenericTypeDefinition() != typeof(EntityTree<>) && EntityType.BaseType.GetGenericTypeDefinition() != typeof(EntityCategory<>))
+            {
+                FieldInfoX mix = FieldInfoX.Create(EntityType, "ChannelSuffix");
 
-        //if (c == null) throw new Exception("未知频道");
-        ////在某些不知名的情况下会出现表名没有被恢复的情况，所以添加预先重置连接名
-        //EntityFactory.CreateOperate(EntityType).TableName = "";
-        //EntityFactory.CreateOperate(EntityType).TableName += c.Suffix;
+                mix.SetValue(c.Suffix);
+            }
 
-        //if (EntityType.BaseType.GetGenericTypeDefinition() != typeof(EntityTree<>) && EntityType.BaseType.GetGenericTypeDefinition() != typeof(EntityCategory<>))
-        //{
-        //    FieldInfoX mix = FieldInfoX.Create(EntityType, "ChannelSuffix");
-
-        //    mix.SetValue(c.Suffix);
-        //}
-
-        base.OnInit(e);
-        //}
-        //catch (Exception)
+            base.OnInit(e);
+        }
+        //finally
         //{
         //    EntityFactory.CreateOperate(EntityType).TableName = "";
-        //    throw;
         //}
+        catch (Exception)
+        {
+            EntityFactory.CreateOperate(EntityType).TableName = "";
+            throw;
+        }
     }
 
-    protected override void OnSaveStateComplete(EventArgs e)
-    {
-        base.OnSaveStateComplete(e);
-        //EntityFactory.CreateOperate(EntityType).TableName = "";
-        Model.FindProvider(EntityType).CurrentChannel = 0;
-    }
+    //protected override void OnSaveStateComplete(EventArgs e)
+    //{
+    //    base.OnSaveStateComplete(e);
+    //    EntityFactory.CreateOperate(EntityType).TableName = "";
+    //}
 
-    protected override void OnUnload(EventArgs e)
-    {
-        //EntityFactory.CreateOperate(EntityType).TableName = "";
-        Model.FindProvider(EntityType).CurrentChannel = 0;
-        base.OnUnload(e);
-    }
+    //protected override void OnUnload(EventArgs e)
+    //{
+    //    EntityFactory.CreateOperate(EntityType).TableName = "";
+    //    base.OnUnload(e);
+    //}
 }

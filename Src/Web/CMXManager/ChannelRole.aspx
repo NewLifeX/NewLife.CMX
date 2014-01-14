@@ -25,19 +25,24 @@
             <asp:BoundField DataField="ID" HeaderText="编号" SortExpression="ID" InsertVisible="False" ReadOnly="True">
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="Ikey" />
             </asp:BoundField>
-            <asp:BoundField DataField="RoleName" HeaderText="角色" SortExpression="RoleID" />
-            <asp:BoundField DataField="ChannelName" HeaderText="频道" SortExpression="ChannelID" />
+            <asp:BoundField DataField="RoleName" HeaderText="角色" SortExpression="RoleID">
+                <ItemStyle HorizontalAlign="Center" />
+            </asp:BoundField>
+            <asp:BoundField DataField="ChannelName" HeaderText="频道" SortExpression="ChannelID">
+                <ItemStyle HorizontalAlign="Center" />
+            </asp:BoundField>
             <asp:TemplateField HeaderText="编辑" SortExpression="Name">
                 <ItemTemplate>
                     <asp:HyperLink ID="HyperManager" runat="server" Text='编辑' NavigateUrl='<%# "ChannelRoleForm.aspx?ID="+Eval("ID")%>'></asp:HyperLink>
                 </ItemTemplate>
-                <ItemStyle HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Center" Width="40px"/>
             </asp:TemplateField>
             <asp:TemplateField ShowHeader="False" HeaderText="删除">
                 <ItemTemplate>
                     <asp:LinkButton ID="btnDelete" runat="server" CausesValidation="False" CommandName="Delete" OnClientClick='return confirm("确定删除吗？")' Text="删除"></asp:LinkButton>
                 </ItemTemplate>
                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="40px" />
+                <ItemStyle  HorizontalAlign="Center"/>
             </asp:TemplateField>
         </Columns>
         <EmptyDataTemplate>

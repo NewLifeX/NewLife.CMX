@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 using NewLife.CMX;
 using XCode;
 
@@ -38,12 +42,13 @@ public partial class Control_KindList : System.Web.UI.UserControl
         //}
         //else
         //{
-        Channel chn = Channel.FindBySuffix(ChannelSuffix);
+        Channel c = Channel.FindBySuffix(ChannelSuffix);
 
-        IEntityOperate eop = EntityFactory.CreateOperate(chn.Model.Provider.TitleType);
-        eop.TableName += ChannelSuffix;
+        IEntityOperate ieo = EntityFactory.CreateOperate(c.Model.ClassName);
+        ieo.TableName += ChannelSuffix;
+        Type t = ieo.Create(false).GetType();
 
-        Object CategoryDic = eop.EntityType.BaseType.BaseType.BaseType.InvokeMember("FindAllChildsByParent", BindingFlags.InvokeMethod | BindingFlags.Public | BindingFlags.Static, null, null, new Object[] { CategoryID });
+        Object CategoryDic = t.BaseType.BaseType.BaseType.InvokeMember("FindAllChildsByParent", BindingFlags.InvokeMethod | BindingFlags.Public | BindingFlags.Static, null, null, new Object[] { CategoryID });
 
         kindrepeater.DataSource = CategoryDic;
         kindrepeater.DataBind();

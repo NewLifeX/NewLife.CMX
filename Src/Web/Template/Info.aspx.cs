@@ -1,6 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Threading;
 using System.Web.UI;
 using NewLife.CMX;
+using NewLife.CMX.Config;
+using NewLife.CMX.Web;
+using NewLife.Log;
 using NewLife.Reflection;
 using NewLife.Web;
 
@@ -62,8 +69,7 @@ public partial class Template_Info : Page
         TypeX type = TypeX.GetType("NewLife.CMX.Web." + Address);
         IModelContent iml = type.CreateInstance() as IModelContent;
 
-        iml.ChannelID = C.ID;
-        //iml.Suffix = Suffix;
+        iml.Suffix = Suffix;
         iml.Address = Address;
         iml.ID = ID;
         content = iml.Process();

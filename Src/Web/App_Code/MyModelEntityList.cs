@@ -1,12 +1,16 @@
 ﻿﻿﻿using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Web.UI;
-using NewLife.CMX;
+using NewLife.Collections;
 using NewLife.CommonEntity;
 using NewLife.Web;
 using XCode;
 using XControl;
+using System.Web;
+using NewLife.CMX;
+using System.Reflection;
+using NewLife.Reflection;
+using System.Collections.Generic;
 
 /// <summary>实体列表页面基类</summary>
 public abstract class MyModelEntityList : Page
@@ -27,22 +31,20 @@ public abstract class MyModelEntityList : Page
             return ManageProvider.Provider.Current as IAdministrator;
         }
     }
-
-    // 如果不写日志，就不要拦截异常，否则压根就不知道哪里出错！
-    //protected override void OnInit(EventArgs e)
-    //{
-    //    if (System.Web.HttpContext.Current != null)
-    //    {
-    //        base.OnInit(e);
-    //        this.Error += new System.EventHandler(this.Page_Error);
-    //    }
-    //}
-    //protected virtual void Page_Error(object sender, System.EventArgs e)
-    //{
-    //    // Exception ex = Server.GetLastError();
-    //    WebHelper.AlertAndEnd("系统错误！");
-    //    Server.ClearError();
-    //}
+    protected override void OnInit(EventArgs e)
+    {
+        if (System.Web.HttpContext.Current != null)
+        {
+            base.OnInit(e);
+            this.Error += new System.EventHandler(this.Page_Error);
+        }
+    }
+    protected virtual void Page_Error(object sender, System.EventArgs e)
+    {
+        // Exception ex = Server.GetLastError();
+        WebHelper.AlertAndEnd("系统错误！");
+        Server.ClearError();
+    }
 
     protected override void OnPreInit(EventArgs e)
     {
@@ -101,51 +103,44 @@ public class MyModelEntityList<TEntity> : MyModelEntityList where TEntity : Enti
 
     protected override void OnInit(EventArgs e)
     {
-        //try
-        //{
-        Channel chn = Channel.FindByID(WebHelper.RequestInt("ChannelID"));
-        //if (chn == null) chn = Channel.FindBySuffix(Request["Channel"]);
-        if (chn == null) throw new Exception("未知频道");
+        try
+        {
+            //Channel c = Channel.FindBySuffix(Request["Channel"]);
+            Channel c = Channel.FindBySuffixOrModel(Request["Channel"], WebHelper.RequestInt("ModelID"));
 
-        IModelProvider provider = Model.FindProvider(EntityType);
-        if (provider != null) provider.CurrentChannel = chn.ID;
+            if (c == null) throw new Exception("未知频道");
+            EntityFactory.CreateOperate(EntityType).TableName = "";
+            EntityFactory.CreateOperate(EntityType).TableName += c.Suffix;
 
-        //    EntityFactory.CreateOperate(EntityType).TableName = "";
-        //    EntityFactory.CreateOperate(EntityType).TableName += chn.Suffix;
-
-        //    if (EntityType.BaseType.GetGenericTypeDefinition() == typeof(EntityTree<>) || EntityType.BaseType.GetGenericTypeDefinition() == typeof(EntityCategory<>))
-        //    {
-        //        PropertyInfoX pix = PropertyInfoX.Create(EntityType, "Root");
-
-        //        pix.SetValue(null);
-        //    }
-        //    else
-        //    {
-        //        FieldInfoX fix = FieldInfoX.Create(EntityType, "ChannelSuffix");
-
-        //        fix.SetValue(chn.Suffix);
-        //    }
-
-        base.OnInit(e);
-        //}
-        //catch (Exception)
-        //{
-        //    EntityFactory.CreateOperate(EntityType).TableName = "";
-        //    throw;
-        //}
+            if (EntityType.BaseType.GetGenericTypeDefinition() == typeof(EntityTree<>) || EntityType.BaseType.GetGenericTypeDefinition() == typeof(EntityCategory<>))
+            {
+                //清除缓存
+                PropertyInfoX pix = PropertyInfoX.Create(EntityType, "Root");
+                pix.SetValue(null);
+            }
+            else
+            {
+                FieldInfoX fix = FieldInfoX.Create(EntityType, "ChannelSuffix");
+                fix.SetValue(c.Suffix);
+            }
+            base.OnInit(e);
+        }
+        catch (Exception)
+        {
+            EntityFactory.CreateOperate(EntityType).TableName = "";
+            throw;
+        }
     }
 
-    protected override void OnSaveStateComplete(EventArgs e)
-    {
-        base.OnSaveStateComplete(e);
-        //EntityFactory.CreateOperate(EntityType).TableName = "";
-        Model.FindProvider(EntityType).CurrentChannel = 0;
-    }
+    //protected override void OnSaveStateComplete(EventArgs e)
+    //{
+    //    base.OnSaveStateComplete(e);
+    //    EntityFactory.CreateOperate(EntityType).TableName = "";
+    //}
 
-    protected override void OnUnload(EventArgs e)
-    {
-        //EntityFactory.CreateOperate(EntityType).TableName = "";
-        Model.FindProvider(EntityType).CurrentChannel = 0;
-        base.OnUnload(e);
-    }
+    //protected override void OnUnload(EventArgs e)
+    //{
+    //    EntityFactory.CreateOperate(EntityType).TableName = "";
+    //    base.OnUnload(e);
+    //}
 }

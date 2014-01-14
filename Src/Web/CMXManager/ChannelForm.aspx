@@ -72,13 +72,6 @@
                         <td>
                             <asp:TextBox ID="frmRemark" runat="server" Width="300px" CssClass="form-control" TextMode="MultiLine"></asp:TextBox></td>
                     </tr>
-                    <%--<tr>
-                        <th></th>
-                        <td>
-                            <asp:Button ID="btnSave" runat="server" CausesValidation="True" Text='保存' CssClass="btnSubmit" />
-                            &nbsp;<asp:Button ID="btnCopy" runat="server" CausesValidation="True" Text='另存为新频道' CssClass="btnSubmit" />
-                        </td>
-                    </tr>--%>
                 </tbody>
             </table>
         </div>

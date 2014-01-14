@@ -93,7 +93,7 @@
                         <td>
                             <div>
                                 <div>
-                                    <script id="editor" type="text/plain" style="width: 1076px;" name="myContent"><%=Entity.ContentText %></script>
+                                    <script id="editor" type="text/plain" style="width: 1076px;" name="myContent"><%=Entity.ConentTxt %></script>
                                 </div>
                                 <script type="text/javascript">
                                     //实例化编辑器
