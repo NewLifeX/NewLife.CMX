@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Reflection;
 using NewLife.Common;
@@ -67,6 +68,23 @@ namespace NewLife.CMX.Web
 
             var menus = icmp.GetMySubMenus(mid);
 
+            #region 特殊处理模型频道管理
+            //var cmx = menus.FirstOrDefault(m => m.Name == "CMXManager");
+            //if (cmx != null)
+            //{
+            //var com = cmx.Childs.FirstOrDefault(m => m.Name == "Common");
+            //if (com != null)
+            //{
+            //com.ParentID = cmx.ParentID;
+            //com.Name = "模型频道管理";
+            //com.Save();
+            //}
+
+            //cmx.IsShow = false;
+            //cmx.Save();
+            //}
+            #endregion
+
             #region 系统菜单
             if (menus != null)
             {
@@ -94,17 +112,17 @@ namespace NewLife.CMX.Web
             #region CMX菜单
             var crlist = ChannelRole.FindAllByRoleID((icmp.Current as Admin).RoleID);
             Random r = new Random();
-            foreach (var channel in crlist)
+            foreach (var cr in crlist)
             {
+                var chn = cr.Channel;
                 //隐藏不启用的频道
-                if (!channel.Channel.Enable) continue;
+                if (!chn.Enable) continue;
 
-                var crlm = ConvertToMenu(null, channel.ChannelName, channel.ChannelName, "#", null);
+                var crlm = ConvertToMenu(null, chn.Name, chn.Name, "#", null);
 
-                crlm.Children.Add(ConvertToMenu(null, "分类管理", channel.ChannelName + r.Next(), "../ListRouting.ashx?Channel=" + channel.Channel.Suffix + "&ModelID=" + channel.Channel.ModelID, null));
+                crlm.Children.Add(ConvertToMenu(null, "分类管理", chn.Name + r.Next(), "../ListRouting.ashx?ChannelID=" + chn.ID + "&ModelID=" + chn.ModelID, null));
 
-                var list = GetModelCategory3(channel.Channel.Suffix, channel.Channel.Model.ClassName, channel.Channel.ModelID, 2);
-
+                var list = GetModelCategory3(chn, 2);
                 if (list != null) crlm.Children.AddRange(list);
 
                 lm.Add(crlm);
@@ -114,116 +132,37 @@ namespace NewLife.CMX.Web
             return lm;
         }
 
-        ///// <summary>
-        ///// 临时解决方式，暂时没想到什么好的方法
-        ///// </summary>
-        ///// <param name="Suffix"></param>
-        ///// <returns></returns>
-        //private static List<ListMenu> GetModelCategory(String Suffix, String ClassName)
-        //{
-        //    var eop = EntityFactory.CreateOperate(ClassName);
-        //    var t = eop.Default.GetType();
-        //    try
-        //    {
-        //        Random r = new Random();
-        //        eop.TableName = Suffix;
-
-        //        var list = new List<ListMenu>();
-
-        //        var CategoryDic = t.InvokeMember("FindChildsByNoParent", BindingFlags.InvokeMethod | BindingFlags.Public | BindingFlags.Static, null, null, new Object[] { 0 }) as Dictionary<String, String>;
-
-        //        foreach (var item in CategoryDic)
-        //        {
-        //            ListMenu lm = new ListMenu(item.Value, "../FormRouting.ashx?Channel=" + Suffix + "&CategoryID=" + item.Key + "&Name=" + item.Value.Trim());
-
-        //            lm.Title = (item.Value.Trim()) + r.Next();
-
-        //            list.Add(lm);
-        //        }
-        //        return list;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        XTrace.WriteLine(ex.Message);
-        //        WebHelper.Alert("请联系管理员！");
-        //        return null;
-        //    }
-        //    finally
-        //    {
-        //        eop.TableName = null;
-        //        t.SetValue("Root", null);
-        //    }
-        //}
-
-        ///// <summary>
-        ///// 临时解决方式，暂时没想到什么好的方法
-        ///// 查询所有深度分类
-        ///// </summary>
-        ///// <param name="Suffix"></param>
-        ///// <param name="ClassName"></param>
-        ///// <returns></returns>
-        //private static List<ListMenu> GetModelCategory2(String Suffix, String ClassName)
-        //{
-        //    var eop = EntityFactory.CreateOperate(ClassName);
-        //    var t = eop.Default.GetType();
-        //    try
-        //    {
-        //        Random r = new Random();
-        //        var list = new List<ListMenu>();
-        //        var CategoryDic = t.BaseType.InvokeMember("FindAllChildsNameAndIDByNoParent", BindingFlags.InvokeMethod | BindingFlags.Public | BindingFlags.Static, null, null, new Object[] { 0 }) as Dictionary<String, String>;
-
-        //        foreach (var item in CategoryDic)
-        //        {
-        //            var lm = new ListMenu();
-        //            lm.Name = item.Value;
-        //            lm.Title = (item.Value + r.Next()).Trim();
-
-        //            lm.Url = Convert.ToInt32(item.Key) > 0 ? "../FormRouting.ashx?Channel=" + Suffix + "&CategoryID=" + item.Key + "&Name=" + item.Value.Trim() : "#";
-
-        //            list.Add(lm);
-        //        }
-        //        return list;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        XTrace.WriteLine(ex.Message);
-        //        WebHelper.Alert("请联系管理员！");
-        //        return null;
-        //    }
-        //    finally
-        //    {
-        //        eop.TableName = null;
-        //        t.SetValue("Root", null);
-        //    }
-        //}
-
         /// <summary>
         /// 查询指定深度的所有子菜单
         /// </summary>
-        /// <param name="Suffix"></param>
-        /// <param name="ClassName"></param>
+        /// <param name="chn"></param>
         /// <param name="Deepth"></param>
         /// <returns></returns>
-        private static List<ListMenu> GetModelCategory3(String Suffix, String ClassName, Int32 ModelID, Int32 Deepth)
+        private static List<ListMenu> GetModelCategory3(Channel chn, Int32 Deepth)
         {
-            var eop = EntityFactory.CreateOperate(ClassName);
+            IModelProvider provider = chn.Model.Provider;
+            var eop = EntityFactory.CreateOperate(provider.CategoryType) as ICategoryOperate;
             var t = eop.Default.GetType();
             try
             {
                 Random r = new Random();
-                eop.TableName += Suffix;
+                eop.TableName = null;
+                eop.TableName += chn.Suffix;
 
                 var list = new List<ListMenu>();
 
-                var CategoryDic = t.BaseType.InvokeMember("FindChildNameAndIDByNoParent", BindingFlags.InvokeMethod | BindingFlags.Public | BindingFlags.Static, null, null, new Object[] { 0, 2 }) as Dictionary<String, String>;
+                //var dic = t.BaseType.InvokeMember("FindChildNameAndIDByNoParent", BindingFlags.InvokeMethod | BindingFlags.Public | BindingFlags.Static, null, null, new Object[] { 0, 2 }) as Dictionary<Int32, String>;
+                var dic = eop.FindChildNameAndIDByNoParent(0, 2);
 
-                foreach (var item in CategoryDic)
+                foreach (var item in dic)
                 {
                     var lm = new ListMenu();
                     lm.Name = item.Value;
-                    lm.Title = (item.Value + r.Next()).Trim();
+                    lm.Title = (chn.Name + item.Value + r.Next()).Trim();
 
-                    lm.Url = Convert.ToInt32(item.Key) > 0 ? "../FormRouting.ashx?Channel=" + Suffix + "&CategoryID=" + item.Key + "&Name=" + item.Value.Trim() + "&ModelID=" + ModelID : "../ListRouting.ashx?Channel=" + Suffix + "&CID=" + item.Key.Substring(1) + "&ModelID=" + ModelID;
+                    lm.Url = item.Key > 0
+                        ? "../FormRouting.ashx?ChannelID=" + chn.ID + "&CategoryID=" + item.Key + "&Name=" + item.Value.Trim() + "&ModelID=" + chn.ModelID
+                        : "../ListRouting.ashx?ChannelID=" + chn.ID + "&CID=" + -item.Key + "&ModelID=" + chn.ModelID;
 
                     list.Add(lm);
                 }
@@ -232,7 +171,7 @@ namespace NewLife.CMX.Web
             }
             catch (Exception ex)
             {
-                XTrace.WriteLine(ex.Message);
+                XTrace.WriteException(ex);
                 WebHelper.Alert("请联系管理员！");
                 return null;
             }

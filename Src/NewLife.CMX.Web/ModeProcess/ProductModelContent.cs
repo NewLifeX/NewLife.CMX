@@ -1,46 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using NewLife.CMX.TemplateEngine;
 using NewLife.CMX.Config;
+using NewLife.CMX.TemplateEngine;
 using XCode;
 
 namespace NewLife.CMX.Web
 {
     public class ProductModelContent : ModelContentBase
     {
-        override public string Process()
+        public override string Process()
         {
             try
             {
-                Product.Meta.TableName = "";
-                Product.Meta.TableName += Suffix;
+                ArticleProvider.CurrentChannel = ChannelID;
+                //Product.SetChannelSuffix(Suffix);
+
                 var product = Product.FindByID(ID);
-                Product.ChannelSuffix = Suffix;
-
-                LeftMenu = LeftMenuContent.GetContent(Suffix, product.CategoryID);
-
                 if (product == null) return "不存在该记录！";
 
-                Dictionary<String, String> dic = new Dictionary<string, string>();
+                LeftMenu = LeftMenuContent.GetContent(Channel, product.CategoryID);
+
+                var dic = new Dictionary<string, string>();
                 dic.Add("Address", Address);
                 dic.Add("ID", ID.ToString());
-                //dic.Add("Suffix", Suffix);
+                //dic.Add("Suffix", Channel.Suffix);
 
-                CMXEngine engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
+                var engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
                 engine.ArgDic = dic;
                 engine.Header = Header;
                 engine.Foot = Foot;
                 engine.LeftMenu = LeftMenu;
                 engine.Entity = product as IEntity;
-                engine.Suffix = Suffix;
+                engine.Suffix = Channel.Suffix;
+                engine.ModelShortName = ModelShortName;
 
                 String content = engine.Render(Address + ".html");
                 return content;
             }
             finally
             {
-                Product.Meta.TableName = "";
+                ArticleProvider.CurrentChannel = 0;
             }
         }
     }

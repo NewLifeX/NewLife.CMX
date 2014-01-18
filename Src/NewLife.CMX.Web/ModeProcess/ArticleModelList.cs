@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Web;
-using System.Web.UI;
 using NewLife.CMX.Config;
 using NewLife.CMX.TemplateEngine;
-using NewLife.CMX.Web;
-using NewLife.Web;
 using XCode;
 
 namespace NewLife.CMX.Web
@@ -15,78 +9,76 @@ namespace NewLife.CMX.Web
     /// <summary></summary>
     public class ArticleModelList : ModelListBase
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        override public String Process()
+        /// <summary>处理</summary>
+        public override String Process()
         {
             try
             {
-                Article.Meta.TableName = "";
-                ArticleCategory.Meta.TableName = "";
-                Article.Meta.TableName += Suffix;
-                ArticleCategory.Meta.TableName += Suffix;
+                //Article.Meta.TableName = "";
+                //ArticleCategory.Meta.TableName = "";
+                //Article.Meta.TableName += Suffix;
+                //ArticleCategory.Meta.TableName += Suffix;
+                ArticleProvider.CurrentChannel = ChannelID;
+
+                //String Suffix = Channel.FindByID(ChannelID).Suffix;
 
                 Int32 CountNum = 0;
-                EntityList<Article> Articles = new EntityList<Article>();
-                EntityList<ArticleCategory> Categories = new EntityList<ArticleCategory>();
+                var artList = new EntityList<Article>();
+                var catList = new EntityList<ArticleCategory>();
 
-                //Channel channel = Channel.FindBySuffix(Suffix);
-                ArticleCategory ac = ArticleCategory.FindByID(CategoryID);
-                if (ac != null && ac.IsEnd)
+                var cat = ArticleCategory.FindByID(CategoryID);
+                if (cat != null && cat.IsEnd)
                 {
-                    Articles = Article.Search(null, CategoryID, null, (Pageindex > 0 ? Pageindex - 1 : 0) * RecordNum, RecordNum);
-                    Categories = ArticleCategory.FindAllChildsNoParent(ac.ParentID);
+                    artList = Article.Search(null, CategoryID, null, (Pageindex > 0 ? Pageindex - 1 : 0) * RecordNum, RecordNum);
+                    catList = ArticleCategory.FindAllChildsNoParent(cat.ParentID);
                     CountNum = Article.SearchCount(new int[] { CategoryID }, null, 0, 0);
                 }
                 else
                 {
-                    Categories = ArticleCategory.FindAllChildsNoParent(CategoryID).FindAll(delegate(ArticleCategory art)
-                    {
-                        return art.IsEnd == true;
-                    });
+                    catList = ArticleCategory.FindAllChildsNoParent(CategoryID).FindAll(art => art.IsEnd);
 
-                    if (Categories != null && Categories.Count > 0)
+                    if (catList != null && catList.Count > 0)
                     {
-                        ArticleCategory first = Categories[0];
-                        Articles = Article.Search(null, first.ID, null, (Pageindex > 0 ? Pageindex - 1 : 0) * RecordNum, RecordNum);
+                        var first = catList[0];
+                        artList = Article.Search(null, first.ID, null, (Pageindex > 0 ? Pageindex - 1 : 0) * RecordNum, RecordNum);
                         CountNum = Article.SearchCount(new int[] { first.ID }, null, 0, 0);
                     }
                 }
 
                 PageCount = CountNum / 10 + (CountNum % 10 > 0 ? 1 : 0);
 
-                Dictionary<String, String> dic = new Dictionary<string, string>();
+                var dic = new Dictionary<string, string>();
                 dic.Add("Address", Address);
                 dic.Add("CategoryID", CategoryID.ToString());
                 dic.Add("Pageindex", Pageindex.ToString());
                 dic.Add("RecordNum", RecordNum.ToString());
-                dic.Add("ContentAddress", channel.FormTemplate);
+                dic.Add("ContentAddress", Channel.FormTemplate);
                 dic.Add("ChannelName", ChannelName);
                 dic.Add("PageCount", PageCount > 0 ? PageCount + "" : "1");
                 dic.Add("CurrentPage", Pageindex > 0 ? Pageindex + "" : "1");
-                dic.Add("BeforeUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Suffix + "_" + BeforePage + "/" + CategoryID + "/" + channel.ListTemplate);
-                dic.Add("NextUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Suffix + "_" + NextPage + "/" + CategoryID + "/" + channel.ListTemplate);
-                dic.Add("FirstUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Suffix + "/" + CategoryID + "/" + channel.ListTemplate);
-                dic.Add("LastUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Suffix + "_" + PageCount + "/" + CategoryID + "/" + channel.ListTemplate);
+                dic.Add("BeforeUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Channel.Suffix + "_" + BeforePage + "/" + CategoryID + "/" + Channel.ListTemplate);
+                dic.Add("NextUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Channel.Suffix + "_" + NextPage + "/" + CategoryID + "/" + Channel.ListTemplate);
+                dic.Add("FirstUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Channel.Suffix + "/" + CategoryID + "/" + Channel.ListTemplate);
+                dic.Add("LastUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Channel.Suffix + "_" + PageCount + "/" + CategoryID + "/" + Channel.ListTemplate);
 
-                CMXEngine engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
+                var engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
                 engine.ArgDic = dic;
                 engine.Header = Header;
                 engine.Foot = Foot;
                 engine.LeftMenu = LeftMenu;
-                engine.Suffix = Suffix;
-                
-                engine.ListEntity = Articles as IEntityList;
-                engine.ListCategory = Categories.ConvertAll<IEntityTree>(e => e as IEntityTree);
+                engine.Suffix = Channel.Suffix;
+                engine.ModelShortName = ModelShortName;
+
+                engine.ListEntity = artList as IEntityList;
+                engine.ListCategory = catList.ConvertAll<IEntityTree>(e => e as IEntityTree);
+
                 String content = engine.Render(Address + ".html");
 
                 return content;
             }
             finally
             {
-                Article.Meta.TableName = "";
-                ArticleCategory.Meta.TableName = "";
+                ArticleProvider.CurrentChannel = 0;
             }
         }
     }

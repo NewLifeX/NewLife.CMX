@@ -13,16 +13,17 @@ namespace NewLife.CMX.Web
         {
             try
             {
-                Text.Meta.TableName = "";
-                TextCategory.Meta.TableName = "";
-                Text.Meta.TableName += Suffix;
-                TextCategory.Meta.TableName += Suffix;
-
-                EntityList<Text> texts = new EntityList<Text>();
+                //Text.Meta.TableName = "";
+                //TextCategory.Meta.TableName = "";
+                //Text.Meta.TableName += Suffix;
+                //TextCategory.Meta.TableName += Suffix;
+                TextProvider.CurrentChannel = ChannelID;
+               
                 Int32 CountNum = 0;
+                var texts = new EntityList<Text>();
                 var Categories = new EntityList<TextCategory>();
 
-                //Channel channel = Channel.FindBySuffix(Suffix);
+                //Channel Channel = Channel.FindBySuffix(Suffix);
                 TextCategory tc = TextCategory.FindByID(CategoryID);
                 if (tc != null && tc.IsEnd)
                 {
@@ -52,21 +53,22 @@ namespace NewLife.CMX.Web
                 dic.Add("CategoryID", CategoryID.ToString());
                 dic.Add("Pageindex", Pageindex.ToString());
                 dic.Add("RecordNum", RecordNum.ToString());
-                dic.Add("ContentAddress", channel.FormTemplate);
+                dic.Add("ContentAddress", Channel.FormTemplate);
                 dic.Add("ChannelName", ChannelName);
                 dic.Add("PageCount", PageCount > 0 ? PageCount + "" : "1");
                 dic.Add("CurrentPage", (Pageindex > 0 ? Pageindex : 1) + "");
-                dic.Add("BeforeUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Suffix + "_" + BeforePage + "/" + CategoryID + "/" + channel.ListTemplate);
-                dic.Add("NextUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Suffix + "_" + NextPage + "/" + CategoryID + "/" + channel.ListTemplate);
-                dic.Add("FirstUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Suffix + "/" + CategoryID + "/" + channel.ListTemplate);
-                dic.Add("LastUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Suffix + "_" + PageCount + "/" + CategoryID + "/" + channel.ListTemplate);
+                dic.Add("BeforeUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Channel.Suffix + "_" + BeforePage + "/" + CategoryID + "/" + Channel.ListTemplate);
+                dic.Add("NextUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Channel.Suffix + "_" + NextPage + "/" + CategoryID + "/" + Channel.ListTemplate);
+                dic.Add("FirstUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Channel.Suffix + "/" + CategoryID + "/" + Channel.ListTemplate);
+                dic.Add("LastUrl", CMXConfigBase.Current.CurrentRootPath + "/List/" + Channel.Suffix + "_" + PageCount + "/" + CategoryID + "/" + Channel.ListTemplate);
 
                 var engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
                 engine.ArgDic = dic;
                 engine.Header = Header;
                 engine.Foot = Foot;
                 engine.LeftMenu = LeftMenu;
-                engine.Suffix = Suffix;
+                engine.Suffix = Channel.Suffix;
+                engine.ModelShortName = ModelShortName;
                 //engine.ListEntity = texts.ConvertAll<IEntity>(e => e as IEntity);
                 engine.ListEntity = texts as IEntityList;
                 engine.ListCategory = Categories.ConvertAll<IEntityTree>(e => e as IEntityTree);
@@ -77,8 +79,9 @@ namespace NewLife.CMX.Web
             }
             finally
             {
-                Text.Meta.TableName = "";
-                TextCategory.Meta.TableName = "";
+                //Text.Meta.TableName = "";
+                //TextCategory.Meta.TableName = "";
+                TextProvider.CurrentChannel = 0;
             }
         }
     }

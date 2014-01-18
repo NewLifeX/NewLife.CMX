@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using NewLife.CMX.Config;
 using NewLife.CMX.TemplateEngine;
 using XCode;
@@ -9,42 +8,38 @@ namespace NewLife.CMX.Web
 {
     public class TextModelContent : ModelContentBase
     {
-        override public string Process()
+        public override string Process()
         {
             try
             {
-                Text.Meta.TableName = "";
-                TextCategory.Meta.TableName = "";
-                Text.Meta.TableName += Suffix;
-                TextCategory.Meta.TableName += Suffix;
+                ArticleProvider.CurrentChannel = ChannelID;
+                //Text.SetChannelSuffix(Suffix);
 
                 var text = Text.FindByID(ID);
-                Text.ChannelSuffix = Suffix;
-
-                LeftMenu = LeftMenuContent.GetContent(Suffix, text.CategoryID);
-
                 if (text == null) return "不存在该记录！";
 
-                Dictionary<String, String> dic = new Dictionary<string, string>();
+                LeftMenu = LeftMenuContent.GetContent(Channel, text.CategoryID);
+
+                var dic = new Dictionary<string, string>();
                 dic.Add("Address", Address);
                 dic.Add("ID", ID.ToString());
-                //dic.Add("Suffix", Suffix);
+                //dic.Add("Suffix", Channel.Suffix);
 
-                CMXEngine engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
+                var engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
                 engine.ArgDic = dic;
                 engine.Header = Header;
                 engine.Foot = Foot;
                 engine.LeftMenu = LeftMenu;
                 engine.Entity = text as IEntity;
-                engine.Suffix = Suffix;
+                engine.Suffix = Channel.Suffix;
+                engine.ModelShortName = ModelShortName;
 
                 String content = engine.Render(Address + ".html");
                 return content;
             }
             finally
             {
-                Text.Meta.TableName = "";
-                TextCategory.Meta.TableName = "";
+                ArticleProvider.CurrentChannel = 0;
             }
         }
     }
