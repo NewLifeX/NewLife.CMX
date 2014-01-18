@@ -21,7 +21,7 @@
                     <tr>
                         <th>父类：</th>
                         <td>
-                            <XCL:DropDownList ID="frmParentID" runat="server" DataTextField="TreeNodeName2" DataValueField="ID" CssClass="select2"
+                            <XCL:DropDownList ID="frmParentID" runat="server" DataTextField="TreeNodeName2" DataValueField="ID"
                                 AppendDataBoundItems="True" DataSourceID="ods">
                             </XCL:DropDownList>
                             <asp:ObjectDataSource ID="ods" runat="server" SelectMethod="FindAllByNoEnd">
@@ -46,16 +46,12 @@
                         <td>
                             <asp:TextBox ID="frmRemark" runat="server" Width="300px"></asp:TextBox></td>
                     </tr>
-
-                    <tr>
-                        <th></th>
-                        <td>
-                            <asp:Button ID="btnSave" runat="server" CausesValidation="True" Text='保存' />
-                            &nbsp;<asp:Button ID="btnCopy" runat="server" CausesValidation="True" Text='另存为新产品分类' />
-                        </td>
-                    </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="foot_btn_box">
+            <asp:Button ID="btnSave" runat="server" CausesValidation="True" Text='保存' CssClass="btnSubmit" />
+            &nbsp;<asp:Button ID="btnCopy" runat="server" CausesValidation="True" Text='另存为新产品分类' CssClass="btnSubmit" />
         </div>
     </div>
 </asp:Content>

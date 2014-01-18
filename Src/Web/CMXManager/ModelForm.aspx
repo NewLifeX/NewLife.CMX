@@ -19,6 +19,11 @@
                             <asp:TextBox ID="frmName" runat="server" Width="300px" CssClass="form-control"></asp:TextBox></td>
                     </tr>
                     <tr>
+                        <th>缩写：</th>
+                        <td>
+                            <asp:TextBox ID="frmShortName" runat="server" Width="300px" CssClass="form-control"></asp:TextBox></td>
+                    </tr>
+                    <tr>
                         <th>启用：</th>
                         <td>
                             <asp:CheckBox ID="frmEnable" runat="server" Text="启用" /></td>

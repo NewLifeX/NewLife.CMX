@@ -9,10 +9,7 @@ using NewLife.CMX.WebBase;
 public partial class Template_List : WebPageBase
 {
     /// <summary>ID</summary>
-    private Int32 CategoryID
-    {
-        get { return WebHelper.RequestInt("CategoryID"); }
-    }
+    private Int32 CategoryID { get { return WebHelper.RequestInt("CategoryID"); } }
 
     /// <summary>ID</summary>
     private Int32 ModelID
@@ -23,7 +20,23 @@ public partial class Template_List : WebPageBase
     /// <summary>扩展名</summary>
     private String Suffix
     {
-        get { return Request["Suffix"]; }
+        get
+        {
+            String str = Request["Suffix"];
+            if (str == "$") str = String.Empty;
+            return str;
+        }
+    }
+
+    /// <summary>模型缩写</summary>
+    private String ModelShortName
+    {
+        get
+        {
+            String str = Request["ModelSN"];
+            if (str == "$") str = String.Empty;
+            return str;
+        }
     }
 
     /// <summary>请求地址</summary>
@@ -33,11 +46,8 @@ public partial class Template_List : WebPageBase
         {
             String ad = Request["Address"];
 
-            if (string.IsNullOrEmpty(ad))
-            {
-                ad = C.FormTemplate;
-                ad = ad.Substring(0, ad.IndexOf('.'));
-            }
+            if (string.IsNullOrEmpty(ad) || ad == "$") ad = C.ListTemplate;
+            //ad = ad.Substring(0, ad.IndexOf('.'));
             return ad;
         }
     }
@@ -72,19 +82,13 @@ public partial class Template_List : WebPageBase
     {
         get
         {
-            if (_C == null & !String.IsNullOrEmpty(Suffix))
-            {
-                _C = Channel.FindBySuffix(Suffix);
-            }
+            if (_C == null)
+                _C = Channel.FindBySuffixOrModelShortName(Suffix, ModelShortName);
 
             if (_C == null)
-            {
                 Err("未确定的频道！");
-            }
             else if (String.IsNullOrEmpty(_C.ListTemplate))
-            {
                 Err("未绑定模版！");
-            }
 
             return _C;
         }
@@ -93,18 +97,19 @@ public partial class Template_List : WebPageBase
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        String content = "";
+        //String content = "";
         //try
         //{
-        TypeX type = TypeX.GetType("NewLife.CMX.Web." + Address);
+        TypeX type = TypeX.GetType("NewLife.CMX.Web." + C.ListTemplate);
         IModeList iml = type.CreateInstance() as IModeList;
         //Dictionary<String, Object> dic = GetQueryDic();
         iml.Suffix = Suffix;
+        iml.ModelShortName = ModelShortName;
         iml.Address = Address;
         iml.CategoryID = CategoryID;
         iml.Pageindex = PageIndex;
         iml.RecordNum = RecordNum;
-        content = iml.Process();
+        String content = iml.Process();
         //}
         //catch (ThreadAbortException)
         //{

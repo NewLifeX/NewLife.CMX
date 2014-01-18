@@ -50,8 +50,8 @@
             </table>
         </div>
         <div class="foot_btn_box">
-            <asp:Button ID="btnSave" runat="server" CausesValidation="True" Text='保存' />
-            &nbsp;<asp:Button ID="btnCopy" runat="server" CausesValidation="True" Text='另存为新文章分类' />
+            <asp:Button ID="btnSave" runat="server" CausesValidation="True" Text='保存' CssClass="btnSubmit" />
+            &nbsp;<asp:Button ID="btnCopy" runat="server" CausesValidation="True" Text='另存为新文章分类' CssClass="btnSubmit" />
         </div>
     </div>
 </asp:Content>

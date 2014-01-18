@@ -24,7 +24,7 @@
                     <tr>
                         <th>标题：</th>
                         <td>
-                            <asp:TextBox ID="frmTitle" runat="server" Width="300px"></asp:TextBox></td>
+                            <asp:TextBox ID="frmTitle" runat="server" Width="300px" CssClass="form-control"></asp:TextBox></td>
                     </tr>
                     <tr>
                         <th>最新版本：</th>
@@ -44,7 +44,7 @@
                     <tr>
                         <th>创建人：</th>
                         <td>
-                            <asp:TextBox ID="frmCreateUserName" runat="server" Width="150px"></asp:TextBox></td>
+                            <asp:TextBox ID="frmCreateUserName" runat="server" Width="150px" CssClass="form-control"></asp:TextBox></td>
                     </tr>
                     <tr>
                         <th>创建时间：</th>
@@ -59,7 +59,7 @@
                     <tr>
                         <th>更新人：</th>
                         <td>
-                            <asp:TextBox ID="frmUpdateUserName" runat="server" Width="150px"></asp:TextBox></td>
+                            <asp:TextBox ID="frmUpdateUserName" runat="server" Width="150px" CssClass="form-control"></asp:TextBox></td>
                     </tr>
                     <tr>
                         <th>更新时间：</th>
@@ -69,20 +69,11 @@
                     <tr>
                         <th>备注：</th>
                         <td>
-                            <asp:TextBox ID="frmRemark" runat="server" TextMode="MultiLine" Width="300px" Height="80px"></asp:TextBox></td>
-                    </tr>
-
-                    <tr>
-                        <th></th>
-                        <td>
-                            <asp:Button ID="btnSave" runat="server" CausesValidation="True" Text='保存' />
-                            &nbsp;<asp:Button ID="btnCopy" runat="server" CausesValidation="True" Text='另存为新文本' />
-                        </td>
+                            <asp:TextBox ID="frmRemark" runat="server" TextMode="MultiLine" Width="300px" Height="80px" CssClass="form-control"></asp:TextBox></td>
                     </tr>
                 </tbody>
             </table>
         </div>
-
         <div class="tab_con">
             <table class="form_table">
                 <col width="180px">
@@ -93,7 +84,7 @@
                         <td>
                             <div>
                                 <div>
-                                    <script id="editor" type="text/plain" style="width: 1076px;" name="myContent"><%=Entity.ConentTxt %></script>
+                                    <script id="editor" type="text/plain" style="width: 1076px;" name="myContent"><%=Entity.ContentText %></script>
                                 </div>
                                 <script type="text/javascript">
                                     //实例化编辑器
@@ -104,6 +95,10 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="foot_btn_box">
+            <asp:Button ID="btnSave" runat="server" CausesValidation="True" Text='保存' />
+            &nbsp;<asp:Button ID="btnCopy" runat="server" CausesValidation="True" Text='另存为新文本' />
         </div>
     </div>
 </asp:Content>

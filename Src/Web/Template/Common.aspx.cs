@@ -11,13 +11,13 @@ public partial class Template_Common : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        String content = "";
+        //String content = "";
         //try
         //{
         TypeX type = TypeX.GetType("NewLife.CMX.Web.Common");
         ICommon iml = type.CreateInstance() as ICommon;
         iml.Address = Address;
-        content = iml.Process();
+        String content = iml.Process();
         //}
         //catch (ThreadAbortException)
         //{

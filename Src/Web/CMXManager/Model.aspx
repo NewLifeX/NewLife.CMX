@@ -28,11 +28,14 @@
             <asp:BoundField DataField="Name" HeaderText="名称" SortExpression="Name">
                 <ItemStyle HorizontalAlign="Center" />
             </asp:BoundField>
-            <asp:BoundField DataField="ClassName" HeaderText="分类名" SortExpression="ClassName">
-                <ItemStyle HorizontalAlign="Left"/>
+            <asp:BoundField DataField="ShortName" HeaderText="缩写" SortExpression="ShortName">
+                <ItemStyle HorizontalAlign="Center" />
             </asp:BoundField>
-            <asp:BoundField DataField="TitleTemplatePath" HeaderText="标题页" SortExpression="TitleTemplatePath"/>
-            <asp:BoundField DataField="CategoryTemplatePath" HeaderText="分类页" SortExpression="TitleTemplatePath"/>
+            <asp:BoundField DataField="ClassName" HeaderText="分类名" SortExpression="ClassName">
+                <ItemStyle HorizontalAlign="Left" />
+            </asp:BoundField>
+            <asp:BoundField DataField="TitleTemplatePath" HeaderText="标题页" SortExpression="TitleTemplatePath" />
+            <asp:BoundField DataField="CategoryTemplatePath" HeaderText="分类页" SortExpression="TitleTemplatePath" />
             <%--<asp:BoundField DataField="ListTemplatePath" HeaderText="分类页" SortExpression="ListTemplatePath" />--%>
             <%--<asp:BoundField DataField="CreateUserName" HeaderText="创建人" SortExpression="CreateUserID" />
             <asp:BoundField DataField="CreateTime" HeaderText="创建时间" SortExpression="CreateTime" DataFormatString="{0:yyyy-MM-dd}">
