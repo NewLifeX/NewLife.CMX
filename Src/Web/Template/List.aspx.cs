@@ -1,23 +1,16 @@
 ﻿using System;
 using NewLife.CMX;
 using NewLife.CMX.Config;
-using NewLife.CMX.Web;
+using NewLife.CMX.WebBase;
 using NewLife.Reflection;
 using NewLife.Web;
-using NewLife.CMX.WebBase;
 
 public partial class Template_List : WebPageBase
 {
     /// <summary>ID</summary>
     private Int32 CategoryID { get { return WebHelper.RequestInt("CategoryID"); } }
 
-    /// <summary>ID</summary>
-    private Int32 ModelID
-    {
-        get { return WebHelper.RequestInt("ModelID"); }
-    }
-
-    /// <summary>扩展名</summary>
+    /// <summary>类编码</summary>
     private String Suffix
     {
         get
@@ -103,7 +96,8 @@ public partial class Template_List : WebPageBase
         TypeX type = TypeX.GetType("NewLife.CMX.Web." + C.ListTemplate);
         IModeList iml = type.CreateInstance() as IModeList;
         //Dictionary<String, Object> dic = GetQueryDic();
-        iml.Suffix = Suffix;
+        iml.ChannelID = C.ID;
+        //iml.Suffix = Suffix;
         iml.ModelShortName = ModelShortName;
         iml.Address = Address;
         iml.CategoryID = CategoryID;
