@@ -31,20 +31,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NewLife.CommonEntity, Version=2.8.5109.42113, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="NewLife.CommonEntity">
       <HintPath>..\MyDLL\NewLife.CommonEntity.dll</HintPath>
     </Reference>
-    <Reference Include="NewLife.Core, Version=4.0.5109.42109, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="NewLife.Core">
       <HintPath>..\MyDLL\NewLife.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
-    <Reference Include="XCode, Version=8.10.5109.42112, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="XCode">
       <HintPath>..\MyDLL\XCode.dll</HintPath>
     </Reference>
   </ItemGroup>
