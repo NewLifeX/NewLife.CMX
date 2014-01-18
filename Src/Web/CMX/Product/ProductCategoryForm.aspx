@@ -16,7 +16,7 @@
                     <tr>
                         <th>名称：</th>
                         <td>
-                            <asp:TextBox ID="frmName" runat="server" Width="150px"></asp:TextBox></td>
+                            <asp:TextBox ID="frmName" runat="server" Width="150px" CssClass="form-control"></asp:TextBox></td>
                     </tr>
                     <tr>
                         <th>父类：</th>
@@ -44,7 +44,7 @@
                     <tr>
                         <th>备注：</th>
                         <td>
-                            <asp:TextBox ID="frmRemark" runat="server" Width="300px"></asp:TextBox></td>
+                            <asp:TextBox ID="frmRemark" runat="server" Width="300px" CssClass="form-control"></asp:TextBox></td>
                     </tr>
                 </tbody>
             </table>
