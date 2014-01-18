@@ -1,0 +1,10 @@
+F:\Code\x\CMX\Bin\NewLife.CMX.dll
+F:\Code\x\CMX\Bin\NewLife.CMX.pdb
+F:\Code\x\CMX\Src\NewLife.CMX\obj\Debug\NewLife.CMX.dll
+F:\Code\x\CMX\Src\NewLife.CMX\obj\Debug\NewLife.CMX.pdb
+F:\DotNetCode\cmx\Bin\NewLife.CMX.dll
+F:\DotNetCode\cmx\Bin\NewLife.CMX.pdb
+F:\DotNetCode\cmx\Src\NewLife.CMX\obj\Debug\NewLife.CMX.dll
+F:\DotNetCode\cmx\Src\NewLife.CMX\obj\Debug\NewLife.CMX.pdb
+F:\Code\x\CMX\Src\NewLife.CMX\obj\Debug\NewLife.CMX.csprojResolveAssemblyReference.cache
+F:\DotNetCode\cmx\Src\NewLife.CMX\obj\Debug\NewLife.CMX.csprojResolveAssemblyReference.cache
