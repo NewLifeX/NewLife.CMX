@@ -27,7 +27,7 @@ public partial class Template_List : WebPageBase
         get
         {
             String str = Request["ModelSN"];
-            if (str == "$") str = String.Empty;
+            if (str == null || str == "$") str = String.Empty;
             return str;
         }
     }
