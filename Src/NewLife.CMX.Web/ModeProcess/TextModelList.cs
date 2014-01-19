@@ -13,17 +13,12 @@ namespace NewLife.CMX.Web
         {
             try
             {
-                //Text.Meta.TableName = "";
-                //TextCategory.Meta.TableName = "";
-                //Text.Meta.TableName += Suffix;
-                //TextCategory.Meta.TableName += Suffix;
                 TextProvider.CurrentChannel = ChannelID;
-               
+
                 Int32 CountNum = 0;
                 var texts = new EntityList<Text>();
                 var Categories = new EntityList<TextCategory>();
 
-                //Channel Channel = Channel.FindBySuffix(Suffix);
                 TextCategory tc = TextCategory.FindByID(CategoryID);
                 if (tc != null && tc.IsEnd)
                 {
@@ -69,18 +64,13 @@ namespace NewLife.CMX.Web
                 engine.LeftMenu = LeftMenu;
                 engine.Suffix = Channel.Suffix;
                 engine.ModelShortName = ModelShortName;
-                //engine.ListEntity = texts.ConvertAll<IEntity>(e => e as IEntity);
                 engine.ListEntity = texts as IEntityList;
                 engine.ListCategory = Categories.ConvertAll<IEntityTree>(e => e as IEntityTree);
-                //engine.ListCategory = Categories;
-                String content = engine.Render(Address + ".html");
 
-                return content;
+                return engine.Render(Address.EnsureEnd(".html"));
             }
             finally
             {
-                //Text.Meta.TableName = "";
-                //TextCategory.Meta.TableName = "";
                 TextProvider.CurrentChannel = 0;
             }
         }

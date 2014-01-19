@@ -17,7 +17,7 @@ namespace NewLife.CMX.Web
             engine.Header = Header;
             engine.Foot = Foot;
 
-            return engine.Render(Address + ".html");
+            return engine.Render(Address.EnsureEnd(".html"));
         }
     }
 }

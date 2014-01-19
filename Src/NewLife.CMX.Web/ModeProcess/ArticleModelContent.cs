@@ -16,6 +16,7 @@ namespace NewLife.CMX.Web
                 //Article.SetChannelSuffix(Suffix);
 
                 var article = Article.FindByID(ID);
+                var cont = article.Content;
                 if (article == null) return "不存在该记录！";
 
                 LeftMenu = LeftMenuContent.GetContent(Channel, article.CategoryID);
@@ -34,8 +35,7 @@ namespace NewLife.CMX.Web
                 engine.Entity = article;
                 engine.ModelShortName = ModelShortName;
 
-                String content = engine.Render(Address + ".html");
-                return content;
+                return engine.Render(Address.EnsureEnd(".html"));
             }
             finally
             {

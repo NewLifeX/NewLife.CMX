@@ -14,13 +14,7 @@ namespace NewLife.CMX.Web
         {
             try
             {
-                //Article.Meta.TableName = "";
-                //ArticleCategory.Meta.TableName = "";
-                //Article.Meta.TableName += Suffix;
-                //ArticleCategory.Meta.TableName += Suffix;
                 ArticleProvider.CurrentChannel = ChannelID;
-
-                //String Suffix = Channel.FindByID(ChannelID).Suffix;
 
                 Int32 CountNum = 0;
                 var artList = new EntityList<Article>();
@@ -72,9 +66,10 @@ namespace NewLife.CMX.Web
                 engine.ListEntity = artList as IEntityList;
                 engine.ListCategory = catList.ConvertAll<IEntityTree>(e => e as IEntityTree);
 
-                String content = engine.Render(Address + ".html");
+                //return engine.Render(Address + ".html");
+                return engine.Render(Address.EnsureEnd(".html"));
 
-                return content;
+                //return content;
             }
             finally
             {

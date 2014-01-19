@@ -13,7 +13,6 @@ namespace NewLife.CMX.Web
             try
             {
                 ArticleProvider.CurrentChannel = ChannelID;
-                //Text.SetChannelSuffix(Suffix);
 
                 var text = Text.FindByID(ID);
                 if (text == null) return "不存在该记录！";
@@ -23,7 +22,6 @@ namespace NewLife.CMX.Web
                 var dic = new Dictionary<string, string>();
                 dic.Add("Address", Address);
                 dic.Add("ID", ID.ToString());
-                //dic.Add("Suffix", Channel.Suffix);
 
                 var engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
                 engine.ArgDic = dic;
@@ -34,8 +32,7 @@ namespace NewLife.CMX.Web
                 engine.Suffix = Channel.Suffix;
                 engine.ModelShortName = ModelShortName;
 
-                String content = engine.Render(Address + ".html");
-                return content;
+                return engine.Render(Address.EnsureEnd(".html"));
             }
             finally
             {

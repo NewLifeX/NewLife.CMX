@@ -13,17 +13,12 @@ namespace NewLife.CMX.Web
         {
             try
             {
-                //Product.Meta.TableName = "";
-                //ProductCategory.Meta.TableName = "";
-                //Product.Meta.TableName += Suffix;
-                //ProductCategory.Meta.TableName += Suffix;
                 ProductProvider.CurrentChannel = ChannelID;
 
                 EntityList<Product> Products = new EntityList<Product>(); ;
                 EntityList<ProductCategory> Categories = new EntityList<ProductCategory>(); ;
                 Int32 CountNum = 0;
 
-                //Channel Channel = Channel.FindBySuffix(Suffix);
                 ProductCategory pc = ProductCategory.FindByID(CategoryID);
                 if (pc != null && pc.IsEnd)
                 {
@@ -51,7 +46,6 @@ namespace NewLife.CMX.Web
                 Dictionary<String, String> dic = new Dictionary<string, string>();
                 dic.Add("Address", Address);
                 dic.Add("CategoryID", CategoryID.ToString());
-                //dic.Add("Suffix", Suffix);
                 dic.Add("Pageindex", Pageindex.ToString());
                 dic.Add("RecordNum", RecordNum.ToString());
                 dic.Add("ContentAddress", Channel.FormTemplate);
@@ -70,18 +64,13 @@ namespace NewLife.CMX.Web
                 engine.Foot = Foot;
                 engine.Suffix = Channel.Suffix;
                 engine.ModelShortName = ModelShortName;
-                //engine.ListEntity = Products.ConvertAll<IEntity>(e => e as IEntity);
                 engine.ListEntity = Products as IEntityList;
                 engine.ListCategory = Categories.ConvertAll<IEntityTree>(e => e as IEntityTree);
-                //engine.ListCategory = Categories;
-                String content = engine.Render(Address + ".html");
-
-                return content;
+               
+                return engine.Render(Address.EnsureEnd(".html"));
             }
             finally
             {
-                //Product.Meta.TableName = "";
-                //ProductCategory.Meta.TableName = "";
                 ProductProvider.CurrentChannel = 0;
             }
         }
