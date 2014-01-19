@@ -79,32 +79,21 @@ public class MyModelEntityForm<TEntity> : MyModelEntityForm where TEntity : Enti
 
     protected override void OnInit(EventArgs e)
     {
+        IModelProvider provider = Model.FindProvider(EntityType);
+        //初始化
+        provider.CurrentChannel = 0;
         try
         {
-            //Channel c = Channel.FindBySuffix(Request["Channel"]);
-            Channel c = Channel.FindBySuffixOrModel(Request["Channel"], WebHelper.RequestInt("ModelID"));
+            Channel chn = Channel.FindByID(WebHelper.RequestInt("ChannelID"));
 
-            if (c == null) throw new Exception("未知频道");
-            //在某些不知名的情况下会出现表名没有被恢复的情况，所以添加预先重置连接名
-            EntityFactory.CreateOperate(EntityType).TableName = "";
-            EntityFactory.CreateOperate(EntityType).TableName += c.Suffix;
-
-            if (EntityType.BaseType.GetGenericTypeDefinition() != typeof(EntityTree<>) && EntityType.BaseType.GetGenericTypeDefinition() != typeof(EntityCategory<>))
-            {
-                FieldInfoX mix = FieldInfoX.Create(EntityType, "ChannelSuffix");
-
-                mix.SetValue(c.Suffix);
-            }
+            if (chn == null) throw new Exception("未知频道");
+            if (provider != null) provider.CurrentChannel = chn.ID;
 
             base.OnInit(e);
         }
-        //finally
-        //{
-        //    EntityFactory.CreateOperate(EntityType).TableName = "";
-        //}
         catch (Exception)
         {
-            EntityFactory.CreateOperate(EntityType).TableName = "";
+            provider.CurrentChannel = 0;
             throw;
         }
     }
@@ -112,12 +101,16 @@ public class MyModelEntityForm<TEntity> : MyModelEntityForm where TEntity : Enti
     //protected override void OnSaveStateComplete(EventArgs e)
     //{
     //    base.OnSaveStateComplete(e);
-    //    EntityFactory.CreateOperate(EntityType).TableName = "";
+    //    //EntityFactory.CreateOperate(EntityType).TableName = "";
+    //    Model.FindProvider(EntityType).CurrentChannel = 0;
     //}
+
+
 
     //protected override void OnUnload(EventArgs e)
     //{
-    //    EntityFactory.CreateOperate(EntityType).TableName = "";
+    //    //EntityFactory.CreateOperate(EntityType).TableName = "";
+    //    Model.FindProvider(EntityType).CurrentChannel = 0;
     //    base.OnUnload(e);
     //}
 }
