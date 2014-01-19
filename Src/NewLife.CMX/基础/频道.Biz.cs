@@ -255,7 +255,7 @@ namespace NewLife.CMX
 
             if (!String.IsNullOrEmpty(Suffix)) return FindBySuffix(Suffix);
 
-            if (String.IsNullOrEmpty(Suffix)) return FindByModelID(ModelID);
+            if (Suffix == null) return FindByModelID(ModelID);
 
             return FindBySuffixAndModel(Suffix, ModelID);
         }
@@ -268,12 +268,17 @@ namespace NewLife.CMX
         /// <returns></returns>
         public static Channel FindBySuffixAndModel(String Suffix, Int32 ModelID)
         {
-            if (String.IsNullOrEmpty(Suffix) || ModelID < 1) return null;
+            if (Suffix == null || ModelID < 1) return null;
 
             if (Meta.Count > 1000)
                 return Find(new String[] { __.Suffix, __.ModelID }, new Object[] { Suffix, ModelID });
+            else if (Suffix == "")
+            {
+                return Meta.Cache.Entities.Find(e => (e.Suffix.IsNullOrEmpty() && e.ModelID == ModelID));
+            }
             else
-                return Meta.Cache.Entities.Find(e => (e.Suffix == Suffix && e.ModelID == ModelID));
+                return Meta.Cache.Entities.Find(e => e.Suffix == Suffix & e.ModelID == ModelID);
+
         }
         #endregion
 
