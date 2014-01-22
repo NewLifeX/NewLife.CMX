@@ -6,8 +6,16 @@ using NewLife.Web;
 
 public partial class Template_Info : Page
 {
-    /// <summary>类编码</summary>
-    private String Suffix { get { return Request["Suffix"]; } }
+    /// <summary>频道扩展名</summary>
+    private String Suffix
+    {
+        get
+        {
+            String str = Request["Suffix"];
+            if (str == "$") str = String.Empty;
+            return str;
+        }
+    }
 
     /// <summary>模型缩写</summary>
     private String ModelShortName { get { return Request["ModelSN"]; } }
