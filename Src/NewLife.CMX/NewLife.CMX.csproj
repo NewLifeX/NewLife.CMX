@@ -30,37 +30,56 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NewLife.CommonEntity, Version=2.8.5109.42113, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MyDLL\NewLife.CommonEntity.dll</HintPath>
+    </Reference>
+    <Reference Include="NewLife.Core, Version=4.0.5109.42109, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MyDLL\NewLife.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
-    <Reference Include="XTemplate, Version=1.9.5127.40335, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="XCode, Version=8.10.5109.42112, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MyDLL\XCode.dll</HintPath>
+    </Reference>
+    <Reference Include="XTemplate, Version=1.9.5110.15767, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\MyDLL\XTemplate.dll</HintPath>
     </Reference>
-    <Reference Include="XUrlRewrite, Version=1.1.5127.40336, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="XUrlRewrite, Version=1.1.5110.15780, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\MyDLL\XUrlRewrite.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="基础\模型.cs" />
+    <Compile Include="Interface\ILeftMenu.cs" />
+    <Compile Include="Interface\ILeftMenuModel.cs" />
+    <Compile Include="基础\IModelProvider.cs" />
     <Compile Include="基类\ICategoryOperate.cs" />
     <Compile Include="产品\ProductProvider.cs" />
+    <Compile Include="基类\统计.Biz.cs" />
+    <Compile Include="基类\统计.cs" />
     <Compile Include="文本\TextProvider.cs" />
     <Compile Include="文章\ArticleProvider.cs" />
     <Compile Include="Base\基础信息.Biz.cs" />
     <Compile Include="Base\基础信息.cs" />
     <Compile Include="CMS\SysModel.cs" />
+    <Compile Include="Common\ModelKinds.cs" />
     <Compile Include="Config\CMXConfigBase.cs" />
+    <Compile Include="Config\CMXDefaultModelConfig.cs" />
     <Compile Include="Config\CMXmlConfig.cs" />
+    <Compile Include="Config\CommonConfig.cs" />
     <Compile Include="Config\TemplateConfig.cs" />
+    <Compile Include="Config\UploadImage.cs" />
     <Compile Include="Config\WebSettingConfig.cs" />
     <Compile Include="Editor\UEditorAjaxCore.cs" />
     <Compile Include="Editor\UEditorConfig.cs" />
     <Compile Include="Editor\UEUploader.cs" />
-    <Compile Include="基础\IModelProvider.cs" />
     <Compile Include="Interface\ICommon.cs" />
     <Compile Include="Interface\IModelContent.cs" />
     <Compile Include="Interface\IModeList.cs" />
@@ -76,6 +95,7 @@
     <Compile Include="Tool\HelperTool.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tool\TemplateRescources.cs" />
     <Compile Include="UrlRewrite\CMXHttpModel.cs" />
     <Compile Include="WebBase\WebPageBase.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -89,6 +109,7 @@
     <Compile Include="产品\产品统计.Biz.cs" />
     <Compile Include="产品\产品统计.cs" />
     <Compile Include="基础\模型.Biz.cs" />
+    <Compile Include="基础\模型.cs" />
     <Compile Include="基础\频道.Biz.cs" />
     <Compile Include="基础\频道.cs" />
     <Compile Include="基础\频道权限.Biz.cs" />
@@ -135,20 +156,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\NewLife.CommonEntity\NewLife.CommonEntity.csproj">
-      <Project>{50d7fae5-2304-4395-a6fa-7d35279d9d84}</Project>
-      <Name>NewLife.CommonEntity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NewLife.Core\NewLife.Core.csproj">
-      <Project>{5813c22e-eeb3-4dee-a45c-bb218041193a}</Project>
-      <Name>NewLife.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XCode\XCode.csproj">
-      <Project>{b49aba5a-c5da-45f4-87f1-b435ec51d710}</Project>
-      <Name>XCode</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

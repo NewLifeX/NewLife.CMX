@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using NewLife.Log;
 using XCode;
+using System.Linq;
 
 namespace NewLife.CMX
 {
@@ -169,6 +170,31 @@ namespace NewLife.CMX
             entitylist.RemoveAll(e => e.IsEnd);
             return entitylist;
         }
+
+        /// <summary>
+        /// 根据分类ID查询，RootDeepth当前分类的父级根目录级别，DisDeepth决定显示分类层级
+        /// 如：RootDeepth=1， DisDeepth=2 则表示 从当前分类所属父级分类的深度为1的分类开始，显示 深度为1和2的两级分类内容
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="RootDeepth"></param>
+        /// <param name="DisDeepth"></param>
+        /// <param name="IsContainParent"></param>
+        /// <returns></returns>
+        public static EntityList<TEntity> FindAllByIDAndDeepth(Int32 id, Int32 RootDeepth, Int32 DisDeepth, Boolean IsContainParent)
+        {
+            var currentEntity = FindByID(id);
+            TEntity pentity;
+            if (RootDeepth != 0 && currentEntity.AllParents.Count > 0)
+                pentity = currentEntity.AllParents.Find(e => e.Deepth == RootDeepth);
+            else
+                pentity = Root;
+
+            var CategoryEntities = pentity.AllChilds.FindAll(e => e.Deepth == DisDeepth);
+
+            if (IsContainParent) CategoryEntities.Add(pentity);
+
+            return CategoryEntities;
+        }
         #endregion
 
         #region 高级查询
@@ -179,6 +205,15 @@ namespace NewLife.CMX
         #endregion
 
         #region 业务
+        /// <summary>
+        /// 格式化分类列表
+        /// </summary>
+        /// <param name="Entities"></param>
+        /// <returns></returns>
+        public static EntityList<TEntity> CategoryFormart(EntityList<TEntity> Entities)
+        {
+            Entities.ToList().OrderBy(e => e.Deepth);
+        }
         #endregion
     }
 }

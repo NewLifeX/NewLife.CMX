@@ -1,5 +1,6 @@
 ﻿using System;
 using NewLife.CMX.Config;
+using NewLife.CMX.Interface;
 using NewLife.Reflection;
 
 namespace NewLife.CMX.TemplateEngine
@@ -55,18 +56,21 @@ namespace NewLife.CMX.TemplateEngine
         /// <param name="PageIndex"></param>
         /// <param name="RecordNum"></param>
         /// <returns></returns>
-        public static String Extend(String Address, String ModelKind = "C", String Suffix = null, String ModelShortName = null, Int32 CategoryID = 0, Int32 EntityID = 0, Int32 PageIndex = 0, Int32 RecordNum = 0)
+        public static String Extend(String Address, String ModelKind, String Suffix = "", String ModelShortName = null, Int32 CategoryID = 0, Int32 EntityID = 0, Int32 PageIndex = 0, Int32 RecordNum = 0, Int32 RootDeepth = 1, Int32 DisDeepth = 2, Boolean IsContainParent = true)
         {
+            if (ModelKind.IsNullOrEmpty()) ModelKind = "X";
+            if (Suffix == null) Suffix = "";
+
             switch (ModelKind)
             {
 
-                case "l":
-                case "L":
-                    Channel cl = Channel.FindBySuffixOrModelShortName(Suffix, ModelShortName);
-                    var list = TypeX.GetType("NewLife.CMX.Web." + cl.ListTemplate);
+                case "c":
+                case "C":
+                    Channel cc = Channel.FindBySuffixOrModelShortName(Suffix, ModelShortName);
+                    var list = TypeX.GetType("NewLife.CMX.Web." + cc.ListTemplate);
                     var iml = list.CreateInstance() as IModeList;
 
-                    iml.ChannelID = cl.ID;
+                    iml.ChannelID = cc.ID;
 
                     iml.ModelShortName = ModelShortName;
                     iml.Address = Address;
@@ -87,6 +91,21 @@ namespace NewLife.CMX.TemplateEngine
                     im.ID = EntityID;
 
                     return im.Process();
+                case "l":
+                case "L":
+                    Channel cl = Channel.FindBySuffixOrModelShortName(Suffix, ModelShortName);
+                    var lt = TypeX.GetType("NewLife.CMX.Web.LeftMenuModel");
+                    var lf = lt.CreateInstance() as ILeftMenuModel;
+
+                    lf.Address = Address;
+                    lf.ChannelID = cl.ID;
+                    lf.CategoryID = CategoryID;
+                    lf.ModelShortName = ModelShortName;
+                    lf.DisDeepth = DisDeepth;
+                    lf.RootDeepth = RootDeepth;
+                    lf.IsContainParent = IsContainParent;
+
+                    return lf.Process();
                 default:
                     TypeX type = TypeX.GetType("NewLife.CMX.Web.Common");
                     ICommon ic = type.CreateInstance() as ICommon;

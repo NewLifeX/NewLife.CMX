@@ -235,6 +235,8 @@ namespace NewLife.CMX
         /// <returns></returns>
         public static Channel FindBySuffixOrModelShortName(String Suffix, String ModelShortName)
         {
+            //if (!Suffix.IsNullOrEmpty()) FindBySuffix(Suffix);
+
             var m = Model.FindByShortName(ModelShortName);
             if (m != null)
                 return FindBySuffixOrModel(Suffix, m.ID);
@@ -256,6 +258,7 @@ namespace NewLife.CMX
             if (!String.IsNullOrEmpty(Suffix)) return FindBySuffix(Suffix);
 
             if (Suffix == null) return FindByModelID(ModelID);
+            //Suffix = Suffix == null ? "" : Suffix;
 
             return FindBySuffixAndModel(Suffix, ModelID);
         }

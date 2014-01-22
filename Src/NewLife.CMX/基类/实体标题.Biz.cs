@@ -138,23 +138,23 @@ namespace NewLife.CMX
             {
                 //由于原先的添加方法存在BUG无法给ParentID赋值，给字段赋引用类型值时无法触发脏数据更新标记
                 //故创建新的对象
-                //var newEntity = Content.CloneEntity(true);
-                //newEntity.ID = 0;
-                //newEntity.ParentID = ID;
-                //newEntity.Version++;
-                //newEntity.Title = Title;
-                //newEntity.CreateUserID = Admin.Current.ID;
-                //newEntity.Insert();
+                var newEntity = Content.CloneEntity(true);
+                newEntity.ID = 0;
+                newEntity.ParentID = ID;
+                newEntity.Version++;
+                newEntity.Title = Title;
+                newEntity.CreateUserID = Admin.Current.ID;
+                newEntity.Insert();
 
-                Content.ID = 0;
-                Content.ParentID = ID;
-                Content.Version++;
-                Content.Title = Title;
-                Content.CreateUserID = Admin.Current.ID;
-                Content.Save();
+                //Content.ID = 0;
+                //Content.ParentID = ID;
+                //Content.Version++;
+                //Content.Title = Title;
+                //Content.CreateUserID = Admin.Current.ID;
+                //Content.Save();
 
-                this.Version = Content.Version;
-                //this.Version = newEntity.Version;
+                //this.Version = Content.Version;
+                this.Version = newEntity.Version;
             }
 
             return base.OnUpdate();
