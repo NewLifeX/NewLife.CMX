@@ -18,14 +18,14 @@ namespace NewLife.CMX.Interface
         /// <summary>模型缩写</summary>
         String ModelShortName { get; set; }
 
-        /// <summary>显示深度</summary>
-        Int32 DisDeepth { get; set; }
+        ///// <summary>显示深度</summary>
+        //Int32 DisDeepth { get; set; }
 
         /// <summary>当前分类的父级根目录级别</summary>
         Int32 RootDeepth { get; set; }
 
-        /// <summary>是否包含父类</summary>
-        Boolean IsContainParent { get; set; }
+        ///// <summary>是否包含父类</summary>
+        //Boolean IsContainParent { get; set; }
 
         /// <summary></summary>
         String Process();

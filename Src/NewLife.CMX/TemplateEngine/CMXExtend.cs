@@ -56,7 +56,7 @@ namespace NewLife.CMX.TemplateEngine
         /// <param name="PageIndex"></param>
         /// <param name="RecordNum"></param>
         /// <returns></returns>
-        public static String Extend(String Address, String ModelKind, String Suffix = "", String ModelShortName = null, Int32 CategoryID = 0, Int32 EntityID = 0, Int32 PageIndex = 0, Int32 RecordNum = 0, Int32 RootDeepth = 1, Int32 DisDeepth = 2, Boolean IsContainParent = true)
+        public static String Extend(String Address, String ModelKind, String Suffix = "", String ModelShortName = null, Int32 CategoryID = 0, Int32 EntityID = 0, Int32 PageIndex = 0, Int32 RecordNum = 0, Int32 RootDeepth = 0)
         {
             if (ModelKind.IsNullOrEmpty()) ModelKind = "X";
             if (Suffix == null) Suffix = "";
@@ -101,9 +101,9 @@ namespace NewLife.CMX.TemplateEngine
                     lf.ChannelID = cl.ID;
                     lf.CategoryID = CategoryID;
                     lf.ModelShortName = ModelShortName;
-                    lf.DisDeepth = DisDeepth;
+                    //lf.DisDeepth = DisDeepth;
                     lf.RootDeepth = RootDeepth;
-                    lf.IsContainParent = IsContainParent;
+                    //lf.IsContainParent = IsContainParent;
 
                     return lf.Process();
                 default:

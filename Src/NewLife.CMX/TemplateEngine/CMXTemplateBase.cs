@@ -45,6 +45,10 @@ namespace NewLife.CMX.TemplateEngine
         /// <summary>实体数据</summary>
         public IEntity Entity { get { return _Entity; } set { _Entity = value; } }
 
+        private IEntityTree _RootEntityTree;
+        /// <summary>实体树根节点</summary>
+        public IEntityTree RootEntityTree { get { return _RootEntityTree; } set { _RootEntityTree = value; } }
+
         private String _Suffix;
         /// <summary>扩展名称</summary>
         public String Suffix { get { return _Suffix; } set { _Suffix = value; } }
@@ -69,6 +73,7 @@ namespace NewLife.CMX.TemplateEngine
             if (Data.ContainsKey("ListEntity")) ListEntity = (IEntityList)Data["ListEntity"];
             if (Data.ContainsKey("ListCategory")) ListCategory = (List<IEntityTree>)Data["ListCategory"];
             if (Data.ContainsKey("Entity")) Entity = (IEntity)Data["Entity"];
+            if (Data.ContainsKey("RootEntityTree")) RootEntityTree = (IEntityTree)Data["RootEntityTree"];
             if (Data.ContainsKey("Suffix")) Suffix = (String)Data["Suffix"];
             if (Data.ContainsKey("ModelShortName")) ModelShortName = (String)Data["ModelShortName"];
         }
