@@ -10,7 +10,7 @@
                     <ul>
                         <# foreach(IEntityTree child in item.Childs)
                         {#>
-                        <li><a href='<#= Config.SysRootPath #>/List/<#= Suffix#>/<#= child["ID"]#>/<#= ArgDic["ModelAddress"]#>'><#= child["Name"]#></a></li>
+                        <li><a href='<#= Config.SysRootPath #>/List/<#= Suffix#>/<#= child["ID"]#>/<#= ArgDic["ModelListAddress"]#>'><#= child["Name"]#></a></li>
                         <#}#>
                     </ul>
                 </dd>

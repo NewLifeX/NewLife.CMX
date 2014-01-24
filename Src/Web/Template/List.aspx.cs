@@ -16,7 +16,7 @@ public partial class Template_List : WebPageBase
         get
         {
             String str = Request["Suffix"];
-            if (str == "$") str = String.Empty;
+            if (str == "$") str = "";
             return str;
         }
     }
