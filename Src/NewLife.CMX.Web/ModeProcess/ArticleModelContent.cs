@@ -13,10 +13,10 @@ namespace NewLife.CMX.Web
             try
             {
                 ArticleProvider.CurrentChannel = ChannelID;
-                //Article.SetChannelSuffix(Suffix);
 
                 var article = Article.FindByID(ID);
-                //var cont = article.Content;
+                //获取一次内容，缓存文章内容
+                var cont = article.Content;
                 if (article == null) return "不存在该记录！";
 
                 LeftMenu = LeftMenuContent.GetContent(Channel, article.CategoryID);
@@ -24,6 +24,8 @@ namespace NewLife.CMX.Web
                 var dic = new Dictionary<String, String>();
                 dic.Add("Address", Address);
                 dic.Add("ID", ID.ToString());
+                dic.Add("CategoryID", article.CategoryID.ToString());
+                dic.Add("ChannelName", Channel.Name);
                 //dic.Add("Suffix", Channel.Suffix);
 
                 var engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
@@ -33,7 +35,7 @@ namespace NewLife.CMX.Web
                 engine.LeftMenu = LeftMenu;
                 engine.Suffix = Channel.Suffix;
                 engine.Entity = article;
-                engine.ModelShortName = ModelShortName;
+                engine.ModelShortName = Channel.Model.ShortName;
 
                 return engine.Render(Address.EnsureEnd(".html"));
             }

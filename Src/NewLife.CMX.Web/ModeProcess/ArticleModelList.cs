@@ -60,8 +60,8 @@ namespace NewLife.CMX.Web
                 engine.Header = Header;
                 engine.Foot = Foot;
                 engine.LeftMenu = LeftMenu;
-                engine.Suffix = Channel.Suffix;
-                engine.ModelShortName = ModelShortName;
+                engine.Suffix = String.IsNullOrEmpty(Channel.Suffix) ? "$" : Channel.Suffix;
+                engine.ModelShortName = Channel.Model.ShortName;
 
                 engine.ListEntity = artList as IEntityList;
                 engine.ListCategory = catList.ConvertAll<IEntityTree>(e => e as IEntityTree);
