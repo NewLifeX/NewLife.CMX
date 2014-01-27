@@ -49,7 +49,7 @@ public partial class Template_Info : Page
     {
         get
         {
-            if (_C == null & !String.IsNullOrEmpty(Suffix))
+            if (_C == null)
                 _C = Channel.FindBySuffixOrModelShortName(Suffix, ModelShortName);
 
             if (_C == null)

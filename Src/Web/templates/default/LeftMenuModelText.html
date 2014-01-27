@@ -1,0 +1,15 @@
+﻿<div class="list">
+    <h3><#= ArgDic["ChannelName"]#></h3>
+    <div class="list_meu">
+        <# int num=0;
+        foreach(IEntityTree item in RootEntityTree.Childs)
+        {#>
+        <dl>
+            <dt><a href='<#= Config.SysRootPath #>/List/<#= Suffix#>/<#=item["ID"]#>/ArticleModelListSingle/<#= ModelShortName#>.html' onclick=""><#= item["Name"]#></a></dt>
+        </dl>
+        <#}#>
+    </div>
+    <div class="list_bottom"></div>
+    <div class="list_shadow"></div>
+    <div class="list_phone"></div>
+</div>
