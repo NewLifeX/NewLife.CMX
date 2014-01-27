@@ -211,10 +211,9 @@ namespace NewLife.CMX
         {
             var entity = FindByID(id);
 
-            if (entity.Parent == null)
-                return entity = Root;
-            else
-                return entity.AllParents.Find(e => e.Deepth == RootDeepth);
+            if (entity.Parent == null || RootDeepth == 0) return entity = Root;
+
+            return entity.AllParents.Find(e => e.Deepth == RootDeepth);
         }
         #endregion
 

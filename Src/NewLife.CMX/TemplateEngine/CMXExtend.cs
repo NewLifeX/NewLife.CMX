@@ -59,7 +59,7 @@ namespace NewLife.CMX.TemplateEngine
         public static String Extend(String Address, String ModelKind, String Suffix = "", String ModelShortName = null, Int32 CategoryID = 0, Int32 EntityID = 0, Int32 PageIndex = 0, Int32 RecordNum = 0, Int32 RootDeepth = 0)
         {
             if (ModelKind.IsNullOrEmpty()) ModelKind = "X";
-            if (Suffix == null) Suffix = "";
+            if (Suffix == null || Suffix == "$") Suffix = "";
 
             switch (ModelKind)
             {

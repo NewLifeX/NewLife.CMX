@@ -237,6 +237,8 @@ namespace NewLife.CMX
         {
             //if (!Suffix.IsNullOrEmpty()) FindBySuffix(Suffix);
 
+            if (ModelShortName == "$") ModelShortName = null;
+
             var m = Model.FindByShortName(ModelShortName);
             if (m != null)
                 return FindBySuffixOrModel(Suffix, m.ID);
