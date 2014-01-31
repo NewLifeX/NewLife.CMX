@@ -6,6 +6,9 @@
 */
 ﻿using System;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
+using NewLife.CMX.Config;
+using NewLife.CMX.Editor;
 using NewLife.Log;
 using XCode;
 
@@ -36,6 +39,28 @@ namespace NewLife.CMX
         //        _ConentTxt = value;
         //    }
         //}
+
+        private String _FirstImagePath;
+        /// <summary>图片路径</summary>
+        public String FirstImagePath
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(_FirstImagePath) && !String.IsNullOrEmpty(ContentText) && !Dirtys.ContainsKey("FirstImagePath"))
+                {
+                    //获取文章中的第一张照片
+                    Regex r = new Regex(@"<img\ssrc=""([^>]*)file=([^>=""]*)""(.*)/>");
+                    Match m = r.Match(ContentText);
+                    _FirstImagePath = m.Groups[2].ToString();
+
+                    _FirstImagePath = _FirstImagePath.StartsWith("~/update") ? _FirstImagePath : UEditorConfig.Current.UploadPath + _FirstImagePath;
+                    FirstImagePath = _FirstImagePath.Replace("~", CMXConfigBase.Current.CurrentRootPath);
+                    Dirtys["FirstImagePath"] = true;
+                }
+                return _FirstImagePath;
+            }
+            set { _FirstImagePath = value; }
+        }
         #endregion
 
         #region 扩展查询﻿

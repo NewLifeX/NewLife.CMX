@@ -60,7 +60,7 @@ namespace NewLife.CMX.TemplateEngine
         {
             if (ModelKind.IsNullOrEmpty()) ModelKind = "X";
             if (Suffix == null || Suffix == "$") Suffix = "";
-
+            
             switch (ModelKind)
             {
 
