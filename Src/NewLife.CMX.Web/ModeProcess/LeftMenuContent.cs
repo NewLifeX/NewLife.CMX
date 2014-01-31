@@ -44,7 +44,8 @@ namespace NewLife.CMX.Web
                 var engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
                 engine.ListCategory = root.Childs.ToList().OrderBy(e => e["ID"]).ToList().ConvertAll<IEntityTree>(e => e as IEntityTree);
                 engine.ArgDic = dic;
-                engine.Suffix = channel.Suffix;
+                engine.Suffix = String.IsNullOrEmpty(channel.Suffix) ? "$" : channel.Suffix;
+                engine.ModelShortName = String.IsNullOrEmpty(channel.Model.ShortName) ? "$" : channel.Model.ShortName;
 
                 return engine.Render(TemplateConfig.Current.LeftAddress);
             }
