@@ -29,7 +29,7 @@
                         <ul>
                             <#
                                 foreach(IEntity entity in ListEntity){#>
-                                <li><a target="_blank" href='<#= Config.SysRootPath#>/Info/<#= Suffix#>/<#= entity["ID"]#>/ArticleModelContentSingle/<#= ModelShortName#>.html'><#= entity["Title"]#></a><label class="date"><#= ((DateTime)entity["UpdateTime"]).ToString("yyyy-MM-dd")#></label></li>
+                                <li><a target="_blank" href='<#= Config.SysRootPath#>/Info/<#= Suffix#>/<#= entity["ID"]#>/ArticleModelContent/<#= ModelShortName#>.html'><#= entity["Title"]#></a><label class="date"><#= ((DateTime)entity["UpdateTime"]).ToString("yyyy-MM-dd")#></label></li>
                             <#}#>
                         </ul>
                     </div>

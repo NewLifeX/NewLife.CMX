@@ -101,6 +101,28 @@ function showHide(e, objname) {
         e.className = "plus";
     }
 }
+
+function showHideNew(e, objname) {
+    var thisobj = $(e);
+    var rootmenu = thisobj.parents('.list_meu');
+
+    var ddchild = $('#' + objname);
+
+    if (thisobj.attr('class') == 'plus') {
+
+        if (rootmenu.find('.minus')) {
+            rootmenu.find('.minus').parents('dl').find('dd').css('display', 'none');
+            rootmenu.find('.minus').attr('class', 'plus');
+        }
+
+        thisobj.attr('class', 'minus');
+        ddchild.css('display', 'block');
+    }
+    else if (thisobj.attr('class') == 'minus') {
+        thisobj.attr('class', 'plus');
+        ddchild.css('display', 'none');
+    }
+}
 /*flash*/
 (function ($) {
     $.fn.extend({
