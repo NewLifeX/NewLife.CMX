@@ -31,7 +31,7 @@ namespace NewLife.CMX.Web
                 {
                     //var entity = eop.Find("ID", CategoryID) as IEntityTree;
                     //if (entity != null && entity.Parent != null) id = (Int32)entity.Parent["ID"];
-                    var entity = root.Childs.Find("ID", CategoryID) as IEntityTree;
+                    var entity = root.AllChilds.Find("ID", CategoryID) as IEntityTree;
                     if (entity != null) id = (Int32)entity["ParentID"];
 
                 }
