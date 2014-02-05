@@ -19,7 +19,7 @@
                     <img src="<#= Config.SysRootPath #>/images/top_i2.jpg" width="1021" height="120" />
                 </div>
 
-                <#= LeftMenu#>
+                <#=CMXExtend.Extend("LeftMenuModelList","l",Suffix,ModelShortName,Convert.ToInt32(ArgDic["CategoryID"]),0,0,0,0)#>
 
                 <div class="content">
                     <div class="photo">
