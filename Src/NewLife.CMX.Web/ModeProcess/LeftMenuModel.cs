@@ -21,13 +21,23 @@ namespace NewLife.CMX.Web
             {
                 imp.CurrentChannel = c.ID;
 
-                var RootCategory = imp.CategoryType.BaseType.GetMethod("FindParentByIDAndDeepth").Invoke("FindParentByIDAndDeepth", new object[] { CategoryID, RootDeepth });
+                var selectid = 0;
+
+                var RootCategory = imp.CategoryType.BaseType.GetMethod("FindParentByIDAndDeepth").Invoke("FindParentByIDAndDeepth", new object[] { CategoryID, RootDeepth }) as IEntityTree;
+
+                if (RootCategory != null)
+                {
+                    selectid = (Int32)RootCategory["ParentID"];
+
+                    if ((Boolean)RootCategory["IsEnd"] && selectid == 0) selectid = (Int32)RootCategory["ID"];
+                }
 
                 var dic = new Dictionary<String, String>();
                 dic.Add("Address", Address);
                 dic.Add("CategoryID", CategoryID.ToString());
                 dic.Add("RootDeepth", RootDeepth.ToString());
                 dic.Add("ChannelName", c.Name);
+                dic.Add("SelectedCategory", selectid + "");
                 //dic.Add("RootCategory", RootCategory);
                 //dic.Add("DisDeepth", DisDeepth.ToString());
                 //dic.Add("IsContainParent", IsContainParent.ToString());

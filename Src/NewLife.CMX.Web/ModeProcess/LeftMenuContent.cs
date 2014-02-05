@@ -32,14 +32,20 @@ namespace NewLife.CMX.Web
                     //var entity = eop.Find("ID", CategoryID) as IEntityTree;
                     //if (entity != null && entity.Parent != null) id = (Int32)entity.Parent["ID"];
                     var entity = root.AllChilds.Find("ID", CategoryID) as IEntityTree;
-                    if (entity != null) id = (Int32)entity["ParentID"];
+                    //对于自身为最终分类的节点，前台选中打开节点即自身
+                    if (entity != null)
+                    {
+                        id = (Int32)entity["ParentID"];
 
+                        if ((Boolean)entity.GetValue("IsEnd") && id == 0) id = (Int32)entity.GetValue("ID");
+                    }
                 }
 
                 dic.Add("ModelListAddress", channel.ListTemplate);
                 dic.Add("ModelFormTemplate", channel.FormTemplate);
                 dic.Add("SelectedCategory", id + "");
                 dic.Add("MenuTitle", channel.Name);
+
 
                 var engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
                 engine.ListCategory = root.Childs.ToList().OrderBy(e => e["ID"]).ToList().ConvertAll<IEntityTree>(e => e as IEntityTree);
