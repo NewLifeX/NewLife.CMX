@@ -18,7 +18,7 @@
     <div class="head">
         <div class="headcont">
             <a href="index.aspx">
-                <img src="../../images/djimages/logo.png" />
+                <img src="images/djimages/logo.png" />
             </a>
             <input type="text" class="txt" /><input type="button" class="btn" />
         </div>

@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="style/djComm.css" rel="stylesheet" type="text/css" />
+    <link href="style/djConts.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/jquery/jquery-1.5.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function showtabs(num, _this) {
+            $(".tabcont").css("display", "none");
+            $("#tabcont" + num).css("display", "block");
+            $(".tabul li").css("color", "#fff");
+            $(".tabul li").css("font-weight", "normal");
+            $(_this).css("color", "red");
+            $(_this).css("font-weight", "bold");
+        }
+    </script>
+    <title></title>
+</head>
+<body>
+    <div class="top">
+        <p>
+            欢迎光临，现在是2013-12-20 11：01：30
+        </p>
+    </div>
+    <!--头-->
+    <#= Header#>
+    <!--菜单-->
+    <#= CMXExtend.Extend("outMenu","x","","",0,0,0,0,0)#>
+    <!--flash-->
+    <#= CMXExtend.Extend("topswf","x","","",0,0,0,0,0)#>
+        <div class="mid">
+            <!--左侧菜单-->
+            <#= CMXExtend.Extend("LeftMenuMultiLine","l",Suffix,ModelShortName,Convert.ToInt32(ArgDic["CategoryID"]),0,0,0,0)#>
+            <div class="right">
+                <p class="ptitle">
+                    您现在的位置：月无声电子设备事业部 > 产品展示
+                </p>
+                <div class="productInfo">
+                    <img src="../../images/djimages/infoimg.gif" />
+                    <p class="infcont">
+                        <label>
+                            桌面式全自动点胶机</label>
+                        桌面式全自动点胶机PM-XYZ-01（亦称三轴点胶机）：是一款从客 户成本效益的角度去设计开发的产品，在满足各项工作手运动性能 指标的前提下，对机器结构进行了优化设计。保证了每次分配的点
+                    胶量在相同时间内准确，在所需要点滴的每个产品上也保持了均匀 一致。
+                    </p>
+                </div>
+                <div class="tabs">
+                    <ul class="tabul">
+                        <li onmousemove="showtabs('1',this)" style="width: 75px; font-weight: bold; color: Red;">规格参数 </li>
+                        <li onmousemove="showtabs('2',this)" style="margin-left: 8px;">功能特点 </li>
+                        <li onmousemove="showtabs('3',this)">推荐应用 </li>
+                        <li onmousemove="showtabs('4',this)">相关配件 </li>
+                        <li onmousemove="showtabs('5',this)">产品视频 </li>
+                        <li onmousemove="showtabs('6',this)">文档下载 </li>
+                    </ul>
+                    <div class="tabcont" style="display: block;" id="tabcont1">
+                        内容1
+                    </div>
+                    <div class="tabcont" id="tabcont2">
+                        内容2
+                    </div>
+                    <div class="tabcont" id="tabcont3">
+                        内容3
+                    </div>
+                    <div class="tabcont" id="tabcont4">
+                        内容4
+                    </div>
+                    <div class="tabcont" id="tabcont5">
+                        内容5
+                    </div>
+                    <div class="tabcont" id="tabcont6">
+                        内容6
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!--页尾-->
+    <#=Foot#>
+</body>
+</html>
