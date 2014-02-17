@@ -806,8 +806,247 @@
             <param name="item"></param>
             <returns></returns>
         </member>
+        <member name="T:XCode.IEntityAddition">
+            <summary>实体累加接口。实现Count+=1的效果</summary>
+        </member>
+        <member name="M:XCode.IEntityAddition.SetField(System.String,System.Boolean)">
+            <summary>设置累加字段。如果是第一次设置该字段，则保存该字段当前数据作为累加基础数据</summary>
+            <param name="name">字段名称</param>
+            <param name="reset">是否重置。可以保存当前数据作为累加基础数据</param>
+            <returns>是否成功设置累加字段。如果不是第一次设置，并且没有重置数据，那么返回失败</returns>
+        </member>
+        <member name="M:XCode.IEntityAddition.RemoveField(System.String,System.Boolean)">
+            <summary>删除累加字段。</summary>
+            <param name="name">字段名称</param>
+            <param name="restore">是否恢复数据</param>
+            <returns>是否成功删除累加字段</returns>
+        </member>
+        <member name="M:XCode.IEntityAddition.TryGetValue(System.String,System.Object@,System.Boolean@)">
+            <summary>尝试获取累加数据</summary>
+            <param name="name">字段名称</param>
+            <param name="value">累加数据</param>
+            <param name="sign">正负</param>
+            <returns>是否获取指定字段的累加数据</returns>
+        </member>
+        <member name="M:XCode.IEntityAddition.ClearValues">
+            <summary>清除累加字段数据。Update后调用该方法</summary>
+        </member>
+        <member name="P:XCode.IEntityAddition.Entity">
+            <summary>实体对象</summary>
+        </member>
+        <member name="T:XCode.EntityAddition">
+            <summary>实体累加接口。实现Count+=1的效果</summary>
+        </member>
+        <member name="M:XCode.EntityAddition.SetField(System.String,System.Boolean)">
+            <summary>设置累加字段。如果是第一次设置该字段，则保存该字段当前数据作为累加基础数据</summary>
+            <param name="name">字段名称</param>
+            <param name="reset">是否重置。可以保存当前数据作为累加基础数据</param>
+            <returns>是否成功设置累加字段。如果不是第一次设置，并且没有重置数据，那么返回失败</returns>
+        </member>
+        <member name="M:XCode.EntityAddition.RemoveField(System.String,System.Boolean)">
+            <summary>删除累加字段。</summary>
+            <param name="name">字段名称</param>
+            <param name="restore">是否恢复数据</param>
+            <returns>是否成功删除累加字段</returns>
+        </member>
+        <member name="M:XCode.EntityAddition.TryGetValue(System.String,System.Object@,System.Boolean@)">
+            <summary>尝试获取累加数据</summary>
+            <param name="name">字段名称</param>
+            <param name="value">累加数据绝对值</param>
+            <param name="sign">正负</param>
+            <returns>是否获取指定字段的累加数据</returns>
+        </member>
+        <member name="M:XCode.EntityAddition.ClearValues">
+            <summary>清除累加字段数据。Update后调用该方法</summary>
+        </member>
+        <member name="M:XCode.EntityAddition.TryGetValue(XCode.EntityBase,System.String,System.Object@,System.Boolean@)">
+            <summary>尝试获取累加数据</summary>
+            <param name="entity">实体对象</param>
+            <param name="name">字段名称</param>
+            <param name="value">累加数据绝对值</param>
+            <param name="sign">正负</param>
+            <returns>是否获取指定字段的累加数据</returns>
+        </member>
+        <member name="P:XCode.EntityAddition.Entity">
+            <summary>实体对象</summary>
+        </member>
+        <member name="T:XCode.EntityExtend">
+            <summary>实体扩展</summary>
+        </member>
+        <member name="M:XCode.EntityExtend.GetExtend``2(System.String,NewLife.Reflection.Func{System.String,System.Object})">
+            <summary>获取扩展属性，获取数据时向指定的依赖实体类注册数据更改事件</summary>
+            <typeparam name="TDependEntity">依赖实体类，该实体类数据更改时清空所有依赖于实体类的扩展属性</typeparam>
+            <typeparam name="TResult">返回类型</typeparam>
+            <param name="key">键值</param>
+            <param name="func">回调</param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.EntityExtend.GetExtend``2(System.String,NewLife.Reflection.Func{System.String,System.Object},System.Boolean)">
+            <summary>获取扩展属性，获取数据时向指定的依赖实体类注册数据更改事件</summary>
+            <typeparam name="TDependEntity">依赖实体类，该实体类数据更改时清空所有依赖于实体类的扩展属性</typeparam>
+            <typeparam name="TResult">返回类型</typeparam>
+            <param name="key">键值</param>
+            <param name="func">回调</param>
+            <param name="cacheDefault">是否缓存默认值，可选参数，默认缓存</param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.EntityExtend.RemoveExtend(System.Type)">
+            <summary>清理依赖于某类型的缓存</summary>
+            <param name="dependType">依赖类型</param>
+        </member>
+        <member name="M:XCode.EntityExtend.SetExtend``1(System.String,System.Object)">
+            <summary>设置扩展属性</summary>
+            <typeparam name="TDependEntity"></typeparam>
+            <param name="key"></param>
+            <param name="value">数值</param>
+        </member>
+        <member name="P:XCode.EntityExtend.Depends">
+            <summary>类型依赖</summary>
+        </member>
         <member name="T:XCode.EntitySession`1">
             <summary>实体会话。每个实体类、连接名和表名形成一个实体会话</summary>
+        </member>
+        <member name="T:XCode.IEntitySession">
+            <summary>实体会话接口</summary>
+        </member>
+        <member name="M:XCode.IEntitySession.WaitForInitData(System.Int32)">
+            <summary>检查并初始化数据。参数等待时间为0表示不等待</summary>
+            <param name="ms">等待时间，-1表示不限，0表示不等待</param>
+            <returns>如果等待，返回是否收到信号</returns>
+        </member>
+        <member name="M:XCode.IEntitySession.ClearCache(System.String)">
+            <summary>清除缓存</summary>
+            <param name="reason">原因</param>
+        </member>
+        <member name="M:XCode.IEntitySession.Query(XCode.DataAccessLayer.SelectBuilder,System.Int32,System.Int32)">
+            <summary>执行SQL查询，返回记录集</summary>
+            <param name="builder">SQL语句</param>
+            <param name="startRowIndex">开始行，0表示第一行</param>
+            <param name="maximumRows">最大返回行数，0表示所有行</param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.IEntitySession.Query(System.String)">
+            <summary>查询</summary>
+            <param name="sql">SQL语句</param>
+            <returns>结果记录集</returns>
+        </member>
+        <member name="M:XCode.IEntitySession.QueryCount(XCode.DataAccessLayer.SelectBuilder)">
+            <summary>查询记录数</summary>
+            <param name="builder">查询生成器</param>
+            <returns>记录数</returns>
+        </member>
+        <member name="M:XCode.IEntitySession.PageSplit(XCode.DataAccessLayer.SelectBuilder,System.Int32,System.Int32)">
+            <summary>根据条件把普通查询SQL格式化为分页SQL。</summary>
+            <remarks>
+            因为需要继承重写的原因，在数据类中并不方便缓存分页SQL。
+            所以在这里做缓存。
+            </remarks>
+            <param name="builder">查询生成器</param>
+            <param name="startRowIndex">开始行，0表示第一行</param>
+            <param name="maximumRows">最大返回行数，0表示所有行</param>
+            <returns>分页SQL</returns>
+        </member>
+        <member name="M:XCode.IEntitySession.Execute(System.String)">
+            <summary>执行</summary>
+            <param name="sql">SQL语句</param>
+            <returns>影响的结果</returns>
+        </member>
+        <member name="M:XCode.IEntitySession.InsertAndGetIdentity(System.String)">
+            <summary>执行插入语句并返回新增行的自动编号</summary>
+            <param name="sql">SQL语句</param>
+            <returns>新增行的自动编号</returns>
+        </member>
+        <member name="M:XCode.IEntitySession.Execute(System.String,System.Data.CommandType,System.Data.Common.DbParameter[])">
+            <summary>执行</summary>
+            <param name="sql">SQL语句</param>
+            <param name="type">命令类型，默认SQL文本</param>
+            <param name="ps">命令参数</param>
+            <returns>影响的结果</returns>
+        </member>
+        <member name="M:XCode.IEntitySession.InsertAndGetIdentity(System.String,System.Data.CommandType,System.Data.Common.DbParameter[])">
+            <summary>执行插入语句并返回新增行的自动编号</summary>
+            <param name="sql">SQL语句</param>
+            <param name="type">命令类型，默认SQL文本</param>
+            <param name="ps">命令参数</param>
+            <returns>新增行的自动编号</returns>
+        </member>
+        <member name="M:XCode.IEntitySession.BeginTrans">
+            <summary>开始事务</summary>
+            <returns>剩下的事务计数</returns>
+        </member>
+        <member name="M:XCode.IEntitySession.Commit">
+            <summary>提交事务</summary>
+            <returns>剩下的事务计数</returns>
+        </member>
+        <member name="M:XCode.IEntitySession.Rollback">
+            <summary>回滚事务，忽略异常</summary>
+            <returns>剩下的事务计数</returns>
+        </member>
+        <member name="M:XCode.IEntitySession.CreateParameter">
+            <summary>创建参数</summary>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.IEntitySession.FormatParameterName(System.String)">
+            <summary>格式化参数名</summary>
+            <param name="name">名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.IEntitySession.Insert(XCode.IEntity)">
+            <summary>把该对象持久化到数据库，添加/更新实体缓存。</summary>
+            <param name="entity">实体对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.IEntitySession.Update(XCode.IEntity)">
+            <summary>更新数据库，同时更新实体缓存</summary>
+            <param name="entity">实体对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.IEntitySession.Delete(XCode.IEntity)">
+            <summary>从数据库中删除该对象，同时从实体缓存中删除</summary>
+            <param name="entity">实体对象</param>
+            <returns></returns>
+        </member>
+        <member name="P:XCode.IEntitySession.ConnName">
+            <summary>连接名</summary>
+        </member>
+        <member name="P:XCode.IEntitySession.TableName">
+            <summary>表名</summary>
+        </member>
+        <member name="P:XCode.IEntitySession.Key">
+            <summary>用于标识会话的键值</summary>
+        </member>
+        <member name="P:XCode.IEntitySession.FormatedTableName">
+            <summary>已格式化的表名，带有中括号等</summary>
+        </member>
+        <member name="P:XCode.IEntitySession.Cache">
+            <summary>实体缓存</summary>
+            <returns></returns>
+        </member>
+        <member name="P:XCode.IEntitySession.SingleCache">
+            <summary>单对象实体缓存。
+            建议自定义查询数据方法，并从二级缓存中获取实体数据，以抵消因初次填充而带来的消耗。
+            </summary>
+        </member>
+        <member name="P:XCode.IEntitySession.Count">
+            <summary>总记录数，小于1000时是精确的，大于1000时缓存10分钟</summary>
+        </member>
+        <member name="P:XCode.IEntitySession.LongCount">
+            <summary>总记录数，小于1000时是精确的，大于1000时缓存10分钟</summary>
+            <remarks>
+            1，检查静态字段，如果有数据且小于1000，直接返回，否则=>3
+            2，如果有数据但大于1000，则返回缓存里面的有效数据
+            3，来到这里，有可能是第一次访问，静态字段没有缓存，也有可能是大于1000的缓存过期
+            4，检查模型
+            5，根据需要查询数据
+            6，如果大于1000，缓存数据
+            7，检查数据初始化
+            </remarks>
+        </member>
+        <member name="E:XCode.IEntitySession.OnDataChange">
+            <summary>数据改变后触发。参数指定触发该事件的实体类</summary>
+        </member>
+        <member name="P:XCode.IEntitySession.TransCount">
+            <summary>事务计数</summary>
         </member>
         <member name="M:XCode.EntitySession`1.Create(System.String,System.String)">
             <summary>创建指定表名连接名的会话</summary>
@@ -815,11 +1054,159 @@
             <param name="tableName"></param>
             <returns></returns>
         </member>
+        <member name="F:XCode.EntitySession`1.hasCheckInitData">
+            <summary>记录已进行数据初始化</summary>
+        </member>
+        <member name="M:XCode.EntitySession`1.WaitForInitData(System.Int32)">
+            <summary>检查并初始化数据。参数等待时间为0表示不等待</summary>
+            <param name="ms">等待时间，-1表示不限，0表示不等待</param>
+            <returns>如果等待，返回是否收到信号</returns>
+        </member>
+        <member name="F:XCode.EntitySession`1._Count">
+            <summary>总记录数较小时，使用静态字段，较大时增加使用Cache</summary>
+        </member>
+        <member name="M:XCode.EntitySession`1.ClearCache(System.String)">
+            <summary>清除缓存</summary>
+            <param name="reason">原因</param>
+        </member>
+        <member name="M:XCode.EntitySession`1.Query(XCode.DataAccessLayer.SelectBuilder,System.Int32,System.Int32)">
+            <summary>执行SQL查询，返回记录集</summary>
+            <param name="builder">SQL语句</param>
+            <param name="startRowIndex">开始行，0表示第一行</param>
+            <param name="maximumRows">最大返回行数，0表示所有行</param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.EntitySession`1.Query(System.String)">
+            <summary>查询</summary>
+            <param name="sql">SQL语句</param>
+            <returns>结果记录集</returns>
+        </member>
+        <member name="M:XCode.EntitySession`1.QueryCount(XCode.DataAccessLayer.SelectBuilder)">
+            <summary>查询记录数</summary>
+            <param name="builder">查询生成器</param>
+            <returns>记录数</returns>
+        </member>
+        <member name="M:XCode.EntitySession`1.PageSplit(XCode.DataAccessLayer.SelectBuilder,System.Int32,System.Int32)">
+            <summary>根据条件把普通查询SQL格式化为分页SQL。</summary>
+            <remarks>
+            因为需要继承重写的原因，在数据类中并不方便缓存分页SQL。
+            所以在这里做缓存。
+            </remarks>
+            <param name="builder">查询生成器</param>
+            <param name="startRowIndex">开始行，0表示第一行</param>
+            <param name="maximumRows">最大返回行数，0表示所有行</param>
+            <returns>分页SQL</returns>
+        </member>
+        <member name="M:XCode.EntitySession`1.Execute(System.String)">
+            <summary>执行</summary>
+            <param name="sql">SQL语句</param>
+            <returns>影响的结果</returns>
+        </member>
+        <member name="M:XCode.EntitySession`1.InsertAndGetIdentity(System.String)">
+            <summary>执行插入语句并返回新增行的自动编号</summary>
+            <param name="sql">SQL语句</param>
+            <returns>新增行的自动编号</returns>
+        </member>
+        <member name="M:XCode.EntitySession`1.Execute(System.String,System.Data.CommandType,System.Data.Common.DbParameter[])">
+            <summary>执行</summary>
+            <param name="sql">SQL语句</param>
+            <param name="type">命令类型，默认SQL文本</param>
+            <param name="ps">命令参数</param>
+            <returns>影响的结果</returns>
+        </member>
+        <member name="M:XCode.EntitySession`1.InsertAndGetIdentity(System.String,System.Data.CommandType,System.Data.Common.DbParameter[])">
+            <summary>执行插入语句并返回新增行的自动编号</summary>
+            <param name="sql">SQL语句</param>
+            <param name="type">命令类型，默认SQL文本</param>
+            <param name="ps">命令参数</param>
+            <returns>新增行的自动编号</returns>
+        </member>
+        <member name="M:XCode.EntitySession`1.BeginTrans">
+            <summary>开始事务</summary>
+            <returns>剩下的事务计数</returns>
+        </member>
+        <member name="M:XCode.EntitySession`1.Commit">
+            <summary>提交事务</summary>
+            <returns>剩下的事务计数</returns>
+        </member>
+        <member name="M:XCode.EntitySession`1.Rollback">
+            <summary>回滚事务，忽略异常</summary>
+            <returns>剩下的事务计数</returns>
+        </member>
+        <member name="M:XCode.EntitySession`1.CreateParameter">
+            <summary>创建参数</summary>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.EntitySession`1.FormatParameterName(System.String)">
+            <summary>格式化参数名</summary>
+            <param name="name">名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.EntitySession`1.Insert(XCode.IEntity)">
+            <summary>把该对象持久化到数据库，添加/更新实体缓存。</summary>
+            <param name="entity">实体对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.EntitySession`1.Update(XCode.IEntity)">
+            <summary>更新数据库，同时更新实体缓存</summary>
+            <param name="entity">实体对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.EntitySession`1.Delete(XCode.IEntity)">
+            <summary>从数据库中删除该对象，同时从实体缓存中删除</summary>
+            <param name="entity">实体对象</param>
+            <returns></returns>
+        </member>
         <member name="P:XCode.EntitySession`1.ConnName">
             <summary>连接名</summary>
         </member>
         <member name="P:XCode.EntitySession`1.TableName">
             <summary>表名</summary>
+        </member>
+        <member name="P:XCode.EntitySession`1.Key">
+            <summary>用于标识会话的键值</summary>
+        </member>
+        <member name="P:XCode.EntitySession`1.Table">
+            <summary>表信息</summary>
+        </member>
+        <member name="P:XCode.EntitySession`1.Dal">
+            <summary>数据操作层</summary>
+        </member>
+        <member name="P:XCode.EntitySession`1.FormatedTableName">
+            <summary>已格式化的表名，带有中括号等</summary>
+        </member>
+        <member name="P:XCode.EntitySession`1.Cache">
+            <summary>实体缓存</summary>
+            <returns></returns>
+        </member>
+        <member name="P:XCode.EntitySession`1.SingleCache">
+            <summary>单对象实体缓存。
+            建议自定义查询数据方法，并从二级缓存中获取实体数据，以抵消因初次填充而带来的消耗。
+            </summary>
+        </member>
+        <member name="P:XCode.EntitySession`1.Count">
+            <summary>总记录数，小于1000时是精确的，大于1000时缓存10分钟</summary>
+        </member>
+        <member name="P:XCode.EntitySession`1.LongCount">
+            <summary>总记录数，小于1000时是精确的，大于1000时缓存10分钟</summary>
+            <remarks>
+            1，检查静态字段，如果有数据且小于1000，直接返回，否则=>3
+            2，如果有数据但大于1000，则返回缓存里面的有效数据
+            3，来到这里，有可能是第一次访问，静态字段没有缓存，也有可能是大于1000的缓存过期
+            4，检查模型
+            5，根据需要查询数据
+            6，如果大于1000，缓存数据
+            7，检查数据初始化
+            </remarks>
+        </member>
+        <member name="E:XCode.EntitySession`1.OnDataChange">
+            <summary>数据改变后触发。参数指定触发该事件的实体类</summary>
+        </member>
+        <member name="P:XCode.EntitySession`1.TransCount">
+            <summary>事务计数</summary>
+        </member>
+        <member name="P:XCode.EntitySession`1.UsingTrans">
+            <summary>是否在事务保护中</summary>
         </member>
         <member name="T:XCode.Sync.ISyncMaster">
             <summary>同步架构主方接口</summary>
@@ -2567,9 +2954,8 @@
         </member>
         <member name="M:XCode.DataAccessLayer.DAL.Create(System.String)">
             <summary>创建一个数据访问层对象。</summary>
-            <param name="connName">配置名，或链接字符串</param>
+            <param name="connName">配置名</param>
             <returns>对应于指定链接的全局唯一的数据访问层对象</returns>
-            2012.11.05 修正在WINFORM程序中，动态调整连接字后，无法生效的问题。BY HUIYUE
         </member>
         <member name="M:XCode.DataAccessLayer.DAL.AddConnStr(System.String,System.String,System.Type,System.String)">
             <summary>添加连接字符串</summary>
@@ -2663,6 +3049,9 @@
         </member>
         <member name="P:XCode.DataAccessLayer.DAL.ConnStrs">
             <summary>链接字符串集合</summary>
+            <remarks>
+            如果需要修改一个DAL的连接字符串，不应该修改这里，而是修改DAL实例的<see cref="P:XCode.DataAccessLayer.DAL.ConnStr"/>属性
+            </remarks>
         </member>
         <member name="P:XCode.DataAccessLayer.DAL.ConnName">
             <summary>连接名</summary>
@@ -2675,6 +3064,9 @@
         </member>
         <member name="P:XCode.DataAccessLayer.DAL.ConnStr">
             <summary>连接字符串</summary>
+            <remarks>
+            修改连接字符串将会清空<see cref="P:XCode.DataAccessLayer.DAL.Db"/>
+            </remarks>
         </member>
         <member name="P:XCode.DataAccessLayer.DAL.Db">
             <summary>数据库。所有数据库操作在此统一管理，强烈建议不要直接使用该属性，在不同版本中IDatabase可能有较大改变</summary>
@@ -3934,28 +4326,6 @@
             <param name="entity"></param>
             <returns></returns>
         </member>
-        <member name="M:XCode.IEntity.SetAdditionalField(System.String,System.Boolean)">
-            <summary>设置累加字段。如果是第一次设置该字段，则保存该字段当前数据作为累加基础数据</summary>
-            <param name="name">字段名称</param>
-            <param name="reset">是否重置。可以保存当前数据作为累加基础数据</param>
-            <returns>是否成功设置累加字段。如果不是第一次设置，并且没有重置数据，那么返回失败</returns>
-        </member>
-        <member name="M:XCode.IEntity.RemoveAdditionalField(System.String,System.Boolean)">
-            <summary>删除累加字段。</summary>
-            <param name="name">字段名称</param>
-            <param name="restore">是否恢复数据</param>
-            <returns>是否成功删除累加字段</returns>
-        </member>
-        <member name="M:XCode.IEntity.TryGetAdditionalValue(System.String,System.Object@,System.Boolean@)">
-            <summary>尝试获取累加数据</summary>
-            <param name="name">字段名称</param>
-            <param name="value">累加数据</param>
-            <param name="sign">正负</param>
-            <returns>是否获取指定字段的累加数据</returns>
-        </member>
-        <member name="M:XCode.IEntity.ClearAdditionalValues">
-            <summary>清除累加字段数据。Update后调用该方法</summary>
-        </member>
         <member name="P:XCode.IEntity.Dirtys">
             <summary>脏属性。存储哪些属性的数据被修改过了。</summary>
         </member>
@@ -4018,10 +4388,6 @@
             <param name="value">值</param>
             <returns>返回是否成功设置了数据</returns>
         </member>
-        <member name="M:XCode.EntityBase.CreateXmlSerializer">
-            <summary>建立Xml序列化器</summary>
-            <returns></returns>
-        </member>
         <member name="M:XCode.EntityBase.ToXml">
             <summary>导出XML</summary>
             <returns></returns>
@@ -4055,64 +4421,6 @@
             <param name="isDirty">改变脏属性的属性个数</param>
             <returns></returns>
         </member>
-        <member name="M:XCode.EntityBase.OnPropertyChange(System.String,System.Object)">
-            <summary>属性改变。重载时记得调用基类的该方法，以设置脏数据属性，否则数据将无法Update到数据库。</summary>
-            <param name="fieldName">字段名</param>
-            <param name="newValue">新属性值</param>
-            <returns>是否允许改变</returns>
-        </member>
-        <member name="F:XCode.EntityBase._StopExtend">
-            <summary>改为线程静态，避免线程间干扰。注意初始化赋值对线程静态无效，只有第一个生效</summary>
-        </member>
-        <member name="M:XCode.EntityBase.GetExtend``2(System.String,NewLife.Reflection.Func{System.String,System.Object})">
-            <summary>获取扩展属性，获取数据时向指定的依赖实体类注册数据更改事件</summary>
-            <typeparam name="TDependEntity">依赖实体类，该实体类数据更改时清空所有依赖于实体类的扩展属性</typeparam>
-            <typeparam name="TResult">返回类型</typeparam>
-            <param name="key">键值</param>
-            <param name="func">回调</param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.EntityBase.GetExtend``2(System.String,NewLife.Reflection.Func{System.String,System.Object},System.Boolean)">
-            <summary>获取扩展属性，获取数据时向指定的依赖实体类注册数据更改事件</summary>
-            <typeparam name="TDependEntity">依赖实体类，该实体类数据更改时清空所有依赖于实体类的扩展属性</typeparam>
-            <typeparam name="TResult">返回类型</typeparam>
-            <param name="key">键值</param>
-            <param name="func">回调</param>
-            <param name="cacheDefault">是否缓存默认值，可选参数，默认缓存</param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.EntityBase.RemoveExtend(System.Type)">
-            <summary>清理依赖于某类型的缓存</summary>
-            <param name="dependType">依赖类型</param>
-        </member>
-        <member name="M:XCode.EntityBase.SetExtend``1(System.String,System.Object)">
-            <summary>设置扩展属性</summary>
-            <typeparam name="TDependEntity"></typeparam>
-            <param name="key"></param>
-            <param name="value">数值</param>
-        </member>
-        <member name="M:XCode.EntityBase.SetAdditionalField(System.String,System.Boolean)">
-            <summary>设置累加字段。如果是第一次设置该字段，则保存该字段当前数据作为累加基础数据</summary>
-            <param name="name">字段名称</param>
-            <param name="reset">是否重置。可以保存当前数据作为累加基础数据</param>
-            <returns>是否成功设置累加字段。如果不是第一次设置，并且没有重置数据，那么返回失败</returns>
-        </member>
-        <member name="M:XCode.EntityBase.RemoveAdditionalField(System.String,System.Boolean)">
-            <summary>删除累加字段。</summary>
-            <param name="name">字段名称</param>
-            <param name="restore">是否恢复数据</param>
-            <returns>是否成功删除累加字段</returns>
-        </member>
-        <member name="M:XCode.EntityBase.TryGetAdditionalValue(System.String,System.Object@,System.Boolean@)">
-            <summary>尝试获取累加数据</summary>
-            <param name="name">字段名称</param>
-            <param name="value">累加数据绝对值</param>
-            <param name="sign">正负</param>
-            <returns>是否获取指定字段的累加数据</returns>
-        </member>
-        <member name="M:XCode.EntityBase.ClearAdditionalValues">
-            <summary>清除累加字段数据。Update后调用该方法</summary>
-        </member>
         <member name="M:XCode.EntityBase.XCode#IEntity#SetNullKey">
             <summary>设置主键为空。Save将调用Insert</summary>
         </member>
@@ -4144,11 +4452,8 @@
         <member name="P:XCode.EntityBase.XCode#IEntity#Extends">
             <summary>扩展属性</summary>
         </member>
-        <member name="P:XCode.EntityBase.Depends">
-            <summary>类型依赖</summary>
-        </member>
-        <member name="P:XCode.EntityBase.StopExtend">
-            <summary>是否停止扩展属性，停止扩展属性后，可以避免扩展属性自动触发获取数据的功能</summary>
+        <member name="P:XCode.EntityBase.Addition">
+            <summary>累加</summary>
         </member>
         <member name="P:XCode.EntityBase.XCode#IEntity#IsNullKey">
             <summary>主键是否为空</summary>
@@ -5968,10 +6273,11 @@
             <summary>静态构造</summary>
         </member>
         <member name="M:XCode.Entity`1.CreateInstance(System.Boolean)">
-            <summary>
-            创建实体。可以重写改方法以实现实体对象的一些初始化工作。
+            <summary>创建实体。</summary>
+            <remarks>
+            可以重写改方法以实现实体对象的一些初始化工作。
             切记，写为实例方法仅仅是为了方便重载，所要返回的实例绝对不会是当前实例。
-            </summary>
+            </remarks>
             <param name="forEdit">是否为了编辑而创建，如果是，可以再次做一些相关的初始化工作</param>
             <returns></returns>
         </member>
@@ -6093,10 +6399,10 @@
             <returns>实体数组</returns>
         </member>
         <member name="M:XCode.Entity`1.FindAll(System.String,System.String,System.String,System.Int32,System.Int32)">
-            <summary>
-            查询并返回实体对象集合。
+            <summary>查询并返回实体对象集合。</summary>
+            <remarks>
             最经典的批量查询，看这个Select @selects From Table Where @whereClause Order By @orderClause Limit @startRowIndex,@maximumRows，你就明白各参数的意思了。
-            </summary>
+            </remarks>
             <param name="whereClause">条件，不带Where</param>
             <param name="orderClause">排序，不带Order By</param>
             <param name="selects">查询列</param>
@@ -6116,14 +6422,6 @@
             <param name="value">值</param>
             <returns>实体数组</returns>
         </member>
-        <member name="M:XCode.Entity`1.FindAll(System.String,System.Object,System.Int32,System.Int32)">
-            <summary>根据属性以及对应的值，获取所有实体对象</summary>
-            <param name="name">属性</param>
-            <param name="value">值</param>
-            <param name="startRowIndex">开始行，0表示第一行</param>
-            <param name="maximumRows">最大返回行数，0表示所有行</param>
-            <returns>实体数组</returns>
-        </member>
         <member name="M:XCode.Entity`1.FindAllByName(System.String,System.Object,System.String,System.Int32,System.Int32)">
             <summary>根据属性以及对应的值，获取所有实体对象</summary>
             <param name="name">属性</param>
@@ -6139,6 +6437,56 @@
             </summary>
             <param name="sql">查询语句</param>
             <returns>实体数组</returns>
+        </member>
+        <member name="M:XCode.Entity`1.FindWithCache(System.String,System.Object)">
+            <summary>根据属性以及对应的值，在缓存中查找单个实体</summary>
+            <param name="name">属性名称</param>
+            <param name="value">属性值</param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Entity`1.FindAllWithCache">
+            <summary>查找所有缓存</summary>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Entity`1.FindAllWithCache(System.String,System.Object)">
+            <summary>根据属性以及对应的值，在缓存中获取所有实体对象</summary>
+            <param name="name">属性</param>
+            <param name="value">值</param>
+            <returns>实体数组</returns>
+        </member>
+        <member name="M:XCode.Entity`1.FindCount">
+            <summary>返回总记录数</summary>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Entity`1.FindCount(System.String,System.String,System.String,System.Int32,System.Int32)">
+            <summary>返回总记录数</summary>
+            <param name="whereClause">条件，不带Where</param>
+            <param name="orderClause">排序，不带Order By。这里无意义，仅仅为了保持与FindAll相同的方法签名</param>
+            <param name="selects">查询列。这里无意义，仅仅为了保持与FindAll相同的方法签名</param>
+            <param name="startRowIndex">开始行，0表示第一行。这里无意义，仅仅为了保持与FindAll相同的方法签名</param>
+            <param name="maximumRows">最大返回行数，0表示所有行。这里无意义，仅仅为了保持与FindAll相同的方法签名</param>
+            <returns>总行数</returns>
+        </member>
+        <member name="M:XCode.Entity`1.FindCount(System.String[],System.Object[])">
+            <summary>根据属性列表以及对应的值列表，返回总记录数</summary>
+            <param name="names">属性列表</param>
+            <param name="values">值列表</param>
+            <returns>总行数</returns>
+        </member>
+        <member name="M:XCode.Entity`1.FindCount(System.String,System.Object)">
+            <summary>根据属性以及对应的值，返回总记录数</summary>
+            <param name="name">属性</param>
+            <param name="value">值</param>
+            <returns>总行数</returns>
+        </member>
+        <member name="M:XCode.Entity`1.FindCountByName(System.String,System.Object,System.String,System.Int32,System.Int32)">
+            <summary>根据属性以及对应的值，返回总记录数</summary>
+            <param name="name">属性</param>
+            <param name="value">值</param>
+            <param name="orderClause">排序，不带Order By。这里无意义，仅仅为了保持与FindAll相同的方法签名</param>
+            <param name="startRowIndex">开始行，0表示第一行。这里无意义，仅仅为了保持与FindAll相同的方法签名</param>
+            <param name="maximumRows">最大返回行数，0表示所有行。这里无意义，仅仅为了保持与FindAll相同的方法签名</param>
+            <returns>总行数</returns>
         </member>
         <member name="M:XCode.Entity`1.FindSQL(System.String,System.String,System.String,System.Int32,System.Int32)">
             <summary>获取查询SQL。主要用于构造子查询</summary>
@@ -6191,64 +6539,6 @@
             <summary>构建关键字查询条件</summary>
             <param name="key"></param>
             <returns></returns>
-        </member>
-        <member name="M:XCode.Entity`1.FindWithCache(System.String,System.Object)">
-            <summary>根据属性以及对应的值，在缓存中查找单个实体</summary>
-            <param name="name">属性名称</param>
-            <param name="value">属性值</param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Entity`1.FindAllWithCache">
-            <summary>查找所有缓存</summary>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Entity`1.FindAllWithCache(System.String,System.Object)">
-            <summary>根据属性以及对应的值，在缓存中获取所有实体对象</summary>
-            <param name="name">属性</param>
-            <param name="value">值</param>
-            <returns>实体数组</returns>
-        </member>
-        <member name="M:XCode.Entity`1.FindCount">
-            <summary>返回总记录数</summary>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Entity`1.FindCount(System.String,System.String,System.String,System.Int32,System.Int32)">
-            <summary>返回总记录数</summary>
-            <param name="whereClause">条件，不带Where</param>
-            <param name="orderClause">排序，不带Order By。这里无意义，仅仅为了保持与FindAll相同的方法签名</param>
-            <param name="selects">查询列。这里无意义，仅仅为了保持与FindAll相同的方法签名</param>
-            <param name="startRowIndex">开始行，0表示第一行。这里无意义，仅仅为了保持与FindAll相同的方法签名</param>
-            <param name="maximumRows">最大返回行数，0表示所有行。这里无意义，仅仅为了保持与FindAll相同的方法签名</param>
-            <returns>总行数</returns>
-        </member>
-        <member name="M:XCode.Entity`1.FindCount(System.String[],System.Object[])">
-            <summary>根据属性列表以及对应的值列表，返回总记录数</summary>
-            <param name="names">属性列表</param>
-            <param name="values">值列表</param>
-            <returns>总行数</returns>
-        </member>
-        <member name="M:XCode.Entity`1.FindCount(System.String,System.Object)">
-            <summary>根据属性以及对应的值，返回总记录数</summary>
-            <param name="name">属性</param>
-            <param name="value">值</param>
-            <returns>总行数</returns>
-        </member>
-        <member name="M:XCode.Entity`1.FindCount(System.String,System.Object,System.Int32,System.Int32)">
-            <summary>根据属性以及对应的值，返回总记录数</summary>
-            <param name="name">属性</param>
-            <param name="value">值</param>
-            <param name="startRowIndex">开始行，0表示第一行。这里无意义，仅仅为了保持与FindAll相同的方法签名</param>
-            <param name="maximumRows">最大返回行数，0表示所有行。这里无意义，仅仅为了保持与FindAll相同的方法签名</param>
-            <returns>总行数</returns>
-        </member>
-        <member name="M:XCode.Entity`1.FindCountByName(System.String,System.Object,System.String,System.Int32,System.Int32)">
-            <summary>根据属性以及对应的值，返回总记录数</summary>
-            <param name="name">属性</param>
-            <param name="value">值</param>
-            <param name="orderClause">排序，不带Order By。这里无意义，仅仅为了保持与FindAll相同的方法签名</param>
-            <param name="startRowIndex">开始行，0表示第一行。这里无意义，仅仅为了保持与FindAll相同的方法签名</param>
-            <param name="maximumRows">最大返回行数，0表示所有行。这里无意义，仅仅为了保持与FindAll相同的方法签名</param>
-            <returns>总行数</returns>
         </member>
         <member name="M:XCode.Entity`1.Insert(`0)">
             <summary>把一个实体对象持久化到数据库</summary>
@@ -6304,12 +6594,6 @@
             <param name="obj">实体对象</param>
             <returns>返回受影响的行数</returns>
         </member>
-        <member name="M:XCode.Entity`1.SQL(XCode.Entity{`0},System.ComponentModel.DataObjectMethodType)">
-            <summary>把SQL模版格式化为SQL语句</summary>
-            <param name="obj">实体对象</param>
-            <param name="methodType"></param>
-            <returns>SQL字符串</returns>
-        </member>
         <member name="M:XCode.Entity`1.MakeCondition(System.String[],System.Object[],System.String)">
             <summary>
             根据属性列表和值列表，构造查询条件。
@@ -6332,19 +6616,6 @@
             <param name="field">名称</param>
             <param name="value">值</param>
             <param name="action">大于小于等符号</param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Entity`1.DefaultCondition(XCode.Entity{`0})">
-            <summary>
-            默认条件。
-            若有标识列，则使用一个标识列作为条件；
-            如有主键，则使用全部主键作为条件。
-            </summary>
-            <param name="obj">实体对象</param>
-            <returns>条件</returns>
-        </member>
-        <member name="M:XCode.Entity`1.CreateXmlSerializer">
-            <summary>建立Xml序列化器</summary>
             <returns></returns>
         </member>
         <member name="M:XCode.Entity`1.FromXml(System.String)">
@@ -6407,8 +6678,7 @@
             <param name="value">值</param>
         </member>
         <member name="P:XCode.Entity`1.Item(System.String)">
-            <summary>
-            获取/设置 字段值。
+            <summary>获取/设置 字段值。
             一个索引，反射实现。
             派生实体类可重写该索引，以避免发射带来的性能损耗。
             基类已经实现了通用的快速访问，但是这里仍然重写，以增加控制，
@@ -6417,11 +6687,11 @@
             <param name="name">字段名</param>
             <returns></returns>
         </member>
-        <member name="P:XCode.Entity`1.HasDirty">
-            <summary>是否有脏数据。决定是否可以Update</summary>
-        </member>
         <member name="P:XCode.Entity`1.AdditionalFields">
             <summary>默认累加字段</summary>
+        </member>
+        <member name="P:XCode.Entity`1.HasDirty">
+            <summary>是否有脏数据。决定是否可以Update</summary>
         </member>
         <member name="T:XCode.Entity`1.Meta">
             <summary>实体元数据</summary>
@@ -6434,14 +6704,9 @@
             <returns></returns>
         </member>
         <member name="M:XCode.Entity`1.Meta.Query(System.String)">
-            <summary>查询</summary>
+            <summary>执行SQL查询，返回记录集</summary>
             <param name="sql">SQL语句</param>
-            <returns>结果记录集</returns>
-        </member>
-        <member name="M:XCode.Entity`1.Meta.QueryCount(System.String)">
-            <summary>查询记录数</summary>
-            <param name="sql">SQL语句</param>
-            <returns>记录数</returns>
+            <returns></returns>
         </member>
         <member name="M:XCode.Entity`1.Meta.QueryCount(XCode.DataAccessLayer.SelectBuilder)">
             <summary>查询记录数</summary>
@@ -6472,12 +6737,9 @@
             <param name="ps">命令参数</param>
             <returns>新增行的自动编号</returns>
         </member>
-        <member name="F:XCode.Entity`1.Meta.hasCheckInitData">
-            <summary>记录已进行数据初始化的表</summary>
-        </member>
         <member name="M:XCode.Entity`1.Meta.WaitForInitData(System.Int32)">
             <summary>检查并初始化数据。参数等待时间为0表示不等待</summary>
-            <param name="millisecondsTimeout">等待时间，-1表示不限，0表示不等待</param>
+            <param name="ms">等待时间，-1表示不限，0表示不等待</param>
             <returns>如果等待，返回是否收到信号</returns>
         </member>
         <member name="M:XCode.Entity`1.Meta.BeginTrans">
@@ -6491,6 +6753,9 @@
         <member name="M:XCode.Entity`1.Meta.Rollback">
             <summary>回滚事务，忽略异常</summary>
             <returns>剩下的事务计数</returns>
+        </member>
+        <member name="M:XCode.Entity`1.Meta.CreateTrans">
+            <summary>创建事务</summary>
         </member>
         <member name="M:XCode.Entity`1.Meta.CreateParameter">
             <summary>创建参数</summary>
@@ -6523,11 +6788,14 @@
             <param name="value">数值</param>
             <returns></returns>
         </member>
-        <member name="F:XCode.Entity`1.Meta._Count">
-            <summary>总记录数较小时，使用静态字段，较大时增加使用Cache</summary>
-        </member>
         <member name="P:XCode.Entity`1.Meta.ThisType">
             <summary>实体类型</summary>
+        </member>
+        <member name="P:XCode.Entity`1.Meta.Factory">
+            <summary>实体操作者</summary>
+        </member>
+        <member name="P:XCode.Entity`1.Meta.Session">
+            <summary>实体会话</summary>
         </member>
         <member name="P:XCode.Entity`1.Meta.Table">
             <summary>表信息</summary>
@@ -6550,20 +6818,11 @@
         <member name="P:XCode.Entity`1.Meta.Unique">
             <summary>唯一键，返回第一个标识列或者唯一的主键</summary>
         </member>
-        <member name="P:XCode.Entity`1.Meta.Factory">
-            <summary>实体操作者</summary>
-        </member>
-        <member name="P:XCode.Entity`1.Meta.Session">
-            <summary>实体会话</summary>
-        </member>
         <member name="P:XCode.Entity`1.Meta.DBO">
             <summary>数据操作对象。</summary>
         </member>
         <member name="E:XCode.Entity`1.Meta.OnDataChange">
             <summary>数据改变后触发。参数指定触发该事件的实体类</summary>
-        </member>
-        <member name="P:XCode.Entity`1.Meta.UsingTrans">
-            <summary>是否在事务保护中</summary>
         </member>
         <member name="P:XCode.Entity`1.Meta.Cache">
             <summary>实体缓存</summary>
@@ -6760,6 +7019,9 @@
             <summary>回滚事务</summary>
             <returns></returns>
         </member>
+        <member name="M:XCode.IEntityOperate.CreateTrans">
+            <summary>创建事务</summary>
+        </member>
         <member name="M:XCode.IEntityOperate.CreateParameter">
             <summary>创建参数</summary>
             <returns></returns>
@@ -6816,6 +7078,9 @@
         <member name="P:XCode.IEntityOperate.EntityType">
             <summary>实体类型</summary>
         </member>
+        <member name="P:XCode.IEntityOperate.Session">
+            <summary>实体会话</summary>
+        </member>
         <member name="P:XCode.IEntityOperate.Default">
             <summary>默认实体</summary>
         </member>
@@ -6858,6 +7123,9 @@
         <member name="P:XCode.IEntityOperate.AutoSetGuidField">
             <summary>自动设置Guid的字段。对实体类有效，可在实体类类型构造函数里面设置</summary>
         </member>
+        <member name="P:XCode.IEntityOperate.AdditionalFields">
+            <summary>默认累加字段</summary>
+        </member>
         <member name="M:XCode.Entity`1.EntityOperate.Create(System.Boolean)">
             <summary>创建一个实体对象</summary>
             <param name="forEdit">是否为了编辑而创建，如果是，可以再次做一些相关的初始化工作</param>
@@ -6894,8 +7162,7 @@
             <returns>实体数组</returns>
         </member>
         <member name="M:XCode.Entity`1.EntityOperate.FindAll(System.String,System.String,System.String,System.Int32,System.Int32)">
-            <summary>
-            查询并返回实体对象集合。
+            <summary>查询并返回实体对象集合。
             表名以及所有字段名，请使用类名以及字段对应的属性名，方法内转换为表名和列名
             </summary>
             <param name="whereClause">条件，不带Where</param>
@@ -7032,6 +7299,9 @@
             <summary>回滚事务</summary>
             <returns></returns>
         </member>
+        <member name="M:XCode.Entity`1.EntityOperate.CreateTrans">
+            <summary>创建事务</summary>
+        </member>
         <member name="M:XCode.Entity`1.EntityOperate.CreateParameter">
             <summary>创建参数</summary>
             <returns></returns>
@@ -7088,6 +7358,9 @@
         <member name="P:XCode.Entity`1.EntityOperate.EntityType">
             <summary>实体类型</summary>
         </member>
+        <member name="P:XCode.Entity`1.EntityOperate.Session">
+            <summary>实体会话</summary>
+        </member>
         <member name="P:XCode.Entity`1.EntityOperate.Default">
             <summary>默认实体</summary>
         </member>
@@ -7129,6 +7402,9 @@
         </member>
         <member name="P:XCode.Entity`1.EntityOperate.AutoSetGuidField">
             <summary>自动设置Guid的字段。对实体类有效，可在实体类类型构造函数里面设置</summary>
+        </member>
+        <member name="P:XCode.Entity`1.EntityOperate.AdditionalFields">
+            <summary>默认累加字段</summary>
         </member>
         <member name="T:XCode.Cache.EntityCache`1">
             <summary>实体缓存</summary>
@@ -7316,10 +7592,11 @@
             <param name="value">属性值</param>
             <returns></returns>
         </member>
-        <member name="M:XCode.EntityList`1.FindAll(System.String[],System.Object[])">
+        <member name="M:XCode.EntityList`1.FindAll(System.String[],System.Object[],System.Boolean)">
             <summary>根据指定项查找</summary>
             <param name="names">属性名集合</param>
             <param name="values">属性值集合</param>
+            <param name="ignoreCase">对于字符串字段是否忽略大小写</param>
             <returns></returns>
         </member>
         <member name="M:XCode.EntityList`1.FindAll(System.Predicate{`0})">
@@ -7906,256 +8183,6 @@
         <member name="P:XCode.Web.DbRunTimeModule.DbRunTimeFormat">
             <summary>执行时间字符串</summary>
         </member>
-        <member name="T:XCode.Test.MyEntity`1">
-            <summary>我的基类</summary>
-        </member>
-        <member name="T:XCode.Test.IEntityTest">
-            <summary>实体测试接口</summary>
-        </member>
-        <member name="P:XCode.Test.IEntityTest.Guid">
-            <summary>主键一</summary>
-        </member>
-        <member name="P:XCode.Test.IEntityTest.Guid2">
-            <summary>主键二</summary>
-        </member>
-        <member name="P:XCode.Test.IEntityTest.ID">
-            <summary>自增编号</summary>
-        </member>
-        <member name="P:XCode.Test.IEntityTest.ID2">
-            <summary>编号二</summary>
-        </member>
-        <member name="P:XCode.Test.IEntityTest.Name">
-            <summary>名称</summary>
-        </member>
-        <member name="P:XCode.Test.IEntityTest.Password">
-            <summary>密码</summary>
-        </member>
-        <member name="P:XCode.Test.IEntityTest.DisplayName">
-            <summary>显示名</summary>
-        </member>
-        <member name="P:XCode.Test.IEntityTest.IsEnable">
-            <summary>启用</summary>
-        </member>
-        <member name="P:XCode.Test.IEntityTest.Logins">
-            <summary>登录次数</summary>
-        </member>
-        <member name="P:XCode.Test.IEntityTest.LastLogin">
-            <summary>最后登陆</summary>
-        </member>
-        <member name="P:XCode.Test.IEntityTest.StartDate">
-            <summary>开始日期</summary>
-        </member>
-        <member name="P:XCode.Test.IEntityTest.EndTime">
-            <summary>结束时间</summary>
-        </member>
-        <member name="P:XCode.Test.IEntityTest.Total">
-            <summary>总数</summary>
-        </member>
-        <member name="P:XCode.Test.IEntityTest.Item2">
-            <summary>百分比</summary>
-        </member>
-        <member name="P:XCode.Test.IEntityTest.EntityTest2">
-            <summary>实数</summary>
-        </member>
-        <member name="P:XCode.Test.IEntityTest.Money">
-            <summary>金额</summary>
-        </member>
-        <member name="P:XCode.Test.IEntityTest.File">
-            <summary>文件</summary>
-        </member>
-        <member name="P:XCode.Test.IEntityTest.Remark">
-            <summary>备注一</summary>
-        </member>
-        <member name="P:XCode.Test.IEntityTest.Remark2">
-            <summary>备注二</summary>
-        </member>
-        <member name="P:XCode.Test.IEntityTest.Description">
-            <summary>说明</summary>
-        </member>
-        <member name="P:XCode.Test.IEntityTest.Item(System.String)">
-            <summary>获取/设置 字段值。</summary>
-            <param name="name">字段名</param>
-            <returns></returns>
-        </member>
-        <member name="T:XCode.Test.EntityTest`1">
-            <summary>实体测试</summary>
-            <summary>实体测试</summary>
-        </member>
-        <member name="M:XCode.Test.EntityTest`1.InitData">
-            <summary>初始化数据</summary>
-        </member>
-        <member name="M:XCode.Test.EntityTest`1.Test">
-            <summary>测试主方法</summary>
-        </member>
-        <member name="M:XCode.Test.EntityTest`1.FindByKeyForEdit(System.Guid,System.String)">
-            <summary>根据主键查询一个实体测试实体对象用于表单编辑</summary>
-            <param name="guid">主键一</param>
-            <param name="guid2">主键二</param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Test.EntityTest`1.FindByName(System.String)">
-            <summary>根据名称查找</summary>
-            <param name="name">名称</param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Test.EntityTest`1.FindAllByIsEnableAndStartDateAndEndTime(System.Boolean,System.DateTime,System.DateTime)">
-            <summary>根据启用、开始日期、结束时间查找</summary>
-            <param name="isenable">启用</param>
-            <param name="startdate">开始日期</param>
-            <param name="endtime">结束时间</param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Test.EntityTest`1.FindByID(System.SByte)">
-            <summary>根据自增编号查找</summary>
-            <param name="id">自增编号</param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Test.EntityTest`1.FindByGuidAndGuid2(System.Guid,System.String)">
-            <summary>根据主键一、主键二查找</summary>
-            <param name="guid">主键一</param>
-            <param name="guid2">主键二</param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Test.EntityTest`1.SearchWhere(System.String)">
-            <summary>构造搜索条件</summary>
-            <param name="key">关键字</param>
-            <returns></returns>
-        </member>
-        <member name="P:XCode.Test.EntityTest`1.Guid">
-            <summary>主键一</summary>
-        </member>
-        <member name="P:XCode.Test.EntityTest`1.Guid2">
-            <summary>主键二</summary>
-        </member>
-        <member name="P:XCode.Test.EntityTest`1.ID">
-            <summary>自增编号</summary>
-        </member>
-        <member name="P:XCode.Test.EntityTest`1.ID2">
-            <summary>编号二</summary>
-        </member>
-        <member name="P:XCode.Test.EntityTest`1.Name">
-            <summary>名称</summary>
-        </member>
-        <member name="P:XCode.Test.EntityTest`1.Password">
-            <summary>密码</summary>
-        </member>
-        <member name="P:XCode.Test.EntityTest`1.DisplayName">
-            <summary>显示名</summary>
-        </member>
-        <member name="P:XCode.Test.EntityTest`1.IsEnable">
-            <summary>启用</summary>
-        </member>
-        <member name="P:XCode.Test.EntityTest`1.Logins">
-            <summary>登录次数</summary>
-        </member>
-        <member name="P:XCode.Test.EntityTest`1.LastLogin">
-            <summary>最后登陆</summary>
-        </member>
-        <member name="P:XCode.Test.EntityTest`1.StartDate">
-            <summary>开始日期</summary>
-        </member>
-        <member name="P:XCode.Test.EntityTest`1.EndTime">
-            <summary>结束时间</summary>
-        </member>
-        <member name="P:XCode.Test.EntityTest`1.Total">
-            <summary>总数</summary>
-        </member>
-        <member name="P:XCode.Test.EntityTest`1.Item2">
-            <summary>百分比</summary>
-        </member>
-        <member name="P:XCode.Test.EntityTest`1.EntityTest2">
-            <summary>实数</summary>
-        </member>
-        <member name="P:XCode.Test.EntityTest`1.Money">
-            <summary>金额</summary>
-        </member>
-        <member name="P:XCode.Test.EntityTest`1.File">
-            <summary>文件</summary>
-        </member>
-        <member name="P:XCode.Test.EntityTest`1.Remark">
-            <summary>备注一</summary>
-        </member>
-        <member name="P:XCode.Test.EntityTest`1.Remark2">
-            <summary>备注二</summary>
-        </member>
-        <member name="P:XCode.Test.EntityTest`1.Description">
-            <summary>说明</summary>
-        </member>
-        <member name="P:XCode.Test.EntityTest`1.Item(System.String)">
-            <summary>
-            获取/设置 字段值。
-            一个索引，基类使用反射实现。
-            派生实体类可重写该索引，以避免反射带来的性能损耗
-            </summary>
-            <param name="name">字段名</param>
-            <returns></returns>
-        </member>
-        <member name="T:XCode.Test.EntityTest`1._">
-            <summary>取得实体测试字段信息的快捷方式</summary>
-        </member>
-        <member name="F:XCode.Test.EntityTest`1._.Guid">
-            <summary>主键一</summary>
-        </member>
-        <member name="F:XCode.Test.EntityTest`1._.Guid2">
-            <summary>主键二</summary>
-        </member>
-        <member name="F:XCode.Test.EntityTest`1._.ID">
-            <summary>自增编号</summary>
-        </member>
-        <member name="F:XCode.Test.EntityTest`1._.ID2">
-            <summary>编号二</summary>
-        </member>
-        <member name="F:XCode.Test.EntityTest`1._.Name">
-            <summary>名称</summary>
-        </member>
-        <member name="F:XCode.Test.EntityTest`1._.Password">
-            <summary>密码</summary>
-        </member>
-        <member name="F:XCode.Test.EntityTest`1._.DisplayName">
-            <summary>显示名</summary>
-        </member>
-        <member name="F:XCode.Test.EntityTest`1._.IsEnable">
-            <summary>启用</summary>
-        </member>
-        <member name="F:XCode.Test.EntityTest`1._.Logins">
-            <summary>登录次数</summary>
-        </member>
-        <member name="F:XCode.Test.EntityTest`1._.LastLogin">
-            <summary>最后登陆</summary>
-        </member>
-        <member name="F:XCode.Test.EntityTest`1._.StartDate">
-            <summary>开始日期</summary>
-        </member>
-        <member name="F:XCode.Test.EntityTest`1._.EndTime">
-            <summary>结束时间</summary>
-        </member>
-        <member name="F:XCode.Test.EntityTest`1._.Total">
-            <summary>总数</summary>
-        </member>
-        <member name="F:XCode.Test.EntityTest`1._.Item2">
-            <summary>百分比</summary>
-        </member>
-        <member name="F:XCode.Test.EntityTest`1._.EntityTest2">
-            <summary>实数</summary>
-        </member>
-        <member name="F:XCode.Test.EntityTest`1._.Money">
-            <summary>金额</summary>
-        </member>
-        <member name="F:XCode.Test.EntityTest`1._.File">
-            <summary>文件</summary>
-        </member>
-        <member name="F:XCode.Test.EntityTest`1._.Remark">
-            <summary>备注一</summary>
-        </member>
-        <member name="F:XCode.Test.EntityTest`1._.Remark2">
-            <summary>备注二</summary>
-        </member>
-        <member name="F:XCode.Test.EntityTest`1._.Description">
-            <summary>说明</summary>
-        </member>
-        <member name="T:XCode.Test.EntityTest">
-            <summary>实体测试</summary>
-        </member>
         <member name="T:XCode.EntityTree`1">
             <summary>主键为整型的实体树基类</summary>
             <typeparam name="TEntity"></typeparam>
@@ -8200,7 +8227,7 @@
             <summary>父节点</summary>
         </member>
         <member name="M:XCode.EntityTree`2.FindByKeyWithCache(`0)">
-            <summary>父节点</summary>
+            <summary>在缓存中查找节点</summary>
         </member>
         <member name="M:XCode.EntityTree`2.FindAllByParent(`0)">
             <summary>根据父级查找所有子级，带排序功能</summary>

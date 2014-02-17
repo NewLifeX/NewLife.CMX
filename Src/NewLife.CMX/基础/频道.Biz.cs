@@ -56,8 +56,8 @@ namespace NewLife.CMX
             // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
             if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Channel).Name, Meta.Table.DataTable.DisplayName);
 
-            Model.Meta.WaitForInitData(3000);
-            foreach (var item in Model.Meta.Cache.Entities)
+            Model.Meta.Session.WaitForInitData(3000);
+            foreach (var item in Model.Meta.Session.Cache.Entities)
             {
                 var entity = new Channel();
                 entity.ModelID = item.ID;

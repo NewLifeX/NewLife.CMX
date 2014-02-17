@@ -547,9 +547,6 @@
         <member name="P:NewLife.Collections.SafeStack`1.Capacity">
             <summary>最大容量</summary>
         </member>
-        <member name="P:NewLife.Collections.SafeStack`1.Avg">
-            <summary>平均</summary>
-        </member>
         <member name="T:NewLife.Collections.ISafeStackItem">
             <summary>安全栈项接口。采用安全栈存储的数据必须实现该接口</summary>
         </member>
@@ -2509,7 +2506,7 @@
             <returns></returns>
         </member>
         <member name="T:NewLife.Net.ITransport">
-            <summary>传输接口</summary>
+            <summary>帧数据传输接口</summary>
             <remarks>实现者确保数据以包的形式传输，屏蔽数据的粘包和拆包</remarks>
         </member>
         <member name="M:NewLife.Net.ITransport.Open">
@@ -4710,8 +4707,10 @@
             <returns></returns>
         </member>
         <member name="M:System.StringHelper.LevenshteinDistance(System.String,System.String)">
-            <summary>编辑距离，又称Levenshtein距离（也叫做Edit Distance），是指两个字串之间，由一个转成另一个所需的最少编辑操作次数。许可的编辑操作包括将一个字符替换成另一个字符，插入一个字符，删除一个字符。</summary>
+            <summary>编辑距离</summary>
             <remarks>
+            又称Levenshtein距离（也叫做Edit Distance），是指两个字串之间，由一个转成另一个所需的最少编辑操作次数。
+            许可的编辑操作包括将一个字符替换成另一个字符，插入一个字符，删除一个字符。
             算法代码由@Aimeast 独立完成。http://www.cnblogs.com/Aimeast/archive/2011/09/05/2167844.html
             </remarks>
             <param name="str1"></param>
@@ -5103,12 +5102,12 @@
         </member>
         <member name="M:System.IOHelper.Compress(System.Byte[])">
             <summary>压缩字节数组</summary>
-            <param name="data"></param>
+            <param name="data">字节数组</param>
             <returns></returns>
         </member>
         <member name="M:System.IOHelper.Decompress(System.Byte[])">
             <summary>解压缩字节数组</summary>
-            <param name="data"></param>
+            <param name="data">字节数组</param>
             <returns></returns>
         </member>
         <member name="M:System.IOHelper.CompressGZip(System.IO.Stream,System.IO.Stream)">
@@ -5131,6 +5130,20 @@
             <param name="max">最大复制字节数</param>
             <returns>返回复制的总字节数</returns>
         </member>
+        <member name="M:System.IOHelper.Write(System.IO.Stream,System.IO.Stream,System.Int32,System.Int32)">
+            <summary>把一个数据流写入到另一个数据流</summary>
+            <param name="des">目的数据流</param>
+            <param name="src">源数据流</param>
+            <param name="bufferSize">缓冲区大小，也就是每次复制的大小</param>
+            <param name="max">最大复制字节数</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.IOHelper.Write(System.IO.Stream,System.Byte[])">
+            <summary>把一个字节数组写入到一个数据流</summary>
+            <param name="des">目的数据流</param>
+            <param name="src">源数据流</param>
+            <returns></returns>
+        </member>
         <member name="M:System.IOHelper.ReadBytes(System.Byte[],System.Int32,System.Int32)">
             <summary>复制数组</summary>
             <param name="src">源数组</param>
@@ -5138,15 +5151,28 @@
             <param name="count">复制字节数</param>
             <returns>返回复制的总字节数</returns>
         </member>
+        <member name="M:System.IOHelper.Combine(System.Byte[],System.Byte[],System.Int32,System.Int32)">
+            <summary>合并两个数组</summary>
+            <param name="src">源数组</param>
+            <param name="des">目标数组</param>
+            <param name="offset">起始位置</param>
+            <param name="count">字节数</param>
+            <returns></returns>
+        </member>
         <member name="M:System.IOHelper.ReadBytes(System.IO.Stream,System.Int64)">
-            <summary>流转为字节数组</summary>
+            <summary>数据流转为字节数组</summary>
             <remarks>
             针对MemoryStream进行优化。内存流的Read实现是一个个字节复制，而ToArray是调用内部内存复制方法
             如果要读完数据，又不支持定位，则采用内存流搬运
             如果指定长度超过数据流长度，就让其报错，因为那是调用者所期望的值
             </remarks>
             <param name="stream">数据流</param>
-            <param name="length">长度</param>
+            <param name="length">长度，0表示读到结束</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.IOHelper.ToArray(System.IO.Stream)">
+            <summary>数据流转为字节数组，从0开始，无视数据流的当前位置</summary>
+            <param name="stream">数据流</param>
             <returns></returns>
         </member>
         <member name="M:System.IOHelper.ReadTo(System.IO.Stream,System.Byte[],System.Int64,System.Int64)">
@@ -5248,6 +5274,39 @@
             <param name="buffer">缓冲区</param>
             <returns></returns>
         </member>
+        <member name="M:System.IOHelper.Reverse(System.Byte[])">
+            <summary>倒序、更换字节序</summary>
+            <param name="buf">字节数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.IOHelper.ToHex(System.Byte[],System.Int32,System.Int32)">
+            <summary>把字节数组编码为十六进制字符串</summary>
+            <param name="data">字节数组</param>
+            <param name="offset">偏移</param>
+            <param name="count">数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.IOHelper.ToHex(System.Byte[],System.String,System.Int32)">
+            <summary>把字节数组编码为十六进制字符串，带有分隔符和分组功能</summary>
+            <param name="data">字节数组</param>
+            <param name="separate">分隔符</param>
+            <param name="groupSize">分组大小，为0时对每个字节应用分隔符，否则对每个分组使用</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.IOHelper.FromHex(System.String,System.Int32,System.Int32)">
+            <summary>把十六进制字符串解码字节数组</summary>
+            <param name="data">字节数组</param>
+            <param name="startIndex">起始位置</param>
+            <param name="length">长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.IOHelper.ToHex(System.String,System.Int32,System.Int32)">
+            <summary>解密</summary>
+            <param name="data">Hex编码的字符串</param>
+            <param name="startIndex">起始位置</param>
+            <param name="length">长度</param>
+            <returns></returns>
+        </member>
         <member name="T:NewLife.Log.TraceStream">
             <summary>跟踪流。包装一个基础数据流，主要用于重写Read/Write等行为，跟踪程序操作数据流的过程</summary>
         </member>
@@ -5339,7 +5398,7 @@
             </remarks>
         </member>
         <member name="P:NewLife.Log.TraceStream.ShowPositionStep">
-            <summary>显示位置的步长，位移超过此长度后输出位置。默认10，设为0不输出位置</summary>
+            <summary>显示位置的步长，位移超过此长度后输出位置。默认16，设为0不输出位置</summary>
         </member>
         <member name="P:NewLife.Log.TraceStream.CanRead">
             <summary>可读</summary>
@@ -6262,9 +6321,6 @@
         <member name="P:NewLife.Reflection.Reflect.Provider">
             <summary>当前反射提供者</summary>
         </member>
-        <member name="T:NewLife.Reflection.ReflectHelper">
-            <summary>反射助手。全部为扩展方法，类名可能改变</summary>
-        </member>
         <member name="T:NewLife.Reflection.EventInfoX">
             <summary>事件扩展</summary>
         </member>
@@ -6461,6 +6517,10 @@
         <member name="M:NewLife.Reflection.ScriptEngine.GenerateCode">
             <summary>生成代码。根据<see cref="P:NewLife.Reflection.ScriptEngine.Code"/>完善得到最终代码<see cref="P:NewLife.Reflection.ScriptEngine.FinalCode"/></summary>
         </member>
+        <member name="M:NewLife.Reflection.ScriptEngine.GetFullCode">
+            <summary>获取完整源代码</summary>
+            <returns></returns>
+        </member>
         <member name="M:NewLife.Reflection.ScriptEngine.Compile">
             <summary>编译</summary>
         </member>
@@ -6500,6 +6560,9 @@
         </member>
         <member name="P:NewLife.Reflection.ScriptEngine.ReferencedAssemblies">
             <summary>引用程序集集合</summary>
+        </member>
+        <member name="P:NewLife.Reflection.ScriptEngine.Log">
+            <summary>日志</summary>
         </member>
         <member name="T:NewLife.Security.Certificate">
             <summary>证书</summary>
@@ -7639,8 +7702,170 @@
         <member name="P:NewLife.Serialization.BinaryReaderX.Stream">
             <summary>数据流。更改数据流后，重置Reader为空，以使用新的数据流</summary>
         </member>
-        <member name="T:NewLife.Serialization.Binary.BinaryReadWrite">
-            <summary>二进制读写</summary>
+        <member name="T:NewLife.Serialization.Binary">
+            <summary>二进制序列化</summary>
+        </member>
+        <member name="T:NewLife.Serialization.IBinary">
+            <summary>二进制序列化接口</summary>
+        </member>
+        <member name="T:NewLife.Serialization.IFormatterX">
+            <summary>序列化接口</summary>
+        </member>
+        <member name="M:NewLife.Serialization.IFormatterX.Write(System.Object,System.Type)">
+            <summary>写入一个对象</summary>
+            <param name="value">目标对象</param>
+            <param name="type">类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.IFormatterX.Read(System.Type)">
+            <summary>读取指定类型对象</summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.IFormatterX.TryRead(System.Type,System.Object@)">
+            <summary>尝试读取指定类型对象</summary>
+            <param name="type"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.IBinary.Write(System.Byte)">
+            <summary>写入字节</summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:NewLife.Serialization.IBinary.Write(System.Byte[],System.Int32,System.Int32)">
+            <summary>将字节数组部分写入当前流，不写入数组长度。</summary>
+            <param name="buffer">包含要写入的数据的字节数组。</param>
+            <param name="offset">buffer 中开始写入的起始点。</param>
+            <param name="count">要写入的字节数。</param>
+        </member>
+        <member name="M:NewLife.Serialization.IBinary.WriteSize(System.Int32)">
+            <summary>写入大小</summary>
+            <param name="size"></param>
+        </member>
+        <member name="M:NewLife.Serialization.IBinary.ReadByte">
+            <summary>读取字节</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.IBinary.ReadSize">
+            <summary>读取大小</summary>
+            <returns></returns>
+        </member>
+        <member name="P:NewLife.Serialization.IBinary.EncodeInt">
+            <summary>编码整数</summary>
+        </member>
+        <member name="P:NewLife.Serialization.IBinary.IsLittleEndian">
+            <summary>小端字节序</summary>
+        </member>
+        <member name="P:NewLife.Serialization.IBinary.Encoding">
+            <summary>文本编码</summary>
+        </member>
+        <member name="P:NewLife.Serialization.IBinary.Handlers">
+            <summary>处理器列表</summary>
+        </member>
+        <member name="M:NewLife.Serialization.Binary.#ctor">
+            <summary>实例化</summary>
+        </member>
+        <member name="M:NewLife.Serialization.Binary.AddHandler(NewLife.Serialization.IBinaryHandler)">
+            <summary>添加处理器</summary>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.Binary.AddHandler``1(System.Int32)">
+            <summary>添加处理器</summary>
+            <typeparam name="THandler"></typeparam>
+            <param name="priority"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.Binary.Write(System.Object,System.Type)">
+            <summary>写入一个对象</summary>
+            <param name="value">目标对象</param>
+            <param name="type">类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.Binary.Write(System.Byte)">
+            <summary>写入字节</summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:NewLife.Serialization.Binary.Write(System.Byte[],System.Int32,System.Int32)">
+            <summary>将字节数组部分写入当前流，不写入数组长度。</summary>
+            <param name="buffer">包含要写入的数据的字节数组。</param>
+            <param name="offset">buffer 中开始写入的起始点。</param>
+            <param name="count">要写入的字节数。</param>
+        </member>
+        <member name="M:NewLife.Serialization.Binary.WriteSize(System.Int32)">
+            <summary>写入大小</summary>
+            <param name="size"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.Binary.WriteEncoded(System.Int32)">
+            <summary>
+            以7位压缩格式写入32位整数，小于7位用1个字节，小于14位用2个字节。
+            由每次写入的一个字节的第一位标记后面的字节是否还是当前数据，所以每个字节实际可利用存储空间只有后7位。
+            </summary>
+            <param name="value">数值</param>
+            <returns>实际写入字节数</returns>
+        </member>
+        <member name="M:NewLife.Serialization.Binary.Read(System.Type)">
+            <summary>读取指定类型对象</summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.Binary.TryRead(System.Type,System.Object@)">
+            <summary>尝试读取指定类型对象</summary>
+            <param name="type"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.Binary.ReadByte">
+            <summary>读取字节</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.Binary.ReadSize">
+            <summary>读取大小</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.Binary.ReadIntBytes(System.Int32)">
+            <summary>读取整数的字节数组，某些写入器（如二进制写入器）可能需要改变字节顺序</summary>
+            <param name="count">数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.Binary.ReadInt16">
+            <summary>从当前流中读取 2 字节有符号整数，并使流的当前位置提升 2 个字节。</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.Binary.ReadInt32">
+            <summary>从当前流中读取 4 字节有符号整数，并使流的当前位置提升 4 个字节。</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.Binary.ReadEncodedInt16">
+            <summary>以压缩格式读取16位整数</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.Binary.ReadEncodedInt32">
+            <summary>以压缩格式读取32位整数</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.Binary.ReadEncodedInt64">
+            <summary>以压缩格式读取64位整数</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.Binary.EnableTrace">
+            <summary>使用跟踪流。实际上是重新包装一次Stream，必须在设置Stream，使用之前</summary>
+        </member>
+        <member name="P:NewLife.Serialization.Binary.Stream">
+            <summary>数据流</summary>
+        </member>
+        <member name="P:NewLife.Serialization.Binary.EncodeInt">
+            <summary>使用7位编码整数</summary>
+        </member>
+        <member name="P:NewLife.Serialization.Binary.IsLittleEndian">
+            <summary>小端字节序</summary>
+        </member>
+        <member name="P:NewLife.Serialization.Binary.Encoding">
+            <summary>字符串编码</summary>
+        </member>
+        <member name="P:NewLife.Serialization.Binary.Handlers">
+            <summary>处理器列表</summary>
         </member>
         <member name="T:NewLife.Serialization.BinarySettings">
             <summary>二进制序列化设置</summary>
@@ -8369,6 +8594,78 @@
         <member name="P:NewLife.Serialization.BinaryWriterX.Stream">
             <summary>数据流。更改数据流后，重置Writer为空，以使用新的数据流</summary>
         </member>
+        <member name="T:NewLife.Serialization.BinaryComposite">
+            <summary>复合对象处理器</summary>
+        </member>
+        <member name="T:NewLife.Serialization.BinaryHandlerBase">
+            <summary>二进制读写处理器基类</summary>
+        </member>
+        <member name="T:NewLife.Serialization.IBinaryHandler">
+            <summary>二进制读写处理器接口</summary>
+        </member>
+        <member name="M:NewLife.Serialization.IBinaryHandler.Write(System.Object,System.Type)">
+            <summary>写入一个对象</summary>
+            <param name="value">目标对象</param>
+            <param name="type">类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.IBinaryHandler.TryRead(System.Type,System.Object@)">
+            <summary>尝试读取指定类型对象</summary>
+            <param name="type"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="P:NewLife.Serialization.IBinaryHandler.Host">
+            <summary>宿主读写器</summary>
+        </member>
+        <member name="P:NewLife.Serialization.IBinaryHandler.Priority">
+            <summary>优先级</summary>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryHandlerBase.Write(System.Object,System.Type)">
+            <summary>写入一个对象</summary>
+            <param name="value">目标对象</param>
+            <param name="type">类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryHandlerBase.TryRead(System.Type,System.Object@)">
+            <summary>尝试读取指定类型对象</summary>
+            <param name="type"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="P:NewLife.Serialization.BinaryHandlerBase.Host">
+            <summary>宿主读写器</summary>
+        </member>
+        <member name="P:NewLife.Serialization.BinaryHandlerBase.Priority">
+            <summary>优先级</summary>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryComposite.#ctor">
+            <summary>实例化</summary>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryComposite.Write(System.Object,System.Type)">
+            <summary>写入对象</summary>
+            <param name="value">目标对象</param>
+            <param name="type">类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryComposite.TryRead(System.Type,System.Object@)">
+            <summary>尝试读取指定类型对象</summary>
+            <param name="type"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryComposite.GetMembers(System.Type,System.Boolean)">
+            <summary>获取成员</summary>
+            <param name="type"></param>
+            <param name="baseFirst"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryComposite.GetFields(System.Type,System.Boolean)">
+            <summary>获取字段</summary>
+            <param name="type"></param>
+            <param name="baseFirst"></param>
+            <returns></returns>
+        </member>
         <member name="T:NewLife.Serialization.FieldSizeAttribute">
             <summary>字段大小特性。</summary>
             <remarks>
@@ -8414,130 +8711,189 @@
         <member name="P:NewLife.Serialization.FieldSizeAttribute.ReferenceName">
             <summary>参考大小字段名</summary>
         </member>
-        <member name="T:NewLife.Serialization.Binary.BinaryGeneral">
+        <member name="T:NewLife.Serialization.BinaryGeneral">
             <summary>二进制基础类型处理器</summary>
         </member>
-        <member name="T:NewLife.Serialization.BinaryReadWriteHandlerBase">
-            <summary>二进制读写处理器基类</summary>
+        <member name="M:NewLife.Serialization.BinaryGeneral.#ctor">
+            <summary>实例化</summary>
         </member>
-        <member name="T:NewLife.Serialization.IBinaryReadWriteHandler">
-            <summary>二进制读写处理器接口</summary>
-        </member>
-        <member name="M:NewLife.Serialization.IBinaryReadWriteHandler.Write(System.Object)">
-            <summary>写入一个对象</summary>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="P:NewLife.Serialization.IBinaryReadWriteHandler.Host">
-            <summary>宿主读写器</summary>
-        </member>
-        <member name="M:NewLife.Serialization.BinaryReadWriteHandlerBase.Write(System.Object)">
-            <summary>写入一个对象</summary>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="P:NewLife.Serialization.BinaryReadWriteHandlerBase.Host">
-            <summary>宿主读写器</summary>
-        </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.Write(System.Object)">
+        <member name="M:NewLife.Serialization.BinaryGeneral.Write(System.Object,System.Type)">
             <summary>写入一个对象</summary>
             <param name="value">目标对象</param>
+            <param name="type">类型</param>
             <returns>是否处理成功</returns>
         </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.Write(System.Byte)">
+        <member name="M:NewLife.Serialization.BinaryGeneral.TryRead(System.Type,System.Object@)">
+            <summary>尝试读取指定类型对象</summary>
+            <param name="type"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryGeneral.Write(System.Byte)">
             <summary>将一个无符号字节写入</summary>
             <param name="value">要写入的无符号字节。</param>
         </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.Write(System.Byte[])">
+        <member name="M:NewLife.Serialization.BinaryGeneral.Write(System.Byte[])">
             <summary>将字节数组写入，如果设置了UseSize，则先写入数组长度。</summary>
             <param name="buffer">包含要写入的数据的字节数组。</param>
         </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.Write(System.SByte)">
+        <member name="M:NewLife.Serialization.BinaryGeneral.Write(System.SByte)">
             <summary>将一个有符号字节写入当前流，并将流的位置提升 1 个字节。</summary>
             <param name="value">要写入的有符号字节。</param>
         </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.Write(System.Byte[],System.Int32,System.Int32)">
+        <member name="M:NewLife.Serialization.BinaryGeneral.Write(System.Byte[],System.Int32,System.Int32)">
             <summary>将字节数组部分写入当前流，不写入数组长度。</summary>
             <param name="buffer">包含要写入的数据的字节数组。</param>
-            <param name="index">buffer 中开始写入的起始点。</param>
+            <param name="offset">buffer 中开始写入的起始点。</param>
             <param name="count">要写入的字节数。</param>
         </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.Write(System.Byte[],System.Int32)">
+        <member name="M:NewLife.Serialization.BinaryGeneral.Write(System.Byte[],System.Int32)">
             <summary>写入字节数组，自动计算长度</summary>
             <param name="buffer">缓冲区</param>
             <param name="count">数量</param>
         </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.Write(System.Int16)">
+        <member name="M:NewLife.Serialization.BinaryGeneral.Write(System.Int16)">
             <summary>将 2 字节有符号整数写入当前流，并将流的位置提升 2 个字节。</summary>
             <param name="value">要写入的 2 字节有符号整数。</param>
         </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.Write(System.Int32)">
+        <member name="M:NewLife.Serialization.BinaryGeneral.Write(System.Int32)">
             <summary>将 4 字节有符号整数写入当前流，并将流的位置提升 4 个字节。</summary>
             <param name="value">要写入的 4 字节有符号整数。</param>
         </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.Write(System.Int64)">
+        <member name="M:NewLife.Serialization.BinaryGeneral.Write(System.Int64)">
             <summary>将 8 字节有符号整数写入当前流，并将流的位置提升 8 个字节。</summary>
             <param name="value">要写入的 8 字节有符号整数。</param>
         </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.WriteIntBytes(System.Byte[])">
+        <member name="M:NewLife.Serialization.BinaryGeneral.WriteIntBytes(System.Byte[])">
             <summary>判断字节顺序</summary>
             <param name="buffer">缓冲区</param>
         </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.Write(System.UInt16)">
+        <member name="M:NewLife.Serialization.BinaryGeneral.Write(System.UInt16)">
             <summary>将 2 字节无符号整数写入当前流，并将流的位置提升 2 个字节。</summary>
             <param name="value">要写入的 2 字节无符号整数。</param>
         </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.Write(System.UInt32)">
+        <member name="M:NewLife.Serialization.BinaryGeneral.Write(System.UInt32)">
             <summary>将 4 字节无符号整数写入当前流，并将流的位置提升 4 个字节。</summary>
             <param name="value">要写入的 4 字节无符号整数。</param>
         </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.Write(System.UInt64)">
+        <member name="M:NewLife.Serialization.BinaryGeneral.Write(System.UInt64)">
             <summary>将 8 字节无符号整数写入当前流，并将流的位置提升 8 个字节。</summary>
             <param name="value">要写入的 8 字节无符号整数。</param>
         </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.Write(System.Single)">
+        <member name="M:NewLife.Serialization.BinaryGeneral.Write(System.Single)">
             <summary>将 4 字节浮点值写入当前流，并将流的位置提升 4 个字节。</summary>
             <param name="value">要写入的 4 字节浮点值。</param>
         </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.Write(System.Double)">
+        <member name="M:NewLife.Serialization.BinaryGeneral.Write(System.Double)">
             <summary>将 8 字节浮点值写入当前流，并将流的位置提升 8 个字节。</summary>
             <param name="value">要写入的 8 字节浮点值。</param>
         </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.Write(System.Char)">
+        <member name="M:NewLife.Serialization.BinaryGeneral.Write(System.Char)">
             <summary>将 Unicode 字符写入当前流，并根据所使用的 Encoding 和向流中写入的特定字符，提升流的当前位置。</summary>
             <param name="ch">要写入的非代理项 Unicode 字符。</param>
         </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.Write(System.Char[])">
+        <member name="M:NewLife.Serialization.BinaryGeneral.Write(System.Char[])">
             <summary>将字符数组写入当前流，并根据所使用的 Encoding 和向流中写入的特定字符，提升流的当前位置。</summary>
             <param name="chars">包含要写入的数据的字符数组。</param>
         </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.Write(System.Char[],System.Int32,System.Int32)">
+        <member name="M:NewLife.Serialization.BinaryGeneral.Write(System.Char[],System.Int32,System.Int32)">
             <summary>将字符数组部分写入当前流，并根据所使用的 Encoding（可能还根据向流中写入的特定字符），提升流的当前位置。</summary>
             <param name="chars">包含要写入的数据的字符数组。</param>
             <param name="index">chars 中开始写入的起始点。</param>
             <param name="count">要写入的字符数。</param>
         </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.Write(System.String)">
+        <member name="M:NewLife.Serialization.BinaryGeneral.Write(System.String)">
             <summary>写入字符串</summary>
             <param name="value">要写入的值。</param>
         </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.Write(System.DateTime)">
+        <member name="M:NewLife.Serialization.BinaryGeneral.Write(System.DateTime)">
             <summary>将一个时间日期写入</summary>
             <param name="value">数值</param>
         </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.Write(System.Boolean)">
-            <summary>将单字节 Boolean 值写入</summary>
-            <param name="value">要写入的 Boolean 值</param>
-        </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.Write(System.Decimal)">
+        <member name="M:NewLife.Serialization.BinaryGeneral.Write(System.Decimal)">
             <summary>将一个十进制值写入当前流，并将流位置提升十六个字节。</summary>
             <param name="value">要写入的十进制值。</param>
         </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.Write(System.Guid)">
+        <member name="M:NewLife.Serialization.BinaryGeneral.Write(System.Guid)">
             <summary>写入Guid</summary>
             <param name="value">数值</param>
         </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.WriteEncoded(System.Int16)">
+        <member name="M:NewLife.Serialization.BinaryGeneral.ReadByte">
+            <summary>从当前流中读取下一个字节，并使流的当前位置提升 1 个字节。</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryGeneral.ReadBytes(System.Int32)">
+            <summary>从当前流中将 count 个字节读入字节数组，如果count小于0，则先读取字节数组长度。</summary>
+            <param name="count">要读取的字节数。</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryGeneral.ReadSByte">
+            <summary>从此流中读取一个有符号字节，并使流的当前位置提升 1 个字节。</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryGeneral.ReadIntBytes(System.Int32)">
+            <summary>读取整数的字节数组，某些写入器（如二进制写入器）可能需要改变字节顺序</summary>
+            <param name="count">数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryGeneral.ReadInt16">
+            <summary>从当前流中读取 2 字节有符号整数，并使流的当前位置提升 2 个字节。</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryGeneral.ReadInt32">
+            <summary>从当前流中读取 4 字节有符号整数，并使流的当前位置提升 4 个字节。</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryGeneral.ReadInt64">
+            <summary>从当前流中读取 8 字节有符号整数，并使流的当前位置向前移动 8 个字节。</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryGeneral.ReadUInt16">
+            <summary>使用 Little-Endian 编码从当前流中读取 2 字节无符号整数，并将流的位置提升 2 个字节。</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryGeneral.ReadUInt32">
+            <summary>从当前流中读取 4 字节无符号整数并使流的当前位置提升 4 个字节。</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryGeneral.ReadUInt64">
+            <summary>从当前流中读取 8 字节无符号整数并使流的当前位置提升 8 个字节。</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryGeneral.ReadSingle">
+            <summary>从当前流中读取 4 字节浮点值，并使流的当前位置提升 4 个字节。</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryGeneral.ReadDouble">
+            <summary>从当前流中读取 8 字节浮点值，并使流的当前位置提升 8 个字节。</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryGeneral.ReadChar">
+            <summary>从当前流中读取下一个字符，并根据所使用的 Encoding 和从流中读取的特定字符，提升流的当前位置。</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryGeneral.ReadChars(System.Int32)">
+            <summary>从当前流中读取 count 个字符，以字符数组的形式返回数据，并根据所使用的 Encoding 和从流中读取的特定字符，提升当前位置。</summary>
+            <param name="count">要读取的字符数。</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryGeneral.ReadString">
+            <summary>从当前流中读取一个字符串。字符串有长度前缀，一次 7 位地被编码为整数。</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryGeneral.ReadBoolean">
+            <summary>从当前流中读取 Boolean 值，并使该流的当前位置提升 1 个字节。</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryGeneral.ReadDecimal">
+            <summary>从当前流中读取十进制数值，并将该流的当前位置提升十六个字节。</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryGeneral.ReadDateTime">
+            <summary>读取一个时间日期</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.BinaryGeneral.WriteEncoded(System.Int16)">
             <summary>
             以7位压缩格式写入32位整数，小于7位用1个字节，小于14位用2个字节。
             由每次写入的一个字节的第一位标记后面的字节是否还是当前数据，所以每个字节实际可利用存储空间只有后7位。
@@ -8545,7 +8901,7 @@
             <param name="value">数值</param>
             <returns>实际写入字节数</returns>
         </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.WriteEncoded(System.Int32)">
+        <member name="M:NewLife.Serialization.BinaryGeneral.WriteEncoded(System.Int32)">
             <summary>
             以7位压缩格式写入32位整数，小于7位用1个字节，小于14位用2个字节。
             由每次写入的一个字节的第一位标记后面的字节是否还是当前数据，所以每个字节实际可利用存储空间只有后7位。
@@ -8553,7 +8909,7 @@
             <param name="value">数值</param>
             <returns>实际写入字节数</returns>
         </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.WriteEncoded(System.Int64)">
+        <member name="M:NewLife.Serialization.BinaryGeneral.WriteEncoded(System.Int64)">
             <summary>
             以7位压缩格式写入64位整数，小于7位用1个字节，小于14位用2个字节。
             由每次写入的一个字节的第一位标记后面的字节是否还是当前数据，所以每个字节实际可利用存储空间只有后7位。
@@ -8561,37 +8917,10 @@
             <param name="value">数值</param>
             <returns>实际写入字节数</returns>
         </member>
-        <member name="M:NewLife.Serialization.Binary.BinaryGeneral.GetEncodedIntSize(System.Int64)">
+        <member name="M:NewLife.Serialization.BinaryGeneral.GetEncodedIntSize(System.Int64)">
             <summary>获取整数编码后所占字节数</summary>
             <param name="value">数值</param>
             <returns></returns>
-        </member>
-        <member name="T:NewLife.Serialization.IBinaryReadWrite">
-            <summary>二进制读写接口</summary>
-        </member>
-        <member name="M:NewLife.Serialization.IBinaryReadWrite.Write(System.Object)">
-            <summary>写入一个对象</summary>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Serialization.IBinaryReadWrite.Write(System.Byte)">
-            <summary>写入字节</summary>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Serialization.IBinaryReadWrite.WriteSize(System.Int32)">
-            <summary>写入大小</summary>
-            <param name="size"></param>
-            <returns></returns>
-        </member>
-        <member name="P:NewLife.Serialization.IBinaryReadWrite.EncodeInt">
-            <summary>编码整数</summary>
-        </member>
-        <member name="P:NewLife.Serialization.IBinaryReadWrite.IsLittleEndian">
-            <summary>小端字节序</summary>
-        </member>
-        <member name="P:NewLife.Serialization.IBinaryReadWrite.Encoding">
-            <summary>文本编码</summary>
         </member>
         <member name="T:NewLife.Serialization.JsonAtomStringReader">
              <summary>Json 原子元素读取器</summary>
@@ -9094,7 +9423,7 @@
             <returns>是否写入成功</returns>
         </member>
         <member name="T:NewLife.IO.Json">
-            <summary>Json</summary>
+            <summary>Json序列化，源自于FX3.5</summary>
         </member>
         <member name="M:NewLife.IO.Json.ConvertToType``1(System.Object)">
             <summary></summary>
@@ -10720,6 +11049,152 @@
         <member name="T:NewLife.Serialization.RWService">
             <summary>读写器服务。将来可以改为对象容器支持</summary>
         </member>
+        <member name="T:NewLife.Serialization.XmlComposite">
+            <summary>Xml复合对象处理器</summary>
+        </member>
+        <member name="T:NewLife.Serialization.XmlHandlerBase">
+            <summary>Xml读写处理器基类</summary>
+        </member>
+        <member name="T:NewLife.Serialization.IXmlHandler">
+            <summary>二进制读写处理器接口</summary>
+        </member>
+        <member name="M:NewLife.Serialization.IXmlHandler.Write(System.Object,System.Type)">
+            <summary>写入一个对象</summary>
+            <param name="value">目标对象</param>
+            <param name="type">类型</param>
+            <returns></returns>
+        </member>
+        <member name="P:NewLife.Serialization.IXmlHandler.Host">
+            <summary>宿主读写器</summary>
+        </member>
+        <member name="P:NewLife.Serialization.IXmlHandler.Priority">
+            <summary>优先级</summary>
+        </member>
+        <member name="M:NewLife.Serialization.XmlHandlerBase.Write(System.Object,System.Type)">
+            <summary>写入一个对象</summary>
+            <param name="value">目标对象</param>
+            <param name="type">类型</param>
+            <returns></returns>
+        </member>
+        <member name="P:NewLife.Serialization.XmlHandlerBase.Host">
+            <summary>宿主读写器</summary>
+        </member>
+        <member name="P:NewLife.Serialization.XmlHandlerBase.Priority">
+            <summary>优先级</summary>
+        </member>
+        <member name="M:NewLife.Serialization.XmlComposite.#ctor">
+            <summary>实例化</summary>
+        </member>
+        <member name="M:NewLife.Serialization.XmlComposite.Write(System.Object,System.Type)">
+            <summary>写入对象</summary>
+            <param name="value">目标对象</param>
+            <param name="type">类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.XmlComposite.GetMembers(System.Type)">
+            <summary>获取成员</summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.XmlComposite.GetProperties(System.Type)">
+            <summary>获取字段</summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Serialization.XmlGeneral">
+            <summary>Xml基础类型处理器</summary>
+        </member>
+        <member name="M:NewLife.Serialization.XmlGeneral.#ctor">
+            <summary>实例化</summary>
+        </member>
+        <member name="M:NewLife.Serialization.XmlGeneral.Write(System.Object,System.Type)">
+            <summary>写入一个对象</summary>
+            <param name="value">目标对象</param>
+            <param name="type">类型</param>
+            <returns>是否处理成功</returns>
+        </member>
+        <member name="T:NewLife.Serialization.IXml">
+            <summary>二进制序列化接口</summary>
+        </member>
+        <member name="M:NewLife.Serialization.IXml.Write(System.Object,System.String,System.Type)">
+            <summary>写入一个对象</summary>
+            <param name="value">目标对象</param>
+            <param name="name">名称</param>
+            <param name="type">类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.IXml.GetWriter">
+            <summary>获取Xml写入器</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.IXml.GetReader">
+            <summary>获取Xml读取器</summary>
+            <returns></returns>
+        </member>
+        <member name="P:NewLife.Serialization.IXml.Encoding">
+            <summary>编码</summary>
+        </member>
+        <member name="P:NewLife.Serialization.IXml.Handlers">
+            <summary>处理器列表</summary>
+        </member>
+        <member name="T:NewLife.Serialization.Xml">
+            <summary>Xml序列化</summary>
+        </member>
+        <member name="M:NewLife.Serialization.Xml.#ctor">
+            <summary>实例化</summary>
+        </member>
+        <member name="M:NewLife.Serialization.Xml.AddHandler(NewLife.Serialization.IXmlHandler)">
+            <summary>添加处理器</summary>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.Xml.AddHandler``1(System.Int32)">
+            <summary>添加处理器</summary>
+            <typeparam name="THandler"></typeparam>
+            <param name="priority"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.Xml.Write(System.Object,System.String,System.Type)">
+            <summary>写入一个对象</summary>
+            <param name="value">目标对象</param>
+            <param name="name">名称</param>
+            <param name="type">类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.Xml.GetWriter">
+            <summary>获取Xml写入器</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.Xml.Read(System.Type)">
+            <summary>读取指定类型对象</summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.Xml.TryRead(System.Type,System.Object@)">
+            <summary>尝试读取指定类型对象</summary>
+            <param name="type"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.Xml.GetReader">
+            <summary>获取Xml读取器</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.Xml.EnableTrace">
+            <summary>使用跟踪流。实际上是重新包装一次Stream，必须在设置Stream，使用之前</summary>
+        </member>
+        <member name="P:NewLife.Serialization.Xml.Stream">
+            <summary>数据流</summary>
+        </member>
+        <member name="P:NewLife.Serialization.Xml.Encoding">
+            <summary>编码</summary>
+        </member>
+        <member name="P:NewLife.Serialization.Xml.Depth">
+            <summary>深度</summary>
+        </member>
+        <member name="P:NewLife.Serialization.Xml.Handlers">
+            <summary>处理器列表</summary>
+        </member>
         <member name="T:NewLife.Serialization.XSerializationException">
             <summary>序列化异常</summary>
         </member>
@@ -11682,9 +12157,11 @@
             <param name="count">数量</param>
             <returns></returns>
         </member>
-        <member name="M:NewLife.Security.DataHelper.FromHex(System.String)">
-            <summary>解密</summary>
+        <member name="M:NewLife.Security.DataHelper.FromHex(System.String,System.Int32,System.Int32)">
+            <summary>把十六进制字符串解码字节数组</summary>
             <param name="data"></param>
+            <param name="startIndex">起始位置</param>
+            <param name="length">长度</param>
             <returns></returns>
         </member>
         <member name="T:NewLife.Common.HardInfo">
