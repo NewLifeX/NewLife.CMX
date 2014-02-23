@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Web.UI;
 using NewLife.CMX;
 using NewLife.CMX.Config;
-using NewLife.CMX.WebBase;
+
 using NewLife.Reflection;
 using NewLife.Web;
 
-public partial class Template_List : WebPageBase
+public partial class Template_List : Page
 {
     /// <summary>ID</summary>
     private Int32 CategoryID { get { return WebHelper.RequestInt("CategoryID"); } }
