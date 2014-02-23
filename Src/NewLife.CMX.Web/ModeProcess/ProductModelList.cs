@@ -59,9 +59,9 @@ namespace NewLife.CMX.Web
 
                 CMXEngine engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
                 engine.ArgDic = dic;
-                engine.Header = Header;
-                engine.LeftMenu = LeftMenu;
-                engine.Foot = Foot;
+                //engine.Header = Header;
+                //engine.LeftMenu = LeftMenu;
+                //engine.Foot = Foot;
                 engine.Suffix = Channel.Suffix;
                 engine.ModelShortName = ModelShortName;
                 engine.ListEntity = Products as IEntityList;

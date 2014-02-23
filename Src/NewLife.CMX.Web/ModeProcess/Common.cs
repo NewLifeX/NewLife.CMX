@@ -14,8 +14,8 @@ namespace NewLife.CMX.Web
             dic.Add("Address", Address);
 
             engine.ArgDic = dic;
-            engine.Header = Header;
-            engine.Foot = Foot;
+            //engine.Header = Header;
+            //engine.Foot = Foot;
 
             return engine.Render(Address.EnsureEnd(".html"));
         }

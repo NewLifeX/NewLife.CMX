@@ -21,17 +21,17 @@ namespace NewLife.CMX.TemplateEngine
         /// <summary>网站配置信息</summary>
         public WebSettingConfig WebSettingConfig { get { return _WebSettingConfig; } set { _WebSettingConfig = value; } }
 
-        private String _LeftMenu;
-        /// <summary>左侧导航菜单</summary>
-        public String LeftMenu { get { return _LeftMenu; } set { _LeftMenu = value; } }
+        //private String _LeftMenu;
+        ///// <summary>左侧导航菜单</summary>
+        //public String LeftMenu { get { return _LeftMenu; } set { _LeftMenu = value; } }
 
-        private String _Header;
-        /// <summary>页头</summary>
-        public String Header { get { return _Header; } set { _Header = value; } }
+        //private String _Header;
+        ///// <summary>页头</summary>
+        //public String Header { get { return _Header; } set { _Header = value; } }
 
-        private String _Foot;
-        /// <summary>页脚</summary>
-        public String Foot { get { return _Foot; } set { _Foot = value; } }
+        //private String _Foot;
+        ///// <summary>页脚</summary>
+        //public String Foot { get { return _Foot; } set { _Foot = value; } }
 
         private Dictionary<String, String> _ArgDic;
         /// <summary>参数字典</summary>
@@ -87,9 +87,9 @@ namespace NewLife.CMX.TemplateEngine
             var data = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
             data["Config"] = Config;
             data["WebSettingConfig"] = WebSettingConfig;
-            data["Header"] = Header;
-            data["Foot"] = Foot;
-            data["LeftMenu"] = LeftMenu;
+            //data["Header"] = Header;
+            //data["Foot"] = Foot;
+            //data["LeftMenu"] = LeftMenu;
             data["ArgDic"] = ArgDic;
             data["ListEntity"] = ListEntity;
             data["ListCategory"] = ListCategory;
@@ -108,9 +108,8 @@ namespace NewLife.CMX.TemplateEngine
             //校验模板目录
             if (!Directory.Exists(Templatepath)) throw new Exception("指定样式模板不存在！");
             //校验请求文件
-            String RequestFile = Templatepath.CombinePath(TemplateName);
-            FileInfo fi = new FileInfo(RequestFile);
-            if (!fi.Exists) throw new Exception("请求地址不存在!");
+            var RequestFile = Templatepath.CombinePath(TemplateName);
+            if (!File.Exists(RequestFile)) throw new FileNotFoundException("请求地址不存在！", RequestFile);
             #endregion
 
             #region 过滤忽略文件
@@ -119,7 +118,7 @@ namespace NewLife.CMX.TemplateEngine
             //如果是忽略列表中的文件直接返回
             String TempContent = File.ReadAllText(RequestFile, Encoding.UTF8);
 
-            if (IgnoreExtentList.Contains(fi.Extension.Substring(1))) return TempContent;
+            if (IgnoreExtentList.Contains(Path.GetExtension(RequestFile).TrimStart('.'))) return TempContent;
 
             tempdic.Add(TemplateName, TempContent);
             #endregion

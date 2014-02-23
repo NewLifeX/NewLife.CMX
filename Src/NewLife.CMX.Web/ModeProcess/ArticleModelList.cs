@@ -57,9 +57,9 @@ namespace NewLife.CMX.Web
 
                 var engine = new CMXEngine(TemplateConfig.Current, WebSettingConfig.Current);
                 engine.ArgDic = dic;
-                engine.Header = Header;
-                engine.Foot = Foot;
-                engine.LeftMenu = LeftMenu;
+                //engine.Header = Header;
+                //engine.Foot = Foot;
+                //engine.LeftMenu = LeftMenu;
                 engine.Suffix = String.IsNullOrEmpty(Channel.Suffix) ? "$" : Channel.Suffix;
                 engine.ModelShortName = Channel.Model.ShortName;
 
