@@ -4,60 +4,42 @@
         <name>XTemplate</name>
     </assembly>
     <members>
-        <member name="T:XTemplate.Templating.TemplateParser">
-            <summary>模版分析器</summary>
+        <member name="T:XTemplate.Tags.TagTemplate">
+            <summary>标签模版</summary>
         </member>
-        <member name="M:XTemplate.Templating.TemplateParser.Parse(System.String,System.String)">
-            <summary>把模版分割成块</summary>
+        <member name="M:XTemplate.Tags.TagTemplate.Process(System.String)">
+            <summary></summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="T:XTemplate.Templating.Directive">
+            <summary>指令</summary>
+        </member>
+        <member name="M:XTemplate.Templating.Directive.#ctor(System.String,System.Collections.Generic.IDictionary{System.String,System.String},XTemplate.Templating.Block)">
+            <summary>实例化一个指令对象</summary>
             <param name="name">名称</param>
-            <param name="content"></param>
+            <param name="parameters">参数数组</param>
+            <param name="block"></param>
+        </member>
+        <member name="M:XTemplate.Templating.Directive.GetParameter(System.String)">
+            <summary>读取参数值</summary>
+            <param name="name">参数名</param>
             <returns></returns>
         </member>
-        <member name="M:XTemplate.Templating.TemplateParser.InsertPosition(System.Collections.Generic.List{XTemplate.Templating.Block})">
-            <summary>插入位置信息</summary>
-            <param name="blocks"></param>
-        </member>
-        <member name="M:XTemplate.Templating.TemplateParser.StripEscapeCharacters(System.Collections.Generic.List{XTemplate.Templating.Block})">
-            <summary>对编码的字符进行解码</summary>
-            <param name="blocks"></param>
-        </member>
-        <member name="M:XTemplate.Templating.TemplateParser.ParseDirectiveBlock(XTemplate.Templating.Block)">
-            <summary>分析指令块</summary>
-            <param name="block"></param>
+        <member name="M:XTemplate.Templating.Directive.TryGetParameter(System.String,System.String@)">
+            <summary>尝试读取参数值</summary>
+            <param name="name">参数名</param>
+            <param name="value">参数值</param>
             <returns></returns>
         </member>
-        <member name="M:XTemplate.Templating.TemplateParser.ValidateDirectiveString(XTemplate.Templating.Block)">
-            <summary>验证指令字符串格式是否正确</summary>
-            <param name="block"></param>
-            <returns></returns>
+        <member name="P:XTemplate.Templating.Directive.Block">
+            <summary>块</summary>
         </member>
-        <member name="M:XTemplate.Templating.TemplateParser.StripExtraNewlines(System.Collections.Generic.List{XTemplate.Templating.Block})">
-            <summary>删除多余的换行</summary>
-            <remarks>
-            本方法的目的是为了让模版的编写更加随意灵活，有以下功能：
-            1，文本后面如果是语句代码段或者类成员代码段，允许忽略代码段前的一个换行和空白符 (?=(\r\n)|\n)[ \t]*$
-            2，文本前面如果是语句代码段或者类成员代码段，允许忽略代码段后面的空白以及一个换行符 ^[ \t]*((\r\n)|\n)
-            3，语句代码段和类成员代码段，允许忽略之间的空白和换行 ^\s*$
-            </remarks>
-            <param name="blocks"></param>
+        <member name="P:XTemplate.Templating.Directive.Name">
+            <summary>指令名</summary>
         </member>
-        <member name="T:XTemplate.Templating.TemplateException">
-            <summary>模版异常</summary>
-        </member>
-        <member name="M:XTemplate.Templating.TemplateException.#ctor(System.String)">
-            <summary>实例化一个模版处理异常</summary>
-            <param name="message"></param>
-        </member>
-        <member name="M:XTemplate.Templating.TemplateException.#ctor(XTemplate.Templating.Block,System.String)">
-            <summary>实例化一个模版处理异常</summary>
-            <param name="block"></param>
-            <param name="message"></param>
-        </member>
-        <member name="P:XTemplate.Templating.TemplateException.Block">
-            <summary>代码块</summary>
-        </member>
-        <member name="P:XTemplate.Templating.TemplateException.Error">
-            <summary>编译器错误</summary>
+        <member name="P:XTemplate.Templating.Directive.Parameters">
+            <summary>参数集合</summary>
         </member>
         <member name="T:XTemplate.Templating.Template">
             <summary>模版引擎</summary>
@@ -104,6 +86,29 @@
             return temp.Render();
             </code>
             </example>
+        </member>
+        <member name="M:XTemplate.Templating.Template.Hash(System.String)">
+            <summary>MD5散列</summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XTemplate.Templating.Template.GetClassName(System.String)">
+            <summary>把名称处理为标准类名</summary>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XTemplate.Templating.Template.ToString">
+            <summary>已重载。</summary>
+            <returns></returns>
+        </member>
+        <member name="M:XTemplate.Templating.Template.WriteLog(System.String)">
+            <summary>输出日志</summary>
+            <param name="msg"></param>
+        </member>
+        <member name="M:XTemplate.Templating.Template.WriteLog(System.String,System.Object[])">
+            <summary>输出日志</summary>
+            <param name="format"></param>
+            <param name="args"></param>
         </member>
         <member name="M:XTemplate.Templating.Template.Create(System.String,System.String[])">
             <summary>根据名称和模版创建模版实例，带缓存，避免重复编译</summary>
@@ -232,28 +237,17 @@
             <param name="args"></param>
             <returns></returns>
         </member>
-        <member name="M:XTemplate.Templating.Template.Hash(System.String)">
-            <summary>MD5散列</summary>
-            <param name="str"></param>
-            <returns></returns>
+        <member name="P:XTemplate.Templating.Template.Debug">
+            <summary>是否调试</summary>
         </member>
-        <member name="M:XTemplate.Templating.Template.GetClassName(System.String)">
-            <summary>把名称处理为标准类名</summary>
-            <param name="fileName"></param>
-            <returns></returns>
+        <member name="P:XTemplate.Templating.Template.BaseClassName">
+            <summary>默认基类名称</summary>
         </member>
-        <member name="M:XTemplate.Templating.Template.ToString">
-            <summary>已重载。</summary>
-            <returns></returns>
+        <member name="P:XTemplate.Templating.Template.References">
+            <summary>标准程序集引用</summary>
         </member>
-        <member name="M:XTemplate.Templating.Template.WriteLog(System.String)">
-            <summary>输出日志</summary>
-            <param name="msg"></param>
-        </member>
-        <member name="M:XTemplate.Templating.Template.WriteLog(System.String,System.Object[])">
-            <summary>输出日志</summary>
-            <param name="format"></param>
-            <param name="args"></param>
+        <member name="P:XTemplate.Templating.Template.Imports">
+            <summary>标准命名空间引用</summary>
         </member>
         <member name="P:XTemplate.Templating.Template.Errors">
             <summary>编译错误集合</summary>
@@ -279,35 +273,23 @@
         <member name="P:XTemplate.Templating.Template.Status">
             <summary>模版引擎状态</summary>
         </member>
-        <member name="P:XTemplate.Templating.Template.Debug">
-            <summary>是否调试</summary>
+        <member name="T:XTemplate.Templating.TemplateException">
+            <summary>模版异常</summary>
         </member>
-        <member name="P:XTemplate.Templating.Template.BaseClassName">
-            <summary>默认基类名称</summary>
+        <member name="M:XTemplate.Templating.TemplateException.#ctor(System.String)">
+            <summary>实例化一个模版处理异常</summary>
+            <param name="message"></param>
         </member>
-        <member name="P:XTemplate.Templating.Template.References">
-            <summary>标准程序集引用</summary>
+        <member name="M:XTemplate.Templating.TemplateException.#ctor(XTemplate.Templating.Block,System.String)">
+            <summary>实例化一个模版处理异常</summary>
+            <param name="block"></param>
+            <param name="message"></param>
         </member>
-        <member name="P:XTemplate.Templating.Template.Imports">
-            <summary>标准命名空间引用</summary>
+        <member name="P:XTemplate.Templating.TemplateException.Block">
+            <summary>代码块</summary>
         </member>
-        <member name="T:XTemplate.Templating.BlockType">
-            <summary>代码块类型</summary>
-        </member>
-        <member name="F:XTemplate.Templating.BlockType.Directive">
-            <summary>指令</summary>
-        </member>
-        <member name="F:XTemplate.Templating.BlockType.Member">
-            <summary>成员</summary>
-        </member>
-        <member name="F:XTemplate.Templating.BlockType.Text">
-            <summary>模版文本</summary>
-        </member>
-        <member name="F:XTemplate.Templating.BlockType.Statement">
-            <summary>语句</summary>
-        </member>
-        <member name="F:XTemplate.Templating.BlockType.Expression">
-            <summary>表达式</summary>
+        <member name="P:XTemplate.Templating.TemplateException.Error">
+            <summary>编译器错误</summary>
         </member>
         <member name="T:XTemplate.Templating.Block">
             <summary>代码块</summary>
@@ -349,25 +331,23 @@
         <member name="P:XTemplate.Templating.Block.Type">
             <summary>块类型</summary>
         </member>
-        <member name="T:XTemplate.Templating.TemplateStatus">
-            <summary>模版引擎状态</summary>
+        <member name="T:XTemplate.Templating.BlockType">
+            <summary>代码块类型</summary>
         </member>
-        <member name="F:XTemplate.Templating.TemplateStatus.Prepare">
-            <summary>准备</summary>
+        <member name="F:XTemplate.Templating.BlockType.Directive">
+            <summary>指令</summary>
         </member>
-        <member name="F:XTemplate.Templating.TemplateStatus.Process">
-            <summary>分析处理</summary>
+        <member name="F:XTemplate.Templating.BlockType.Member">
+            <summary>成员</summary>
         </member>
-        <member name="F:XTemplate.Templating.TemplateStatus.Compile">
-            <summary>编译</summary>
+        <member name="F:XTemplate.Templating.BlockType.Text">
+            <summary>模版文本</summary>
         </member>
-        <member name="T:XTemplate.Tags.TagTemplate">
-            <summary>标签模版</summary>
+        <member name="F:XTemplate.Templating.BlockType.Statement">
+            <summary>语句</summary>
         </member>
-        <member name="M:XTemplate.Tags.TagTemplate.Process(System.String)">
-            <summary></summary>
-            <param name="str"></param>
-            <returns></returns>
+        <member name="F:XTemplate.Templating.BlockType.Expression">
+            <summary>表达式</summary>
         </member>
         <member name="T:XTemplate.Templating.TemplateExecutionException">
             <summary>模版执行错误异常</summary>
@@ -397,35 +377,6 @@
             <summary>初始化</summary>
             <param name="info"></param>
             <param name="context"></param>
-        </member>
-        <member name="T:XTemplate.Templating.Directive">
-            <summary>指令</summary>
-        </member>
-        <member name="M:XTemplate.Templating.Directive.#ctor(System.String,System.Collections.Generic.IDictionary{System.String,System.String},XTemplate.Templating.Block)">
-            <summary>实例化一个指令对象</summary>
-            <param name="name">名称</param>
-            <param name="parameters">参数数组</param>
-            <param name="block"></param>
-        </member>
-        <member name="M:XTemplate.Templating.Directive.GetParameter(System.String)">
-            <summary>读取参数值</summary>
-            <param name="name">参数名</param>
-            <returns></returns>
-        </member>
-        <member name="M:XTemplate.Templating.Directive.TryGetParameter(System.String,System.String@)">
-            <summary>尝试读取参数值</summary>
-            <param name="name">参数名</param>
-            <param name="value">参数值</param>
-            <returns></returns>
-        </member>
-        <member name="P:XTemplate.Templating.Directive.Block">
-            <summary>块</summary>
-        </member>
-        <member name="P:XTemplate.Templating.Directive.Name">
-            <summary>指令名</summary>
-        </member>
-        <member name="P:XTemplate.Templating.Directive.Parameters">
-            <summary>参数集合</summary>
         </member>
         <member name="T:XTemplate.Templating.TemplateItem">
             <summary>模版项。包含模版名和模版内容等基本信息，还包含运行时相关信息。</summary>
@@ -463,6 +414,43 @@
         </member>
         <member name="P:XTemplate.Templating.TemplateItem.Vars">
             <summary>模版变量集合</summary>
+        </member>
+        <member name="T:XTemplate.Templating.TemplateParser">
+            <summary>模版分析器</summary>
+        </member>
+        <member name="M:XTemplate.Templating.TemplateParser.Parse(System.String,System.String)">
+            <summary>把模版分割成块</summary>
+            <param name="name">名称</param>
+            <param name="content"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XTemplate.Templating.TemplateParser.InsertPosition(System.Collections.Generic.List{XTemplate.Templating.Block})">
+            <summary>插入位置信息</summary>
+            <param name="blocks"></param>
+        </member>
+        <member name="M:XTemplate.Templating.TemplateParser.StripEscapeCharacters(System.Collections.Generic.List{XTemplate.Templating.Block})">
+            <summary>对编码的字符进行解码</summary>
+            <param name="blocks"></param>
+        </member>
+        <member name="M:XTemplate.Templating.TemplateParser.ParseDirectiveBlock(XTemplate.Templating.Block)">
+            <summary>分析指令块</summary>
+            <param name="block"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XTemplate.Templating.TemplateParser.ValidateDirectiveString(XTemplate.Templating.Block)">
+            <summary>验证指令字符串格式是否正确</summary>
+            <param name="block"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XTemplate.Templating.TemplateParser.StripExtraNewlines(System.Collections.Generic.List{XTemplate.Templating.Block})">
+            <summary>删除多余的换行</summary>
+            <remarks>
+            本方法的目的是为了让模版的编写更加随意灵活，有以下功能：
+            1，文本后面如果是语句代码段或者类成员代码段，允许忽略代码段前的一个换行和空白符 (?=(\r\n)|\n)[ \t]*$
+            2，文本前面如果是语句代码段或者类成员代码段，允许忽略代码段后面的空白以及一个换行符 ^[ \t]*((\r\n)|\n)
+            3，语句代码段和类成员代码段，允许忽略之间的空白和换行 ^\s*$
+            </remarks>
+            <param name="blocks"></param>
         </member>
         <member name="T:XTemplate.Templating.TemplateBase">
             <summary>模版基类，所有模版继承自该类</summary>
@@ -550,6 +538,18 @@
         </member>
         <member name="P:XTemplate.Templating.TemplateBase.Vars">
             <summary>模版变量集合</summary>
+        </member>
+        <member name="T:XTemplate.Templating.TemplateStatus">
+            <summary>模版引擎状态</summary>
+        </member>
+        <member name="F:XTemplate.Templating.TemplateStatus.Prepare">
+            <summary>准备</summary>
+        </member>
+        <member name="F:XTemplate.Templating.TemplateStatus.Process">
+            <summary>分析处理</summary>
+        </member>
+        <member name="F:XTemplate.Templating.TemplateStatus.Compile">
+            <summary>编译</summary>
         </member>
     </members>
 </doc>
