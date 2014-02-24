@@ -1,0 +1,105 @@
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td
+{
+    border: 0;
+    font-family: ËÎÌו, Arial;
+    font-size: 100%;
+    font-style: inherit;
+    font-weight: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+    a img, img
+    {
+        border: 0;
+        vertical-align: bottom;
+    }
+
+ul, li, input
+{
+    list-style: none;
+    float: left;
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
+    height: 48px;
+}
+
+i, em
+{
+    font-style: normal;
+}
+
+.head, .main
+{
+    width: 1000px;
+    margin: 0 auto;
+    position: relative;
+}
+
+html body .clear,
+html body div.clear,
+html body span.clear,
+html body li.clear,
+html body dd.clear
+{
+    float: none;
+    display: block;
+    clear: both;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 0;
+    line-height: 0;
+    font-size: 0;
+    list-style: none;
+    overflow: hidden;
+    visibility: hidden;
+    background: none;
+}
+
+.clearfix:after
+{
+    content: ".";
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+.clearfix
+{
+    display: inline-block;
+}
+
+.clearfix
+{
+    display: block;
+}
+
+.fl
+{
+    float: left;
+}
+
+.fr
+{
+    float: right;
+}
+
+.search
+{
+    border: 0;
+    margin: 0 0 0 0;
+    padding: 0px;
+}
+
+.wraper
+{
+    max-width: 1800px;
+    min-width: 1000px;
+    _width: expression((document.documentElement.clientWidth>1800||document.body.clientWidth>1800)?"1800px":(document.documentElement.clientWidth<1000||document.body.clientWidth<1000)?"1000px":"100%");
+    margin: 0 auto;
+}

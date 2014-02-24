@@ -1,0 +1,51 @@
+﻿<div id="templatemo_middle">
+    <div id="mid_slider">
+        <span></span>
+        <div id="slider1" class="sliderwrapper">
+
+            <div class="contentdiv">
+                <img src="images/metalimages/slider/image_00.jpg" alt="Image 00" />
+            </div>
+
+            <div class="contentdiv">
+                <img src="images/metalimages/slider/image_01.jpg" alt="Image 01" />
+            </div>
+
+            <div class="contentdiv">
+                <img src="images/metalimages/slider/image_02.jpg" alt="Image 02" />
+            </div>
+
+            <div class="contentdiv">
+                <img src="images/metalimages/slider/image_03.jpg" alt="Image 03" />
+            </div>
+
+        </div>
+
+        <div id="paginate-slider1" class="pagination">
+        </div>
+
+        <script type="text/javascript">
+
+            featuredcontentslider.init({
+                id: "slider1",  //id of main slider DIV
+                contentsource: ["inline", ""],  //Valid values: ["inline", ""] or ["ajax", "path_to_file"]
+                toc: "#increment",  //Valid values: "#increment", "markup", ["label1", "label2", etc]
+                nextprev: ["", ""],  //labels for "prev" and "next" links. Set to "" to hide.
+                revealtype: "click", //Behavior of pagination links to reveal the slides: "click" or "mouseover"
+                enablefade: [true, 0.4],  //[true/false, fadedegree]
+                autorotate: [true, 2000],  //[true/false, pausetime]
+                onChange: function (previndex, curindex) {  //event handler fired whenever script changes slide
+                    //previndex holds index of last slide viewed b4 current (1=1st slide, 2nd=2nd etc)
+                    //curindex holds index of currently shown slide (1=1st slide, 2nd=2nd etc)
+                }
+            })
+
+        </script>
+    </div>
+    <div id="mid_left">
+        <div id="mid_title">Web Design Company</div>
+        <p>Aliquam in odio ut ipsum mollis facilisis. Integer est sem, dignissim quis auctor vel, dapibus vel massa. Curabitur vulputate ligula vel mi semper tempus. Vivamus volutpat, elit non tempor vehicula.</p>
+        <div id="learn_more"><a href="#">Learn More</a></div>
+    </div>
+    <div class="cleaner"></div>
+</div>

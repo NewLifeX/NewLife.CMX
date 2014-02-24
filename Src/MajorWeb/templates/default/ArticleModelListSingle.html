@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><#= WebSettingConfig.Title#></title>
+    <meta name="keywords" content="<#= WebSettingConfig.Keywords#>" />
+    <meta name="description" content="<#= WebSettingConfig.Description#>" />
+    <link rel="stylesheet" type="text/css" href="<#= Config.SysRootPath #>/style/css1.css" />
+    <script type="text/javascript" src="<#= Config.SysRootPath #>/Scripts/jquery/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="<#= Config.SysRootPath #>/Scripts/javascript.js"></script>
+    <!--Config.SysRootPath这个就是网站根目录 -->
+</head>
+<body>
+    <div id="wrap">
+        <div id="wrpper">
+            <#= Header#>
+            <div class="mainbody">
+                <div class="top_image">
+                    <img src="<#= Config.SysRootPath #>/images/top_i2.jpg" width="1021" height="120" />
+                </div>
+                <#= CMXExtend.Extend("LeftMenuModelText","l",Suffix,ModelShortName,Convert.ToInt32(ArgDic["CategoryID"]),0,0,0,1)#>
+                <div class="content">
+                    <div class="e1">
+                        <div class="e1_left"><strong><#= ArgDic["ChannelName"]#></strong></div>
+                        <div class="e1_right">当前位置：首页 ><#= ArgDic["ChannelName"]#></div>
+                    </div>
+                    <div class="articletitle">
+                        <ul>
+                            <#
+                                foreach(IEntity entity in ListEntity){#>
+                                <li><a target="_blank" href='<#= Config.SysRootPath#>/Info/<#= Suffix#>/<#= entity["ID"]#>/ArticleModelContentSingle/<#= ModelShortName#>.html'><#= entity["Title"]#></a><label class="date"><#= ((DateTime)entity["UpdateTime"]).ToString("yyyy-MM-dd")#></label></li>
+                            <#}#>
+                        </ul>
+                    </div>
+                    <!--<div class="switch_meu">12345..&nbsp;&nbsp第&nbsp<input class="page-num" value="2" name="page" type="text">&nbsp页&nbsp;&nbsp共10页</div>-->
+                    <div class="switch_meu">
+                        <a href='<#= ArgDic["FirstUrl"]#>'>首页</a>&nbsp;<a href='<#= ArgDic["BeforeUrl"]#>'>上一页</a>&nbsp;&nbsp;<#= ArgDic["CurrentPage"]#>/<span class="pagecount"><#= ArgDic["PageCount"]#></span> 页&nbsp;<a href='<#= ArgDic["NextUrl"]#>'>下一页</a>&nbsp;<a href='<#= ArgDic["LastUrl"]#>'>尾页</a>&nbsp;<input type="text" class="page-num" tarurl='<#= Config.GoPage #>' />&nbsp;<a href="javascript:void(0);" class="goPage">Go</a>
+                    </div>
+                </div>
+            </div>
+            <#= Foot#>
+        </div>
+    </div>
+</body>
+</html>

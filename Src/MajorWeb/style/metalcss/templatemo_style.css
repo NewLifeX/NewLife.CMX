@@ -1,0 +1,743 @@
+/*
+Credit: http://www.cssmoban.com
+*/
+
+body
+{
+    margin: 0;
+    padding: 0;
+    color: #6a717c;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 13px;
+    line-height: 1.4em;
+    background-color: #bfc5ce;
+}
+
+#home
+{
+    background: #bfc5ce url(../../images/metalimages/templatemo_body.jpg);
+    background-repeat: repeat-x;
+    background-position: top;
+}
+
+#sub
+{
+    background: #bfc5ce url(../../images/metalimages/templatemo_body_sub.jpg);
+    background-repeat: repeat-x;
+    background-position: top;
+}
+
+a, a:link, a:visited
+{
+    color: #08122a;
+    font-weight: 700;
+    text-decoration: underline;
+    font-size: 11px;
+}
+
+    a:hover
+    {
+        text-decoration: none;
+    }
+
+    a.more
+    {
+        display: block;
+        width: 122px;
+        height: 32px;
+        line-height: 32px;
+        font-size: 13px;
+        text-align: center;
+        text-decoration: none;
+        font-weight: bold;
+        background: url(../../images/metalimages/templatemo_button.jpg) no-repeat top center;
+        color: #bfc5ce;
+    }
+
+        a.more:hover
+        {
+            color: #fff;
+            background: url(../../images/metalimages/templatemo_button_hover.jpg);
+        }
+
+p
+{
+    margin: 0 0 10px 0;
+    padding: 0;
+}
+
+img
+{
+    border: none;
+}
+
+blockquote
+{
+    font-style: italic;
+    margin: 0 0 0 10px;
+}
+
+cite
+{
+    font-weight: bold;
+    color: #08122a;
+}
+
+    cite span
+    {
+        color: #08122a;
+    }
+
+em
+{
+    color: #08122a;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+    color: #000;
+    font-weight: normal;
+}
+
+h1
+{
+    font-size: 34px;
+    margin: 0 0 20px;
+    padding: 5px 0;
+}
+
+h2
+{
+    font-size: 28px;
+    margin: 0 0 15px;
+    padding: 5px 0 10px;
+}
+
+h3
+{
+    font-size: 24px;
+    margin: 0 0 15px;
+    padding: 0 0 10px;
+}
+
+h4
+{
+    font-size: 18px;
+    margin: 0 0 15px;
+    padding: 0;
+}
+
+h5
+{
+    font-size: 16px;
+    margin: 0 0 10px;
+    padding: 0;
+}
+
+h6
+{
+    font-size: 14px;
+    margin: 0 0 5px;
+    padding: 0;
+}
+
+.cleaner
+{
+    clear: both;
+}
+
+.h10
+{
+    height: 10px;
+}
+
+.h20
+{
+    height: 20px;
+}
+
+.h30
+{
+    height: 30px;
+}
+
+.h40
+{
+    height: 40px;
+}
+
+.h50
+{
+    height: 50px;
+}
+
+.h60
+{
+    height: 60px;
+}
+
+.float_l
+{
+    float: left;
+}
+
+.float_r
+{
+    float: right;
+}
+
+.image_wrapper
+{
+    display: inline-block;
+    padding: 4px;
+    border: 1px solid #d3d7dc;
+    background: #a3abb8;
+}
+
+.image_fl
+{
+    float: left;
+    margin: 3px 30px 0 0;
+}
+
+.image_fr
+{
+    float: right;
+    margin: 3px 0 0 30px;
+}
+
+.image_frame
+{
+    position: relative;
+    width: 300px;
+    height: 131px;
+}
+
+    .image_frame img
+    {
+        margin: 10px;
+        width: 280px;
+        height: 110px;
+    }
+
+    .image_frame span
+    {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 300px;
+        height: 131px;
+        background: url(../../images/metalimages/templatemo_image_frame.png) no-repeat;
+    }
+
+.templatemo_list
+{
+    margin: 0 0 10px 10px;
+    padding: 0;
+    list-style: none;
+}
+
+    .templatemo_list li
+    {
+        color: #08122a;
+        margin: 0;
+        padding: 0 0 5px 20px;
+        background: url(../../images/metalimages/templatemo_list.jpg) no-repeat scroll 0 5px;
+    }
+
+        .templatemo_list li a
+        {
+            color: #08122a;
+            font-weight: normal;
+            text-decoration: none;
+        }
+
+            .templatemo_list li a:hover
+            {
+                text-decoration: underline;
+            }
+
+#templatemo_wrapper
+{
+    width: 960px;
+    padding: 0 10px;
+    margin: 0 auto;
+}
+
+#templatmeo_header
+{
+    width: 930px;
+    height: 60px;
+    padding: 15px;
+    background: url(../../images/metalimages/templatemo_header.jpg) no-repeat;
+}
+
+#site_title
+{
+    float: left;
+    width: 235px;
+    height: 60px;
+}
+
+    #site_title h1
+    {
+        margin: 0;
+        padding: 0;
+    }
+
+        #site_title h1 a
+        {
+            display: block;
+            width: 215px;
+            height: 60px;
+            margin: 0 10px;
+            color: #fff;
+            outline: none;
+            text-indent: -10000px;
+            background: url(../../images/metalimages/templatemo_logo.jpg) no-repeat top center;
+        }
+
+/* menu */
+
+#templatemo_menu
+{
+    float: right;
+    width: 660px;
+    height: 40px;
+    padding: 10px 0;
+}
+
+    #templatemo_menu ul
+    {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+        #templatemo_menu ul li
+        {
+            padding: 0;
+            margin: 0;
+            display: inline;
+        }
+
+        #templatemo_menu ul .last
+        {
+            background: none;
+        }
+
+        #templatemo_menu ul li a
+        {
+            float: left;
+            display: block;
+            width: 120px;
+            height: 40px;
+            line-height: 40px;
+            margin-right: 5px;
+            font-size: 13px;
+            color: #a2a8b8;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+            outline: none;
+            border: none;
+            background: url(../../images/metalimages/templatemo_menu_border.png) center center no-repeat;
+        }
+
+            #templatemo_menu ul li a:hover, #templatemo_menu ul .current
+            {
+                color: #fff;
+                background: url(../../images/metalimages/templatemo_menu_hover.jpg) center center no-repeat;
+            }
+
+/* end of menu */
+
+#templatemo_middle
+{
+    clear: both;
+    width: 930px;
+    height: 290px;
+    padding: 40px 15px 0;
+    overflow: hidden;
+    font-size: 14px;
+    color: #f4e9d9;
+    line-height: 30px;
+    background: url(../../images/metalimages/templatemo_middle.jpg) center top;
+}
+
+#templatemo_middle_sub
+{
+    clear: both;
+    width: 930px;
+    height: 190px;
+    padding: 40px 15px 0;
+    overflow: hidden;
+    font-size: 14px;
+    color: #f4e9d9;
+    line-height: 30px;
+}
+
+#mid_title
+{
+    font-size: 34px;
+    line-height: 38px;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 20px; /* text-shadow: 2px 2px 4px #000 */
+}
+
+#mid_left
+{
+    float: left;
+    width: 400px;
+}
+
+#mid_slider
+{
+    position: relative;
+    float: right;
+    width: 450px;
+    height: 280px;
+    padding: 0 0 40px;
+}
+
+    #mid_slider span
+    {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 450px;
+        height: 250px;
+        background: url(../../images/metalimages/templatemo_slider_frame.png) no-repeat;
+        z-index: 10000;
+    }
+
+
+.inner_copyright
+{
+    text-indent: -9999px;
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+    overflow: hidden;
+}
+
+#slider1
+{
+    position: absolute;
+    width: 450px;
+    height: 250px;
+    overflow: hidden;
+}
+
+#paginate-slider1
+{
+    position: absolute;
+    bottom: 50px;
+    right: 20px;
+}
+
+#templatemo_middle p, #templatemo_middle_sub p
+{
+    margin-bottom: 20px;
+    color: #757e8a;
+    font-size: 16px;
+}
+
+#learn_more a
+{
+    display: block;
+    background: url(../../images/metalimages/templatemo_learn.jpg);
+    width: 176px;
+    height: 40px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #a2a8b8;
+    font-weight: 700;
+    text-align: center;
+    line-height: 40px;
+}
+
+    #learn_more a:hover
+    {
+        color: #fff;
+    }
+
+#templatemo_main
+{
+    clear: both;
+    width: 960px;
+    padding: 40px 0 30px;
+}
+
+.col_w960
+{
+    width: 960px;
+    margin-bottom: 60px;
+}
+
+.col_w600
+{
+    width: 600px;
+}
+
+.col_w450
+{
+    width: 450px;
+}
+
+.col_w300
+{
+    width: 300px;
+}
+
+.col_w200
+{
+    width: 200px;
+}
+
+.col_allw300
+{
+    float: left;
+    width: 300px;
+    margin-right: 30px;
+}
+
+.col_last
+{
+    margin: 0;
+}
+
+.sb_news_box
+{
+    clear: both;
+    margin-bottom: 17px;
+}
+
+    .sb_news_box img
+    {
+        float: left;
+        margin-right: 20px;
+        padding: 4px;
+        border: 1px solid #d3d7dc;
+        background: #a3abb8;
+    }
+
+.news_date
+{
+    color: #234073;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.fp_lw_box
+{
+    margin-bottom: 25px;
+}
+
+.post_box
+{
+    clear: both;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    background: url(../../images/metalimages/templatemo_content_divider.jpg) repeat-x bottom;
+}
+
+    .post_box .image_frame
+    {
+        float: right;
+        margin-left: 40px;
+    }
+
+.post_header
+{
+    border-top: 3px solid #999;
+    border-bottom: 1px solid #ccc;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+.post_box h2
+{
+    font-size: 34px;
+    margin-bottom: 30px;
+}
+
+.post_box p.post_meta
+{
+    margin-bottom: 0;
+}
+
+.post_box img
+{
+    float: left;
+    margin-right: 20px;
+}
+
+#contact_form
+{
+    padding: 0;
+    width: 400px;
+}
+
+    #contact_form form
+    {
+        margin: 0px;
+        padding: 0px;
+    }
+
+        #contact_form form .input_field
+        {
+            width: 270px;
+            padding: 5px;
+            color: #111;
+            border: 1px solid #a4acb7;
+            background: #d4d4d4;
+            font-family: Tahoma, Geneva, sans-serif;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        #contact_form form label
+        {
+            display: block;
+            width: 100px;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+
+        #contact_form form textarea
+        {
+            width: 388px;
+            height: 160px;
+            padding: 5px;
+            color: #111;
+            border: 1px solid #a4acb7;
+            background: #d4d4d4;
+            font-family: Tahoma, Geneva, sans-serif;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        #contact_form form .submit_btn
+        {
+            margin: 10px 0px;
+            padding: 5px 14px;
+            border: 1px solid #a4acb7;
+            background: #d4d4d4;
+            font-size: 14px;
+        }
+
+#gallery
+{
+    margin: 0;
+    padding: 0;
+}
+
+    #gallery ul
+    {
+        margin: 0;
+        padding: 0;
+    }
+
+        #gallery ul li
+        {
+            position: relative;
+            display: block;
+            float: left;
+            width: 300px;
+            height: 140px;
+            margin: 0 30px 50px 0;
+        }
+
+        #gallery ul .rm_col
+        {
+            margin: 0 0 30px;
+        }
+
+        #gallery ul li span
+        {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 131px;
+            background: url(../../images/metalimages/templatemo_image_frame.png);
+        }
+
+        #gallery ul li a img
+        {
+            margin: 10px;
+            width: 280px;
+            height: 110px;
+        }
+
+#templatemo_footer_wrapper
+{
+    clear: both;
+    background: #8e97a4;
+    border-top: 5px solid #d5d9e0;
+    width: 100%;
+}
+
+#templatemo_footer
+{
+    width: 960px;
+    margin: 0 auto;
+    padding: 20px 10px;
+    color: #40464f;
+}
+
+    #templatemo_footer a
+    {
+        text-decoration: none;
+    }
+
+    #templatemo_footer .footer_list
+    {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+        #templatemo_footer .footer_list li
+        {
+            border-bottom: 1px dashed #404040;
+        }
+
+            #templatemo_footer .footer_list li a
+            {
+                font-weight: normal;
+                text-decoration: none;
+            }
+
+    #templatemo_footer h4
+    {
+        color: #08122a;
+        padding-bottom: 10px;
+        background: url(../../images/metalimages/templatemo_h4_divider.jpg) repeat-x bottom;
+    }
+
+#templatemo_copyright_wrapper
+{
+    clear: both;
+    background: url(../../images/metalimages/templatemo_footer.jpg) repeat-x top;
+    width: 100%;
+}
+
+#templatemo_copyright
+{
+    width: 960px;
+    margin: 0 auto;
+    padding: 20px 10px 15px;
+    color: #3a4f83;
+    text-align: center;
+}
+
+    #templatemo_copyright a
+    {
+        color: #607fcb;
+        text-decoration: none;
+    }
