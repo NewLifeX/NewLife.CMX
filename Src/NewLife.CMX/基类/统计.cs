@@ -12,11 +12,10 @@ namespace NewLife.CMX
     [Serializable]
     [DataObject]
     [Description("统计")]
-    [BindTable("Statistics", Description = "统计", ConnName = "CMX", DbType = DatabaseType.Access)]
-    public partial class Statistics : IStatistics
+    [BindTable("Statistics", Description = "统计", ConnName = "CMX", DbType = DatabaseType.None)]
+    public abstract partial class Statistics<TEntity> : IStatistics
     {
         #region 属性
-
         private Int32 _ID;
         /// <summary>编号</summary>
         [DisplayName("编号")]
@@ -229,7 +228,7 @@ namespace NewLife.CMX
 
         #region 字段名
         /// <summary>取得统计字段信息的快捷方式</summary>
-        public partial class _
+        partial class _
         {
             ///<summary>编号</summary>
             public static readonly Field ID = FindByName(__.ID);

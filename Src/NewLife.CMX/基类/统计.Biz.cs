@@ -1,8 +1,8 @@
 ﻿/*
- * XCoder v5.1.5000.39465
- * 作者：x/TL-X
- * 时间：2014-01-16 15:02:28
- * 版权：版权所有 (C) 新生命开发团队 2002~2014
+ * XCoder v6.0.5096.30596
+ * 作者：nnhy/X2
+ * 时间：2013-12-14 17:00:07
+ * 版权：版权所有 (C) 新生命开发团队 2002~2013
 */
 ﻿using System;
 using System.Collections.Generic;
@@ -18,9 +18,14 @@ using XCode.Configuration;
 namespace NewLife.CMX
 {
     /// <summary>统计</summary>
-    public partial class Statistics : Entity<Statistics>
+    public partial class Statistics<TEntity> : Entity<TEntity> where TEntity : Statistics<TEntity>, new()
     {
         #region 对象操作﻿
+        static Statistics()
+        {
+            // 用于引发基类的静态构造函数，所有层次的泛型实体类都应该有一个
+            TEntity entity = new TEntity();
+        }
 
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
         /// <param name="isNew"></param>
@@ -50,7 +55,7 @@ namespace NewLife.CMX
         //    if (Meta.Count > 0) return;
 
         //    // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
-        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Statistics).Name, Meta.Table.DataTable.DisplayName);
+        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
 
         //    var entity = new Statistics();
         //    entity.Total = 0;
@@ -67,7 +72,7 @@ namespace NewLife.CMX
         //    entity.Remark = "abc";
         //    entity.Insert();
 
-        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Statistics).Name, Meta.Table.DataTable.DisplayName);
+        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
         //}
 
 
@@ -104,7 +109,7 @@ namespace NewLife.CMX
         ///// <param name="maximumRows">最大返回行数，0表示所有行</param>
         ///// <returns>实体集</returns>
         //[DataObjectMethod(DataObjectMethodType.Select, true)]
-        //public static EntityList<Statistics> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
+        //public static EntityList<TEntity> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
         //{
         //    return FindAll(SearchWhere(key), orderClause, null, startRowIndex, maximumRows);
         //}
