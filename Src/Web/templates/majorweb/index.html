@@ -44,11 +44,11 @@
 </head>
 <body>
     <div id="main">
-        <#= Header#>
+        <#@include Name="Header"#>
         <#= CMXExtend.Extend("banner.html",null,null,null,0,0,0,0,0)#>
         <#= CMXExtend.Extend("topContent.html",null,null,null,0,0,0,0,0)#>
         <#= CMXExtend.Extend("indexContent.html",null,null,null,0,0,0,0,0)#>
-        <#= Foot#>
+        <#@include Name="Foot"#>
     </div>
 </body>
 </html>

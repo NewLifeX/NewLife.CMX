@@ -12,12 +12,12 @@
 <body>
     <div id="wrap">
         <div id="wrpper">
-            <#= Header#>
+            <#@include Name="Header"#>
              <div class="mainbody">
                  <div class="top_image">
                      <img src="<#= Config.Root #>/images/top_i3.jpg" width="1021" height="120" />
                  </div>
-                 <#= LeftMenu#>
+                 <#@include Name="LeftMenu"#>
                  <div class="content">
                      <div class="pro">
                          <div class="p_t1"><strong><#= ArgDic["ChannelName"]#></strong><span>当前位置：首页 > <#= ArgDic["ChannelName"]#></span></div>
@@ -38,7 +38,7 @@
                      </div>
                  </div>
              </div>
-            <#= Foot#>
+            <#@include Name="Foot"#>
         </div>
     </div>
 </body>

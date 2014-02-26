@@ -27,13 +27,13 @@
 <body id="sub">
     <div id="templatemo_wrapper">
         <!--菜单-->
-        <#= Header#>
+        <#@include Name="Header"#>
         <!--banner-->
         <#= CMXExtend.Extend("contactBanner.html",null,null,null,0,0,0,0,0)#>
         <!--内容-->
         <#= CMXExtend.Extend("contactContent.html",null,null,null,0,0,0,0,0)#>
     </div>
-    <#= Foot#>
+    <#@include Name="Foot"#>
     <!--版权-->
     <#= CMXExtend.Extend("copyright.html",null,null,null,0,0,0,0,0)#>
 </body>

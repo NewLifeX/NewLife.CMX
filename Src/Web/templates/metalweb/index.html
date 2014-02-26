@@ -22,13 +22,13 @@
 <body id="home">
     <div id="templatemo_wrapper">
         <!--菜单-->
-        <#= Header#>
+        <#@include Name="Header"#>
         <!--banner-->
         <#= CMXExtend.Extend("indexBanner.html",null,null,null,0,0,0,0,0)#>
         <!--内容-->
         <#= CMXExtend.Extend("indexContent.html",null,null,null,0,0,0,0,0)#>
     </div>
-    <#= Foot#>
+    <#@include Name="Foot"#>
     <!--版权-->
     <#= CMXExtend.Extend("copyright.html",null,null,null,0,0,0,0,0)#>
 </body>

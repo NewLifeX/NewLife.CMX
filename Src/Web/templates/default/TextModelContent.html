@@ -13,7 +13,7 @@
 <body>
     <div id="wrap">
         <div id="wrpper">
-            <#= Header#>
+            <#@include Name="Header"#>
             <div class="mainbody">
                 <div class="top_image">
                     <img src="<#= Config.Root #>/images/top_i2.jpg" width="1021" height="120" />
@@ -32,7 +32,7 @@
                     </div>
                 </div>
             </div>
-            <#= Foot#>
+            <#@include Name="Foot"#>
         </div>
     </div>
 </body>

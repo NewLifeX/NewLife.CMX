@@ -43,13 +43,13 @@
 </head>
 <body>
     <div id="main">
-        <#= Header#>
+        <#@include Name="Header"#>
         <#= CMXExtend.Extend("banner.html",null,null,null,0,0,0,0,0)#>
         <!--top-->
         <#= CMXExtend.Extend("contactsTop.html",null,null,null,0,0,0,0,0)#>
         <!--联系我们-->
         <#= CMXExtend.Extend("contactsContent.html",null,null,null,0,0,0,0,0)#>
-        <#= Foot#>
+        <#@include Name="Foot"#>
     </div>
 </body>
 </html>
