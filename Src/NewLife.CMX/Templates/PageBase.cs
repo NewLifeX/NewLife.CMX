@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Web;
+using NewLife.CMX.Config;
 using XTemplate.Templating;
 
 namespace NewLife.CMX.Templates
@@ -23,6 +24,14 @@ namespace NewLife.CMX.Templates
                 return _ResourcePath;
             }
         }
+
+        private WebSettingConfig _WebSettingConfig = WebSettingConfig.Current;
+        /// <summary>属性说明</summary>
+        public WebSettingConfig WebSettingConfig { get { return _WebSettingConfig; } set { _WebSettingConfig = value; } }
+
+        private TemplateConfig _Config = TemplateConfig.Current;
+        /// <summary>属性说明</summary>
+        public TemplateConfig Config { get { return _Config; } set { _Config = value; } }
         #endregion
 
         #region 业务处理

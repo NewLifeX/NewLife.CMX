@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using NewLife.CMX.Config;
 using XTemplate.Templating;
 
@@ -52,10 +51,17 @@ namespace NewLife.CMX.Templates
             var dir = cfg.Root.CombinePath(cfg.Style).GetFullPath();
             var fs = Directory.GetFiles(dir, "*.*", SearchOption.TopDirectoryOnly);
 
+            Template.Debug = cfg.Debug;
             var tmp = new Template();
+            // 添加所有模版页面到引擎
             foreach (var item in fs)
             {
                 tmp.AddTemplateItem(Path.GetFileName(item), File.ReadAllText(item));
+            }
+            // 设定模版基类
+            foreach (var item in tmp.Templates)
+            {
+                if (item.BaseClassName.IsNullOrWhiteSpace()) item.BaseClassName = typeof(PageBase).FullName;
             }
             tmp.Compile();
             Temp = tmp;

@@ -5,7 +5,7 @@
         foreach(IEntityTree item in RootEntityTree.Childs)
         {#>
         <dl>
-            <dt><a href='<#= Config.SysRootPath #>/List/<#= Suffix#>/<#=item["ID"]#>/ArticleModelListSingle/<#= ModelShortName#>.html' onclick=""><#= item["Name"]#></a></dt>
+            <dt><a href='<#= Config.Root #>/List/<#= Suffix#>/<#=item["ID"]#>/ArticleModelListSingle/<#= ModelShortName#>.html' onclick=""><#= item["Name"]#></a></dt>
         </dl>
         <#}#>
     </div>

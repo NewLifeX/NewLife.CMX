@@ -1,4 +1,4 @@
 ﻿<#foreach(IEntity entity in ListEntity)
     {#>
-   <li><a href='<#= Config.SysRootPath#>/Info/<#= Suffix#>/<#= entity["ID"]#>/<#= ArgDic["ContentAddress"]#>'><#= entity["Title"]#></a></li>
+   <li><a href='<#= Config.Root#>/Info/<#= Suffix#>/<#= entity["ID"]#>/<#= ArgDic["ContentAddress"]#>'><#= entity["Title"]#></a></li>
 <#}#>

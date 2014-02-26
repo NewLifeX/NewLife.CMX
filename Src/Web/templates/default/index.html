@@ -5,9 +5,9 @@
     <title><#= WebSettingConfig.Title#></title>
     <meta name="keywords" content="<#= WebSettingConfig.Keywords#>" />
     <meta name="description" content="<#= WebSettingConfig.Description#>" />
-    <link rel="stylesheet" type="text/css" href="<#= Config.SysRootPath #>/style/css1.css" />
-    <script type="text/javascript" src="<#= Config.SysRootPath #>/Scripts/jquery/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="<#= Config.SysRootPath #>/Scripts/javascript.js"></script>
+    <link rel="stylesheet" type="text/css" href="<#= Config.Root #>/style/css1.css" />
+    <script type="text/javascript" src="<#= Config.Root #>/Scripts/jquery/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="<#= Config.Root #>/Scripts/javascript.js"></script>
 </head>
 <body>
     <div id="wrap">
@@ -98,7 +98,7 @@
             </div>
             <div id="articleContent">
                 <div class="text">
-                    <div class="more"><a target="_blank" href="<#= Config.SysRootPath#>/List/$/2/ArticleModelListSingle/WZ.html">更多&gt;&gt;</a></div>
+                    <div class="more"><a target="_blank" href="<#= Config.Root#>/List/$/2/ArticleModelListSingle/WZ.html">更多&gt;&gt;</a></div>
                     <ul>
                         <#= NewLife.CMX.TemplateEngine.CMXExtend.Extend("indexArticleContent","c",null,"WZ",2,0,0,0,0)#>
                     </ul>

@@ -6,10 +6,10 @@
     <title><#= WebSettingConfig.Title#></title>
     <meta name="keywords" content="<#= WebSettingConfig.Keywords#>" />
     <meta name="description" content="<#= WebSettingConfig.Description#>" />
-    <link rel="stylesheet" type="text/css" href="<#= Config.SysRootPath #>/style/css1.css" />
-    <script type="text/javascript" src="<#= Config.SysRootPath #>/Scripts/jquery/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="<#= Config.SysRootPath #>/Scripts/javascript.js"></script>
-    <!--Config.SysRootPath这个就是网站根目录 -->
+    <link rel="stylesheet" type="text/css" href="<#= Config.Root #>/style/css1.css" />
+    <script type="text/javascript" src="<#= Config.Root #>/Scripts/jquery/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="<#= Config.Root #>/Scripts/javascript.js"></script>
+    <!--Config.Root这个就是网站根目录 -->
 </head>
 <body>
     <div id="wrap">
@@ -17,7 +17,7 @@
             <#= Header#>
             <div class="mainbody">
                 <div class="top_image">
-                    <img src="<#= Config.SysRootPath #>/images/top_i2.jpg" width="1021" height="120" />
+                    <img src="<#= Config.Root #>/images/top_i2.jpg" width="1021" height="120" />
                 </div>
                 <#= LeftMenu#>
                 <div class="content">
@@ -29,7 +29,7 @@
                         <ul>
                             <#
                                 foreach(IEntity entity in ListEntity){#>
-                                <li><a target="_blank" href='<#= Config.SysRootPath#>/Info/<#= Suffix#>/<#= entity["ID"]#>/ArticleModelContent/<#= ModelShortName#>.html'><#= entity["Title"]#></a><label class="date"><#= ((DateTime)entity["UpdateTime"]).ToString("yyyy-MM-dd")#></label></li>
+                                <li><a target="_blank" href='<#= Config.Root#>/Info/<#= Suffix#>/<#= entity["ID"]#>/ArticleModelContent/<#= ModelShortName#>.html'><#= entity["Title"]#></a><label class="date"><#= ((DateTime)entity["UpdateTime"]).ToString("yyyy-MM-dd")#></label></li>
                             <#}#>
                         </ul>
                     </div>

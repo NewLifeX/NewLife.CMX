@@ -5,9 +5,9 @@
     <title><#= WebSettingConfig.Title#></title>
     <meta name="keywords" content="<#= WebSettingConfig.Keywords#>" />
     <meta name="description" content="<#= WebSettingConfig.Description#>" />
-    <link rel="stylesheet" type="text/css" href="<#= Config.SysRootPath #>/style/css1.css" />
-    <script type="text/javascript" src="<#= Config.SysRootPath #>/Scripts/jquery/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="<#= Config.SysRootPath #>/Scripts/javascript.js"></script>
+    <link rel="stylesheet" type="text/css" href="<#= Config.Root #>/style/css1.css" />
+    <script type="text/javascript" src="<#= Config.Root #>/Scripts/jquery/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="<#= Config.Root #>/Scripts/javascript.js"></script>
 </head>
 <body>
     <div id="wrap">
@@ -15,7 +15,7 @@
             <#= Header#>
              <div class="mainbody">
                  <div class="top_image">
-                     <img src="<#= Config.SysRootPath #>/images/top_i3.jpg" width="1021" height="120" />
+                     <img src="<#= Config.Root #>/images/top_i3.jpg" width="1021" height="120" />
                  </div>
                  <#= LeftMenu#>
                  <div class="content">
@@ -24,7 +24,7 @@
                          <ul class="u1">
                              <# foreach(IEntity entity in ListEntity){#>
                              <li><span>
-                                 <img src='<#= Config.SysRootPath+entity["PhotoPath"]#>' width="118" height="98" /></span>
+                                 <img src='<#= Config.Root+entity["PhotoPath"]#>' width="118" height="98" /></span>
                                  <p class="main-nav"><a href="#"><#= entity["Title"]#></a></p>
                                  <ul>
                                      <li><a href="javascript:void();"><#= entity["CategoryName"]#></a></li>
