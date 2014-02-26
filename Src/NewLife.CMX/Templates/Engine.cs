@@ -23,7 +23,7 @@ namespace NewLife.CMX.Templates
                         if (_Current == null)
                         {
                             var eng = new Engine();
-                            eng.Compile();
+                            eng.Init();
                             _Current = eng;
                         }
                     }
