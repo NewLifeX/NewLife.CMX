@@ -65,7 +65,7 @@ public partial class Template_List : Page
         get
         {
             Int32 i = WebHelper.RequestInt("RecordNum");
-            if (i == 0) i = TemplateConfig.Current.RecordNum;
+            //if (i == 0) i = TemplateConfig.Current.RecordNum;
             return i;
         }
     }

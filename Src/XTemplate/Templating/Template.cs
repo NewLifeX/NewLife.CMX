@@ -156,9 +156,9 @@ namespace XTemplate.Templating
         {
             if (templates == null || templates.Length < 1) throw new ArgumentNullException("templates");
 
-            Dictionary<String, String> dic = new Dictionary<string, string>();
+            var dic = new Dictionary<string, string>();
 
-            String prefix = !String.IsNullOrEmpty(name) ? name : "Class";
+            var prefix = !String.IsNullOrEmpty(name) ? name : "Class";
 
             if (templates.Length == 1)
             {
@@ -183,8 +183,8 @@ namespace XTemplate.Templating
             if (templates == null || templates.Count < 1) throw new ArgumentNullException("templates");
 
             // 计算hash
-            StringBuilder sb = new StringBuilder();
-            foreach (KeyValuePair<String, String> item in templates)
+            var sb = new StringBuilder();
+            foreach (var item in templates)
             {
                 sb.Append(Hash(item.Key));
                 sb.Append(Hash(item.Value));
@@ -192,11 +192,11 @@ namespace XTemplate.Templating
 
             String hash = Hash(sb.ToString());
 
-            return cache.GetItem<IDictionary<String, String>>(hash, templates, delegate(String key, IDictionary<String, String> contents)
+            return cache.GetItem<IDictionary<String, String>>(hash, templates, (key, contents) =>
             {
-                Template entity = new Template();
+                var entity = new Template();
 
-                foreach (KeyValuePair<String, String> item in contents)
+                foreach (var item in contents)
                 {
                     entity.AddTemplateItem(item.Key, item.Value);
                 }

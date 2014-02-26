@@ -58,10 +58,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interface\ILeftMenuModel.cs" />
+    <Compile Include="Templates\Engine.cs" />
     <Compile Include="Templates\Index.cs" />
-    <Compile Include="Templates\UrlRewriteModule.cs" />
+    <Compile Include="Templates\UrlModule.cs" />
     <Compile Include="Templates\PageBase.cs" />
-    <Compile Include="Templates\Handler.cs" />
+    <Compile Include="Templates\PageHandler.cs" />
+    <Compile Include="Templates\ResHandler.cs" />
     <Compile Include="基础\IModelProvider.cs" />
     <Compile Include="基类\ICategoryOperate.cs" />
     <Compile Include="产品\ProductProvider.cs" />

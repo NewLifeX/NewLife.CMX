@@ -99,11 +99,11 @@ namespace NewLife.CMX.TemplateEngine
             data["ModelShortName"] = ModelShortName;
 
             #region 获取模板资源文件
-            Template.Debug = TemplateConfig.Current.IsDebug;
+            Template.Debug = TemplateConfig.Current.Debug;
             Dictionary<String, String> tempdic = new Dictionary<String, String>();
 
             String WebPath = HttpRuntime.AppDomainAppPath;
-            String Templatepath = WebPath.CombinePath(Config.TemplateRootPath, Config.TemplateStyle);
+            String Templatepath = WebPath.CombinePath(Config.Root, Config.Style);
 
             //校验模板目录
             if (!Directory.Exists(Templatepath)) throw new Exception("指定样式模板不存在！");
@@ -114,19 +114,19 @@ namespace NewLife.CMX.TemplateEngine
 
             #region 过滤忽略文件
             //获取忽略文件类型数组
-            String[] IgnoreExtentList = String.IsNullOrEmpty(Config.IgnoreExtendName) ? new string[] { } : Config.IgnoreExtendName.Split(',');
+            //String[] IgnoreExtentList = String.IsNullOrEmpty(Config.IgnoreExtendName) ? new string[] { } : Config.IgnoreExtendName.Split(',');
             //如果是忽略列表中的文件直接返回
             String TempContent = File.ReadAllText(RequestFile, Encoding.UTF8);
 
-            if (IgnoreExtentList.Contains(Path.GetExtension(RequestFile).TrimStart('.'))) return TempContent;
+            //if (IgnoreExtentList.Contains(Path.GetExtension(RequestFile).TrimStart('.'))) return TempContent;
 
             tempdic.Add(TemplateName, TempContent);
             #endregion
 
             #region 生成文件
-            List<String> imports = Config.ImportsAssembly.Split(",").ToList();
-            //添加程序集引用
-            Template.Imports.AddRange(imports);
+            //List<String> imports = Config.ImportsAssembly.Split(",").ToList();
+            ////添加程序集引用
+            //Template.Imports.AddRange(imports);
 
             Template tt = Template.Create(tempdic);
             //编译文件
@@ -134,13 +134,13 @@ namespace NewLife.CMX.TemplateEngine
 
             String ResultContent = tt.Render(TemplateName, data);
 
-            if (Config.IsDebug)
-            {
-                String Outputpath = WebPath.CombinePath(Config.OutputPath, Config.TemplateStyle);
-                if (!Directory.Exists(Outputpath)) Directory.CreateDirectory(Outputpath);
-                Outputpath = Outputpath.CombinePath(TemplateName);
-                File.WriteAllText(Outputpath, ResultContent, Encoding.UTF8);
-            }
+            //if (Config.Debug)
+            //{
+            //    String Outputpath = WebPath.CombinePath(Config.OutputPath, Config.Style);
+            //    if (!Directory.Exists(Outputpath)) Directory.CreateDirectory(Outputpath);
+            //    Outputpath = Outputpath.CombinePath(TemplateName);
+            //    File.WriteAllText(Outputpath, ResultContent, Encoding.UTF8);
+            //}
             return ResultContent;
             #endregion
         }

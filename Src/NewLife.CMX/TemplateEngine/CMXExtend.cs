@@ -36,7 +36,7 @@ namespace NewLife.CMX.TemplateEngine
                     iml.Address = address;
                     iml.CategoryID = categoryID;
                     iml.Pageindex = PageIndex == 0 ? 1 : PageIndex;
-                    iml.RecordNum = RecordNum == 0 ? TemplateConfig.Current.RecordNum : RecordNum;
+                    //iml.RecordNum = RecordNum == 0 ? TemplateConfig.Current.RecordNum : RecordNum;
 
                     return iml.Process();
                 }

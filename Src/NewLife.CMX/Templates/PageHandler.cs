@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Web;
+using XTemplate.Templating;
 
 namespace NewLife.CMX.Templates
 {
     /// <summary>模版处理器</summary>
-    public class Handler : IHttpHandler
+    public class PageHandler : IHttpHandler
     {
         #region 属性
         private String _TemplateName;
@@ -22,6 +23,13 @@ namespace NewLife.CMX.Templates
         /// <param name="context"></param>
         public virtual void ProcessRequest(HttpContext context)
         {
+            //var tmp = Template.Create();
+
+            var name = TemplateName;
+            if (name.IsNullOrWhiteSpace()) name = "Index";
+
+            var html = Engine.Current.Process(name, null);
+            context.Response.Write(html);
         }
         #endregion
     }
