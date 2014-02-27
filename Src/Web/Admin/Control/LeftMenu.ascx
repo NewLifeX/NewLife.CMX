@@ -36,5 +36,5 @@
             <li><a class="l-link" href="javascript:f_addTab('SysModel','系统模型管理','Manager/SysModel.aspx')">系统模型管理</a></li>
         </ul>
     </div>--%>
-<%--    <%=LoadMenu() %>--%>
+    <%=LoadMenu() %>
 </div>

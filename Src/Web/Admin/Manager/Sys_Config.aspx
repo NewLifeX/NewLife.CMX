@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>系统参数设置</title>
-    <link href="../../scripts/ui/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css" />
+    <link href="../scripts/ui/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css" />
     <link href="../images/style.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="../../scripts/jquery/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="../../scripts/jquery/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="../../scripts/jquery/messages_cn.js"></script>
-    <script type="text/javascript" src="../../scripts/ui/js/ligerBuild.min.js"></script>
-    <script type="text/javascript" src="../../scripts/dtcms/function.js"></script>
+    <script type="text/javascript" src="../scripts/jquery/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../scripts/jquery/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="../scripts/jquery/messages_cn.js"></script>
+    <script type="text/javascript" src="../scripts/ui/js/ligerBuild.min.js"></script>
+    <script type="text/javascript" src="../scripts/dtcms/function.js"></script>
     <script type="text/javascript">
         //表单验证
         $(function () {
