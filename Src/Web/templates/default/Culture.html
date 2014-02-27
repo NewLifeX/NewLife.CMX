@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿<#@template inherits="NewLife.CMX.Templates.PageBase"#>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -19,11 +20,11 @@
                     <img src="<#= Config.Root #>/images/top_i2.jpg" width="1021" height="120" />
                 </div>
 
-                \<#=CMXExtend.Extend("LeftMenuModelList","l",Suffix,ModelShortName,Convert.ToInt32(ArgDic["CategoryID"]),0,0,0,0)\#>
+                <#=CMXExtend.Extend("LeftMenuModelList","l",Suffix,ModelShortName,CategoryID,0,0,0,0)#>
 
                 <div class="content">
                     <div class="photo">
-                        <div class="c1"><strong><#= ArgDic["ChannelName"]#></strong> <span>当前位置：首页 > <#= ArgDic["ChannelName"]#></span></div>
+                        <div class="c1"><strong><#= ChannelName#></strong> <span>当前位置：首页 > <#= ChannelName#></span></div>
                         <div class="c2">
                             <div class="p1">
                                 <a href="" target="_blank">

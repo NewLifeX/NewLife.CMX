@@ -26,6 +26,14 @@ namespace NewLife.CMX.Templates
             }
         }
 
+        private Int32 _CategoryID;
+        /// <summary>属性说明</summary>
+        public Int32 CategoryID { get { return _CategoryID; } set { _CategoryID = value; } }
+
+        private String _ChannelName;
+        /// <summary>属性说明</summary>
+        public String ChannelName { get { return _ChannelName; } set { _ChannelName = value; } }
+
         private WebSettingConfig _WebSettingConfig = WebSettingConfig.Current;
         /// <summary>属性说明</summary>
         public WebSettingConfig WebSettingConfig { get { return _WebSettingConfig; } set { _WebSettingConfig = value; } }
