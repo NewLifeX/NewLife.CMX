@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿<#@template inherits="NewLife.CMX.Templates.ArticlePage"#>
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
@@ -22,12 +23,12 @@
                 <div class="content">
                     <div class="e1">
                         <div class="e1_left"><strong><#= ArgDic["ChannelName"]#></strong></div>
-                        <div class="e1_right">当前位置：首页 > <#= ArgDic["ChannelName"]#> > <#= Entity["CategoryName"]#></div>
+                        <div class="e1_right">当前位置：首页 > <#= ArgDic["ChannelName"]#> > <#= Entity.CategoryName#></div>
                     </div>
-                    <h2><#= Entity["Title"]#></h2>
-                    <div class="otherInfo">浏览：<#= Entity["Hits"]#>&nbsp;次&nbsp;添加时间：【<#= ((DateTime)Entity["CreateTime"]).ToShortDateString()#>】</div>
+                    <h2><#= Entity.Title#></h2>
+                    <div class="otherInfo">浏览：<#= Entity.Hits#>&nbsp;次&nbsp;添加时间：【<#= ((DateTime)Entity.CreateTime).ToShortDateString()#>】</div>
                     <div id="article">
-                        <#= Entity["ContentText"]#>
+                        <#= Entity.ContentText#>
                     </div>
                 </div>
             </div>

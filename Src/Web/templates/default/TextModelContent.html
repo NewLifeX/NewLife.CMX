@@ -21,14 +21,14 @@
                 <#= CMXExtend.Extend("LeftMenuModelText","l",Suffix,ModelShortName,Convert.ToInt32(ArgDic["CategoryID"]),0,0,0,1)#>
                 <div class="content">
                     <div class="e1">
-                        <div class="e1_left"><strong><#= Entity["ChannelName"]#></strong></div>
-                        <div class="e1_right">当前位置：首页 > <#= Entity["ChannelName"]#>> <#= Entity["CategoryName"]#></div>
+                        <div class="e1_left"><strong><#= Entity.ChannelName#></strong></div>
+                        <div class="e1_right">当前位置：首页 > <#= Entity.ChannelName#>> <#= Entity.CategoryName#></div>
                     </div>
-                    <h2><#= Entity["Title"]#>
+                    <h2><#= Entity.Title#>
                     </h2>
-                    <div class="otherInfo">浏览：<#= Entity["Hits"]#>&nbsp;次&nbsp;添加时间：【<#= ((DateTime)Entity["CreateTime"]).ToShortDateString()#>】</div>
+                    <div class="otherInfo">浏览：<#= Entity.Hits#>&nbsp;次&nbsp;添加时间：【<#= ((DateTime)Entity.CreateTime).ToShortDateString()#>】</div>
                     <div id="article">
-                        <#= Entity["ConentTxt"]#>
+                        <#= Entity.ConentTxt#>
                     </div>
                 </div>
             </div>
