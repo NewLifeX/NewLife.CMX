@@ -49,6 +49,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Handlers\FormRouting.cs" />
+    <Compile Include="Handlers\GoPageUrl.cs" />
+    <Compile Include="Handlers\ListRouting.cs" />
+    <Compile Include="Handlers\UpdateImageLoad.cs" />
     <Compile Include="Interface\ILeftMenuModel.cs" />
     <Compile Include="Templates\Engine.cs" />
     <Compile Include="Templates\Index.cs" />
@@ -60,6 +64,7 @@
     <Compile Include="文本\TextPage.cs" />
     <Compile Include="文章\ArticlePage.cs" />
     <Compile Include="基础\IModelProvider.cs" />
+    <Compile Include="基础\ListMenu.cs" />
     <Compile Include="基类\ICategoryOperate.cs" />
     <Compile Include="产品\ProductProvider.cs" />
     <Compile Include="基类\统计.Biz.cs" />
