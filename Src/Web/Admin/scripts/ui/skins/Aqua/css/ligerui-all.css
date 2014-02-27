@@ -1,4 +1,8 @@
-﻿@import url("ligerui-common.css");
+﻿/*虽然这样可以方便引入扩展的css，
+    但是测试看出通过这样的方法引入css
+    在http请求时间方面会浪费很多时间。
+    */
+@import url("ligerui-common.css");
 @import url("ligerui-dialog.css");
 @import url("ligerui-form.css");
 @import url("ligerui-grid.css");

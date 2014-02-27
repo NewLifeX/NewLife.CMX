@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
-using NewLife.CMX.Web;
+using NewLife.CMX;
 //using NewLife.CMX.Web;
 
 public partial class Admin_LeftMenu : System.Web.UI.UserControl
