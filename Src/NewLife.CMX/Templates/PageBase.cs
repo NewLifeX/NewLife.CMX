@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Web;
 using NewLife.CMX.Config;
+using XCode;
 using XTemplate.Templating;
 
 namespace NewLife.CMX.Templates
@@ -32,6 +33,23 @@ namespace NewLife.CMX.Templates
         private TemplateConfig _Config = TemplateConfig.Current;
         /// <summary>属性说明</summary>
         public TemplateConfig Config { get { return _Config; } set { _Config = value; } }
+
+        private Dictionary<String, String> _ArgDic;
+        /// <summary>参数字典，只是为了编译通过</summary>
+        public Dictionary<String, String> ArgDic { get { return _ArgDic; } set { _ArgDic = value; } }
+
+        private List<IEntityTree> _ListCategory;
+        /// <summary>属性说明</summary>
+        public List<IEntityTree> ListCategory { get { return _ListCategory; } set { _ListCategory = value; } }
+
+        //private String _ModelShortName;
+        ///// <summary>属性说明</summary>
+        //public String ModelShortName { get { return _ModelShortName; } set { _ModelShortName = value; } }
+
+        //private String _Suffix;
+        ///// <summary>属性说明</summary>
+        //public String Suffix { get { return _Suffix; } set { _Suffix = value; } }
+
         #endregion
 
         #region 业务处理

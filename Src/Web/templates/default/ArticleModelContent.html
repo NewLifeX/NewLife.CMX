@@ -22,8 +22,8 @@
                 <#@include Name="LeftMenu"#>
                 <div class="content">
                     <div class="e1">
-                        <div class="e1_left"><strong><#= Entity.ChannelName#></strong></div>
-                        <div class="e1_right">当前位置：首页 > <#= Entity.ChannelName#> > <#= Entity.CategoryName#></div>
+                        <div class="e1_left"><strong>\<#= Entity.ChannelName\#></strong></div>
+                        <div class="e1_right">当前位置：首页 > \<#= Entity.ChannelName\#> > <#= Entity.CategoryName#></div>
                     </div>
                     <h2><#= Entity.Title#></h2>
                     <div class="otherInfo">浏览：<#= Entity.Hits#>&nbsp;次&nbsp;添加时间：【<#= Entity.CreateTime.ToShortDateString()#>】</div>
