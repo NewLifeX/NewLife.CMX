@@ -56,7 +56,9 @@
     <Compile Include="Templates\PageBase.cs" />
     <Compile Include="Templates\PageHandler.cs" />
     <Compile Include="Templates\ResHandler.cs" />
-    <Compile Include="Templates\Article.cs" />
+    <Compile Include="产品\ProductPage.cs" />
+    <Compile Include="文本\TextPage.cs" />
+    <Compile Include="文章\ArticlePage.cs" />
     <Compile Include="基础\IModelProvider.cs" />
     <Compile Include="基类\ICategoryOperate.cs" />
     <Compile Include="产品\ProductProvider.cs" />

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Web;
 using XTemplate.Templating;
+using NewLife.CMX.Templates;
 
-namespace NewLife.CMX.Templates
+namespace NewLife.CMX
 {
     /// <summary>文章列表模版基类。首页模版生成类继承于此类</summary>
     public class ArticleListPage : PageBase
