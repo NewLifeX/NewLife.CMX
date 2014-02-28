@@ -70,7 +70,7 @@ namespace NewLife.CMX
         [Description("页面描述(description)")]
         public String Description { get { return _Description; } set { _Description = value; } }
 
-        private String _CopyRight = "";
+        private String _CopyRight = "版权所有 新生命开发团队";
         /// <summary>网站版权信息</summary>
         [DisplayName("版权信息")]
         [Description("支持HTML格式")]
