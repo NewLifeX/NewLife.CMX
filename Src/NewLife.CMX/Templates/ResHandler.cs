@@ -30,8 +30,10 @@ namespace NewLife.CMX.Templates
             file = file.Replace("/", "\\");
             if (!Path.IsPathRooted(file)) file = file.GetFullPath();
 
-            // 为资源文件增加 浏览器缓存
             var request = context.Request;
+            var response = context.Response;
+
+            // 为资源文件增加 浏览器缓存
             var since = request.ServerVariables["HTTP_IF_MODIFIED_SINCE"];
             var lastModified = new FileInfo(file).LastWriteTime;
             if (!String.IsNullOrEmpty(since))
@@ -46,12 +48,15 @@ namespace NewLife.CMX.Templates
                 }
             }
             var ts = new TimeSpan(0, 10, 0);// 缓存10分钟
-            var response = context.Response;
             response.ExpiresAbsolute = DateTime.Now.Add(ts);
             response.Cache.SetMaxAge(ts);
             response.Cache.SetRevalidation(HttpCacheRevalidation.AllCaches);
             response.Cache.SetCacheability(HttpCacheability.Public);
             response.Cache.SetLastModified(lastModified);
+
+            // 必须为资源文件指定内容类型，否则都变成text/html
+            var ext = Path.GetExtension(file).TrimStart('.');
+            response.ContentType = "text/" + ext;
 
             response.TransmitFile(file);
         }
