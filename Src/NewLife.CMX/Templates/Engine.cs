@@ -75,7 +75,7 @@ namespace NewLife.CMX.Templates
             var hs = new HashSet<String>();
             foreach (var item in this.GetType().Assembly.GetTypes())
             {
-                if (!hs.Contains(item.Name)) hs.Add(item.Name);
+                if (!String.IsNullOrEmpty(item.Namespace) && !hs.Contains(item.Namespace)) hs.Add(item.Namespace);
             }
             foreach (var ti in tmp.Templates)
             {
