@@ -10,9 +10,9 @@ namespace NewLife.CMX.Templates
     public class PageHandler : IHttpHandler
     {
         #region 属性
-        private String _TemplateName;
+        private String _Name;
         /// <summary>模版名</summary>
-        public String TemplateName { get { return _TemplateName; } set { _TemplateName = value; } }
+        public String Name { get { return _Name; } set { _Name = value; } }
         #endregion
 
         #region IHttpHandler
@@ -25,8 +25,8 @@ namespace NewLife.CMX.Templates
         {
             //var tmp = Template.Create();
 
-            var name = TemplateName;
-            if (name.IsNullOrWhiteSpace()) name = "Index";
+            var name = Name;
+            if (name.IsNullOrWhiteSpace()) name = "index";
 
             var html = Engine.Current.Process(name, null);
             context.Response.Write(html);

@@ -58,6 +58,9 @@ namespace NewLife.CMX.Templates
         ///// <summary>属性说明</summary>
         //public String Suffix { get { return _Suffix; } set { _Suffix = value; } }
 
+        private String _PageName;
+        /// <summary>页面名称</summary>
+        public String PageName { get { return _PageName ?? (_PageName = this.GetType().Name); } set { _PageName = value; } }
         #endregion
 
         #region 业务处理

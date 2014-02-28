@@ -10,6 +10,8 @@ namespace NewLife.CMX.Templates
     public class Engine
     {
         #region 属性
+        private static DateTime NextCompile;
+
         private static Engine _Current;
         /// <summary>当前引擎</summary>
         public static Engine Current
@@ -18,15 +20,21 @@ namespace NewLife.CMX.Templates
             {
                 // 当前使用的模版只有一个，更换模版配置后，需要重新编译模版
                 // 在多模版同时使用的项目可以考虑扩展
-                if (_Current == null || _Current.Style != TemplateConfig.Current.Style)
+                if (_Current == null || DateTime.Now > NextCompile || _Current.Style != TemplateConfig.Current.Style)
                 {
                     lock (typeof(Engine))
                     {
-                        if (_Current == null || _Current.Style != TemplateConfig.Current.Style)
+                        if (_Current == null || DateTime.Now > NextCompile || _Current.Style != TemplateConfig.Current.Style)
                         {
                             var eng = new Engine();
                             eng.Init();
                             _Current = eng;
+
+#if DEBUG
+                            NextCompile = DateTime.Now.AddSeconds(10);
+#else
+                            NextCompile = DateTime.Now.AddMinutes(10);
+#endif
                         }
                     }
                 }
