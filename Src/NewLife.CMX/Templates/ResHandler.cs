@@ -30,7 +30,30 @@ namespace NewLife.CMX.Templates
             file = file.Replace("/", "\\");
             if (!Path.IsPathRooted(file)) file = file.GetFullPath();
 
-            context.Response.TransmitFile(file);
+            // 为资源文件增加 浏览器缓存
+            var request = context.Request;
+            var since = request.ServerVariables["HTTP_IF_MODIFIED_SINCE"];
+            var lastModified = new FileInfo(file).LastWriteTime;
+            if (!String.IsNullOrEmpty(since))
+            {
+                DateTime dt;
+                //if (DateTime.TryParse(since, out dt) && dt >= lastModified)
+                //!!! 注意：本地修改时间精确到毫秒，而HTTP_IF_MODIFIED_SINCE只能到秒
+                if (DateTime.TryParse(since, out dt) && (dt - lastModified).TotalSeconds > -1)
+                {
+                    context.Response.StatusCode = 304;
+                    return;
+                }
+            }
+            var ts = new TimeSpan(0, 10, 0);// 缓存10分钟
+            var response = context.Response;
+            response.ExpiresAbsolute = DateTime.Now.Add(ts);
+            response.Cache.SetMaxAge(ts);
+            response.Cache.SetRevalidation(HttpCacheRevalidation.AllCaches);
+            response.Cache.SetCacheability(HttpCacheability.Public);
+            response.Cache.SetLastModified(lastModified);
+
+            response.TransmitFile(file);
         }
         #endregion
     }
