@@ -11,7 +11,7 @@ public partial class Admin_Settings_Sys_Config : MyModelEntityList
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        LoadConfig();
+        if (!IsPostBack) LoadConfig();
         Manager.ValidatePermission = false;
     }
     void LoadConfig()
