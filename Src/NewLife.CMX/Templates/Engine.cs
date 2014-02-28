@@ -67,9 +67,19 @@ namespace NewLife.CMX.Templates
                 tmp.AddTemplateItem(Path.GetFileName(item), File.ReadAllText(item));
             }
             // 设定模版基类
-            foreach (var item in tmp.Templates)
+            foreach (var ti in tmp.Templates)
             {
-                if (item.BaseClassName.IsNullOrWhiteSpace()) item.BaseClassName = typeof(PageBase).FullName;
+                if (ti.BaseClassName.IsNullOrWhiteSpace()) ti.BaseClassName = typeof(PageBase).FullName;
+            }
+            // 写入当前程序集所有命名空间，方便模版直接使用当前程序集的类
+            var hs = new HashSet<String>();
+            foreach (var item in this.GetType().Assembly.GetTypes())
+            {
+                if (!hs.Contains(item.Name)) hs.Add(item.Name);
+            }
+            foreach (var ti in tmp.Templates)
+            {
+                ti.Imports.AddRange(hs);
             }
             tmp.Compile();
             Temp = tmp;
