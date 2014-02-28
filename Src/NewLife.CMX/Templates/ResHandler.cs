@@ -33,7 +33,7 @@ namespace NewLife.CMX.Templates
             var request = context.Request;
             var response = context.Response;
 
-            // 为资源文件增加 浏览器缓存
+            //为资源文件增加 浏览器缓存
             var since = request.ServerVariables["HTTP_IF_MODIFIED_SINCE"];
             var lastModified = new FileInfo(file).LastWriteTime;
             if (!String.IsNullOrEmpty(since))
@@ -56,7 +56,23 @@ namespace NewLife.CMX.Templates
 
             // 必须为资源文件指定内容类型，否则都变成text/html
             var ext = Path.GetExtension(file).TrimStart('.');
-            response.ContentType = "text/" + ext;
+
+            switch (ext)
+            {
+                case "css":
+                    response.ContentType = "text/css";
+                    break;
+                case "js":
+                    response.ContentType = "application/x-javascript";
+                    break;
+                case "jpg":
+                case "gif":
+                case "png":
+                    response.ContentType = "image/" + ext;
+                    break;
+                default:
+                    break;
+            }
 
             response.TransmitFile(file);
         }
