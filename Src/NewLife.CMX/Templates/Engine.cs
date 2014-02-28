@@ -16,11 +16,13 @@ namespace NewLife.CMX.Templates
         {
             get
             {
-                if (_Current == null)
+                // 当前使用的模版只有一个，更换模版配置后，需要重新编译模版
+                // 在多模版同时使用的项目可以考虑扩展
+                if (_Current == null || _Current.Style != TemplateConfig.Current.Style)
                 {
                     lock (typeof(Engine))
                     {
-                        if (_Current == null)
+                        if (_Current == null || _Current.Style != TemplateConfig.Current.Style)
                         {
                             var eng = new Engine();
                             eng.Init();
@@ -33,6 +35,10 @@ namespace NewLife.CMX.Templates
             }
         }
 
+        private String _Style;
+        /// <summary>模版样式</summary>
+        public String Style { get { return _Style; } set { _Style = value; } }
+
         private Template _Temp;
         /// <summary>模版</summary>
         public Template Temp { get { return _Temp; } set { _Temp = value; } }
@@ -41,6 +47,8 @@ namespace NewLife.CMX.Templates
         #region 方法
         void Init()
         {
+            Style = TemplateConfig.Current.Style;
+
             Compile();
         }
 
