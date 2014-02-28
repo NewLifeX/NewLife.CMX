@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Reflection;
-using NewLife.Reflection;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
 using System.Web;
-using NewLife.Web;
 using NewLife.Exceptions;
+using NewLife.Reflection;
+using NewLife.Web;
 
 namespace NewLife.CMX.Templates
 {

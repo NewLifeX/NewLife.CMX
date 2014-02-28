@@ -27,7 +27,9 @@ namespace NewLife.CMX.Templates
 
             var cfg = TemplateConfig.Current;
             var file = cfg.Root.CombinePath(cfg.Style, File);
-            
+            file = file.Replace("/", "\\");
+            if (!Path.IsPathRooted(file)) file = file.GetFullPath();
+
             context.Response.TransmitFile(file);
         }
         #endregion
