@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Xml.Serialization;
@@ -79,12 +79,24 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.Sort, value)) { _Sort = value; OnPropertyChanged(__.Sort); } }
         }
 
+        private Int32 _Num;
+        /// <summary>数量</summary>
+        [DisplayName("数量")]
+        [Description("数量")]
+        [DataObjectField(false, false, true, 10)]
+        [BindColumn(6, "Num", "数量", null, "int", 10, 0, false)]
+        public virtual Int32 Num
+        {
+            get { return _Num; }
+            set { if (OnPropertyChanging(__.Num, value)) { _Num = value; OnPropertyChanged(__.Num); } }
+        }
+
         private String _Remark;
         /// <summary>备注</summary>
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(6, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(7, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Remark
         {
             get { return _Remark; }
@@ -111,6 +123,7 @@ namespace NewLife.CMX
                     case __.ParentID : return _ParentID;
                     case __.IsEnd : return _IsEnd;
                     case __.Sort : return _Sort;
+                    case __.Num : return _Num;
                     case __.Remark : return _Remark;
                     default: return base[name];
                 }
@@ -124,6 +137,7 @@ namespace NewLife.CMX
                     case __.ParentID : _ParentID = Convert.ToInt32(value); break;
                     case __.IsEnd : _IsEnd = Convert.ToBoolean(value); break;
                     case __.Sort : _Sort = Convert.ToInt32(value); break;
+                    case __.Num : _Num = Convert.ToInt32(value); break;
                     case __.Remark : _Remark = Convert.ToString(value); break;
                     default: base[name] = value; break;
                 }
@@ -150,6 +164,9 @@ namespace NewLife.CMX
             ///<summary>排序</summary>
             public static readonly Field Sort = FindByName(__.Sort);
 
+            ///<summary>数量</summary>
+            public static readonly Field Num = FindByName(__.Num);
+
             ///<summary>备注</summary>
             public static readonly Field Remark = FindByName(__.Remark);
 
@@ -173,6 +190,9 @@ namespace NewLife.CMX
 
             ///<summary>排序</summary>
             public const String Sort = "Sort";
+
+            ///<summary>数量</summary>
+            public const String Num = "Num";
 
             ///<summary>备注</summary>
             public const String Remark = "Remark";
@@ -199,6 +219,9 @@ namespace NewLife.CMX
 
         /// <summary>排序</summary>
         Int32 Sort { get; set; }
+
+        /// <summary>数量</summary>
+        Int32 Num { get; set; }
 
         /// <summary>备注</summary>
         String Remark { get; set; }

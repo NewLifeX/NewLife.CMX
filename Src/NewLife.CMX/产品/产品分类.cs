@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Xml.Serialization;
@@ -34,6 +34,9 @@ namespace NewLife.CMX
             ///<summary>排序</summary>
             public static readonly Field Sort = FindByName(__.Sort);
 
+            ///<summary>数量</summary>
+            public static readonly Field Num = FindByName(__.Num);
+
             ///<summary>备注</summary>
             public static readonly Field Remark = FindByName(__.Remark);
 
@@ -57,6 +60,9 @@ namespace NewLife.CMX
 
             ///<summary>排序</summary>
             public const String Sort = "Sort";
+
+            ///<summary>数量</summary>
+            public const String Num = "Num";
 
             ///<summary>备注</summary>
             public const String Remark = "Remark";

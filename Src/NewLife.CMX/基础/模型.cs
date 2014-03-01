@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Xml.Serialization;
@@ -18,7 +18,6 @@ namespace NewLife.CMX
     public partial class Model : IModel
     {
         #region 属性
-
         private Int32 _ID;
         /// <summary>编号</summary>
         [DisplayName("编号")]

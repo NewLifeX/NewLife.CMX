@@ -63,7 +63,7 @@
 	WriteLine("生成：" + dic["TemplateName"]);
 	Process.Start(exe, arg).WaitForExit(3000);
 
-	dic["Override"] = false;					// 是否覆盖目标文件
+	dic["Override"] = true;					// 是否覆盖目标文件
 	dic["UseHeadTemplate"] = false;	// 使用.cs文件头模版。实体业务一次生产的，可以要头部，实体数据要头部会导致每次生产都改变文件
 	dic["TemplateName"] = "[内置]实体数据";		// 模版名
 	Save(cfg, dic);

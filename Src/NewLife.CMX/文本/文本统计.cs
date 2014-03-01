@@ -1,8 +1,7 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Xml.Serialization;
-using NewLife.CommonEntity;
 using XCode;
 using XCode.Configuration;
 using XCode.DataAccessLayer;
