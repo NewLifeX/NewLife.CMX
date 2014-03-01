@@ -54,8 +54,9 @@
     <Compile Include="Handlers\ListRouting.cs" />
     <Compile Include="Handlers\UpdateImageLoad.cs" />
     <Compile Include="Interface\ILeftMenuModel.cs" />
+    <Compile Include="ModelPageBase\About.cs" />
+    <Compile Include="ModelPageBase\Index.cs" />
     <Compile Include="Templates\Engine.cs" />
-    <Compile Include="Templates\Index.cs" />
     <Compile Include="Templates\UrlModule.cs" />
     <Compile Include="Templates\PageBase.cs" />
     <Compile Include="Templates\PageHandler.cs" />
