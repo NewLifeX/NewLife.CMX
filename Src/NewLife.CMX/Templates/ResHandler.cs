@@ -57,7 +57,7 @@ namespace NewLife.CMX.Templates
             // 必须为资源文件指定内容类型，否则都变成text/html
             var ext = Path.GetExtension(file).TrimStart('.');
 
-            switch (ext)
+            switch (ext.ToLower())
             {
                 case "css":
                     response.ContentType = "text/css";
