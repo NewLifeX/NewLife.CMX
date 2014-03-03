@@ -222,6 +222,11 @@ namespace NewLife.CMX
                 return Meta.Cache.Entities.Find(__.Suffix, Suffix);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="modelid"></param>
+        /// <returns></returns>
         public static Int32 FindCountByModel(Int32 modelid)
         {
             return FindCount(__.ModelID, modelid);
@@ -284,6 +289,20 @@ namespace NewLife.CMX
             else
                 return Meta.Cache.Entities.Find(e => e.Suffix == Suffix & e.ModelID == ModelID);
 
+        }
+
+        /// <summary>
+        /// 根据扩展名或id查询
+        /// </summary>
+        /// <returns></returns>
+        public static Channel FindBySuffixOrID(String suffix, Int32 id)
+        {
+            if (String.IsNullOrEmpty(suffix) && id <= 0) return null;
+
+            if (id > 0)
+                return FindByID(id);
+            else
+                return FindBySuffix(suffix);
         }
         #endregion
 

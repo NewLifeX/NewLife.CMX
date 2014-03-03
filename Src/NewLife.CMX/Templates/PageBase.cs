@@ -26,13 +26,13 @@ namespace NewLife.CMX.Templates
             }
         }
 
-        private Int32 _CategoryID;
-        /// <summary>属性说明</summary>
-        public Int32 CategoryID { get { return _CategoryID; } set { _CategoryID = value; } }
+        //private Int32 _CategoryID;
+        ///// <summary>属性说明</summary>
+        //public Int32 CategoryID { get { return _CategoryID; } set { _CategoryID = value; } }
 
-        private String _ChannelName;
-        /// <summary>属性说明</summary>
-        public String ChannelName { get { return _ChannelName; } set { _ChannelName = value; } }
+        //private String _ChannelName;
+        ///// <summary>属性说明</summary>
+        //public String ChannelName { get { return _ChannelName; } set { _ChannelName = value; } }
 
         private WebSettingConfig _WebSettingConfig = WebSettingConfig.Current;
         /// <summary>属性说明</summary>
@@ -42,13 +42,13 @@ namespace NewLife.CMX.Templates
         /// <summary>属性说明</summary>
         public TemplateConfig Config { get { return _Config; } set { _Config = value; } }
 
-        private Dictionary<String, String> _ArgDic;
-        /// <summary>参数字典，只是为了编译通过</summary>
-        public Dictionary<String, String> ArgDic { get { return _ArgDic; } set { _ArgDic = value; } }
+        //private Dictionary<String, String> _ArgDic;
+        ///// <summary>参数字典，只是为了编译通过</summary>
+        //public Dictionary<String, String> ArgDic { get { return _ArgDic; } set { _ArgDic = value; } }
 
-        private List<IEntityTree> _ListCategory;
-        /// <summary>属性说明</summary>
-        public List<IEntityTree> ListCategory { get { return _ListCategory; } set { _ListCategory = value; } }
+        //private List<IEntityTree> _ListCategory;
+        ///// <summary>属性说明</summary>
+        //public List<IEntityTree> ListCategory { get { return _ListCategory; } set { _ListCategory = value; } }
 
         //private String _ModelShortName;
         ///// <summary>属性说明</summary>
