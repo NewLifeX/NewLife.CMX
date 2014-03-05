@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Web;
+using System.Web.SessionState;
 using NewLife.CMX.Config;
-using XCode;
 using XTemplate.Templating;
 
 namespace NewLife.CMX.Templates
@@ -61,6 +59,20 @@ namespace NewLife.CMX.Templates
         private String _PageName;
         /// <summary>页面名称</summary>
         public String PageName { get { return _PageName ?? (_PageName = this.GetType().Name); } set { _PageName = value; } }
+        #endregion
+
+        #region 网页属性
+        /// <summary>页面请求</summary>
+        public HttpRequest Request { get { return HttpContext.Current.Request; } }
+
+        /// <summary>网页响应</summary>
+        public HttpResponse Response { get { return HttpContext.Current.Response; } }
+
+        /// <summary>属性说明</summary>
+        public HttpServerUtility Server { get { return HttpContext.Current.Server; } }
+
+        /// <summary>属性说明</summary>
+        public HttpSessionState Session { get { return HttpContext.Current.Session; } }
         #endregion
 
         #region 业务处理
