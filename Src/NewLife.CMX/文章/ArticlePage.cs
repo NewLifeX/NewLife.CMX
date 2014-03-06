@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Web;
@@ -77,10 +78,13 @@ namespace NewLife.CMX
         #endregion
 
         #region 初始化
+        /// <summary>模型代理</summary>
+        IModelProvider provider = Model.FindProvider(typeof(Article));
+
         /// <summary>初始化</summary>
         public ArticleListPage()
         {
-            IModelProvider provider = Model.FindProvider(typeof(Article));
+            //IModelProvider provider = Model.FindProvider(typeof(Article));
             //初始化
             provider.CurrentChannel = 0;
         }
@@ -88,9 +92,9 @@ namespace NewLife.CMX
         /// <summary>初始化并设置当前频道</summary>
         public void init()
         {
-            IModelProvider provider = Model.FindProvider(typeof(Article));
-            //初始化
-            provider.CurrentChannel = 0;
+            //IModelProvider provider = Model.FindProvider(typeof(Article));
+            ////初始化
+            //provider.CurrentChannel = 0;
 
             var c = Channel.FindBySuffixOrID(ChannelSuffix, CurrentChannelID);
 
@@ -100,7 +104,7 @@ namespace NewLife.CMX
         }
 
         /// <summary>数据绑定</summary>
-        void DataBind()
+        protected void DataBind()
         {
             //加载全部数据
             FindByParams();
@@ -116,7 +120,7 @@ namespace NewLife.CMX
         /// <returns>
         /// 返回集合数组，如果实际的数据量小于PageCount，自动补全需要的数量，PageCount==0返回null
         /// </returns>
-        public void GetEntitiesArrayByPageCount()
+        void GetEntitiesArrayByPageCount()
         {
             if (PageCount == 0) return;
 
@@ -140,7 +144,7 @@ namespace NewLife.CMX
         /// 加载全部数据
         /// </summary>
         /// <returns></returns>
-        public void FindByParams()
+        void FindByParams()
         {
             //Entities = Article.FindAllWithCache();
             Entities = Article.FindAll(new WhereExpression(), " ID " + Order, null, (CurrentPageNo - 1) * PageCount, PageCount);
@@ -160,6 +164,76 @@ namespace NewLife.CMX
         private Article _Entity;
         /// <summary>实体对象</summary>
         public Article Entity { get { return _Entity; } set { _Entity = value; } }
+
+        private Int32 _EntityID;
+        /// <summary>实体编号</summary>
+        public Int32 EntityID { get { return _EntityID; } set { _EntityID = value; } }
+
+        //private Int32 _CategoryID;
+        ///// <summary>分类编号</summary>
+        //public Int32 CategoryID { get { return _CategoryID; } set { _CategoryID = value; } }
+
+        //private ArticleCategory _Category;
+        ///// <summary>分类</summary>
+        //public ArticleCategory Category
+        //{
+        //    get
+        //    {
+        //        if (_Category == null && CategoryID > 0) _Category = ArticleCategory.FindByID(CategoryID);
+
+        //        return _Category;
+        //    }
+        //    set { _Category = value; }
+        //}
+
+        private Int32 _CurrentChannelID;
+        /// <summary>当前频道编号</summary>
+        public Int32 CurrentChannelID { get { return _CurrentChannelID; } set { _CurrentChannelID = value; } }
+
+        private String _ChannelName;
+        /// <summary>频道名称</summary>
+        public String ChannelName { get { return _ChannelName; } set { _ChannelName = value; } }
+
+        private String _ChannelSuffix;
+        /// <summary>频道扩展名</summary>
+        public String ChannelSuffix { get { return _ChannelSuffix; } set { _ChannelSuffix = value; } }
+        #endregion
+
+        #region 页面初始化
+        /// <summary>模型代理</summary>
+        IModelProvider provider = Model.FindProvider(typeof(Article));
+
+        /// <summary>构造方法</summary>
+        public ArticlePage()
+        {
+            provider.CurrentChannel = 0;
+        }
+
+        /// <summary>初始化</summary>
+        public void Init()
+        {
+            var c = Channel.FindBySuffixOrID(ChannelSuffix, CurrentChannelID);
+
+            if (c != null) provider.CurrentChannel = c.ID;
+
+            DataBind();
+        }
+
+        /// <summary>数据绑定</summary>
+        void DataBind()
+        {
+            if (EntityID > 0) Entity = Article.FindByID(EntityID);
+        }
+        #endregion
+
+        #region 业务方法
+        /// <summary>根据参数查询</summary>
+        //void FindAllByParams()
+        //{
+        //    if (EntityID <= 0) return;
+
+        //    Entity=Article
+        //}
         #endregion
     }
 }

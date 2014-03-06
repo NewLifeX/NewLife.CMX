@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.SessionState;
 using NewLife.CMX.Config;
+using NewLife.Exceptions;
 using XTemplate.Templating;
 
 namespace NewLife.CMX.Templates
@@ -76,6 +80,37 @@ namespace NewLife.CMX.Templates
         #endregion
 
         #region 业务处理
+        /// <summary>
+        ///  临时采用的方案
+        /// </summary>
+        /// <param name="urlPath"></param>
+        /// <returns></returns>
+        public String GetTemplateContent(String urlPath)
+        {
+            var name = urlPath;
+            var query = "";
+            var p = urlPath.IndexOf("?");
+            if (p >= 0)
+            {
+                name = urlPath.Substring(0, p);
+                query = urlPath.Substring(p + 1);
+            }
+
+            Dictionary<String, Object> dic = new Dictionary<string, object>();
+
+            if (!query.IsNullOrWhiteSpace())
+            {
+                var qs = query.SplitAsDictionary("=", "&");
+                foreach (var item in qs)
+                {
+                    dic.Add(item.Key, item.Value);
+                }
+            }
+
+            var html = Engine.Current.Process(name, dic);
+
+            return html;
+        }
         #endregion
     }
 }

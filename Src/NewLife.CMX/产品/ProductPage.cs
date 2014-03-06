@@ -156,6 +156,49 @@ namespace NewLife.CMX
         private Product _Entity;
         /// <summary>实体对象</summary>
         public Product Entity { get { return _Entity; } set { _Entity = value; } }
+
+        private Int32 _EntityID;
+        /// <summary>实体编号</summary>
+        public Int32 EntityID { get { return _EntityID; } set { _EntityID = value; } }
+
+        private Int32 _CurrentChannelID;
+        /// <summary>当前频道编号</summary>
+        public Int32 CurrentChannelID { get { return _CurrentChannelID; } set { _CurrentChannelID = value; } }
+
+        private String _ChannelName;
+        /// <summary>频道名称</summary>
+        public String ChannelName { get { return _ChannelName; } set { _ChannelName = value; } }
+
+        private String _ChannelSuffix;
+        /// <summary>频道扩展名</summary>
+        public String ChannelSuffix { get { return _ChannelSuffix; } set { _ChannelSuffix = value; } }
+        #endregion
+
+        #region 页面初始化
+        /// <summary>模型代理</summary>
+        IModelProvider provider = Model.FindProvider(typeof(Product));
+
+        /// <summary>构造方法</summary>
+        public ProductPage()
+        {
+            provider.CurrentChannel = 0;
+        }
+
+        /// <summary>初始化</summary>
+        public void Init()
+        {
+            var c = Channel.FindBySuffixOrID(ChannelSuffix, CurrentChannelID);
+
+            if (c != null) provider.CurrentChannel = c.ID;
+
+            DataBind();
+        }
+
+        /// <summary>数据绑定</summary>
+        void DataBind()
+        {
+            if (EntityID > 0) Entity = Product.FindByID(EntityID);
+        }
         #endregion
     }
 }
