@@ -33,8 +33,12 @@ namespace NewLife.CMX
             // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
             //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
 
-            if (isNew && !Dirtys[__.CreateUserID]) CreateUserID = Admin.Current.ID;
-            if (!Dirtys[__.UpdateUserID]) UpdateUserID = Admin.Current.ID;
+            var user = Admin.Current;
+            if (user != null)
+            {
+                if (isNew && !Dirtys[__.CreateUserID]) CreateUserID = user.ID;
+                if (!Dirtys[__.UpdateUserID]) UpdateUserID = user.ID;
+            }
             if (isNew && !Dirtys[__.CreateTime]) CreateTime = DateTime.Now;
             if (!Dirtys[__.UpdateTime]) UpdateTime = DateTime.Now;
         }
