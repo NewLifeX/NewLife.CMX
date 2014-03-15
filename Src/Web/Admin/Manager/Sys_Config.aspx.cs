@@ -19,6 +19,7 @@ public partial class Admin_Settings_Sys_Config : MyModelEntityList
         SiteConfig sc = SiteConfig.Current;
         webname.Text = sc.Name;
         webcompany.Text = sc.Company;
+        weburl.Text = sc.Url;
         webtel.Text = sc.Tel;
         webfax.Text = sc.Fax;
         webmail.Text = sc.Mail;
@@ -87,6 +88,7 @@ public partial class Admin_Settings_Sys_Config : MyModelEntityList
         SiteConfig sc = SiteConfig.Current;
         sc.Name = webname.Text.Trim();
         sc.Company = webcompany.Text.Trim();
+        sc.Url = weburl.Text.Trim();
         sc.Tel = webtel.Text.Trim();
         sc.Fax = webfax.Text.Trim();
         sc.Mail = webmail.Text.Trim();

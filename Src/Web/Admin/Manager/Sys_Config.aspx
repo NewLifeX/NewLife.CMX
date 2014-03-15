@@ -63,7 +63,7 @@
                         <tr>
                             <th>网站域名：</th>
                             <td>
-                                <asp:TextBox ID="weburl" runat="server" CssClass="txtInput normal required url" MaxLength="250"></asp:TextBox><label>*以“http://”开头</label></td>
+                                <asp:TextBox ID="weburl" runat="server" CssClass="txtInput normal url" MaxLength="250"></asp:TextBox><label>以“http://”开头</label></td>
                         </tr>
                         <tr>
                             <th>联系电话：</th>
