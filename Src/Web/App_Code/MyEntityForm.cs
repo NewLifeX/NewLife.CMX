@@ -1,8 +1,8 @@
 ﻿﻿using System;
 using System.Web.UI;
 using NewLife.CommonEntity;
-using XCode;
 using NewLife.Web;
+using XCode;
 
 /// <summary>实体表单页面基类</summary>
 public class MyEntityForm : Page
@@ -19,11 +19,7 @@ public class MyEntityForm : Page
     protected IEntityForm EntityForm;
 
     /// <summary>管理员</summary>
-    protected IAdministrator CurrentManage {
-        get {
-            return ManageProvider.Provider.Current as IAdministrator;
-        }
-    }
+    protected IAdministrator CurrentManage { get { return ManageProvider.Provider.Current as IAdministrator; } }
 
     protected override void OnPreInit(EventArgs e)
     {
@@ -44,22 +40,22 @@ public class MyEntityForm : Page
     {
         e.Cancel = true;
         WebHelper.Alert(e.Error.Message);
-        
+
     }
     void EntityForm_OnSaveSuccess(object sender, EntityFormEventArgs e)
     {
         e.Cancel = true;
         //由于原先框架中的API属性不存在
-//        Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", @"alert('成功');
-//var api = frameElement.api;api.reload();", true);
-        Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", @"alert('成功');$(frameElement).attr('src',$(frameElement).attr('src'));",true);
+        //        Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", @"alert('成功');
+        //var api = frameElement.api;api.reload();", true);
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", @"alert('成功');$(frameElement).attr('src',$(frameElement).attr('src'));", true);
 
     }
     public void CloseWindows()
     {
-//        Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", @"alert('成功！');
-//var api = frameElement.api;api.reload();", true);
-        Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", @"alert('成功!');$(frameElement).attr('src',$(frameElement).attr('src'));",true);
+        //        Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", @"alert('成功！');
+        //var api = frameElement.api;api.reload();", true);
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", @"alert('成功!');$(frameElement).attr('src',$(frameElement).attr('src'));", true);
     }
     #endregion
 }

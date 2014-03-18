@@ -30,48 +30,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XCode", "XCode\XCode.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewLife.CommonEntity", "NewLife.CommonEntity\NewLife.CommonEntity.csproj", "{50D7FAE5-2304-4395-A6FA-7D35279D9D84}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MajorWeb", "MajorWeb\", "{FBA705C2-C688-42F8-85D6-70BBB8C2248E}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
-		ProjectReferences = "{4c2cf9bb-b920-43f5-9d87-b7288e416795}|NewLife.CMX.dll;{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}|XTemplate.dll;{5813C22E-EEB3-4DEE-A45C-BB218041193A}|NewLife.Core.dll;{50D7FAE5-2304-4395-A6FA-7D35279D9D84}|NewLife.CommonEntity.dll;{B49ABA5A-C5DA-45F4-87F1-B435EC51D710}|XCode.dll;"
-		Debug.AspNetCompiler.VirtualPath = "/MajorWeb"
-		Debug.AspNetCompiler.PhysicalPath = "MajorWeb\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\MajorWeb\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/MajorWeb"
-		Release.AspNetCompiler.PhysicalPath = "MajorWeb\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\MajorWeb\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "6682"
-	EndProjectSection
-EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MetalWeb", "MetalWeb\", "{4E928400-85BC-4DB5-9EFE-B8B9E5800A87}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		ProjectReferences = "{4c2cf9bb-b920-43f5-9d87-b7288e416795}|NewLife.CMX.dll;{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}|XTemplate.dll;{5813C22E-EEB3-4DEE-A45C-BB218041193A}|NewLife.Core.dll;{50D7FAE5-2304-4395-A6FA-7D35279D9D84}|NewLife.CommonEntity.dll;{B49ABA5A-C5DA-45F4-87F1-B435EC51D710}|XCode.dll;"
-		Debug.AspNetCompiler.VirtualPath = "/MetalWeb"
-		Debug.AspNetCompiler.PhysicalPath = "MetalWeb\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\MetalWeb\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/MetalWeb"
-		Release.AspNetCompiler.PhysicalPath = "MetalWeb\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\MetalWeb\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "7076"
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XTemplate", "XTemplate\XTemplate.csproj", "{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}"
 EndProject
 Global
@@ -122,22 +80,6 @@ Global
 		{50D7FAE5-2304-4395-A6FA-7D35279D9D84}.Net4Release|Any CPU.Build.0 = Net4Release|Any CPU
 		{50D7FAE5-2304-4395-A6FA-7D35279D9D84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50D7FAE5-2304-4395-A6FA-7D35279D9D84}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FBA705C2-C688-42F8-85D6-70BBB8C2248E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FBA705C2-C688-42F8-85D6-70BBB8C2248E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FBA705C2-C688-42F8-85D6-70BBB8C2248E}.Net4Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FBA705C2-C688-42F8-85D6-70BBB8C2248E}.Net4Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FBA705C2-C688-42F8-85D6-70BBB8C2248E}.Net4Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{FBA705C2-C688-42F8-85D6-70BBB8C2248E}.Net4Release|Any CPU.Build.0 = Debug|Any CPU
-		{FBA705C2-C688-42F8-85D6-70BBB8C2248E}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{FBA705C2-C688-42F8-85D6-70BBB8C2248E}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{4E928400-85BC-4DB5-9EFE-B8B9E5800A87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E928400-85BC-4DB5-9EFE-B8B9E5800A87}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E928400-85BC-4DB5-9EFE-B8B9E5800A87}.Net4Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E928400-85BC-4DB5-9EFE-B8B9E5800A87}.Net4Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E928400-85BC-4DB5-9EFE-B8B9E5800A87}.Net4Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E928400-85BC-4DB5-9EFE-B8B9E5800A87}.Net4Release|Any CPU.Build.0 = Debug|Any CPU
-		{4E928400-85BC-4DB5-9EFE-B8B9E5800A87}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E928400-85BC-4DB5-9EFE-B8B9E5800A87}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}.Net4Debug|Any CPU.ActiveCfg = Net4Debug|Any CPU

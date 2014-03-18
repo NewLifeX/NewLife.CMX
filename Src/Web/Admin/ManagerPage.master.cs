@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using NewLife.CommonEntity;
+using NewLife.Reflection;
 using NewLife.Web;
 
 public partial class ManagerPage : System.Web.UI.MasterPage
 {
-    protected void Page_Load(object sender, EventArgs e) { }
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        IManagePage manager = Reflect.GetValue(Page, "Manager", false) as IManagePage;
+        if (manager != null) Navigation.Text = manager.Navigation;
+
+    }
 
     public static void SetFormScript(Boolean IsForm)
     {
         Page p = (Page)HttpContext.Current.Handler;
-
         if (p == null || p.Master == null) return;
 
         if (IsForm)

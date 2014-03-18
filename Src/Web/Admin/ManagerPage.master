@@ -29,7 +29,7 @@
     <form id="form1" runat="server" class="form1">
         <div class="navigation">
             <a href="javascript:history.go(-1);" class="back">后退</a>
-            你当前的位置：
+            你当前的位置：<asp:Literal ID="Navigation" runat="server" EnableViewState="false"></asp:Literal>
         </div>
         <asp:ContentPlaceHolder ID="C" runat="server">
         </asp:ContentPlaceHolder>

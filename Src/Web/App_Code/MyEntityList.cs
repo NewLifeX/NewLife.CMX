@@ -1,13 +1,11 @@
 ﻿﻿﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Web.UI;
-using NewLife.Collections;
 using NewLife.CommonEntity;
 using NewLife.Web;
 using XCode;
 using XControl;
-using System.Web;
-using System.Collections.Generic;
 
 /// <summary>实体列表页面基类</summary>
 public abstract class MyEntityList : Page
@@ -21,13 +19,7 @@ public abstract class MyEntityList : Page
     protected IManagePage Manager;
 
     /// <summary>管理员</summary>
-    protected IAdministrator CurrentManage
-    {
-        get
-        {
-            return ManageProvider.Provider.Current as IAdministrator;
-        }
-    }
+    protected IAdministrator CurrentManage { get { return ManageProvider.Provider.Current as IAdministrator; } }
 
     //protected override void OnInit(EventArgs e)
     //{
