@@ -33,7 +33,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MajorWeb", "MajorWeb\", "{FBA705C2-C688-42F8-85D6-70BBB8C2248E}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
-		ProjectReferences = "{4c2cf9bb-b920-43f5-9d87-b7288e416795}|NewLife.CMX.dll;{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}|XTemplate.dll;{5813C22E-EEB3-4DEE-A45C-BB218041193A}|NewLife.Core.dll;"
+		ProjectReferences = "{4c2cf9bb-b920-43f5-9d87-b7288e416795}|NewLife.CMX.dll;{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}|XTemplate.dll;{5813C22E-EEB3-4DEE-A45C-BB218041193A}|NewLife.Core.dll;{50D7FAE5-2304-4395-A6FA-7D35279D9D84}|NewLife.CommonEntity.dll;{B49ABA5A-C5DA-45F4-87F1-B435EC51D710}|XCode.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/MajorWeb"
 		Debug.AspNetCompiler.PhysicalPath = "MajorWeb\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\MajorWeb\"
@@ -54,7 +54,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MetalWeb", "MetalWeb\", "{4E928400-85BC-4DB5-9EFE-B8B9E5800A87}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		ProjectReferences = "{4c2cf9bb-b920-43f5-9d87-b7288e416795}|NewLife.CMX.dll;{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}|XTemplate.dll;{5813C22E-EEB3-4DEE-A45C-BB218041193A}|NewLife.Core.dll;"
+		ProjectReferences = "{4c2cf9bb-b920-43f5-9d87-b7288e416795}|NewLife.CMX.dll;{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}|XTemplate.dll;{5813C22E-EEB3-4DEE-A45C-BB218041193A}|NewLife.Core.dll;{50D7FAE5-2304-4395-A6FA-7D35279D9D84}|NewLife.CommonEntity.dll;{B49ABA5A-C5DA-45F4-87F1-B435EC51D710}|XCode.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/MetalWeb"
 		Debug.AspNetCompiler.PhysicalPath = "MetalWeb\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\MetalWeb\"

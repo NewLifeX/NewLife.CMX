@@ -370,8 +370,6 @@ namespace NewLife.CMX
                 var ss = Roles.Split(",");
                 _roles = ss.Select(e => e.ToInt()).Where(e => e != 0).Distinct().ToList();
             }
-
-            return;
         }
 
         /// <summary>是否有指定角色权限</summary>
