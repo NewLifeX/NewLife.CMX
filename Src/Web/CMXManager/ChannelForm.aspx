@@ -48,6 +48,11 @@
                             <asp:CheckBox ID="frmEnable" runat="server" Text="启用" /></td>
                     </tr>
                     <tr>
+                        <th>授权角色：</th>
+                        <td>
+                            <asp:TextBox ID="frmRoles" runat="server" Width="300px" CssClass="form-control"></asp:TextBox></td>
+                    </tr>
+                    <tr>
                         <th>创建人：</th>
                         <td>
                             <asp:Label ID="frmCreateUserName" runat="server"></asp:Label></td>

@@ -78,12 +78,24 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.Enable, value)) { _Enable = value; OnPropertyChanged(__.Enable); } }
         }
 
+        private String _Roles;
+        /// <summary>角色列表</summary>
+        [DisplayName("角色列表")]
+        [Description("角色列表")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn(6, "Roles", "角色列表", null, "nvarchar(50)", 0, 0, true)]
+        public virtual String Roles
+        {
+            get { return _Roles; }
+            set { if (OnPropertyChanging(__.Roles, value)) { _Roles = value; OnPropertyChanged(__.Roles); } }
+        }
+
         private String _FormTemplate;
         /// <summary>表单模版</summary>
         [DisplayName("表单模版")]
         [Description("表单模版")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(6, "FormTemplate", "表单模版", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(7, "FormTemplate", "表单模版", null, "nvarchar(50)", 0, 0, true)]
         public virtual String FormTemplate
         {
             get { return _FormTemplate; }
@@ -95,7 +107,7 @@ namespace NewLife.CMX
         [DisplayName("列表模版")]
         [Description("列表模版")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(7, "ListTemplate", "列表模版", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(8, "ListTemplate", "列表模版", null, "nvarchar(50)", 0, 0, true)]
         public virtual String ListTemplate
         {
             get { return _ListTemplate; }
@@ -107,7 +119,7 @@ namespace NewLife.CMX
         [DisplayName("创建人ID")]
         [Description("创建人ID")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(8, "CreateUserID", "创建人ID", null, "int", 10, 0, false)]
+        [BindColumn(9, "CreateUserID", "创建人ID", null, "int", 10, 0, false)]
         public virtual Int32 CreateUserID
         {
             get { return _CreateUserID; }
@@ -119,7 +131,7 @@ namespace NewLife.CMX
         [DisplayName("创建时间")]
         [Description("创建时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(9, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
+        [BindColumn(10, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
         public virtual DateTime CreateTime
         {
             get { return _CreateTime; }
@@ -131,7 +143,7 @@ namespace NewLife.CMX
         [DisplayName("更新人ID")]
         [Description("更新人ID")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(10, "UpdateUserID", "更新人ID", null, "int", 10, 0, false)]
+        [BindColumn(11, "UpdateUserID", "更新人ID", null, "int", 10, 0, false)]
         public virtual Int32 UpdateUserID
         {
             get { return _UpdateUserID; }
@@ -143,7 +155,7 @@ namespace NewLife.CMX
         [DisplayName("更新时间")]
         [Description("更新时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(11, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
+        [BindColumn(12, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
         public virtual DateTime UpdateTime
         {
             get { return _UpdateTime; }
@@ -155,7 +167,7 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(12, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(13, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Remark
         {
             get { return _Remark; }
@@ -182,6 +194,7 @@ namespace NewLife.CMX
                     case __.ModelID : return _ModelID;
                     case __.Suffix : return _Suffix;
                     case __.Enable : return _Enable;
+                    case __.Roles : return _Roles;
                     case __.FormTemplate : return _FormTemplate;
                     case __.ListTemplate : return _ListTemplate;
                     case __.CreateUserID : return _CreateUserID;
@@ -201,6 +214,7 @@ namespace NewLife.CMX
                     case __.ModelID : _ModelID = Convert.ToInt32(value); break;
                     case __.Suffix : _Suffix = Convert.ToString(value); break;
                     case __.Enable : _Enable = Convert.ToBoolean(value); break;
+                    case __.Roles : _Roles = Convert.ToString(value); break;
                     case __.FormTemplate : _FormTemplate = Convert.ToString(value); break;
                     case __.ListTemplate : _ListTemplate = Convert.ToString(value); break;
                     case __.CreateUserID : _CreateUserID = Convert.ToInt32(value); break;
@@ -232,6 +246,9 @@ namespace NewLife.CMX
 
             ///<summary>启用</summary>
             public static readonly Field Enable = FindByName(__.Enable);
+
+            ///<summary>角色列表</summary>
+            public static readonly Field Roles = FindByName(__.Roles);
 
             ///<summary>表单模版</summary>
             public static readonly Field FormTemplate = FindByName(__.FormTemplate);
@@ -274,6 +291,9 @@ namespace NewLife.CMX
 
             ///<summary>启用</summary>
             public const String Enable = "Enable";
+
+            ///<summary>角色列表</summary>
+            public const String Roles = "Roles";
 
             ///<summary>表单模版</summary>
             public const String FormTemplate = "FormTemplate";
@@ -318,6 +338,9 @@ namespace NewLife.CMX
 
         /// <summary>启用</summary>
         Boolean Enable { get; set; }
+
+        /// <summary>角色列表</summary>
+        String Roles { get; set; }
 
         /// <summary>表单模版</summary>
         String FormTemplate { get; set; }

@@ -110,11 +110,16 @@ namespace NewLife.CMX
             #endregion
 
             #region CMX菜单
-            var crlist = ChannelRole.FindAllByRoleID((icmp.Current as Admin).RoleID);
+            //var crlist = ChannelRole.FindAllByRoleID((icmp.Current as Admin).RoleID);
+            var roleid = (icmp.Current as Admin).RoleID;
             Random r = new Random();
-            foreach (var cr in crlist)
+            foreach (var chn in Channel.FindAllWithCache())
             {
-                var chn = cr.Channel;
+                //}
+                //foreach (var cr in crlist)
+                //{
+                //    var chn = cr.Channel;
+                if (!chn.HasRole(roleid)) continue;
                 //隐藏不启用的频道
                 if (!chn.Enable) continue;
 

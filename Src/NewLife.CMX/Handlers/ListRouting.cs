@@ -17,8 +17,9 @@ namespace NewLife.CMX.Handlers
 
             if (chn != null)
             {
-                var cr = ChannelRole.FindChannelIDAndRoleID(chn.ID, Admin.Current.RoleID);
-                if (cr == null) context.Response.Redirect("Default.aspx");
+                //var cr = ChannelRole.FindChannelIDAndRoleID(chn.ID, Admin.Current.RoleID);
+                //if (cr == null) context.Response.Redirect("Default.aspx");
+                if (chn.HasRole(Admin.Current.RoleID)) context.Response.Redirect("Default.aspx");
 
                 String url = chn.Model.CategoryTemplatePath;
                 if (String.IsNullOrEmpty(url)) return;

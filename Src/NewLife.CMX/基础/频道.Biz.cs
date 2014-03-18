@@ -7,14 +7,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
-using System.Xml.Serialization;
-using NewLife.CMX.Config;
-using NewLife.CommonEntity;
+using System.Linq;
 using NewLife.Log;
-using NewLife.Web;
 using XCode;
-using XCode.Configuration;
 
 namespace NewLife.CMX
 {
@@ -45,6 +40,8 @@ namespace NewLife.CMX
             }
             if (isNew && !Dirtys[__.CreateTime]) CreateTime = DateTime.Now;
             if (!Dirtys[__.UpdateTime]) UpdateTime = DateTime.Now;
+
+            if (String.IsNullOrEmpty(Roles)) AddRole(1);
         }
 
         /// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
@@ -88,9 +85,10 @@ namespace NewLife.CMX
                 //}
                 entity.ListTemplate = String.Format("{0}ModelList", item.Provider.TitleType.Name);
                 entity.FormTemplate = String.Format("{0}ModelContent", item.Provider.TitleType.Name);
-                //考虑到在查询中null与string.empty在构造查询语句时的不同
+                // 考虑到在查询中null与string.empty在构造查询语句时的不同
                 entity.Suffix = "";
                 entity.Name = "默认" + item.Name.Replace("模型", "频道");
+                entity.AddRole(1);
                 entity.Enable = true;
                 entity.Save();
             }
@@ -360,6 +358,64 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展操作
+        private List<Int32> _roles;
+        void InitRoles()
+        {
+            if (_roles != null) return;
+
+            if (String.IsNullOrEmpty(Roles))
+                _roles = new List<Int32>();
+            else
+            {
+                var ss = Roles.Split(",");
+                _roles = ss.Select(e => e.ToInt32()).Where(e => e != 0).Distinct().ToList();
+            }
+
+            return;
+        }
+
+        /// <summary>是否有指定角色权限</summary>
+        /// <param name="roleid"></param>
+        /// <returns></returns>
+        public Boolean HasRole(Int32 roleid)
+        {
+            InitRoles();
+
+            return _roles.Contains(roleid);
+        }
+
+        /// <summary>添加角色</summary>
+        /// <param name="roleid"></param>
+        /// <returns></returns>
+        public Channel AddRole(Int32 roleid)
+        {
+            InitRoles();
+
+            if (!_roles.Contains(roleid))
+            {
+                _roles.Add(roleid);
+                _roles.Sort();
+                Roles = String.Join(",", _roles.ToArray().Select(e => e.ToString()).ToArray());
+            }
+
+            return this;
+        }
+
+        /// <summary>移除角色</summary>
+        /// <param name="roleid"></param>
+        /// <returns></returns>
+        public Channel RemoveRole(Int32 roleid)
+        {
+            InitRoles();
+
+            if (_roles.Contains(roleid))
+            {
+                _roles.Remove(roleid);
+                Roles = String.Join(",", _roles.ToArray().Select(e => e.ToString()).ToArray());
+            }
+
+            return this;
+        }
         #endregion
 
         #region 业务
