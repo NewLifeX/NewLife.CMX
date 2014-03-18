@@ -368,7 +368,7 @@ namespace NewLife.CMX
             else
             {
                 var ss = Roles.Split(",");
-                _roles = ss.Select(e => e.ToInt32()).Where(e => e != 0).Distinct().ToList();
+                _roles = ss.Select(e => e.ToInt()).Where(e => e != 0).Distinct().ToList();
             }
 
             return;

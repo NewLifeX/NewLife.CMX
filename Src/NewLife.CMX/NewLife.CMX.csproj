@@ -30,23 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NewLife.CommonEntity, Version=2.8.5165.16339, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\MyDLL\NewLife.CommonEntity.dll</HintPath>
-    </Reference>
-    <Reference Include="NewLife.Core, Version=4.1.5165.16337, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\MyDLL\NewLife.Core.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
-    <Reference Include="XCode, Version=8.10.5165.16338, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\MyDLL\XCode.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Handlers\FormRouting.cs" />
@@ -158,8 +146,20 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NewLife.CommonEntity\NewLife.CommonEntity.csproj">
+      <Project>{50d7fae5-2304-4395-a6fa-7d35279d9d84}</Project>
+      <Name>NewLife.CommonEntity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NewLife.Core\NewLife.Core.csproj">
+      <Project>{5813c22e-eeb3-4dee-a45c-bb218041193a}</Project>
+      <Name>NewLife.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XCode\XCode.csproj">
+      <Project>{b49aba5a-c5da-45f4-87f1-b435ec51d710}</Project>
+      <Name>XCode</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XTemplate\XTemplate.csproj">
-      <Project>{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}</Project>
+      <Project>{55ba37ee-01a2-438f-a0fb-6b57440bf2f0}</Project>
       <Name>XTemplate</Name>
     </ProjectReference>
   </ItemGroup>
