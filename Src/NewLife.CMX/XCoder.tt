@@ -73,10 +73,11 @@
 	dic["Override"] = true;					// 是否覆盖目标文件
 	dic["OutputPath"] = mypath + "..\\Web\\" + name + "\\$(页面分类)";	// 输出目录
 	dic["UseCNFileName"] = false;				// 中文文件名
-	dic["TemplateName"] = "[内置]页面";			// 模版名
+	//dic["TemplateName"] = "[文件]页面";			// 模版名
+	dic["TemplateName"] = "[文件]"+mypath+"\\..\\doc\\页面";			// 模版名
 	Save(cfg, dic);
 	WriteLine("生成：" + dic["TemplateName"]);
-	Process.Start(exe, arg).WaitForExit(3000);
+	//Process.Start(exe, arg).WaitForExit(3000);
 #>
 <#+
 	String GetXPath(String mypath)
