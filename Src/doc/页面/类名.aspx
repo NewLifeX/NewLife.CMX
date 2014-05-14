@@ -5,7 +5,8 @@
         <div class="tools_bar">
             <a href="<#=Table.Name#>Form.aspx" class="tools_btn"><span><b class="add">添加<#=Table.DisplayName#></b></span></a>
             <div class="search_box">
-                关键字：<asp:TextBox ID="txtKey" runat="server"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="查询" />
+                关键字：<asp:TextBox ID="txtKey" runat="server" CssClass="form-control"></asp:TextBox>
+				&nbsp;<asp:Button ID="btnSearch" runat="server" Text="查询" CssClass="btnSearch" />
             </div>
         </div>
     </div><#
@@ -91,7 +92,8 @@ foreach(IDataColumn Field in Table.Columns){
                 <ItemTemplate>
                     <asp:LinkButton ID="btnDelete" runat="server" CausesValidation="False" CommandName="Delete" OnClientClick='return confirm("确定删除吗？")' Text="删除"></asp:LinkButton>
                 </ItemTemplate>
-                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="30px" />
+                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="40px" />
+                <ItemStyle HorizontalAlign="Center" />
             </asp:TemplateField>
         </Columns>
         <EmptyDataTemplate>
