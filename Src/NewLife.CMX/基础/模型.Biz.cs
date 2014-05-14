@@ -106,6 +106,12 @@ namespace NewLife.CMX
 
         /// <summary>更新人名称</summary>
         public String UpdateUserName { get { return UpdateUser != null ? UpdateUser.DisplayName : ""; } }
+
+        /// <summary>标题页面</summary>
+        public String TitleUrl { get { return String.Format("CMX/{0}/{0}.aspx", Provider.TitleType.Name); } }
+
+        /// <summary>分类页面</summary>
+        public String CategoryUrl { get { return String.Format("CMX/{0}/{1}.aspx", Provider.TitleType.Name, Provider.CategoryType.Name); } }
         #endregion
 
         #region 扩展查询﻿
@@ -178,28 +184,12 @@ namespace NewLife.CMX
 
                 var entity = FindByName(model.Name);
                 if (entity == null) entity = new Model();
+
                 entity.Name = model.Name;
                 entity.ClassName = item.Key;
 
-                //switch (item.Name)
-                //{
-                //    case "ArticleCategory":
-                //        entity.CategoryTemplatePath = CMXConfigBase.Current.CurrentRootPath + "/CMX/Article/" + CMXDefaultArticleModelConfig.Current.CategoryTemplatePath;
-                //        entity.TitleTemplatePath = CMXConfigBase.Current.CurrentRootPath + "/CMX/Article/" + CMXDefaultArticleModelConfig.Current.TitleTemplatePath;
-                //        break;
-                //    case "ProductCategory":
-                //        entity.CategoryTemplatePath = CMXConfigBase.Current.CurrentRootPath + "/CMX/Product/" + CMXDefaultProductModelConfig.Current.CategoryTemplatePath;
-                //        entity.TitleTemplatePath = CMXConfigBase.Current.CurrentRootPath + "/CMX/Product/" + CMXDefaultProductModelConfig.Current.TitleTemplatePath;
-                //        break;
-                //    case "TextCategory":
-                //        entity.CategoryTemplatePath = CMXConfigBase.Current.CurrentRootPath + "/CMX/Text/" + CMXDefaultTextModelConfig.Current.CategoryTemplatePath;
-                //        entity.TitleTemplatePath = CMXConfigBase.Current.CurrentRootPath + "/CMX/Text/" + CMXDefaultTextModelConfig.Current.TitleTemplatePath;
-                //        break;
-                //    default:
-                //        break;
-                //}
-                entity.TitleTemplatePath = String.Format("CMX/{0}/{0}.aspx", model.TitleType.Name);
-                entity.CategoryTemplatePath = String.Format("CMX/{0}/{1}.aspx", model.TitleType.Name, model.CategoryType.Name);
+                //entity.TitleTemplate = String.Format("CMX/{0}/{0}.aspx", model.TitleType.Name);
+                //entity.CategoryTemplate = String.Format("CMX/{0}/{1}.aspx", model.TitleType.Name, model.CategoryType.Name);
                 entity.Enable = true;
                 entity.ShortName = PinYin.GetFirst(model.Name);
                 entity.Save();

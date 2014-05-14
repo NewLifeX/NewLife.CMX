@@ -7,10 +7,9 @@ using NewLife.Log;
 using NewLife.Web;
 using NewLife.CMX;
 
-public partial class CMX_TextStatisticsForm : MyModelEntityForm<TextStatistics>
+public partial class CMX_ArticleContentForm : MyEntityForm<ArticleContent>
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        ManagerPage.SetFormScript(true);
     }
 }

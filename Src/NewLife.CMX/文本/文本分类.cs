@@ -37,6 +37,15 @@ namespace NewLife.CMX
             ///<summary>数量</summary>
             public static readonly Field Num = FindByName(__.Num);
 
+            ///<summary>分类页模版。前台分类页</summary>
+            public static readonly Field CategoryTemplate = FindByName(__.CategoryTemplate);
+
+            ///<summary>标题页模版。前台列表页</summary>
+            public static readonly Field TitleTemplate = FindByName(__.TitleTemplate);
+
+            ///<summary>内容页模版。前台内容页</summary>
+            public static readonly Field ContentTemplate = FindByName(__.ContentTemplate);
+
             ///<summary>备注</summary>
             public static readonly Field Remark = FindByName(__.Remark);
 
@@ -63,6 +72,15 @@ namespace NewLife.CMX
 
             ///<summary>数量</summary>
             public const String Num = "Num";
+
+            ///<summary>分类页模版。前台分类页</summary>
+            public const String CategoryTemplate = "CategoryTemplate";
+
+            ///<summary>标题页模版。前台列表页</summary>
+            public const String TitleTemplate = "TitleTemplate";
+
+            ///<summary>内容页模版。前台内容页</summary>
+            public const String ContentTemplate = "ContentTemplate";
 
             ///<summary>备注</summary>
             public const String Remark = "Remark";

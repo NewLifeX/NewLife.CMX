@@ -91,12 +91,48 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.Num, value)) { _Num = value; OnPropertyChanged(__.Num); } }
         }
 
+        private String _CategoryTemplate;
+        /// <summary>分类页模版。前台分类页</summary>
+        [DisplayName("分类页模版")]
+        [Description("分类页模版。前台分类页")]
+        [DataObjectField(false, false, true, 200)]
+        [BindColumn(7, "CategoryTemplate", "分类页模版。前台分类页", null, "nvarchar(200)", 0, 0, true)]
+        public virtual String CategoryTemplate
+        {
+            get { return _CategoryTemplate; }
+            set { if (OnPropertyChanging(__.CategoryTemplate, value)) { _CategoryTemplate = value; OnPropertyChanged(__.CategoryTemplate); } }
+        }
+
+        private String _TitleTemplate;
+        /// <summary>标题页模版。前台列表页</summary>
+        [DisplayName("标题页模版")]
+        [Description("标题页模版。前台列表页")]
+        [DataObjectField(false, false, true, 200)]
+        [BindColumn(8, "TitleTemplate", "标题页模版。前台列表页", null, "nvarchar(200)", 0, 0, true)]
+        public virtual String TitleTemplate
+        {
+            get { return _TitleTemplate; }
+            set { if (OnPropertyChanging(__.TitleTemplate, value)) { _TitleTemplate = value; OnPropertyChanged(__.TitleTemplate); } }
+        }
+
+        private String _ContentTemplate;
+        /// <summary>内容页模版。前台内容页</summary>
+        [DisplayName("内容页模版")]
+        [Description("内容页模版。前台内容页")]
+        [DataObjectField(false, false, true, 200)]
+        [BindColumn(9, "ContentTemplate", "内容页模版。前台内容页", null, "nvarchar(200)", 0, 0, true)]
+        public virtual String ContentTemplate
+        {
+            get { return _ContentTemplate; }
+            set { if (OnPropertyChanging(__.ContentTemplate, value)) { _ContentTemplate = value; OnPropertyChanged(__.ContentTemplate); } }
+        }
+
         private String _Remark;
         /// <summary>备注</summary>
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(7, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(10, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Remark
         {
             get { return _Remark; }
@@ -124,6 +160,9 @@ namespace NewLife.CMX
                     case __.IsEnd : return _IsEnd;
                     case __.Sort : return _Sort;
                     case __.Num : return _Num;
+                    case __.CategoryTemplate : return _CategoryTemplate;
+                    case __.TitleTemplate : return _TitleTemplate;
+                    case __.ContentTemplate : return _ContentTemplate;
                     case __.Remark : return _Remark;
                     default: return base[name];
                 }
@@ -138,6 +177,9 @@ namespace NewLife.CMX
                     case __.IsEnd : _IsEnd = Convert.ToBoolean(value); break;
                     case __.Sort : _Sort = Convert.ToInt32(value); break;
                     case __.Num : _Num = Convert.ToInt32(value); break;
+                    case __.CategoryTemplate : _CategoryTemplate = Convert.ToString(value); break;
+                    case __.TitleTemplate : _TitleTemplate = Convert.ToString(value); break;
+                    case __.ContentTemplate : _ContentTemplate = Convert.ToString(value); break;
                     case __.Remark : _Remark = Convert.ToString(value); break;
                     default: base[name] = value; break;
                 }
@@ -167,6 +209,15 @@ namespace NewLife.CMX
             ///<summary>数量</summary>
             public static readonly Field Num = FindByName(__.Num);
 
+            ///<summary>分类页模版。前台分类页</summary>
+            public static readonly Field CategoryTemplate = FindByName(__.CategoryTemplate);
+
+            ///<summary>标题页模版。前台列表页</summary>
+            public static readonly Field TitleTemplate = FindByName(__.TitleTemplate);
+
+            ///<summary>内容页模版。前台内容页</summary>
+            public static readonly Field ContentTemplate = FindByName(__.ContentTemplate);
+
             ///<summary>备注</summary>
             public static readonly Field Remark = FindByName(__.Remark);
 
@@ -193,6 +244,15 @@ namespace NewLife.CMX
 
             ///<summary>数量</summary>
             public const String Num = "Num";
+
+            ///<summary>分类页模版。前台分类页</summary>
+            public const String CategoryTemplate = "CategoryTemplate";
+
+            ///<summary>标题页模版。前台列表页</summary>
+            public const String TitleTemplate = "TitleTemplate";
+
+            ///<summary>内容页模版。前台内容页</summary>
+            public const String ContentTemplate = "ContentTemplate";
 
             ///<summary>备注</summary>
             public const String Remark = "Remark";
@@ -222,6 +282,15 @@ namespace NewLife.CMX
 
         /// <summary>数量</summary>
         Int32 Num { get; set; }
+
+        /// <summary>分类页模版。前台分类页</summary>
+        String CategoryTemplate { get; set; }
+
+        /// <summary>标题页模版。前台列表页</summary>
+        String TitleTemplate { get; set; }
+
+        /// <summary>内容页模版。前台内容页</summary>
+        String ContentTemplate { get; set; }
 
         /// <summary>备注</summary>
         String Remark { get; set; }

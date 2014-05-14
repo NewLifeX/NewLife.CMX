@@ -22,7 +22,7 @@ namespace NewLife.CMX.Handlers
                 //if (cr == null) context.Response.Redirect("Default.aspx");
                 if (!chn.HasRole(Admin.Current.RoleID)) context.Response.Redirect("Default.aspx");
 
-                String url = chn.Model.TitleTemplatePath;
+                var url = chn.Model.TitleUrl;
                 if (!String.IsNullOrEmpty(url))
                 {
                     url += "?" + context.Request.QueryString.ToString();

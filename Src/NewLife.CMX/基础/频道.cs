@@ -90,36 +90,48 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.Roles, value)) { _Roles = value; OnPropertyChanged(__.Roles); } }
         }
 
-        private String _FormTemplate;
-        /// <summary>表单模版</summary>
-        [DisplayName("表单模版")]
-        [Description("表单模版")]
-        [DataObjectField(false, false, true, 50)]
-        [BindColumn(7, "FormTemplate", "表单模版", null, "nvarchar(50)", 0, 0, true)]
-        public virtual String FormTemplate
+        private String _CategoryTemplate;
+        /// <summary>分类页模版。前台分类页</summary>
+        [DisplayName("分类页模版")]
+        [Description("分类页模版。前台分类页")]
+        [DataObjectField(false, false, true, 200)]
+        [BindColumn(7, "CategoryTemplate", "分类页模版。前台分类页", null, "nvarchar(200)", 0, 0, true)]
+        public virtual String CategoryTemplate
         {
-            get { return _FormTemplate; }
-            set { if (OnPropertyChanging(__.FormTemplate, value)) { _FormTemplate = value; OnPropertyChanged(__.FormTemplate); } }
+            get { return _CategoryTemplate; }
+            set { if (OnPropertyChanging(__.CategoryTemplate, value)) { _CategoryTemplate = value; OnPropertyChanged(__.CategoryTemplate); } }
         }
 
-        private String _ListTemplate;
-        /// <summary>列表模版</summary>
-        [DisplayName("列表模版")]
-        [Description("列表模版")]
-        [DataObjectField(false, false, true, 50)]
-        [BindColumn(8, "ListTemplate", "列表模版", null, "nvarchar(50)", 0, 0, true)]
-        public virtual String ListTemplate
+        private String _TitleTemplate;
+        /// <summary>标题页模版。前台列表页</summary>
+        [DisplayName("标题页模版")]
+        [Description("标题页模版。前台列表页")]
+        [DataObjectField(false, false, true, 200)]
+        [BindColumn(8, "TitleTemplate", "标题页模版。前台列表页", null, "nvarchar(200)", 0, 0, true)]
+        public virtual String TitleTemplate
         {
-            get { return _ListTemplate; }
-            set { if (OnPropertyChanging(__.ListTemplate, value)) { _ListTemplate = value; OnPropertyChanged(__.ListTemplate); } }
+            get { return _TitleTemplate; }
+            set { if (OnPropertyChanging(__.TitleTemplate, value)) { _TitleTemplate = value; OnPropertyChanged(__.TitleTemplate); } }
+        }
+
+        private String _ContentTemplate;
+        /// <summary>内容页模版。前台内容页</summary>
+        [DisplayName("内容页模版")]
+        [Description("内容页模版。前台内容页")]
+        [DataObjectField(false, false, true, 200)]
+        [BindColumn(9, "ContentTemplate", "内容页模版。前台内容页", null, "nvarchar(200)", 0, 0, true)]
+        public virtual String ContentTemplate
+        {
+            get { return _ContentTemplate; }
+            set { if (OnPropertyChanging(__.ContentTemplate, value)) { _ContentTemplate = value; OnPropertyChanged(__.ContentTemplate); } }
         }
 
         private Int32 _CreateUserID;
-        /// <summary>创建人ID</summary>
-        [DisplayName("创建人ID")]
-        [Description("创建人ID")]
+        /// <summary>创建人</summary>
+        [DisplayName("创建人")]
+        [Description("创建人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(9, "CreateUserID", "创建人ID", null, "int", 10, 0, false)]
+        [BindColumn(10, "CreateUserID", "创建人", null, "int", 10, 0, false)]
         public virtual Int32 CreateUserID
         {
             get { return _CreateUserID; }
@@ -131,7 +143,7 @@ namespace NewLife.CMX
         [DisplayName("创建时间")]
         [Description("创建时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(10, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
+        [BindColumn(11, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
         public virtual DateTime CreateTime
         {
             get { return _CreateTime; }
@@ -139,11 +151,11 @@ namespace NewLife.CMX
         }
 
         private Int32 _UpdateUserID;
-        /// <summary>更新人ID</summary>
-        [DisplayName("更新人ID")]
-        [Description("更新人ID")]
+        /// <summary>更新人</summary>
+        [DisplayName("更新人")]
+        [Description("更新人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(11, "UpdateUserID", "更新人ID", null, "int", 10, 0, false)]
+        [BindColumn(12, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
         public virtual Int32 UpdateUserID
         {
             get { return _UpdateUserID; }
@@ -155,7 +167,7 @@ namespace NewLife.CMX
         [DisplayName("更新时间")]
         [Description("更新时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(12, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
+        [BindColumn(13, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
         public virtual DateTime UpdateTime
         {
             get { return _UpdateTime; }
@@ -167,7 +179,7 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(13, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(14, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Remark
         {
             get { return _Remark; }
@@ -195,8 +207,9 @@ namespace NewLife.CMX
                     case __.Suffix : return _Suffix;
                     case __.Enable : return _Enable;
                     case __.Roles : return _Roles;
-                    case __.FormTemplate : return _FormTemplate;
-                    case __.ListTemplate : return _ListTemplate;
+                    case __.CategoryTemplate : return _CategoryTemplate;
+                    case __.TitleTemplate : return _TitleTemplate;
+                    case __.ContentTemplate : return _ContentTemplate;
                     case __.CreateUserID : return _CreateUserID;
                     case __.CreateTime : return _CreateTime;
                     case __.UpdateUserID : return _UpdateUserID;
@@ -215,8 +228,9 @@ namespace NewLife.CMX
                     case __.Suffix : _Suffix = Convert.ToString(value); break;
                     case __.Enable : _Enable = Convert.ToBoolean(value); break;
                     case __.Roles : _Roles = Convert.ToString(value); break;
-                    case __.FormTemplate : _FormTemplate = Convert.ToString(value); break;
-                    case __.ListTemplate : _ListTemplate = Convert.ToString(value); break;
+                    case __.CategoryTemplate : _CategoryTemplate = Convert.ToString(value); break;
+                    case __.TitleTemplate : _TitleTemplate = Convert.ToString(value); break;
+                    case __.ContentTemplate : _ContentTemplate = Convert.ToString(value); break;
                     case __.CreateUserID : _CreateUserID = Convert.ToInt32(value); break;
                     case __.CreateTime : _CreateTime = Convert.ToDateTime(value); break;
                     case __.UpdateUserID : _UpdateUserID = Convert.ToInt32(value); break;
@@ -250,19 +264,22 @@ namespace NewLife.CMX
             ///<summary>角色列表</summary>
             public static readonly Field Roles = FindByName(__.Roles);
 
-            ///<summary>表单模版</summary>
-            public static readonly Field FormTemplate = FindByName(__.FormTemplate);
+            ///<summary>分类页模版。前台分类页</summary>
+            public static readonly Field CategoryTemplate = FindByName(__.CategoryTemplate);
 
-            ///<summary>列表模版</summary>
-            public static readonly Field ListTemplate = FindByName(__.ListTemplate);
+            ///<summary>标题页模版。前台列表页</summary>
+            public static readonly Field TitleTemplate = FindByName(__.TitleTemplate);
 
-            ///<summary>创建人ID</summary>
+            ///<summary>内容页模版。前台内容页</summary>
+            public static readonly Field ContentTemplate = FindByName(__.ContentTemplate);
+
+            ///<summary>创建人</summary>
             public static readonly Field CreateUserID = FindByName(__.CreateUserID);
 
             ///<summary>创建时间</summary>
             public static readonly Field CreateTime = FindByName(__.CreateTime);
 
-            ///<summary>更新人ID</summary>
+            ///<summary>更新人</summary>
             public static readonly Field UpdateUserID = FindByName(__.UpdateUserID);
 
             ///<summary>更新时间</summary>
@@ -295,19 +312,22 @@ namespace NewLife.CMX
             ///<summary>角色列表</summary>
             public const String Roles = "Roles";
 
-            ///<summary>表单模版</summary>
-            public const String FormTemplate = "FormTemplate";
+            ///<summary>分类页模版。前台分类页</summary>
+            public const String CategoryTemplate = "CategoryTemplate";
 
-            ///<summary>列表模版</summary>
-            public const String ListTemplate = "ListTemplate";
+            ///<summary>标题页模版。前台列表页</summary>
+            public const String TitleTemplate = "TitleTemplate";
 
-            ///<summary>创建人ID</summary>
+            ///<summary>内容页模版。前台内容页</summary>
+            public const String ContentTemplate = "ContentTemplate";
+
+            ///<summary>创建人</summary>
             public const String CreateUserID = "CreateUserID";
 
             ///<summary>创建时间</summary>
             public const String CreateTime = "CreateTime";
 
-            ///<summary>更新人ID</summary>
+            ///<summary>更新人</summary>
             public const String UpdateUserID = "UpdateUserID";
 
             ///<summary>更新时间</summary>
@@ -342,19 +362,22 @@ namespace NewLife.CMX
         /// <summary>角色列表</summary>
         String Roles { get; set; }
 
-        /// <summary>表单模版</summary>
-        String FormTemplate { get; set; }
+        /// <summary>分类页模版。前台分类页</summary>
+        String CategoryTemplate { get; set; }
 
-        /// <summary>列表模版</summary>
-        String ListTemplate { get; set; }
+        /// <summary>标题页模版。前台列表页</summary>
+        String TitleTemplate { get; set; }
 
-        /// <summary>创建人ID</summary>
+        /// <summary>内容页模版。前台内容页</summary>
+        String ContentTemplate { get; set; }
+
+        /// <summary>创建人</summary>
         Int32 CreateUserID { get; set; }
 
         /// <summary>创建时间</summary>
         DateTime CreateTime { get; set; }
 
-        /// <summary>更新人ID</summary>
+        /// <summary>更新人</summary>
         Int32 UpdateUserID { get; set; }
 
         /// <summary>更新时间</summary>

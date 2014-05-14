@@ -21,7 +21,7 @@ namespace NewLife.CMX.Handlers
                 //if (cr == null) context.Response.Redirect("Default.aspx");
                 if (!chn.HasRole(Admin.Current.RoleID)) context.Response.Redirect("Default.aspx");
 
-                String url = chn.Model.CategoryTemplatePath;
+                String url = chn.Model.CategoryUrl;
                 if (String.IsNullOrEmpty(url)) return;
 
                 url += "?" + context.Request.QueryString.ToString();
@@ -33,15 +33,13 @@ namespace NewLife.CMX.Handlers
             context.Response.End();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
+        /// <summary></summary>
         /// <param name="channelid"></param>
         public static String GetUrl(Int32 channelid)
         {
             var chn = Channel.FindByID(channelid);
 
-            return chn == null ? "" : chn.Model.CategoryTemplatePath;
+            return chn == null ? "" : chn.Model.CategoryUrl;
         }
 
         /// <summary>
@@ -52,7 +50,7 @@ namespace NewLife.CMX.Handlers
         {
             var chn = Channel.FindByName(channelname);
 
-            return chn == null ? "" : chn.Model.CategoryTemplatePath;
+            return chn == null ? "" : chn.Model.CategoryUrl;
         }
 
         public bool IsReusable { get { return false; } }

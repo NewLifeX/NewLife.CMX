@@ -22,60 +22,60 @@ namespace NewLife.CMX.TemplateEngine
             if (kind.IsNullOrEmpty()) kind = "X";
             if (suffix == null || suffix == "$") suffix = "";
 
-            kind = kind.ToLower();
-            if (kind == "C")
-            {
-                var chn = Channel.FindBySuffixOrModelShortName(suffix, modelShortName);
-                if (chn != null)
-                {
-                    var list = TypeX.GetType("NewLife.CMX.Web." + chn.ListTemplate);
-                    var iml = list.CreateInstance() as IModeList;
+            //kind = kind.ToLower();
+            //if (kind == "C")
+            //{
+            //    var chn = Channel.FindBySuffixOrModelShortName(suffix, modelShortName);
+            //    if (chn != null)
+            //    {
+            //        var list = TypeX.GetType("NewLife.CMX.Web." + chn.ListTemplate);
+            //        var iml = list.CreateInstance() as IModeList;
 
-                    iml.ChannelID = chn.ID;
-                    iml.ModelShortName = modelShortName;
-                    iml.Address = address;
-                    iml.CategoryID = categoryID;
-                    iml.Pageindex = PageIndex == 0 ? 1 : PageIndex;
-                    //iml.RecordNum = RecordNum == 0 ? TemplateConfig.Current.RecordNum : RecordNum;
+            //        iml.ChannelID = chn.ID;
+            //        iml.ModelShortName = modelShortName;
+            //        iml.Address = address;
+            //        iml.CategoryID = categoryID;
+            //        iml.Pageindex = PageIndex == 0 ? 1 : PageIndex;
+            //        //iml.RecordNum = RecordNum == 0 ? TemplateConfig.Current.RecordNum : RecordNum;
 
-                    return iml.Process();
-                }
-            }
-            else if (kind == "F")
-            {
-                var chn = Channel.FindBySuffixOrModelShortName(suffix, modelShortName);
-                if (chn != null)
-                {
-                    var mt = TypeX.GetType("NewLife.CMX.Web." + chn.FormTemplate);
-                    var im = mt.CreateInstance() as IModelContent;
+            //        return iml.Process();
+            //    }
+            //}
+            //else if (kind == "F")
+            //{
+            //    var chn = Channel.FindBySuffixOrModelShortName(suffix, modelShortName);
+            //    if (chn != null)
+            //    {
+            //        var mt = TypeX.GetType("NewLife.CMX.Web." + chn.FormTemplate);
+            //        var im = mt.CreateInstance() as IModelContent;
 
-                    im.ChannelID = chn.ID;
-                    im.ModelShortName = modelShortName;
-                    im.Address = address;
-                    im.ID = EntityID;
+            //        im.ChannelID = chn.ID;
+            //        im.ModelShortName = modelShortName;
+            //        im.Address = address;
+            //        im.ID = EntityID;
 
-                    return im.Process();
-                }
-            }
-            else if (kind == "L")
-            {
-                var chn = Channel.FindBySuffixOrModelShortName(suffix, modelShortName);
-                if (chn != null)
-                {
-                    var lt = TypeX.GetType("NewLife.CMX.Web.LeftMenuModel");
-                    var lf = lt.CreateInstance() as ILeftMenuModel;
+            //        return im.Process();
+            //    }
+            //}
+            //else if (kind == "L")
+            //{
+            //    var chn = Channel.FindBySuffixOrModelShortName(suffix, modelShortName);
+            //    if (chn != null)
+            //    {
+            //        var lt = TypeX.GetType("NewLife.CMX.Web.LeftMenuModel");
+            //        var lf = lt.CreateInstance() as ILeftMenuModel;
 
-                    lf.Address = address;
-                    lf.ChannelID = chn.ID;
-                    lf.CategoryID = categoryID;
-                    lf.ModelShortName = modelShortName;
-                    //lf.DisDeepth = DisDeepth;
-                    lf.RootDeepth = RootDeepth;
-                    //lf.IsContainParent = IsContainParent;
+            //        lf.Address = address;
+            //        lf.ChannelID = chn.ID;
+            //        lf.CategoryID = categoryID;
+            //        lf.ModelShortName = modelShortName;
+            //        //lf.DisDeepth = DisDeepth;
+            //        lf.RootDeepth = RootDeepth;
+            //        //lf.IsContainParent = IsContainParent;
 
-                    return lf.Process();
-                }
-            }
+            //        return lf.Process();
+            //    }
+            //}
 
             var type = TypeX.GetType("NewLife.CMX.Web.Common");
             var ic = type.CreateInstance() as ICommon;
