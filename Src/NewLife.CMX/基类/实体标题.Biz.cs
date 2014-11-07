@@ -167,6 +167,9 @@ namespace NewLife.CMX
                 this.Version = entity.Version;
             }
 
+            // 同步访问量
+            if (HasDirty) Views = Statistics.Total;
+
             return rs + base.OnUpdate();
         }
 
@@ -194,6 +197,8 @@ namespace NewLife.CMX
             TEntity entity = new TEntity();
 
             EntityFactory.Register(typeof(TEntity), new TitleFactory<TEntity>());
+
+            Meta.Factory.AdditionalFields.Add(__.Views);
         }
 
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
