@@ -41,9 +41,6 @@
             <asp:BoundField DataField="Price" HeaderText="价格" SortExpression="Price" DataFormatString="{0:c}">
                 <ItemStyle HorizontalAlign="Right" Font-Bold="True" ForeColor="Blue" />
             </asp:BoundField>
-            <asp:BoundField DataField="StatisticsID" HeaderText="访问统计" SortExpression="StatisticsID" DataFormatString="{0:n0}">
-                <ItemStyle HorizontalAlign="Center" Font-Bold="True" />
-            </asp:BoundField>
             <asp:BoundField DataField="CreateUserName" HeaderText="创建人" SortExpression="CreateUserName">
                 <ItemStyle HorizontalAlign="Center" />
             </asp:BoundField>
