@@ -37,6 +37,9 @@ namespace NewLife.CMX
             ///<summary>访问统计</summary>
             public static readonly Field StatisticsID = FindByName(__.StatisticsID);
 
+            ///<summary>访问量。由统计表同步过来</summary>
+            public static readonly Field Views = FindByName(__.Views);
+
             ///<summary>创建人</summary>
             public static readonly Field CreateUserID = FindByName(__.CreateUserID);
 
@@ -81,6 +84,9 @@ namespace NewLife.CMX
 
             ///<summary>访问统计</summary>
             public const String StatisticsID = "StatisticsID";
+
+            ///<summary>访问量。由统计表同步过来</summary>
+            public const String Views = "Views";
 
             ///<summary>创建人</summary>
             public const String CreateUserID = "CreateUserID";

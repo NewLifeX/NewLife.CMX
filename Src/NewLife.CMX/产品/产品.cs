@@ -16,24 +16,12 @@ namespace NewLife.CMX
     public partial class Product : IProduct
     {
         #region 属性
-        private Int32 _Hits;
-        /// <summary>访问量</summary>
-        [DisplayName("访问量")]
-        [Description("访问量")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(1, "Hits", "访问量", null, "int", 10, 0, false)]
-        public virtual Int32 Hits
-        {
-            get { return _Hits; }
-            set { if (OnPropertyChanging(__.Hits, value)) { _Hits = value; OnPropertyChanged(__.Hits); } }
-        }
-
         private Decimal _Price;
         /// <summary>价格</summary>
         [DisplayName("价格")]
         [Description("价格")]
         [DataObjectField(false, false, true, 19)]
-        [BindColumn(2, "Price", "价格", null, "money", 0, 0, false)]
+        [BindColumn(1, "Price", "价格", null, "money", 0, 0, false)]
         public virtual Decimal Price
         {
             get { return _Price; }
@@ -45,7 +33,7 @@ namespace NewLife.CMX
         [DisplayName("图片路径")]
         [Description("图片路径")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(3, "PhotoPath", "图片路径", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(2, "PhotoPath", "图片路径", null, "nvarchar(200)", 0, 0, true)]
         public virtual String PhotoPath
         {
             get { return _PhotoPath; }
@@ -67,7 +55,6 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
-                    case __.Hits : return _Hits;
                     case __.Price : return _Price;
                     case __.PhotoPath : return _PhotoPath;
                     default: return base[name];
@@ -77,7 +64,6 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
-                    case __.Hits : _Hits = Convert.ToInt32(value); break;
                     case __.Price : _Price = Convert.ToDecimal(value); break;
                     case __.PhotoPath : _PhotoPath = Convert.ToString(value); break;
                     default: base[name] = value; break;
@@ -108,6 +94,9 @@ namespace NewLife.CMX
             ///<summary>访问统计</summary>
             public static readonly Field StatisticsID = FindByName(__.StatisticsID);
 
+            ///<summary>访问量。由统计表同步过来</summary>
+            public static readonly Field Views = FindByName(__.Views);
+
             ///<summary>创建人</summary>
             public static readonly Field CreateUserID = FindByName(__.CreateUserID);
 
@@ -128,9 +117,6 @@ namespace NewLife.CMX
 
             ///<summary>备注</summary>
             public static readonly Field Remark = FindByName(__.Remark);
-
-            ///<summary>访问量</summary>
-            public static readonly Field Hits = FindByName(__.Hits);
 
             ///<summary>价格</summary>
             public static readonly Field Price = FindByName(__.Price);
@@ -162,6 +148,9 @@ namespace NewLife.CMX
             ///<summary>访问统计</summary>
             public const String StatisticsID = "StatisticsID";
 
+            ///<summary>访问量。由统计表同步过来</summary>
+            public const String Views = "Views";
+
             ///<summary>创建人</summary>
             public const String CreateUserID = "CreateUserID";
 
@@ -183,9 +172,6 @@ namespace NewLife.CMX
             ///<summary>备注</summary>
             public const String Remark = "Remark";
 
-            ///<summary>访问量</summary>
-            public const String Hits = "Hits";
-
             ///<summary>价格</summary>
             public const String Price = "Price";
 
@@ -200,9 +186,6 @@ namespace NewLife.CMX
     public partial interface IProduct : IEntityTitle
     {
         #region 属性
-        /// <summary>访问量</summary>
-        Int32 Hits { get; set; }
-
         /// <summary>价格</summary>
         Decimal Price { get; set; }
 

@@ -15,49 +15,6 @@ namespace NewLife.CMX
     [BindTable("Article", Description = "文章", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class Article : IArticle
     {
-        #region 属性
-        private Int32 _Hits;
-        /// <summary>访问量</summary>
-        [DisplayName("访问量")]
-        [Description("访问量")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(1, "Hits", "访问量", null, "int", 10, 0, false)]
-        public virtual Int32 Hits
-        {
-            get { return _Hits; }
-            set { if (OnPropertyChanging(__.Hits, value)) { _Hits = value; OnPropertyChanged(__.Hits); } }
-        }
-        #endregion
-
-        #region 获取/设置 字段值
-        /// <summary>
-        /// 获取/设置 字段值。
-        /// 一个索引，基类使用反射实现。
-        /// 派生实体类可重写该索引，以避免反射带来的性能损耗
-        /// </summary>
-        /// <param name="name">字段名</param>
-        /// <returns></returns>
-        public override Object this[String name]
-        {
-            get
-            {
-                switch (name)
-                {
-                    case __.Hits : return _Hits;
-                    default: return base[name];
-                }
-            }
-            set
-            {
-                switch (name)
-                {
-                    case __.Hits : _Hits = Convert.ToInt32(value); break;
-                    default: base[name] = value; break;
-                }
-            }
-        }
-        #endregion
-
         #region 字段名
         /// <summary>取得文章字段信息的快捷方式</summary>
         public partial class _
@@ -80,6 +37,9 @@ namespace NewLife.CMX
             ///<summary>访问统计</summary>
             public static readonly Field StatisticsID = FindByName(__.StatisticsID);
 
+            ///<summary>访问量。由统计表同步过来</summary>
+            public static readonly Field Views = FindByName(__.Views);
+
             ///<summary>创建人</summary>
             public static readonly Field CreateUserID = FindByName(__.CreateUserID);
 
@@ -100,9 +60,6 @@ namespace NewLife.CMX
 
             ///<summary>备注</summary>
             public static readonly Field Remark = FindByName(__.Remark);
-
-            ///<summary>访问量</summary>
-            public static readonly Field Hits = FindByName(__.Hits);
 
             static Field FindByName(String name) { return Meta.Table.FindByName(name); }
         }
@@ -128,6 +85,9 @@ namespace NewLife.CMX
             ///<summary>访问统计</summary>
             public const String StatisticsID = "StatisticsID";
 
+            ///<summary>访问量。由统计表同步过来</summary>
+            public const String Views = "Views";
+
             ///<summary>创建人</summary>
             public const String CreateUserID = "CreateUserID";
 
@@ -149,9 +109,6 @@ namespace NewLife.CMX
             ///<summary>备注</summary>
             public const String Remark = "Remark";
 
-            ///<summary>访问量</summary>
-            public const String Hits = "Hits";
-
         }
         #endregion
     }
@@ -159,9 +116,5 @@ namespace NewLife.CMX
     /// <summary>文章接口</summary>
     public partial interface IArticle : IEntityTitle
     {
-        #region 属性
-        /// <summary>访问量</summary>
-        Int32 Hits { get; set; }
-        #endregion
     }
 }

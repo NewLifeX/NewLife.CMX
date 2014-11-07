@@ -205,8 +205,8 @@ namespace NewLife.CMX
         {
             var entity = FindByID(ParentID);
 
-            entity.Hits++;
-            entity.Save();
+            //entity.Hits++;
+            //entity.Save();
         }
         #endregion
     }

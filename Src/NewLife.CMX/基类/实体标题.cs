@@ -89,12 +89,24 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.StatisticsID, value)) { _StatisticsID = value; OnPropertyChanged(__.StatisticsID); } }
         }
 
+        private Int32 _Views;
+        /// <summary>访问量。由统计表同步过来</summary>
+        [DisplayName("访问量")]
+        [Description("访问量。由统计表同步过来")]
+        [DataObjectField(false, false, true, 10)]
+        [BindColumn(7, "Views", "访问量。由统计表同步过来", null, "int", 10, 0, false)]
+        public virtual Int32 Views
+        {
+            get { return _Views; }
+            set { if (OnPropertyChanging(__.Views, value)) { _Views = value; OnPropertyChanged(__.Views); } }
+        }
+
         private Int32 _CreateUserID;
         /// <summary>创建人</summary>
         [DisplayName("创建人")]
         [Description("创建人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(7, "CreateUserID", "创建人", null, "int", 10, 0, false)]
+        [BindColumn(8, "CreateUserID", "创建人", null, "int", 10, 0, false)]
         public virtual Int32 CreateUserID
         {
             get { return _CreateUserID; }
@@ -106,7 +118,7 @@ namespace NewLife.CMX
         [DisplayName("创建人")]
         [Description("创建人")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(8, "CreateUserName", "创建人", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(9, "CreateUserName", "创建人", null, "nvarchar(50)", 0, 0, true)]
         public virtual String CreateUserName
         {
             get { return _CreateUserName; }
@@ -118,7 +130,7 @@ namespace NewLife.CMX
         [DisplayName("创建时间")]
         [Description("创建时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(9, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
+        [BindColumn(10, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
         public virtual DateTime CreateTime
         {
             get { return _CreateTime; }
@@ -130,7 +142,7 @@ namespace NewLife.CMX
         [DisplayName("更新人")]
         [Description("更新人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(10, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
+        [BindColumn(11, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
         public virtual Int32 UpdateUserID
         {
             get { return _UpdateUserID; }
@@ -142,7 +154,7 @@ namespace NewLife.CMX
         [DisplayName("更新人")]
         [Description("更新人")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(11, "UpdateUserName", "更新人", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(12, "UpdateUserName", "更新人", null, "nvarchar(50)", 0, 0, true)]
         public virtual String UpdateUserName
         {
             get { return _UpdateUserName; }
@@ -154,7 +166,7 @@ namespace NewLife.CMX
         [DisplayName("更新时间")]
         [Description("更新时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(12, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
+        [BindColumn(13, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
         public virtual DateTime UpdateTime
         {
             get { return _UpdateTime; }
@@ -166,7 +178,7 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(13, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(14, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Remark
         {
             get { return _Remark; }
@@ -194,6 +206,7 @@ namespace NewLife.CMX
                     case __.Title : return _Title;
                     case __.Version : return _Version;
                     case __.StatisticsID : return _StatisticsID;
+                    case __.Views : return _Views;
                     case __.CreateUserID : return _CreateUserID;
                     case __.CreateUserName : return _CreateUserName;
                     case __.CreateTime : return _CreateTime;
@@ -214,6 +227,7 @@ namespace NewLife.CMX
                     case __.Title : _Title = Convert.ToString(value); break;
                     case __.Version : _Version = Convert.ToInt32(value); break;
                     case __.StatisticsID : _StatisticsID = Convert.ToInt32(value); break;
+                    case __.Views : _Views = Convert.ToInt32(value); break;
                     case __.CreateUserID : _CreateUserID = Convert.ToInt32(value); break;
                     case __.CreateUserName : _CreateUserName = Convert.ToString(value); break;
                     case __.CreateTime : _CreateTime = Convert.ToDateTime(value); break;
@@ -248,6 +262,9 @@ namespace NewLife.CMX
 
             ///<summary>访问统计</summary>
             public static readonly Field StatisticsID = FindByName(__.StatisticsID);
+
+            ///<summary>访问量。由统计表同步过来</summary>
+            public static readonly Field Views = FindByName(__.Views);
 
             ///<summary>创建人</summary>
             public static readonly Field CreateUserID = FindByName(__.CreateUserID);
@@ -293,6 +310,9 @@ namespace NewLife.CMX
 
             ///<summary>访问统计</summary>
             public const String StatisticsID = "StatisticsID";
+
+            ///<summary>访问量。由统计表同步过来</summary>
+            public const String Views = "Views";
 
             ///<summary>创建人</summary>
             public const String CreateUserID = "CreateUserID";
@@ -340,6 +360,9 @@ namespace NewLife.CMX
 
         /// <summary>访问统计</summary>
         Int32 StatisticsID { get; set; }
+
+        /// <summary>访问量。由统计表同步过来</summary>
+        Int32 Views { get; set; }
 
         /// <summary>创建人</summary>
         Int32 CreateUserID { get; set; }

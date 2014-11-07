@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Tables Version="8.10.5247.34899">
+<Tables Version="8.13.5425.550">
   <Table Name="Model" Description="模型。默认有文章、文本、产品三种模型，可以扩展增加。" DbType="SqlServer" 实体分类="基础" 页面分类="Manager">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
@@ -69,6 +69,7 @@
       <Column Name="Title" DataType="String" Length="200" Nullable="False" Description="标题" />
       <Column Name="Version" DataType="Int32" Description="最新版本" />
       <Column Name="StatisticsID" DataType="Int32" Description="访问统计" />
+      <Column Name="Views" DataType="Int32" Description="访问量。由统计表同步过来" />
       <Column Name="CreateUserID" DataType="Int32" Description="创建人" />
       <Column Name="CreateUserName" DataType="String" Description="创建人" />
       <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
@@ -115,11 +116,7 @@
     </Columns>
   </Table>
   <Table Name="ArticleCategory" Description="文章分类" DbType="SqlServer" BaseType="EntityCategory" 实体分类="文章" 页面分类="Article" />
-  <Table Name="Article" Description="文章" DbType="SqlServer" BaseType="EntityTitle" 实体分类="文章" 页面分类="Article">
-    <Columns>
-      <Column Name="Hits" DataType="Int32" Description="访问量" />
-    </Columns>
-  </Table>
+  <Table Name="Article" Description="文章" DbType="SqlServer" BaseType="EntityTitle" 实体分类="文章" 页面分类="Article" />
   <Table Name="ArticleContent" Description="文章内容" DbType="SqlServer" BaseType="EntityContent" 实体分类="文章" 页面分类="Article" />
   <Table Name="ArticleStatistics" Description="文章统计" DbType="SqlServer" BaseType="Statistics" 实体分类="文章" 页面分类="Article" />
   <Table Name="TextCategory" Description="文本分类" DbType="SqlServer" BaseType="EntityCategory" 实体分类="文本" 页面分类="Text" />
@@ -129,7 +126,6 @@
   <Table Name="ProductCategory" Description="产品分类" DbType="SqlServer" BaseType="EntityCategory" 实体分类="产品" 页面分类="Product" />
   <Table Name="Product" Description="产品" DbType="SqlServer" BaseType="EntityTitle" 实体分类="产品" 页面分类="Product">
     <Columns>
-      <Column Name="Hits" DataType="Int32" Description="访问量" />
       <Column Name="Price" DataType="Decimal" Description="价格" />
       <Column Name="PhotoPath" DataType="String" Length="200" Description="图片路径" />
     </Columns>

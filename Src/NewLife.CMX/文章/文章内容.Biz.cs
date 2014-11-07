@@ -50,18 +50,18 @@ namespace NewLife.CMX
         //    set { _Suffix = value; }
         //}
 
-        private Int32 _Hits;
+        private Int32 _Views;
         /// <summary>点击次数</summary>
-        public Int32 Hits
+        public Int32 Views
         {
             get
             {
-                if (Article != null && !Dirtys.ContainsKey("Hits"))
+                if (Article != null && !Dirtys.ContainsKey("Views"))
                 {
-                    _Hits = Article.Hits;
-                    Dirtys["Hits"] = true;
+                    _Views = Article.Views;
+                    Dirtys["Views"] = true;
                 }
-                return _Hits;
+                return _Views;
             }
         }
         #endregion
