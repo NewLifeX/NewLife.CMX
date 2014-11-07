@@ -42,7 +42,12 @@
             <asp:BoundField DataField="UpdateTime" HeaderText="更新时间" SortExpression="UpdateTime" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" >
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="180px" />
             </asp:BoundField>
-            <asp:TemplateField ShowHeader="False" HeaderText="删除">
+            <asp:TemplateField HeaderText="编辑" SortExpression="Name">
+                <ItemTemplate>
+                    <asp:HyperLink ID="HyperManager" runat="server" Text='编辑' NavigateUrl='<%# "ModelForm.aspx?ID="+Eval("ID")%>'></asp:HyperLink>
+                </ItemTemplate>
+                <ItemStyle HorizontalAlign="Center" />
+            </asp:TemplateField>            <asp:TemplateField ShowHeader="False" HeaderText="删除">
                 <ItemTemplate>
                     <asp:LinkButton ID="btnDelete" runat="server" CausesValidation="False" CommandName="Delete" OnClientClick='return confirm("确定删除吗？")' Text="删除"></asp:LinkButton>
                 </ItemTemplate>

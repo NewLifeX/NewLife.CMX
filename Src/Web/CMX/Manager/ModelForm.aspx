@@ -24,29 +24,14 @@
                             <asp:TextBox ID="frmShortName" runat="server" Width="300px" CssClass="form-control"></asp:TextBox></td>
                     </tr>
                     <tr>
+                        <th>模型提供者：</th>
+                        <td>
+                            <asp:TextBox ID="frmClassName" runat="server" Width="300px" CssClass="form-control"></asp:TextBox></td>
+                    </tr>
+                    <tr>
                         <th>启用：</th>
                         <td>
                             <asp:CheckBox ID="frmEnable" runat="server" Text="启用" /></td>
-                    </tr>
-                    <tr>
-                        <th>创建人：</th>
-                        <td>
-                            <asp:Label ID="frmCreateUserName" runat="server"></asp:Label></td>
-                    </tr>
-                    <tr>
-                        <th>创建时间：</th>
-                        <td>
-                            <asp:Label ID="frmCreateTime" runat="server"></asp:Label></td>
-                    </tr>
-                    <tr>
-                        <th>更新人：</th>
-                        <td>
-                            <asp:Label ID="frmUpdateUserName" runat="server"></asp:Label></td>
-                    </tr>
-                    <tr>
-                        <th>更新时间：</th>
-                        <td>
-                            <asp:Label ID="frmUpdateTime" runat="server"></asp:Label></td>
                     </tr>
                     <tr>
                         <th>标题页：</th>
@@ -59,22 +44,22 @@
                             <asp:TextBox ID="frmCategoryTemplatePath" runat="server" Width="300px" CssClass="form-control"></asp:TextBox></td>
                     </tr>
                     <tr>
-                        <th>分类名：</th>
-                        <td>
-                            <asp:TextBox ID="frmClassName" runat="server" Width="300px" CssClass="form-control"></asp:TextBox></td>
-                    </tr>
-                    <tr>
                         <th>备注：</th>
                         <td>
                             <asp:TextBox ID="frmRemark" runat="server" TextMode="MultiLine" Width="300px" CssClass="form-control"></asp:TextBox></td>
                     </tr>
-                    <%-- <tr>
-                        <th></th>
+                    <tr>
+                        <th>创建：</th>
                         <td>
-                            <asp:Button ID="btnSave" runat="server" CausesValidation="True" Text='保存' CssClass="btnSubmit" />
-                            &nbsp;<asp:Button ID="btnCopy" runat="server" CausesValidation="True" Text='另存为新模型' CssClass="btnSubmit" />
-                        </td>
-                    </tr>--%>
+                            <asp:Label ID="frmCreateUserName" runat="server"></asp:Label>
+                            <asp:Label ID="frmCreateTime" runat="server"></asp:Label></td>
+                    </tr>
+                    <tr>
+                        <th>更新：</th>
+                        <td>
+                            <asp:Label ID="frmUpdateUserName" runat="server"></asp:Label>
+                            <asp:Label ID="frmUpdateTime" runat="server"></asp:Label></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
