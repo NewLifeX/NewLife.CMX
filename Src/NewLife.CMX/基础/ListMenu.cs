@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
-using System.Reflection;
 using NewLife.Common;
 using NewLife.CommonEntity;
 using NewLife.Log;
@@ -109,7 +107,7 @@ namespace NewLife.CMX
             }
             #endregion
 
-            #region CMX菜单
+            #region 频道菜单
             //var crlist = ChannelRole.FindAllByRoleID((icmp.Current as Admin).RoleID);
             var roleid = (icmp.Current as Admin).RoleID;
             Random r = new Random();
@@ -123,7 +121,7 @@ namespace NewLife.CMX
                 //隐藏不启用的频道
                 if (!chn.Enable) continue;
 
-                var crlm = ConvertToMenu(null, chn.Name, chn.Name, "#", null);
+                var crlm = ConvertToMenu(null, "【频道】" + chn.Name, chn.Name, "#", null);
 
                 crlm.Children.Add(ConvertToMenu(null, "分类管理", chn.Name + r.Next(), "../ListRouting.ashx?ChannelID=" + chn.ID + "&ModelID=" + chn.ModelID, null));
 
@@ -145,8 +143,9 @@ namespace NewLife.CMX
         /// <returns></returns>
         private static List<ListMenu> GetModelCategory3(Channel chn, Int32 Deepth)
         {
-            IModelProvider provider = chn.Model.Provider;
-            var eop = EntityFactory.CreateOperate(provider.CategoryType) as ICategoryFactory;
+            //IModelProvider provider = chn.Model.Provider;
+            //var eop = EntityFactory.CreateOperate(provider.CategoryType) as ICategoryFactory;
+            var eop = chn.Model.Provider.CategoryFactory;
             var t = eop.Default.GetType();
             try
             {
@@ -157,7 +156,7 @@ namespace NewLife.CMX
                 var list = new List<ListMenu>();
 
                 //var dic = t.BaseType.InvokeMember("FindChildNameAndIDByNoParent", BindingFlags.InvokeMethod | BindingFlags.Public | BindingFlags.Static, null, null, new Object[] { 0, 2 }) as Dictionary<Int32, String>;
-                var dic = eop.FindChildNameAndIDByNoParent(0, 2);
+                var dic = eop.FindChildNameAndIDByNoParent(0, 4);
 
                 foreach (var item in dic)
                 {
@@ -165,10 +164,10 @@ namespace NewLife.CMX
                     lm.Name = item.Value;
                     lm.Title = (chn.Name + item.Value + r.Next()).Trim();
 
-                    lm.Url = item.Key > 0
-                        ? "../FormRouting.ashx?ChannelID=" + chn.ID + "&CategoryID=" + item.Key + "&Name=" + item.Value.Trim() + "&ModelID=" + chn.ModelID
-                        : "../ListRouting.ashx?ChannelID=" + chn.ID + "&CID=" + -item.Key + "&ModelID=" + chn.ModelID;
-
+                    //lm.Url = item.Key > 0
+                    //    ? "../FormRouting.ashx?ChannelID=" + chn.ID + "&CategoryID=" + item.Key + "&Name=" + item.Value.Trim() + "&ModelID=" + chn.ModelID
+                    //    : "../ListRouting.ashx?ChannelID=" + chn.ID + "&CID=" + -item.Key + "&ModelID=" + chn.ModelID;
+                    lm.Url = "../FormRouting.ashx?ChannelID=" + chn.ID + "&CategoryID=" + Math.Abs(item.Key) + "&Name=" + item.Value.Trim() + "&ModelID=" + chn.ModelID;
                     list.Add(lm);
                 }
 
@@ -191,25 +190,25 @@ namespace NewLife.CMX
         /// 转换为Menu
         /// </summary>
         /// <param name="menu"></param>
-        /// <param name="CustomName"></param>
-        /// <param name="CustomKindTitle"></param>
-        /// <param name="CustomUrl"></param>
+        /// <param name="name"></param>
+        /// <param name="title"></param>
+        /// <param name="url"></param>
         /// <param name="Icon"></param>
         /// <returns></returns>
-        public static ListMenu ConvertToMenu(IMenu menu, String CustomName, String CustomKindTitle, String CustomUrl, String Icon)
+        public static ListMenu ConvertToMenu(IMenu menu, String name, String title, String url, String Icon)
         {
             var lm = new ListMenu();
 
             if (menu == null)
             {
-                lm.Name = CustomName;
-                lm.Title = PinYin.GetFirst(CustomKindTitle);
-                lm.Url = CustomUrl;
+                lm.Name = name;
+                lm.Title = PinYin.GetFirst(title);
+                lm.Url = url;
             }
             else
             {
-                lm.Name = String.IsNullOrEmpty(CustomName) ? menu.Name : CustomName;
-                lm.Title = CustomKindTitle + "_" + PinYin.GetFirst(menu.Name);
+                lm.Name = String.IsNullOrEmpty(name) ? menu.Name : name;
+                lm.Title = title + "_" + PinYin.GetFirst(menu.Name);
                 lm.Url = menu.Url;
             }
             lm.Icon = Icon;

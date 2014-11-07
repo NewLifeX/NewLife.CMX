@@ -19,11 +19,11 @@ public partial class Admin_LeftMenu : System.Web.UI.UserControl
 
     public String LoadMenu()
     {
-        List<ListMenu> lm = ListMenu.GetMenus();
+        //List<ListMenu> lm = ListMenu.GetMenus();
 
-        StringBuilder sb = new StringBuilder();
+        //StringBuilder sb = new StringBuilder();
 
-        sb = FormatMenu(lm);
+        //sb = FormatMenu(lm);
 
         return FormatMenu(ListMenu.GetMenus()).ToString();
     }

@@ -35,6 +35,9 @@
             <asp:BoundField DataField="Version" HeaderText="最新版本" SortExpression="Version" DataFormatString="{0:n0}">
                 <ItemStyle HorizontalAlign="Center" Font-Bold="True" />
             </asp:BoundField>
+            <asp:BoundField DataField="Views" HeaderText="访问量" SortExpression="Hits" DataFormatString="{0:n0}">
+                <ItemStyle HorizontalAlign="Center" />
+            </asp:BoundField>
             <asp:BoundField DataField="Price" HeaderText="价格" SortExpression="Price" DataFormatString="{0:c}">
                 <ItemStyle HorizontalAlign="Right" Font-Bold="True" ForeColor="Blue" />
             </asp:BoundField>
@@ -53,9 +56,9 @@
             <asp:BoundField DataField="UpdateTime" HeaderText="更新时间" SortExpression="UpdateTime" DataFormatString="{0:yyyy-MM-dd}">
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="120px" />
             </asp:BoundField>
-            <asp:TemplateField HeaderText="编辑产品" SortExpression="Name">
+            <asp:TemplateField HeaderText="编辑" SortExpression="Name">
                 <ItemTemplate>
-                    <asp:HyperLink ID="HyperManager" runat="server" Text='编辑产品' NavigateUrl='<%# "ProductForm.aspx?ID="+Eval("ID")%>' CssClass="formUrl"></asp:HyperLink>
+                    <asp:HyperLink ID="HyperManager" runat="server" Text='编辑' NavigateUrl='<%# "ProductForm.aspx?ID="+Eval("ID")%>' CssClass="formUrl"></asp:HyperLink>
                 </ItemTemplate>
                 <ItemStyle HorizontalAlign="Center" />
             </asp:TemplateField>

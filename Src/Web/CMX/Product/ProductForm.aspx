@@ -90,39 +90,21 @@
                             <input type="button" value="上传" id="upload" /></td>
                     </tr>
                     <tr>
-                        <th>访问统计：</th>
-                        <td>
-                            <XCL:NumberBox ID="frmStatisticsID" runat="server" Width="80px"></XCL:NumberBox></td>
-                    </tr>
-                    <tr>
-                        <th>创建人：</th>
-                        <td>
-                            <asp:TextBox ID="frmCreateUserName" runat="server" Width="150px"  CssClass="form-control"></asp:TextBox></td>
-                    </tr>
-                    <tr>
-                        <th>创建时间：</th>
-                        <td>
-                            <XCL:DateTimePicker ID="frmCreateTime" runat="server"></XCL:DateTimePicker></td>
-                    </tr>
-                    <tr>
-                        <th>更新人：</th>
-                        <td>
-                            <asp:TextBox ID="frmUpdateUserName" runat="server" Width="150px"  CssClass="form-control"></asp:TextBox></td>
-                    </tr>
-                    <tr>
-                        <th>更新时间：</th>
-                        <td>
-                            <XCL:DateTimePicker ID="frmUpdateTime" runat="server"></XCL:DateTimePicker></td>
-                    </tr>
-                    <tr>
-                        <th>最新版本：</th>
-                        <td>
-                            <XCL:NumberBox ID="frmVersion" runat="server" Width="80px"></XCL:NumberBox></td>
-                    </tr>
-                    <tr>
                         <th>备注：</th>
                         <td>
                             <asp:TextBox ID="frmRemark" runat="server" Width="300px" CssClass="form-control"></asp:TextBox></td>
+                    </tr>
+                    <tr>
+                        <th>创建：</th>
+                        <td>
+                            <asp:Label ID="frmCreateUserName" runat="server"></asp:Label>
+                            <asp:Label ID="frmCreateTime" runat="server"></asp:Label></td>
+                    </tr>
+                    <tr>
+                        <th>更新：</th>
+                        <td>
+                            <asp:Label ID="frmUpdateUserName" runat="server"></asp:Label>
+                            <asp:Label ID="frmUpdateTime" runat="server"></asp:Label></td>
                     </tr>
                 </tbody>
             </table>

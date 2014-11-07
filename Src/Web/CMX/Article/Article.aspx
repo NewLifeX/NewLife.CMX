@@ -35,24 +35,15 @@
             <asp:BoundField DataField="Version" HeaderText="最新版本" SortExpression="Version" DataFormatString="{0:n0}">
                 <ItemStyle HorizontalAlign="Center" />
             </asp:BoundField>
-            <asp:BoundField DataField="Hits" HeaderText="访问量" SortExpression="Hits" DataFormatString="{0:n0}">
+            <asp:BoundField DataField="Views" HeaderText="访问量" SortExpression="Hits" DataFormatString="{0:n0}">
                 <ItemStyle HorizontalAlign="Center" />
             </asp:BoundField>
-            <asp:BoundField DataField="StatisticsID" HeaderText="访问统计" SortExpression="StatisticsID" DataFormatString="{0:n0}">
-                <ItemStyle HorizontalAlign="Center" />
-            </asp:BoundField>
-            <%--<asp:BoundField DataField="CreateUserID" HeaderText="创建人" SortExpression="CreateUserID" DataFormatString="{0:n0}">
-                <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
-            </asp:BoundField>--%>
             <asp:BoundField DataField="CreateUserName" HeaderText="创建人" SortExpression="CreateUserName">
                 <ItemStyle HorizontalAlign="Center" />
             </asp:BoundField>
             <asp:BoundField DataField="CreateTime" HeaderText="创建时间" SortExpression="CreateTime" DataFormatString="{0:yyyy-MM-dd}">
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="120px" />
             </asp:BoundField>
-            <%--<asp:BoundField DataField="UpdateUserID" HeaderText="更新人" SortExpression="UpdateUserID" DataFormatString="{0:n0}">
-                <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
-            </asp:BoundField>--%>
             <asp:BoundField DataField="UpdateUserName" HeaderText="更新人" SortExpression="UpdateUserName">
                 <ItemStyle HorizontalAlign="Center" />
             </asp:BoundField>
@@ -61,7 +52,7 @@
             </asp:BoundField>
             <asp:TemplateField HeaderText="编辑" SortExpression="Name">
                 <ItemTemplate>
-                    <asp:HyperLink ID="HyperManager" runat="server" Text='编辑文章' NavigateUrl='<%# "ArticleForm.aspx?ID="+Eval("ID")%>' CssClass="formUrl"></asp:HyperLink>
+                    <asp:HyperLink ID="HyperManager" runat="server" Text='编辑' NavigateUrl='<%# "ArticleForm.aspx?ID="+Eval("ID")%>' CssClass="formUrl"></asp:HyperLink>
                 </ItemTemplate>
                 <ItemStyle HorizontalAlign="Center" />
             </asp:TemplateField>

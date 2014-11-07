@@ -56,9 +56,9 @@
                 </ItemTemplate>
                 <ItemStyle HorizontalAlign="Center" />
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="编辑分类">
+            <asp:TemplateField HeaderText="编辑">
                 <ItemTemplate>
-                    <asp:HyperLink ID="HyperManager" runat="server" Text='编辑分类' NavigateUrl='<%# "TextCategoryForm.aspx?ID="+Eval("ID")%>' CssClass="formUrl"></asp:HyperLink>
+                    <asp:HyperLink ID="HyperManager" runat="server" Text='编辑' NavigateUrl='<%# "TextCategoryForm.aspx?ID="+Eval("ID")%>' CssClass="formUrl"></asp:HyperLink>
                 </ItemTemplate>
                 <ItemStyle HorizontalAlign="Center" />
             </asp:TemplateField>

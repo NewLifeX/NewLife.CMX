@@ -79,7 +79,7 @@ namespace NewLife.CMX
                 if (_Content == null && !Dirtys.ContainsKey("Content"))
                 {
                     _Content = EntityContent<TContent>.FindLastByParentID(ID);
-                    if (_Content == null) _Content = new TContent();
+                    if (_Content == null) _Content = new TContent { ParentID = ID };
                     Dirtys["Content"] = true;
                 }
                 return _Content;
@@ -109,7 +109,7 @@ namespace NewLife.CMX
         {
             get
             {
-                if (_Content == null && !Dirtys.ContainsKey("Statistics"))
+                if (_Statistics == null && !Dirtys.ContainsKey("Statistics"))
                 {
                     _Statistics = Statistics<TStatistics>.FindByID(StatisticsID);
                     if (_Statistics == null) _Statistics = new TStatistics();
@@ -128,9 +128,10 @@ namespace NewLife.CMX
         {
             if (!Dirtys["Version"]) Version = 1;
 
+            var num = 0;
             // 保存统计
             var stat = Statistics;
-            var num = stat.Insert();
+            if (stat != null) stat.Insert();
 
             this.StatisticsID = stat.ID;
 
