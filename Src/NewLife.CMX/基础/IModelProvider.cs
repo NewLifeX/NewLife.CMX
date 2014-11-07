@@ -42,7 +42,7 @@ namespace NewLife.CMX
         #endregion
 
         #region 当前频道
-        /// <summary>当前频道</summary>
+        /// <summary>当前频道。主要用于切换当前所在频道，直接影响当前模型各实体类在本线程所需要操作的频道数据表</summary>
         Int32 CurrentChannel { get; set; }
         #endregion
 
@@ -202,6 +202,7 @@ namespace NewLife.CMX
                         EntityTitle<TTitle>.Meta.TableName = EntityTitle<TTitle>.Meta.Table.TableName + suffix;
                         EntityCategory<TCategory>.Meta.TableName = EntityCategory<TCategory>.Meta.Table.TableName + suffix;
                         EntityContent<TContent>.Meta.TableName = EntityContent<TContent>.Meta.Table.TableName + suffix;
+                        Statistics<TStatistics>.Meta.TableName = Statistics<TStatistics>.Meta.Table.TableName + suffix;
                     }
                 }
                 else
@@ -209,6 +210,7 @@ namespace NewLife.CMX
                     EntityTitle<TTitle>.Meta.TableName = null;
                     EntityCategory<TCategory>.Meta.TableName = null;
                     EntityContent<TContent>.Meta.TableName = null;
+                    Statistics<TStatistics>.Meta.TableName = null;
                 }
             }
         }

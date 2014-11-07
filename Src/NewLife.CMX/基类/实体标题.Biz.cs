@@ -182,43 +182,6 @@ namespace NewLife.CMX
             return base.OnDelete();
         }
         #endregion
-
-        #region 频道
-        ///// <summary>采用线程静态，避免影响其它线程</summary>
-        //[ThreadStatic]
-        //private static String ChannelSuffix;
-
-        ///// <summary>设置频道后缀，指定标题、分类、内容数据表，仅本线程有效</summary>
-        ///// <param name="suffix"></param>
-        //public static void SetChannelSuffix(String suffix)
-        //{
-        //    //if (ChannelSuffix == suffix) return;
-
-        //    ChannelSuffix = suffix;
-
-        //    Meta.TableName = Meta.Table.TableName + suffix;
-        //    EntityCategory<TCategory>.Meta.TableName = EntityCategory<TCategory>.Meta.Table.TableName + suffix;
-        //    EntityContent<TContent>.Meta.TableName = EntityContent<TContent>.Meta.Table.TableName + suffix;
-        //}
-
-        //private Channel _Channel;
-        ///// <summary>频道</summary>
-        //public Channel Channel
-        //{
-        //    get
-        //    {
-        //        if (_Channel == null && !Dirtys.ContainsKey("Channel"))
-        //        {
-        //            _Channel = Channel.FindByID(ModelProvider<TEntity, TCategory, TContent>.CurrentChannel);
-        //            Dirtys["Channel"] = true;
-        //        }
-        //        return _Channel;
-        //    }
-        //}
-
-        ///// <summary>频道名</summary>
-        //public String ChannelName { get { return Channel != null ? Channel.Name : null; } }
-        #endregion
     }
 
     /// <summary>实体标题</summary>
@@ -268,76 +231,6 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
-        //private IEntityCategory _Category;
-        ///// <summary>分类</summary>
-        //public IEntityCategory Category
-        //{
-        //    get
-        //    {
-        //        if (_Category == null && CategoryID > 0 && !Dirtys.ContainsKey("Category"))
-        //        {
-        //            var factory = ModelProvider.Get<TEntity>().CategoryFactory;
-        //            _Category = factory.FindByID(CategoryID);
-        //            //_Category = EntityCategory<TCategory>.FindByID(CategoryID);
-        //            Dirtys["Category"] = true;
-        //        }
-        //        return _Category;
-        //    }
-        //    set { _Category = value; }
-        //}
-
-        //private IEntityContent _Content;
-        ///// <summary>内容</summary>
-        //public IEntityContent Content
-        //{
-        //    get
-        //    {
-        //        if (_Content == null && !Dirtys.ContainsKey("Content"))
-        //        {
-        //            var factory = ModelProvider.Get<TEntity>().ContentFactory;
-        //            _Content = factory.FindLastByParentID(ID);
-        //            //_Content = EntityContent<TContent>.FindLastByParentID(ID);
-        //            if (_Content == null) _Content = factory.Create() as IEntityContent;
-        //            Dirtys["Content"] = true;
-        //        }
-        //        return _Content;
-        //    }
-        //    set { _Content = value; }
-        //}
-
-        //private String _ContentText;
-        ///// <summary>内容文本</summary>
-        //public String ContentText
-        //{
-        //    get
-        //    {
-        //        if (_ContentText == null && !Dirtys.ContainsKey("ContentText"))
-        //        {
-        //            _ContentText = Content.Content ?? "";
-        //            Dirtys["ContentText"] = true;
-        //        }
-        //        return _ContentText;
-        //    }
-        //    set { _ContentText = value; Content.Content = value; }
-        //}
-
-        //private IStatistics _Statistics;
-        ///// <summary>统计</summary>
-        //public IStatistics Statistics
-        //{
-        //    get
-        //    {
-        //        if (_Category == null && !Dirtys.ContainsKey("Statistics"))
-        //        {
-        //            var factory = ModelProvider.Get<TEntity>().StatisticsFactory;
-        //            _Statistics = factory.FindByID(StatisticsID);
-        //            if (_Statistics == null) _Statistics = factory.Create() as IStatistics;
-        //            Dirtys["Statistics"] = true;
-        //        }
-        //        return _Statistics;
-        //    }
-        //    set { _Statistics = value; }
-        //}
         #endregion
 
         #region 扩展查询﻿
@@ -357,12 +250,12 @@ namespace NewLife.CMX
         /// <param name="categoryid">分类</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<TEntity> FindAllByCategoryID(Int32 categoryid)
+        public static EntityList<TEntity> FindAllByCategoryID(Int32 categoryid, Int32 start = 0, Int32 max = 10)
         {
             if (Meta.Count >= 1000)
-                return FindAll(__.CategoryID, categoryid);
+                return FindAll(_.CategoryID == categoryid, null, null, start, max);
             else // 实体缓存
-                return Meta.Cache.Entities.FindAll(__.CategoryID, categoryid);
+                return Meta.Cache.Entities.FindAll(__.CategoryID, categoryid).Page(start, max);
         }
         #endregion
 
