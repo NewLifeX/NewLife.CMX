@@ -40,7 +40,7 @@ public partial class Template_List : Page
         {
             String ad = Request["Address"];
 
-            if (string.IsNullOrEmpty(ad) || ad == "$") ad = C.ListTemplate;
+            //if (string.IsNullOrEmpty(ad) || ad == "$") ad = C.ListTemplate;
             //ad = ad.Substring(0, ad.IndexOf('.'));
             return ad;
         }

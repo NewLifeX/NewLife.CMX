@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Web;
-using XTemplate.Templating;
 
 namespace NewLife.CMX.Templates
 {

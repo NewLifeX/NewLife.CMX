@@ -27,7 +27,7 @@ public partial class Template_Info : Page
         {
             String ad = Request["Address"];
 
-            if (string.IsNullOrEmpty(ad)) ad = C.FormTemplate;
+            //if (string.IsNullOrEmpty(ad)) ad = C.FormTemplate;
             //ad = ad.Substring(0, ad.IndexOf('.'));
             return ad;
         }
