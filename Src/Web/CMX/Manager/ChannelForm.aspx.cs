@@ -13,6 +13,9 @@ public partial class CMX_ChannelForm : MyEntityForm<Channel>
     {
         base.OnInit(e);
 
+        // 创建完成以后，后缀不许修改
+        if (!EntityForm.IsNew) frmSuffix.Enabled = false;
+        
         frmModelID.DataSource = Model.FindAll(Model._.Enable, true);
         frmModelID.DataBind();
     }

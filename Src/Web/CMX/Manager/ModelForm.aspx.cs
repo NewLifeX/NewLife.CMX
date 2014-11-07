@@ -13,7 +13,7 @@ public partial class CMX_ModelForm : MyEntityForm<Model>
     {
         base.OnInit(e);
 
-        if (!EntityForm.IsNew) frmShortName.Enabled = false;
+        //if (!EntityForm.IsNew) frmShortName.Enabled = false;
     }
 
     protected void Page_Load(object sender, EventArgs e)
