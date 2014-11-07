@@ -8,6 +8,7 @@
 using System.ComponentModel;
 using NewLife.Web;
 using XCode;
+using System.Web;
 
 namespace NewLife.CMX
 {
@@ -21,6 +22,17 @@ namespace NewLife.CMX
             TEntity entity = new TEntity();
 
             EntityFactory.Register(typeof(TEntity), new StatisticsFactory<TEntity>());
+
+            Meta.Factory.AdditionalFields.Add(__.Total);
+            Meta.Factory.AdditionalFields.Add(__.Today);
+            Meta.Factory.AdditionalFields.Add(__.ThisWeek);
+            Meta.Factory.AdditionalFields.Add(__.ThisMonth);
+            Meta.Factory.AdditionalFields.Add(__.ThisYear);
+
+            // 自动保存时间60秒
+            var sc = Meta.Session.SingleCache;
+            sc.AutoSave = true;
+            sc.Expriod = 60;
         }
 
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
@@ -36,7 +48,7 @@ namespace NewLife.CMX
 
             // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
             //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
-            
+
             if (!Dirtys[__.LastIP]) LastIP = WebHelper.UserHost;
         }
 
@@ -79,6 +91,89 @@ namespace NewLife.CMX
         #endregion
 
         #region 业务
+        /// <summary>增加计数</summary>
+        /// <param name="remark">备注</param>
+        public void Increment(String remark)
+        {
+            lock (this)
+            {
+                Total++;
+
+                var last = LastTime;
+                var now = DateTime.Now;
+                LastTime = now;
+
+                // 有记录，判断是否过了一天（周、月、年）
+                if (last > DateTime.MinValue)
+                {
+                    // 去掉时分秒，避免其带来差异
+                    last = last.Date;
+                    now = now.Date;
+
+                    // 是否同一天
+                    Int32 diff = (now - last).Days;
+                    if (diff != 0)
+                    {
+                        Yesterday = diff == 1 ? Today : 0;
+                        Today = 0;
+
+                        // 是否同一周
+                        diff = Math.Abs(diff);
+                        if (diff >= 7)
+                        {
+                            // 肯定不是同一周
+                            LastWeek = diff <= 14 && now.DayOfWeek >= last.DayOfWeek ? ThisWeek : 0;
+                            ThisWeek = 0;
+                        }
+                        else
+                        {
+                            // 当前的星期数小于上次的星期数，并且两者在七天之内，表明是新的一周了
+                            if (now.DayOfWeek < last.DayOfWeek)
+                            {
+                                LastWeek = ThisWeek;
+                                ThisWeek = 0;
+                            }
+                        }
+
+                        // 是否同一个月
+                        diff = now.Year * 12 + now.Month - (last.Year * 12 + last.Month);
+                        if (diff != 0)
+                        {
+                            // 是否刚好过了一个月
+                            LastMonth = diff == 1 ? ThisMonth : 0;
+                            ThisMonth = 0;
+
+                            // 是否同一年
+                            diff = now.Year - last.Year;
+                            if (diff != 0)
+                            {
+                                // 是否刚好过了一年
+                                LastYear = diff == 1 ? ThisYear : 0;
+                                ThisYear = 0;
+                            }
+                        }
+                    }
+                }
+
+                Today++;
+                ThisWeek++;
+                ThisMonth++;
+                ThisYear++;
+
+                //if (HttpContext.Current != null && HttpContext.Current.Request != null)
+                //    LastIP = HttpContext.Current.Request.UserHostAddress;
+                LastIP = WebHelper.UserHost;
+                if (!String.IsNullOrEmpty(remark)) Remark = remark;
+            }
+        }
+
+        /// <summary>增加指定编号的计数</summary>
+        /// <param name="id"></param>
+        public static void Increment(Int32 id)
+        {
+            var entity = FindByID(id);
+            if (entity != null) entity.Increment(null);
+        }
         #endregion
     }
 }

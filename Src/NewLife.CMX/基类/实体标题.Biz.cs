@@ -185,6 +185,14 @@ namespace NewLife.CMX
             return base.OnDelete();
         }
         #endregion
+
+        #region 业务
+        /// <summary>增加访问量</summary>
+        public override void IncView()
+        {
+            Statistics<TStatistics>.Increment(StatisticsID);
+        }
+        #endregion
     }
 
     /// <summary>实体标题</summary>
@@ -271,6 +279,8 @@ namespace NewLife.CMX
         #endregion
 
         #region 业务
+        /// <summary>增加访问量</summary>
+        public abstract void IncView();
         #endregion
     }
 }
