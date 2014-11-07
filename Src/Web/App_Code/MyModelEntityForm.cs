@@ -79,7 +79,7 @@ public class MyModelEntityForm<TEntity> : MyModelEntityForm where TEntity : Enti
 
     protected override void OnInit(EventArgs e)
     {
-        IModelProvider provider = Model.FindProvider(EntityType);
+        IModelProvider provider = ModelProvider.Get<TEntity>();
         //初始化
         provider.CurrentChannel = 0;
         try

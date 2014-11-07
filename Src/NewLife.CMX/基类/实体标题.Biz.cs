@@ -17,10 +17,11 @@ namespace NewLife.CMX
     /// <typeparam name="TEntity"></typeparam>
     /// <typeparam name="TCategory"></typeparam>
     /// <typeparam name="TContent"></typeparam>
-    public abstract class EntityTitle<TEntity, TCategory, TContent> : EntityTitle<TEntity>
+    public abstract class EntityTitle<TEntity, TCategory, TContent, TStatistics> : EntityTitle<TEntity>
         where TEntity : EntityTitle<TEntity>, new()
         where TCategory : EntityCategory<TCategory>, new()
         where TContent : EntityContent<TContent>, new()
+        where TStatistics : Statistics<TStatistics>, new()
     {
         /// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -37,7 +38,7 @@ namespace NewLife.CMX
 
             // 配套的分类
             //EntityCategory<TCategory>.Meta.WaitForInitData();
-            var cat = EntityCategory<TCategory>.FindAllWithCache().ToList().FirstOrDefault() as IEntityCategory;
+            var cat = EntityCategory<TCategory>.FindAllWithCache().ToList().FirstOrDefault();
             var des = typeof(TEntity).GetCustomAttribute<DescriptionAttribute>();
 
             var entity = new TEntity();
@@ -101,68 +102,82 @@ namespace NewLife.CMX
             }
             set { _ContentText = value; Content.Content = value; }
         }
+
+        private TStatistics _Statistics;
+        /// <summary>统计</summary>
+        public TStatistics Statistics
+        {
+            get
+            {
+                if (_Content == null && !Dirtys.ContainsKey("Statistics"))
+                {
+                    _Statistics = Statistics<TStatistics>.FindByID(StatisticsID);
+                    if (_Statistics == null) _Statistics = new TStatistics();
+                    Dirtys["Statistics"] = true;
+                }
+                return _Statistics;
+            }
+            set { _Statistics = value; }
+        }
         #endregion
 
         #region 对象操作
-        /// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
+        /// <summary>同步插入统计信息和内容信息</summary>
         /// <returns></returns>
         protected override Int32 OnInsert()
         {
             if (!Dirtys["Version"]) Version = 1;
 
-            Int32 num = base.OnInsert();
+            // 保存统计
+            var stat = Statistics;
+            var num = stat.Insert();
 
+            this.StatisticsID = stat.ID;
+
+            num += base.OnInsert();
+
+            // 保存内容
             //HelperTool.SaveModelContent(typeof(TContent), Version, ChannelSuffix, this, null);
             var entity = Content;
             entity.ParentID = ID;
             entity.Title = Title;
             entity.Version = Version;
-            entity.Insert();
+            num += entity.Insert();
 
             return num;
         }
 
-        /// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
+        /// <summary>同步更新内容，但不同步更新统计</summary>
         protected override int OnUpdate()
         {
-            //if (Dirtys["Content"])
-            //{
-            //    if (!Dirtys["Version"]) Version++;
-
-            //    HelperTool.SaveModelContent(typeof(TContent), Version, ChannelSuffix, this, null);
-            //}
-
+            var rs = 0;
             // 如果内容数据有修改，插入新内容
             //if ((Content as IEntity).Dirtys.Any(e => e.Value))
             if ((Content as IEntity).Dirtys.Count > 0)
             {
                 //由于原先的添加方法存在BUG无法给ParentID赋值，给字段赋引用类型值时无法触发脏数据更新标记
                 //故创建新的对象
-                var newEntity = Content.CloneEntity(true);
-                newEntity.ID = 0;
-                newEntity.ParentID = ID;
-                newEntity.Version++;
-                newEntity.Title = Title;
-                newEntity.CreateUserID = Admin.Current.ID;
-                newEntity.Insert();
+                var entity = Content.CloneEntity(true);
+                entity.ID = 0;
+                entity.ParentID = ID;
+                entity.Version++;
+                entity.Title = Title;
+                rs += entity.Insert();
 
-                //Content.ID = 0;
-                //Content.ParentID = ID;
-                //Content.Version++;
-                //Content.Title = Title;
-                //Content.CreateUserID = Admin.Current.ID;
-                //Content.Save();
-
-                //this.Version = Content.Version;
-                this.Version = newEntity.Version;
+                this.Version = entity.Version;
             }
 
-            return base.OnUpdate();
+            return rs + base.OnUpdate();
         }
 
         protected override int OnDelete()
         {
-            Content.Delete();
+            // 删内容
+            //Content.Delete();
+            EntityContent<TContent>.DeleteByParentID(ID);
+
+            // 删统计
+            Statistics.Delete();
 
             return base.OnDelete();
         }
@@ -214,16 +229,22 @@ namespace NewLife.CMX
         {
             // 用于引发基类的静态构造函数，所有层次的泛型实体类都应该有一个
             TEntity entity = new TEntity();
+
+            EntityFactory.Register(typeof(TEntity), new TitleFactory<TEntity>());
         }
 
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
         /// <param name="isNew"></param>
         public override void Valid(Boolean isNew)
         {
+            // 没有数据改动的Update直接跳过
+            if (!isNew && !HasDirty) return;
+
             // 建议先调用基类方法，基类方法会对唯一索引的数据进行验证
             base.Valid(isNew);
 
             var mp = ManageProvider.Provider;
+            // 创建者信息
             if (isNew && !Dirtys[__.CreateTime])
             {
                 CreateTime = DateTime.Now;
@@ -233,6 +254,7 @@ namespace NewLife.CMX
                     CreateUserName = mp.Current.ToString();
                 }
             }
+            // 更新者信息
             if (!Dirtys[__.UpdateTime])
             {
                 UpdateTime = DateTime.Now;
@@ -246,6 +268,76 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
+        //private IEntityCategory _Category;
+        ///// <summary>分类</summary>
+        //public IEntityCategory Category
+        //{
+        //    get
+        //    {
+        //        if (_Category == null && CategoryID > 0 && !Dirtys.ContainsKey("Category"))
+        //        {
+        //            var factory = ModelProvider.Get<TEntity>().CategoryFactory;
+        //            _Category = factory.FindByID(CategoryID);
+        //            //_Category = EntityCategory<TCategory>.FindByID(CategoryID);
+        //            Dirtys["Category"] = true;
+        //        }
+        //        return _Category;
+        //    }
+        //    set { _Category = value; }
+        //}
+
+        //private IEntityContent _Content;
+        ///// <summary>内容</summary>
+        //public IEntityContent Content
+        //{
+        //    get
+        //    {
+        //        if (_Content == null && !Dirtys.ContainsKey("Content"))
+        //        {
+        //            var factory = ModelProvider.Get<TEntity>().ContentFactory;
+        //            _Content = factory.FindLastByParentID(ID);
+        //            //_Content = EntityContent<TContent>.FindLastByParentID(ID);
+        //            if (_Content == null) _Content = factory.Create() as IEntityContent;
+        //            Dirtys["Content"] = true;
+        //        }
+        //        return _Content;
+        //    }
+        //    set { _Content = value; }
+        //}
+
+        //private String _ContentText;
+        ///// <summary>内容文本</summary>
+        //public String ContentText
+        //{
+        //    get
+        //    {
+        //        if (_ContentText == null && !Dirtys.ContainsKey("ContentText"))
+        //        {
+        //            _ContentText = Content.Content ?? "";
+        //            Dirtys["ContentText"] = true;
+        //        }
+        //        return _ContentText;
+        //    }
+        //    set { _ContentText = value; Content.Content = value; }
+        //}
+
+        //private IStatistics _Statistics;
+        ///// <summary>统计</summary>
+        //public IStatistics Statistics
+        //{
+        //    get
+        //    {
+        //        if (_Category == null && !Dirtys.ContainsKey("Statistics"))
+        //        {
+        //            var factory = ModelProvider.Get<TEntity>().StatisticsFactory;
+        //            _Statistics = factory.FindByID(StatisticsID);
+        //            if (_Statistics == null) _Statistics = factory.Create() as IStatistics;
+        //            Dirtys["Statistics"] = true;
+        //        }
+        //        return _Statistics;
+        //    }
+        //    set { _Statistics = value; }
+        //}
         #endregion
 
         #region 扩展查询﻿

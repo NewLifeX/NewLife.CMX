@@ -15,7 +15,7 @@ using XCode;
 namespace NewLife.CMX
 {
     /// <summary>文章</summary>
-    public partial class Article : EntityTitle<Article, ArticleCategory, ArticleContent>
+    public partial class Article : EntityTitle<Article, ArticleCategory, ArticleContent, ArticleStatistics>
     {
         #region 对象操作﻿
         #endregion

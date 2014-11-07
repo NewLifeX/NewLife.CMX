@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 using XCode;
+using NewLife.CommonEntity;
 
 namespace NewLife.CMX
 {
-    public interface ICategoryOperate : IEntityOperate
+    /// <summary>分类实体工厂</summary>
+    public interface ICategoryFactory : IEntityOperate
     {
+        IEntityCategory FindByID(Int32 id);
+
         /// <summary>查询子类以及子类的ID如果子类不是最终类，返回的时候ID会被改为负数</summary>
         /// <param name="parentKey"></param>
         /// <param name="deepth"></param>
@@ -14,8 +18,13 @@ namespace NewLife.CMX
         Dictionary<Int32, String> FindChildNameAndIDByNoParent(Int32 parentKey, Int32 deepth);
     }
 
-    class CategoryOperate<TEntity> : Entity<TEntity>.EntityOperate, ICategoryOperate where TEntity : EntityCategory<TEntity>, new()
+    class CategoryFactory<TEntity> : Entity<TEntity>.EntityOperate, ICategoryFactory where TEntity : EntityCategory<TEntity>, new()
     {
+        public virtual IEntityCategory FindByID(Int32 id)
+        {
+            return EntityCategory<TEntity>.FindByID(id);
+        }
+
         /// <summary>查询子类以及子类的ID如果子类不是最终类，返回的时候ID会被改为负数</summary>
         /// <param name="parentKey"></param>
         /// <param name="deepth"></param>

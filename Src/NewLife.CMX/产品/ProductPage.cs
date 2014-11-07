@@ -9,7 +9,7 @@ using XCode;
 namespace NewLife.CMX
 {
     /// <summary>产品列表模版基类。模版生成类继承于此类</summary>
-    public class ProductListPage : PageBase
+    public class ProductListPage : PageBase<Product>
     {
         #region 属性
         private List<Product> _Entities;
@@ -79,21 +79,19 @@ namespace NewLife.CMX
         /// <summary>初始化</summary>
         public ProductListPage()
         {
-            IModelProvider provider = Model.FindProvider(typeof(Product));
             //初始化
-            provider.CurrentChannel = 0;
+            Provider.CurrentChannel = 0;
         }
 
         /// <summary>初始化并设置当前频道</summary>
         public void init()
         {
-            IModelProvider provider = Model.FindProvider(typeof(Product));
             //初始化
-            provider.CurrentChannel = 0;
+            Provider.CurrentChannel = 0;
 
             var c = Channel.FindBySuffixOrID(ChannelSuffix, CurrentChannelID);
 
-            if (c != null) provider.CurrentChannel = c.ID;
+            if (c != null) Provider.CurrentChannel = c.ID;
 
             DataBind();
         }
@@ -150,7 +148,7 @@ namespace NewLife.CMX
     }
 
     /// <summary>产品模版基类。模版生成类继承于此类</summary>
-    public class ProductPage : PageBase
+    public class ProductPage : PageBase<Product>
     {
         #region 属性
         private Product _Entity;
@@ -175,13 +173,10 @@ namespace NewLife.CMX
         #endregion
 
         #region 页面初始化
-        /// <summary>模型代理</summary>
-        IModelProvider provider = Model.FindProvider(typeof(Product));
-
         /// <summary>构造方法</summary>
         public ProductPage()
         {
-            provider.CurrentChannel = 0;
+            Provider.CurrentChannel = 0;
         }
 
         /// <summary>初始化</summary>
@@ -189,7 +184,7 @@ namespace NewLife.CMX
         {
             var c = Channel.FindBySuffixOrID(ChannelSuffix, CurrentChannelID);
 
-            if (c != null) provider.CurrentChannel = c.ID;
+            if (c != null) Provider.CurrentChannel = c.ID;
 
             DataBind();
         }

@@ -1,15 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Web;
-using System.Web.Hosting;
 using System.Web.SessionState;
 using NewLife.CMX.Config;
-using NewLife.Exceptions;
+using XCode;
 using XTemplate.Templating;
 
 namespace NewLife.CMX.Templates
 {
+    public class PageBase<TEntity> : PageBase where TEntity : Entity<TEntity>, new()
+    {
+        private IModelProvider _Provider;
+        /// <summary>提供者</summary>
+        public IModelProvider Provider { get { return _Provider ?? (_Provider = ModelProvider.Get<TEntity>()); } }
+    }
+
     /// <summary>页面模版基类。所有页面模版生成类继承于此类</summary>
     public class PageBase : TemplateBase
     {

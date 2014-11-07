@@ -146,7 +146,7 @@ namespace NewLife.CMX
         private static List<ListMenu> GetModelCategory3(Channel chn, Int32 Deepth)
         {
             IModelProvider provider = chn.Model.Provider;
-            var eop = EntityFactory.CreateOperate(provider.CategoryType) as ICategoryOperate;
+            var eop = EntityFactory.CreateOperate(provider.CategoryType) as ICategoryFactory;
             var t = eop.Default.GetType();
             try
             {

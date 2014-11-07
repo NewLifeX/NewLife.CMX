@@ -5,16 +5,11 @@
  * 版权：版权所有 (C) 新生命开发团队 2002~2013
 */
 ﻿using System;
-using System.Linq;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
-using System.Xml.Serialization;
+using System.Linq;
 using NewLife.CommonEntity;
-using NewLife.Log;
-using NewLife.Web;
+using NewLife.Exceptions;
 using XCode;
-using XCode.Configuration;
 using XCode.Cache;
 
 namespace NewLife.CMX
@@ -30,6 +25,8 @@ namespace NewLife.CMX
         {
             // 用于引发基类的静态构造函数，所有层次的泛型实体类都应该有一个
             TEntity entity = new TEntity();
+
+            EntityFactory.Register(typeof(TEntity), new ContentFactory<TEntity>());
 
             _cache = new SingleEntityCache<int, TEntity>();
             _cache.AllowNull = true;
@@ -52,10 +49,35 @@ namespace NewLife.CMX
             // 建议先调用基类方法，基类方法会对唯一索引的数据进行验证
             base.Valid(isNew);
 
-            // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
-            //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
+            var mp = ManageProvider.Provider;
+            // 创建者信息
+            if (isNew && !Dirtys[__.CreateTime])
+            {
+                CreateTime = DateTime.Now;
+                if (mp.Current != null)
+                {
+                    CreateUserID = mp.Current.ID;
+                    CreateUserName = mp.Current.ToString();
+                }
+            }
+        }
 
-            if (isNew && !Dirtys[__.CreateTime]) CreateTime = DateTime.Now;
+        /// <summary>不允许修改</summary>
+        /// <returns></returns>
+        public override int Update()
+        {
+            // 重载非OnXXX版本是为了让实体类内部可以直接调用OnXXX越过这里的检查
+            throw new XException(Meta.Table.DataTable.DisplayName + "不允许修改！");
+            //return base.Update();
+        }
+
+        /// <summary>不允许修改</summary>
+        /// <returns></returns>
+        public override int Delete()
+        {
+            // 重载非OnXXX版本是为了让实体类内部可以直接调用OnXXX越过这里的检查
+            throw new XException(Meta.Table.DataTable.DisplayName + "不允许删除！");
+            //return base.Delete();
         }
         #endregion
 
@@ -163,6 +185,19 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展操作
+        /// <summary>根据父级编号删除对应内容</summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static Int32 DeleteByParentID(Int32 id)
+        {
+            var rs = 0;
+            var list = FindAllByParentID(id);
+            foreach (var item in list)
+            {
+                rs += item.OnDelete();
+            }
+            return rs;
+        }
         #endregion
 
         #region 业务

@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using NewLife.Log;
 using XCode;
-using System.Linq;
 
 namespace NewLife.CMX
 {
@@ -22,7 +21,7 @@ namespace NewLife.CMX
             // 用于引发基类的静态构造函数，所有层次的泛型实体类都应该有一个
             TEntity entity = new TEntity();
 
-            EntityFactory.Register(typeof(TEntity), new CategoryOperate<TEntity>());
+            EntityFactory.Register(typeof(TEntity), new CategoryFactory<TEntity>());
         }
 
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>

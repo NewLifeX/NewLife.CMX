@@ -11,7 +11,7 @@ using XCode;
 namespace NewLife.CMX
 {
     /// <summary>文本</summary>
-    public partial class Text : EntityTitle<Text, TextCategory, TextContent>
+    public partial class Text : EntityTitle<Text, TextCategory, TextContent, TextStatistics>
     {
         #region 对象操作﻿
         #endregion

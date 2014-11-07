@@ -5,13 +5,10 @@
  * 版权：版权所有 (C) 新生命开发团队 2002~2013
 */
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using NewLife.CMX.Config;
 using NewLife.Common;
 using NewLife.Exceptions;
 using NewLife.Log;
-using NewLife.Reflection;
 using XCode;
 
 namespace NewLife.CMX
@@ -178,7 +175,7 @@ namespace NewLife.CMX
         {
             var count = 0;
 
-            foreach (var item in Providers)
+            foreach (var item in ModelProvider.Providers)
             {
                 var model = item.Value;
 
@@ -202,26 +199,6 @@ namespace NewLife.CMX
         #endregion
 
         #region 模型提供者
-        private static Dictionary<String, IModelProvider> _Providers;
-        /// <summary>模型提供者集合</summary>
-        public static Dictionary<String, IModelProvider> Providers
-        {
-            get
-            {
-                if (_Providers == null)
-                {
-                    var dic = new Dictionary<String, IModelProvider>(StringComparer.InvariantCultureIgnoreCase);
-                    foreach (var item in typeof(IModelProvider).GetAllSubclasses(true))
-                    {
-                        var model = item.CreateInstance() as IModelProvider;
-                        dic.Add(item.FullName, model);
-                    }
-                    _Providers = dic;
-                }
-                return _Providers;
-            }
-        }
-
         private IModelProvider _Provider;
         /// <summary>模型提供者</summary>
         public IModelProvider Provider
@@ -230,24 +207,10 @@ namespace NewLife.CMX
             {
                 if (_Provider == null)
                 {
-                    if (!Providers.TryGetValue(ClassName, out _Provider)) throw new XException("找不到模型提供者{0}", ClassName);
+                    if (!ModelProvider.Providers.TryGetValue(ClassName, out _Provider)) throw new XException("找不到模型提供者{0}", ClassName);
                 }
                 return _Provider;
             }
-        }
-
-        /// <summary>根据类型查找该类型所属模型提供者</summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public static IModelProvider FindProvider(Type type)
-        {
-            foreach (var model in Providers.Values)
-            {
-                if (model.TitleType == type ||
-                    model.CategoryType == type ||
-                    model.ContentType == type) return model;
-            }
-            return null;
         }
         #endregion
     }

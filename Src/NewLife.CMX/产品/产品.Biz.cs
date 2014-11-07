@@ -11,7 +11,7 @@ using XCode;
 namespace NewLife.CMX
 {
     /// <summary>产品</summary>
-    public partial class Product : EntityTitle<Product, ProductCategory, ProductContent>
+    public partial class Product : EntityTitle<Product, ProductCategory, ProductContent, ProductStatistics>
     {
         #region 对象操作﻿
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>

@@ -9,7 +9,7 @@ using XCode;
 namespace NewLife.CMX
 {
     /// <summary>列表模版基类。模版生成类继承于此类</summary>
-    public class TextListPage : PageBase
+    public class TextListPage : PageBase<Text>
     {
         #region 属性
         private List<Text> _Entities;
@@ -79,21 +79,19 @@ namespace NewLife.CMX
         /// <summary>初始化</summary>
         public TextListPage()
         {
-            IModelProvider provider = Model.FindProvider(typeof(Text));
             //初始化
-            provider.CurrentChannel = 0;
+            Provider.CurrentChannel = 0;
         }
 
         /// <summary>初始化并设置当前频道</summary>
         public void init()
         {
-            IModelProvider provider = Model.FindProvider(typeof(Text));
             //初始化
-            provider.CurrentChannel = 0;
+            Provider.CurrentChannel = 0;
 
             var c = Channel.FindBySuffixOrID(ChannelSuffix, CurrentChannelID);
 
-            if (c != null) provider.CurrentChannel = c.ID;
+            if (c != null) Provider.CurrentChannel = c.ID;
 
             DataBind();
         }
@@ -150,7 +148,7 @@ namespace NewLife.CMX
     }
 
     /// <summary>模版基类。模版生成类继承于此类</summary>
-    public class TextPage : PageBase
+    public class TextPage : PageBase<Text>
     {
         #region 属性
         private Text _Entity;
@@ -175,13 +173,10 @@ namespace NewLife.CMX
         #endregion
 
         #region 页面初始化
-        /// <summary>模型代理</summary>
-        IModelProvider provider = Model.FindProvider(typeof(Text));
-
         /// <summary>构造方法</summary>
         public TextPage()
         {
-            provider.CurrentChannel = 0;
+            Provider.CurrentChannel = 0;
         }
 
         /// <summary>初始化</summary>
@@ -189,7 +184,7 @@ namespace NewLife.CMX
         {
             var c = Channel.FindBySuffixOrID(ChannelSuffix, CurrentChannelID);
 
-            if (c != null) provider.CurrentChannel = c.ID;
+            if (c != null) Provider.CurrentChannel = c.ID;
 
             DataBind();
         }

@@ -11,7 +11,7 @@ using System.Linq;
 namespace NewLife.CMX
 {
     /// <summary>文章列表模版基类。首页模版生成类继承于此类</summary>
-    public class ArticleListPage : PageBase
+    public class ArticleListPage : PageBase<Article>
     {
         #region 属性
         private List<Article> _Entities;
@@ -79,7 +79,7 @@ namespace NewLife.CMX
 
         #region 初始化
         /// <summary>模型代理</summary>
-        IModelProvider provider = Model.FindProvider(typeof(Article));
+        IModelProvider provider = ModelProvider.Get<Article>();
 
         /// <summary>初始化</summary>
         public ArticleListPage()
@@ -158,7 +158,7 @@ namespace NewLife.CMX
     }
 
     /// <summary>文章模版基类。首页模版生成类继承于此类</summary>
-    public class ArticlePage : PageBase
+    public class ArticlePage : PageBase<Article>
     {
         #region 属性
         private Article _Entity;
@@ -200,13 +200,10 @@ namespace NewLife.CMX
         #endregion
 
         #region 页面初始化
-        /// <summary>模型代理</summary>
-        IModelProvider provider = Model.FindProvider(typeof(Article));
-
         /// <summary>构造方法</summary>
         public ArticlePage()
         {
-            provider.CurrentChannel = 0;
+            Provider.CurrentChannel = 0;
         }
 
         /// <summary>初始化</summary>
@@ -214,7 +211,7 @@ namespace NewLife.CMX
         {
             var c = Channel.FindBySuffixOrID(ChannelSuffix, CurrentChannelID);
 
-            if (c != null) provider.CurrentChannel = c.ID;
+            if (c != null) Provider.CurrentChannel = c.ID;
 
             DataBind();
         }
