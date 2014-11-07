@@ -13,6 +13,7 @@ namespace NewLife.CMX
     [DataObject]
     [Description("频道")]
     [BindIndex("IU_Channel_Name", true, "Name")]
+    [BindIndex("IU_Channel_ModelID_Suffix", true, "ModelID,Suffix")]
     [BindIndex("IX_Channel_ModelID", false, "ModelID")]
     [BindTable("Channel", Description = "频道", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class Channel : IChannel

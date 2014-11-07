@@ -13,7 +13,8 @@ namespace NewLife.CMX
     [Serializable]
     [DataObject]
     [Description("模型。默认有文章、文本、产品三种模型，可以扩展增加。")]
-    [BindIndex("IU_Model_Name_ShortName", true, "Name,ShortName")]
+    [BindIndex("IU_Model_Name", true, "Name")]
+    [BindIndex("IU_Model_ShortName", true, "ShortName")]
     [BindTable("Model", Description = "模型。默认有文章、文本、产品三种模型，可以扩展增加。", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class Model : IModel
     {
@@ -42,16 +43,16 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.Name, value)) { _Name = value; OnPropertyChanged(__.Name); } }
         }
 
-        private Boolean _Enable;
-        /// <summary>启用</summary>
-        [DisplayName("启用")]
-        [Description("启用")]
-        [DataObjectField(false, false, true, 1)]
-        [BindColumn(3, "Enable", "启用", null, "bit", 0, 0, false)]
-        public virtual Boolean Enable
+        private String _ShortName;
+        /// <summary>缩写</summary>
+        [DisplayName("缩写")]
+        [Description("缩写")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn(3, "ShortName", "缩写", null, "nvarchar(50)", 0, 0, true)]
+        public virtual String ShortName
         {
-            get { return _Enable; }
-            set { if (OnPropertyChanging(__.Enable, value)) { _Enable = value; OnPropertyChanged(__.Enable); } }
+            get { return _ShortName; }
+            set { if (OnPropertyChanging(__.ShortName, value)) { _ShortName = value; OnPropertyChanged(__.ShortName); } }
         }
 
         private String _ClassName;
@@ -66,16 +67,16 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.ClassName, value)) { _ClassName = value; OnPropertyChanged(__.ClassName); } }
         }
 
-        private String _ShortName;
-        /// <summary>缩写</summary>
-        [DisplayName("缩写")]
-        [Description("缩写")]
-        [DataObjectField(false, false, true, 50)]
-        [BindColumn(5, "ShortName", "缩写", null, "nvarchar(50)", 0, 0, true)]
-        public virtual String ShortName
+        private Boolean _Enable;
+        /// <summary>启用</summary>
+        [DisplayName("启用")]
+        [Description("启用")]
+        [DataObjectField(false, false, true, 1)]
+        [BindColumn(5, "Enable", "启用", null, "bit", 0, 0, false)]
+        public virtual Boolean Enable
         {
-            get { return _ShortName; }
-            set { if (OnPropertyChanging(__.ShortName, value)) { _ShortName = value; OnPropertyChanged(__.ShortName); } }
+            get { return _Enable; }
+            set { if (OnPropertyChanging(__.Enable, value)) { _Enable = value; OnPropertyChanged(__.Enable); } }
         }
 
         private String _CategoryTemplate;
@@ -191,9 +192,9 @@ namespace NewLife.CMX
                 {
                     case __.ID : return _ID;
                     case __.Name : return _Name;
-                    case __.Enable : return _Enable;
-                    case __.ClassName : return _ClassName;
                     case __.ShortName : return _ShortName;
+                    case __.ClassName : return _ClassName;
+                    case __.Enable : return _Enable;
                     case __.CategoryTemplate : return _CategoryTemplate;
                     case __.TitleTemplate : return _TitleTemplate;
                     case __.ContentTemplate : return _ContentTemplate;
@@ -211,9 +212,9 @@ namespace NewLife.CMX
                 {
                     case __.ID : _ID = Convert.ToInt32(value); break;
                     case __.Name : _Name = Convert.ToString(value); break;
-                    case __.Enable : _Enable = Convert.ToBoolean(value); break;
-                    case __.ClassName : _ClassName = Convert.ToString(value); break;
                     case __.ShortName : _ShortName = Convert.ToString(value); break;
+                    case __.ClassName : _ClassName = Convert.ToString(value); break;
+                    case __.Enable : _Enable = Convert.ToBoolean(value); break;
                     case __.CategoryTemplate : _CategoryTemplate = Convert.ToString(value); break;
                     case __.TitleTemplate : _TitleTemplate = Convert.ToString(value); break;
                     case __.ContentTemplate : _ContentTemplate = Convert.ToString(value); break;
@@ -238,14 +239,14 @@ namespace NewLife.CMX
             ///<summary>名称</summary>
             public static readonly Field Name = FindByName(__.Name);
 
-            ///<summary>启用</summary>
-            public static readonly Field Enable = FindByName(__.Enable);
+            ///<summary>缩写</summary>
+            public static readonly Field ShortName = FindByName(__.ShortName);
 
             ///<summary>类名</summary>
             public static readonly Field ClassName = FindByName(__.ClassName);
 
-            ///<summary>缩写</summary>
-            public static readonly Field ShortName = FindByName(__.ShortName);
+            ///<summary>启用</summary>
+            public static readonly Field Enable = FindByName(__.Enable);
 
             ///<summary>分类页模版。前台分类页</summary>
             public static readonly Field CategoryTemplate = FindByName(__.CategoryTemplate);
@@ -283,14 +284,14 @@ namespace NewLife.CMX
             ///<summary>名称</summary>
             public const String Name = "Name";
 
-            ///<summary>启用</summary>
-            public const String Enable = "Enable";
+            ///<summary>缩写</summary>
+            public const String ShortName = "ShortName";
 
             ///<summary>类名</summary>
             public const String ClassName = "ClassName";
 
-            ///<summary>缩写</summary>
-            public const String ShortName = "ShortName";
+            ///<summary>启用</summary>
+            public const String Enable = "Enable";
 
             ///<summary>分类页模版。前台分类页</summary>
             public const String CategoryTemplate = "CategoryTemplate";
@@ -331,14 +332,14 @@ namespace NewLife.CMX
         /// <summary>名称</summary>
         String Name { get; set; }
 
-        /// <summary>启用</summary>
-        Boolean Enable { get; set; }
+        /// <summary>缩写</summary>
+        String ShortName { get; set; }
 
         /// <summary>类名</summary>
         String ClassName { get; set; }
 
-        /// <summary>缩写</summary>
-        String ShortName { get; set; }
+        /// <summary>启用</summary>
+        Boolean Enable { get; set; }
 
         /// <summary>分类页模版。前台分类页</summary>
         String CategoryTemplate { get; set; }
