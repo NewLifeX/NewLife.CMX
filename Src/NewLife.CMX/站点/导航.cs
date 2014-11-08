@@ -64,12 +64,24 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.NewWindow, value)) { _NewWindow = value; OnPropertyChanged(__.NewWindow); } }
         }
 
+        private Boolean _Enable;
+        /// <summary>启用</summary>
+        [DisplayName("启用")]
+        [Description("启用")]
+        [DataObjectField(false, false, true, 1)]
+        [BindColumn(5, "Enable", "启用", null, "bit", 0, 0, false)]
+        public virtual Boolean Enable
+        {
+            get { return _Enable; }
+            set { if (OnPropertyChanging(__.Enable, value)) { _Enable = value; OnPropertyChanged(__.Enable); } }
+        }
+
         private Int32 _CreateUserID;
         /// <summary>创建人</summary>
         [DisplayName("创建人")]
         [Description("创建人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(5, "CreateUserID", "创建人", null, "int", 10, 0, false)]
+        [BindColumn(6, "CreateUserID", "创建人", null, "int", 10, 0, false)]
         public virtual Int32 CreateUserID
         {
             get { return _CreateUserID; }
@@ -81,7 +93,7 @@ namespace NewLife.CMX
         [DisplayName("创建时间")]
         [Description("创建时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(6, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
+        [BindColumn(7, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
         public virtual DateTime CreateTime
         {
             get { return _CreateTime; }
@@ -93,7 +105,7 @@ namespace NewLife.CMX
         [DisplayName("更新人")]
         [Description("更新人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(7, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
+        [BindColumn(8, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
         public virtual Int32 UpdateUserID
         {
             get { return _UpdateUserID; }
@@ -105,7 +117,7 @@ namespace NewLife.CMX
         [DisplayName("更新时间")]
         [Description("更新时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(8, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
+        [BindColumn(9, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
         public virtual DateTime UpdateTime
         {
             get { return _UpdateTime; }
@@ -117,7 +129,7 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(9, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(10, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Remark
         {
             get { return _Remark; }
@@ -143,6 +155,7 @@ namespace NewLife.CMX
                     case __.Name : return _Name;
                     case __.Url : return _Url;
                     case __.NewWindow : return _NewWindow;
+                    case __.Enable : return _Enable;
                     case __.CreateUserID : return _CreateUserID;
                     case __.CreateTime : return _CreateTime;
                     case __.UpdateUserID : return _UpdateUserID;
@@ -159,6 +172,7 @@ namespace NewLife.CMX
                     case __.Name : _Name = Convert.ToString(value); break;
                     case __.Url : _Url = Convert.ToString(value); break;
                     case __.NewWindow : _NewWindow = Convert.ToBoolean(value); break;
+                    case __.Enable : _Enable = Convert.ToBoolean(value); break;
                     case __.CreateUserID : _CreateUserID = Convert.ToInt32(value); break;
                     case __.CreateTime : _CreateTime = Convert.ToDateTime(value); break;
                     case __.UpdateUserID : _UpdateUserID = Convert.ToInt32(value); break;
@@ -185,6 +199,9 @@ namespace NewLife.CMX
 
             ///<summary>是否空白窗口打开</summary>
             public static readonly Field NewWindow = FindByName(__.NewWindow);
+
+            ///<summary>启用</summary>
+            public static readonly Field Enable = FindByName(__.Enable);
 
             ///<summary>创建人</summary>
             public static readonly Field CreateUserID = FindByName(__.CreateUserID);
@@ -218,6 +235,9 @@ namespace NewLife.CMX
 
             ///<summary>是否空白窗口打开</summary>
             public const String NewWindow = "NewWindow";
+
+            ///<summary>启用</summary>
+            public const String Enable = "Enable";
 
             ///<summary>创建人</summary>
             public const String CreateUserID = "CreateUserID";
@@ -253,6 +273,9 @@ namespace NewLife.CMX
 
         /// <summary>是否空白窗口打开</summary>
         Boolean NewWindow { get; set; }
+
+        /// <summary>启用</summary>
+        Boolean Enable { get; set; }
 
         /// <summary>创建人</summary>
         Int32 CreateUserID { get; set; }

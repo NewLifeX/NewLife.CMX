@@ -21,9 +21,14 @@
                             <asp:TextBox ID="frmUrl" runat="server" Width="300px"></asp:TextBox></td>
                     </tr>
                     <tr>
-                        <th>是否空白窗口打开：</th>
+                        <th>空白窗口打开：</th>
                         <td>
-                            <asp:CheckBox ID="frmNewWindow" runat="server" Text="是否空白窗口打开" /></td>
+                            <asp:CheckBox ID="frmNewWindow" runat="server" Text="空白窗口打开" /></td>
+                    </tr>
+                    <tr>
+                        <th>启用：</th>
+                        <td>
+                            <asp:CheckBox ID="frmEnable" runat="server" Text="启用" /></td>
                     </tr>
                     <tr>
                         <th>备注：</th>

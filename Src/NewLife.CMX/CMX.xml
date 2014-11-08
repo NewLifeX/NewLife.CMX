@@ -148,6 +148,7 @@
       <Column Name="Name" DataType="String" Description="名称" />
       <Column Name="Url" DataType="String" Description="地址" />
       <Column Name="NewWindow" DataType="Boolean" Description="是否空白窗口打开" />
+      <Column Name="Enable" DataType="Boolean" Description="启用" />
       <Column Name="CreateUserID" DataType="Int32" Description="创建人" />
       <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
       <Column Name="UpdateUserID" DataType="Int32" Description="更新人" />

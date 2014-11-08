@@ -24,10 +24,17 @@
             </asp:BoundField>
             <asp:BoundField DataField="Name" HeaderText="名称" SortExpression="Name" />
             <asp:BoundField DataField="Url" HeaderText="地址" SortExpression="Url" />
-            <asp:TemplateField HeaderText="是否空白窗口打开" SortExpression="NewWindow">
+            <asp:TemplateField HeaderText="空白窗口打开" SortExpression="NewWindow">
                 <ItemTemplate>
                     <asp:Label ID="NewWindow1" runat="server" Text="√" Visible='<%# Eval("NewWindow") %>' Font-Bold="True" Font-Size="14pt" ForeColor="Green"></asp:Label>
                     <asp:Label ID="NewWindow2" runat="server" Text="×" Visible='<%# !(Boolean)Eval("NewWindow") %>' Font-Bold="True" Font-Size="16pt" ForeColor="Red"></asp:Label>
+                </ItemTemplate>
+                <ItemStyle HorizontalAlign="Center" />
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="启用" SortExpression="Enable">
+                <ItemTemplate>
+                    <asp:Label ID="Enable1" runat="server" Text="√" Visible='<%# Eval("Enable") %>' Font-Bold="True" Font-Size="14pt" ForeColor="Green"></asp:Label>
+                    <asp:Label ID="Enable2" runat="server" Text="×" Visible='<%# !(Boolean)Eval("Enable") %>' Font-Bold="True" Font-Size="16pt" ForeColor="Red"></asp:Label>
                 </ItemTemplate>
                 <ItemStyle HorizontalAlign="Center" />
             </asp:TemplateField>
