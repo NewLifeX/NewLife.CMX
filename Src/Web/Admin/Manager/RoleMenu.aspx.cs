@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Web.UI.WebControls;
 using NewLife.CommonEntity;
 using NewLife.Web;
@@ -228,7 +229,13 @@ public partial class Pages_RoleMenu : MyEntityList
         if (_rms == null)
         {
             Factory.Cache.Clear(null);
-            _rms = Factory.Cache.Entities;
+            for (int i = 0; i < 10; i++)
+            {
+                _rms = Factory.Cache.Entities;
+                if (_rms != null && _rms.Count > 0) break;
+
+                Thread.Sleep(1);
+            }
         }
         return _rms.Find(delegate(IEntity e)
         {

@@ -31,22 +31,17 @@
                 </ItemTemplate>
                 <ItemStyle HorizontalAlign="Center" />
             </asp:TemplateField>
-            <asp:BoundField DataField="CreateUserID" HeaderText="创建人" SortExpression="CreateUserID" DataFormatString="{0:n0}">
-                <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
-            </asp:BoundField>
+            <asp:BoundField DataField="CreateUserName" HeaderText="创建人" SortExpression="CreateUserID" />
             <asp:BoundField DataField="CreateTime" HeaderText="创建时间" SortExpression="CreateTime" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" >
-                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="120px" />
+                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="180px" />
             </asp:BoundField>
-            <asp:BoundField DataField="UpdateUserID" HeaderText="更新人" SortExpression="UpdateUserID" DataFormatString="{0:n0}">
-                <ItemStyle HorizontalAlign="Right" Font-Bold="True" />
-            </asp:BoundField>
+            <asp:BoundField DataField="UpdateUserName" HeaderText="更新人" SortExpression="UpdateUserID" />
             <asp:BoundField DataField="UpdateTime" HeaderText="更新时间" SortExpression="UpdateTime" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" >
-                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="120px" />
+                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="180px" />
             </asp:BoundField>
-            <asp:BoundField DataField="Remark" HeaderText="备注" SortExpression="Remark" />
                 <asp:TemplateField HeaderText="编辑" SortExpression="Name">
                     <ItemTemplate>
-                        <asp:HyperLink ID="HyperManager" runat="server" Text='编辑导航' NavigateUrl='<%# "NavForm.aspx?ID="+Eval("ID")%>'></asp:HyperLink>
+                        <asp:HyperLink ID="HyperManager" runat="server" Text='编辑' NavigateUrl='<%# "NavForm.aspx?ID="+Eval("ID")%>'></asp:HyperLink>
                     </ItemTemplate>
                       <ItemStyle HorizontalAlign="Center" />
                 </asp:TemplateField>
