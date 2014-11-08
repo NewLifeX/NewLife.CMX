@@ -127,6 +127,8 @@
     <Compile Include="文章\文章分类.cs" />
     <Compile Include="文章\文章统计.Biz.cs" />
     <Compile Include="文章\文章统计.cs" />
+    <Compile Include="站点\导航.Biz.cs" />
+    <Compile Include="站点\导航.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="CMX.xml">
