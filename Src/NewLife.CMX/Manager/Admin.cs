@@ -40,43 +40,43 @@ namespace NewLife.CMX
 
     public class XManagerProvider : CommonManageProvider<Admin>, ICommonManageProvider
     {
-        /// <summary>获取指定菜单下，当前用户有权访问的子菜单。</summary>
-        /// <param name="menuid"></param>
-        /// <returns></returns>
-        new public IList<IMenu> GetMySubMenus(Int32 menuid)
-        {
-            var provider = this as ICommonManageProvider;
-            var root = provider.MenuRoot;
+        ///// <summary>获取指定菜单下，当前用户有权访问的子菜单。</summary>
+        ///// <param name="menuid"></param>
+        ///// <returns></returns>
+        //new public IList<IMenu> GetMySubMenus(Int32 menuid)
+        //{
+        //    var provider = this as ICommonManageProvider;
+        //    var root = provider.MenuRoot;
 
-            // 当前用户
-            var admin = provider.Current as IAdministrator;
-            if (admin == null || admin.Role == null) return null;
+        //    // 当前用户
+        //    var admin = provider.Current as IAdministrator;
+        //    if (admin == null || admin.Role == null) return null;
 
-            IMenu menu = null;
+        //    IMenu menu = null;
 
-            // 找到菜单
-            if (menuid > 0) menu = FindByMenuID(menuid);
+        //    // 找到菜单
+        //    if (menuid > 0) menu = FindByMenuID(menuid);
 
-            if (menu == null)
-            {
-                menu = root;
-                if (menu == null || menu.Childs == null || menu.Childs.Count < 1) return null;
-                //menu = menu.Childs[0];
-                //if (menu == null) return null;
-                //return menu.Childs;
-                if (menu.Childs[0] == null) return null;
-            }
+        //    if (menu == null)
+        //    {
+        //        menu = root;
+        //        if (menu == null || menu.Childs == null || menu.Childs.Count < 1) return null;
+        //        //menu = menu.Childs[0];
+        //        //if (menu == null) return null;
+        //        //return menu.Childs;
+        //        if (menu.Childs[0] == null) return null;
+        //    }
 
-            //return admin.Role.GetMySubMenus(menu.ID);
+        //    //return admin.Role.GetMySubMenus(menu.ID);
 
-            var menus = menu.AllChilds;
-            if (menus.Count < 1) return menus;
+        //    var menus = menu.AllChilds;
+        //    if (menus.Count < 1) return menus;
 
-            // 请求角色过滤资源权限
-            var res = admin.Role.Resources;
-            menus = menus.Where(e => res.Contains(e.ID)).ToList();
+        //    // 请求角色过滤资源权限
+        //    var res = admin.Role.Resources;
+        //    menus = menus.Where(e => res.Contains(e.ID)).ToList();
 
-            return menus;
-        }
+        //    return menus;
+        //}
     }
 }
