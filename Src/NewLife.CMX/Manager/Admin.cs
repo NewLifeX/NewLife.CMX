@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using NewLife.CommonEntity;
 using XCode;
 using XCode.DataAccessLayer;
@@ -8,7 +9,7 @@ using XCode.DataAccessLayer;
 namespace NewLife.CMX
 {
     [BindTable("Admin", Description = "系统管理员", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
-    public class Admin : Administrator<Admin, Role, Menu, RoleMenu, NewLife.CommonEntity.Log>
+    public class Admin : Administrator<Admin, Role, Menu>
     {
         #region 扩展属性
         private String _Telephone;
@@ -66,7 +67,16 @@ namespace NewLife.CMX
                 if (menu.Childs[0] == null) return null;
             }
 
-            return admin.Role.GetMySubMenus(menu.ID);
+            //return admin.Role.GetMySubMenus(menu.ID);
+
+            var menus = menu.AllChilds;
+            if (menus.Count < 1) return menus;
+
+            // 请求角色过滤资源权限
+            var res = admin.Role.Resources;
+            menus = menus.Where(e => res.Contains(e.ID)).ToList();
+
+            return menus;
         }
     }
 }

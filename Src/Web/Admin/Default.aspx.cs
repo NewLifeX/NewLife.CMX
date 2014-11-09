@@ -14,21 +14,21 @@ public partial class Admin_Default : Page
         copyright.InnerText = WebSettingConfig.Current.Copyright;
     }
 
-    public String SysMenu
-    {
-        get
-        {
-            //<div title="控制面板" iconcss="menu-icon-setting">
-            StringBuilder menuSB = new StringBuilder();
-            List<IMenu> list2 = admin.Role.GetMySubMenus(0);
-            foreach (IMenu item in list2)
-            {
-                menuSB.AppendLine(String.Format("<div title=\"{0}\" iconcss=\"menu-icon-setting\"><ul class=\"nlist\">", item.Name));
-                menuSB.AppendLine("</ul></div>");
-            }
-            return menuSB.ToString();
-        }
-    }
+    //public String SysMenu
+    //{
+    //    get
+    //    {
+    //        //<div title="控制面板" iconcss="menu-icon-setting">
+    //        StringBuilder menuSB = new StringBuilder();
+    //        List<IMenu> list2 = admin.Role.GetMySubMenus(0);
+    //        foreach (IMenu item in list2)
+    //        {
+    //            menuSB.AppendLine(String.Format("<div title=\"{0}\" iconcss=\"menu-icon-setting\"><ul class=\"nlist\">", item.Name));
+    //            menuSB.AppendLine("</ul></div>");
+    //        }
+    //        return menuSB.ToString();
+    //    }
+    //}
     protected void lbtnExit_Click(object sender, EventArgs e)
     {
         admin.Logout();
