@@ -2,7 +2,6 @@
 using System.IO;
 using System.Web;
 using NewLife.CMX.Config;
-using NewLife.Exceptions;
 
 namespace NewLife.CMX.Templates
 {

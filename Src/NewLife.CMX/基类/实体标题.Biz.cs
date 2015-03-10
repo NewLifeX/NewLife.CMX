@@ -197,7 +197,7 @@ namespace NewLife.CMX
     }
 
     /// <summary>实体标题</summary>
-    public partial class EntityTitle<TEntity> : Entity<TEntity> where TEntity : EntityTitle<TEntity>, new()
+    public partial class EntityTitle<TEntity> : EntityBase<TEntity> where TEntity : EntityTitle<TEntity>, new()
     {
         #region 对象操作﻿
         static EntityTitle()

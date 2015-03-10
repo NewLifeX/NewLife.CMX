@@ -109,15 +109,15 @@ namespace NewLife.CMX
 
             #region 频道菜单
             //var crlist = ChannelRole.FindAllByRoleID((icmp.Current as Admin).RoleID);
-            var roleid = (icmp.Current as Admin).RoleID;
-            Random r = new Random();
+            //var roleid = (icmp.Current as Admin).RoleID;
+            var r = new Random();
             foreach (var chn in Channel.FindAllWithCache())
             {
                 //}
                 //foreach (var cr in crlist)
                 //{
                 //    var chn = cr.Channel;
-                if (!chn.HasRole(roleid)) continue;
+                if (!chn.HasRole(icmp.Current)) continue;
                 //隐藏不启用的频道
                 if (!chn.Enable) continue;
 

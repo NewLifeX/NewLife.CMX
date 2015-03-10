@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using NewLife.CommonEntity;
 using NewLife.Web;
 
 namespace NewLife.CMX.Handlers
@@ -8,7 +9,8 @@ namespace NewLife.CMX.Handlers
     {
         public void ProcessRequest(HttpContext context)
         {
-            if (Admin.Current == null) context.Response.Redirect("Login.aspx");
+            var user = ManageProvider.Provider.Current;
+            if (user == null) context.Response.Redirect("Login.aspx");
 
             var cid = WebHelper.RequestInt("ChannelID");
             var chn = Channel.FindByID(cid);
@@ -19,7 +21,7 @@ namespace NewLife.CMX.Handlers
             {
                 //var cr = ChannelRole.FindChannelIDAndRoleID(chn.ID, Admin.Current.RoleID);
                 //if (cr == null) context.Response.Redirect("Default.aspx");
-                if (!chn.HasRole(Admin.Current.RoleID)) context.Response.Redirect("Default.aspx");
+                if (!chn.HasRole(user)) context.Response.Redirect("Default.aspx");
 
                 String url = chn.Model.CategoryUrl;
                 if (String.IsNullOrEmpty(url)) return;

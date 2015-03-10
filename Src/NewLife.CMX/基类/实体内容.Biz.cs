@@ -8,7 +8,6 @@
 using System.ComponentModel;
 using System.Linq;
 using NewLife.CommonEntity;
-using NewLife.Exceptions;
 using XCode;
 using XCode.Cache;
 

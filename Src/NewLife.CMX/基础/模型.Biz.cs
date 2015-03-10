@@ -7,7 +7,7 @@
 ﻿using System;
 using System.ComponentModel;
 using NewLife.Common;
-using NewLife.Exceptions;
+using NewLife.CommonEntity;
 using NewLife.Log;
 using XCode;
 
@@ -15,7 +15,7 @@ namespace NewLife.CMX
 {
     /// <summary>模型</summary>
     /// <remarks>模型。默认有文章、文本、产品三种模型，可以扩展增加。</remarks>
-    public partial class Model : Entity<Model>
+    public partial class Model : EntityBase<Model>
     {
         #region 对象操作﻿
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
@@ -27,17 +27,6 @@ namespace NewLife.CMX
 
             // 建议先调用基类方法，基类方法会对唯一索引的数据进行验证
             base.Valid(isNew);
-            // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
-            //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
-
-            var user = Admin.Current;
-            if (user != null)
-            {
-                if (isNew && !Dirtys[__.CreateUserID]) CreateUserID = user.ID;
-                if (!Dirtys[__.UpdateUserID]) UpdateUserID = user.ID;
-            }
-            if (isNew && !Dirtys[__.CreateTime]) CreateTime = DateTime.Now;
-            if (!Dirtys[__.UpdateTime]) UpdateTime = DateTime.Now;
         }
 
         /// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
@@ -66,44 +55,6 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
-        private Admin _CreateUser;
-        /// <summary>创建人</summary>
-        public Admin CreateUser
-        {
-            get
-            {
-                if (_CreateUser == null && CreateUserID > 0 && !Dirtys.ContainsKey("CreateUser"))
-                {
-                    _CreateUser = Admin.FindByID(CreateUserID);
-                    Dirtys["CreateUser"] = true;
-                }
-                return _CreateUser;
-            }
-            set { _CreateUser = value; }
-        }
-
-        /// <summary>创建人名称</summary>
-        public String CreateUserName { get { return CreateUser != null ? CreateUser.DisplayName : ""; } }
-
-        private Admin _UpdateUser;
-        /// <summary>更新人</summary>
-        public Admin UpdateUser
-        {
-            get
-            {
-                if (_UpdateUser == null && UpdateUserID > 0 && !Dirtys.ContainsKey("UpdateUser"))
-                {
-                    _UpdateUser = Admin.FindByID(UpdateUserID);
-                    Dirtys["UpdateUser"] = true;
-                }
-                return _UpdateUser;
-            }
-            set { _UpdateUser = value; }
-        }
-
-        /// <summary>更新人名称</summary>
-        public String UpdateUserName { get { return UpdateUser != null ? UpdateUser.DisplayName : ""; } }
-
         /// <summary>标题页面</summary>
         public String TitleUrl { get { return String.Format("CMX/{0}/{0}.aspx", Provider.TitleType.Name); } }
 

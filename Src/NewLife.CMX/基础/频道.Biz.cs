@@ -8,13 +8,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using NewLife.CommonEntity;
 using NewLife.Log;
 using XCode;
 
 namespace NewLife.CMX
 {
     /// <summary>频道</summary>
-    public partial class Channel : Entity<Channel>
+    public partial class Channel : EntityBase<Channel>
     {
         #region 对象操作﻿
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
@@ -27,19 +28,6 @@ namespace NewLife.CMX
 
             // 建议先调用基类方法，基类方法会对唯一索引的数据进行验证
             base.Valid(isNew);
-
-            // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
-            //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
-            //if (isNew || Dirtys[__.Suffix]) CheckExist(__.Suffix);
-
-            var user = Admin.Current;
-            if (user != null)
-            {
-                if (isNew && !Dirtys[__.CreateUserID]) CreateUserID = user.ID;
-                if (!Dirtys[__.UpdateUserID]) UpdateUserID = user.ID;
-            }
-            if (isNew && !Dirtys[__.CreateTime]) CreateTime = DateTime.Now;
-            if (!Dirtys[__.UpdateTime]) UpdateTime = DateTime.Now;
 
             if (String.IsNullOrEmpty(Roles)) AddRole(1);
         }
@@ -110,44 +98,6 @@ namespace NewLife.CMX
 
         /// <summary>模型名称</summary>
         public String ModelName { get { return Model != null ? Model.Name : "未命名"; } }
-
-        private Admin _CreateUser;
-        /// <summary>创建人</summary>
-        public Admin CreateUser
-        {
-            get
-            {
-                if (_CreateUser == null && CreateUserID > 0 && !Dirtys.ContainsKey("CreateUser"))
-                {
-                    _CreateUser = Admin.FindByID(CreateUserID);
-                    Dirtys["CreateUser"] = true;
-                }
-                return _CreateUser;
-            }
-            set { _CreateUser = value; }
-        }
-
-        /// <summary>创建人名称</summary>
-        public String CreateUserName { get { return CreateUser != null ? CreateUser.DisplayName : ""; } }
-
-        private Admin _UpdateUser;
-        /// <summary>更新人</summary>
-        public Admin UpdateUser
-        {
-            get
-            {
-                if (_UpdateUser == null && UpdateUserID > 0 && !Dirtys.ContainsKey("UpdateUser"))
-                {
-                    _UpdateUser = Admin.FindByID(UpdateUserID);
-                    Dirtys["UpdateUser"] = true;
-                }
-                return _UpdateUser;
-            }
-            set { _UpdateUser = value; }
-        }
-
-        /// <summary>更新人名称</summary>
-        public String UpdateUserName { get { return UpdateUser != null ? UpdateUser.DisplayName : ""; } }
         #endregion
 
         #region 扩展查询﻿
@@ -361,6 +311,11 @@ namespace NewLife.CMX
 
             return _roles.Contains(roleid);
         }
+
+        /// <summary>是否有指定角色权限</summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public Boolean HasRole(IManageUser user) { return HasRole(user["RoleID"].ToInt()); }
 
         /// <summary>添加角色</summary>
         /// <param name="roleid"></param>
