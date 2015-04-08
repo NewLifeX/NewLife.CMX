@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewLife.CMX", "NewLife.CMX\NewLife.CMX.csproj", "{4C2CF9BB-B920-43F5-9D87-B7288E416795}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Web(2)", "Web\", "{0173B5B3-3287-48BE-A136-C258C35E4210}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Web(3)", "Web\", "{0173B5B3-3287-48BE-A136-C258C35E4210}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv2.0"
 		ProjectReferences = "{4c2cf9bb-b920-43f5-9d87-b7288e416795}|NewLife.CMX.dll;{50D7FAE5-2304-4395-A6FA-7D35279D9D84}|NewLife.CommonEntity.dll;{5813C22E-EEB3-4DEE-A45C-BB218041193A}|NewLife.Core.dll;{B49ABA5A-C5DA-45F4-87F1-B435EC51D710}|XCode.dll;{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}|XTemplate.dll;"
@@ -34,6 +34,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewLife.CommonEntity", "NewLife.CommonEntity\NewLife.CommonEntity.csproj", "{50D7FAE5-2304-4395-A6FA-7D35279D9D84}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XTemplate", "XTemplate\XTemplate.csproj", "{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewLife.CMX.Demo", "NewLife.CMX.Demo\NewLife.CMX.Demo.csproj", "{FE9F9F69-0BAA-48CE-9D70-7DF265F0D1D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +93,14 @@ Global
 		{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}.Net4Release|Any CPU.Build.0 = Net4Release|Any CPU
 		{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55BA37EE-01A2-438F-A0FB-6B57440BF2F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE9F9F69-0BAA-48CE-9D70-7DF265F0D1D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE9F9F69-0BAA-48CE-9D70-7DF265F0D1D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE9F9F69-0BAA-48CE-9D70-7DF265F0D1D0}.Net4Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE9F9F69-0BAA-48CE-9D70-7DF265F0D1D0}.Net4Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE9F9F69-0BAA-48CE-9D70-7DF265F0D1D0}.Net4Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE9F9F69-0BAA-48CE-9D70-7DF265F0D1D0}.Net4Release|Any CPU.Build.0 = Release|Any CPU
+		{FE9F9F69-0BAA-48CE-9D70-7DF265F0D1D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE9F9F69-0BAA-48CE-9D70-7DF265F0D1D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

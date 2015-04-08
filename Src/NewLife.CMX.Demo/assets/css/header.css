@@ -1,0 +1,22 @@
+
+header { width:100%; min-height: 223px; }
+
+header .top{ margin: auto; max-width: 990px; height: 26px; margin-top: 20px;}
+header .top_warp{ float: left; line-height:26px; }
+header .top_warp a{ font-family: "Microsoft Yahei"; color: #EEA15B; display: inline-block; padding:0 10px;} 
+ 
+header .header_warp{ max-width: 990px; margin:0 auto; padding: 5px 0px 23px 0px;}
+header .header_warp .logo{ text-align:center; }
+
+
+header .nav_bg { margin:0 auto; background: url(../img/nav_bg.png) repeat-y center top; }
+header .nav_bg nav { margin: auto; max-width: 950px; min-height: 51px; font-weight:bold;  }
+header .nav_bg nav span { width: 110px; text-align: center; padding: 15px 2px 15px 0px; display:inline-block; margin:0; background:url(../img/nav_line.png) no-repeat right center;}
+header .nav_bg nav span.first{ padding-left:0;}
+header .nav_bg nav span.last{ background:none; padding-right:0;}
+header .nav_bg nav a{ color:#fff;}
+header .nav_bg nav a:hover{ color:#CCC;}
+header .nav_bg nav a.on{ color:#f9c048;}
+
+header .nav_bg_bottom { margin:0 auto; /*background: url(../img/nav_bg_bottom2.png) repeat-x center top;*/ height: 17px; }
+  

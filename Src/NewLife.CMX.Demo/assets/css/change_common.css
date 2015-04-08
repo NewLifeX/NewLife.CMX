@@ -1,0 +1,118 @@
+/*****首页小于990调用****/
+.min_body{ margin: auto;}
+.min_body .main{ margin: auto; height: auto; margin-top: -17px;}
+.min_body .mainbg{ margin: auto; width: 98%; }
+
+.min_body .center1{ margin: auto; width: 100%; margin-top: 20px;}
+
+.min_body .imgNews { margin: auto; width: 94%; height: auto; margin: 3%; }
+.min_body .imgNews .banner_0 { width: 100%; height: auto; }
+.min_body .imgNews .banner_0_top li img{ width: 100%; height: auto;}
+.min_body .imgNews .banner_0_top, .min_body .imgNews .banner_0{ min-height:inherit;} 
+.min_body .imgNews .banner_0_bottom { margin-bottom: 20px;}
+
+.min_body .xwtt{ margin: auto; width: 94%; margin: 3%; height: auto; }
+.min_body .topnews { margin: auto; width: 100%; height: auto;  }
+
+.min_body .main_left, 
+.min_body .main_left2, 
+.min_body .work_news_left{ width:100%; height: auto; }
+ 
+.min_body .main_left2 .link_box .link1{ width: 48%;}
+.min_body .main_left2 .link_box .link2{ width: 48%;}
+
+.min_body .main_right, 
+.min_body .work_news_right{width: 98%; margin: 1%; height:auto; margin-top:20px; }
+
+.min_body .main_right .imgzt_list .col_L { width: 50%; }
+.min_body .main_right .imgzt_list .col_R { width: 50%; text-align: right; }
+.min_body .main_right .imgzt_list .col_L img,
+.min_body .main_right .imgzt_list .col_R img { width: 95%; }
+
+.min_body .main_right2 {width: 100%; height:auto; margin-top:20px; }
+
+.min_body .main_right2 .link_box { width: 100%; }
+.min_body .main_right2 .link_box .link3{ width: 50%; margin-left: 0px; text-align:center;} 
+.min_body .main_right2 .link_box .link3 img{ width: 95%; height: auto;}  
+
+.min_body .main_right2 .img_col { height: auto; padding-bottom: 30px; width: 100%; } 
+.min_body .main_right2 .img_col dl { width: 50%; height: auto; text-align: center; margin-left: 0px; }
+.min_body .main_right2 .img_col dl dt { margin:auto; margin-top: 0px; width: 95%; height: auto; }
+.min_body .main_right2 .img_col dl dt img { width: 100%; height: auto;} 
+
+
+.min_body .main_right2 .ds_list{ height: auto; }
+.min_body .main_right2 .ds_list dl{ WIDTH: 50%; HEIGHT: auto; margin-left: 0px; text-align: center; }
+.min_body .main_right2 .ds_list dl dt{ margin: auto; WIDTH:121px; HEIGHT:160px; }
+ .ds_list dl dd { height: 30px; line-height: 30px; text-align: center;} 
+
+
+
+
+
+
+
+
+
+
+.min_body .center2 { margin: auto; width: 98%; margin: 1%; }
+
+.min_body .gzdt { margin: auto; width: 98%; height: auto; }
+.min_body .djfgk .content { position: relative; width: 100%; min-height: 80px; }
+
+.min_body .xfjb .col_1 img,
+.min_body .xfjb .col_2 img{ width: 95%; height: auto; }
+
+.other_body .main2 { width: 100%; }
+.other_body .main2 .mainbg{ margin: auto; width: 100%; }
+
+.other_body .main2 .channllogo{ width: 94%; margin: 3%; }
+.other_body .main2 .rh_box{ width: 96%; margin: 2%;}
+.other_body .main2 .other_left_bg { width: 100%; background: none; }
+.other_body .main2 .other_left { width: 96%; }
+.other_body .main2 .pub_center{ width: 96%; margin: 2%;}
+
+/*****首页小于940调用****/
+
+/**
+.min_body .main .main_left,
+.min_body .bottom_left,
+.min_body .bottom_right{ width: 98%; padding:0 1%;}
+
+.min_body .work_news { margin-left:1%; margin-right:1%;}
+.min_body .search{ margin-bottom:10px;}
+.min_body .right_txt{ min-height:inherit;}
+.min_body .right_news { margin-top: 10px;}
+**/
+
+/*****首页小于480调用****/
+/**
+.min_body480 .hd_list dl dt{ position: relative; left:0; top:0;}
+.min_body480 .hd_list dl dd{ padding-left:0; margin-top:10px;}
+.min_body480 .bk_01 .edu_dl dt{position:relative; left:0; top:0;}
+.min_body480 .bk_01 .edu_dl dd{padding-left:0; margin-top:10px;}
+.min_body480 .right_txt{ background:#0E3C60;}
+.min_body480 .xf_left{ width:100%;}
+.min_body480 .xf_right{ width:100%; margin-top:10px;}
+.min_body480 .bk_01 .tab_bon li{ margin-bottom:14px; }
+.min_body480 .bk_01 .message dt{ padding-bottom:10px;}
+**/
+
+/*****二级页小于940调用  放在样式的最后****/
+/**
+.other_body .rh_box{ padding:10px;}
+.other_body .other_left{width:100%; margin:0 auto;}
+.other_body .other_center{width:100%; }
+.other_body .other_center_nav{width:100%; }
+**/
+/**通用概览 - 导航栏目add by shizhu 20130719 begin **/
+/**
+.other_body .other_center_22{width:100%; }
+.other_body .other_center_23{width:100%; }
+.other_body .other_right{width:100%; }
+.other_body .other_right2{width:100%; }
+.other_body .other_right3{width:100%; }
+.other_body .onlin_fr{ width:96%; border-radius:4px; padding:20px 2%; border:0; margin-top:10px;}
+.other_body .onlin_fl{width:100%;}
+.other_body .right_news  .mheight330{ min-height:100px;}
+**/

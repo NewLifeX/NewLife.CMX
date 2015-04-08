@@ -1,0 +1,166 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta http-equiv="keywords" content="中央纪委监察部网站">
+    <meta http-equiv="description" content="中央纪委监察部网站">
+
+    <title>@ViewBag.Title</title>
+
+    <!--<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />-->
+
+    <link type="text/css" rel="stylesheet" href="~/assets/css/public.css" />
+    <link type="text/css" rel="stylesheet" href="~/assets/css/header.css" />
+    <link type="text/css" rel="stylesheet" href="~/assets/css/footer.css" />
+    <link type="text/css" rel="stylesheet" href="~/assets/css/index.css" />
+    <link type="text/css" rel="stylesheet" href="~/assets/css/change_common.css" />
+
+    <!--[if lt IE 9]>
+        <script src="~/assets/js/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 7]>
+        <link type="text/css" rel="stylesheet" href="~/assets/css/css_ie6_chl.css" />
+        <script type="text/javascript" src="~/assets/js/DD_belatedPNG.js"></script>
+        <script type="text/javascript">
+            DD_belatedPNG.fix('*');
+        </script>
+    <![endif]-->
+
+    <script type="text/javascript" src="~/assets/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/easing.js"></script>
+    <script type="text/javascript" src="~/assets/js/common.js"></script>
+</head>
+<body class="in_bg">
+
+    <!-- 页面头部模板——begin -->
+    <header class="fixed">
+        <script type="text/javascript" language="javascript">
+
+            //设为首页
+
+            function SetHome(url) {
+
+                if (document.all) {
+
+                    document.body.style.behavior = 'url(#default#homepage)';
+
+                    document.body.setHomePage(url);
+
+                } else {
+
+                    alert("抱歉,您的浏览器不支持自动设置首页,请您使用浏览器菜单手动设置!");
+
+                }
+
+            }
+
+
+        </script>
+
+        <div class="top">
+            <div class="top_warp">
+                <a id="linkTopSetHomePage" onclick="SetHome('http://www.ccdi.gov.cn')" href="javascript:void(0)">设为首页</a>
+                <a id="linkTopAddCookie" href="https://mail.mos.gov.cn" target="_blank">工作邮箱</a>
+                <a href="http://www.ccdi.gov.cn/client/index.html" target="_blank">客户端下载</a>
+            </div>
+            <div class="search">
+                <form name="searchFrom" action="~" method="post" target="_blank" style="margin:0px;" onsubmit="return advsearch()">
+                    <input name="orderby" value="-DocRelTime" type="hidden" />
+                    <input name="channelid" id="channelid" value="254003" type="hidden" />
+                    <input ttype="text" name="searchword" id="searchword" value="输入关键字" onfocus="if(this.value=='输入关键字'){this.value=''}" onblur="if (this.value == '') { this.value = '输入关键字';}" class="search_key" />
+                    <input type="submit" class="but_search" value="&nbsp;" />
+                </form>
+            </div>
+            <script>
+                function advsearch() {
+                    var sSearchWord = document.getElementById("searchword").value;
+                    var sSearchWordNew = "";
+                    sSearchWord = sSearchWord.replace(/(^\s*)|(\s*$)/g, "");
+                    if (sSearchWord == '' || sSearchWord == '输入关键字') {
+                        alert('关键字不能为空！');
+                        return false;
+                    } else {
+                        var sSearchWords = sSearchWord.split(" ");
+                        if (sSearchWords.length > 1) {
+                            for (var i = 0; i < sSearchWords.length; i++) {
+                                sWord = sSearchWords[i];
+                                if (sWord != "") {
+                                    if (sSearchWordNew != "") {
+                                        sSearchWordNew += " " + sWord;
+                                    } else {
+                                        sSearchWordNew = sWord;
+                                    }
+                                }
+                            }
+                            document.getElementById("searchword").value = sSearchWordNew;
+                        }
+                    }
+
+                }
+            </script>
+        </div>
+
+        <div class="header_warp">
+            <div class="logo">
+                <img src="~/assets/img/logo.png" />
+            </div>
+        </div>
+
+        <div class="nav_bg">
+            <nav style="font-size:17px;">
+                <span class="first">
+                    <a href="./ldhd/gcsy/" target="_blank">
+                        首页
+                    </a>
+                </span>
+                <span>
+                    <a href="http://www.ccdi.gov.cn/fgk" target="_blank">
+                        检务公开
+                    </a>
+                </span>
+                <span>
+                    <a href="./jlsc/" target="_blank">
+                        新闻中心
+                    </a>
+                </span>
+                <span>
+                    <a href="./xsgz/" target="_blank">
+                        检查文化
+                    </a>
+                </span>
+                <span class="last">
+                    <a href="http://www.ccdi.gov.cn/special/bgtzt/" target="_blank">
+                        服务互动
+                    </a>
+                </span>
+            </nav>
+        </div>
+
+        <div class="nav_bg_bottom">
+        </div>
+    </header>
+    <!-- 页面头部模板——end -->
+
+    <section class="fixed main">
+        <div class="fixed mainbg">
+            @RenderBody()
+        </div>
+    </section>
+
+    <footer class="in_footer fixed">
+        <div class="footer_warp">
+
+            <div class="footer_b">
+                <span>&copy;中共中央纪律检查委员会 中华人民共和国监察部 版权所有</span>
+                <span>京ICP备 09099461 </span>
+                <span><a href="~/" target="_blank">关于我们</a></span>
+                <span><a href="~/" target="_blank">网站声明</a></span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,9 @@
+
+/*----------footer---------*/
+.in_footer{ background: #E4E4E4; margin:0; padding-bottom:20px; min-height:70px; }
+.footer_warp{ margin:0 auto; max-width:900px; text-align:center; padding-top:40px;}
+
+.footer_b{ color: #555971; }
+.footer_b a{ color:#555971; display: inline-block;}
+.footer_b a:hover{ text-decoration:underline;}
+.footer_b span{ margin-right: 10px;}
