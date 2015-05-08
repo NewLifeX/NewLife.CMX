@@ -6,6 +6,7 @@ using NewLife.CMX;
 using NewLife.CommonEntity;
 using NewLife.Web;
 using XCode;
+using XCode.Membership;
 using XControl;
 
 /// <summary>实体列表页面基类</summary>
@@ -20,7 +21,7 @@ public abstract class MyModelEntityList : Page
     protected IManagePage Manager;
 
     /// <summary>管理员</summary>
-    protected IAdministrator CurrentManage { get { return ManageProvider.Provider.Current as IAdministrator; } }
+    protected IUser CurrentManage { get { return ManageProvider.Provider.Current as IUser; } }
 
     // 如果不写日志，就不要拦截异常，否则压根就不知道哪里出错！
     //protected override void OnInit(EventArgs e)

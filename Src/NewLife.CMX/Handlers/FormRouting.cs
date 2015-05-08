@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Web;
-using NewLife.CommonEntity;
 using NewLife.Web;
+using XCode.Membership;
 
 namespace NewLife.CMX.Handlers
 {

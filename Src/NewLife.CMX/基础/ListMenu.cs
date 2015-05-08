@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using NewLife.Common;
-using NewLife.CommonEntity;
 using NewLife.Log;
+using NewLife.Model;
 using NewLife.Reflection;
 using NewLife.Web;
-using XCode;
+using XCode.Membership;
 
 namespace NewLife.CMX
 {
@@ -61,10 +61,18 @@ namespace NewLife.CMX
         public static List<ListMenu> GetMenus()
         {
             var lm = new List<ListMenu>();
-            var icmp = CommonManageProvider.Provider;
+            var mp = ManageProvider.Provider;
             Int32 mid = WebHelper.RequestInt("ID");
 
-            var menus = icmp.GetMySubMenus(mid);
+            var user = ManageProvider.Provider.Current as IUser;
+            var fact = ObjectContainer.Current.Resolve<IMenuFactory>();
+
+            var menus = fact.Root.Childs;
+            if (user != null && user.Role != null)
+            {
+                menus = fact.GetMySubMenus(fact.Root.ID);
+            }
+            //var menus = mp.Current.GetMySubMenus(mid);
 
             #region 特殊处理模型频道管理
             //var cmx = menus.FirstOrDefault(m => m.Name == "CMXManager");
@@ -88,7 +96,7 @@ namespace NewLife.CMX
             {
                 foreach (IMenu menu in menus)
                 {
-                    if (!menu.IsShow) continue;
+                    if (!menu.Visible) continue;
 
                     var lmsingle = ConvertToMenu(menu, null, "Sys", null, null);
 
@@ -96,7 +104,7 @@ namespace NewLife.CMX
                     {
                         foreach (IMenu child in menu.Childs)
                         {
-                            if (!child.IsShow) continue;
+                            if (!child.Visible) continue;
 
                             lmsingle.Children.Add(ConvertToMenu(child, null, "SysChild", null, null));
                         }
@@ -117,7 +125,7 @@ namespace NewLife.CMX
                 //foreach (var cr in crlist)
                 //{
                 //    var chn = cr.Channel;
-                if (!chn.HasRole(icmp.Current)) continue;
+                if (!chn.HasRole(mp.Current)) continue;
                 //隐藏不启用的频道
                 if (!chn.Enable) continue;
 

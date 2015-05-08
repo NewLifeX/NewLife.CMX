@@ -1,10 +1,10 @@
 ﻿﻿using System;
 using System.Web.UI;
-using NewLife.CommonEntity;
-using XCode;
-using NewLife.Web;
 using NewLife.CMX;
-using NewLife.Reflection;
+using NewLife.CommonEntity;
+using NewLife.Web;
+using XCode;
+using XCode.Membership;
 
 /// <summary>实体表单页面基类</summary>
 public class MyModelEntityForm : Page
@@ -21,11 +21,11 @@ public class MyModelEntityForm : Page
     protected IEntityForm EntityForm;
 
     /// <summary>管理员</summary>
-    protected IAdministrator CurrentManage
+    protected IUser CurrentManage
     {
         get
         {
-            return ManageProvider.Provider.Current as IAdministrator;
+            return ManageProvider.Provider.Current as IUser;
         }
     }
 

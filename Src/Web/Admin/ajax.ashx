@@ -6,6 +6,7 @@ using System.Text;
 using System.Web.SessionState;
 using NewLife.Web;
 using NewLife.CommonEntity;
+using XCode.Membership;
 
 public class ajax : IHttpHandler, IRequiresSessionState
 {
@@ -28,7 +29,7 @@ public class ajax : IHttpHandler, IRequiresSessionState
         }
         return str;
     }
-    protected IAdministrator admin { get { return CommonManageProvider.Provider.Current as IAdministrator; } }
+    protected IUser admin { get { return ManageProvider.Provider.Current as IUser; } }
 
     public void ProcessRequest(HttpContext context)
     {

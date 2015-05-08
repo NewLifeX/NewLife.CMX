@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
-using NewLife.CommonEntity;
 using NewLife.Web;
+using XCode.Membership;
 
 namespace NewLife.CMX.Handlers
 {

@@ -5,6 +5,7 @@ using System.Web.UI;
 using NewLife.CommonEntity;
 using NewLife.Web;
 using XCode;
+using XCode.Membership;
 using XControl;
 
 /// <summary>实体列表页面基类</summary>
@@ -19,7 +20,7 @@ public abstract class MyEntityList : Page
     protected IManagePage Manager;
 
     /// <summary>管理员</summary>
-    protected IAdministrator CurrentManage { get { return ManageProvider.Provider.Current as IAdministrator; } }
+    protected IUser CurrentManage { get { return ManageProvider.Provider.Current as IUser; } }
 
     //protected override void OnInit(EventArgs e)
     //{

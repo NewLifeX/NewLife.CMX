@@ -3,6 +3,7 @@ using System.Web.UI;
 using NewLife.CommonEntity;
 using NewLife.Web;
 using XCode;
+using XCode.Membership;
 
 /// <summary>实体表单页面基类</summary>
 public class MyEntityForm : Page
@@ -19,7 +20,7 @@ public class MyEntityForm : Page
     protected IEntityForm EntityForm;
 
     /// <summary>管理员</summary>
-    protected IAdministrator CurrentManage { get { return ManageProvider.Provider.Current as IAdministrator; } }
+    protected IUser CurrentManage { get { return ManageProvider.Provider.Current as IUser; } }
 
     protected override void OnPreInit(EventArgs e)
     {

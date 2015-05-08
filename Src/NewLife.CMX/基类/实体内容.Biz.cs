@@ -7,9 +7,9 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
-using NewLife.CommonEntity;
 using XCode;
 using XCode.Cache;
+using XCode.Membership;
 
 namespace NewLife.CMX
 {

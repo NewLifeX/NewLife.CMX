@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using NewLife.CommonEntity;
 using XCode;
+using XCode.Membership;
 
 namespace NewLife.CMX
 {
