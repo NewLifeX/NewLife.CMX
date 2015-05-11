@@ -416,92 +416,61 @@ WriteLiteral(">\r\n                        <i");
 
 WriteLiteral(" class=\"menu-icon fa fa-caret-right\"");
 
-WriteLiteral("></i>\r\n");
-
-WriteLiteral("                        ");
-
-            
-            #line 90 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-                   Write(chn.Name);
+WriteLiteral("></i>\r\n                        分类管理\r\n                    </a>\r\n                </" +
+"li>\r\n");
 
             
-            #line default
-            #line hidden
-WriteLiteral(" 分类管理\r\n                    </a>\r\n                </li>\r\n                <li>\r\n   " +
-"                 <a");
-
-WriteLiteral(" href=\"#\"");
-
-WriteLiteral(" class=\"dropdown-toggle\"");
-
-WriteLiteral(">\r\n                        <i");
-
-WriteLiteral(" class=\"menu-icon fa fa-caret-right\"");
-
-WriteLiteral("></i>\r\n                        内容信息管理\r\n                    </a>\r\n\r\n              " +
-"      <b");
-
-WriteLiteral(" class=\"arrow\"");
-
-WriteLiteral("></b>\r\n                    <ul");
-
-WriteLiteral(" class=\"submenu\"");
-
-WriteLiteral(">\r\n");
-
-            
-            #line 101 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-                        
+            #line 93 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
+                
             
             #line default
             #line hidden
             
-            #line 101 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-                         foreach (IEntityCategory cat in provider.CategoryFactory.FindAllWithCache())
-                        {
+            #line 93 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
+                 foreach (IEntityCategory cat in provider.CategoryFactory.FindAllWithCache())
+                {
 
             
             #line default
             #line hidden
-WriteLiteral("                            <li>\r\n                                <a");
+WriteLiteral("                    <li>\r\n                        <a");
 
 WriteLiteral(" href=\"\"");
 
 WriteLiteral(" target=\"main\"");
 
-WriteLiteral(">\r\n                                    <i");
+WriteLiteral(">\r\n                            <i");
 
 WriteLiteral(" class=\"menu-icon fa fa-caret-right\"");
 
 WriteLiteral("></i>\r\n");
 
-WriteLiteral("                                    ");
+WriteLiteral("                            ");
 
             
-            #line 106 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-                               Write(cat.Name);
+            #line 98 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
+                       Write(cat.Name);
 
             
             #line default
             #line hidden
-WriteLiteral("\r\n                                </a>\r\n\r\n                                <b");
+WriteLiteral("\r\n                        </a>\r\n\r\n                        <b");
 
 WriteLiteral(" class=\"arrow\"");
 
-WriteLiteral("></b>\r\n                            </li>\r\n");
+WriteLiteral("></b>\r\n                    </li>\r\n");
 
             
-            #line 111 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-                        }
+            #line 103 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
+                }
 
             
             #line default
             #line hidden
-WriteLiteral("                    </ul>\r\n                </li>\r\n            </ul>\r\n        </li" +
-">\r\n");
+WriteLiteral("            </ul>\r\n        </li>\r\n");
 
             
-            #line 116 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
+            #line 106 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
     }
 
             
