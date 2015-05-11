@@ -7,12 +7,12 @@ using NewLife.Cube;
 
 namespace NewLife.CMX.Web.Controllers
 {
-    public class TextController : EntityController<Text> { }
+    public class TextController : TitleController<Text> { }
 
-    public class TextCategoryController : EntityController<TextCategory> { }
+    public class TextCategoryController : CategoryController<TextCategory> { }
 
-    public class TextContentController : EntityController<TextContent> { }
+    public class TextContentController : ContentController<TextContent> { }
 
-    public class TextStatisticsController : EntityController<TextStatistics> { }
+    public class TextStatisticsController : StatisticsController<TextStatistics> { }
 
 }

@@ -87,6 +87,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\CMS\CMSAreaRegistration.cs" />
+    <Compile Include="Areas\CMS\Common\ContentController.cs" />
+    <Compile Include="Areas\CMS\Common\StatisticsController.cs" />
+    <Compile Include="Areas\CMS\Common\TitleController.cs" />
+    <Compile Include="Areas\CMS\Common\CategoryController.cs" />
     <Compile Include="Areas\CMS\Controllers\ChannelController.cs" />
     <Compile Include="Areas\CMS\Controllers\ModelController.cs" />
     <Compile Include="Areas\CMS\Controllers\ArticleController.cs" />

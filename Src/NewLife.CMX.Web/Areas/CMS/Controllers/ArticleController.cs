@@ -7,12 +7,12 @@ using NewLife.Cube;
 
 namespace NewLife.CMX.Web.Controllers
 {
-    public class ArticleController : EntityController<Article> { }
+    public class ArticleController : TitleController<Article> { }
 
-    public class ArticleCategoryController : EntityController<ArticleCategory> { }
+    public class ArticleCategoryController : CategoryController<ArticleCategory> { }
 
-    public class ArticleContentController : EntityController<ArticleContent> { }
+    public class ArticleContentController : ContentController<ArticleContent> { }
 
-    public class ArticleStatisticsController : EntityController<ArticleStatistics> { }
+    public class ArticleStatisticsController : StatisticsController<ArticleStatistics> { }
 
 }
