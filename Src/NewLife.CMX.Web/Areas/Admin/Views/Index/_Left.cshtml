@@ -86,7 +86,7 @@
 
             <ul class="submenu">
                 <li>
-                    <a href="~/CMS/@(chn.Model.Name)Category?channel=@chn.ID" target="main">
+                    <a href="~/CMS/@(chn.Model.Name)Category/@chn.ID" target="main">
                         <i class="menu-icon fa fa-caret-right"></i>
                         分类管理
                     </a>
@@ -103,22 +103,20 @@
                         }
                         else
                         {
-                            <a href="~/" target="main">
+                            <a href="~/CMS/@(chn.Model.Name)/@(chn.ID)_@cat.ID" target="main">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 @cat.Name
                             </a>
                         }
-
                         <b class="arrow"></b>
                         <ul class="submenu">
                             @foreach (IEntityCategory cat2 in cat.Childs)
                             {
                                 <li>
-                                    <a href="~/" target="main">
+                                    <a href="~/CMS/@(chn.Model.Name)/@(chn.ID)_@cat2.ID" target="main">
                                         <i class="menu-icon fa fa-caret-right"></i>
                                         @cat2.Name
                                     </a>
-
                                     <b class="arrow"></b>
                                 </li>
                             }

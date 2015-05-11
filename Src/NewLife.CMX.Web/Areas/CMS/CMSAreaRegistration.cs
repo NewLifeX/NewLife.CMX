@@ -9,13 +9,21 @@ namespace NewLife.CMX.Web
     {
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            base.RegisterArea(context);
+            context.MapRoute(
+               "CMS_category",
+               "CMS/{controller}/{channel}_{category}/{action}/{id}",
+               new { action = "Index", id = UrlParameter.Optional }, 
+               new { channel = "[\\d]+", category = "[\\d]+" }
+               );
 
-            //context.MapRoute(
-            //    "CMS_default",
-            //    "CMS/{controller}/{action}/{id}",
-            //    new { action = "Index", id = UrlParameter.Optional }
-            //);
+            context.MapRoute(
+                 "CMS_channel",
+                 "CMS/{controller}/{channel}/{action}/{id}",
+                 new { action = "Index", id = UrlParameter.Optional }, 
+                 new { channel = "[\\d]+" }
+                 );
+
+            base.RegisterArea(context);
 
             //// 为所有频道注册路由
             //foreach (var chn in Channel.FindAllWithCache())
