@@ -73,6 +73,7 @@
     @foreach (var chn in Channel.FindAllWithCache().ToList().Where(e => e.Enable))
     {
         var provider = chn.Model.Provider;
+        var cats = (provider.CategoryFactory.Default as IEntityTree).Childs;
         <li>
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa @icos[_idx++]"></i>
@@ -85,20 +86,43 @@
 
             <ul class="submenu">
                 <li>
-                    <a href="~/CMS_@chn.ID/@chn.Model.Name Category" target="main">
+                    <a href="~/CMS/@(chn.Model.Name)Category?channel=@chn.ID" target="main">
                         <i class="menu-icon fa fa-caret-right"></i>
                         分类管理
                     </a>
                 </li>
-                @foreach (IEntityCategory cat in provider.CategoryFactory.FindAllWithCache())
+                @foreach (IEntityCategory cat in cats)
                 {
                     <li>
-                        <a href="" target="main">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            @cat.Name
-                        </a>
+                        @if (cat.Childs.Count > 0)
+                        {
+                            <a href="#" class="dropdown-toggle">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                @cat.Name
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="~/" target="main">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                @cat.Name
+                            </a>
+                        }
 
                         <b class="arrow"></b>
+                        <ul class="submenu">
+                            @foreach (IEntityCategory cat2 in cat.Childs)
+                            {
+                                <li>
+                                    <a href="~/" target="main">
+                                        <i class="menu-icon fa fa-caret-right"></i>
+                                        @cat2.Name
+                                    </a>
+
+                                    <b class="arrow"></b>
+                                </li>
+                            }
+                        </ul>
                     </li>
                 }
             </ul>
