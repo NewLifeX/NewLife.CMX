@@ -128,11 +128,13 @@ namespace NewLife.CMX
             {
                 var model = item.Value;
 
-                var entity = FindByName(model.Name);
+                var name = model.GetType().Name.TrimEnd("Provider");
+                var entity = FindByName(name);
                 if (entity == null) entity = new Model();
 
-                entity.Name = model.Name;
-                entity.ClassName = item.Key;
+                entity.Name = name;
+                entity.DisplayName = model.Name;
+                entity.ProviderName = item.Key;
 
                 //entity.TitleTemplate = String.Format("CMX/{0}/{0}.aspx", model.TitleType.Name);
                 //entity.CategoryTemplate = String.Format("CMX/{0}/{1}.aspx", model.TitleType.Name, model.CategoryType.Name);
@@ -156,7 +158,7 @@ namespace NewLife.CMX
             {
                 if (_Provider == null)
                 {
-                    if (!ModelProvider.Providers.TryGetValue(ClassName, out _Provider)) throw new XException("找不到模型提供者{0}", ClassName);
+                    if (!ModelProvider.Providers.TryGetValue(ProviderName, out _Provider)) throw new XException("找不到模型提供者{0}", ProviderName);
                 }
                 return _Provider;
             }

@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Tables Version="8.13.5422.21755">
+<Tables Version="8.14.5560.21648">
   <Table Name="Model" Description="模型。默认有文章、文本、产品三种模型，可以扩展增加。" DbType="SqlServer" 实体分类="基础" 页面分类="Manager">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Nullable="False" Description="名称" />
+      <Column Name="DisplayName" DataType="String" Nullable="False" Description="显示名" />
       <Column Name="ShortName" DataType="String" Description="缩写" />
-      <Column Name="ClassName" DataType="String" Length="200" Description="类名" />
+      <Column Name="ProviderName" DataType="String" Description="提供者" />
       <Column Name="Enable" DataType="Boolean" Description="启用" />
-      <Column Name="CategoryTemplate" DataType="String" Length="200" Description="分类页模版。前台分类页" />
-      <Column Name="TitleTemplate" DataType="String" Length="200" Description="标题页模版。前台列表页" />
-      <Column Name="ContentTemplate" DataType="String" Length="200" Description="内容页模版。前台内容页" />
       <Column Name="CreateUserID" DataType="Int32" Description="创建人" />
       <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
       <Column Name="UpdateUserID" DataType="Int32" Description="更新人" />

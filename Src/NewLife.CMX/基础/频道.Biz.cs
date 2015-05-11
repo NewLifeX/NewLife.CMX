@@ -54,7 +54,7 @@ namespace NewLife.CMX
                 //entity.FormTemplate = String.Format("{0}ModelContent", item.Provider.TitleType.Name);
                 // 考虑到在查询中null与string.empty在构造查询语句时的不同
                 entity.Suffix = "";
-                entity.Name = "默认" + item.Name.Replace("模型", "频道");
+                entity.Name = "默认" + (item.DisplayName ?? item.Name);
                 entity.AddRole(1);
                 entity.Enable = true;
                 entity.Save();

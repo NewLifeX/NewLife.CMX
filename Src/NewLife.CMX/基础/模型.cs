@@ -43,28 +43,40 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.Name, value)) { _Name = value; OnPropertyChanged(__.Name); } }
         }
 
+        private String _DisplayName;
+        /// <summary>显示名</summary>
+        [DisplayName("显示名")]
+        [Description("显示名")]
+        [DataObjectField(false, false, false, 50)]
+        [BindColumn(3, "DisplayName", "显示名", null, "nvarchar(50)", 0, 0, true)]
+        public virtual String DisplayName
+        {
+            get { return _DisplayName; }
+            set { if (OnPropertyChanging(__.DisplayName, value)) { _DisplayName = value; OnPropertyChanged(__.DisplayName); } }
+        }
+
         private String _ShortName;
         /// <summary>缩写</summary>
         [DisplayName("缩写")]
         [Description("缩写")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(3, "ShortName", "缩写", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(4, "ShortName", "缩写", null, "nvarchar(50)", 0, 0, true)]
         public virtual String ShortName
         {
             get { return _ShortName; }
             set { if (OnPropertyChanging(__.ShortName, value)) { _ShortName = value; OnPropertyChanged(__.ShortName); } }
         }
 
-        private String _ClassName;
-        /// <summary>类名</summary>
-        [DisplayName("类名")]
-        [Description("类名")]
-        [DataObjectField(false, false, true, 200)]
-        [BindColumn(4, "ClassName", "类名", null, "nvarchar(200)", 0, 0, true)]
-        public virtual String ClassName
+        private String _ProviderName;
+        /// <summary>提供者</summary>
+        [DisplayName("提供者")]
+        [Description("提供者")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn(5, "ProviderName", "提供者", null, "nvarchar(50)", 0, 0, true)]
+        public virtual String ProviderName
         {
-            get { return _ClassName; }
-            set { if (OnPropertyChanging(__.ClassName, value)) { _ClassName = value; OnPropertyChanged(__.ClassName); } }
+            get { return _ProviderName; }
+            set { if (OnPropertyChanging(__.ProviderName, value)) { _ProviderName = value; OnPropertyChanged(__.ProviderName); } }
         }
 
         private Boolean _Enable;
@@ -72,47 +84,11 @@ namespace NewLife.CMX
         [DisplayName("启用")]
         [Description("启用")]
         [DataObjectField(false, false, true, 1)]
-        [BindColumn(5, "Enable", "启用", null, "bit", 0, 0, false)]
+        [BindColumn(6, "Enable", "启用", null, "bit", 0, 0, false)]
         public virtual Boolean Enable
         {
             get { return _Enable; }
             set { if (OnPropertyChanging(__.Enable, value)) { _Enable = value; OnPropertyChanged(__.Enable); } }
-        }
-
-        private String _CategoryTemplate;
-        /// <summary>分类页模版。前台分类页</summary>
-        [DisplayName("分类页模版")]
-        [Description("分类页模版。前台分类页")]
-        [DataObjectField(false, false, true, 200)]
-        [BindColumn(6, "CategoryTemplate", "分类页模版。前台分类页", null, "nvarchar(200)", 0, 0, true)]
-        public virtual String CategoryTemplate
-        {
-            get { return _CategoryTemplate; }
-            set { if (OnPropertyChanging(__.CategoryTemplate, value)) { _CategoryTemplate = value; OnPropertyChanged(__.CategoryTemplate); } }
-        }
-
-        private String _TitleTemplate;
-        /// <summary>标题页模版。前台列表页</summary>
-        [DisplayName("标题页模版")]
-        [Description("标题页模版。前台列表页")]
-        [DataObjectField(false, false, true, 200)]
-        [BindColumn(7, "TitleTemplate", "标题页模版。前台列表页", null, "nvarchar(200)", 0, 0, true)]
-        public virtual String TitleTemplate
-        {
-            get { return _TitleTemplate; }
-            set { if (OnPropertyChanging(__.TitleTemplate, value)) { _TitleTemplate = value; OnPropertyChanged(__.TitleTemplate); } }
-        }
-
-        private String _ContentTemplate;
-        /// <summary>内容页模版。前台内容页</summary>
-        [DisplayName("内容页模版")]
-        [Description("内容页模版。前台内容页")]
-        [DataObjectField(false, false, true, 200)]
-        [BindColumn(8, "ContentTemplate", "内容页模版。前台内容页", null, "nvarchar(200)", 0, 0, true)]
-        public virtual String ContentTemplate
-        {
-            get { return _ContentTemplate; }
-            set { if (OnPropertyChanging(__.ContentTemplate, value)) { _ContentTemplate = value; OnPropertyChanged(__.ContentTemplate); } }
         }
 
         private Int32 _CreateUserID;
@@ -120,7 +96,7 @@ namespace NewLife.CMX
         [DisplayName("创建人")]
         [Description("创建人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(9, "CreateUserID", "创建人", null, "int", 10, 0, false)]
+        [BindColumn(7, "CreateUserID", "创建人", null, "int", 10, 0, false)]
         public virtual Int32 CreateUserID
         {
             get { return _CreateUserID; }
@@ -132,7 +108,7 @@ namespace NewLife.CMX
         [DisplayName("创建时间")]
         [Description("创建时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(10, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
+        [BindColumn(8, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
         public virtual DateTime CreateTime
         {
             get { return _CreateTime; }
@@ -144,7 +120,7 @@ namespace NewLife.CMX
         [DisplayName("更新人")]
         [Description("更新人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(11, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
+        [BindColumn(9, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
         public virtual Int32 UpdateUserID
         {
             get { return _UpdateUserID; }
@@ -156,7 +132,7 @@ namespace NewLife.CMX
         [DisplayName("更新时间")]
         [Description("更新时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(12, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
+        [BindColumn(10, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
         public virtual DateTime UpdateTime
         {
             get { return _UpdateTime; }
@@ -168,7 +144,7 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(13, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(11, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Remark
         {
             get { return _Remark; }
@@ -192,12 +168,10 @@ namespace NewLife.CMX
                 {
                     case __.ID : return _ID;
                     case __.Name : return _Name;
+                    case __.DisplayName : return _DisplayName;
                     case __.ShortName : return _ShortName;
-                    case __.ClassName : return _ClassName;
+                    case __.ProviderName : return _ProviderName;
                     case __.Enable : return _Enable;
-                    case __.CategoryTemplate : return _CategoryTemplate;
-                    case __.TitleTemplate : return _TitleTemplate;
-                    case __.ContentTemplate : return _ContentTemplate;
                     case __.CreateUserID : return _CreateUserID;
                     case __.CreateTime : return _CreateTime;
                     case __.UpdateUserID : return _UpdateUserID;
@@ -212,12 +186,10 @@ namespace NewLife.CMX
                 {
                     case __.ID : _ID = Convert.ToInt32(value); break;
                     case __.Name : _Name = Convert.ToString(value); break;
+                    case __.DisplayName : _DisplayName = Convert.ToString(value); break;
                     case __.ShortName : _ShortName = Convert.ToString(value); break;
-                    case __.ClassName : _ClassName = Convert.ToString(value); break;
+                    case __.ProviderName : _ProviderName = Convert.ToString(value); break;
                     case __.Enable : _Enable = Convert.ToBoolean(value); break;
-                    case __.CategoryTemplate : _CategoryTemplate = Convert.ToString(value); break;
-                    case __.TitleTemplate : _TitleTemplate = Convert.ToString(value); break;
-                    case __.ContentTemplate : _ContentTemplate = Convert.ToString(value); break;
                     case __.CreateUserID : _CreateUserID = Convert.ToInt32(value); break;
                     case __.CreateTime : _CreateTime = Convert.ToDateTime(value); break;
                     case __.UpdateUserID : _UpdateUserID = Convert.ToInt32(value); break;
@@ -239,23 +211,17 @@ namespace NewLife.CMX
             ///<summary>名称</summary>
             public static readonly Field Name = FindByName(__.Name);
 
+            ///<summary>显示名</summary>
+            public static readonly Field DisplayName = FindByName(__.DisplayName);
+
             ///<summary>缩写</summary>
             public static readonly Field ShortName = FindByName(__.ShortName);
 
-            ///<summary>类名</summary>
-            public static readonly Field ClassName = FindByName(__.ClassName);
+            ///<summary>提供者</summary>
+            public static readonly Field ProviderName = FindByName(__.ProviderName);
 
             ///<summary>启用</summary>
             public static readonly Field Enable = FindByName(__.Enable);
-
-            ///<summary>分类页模版。前台分类页</summary>
-            public static readonly Field CategoryTemplate = FindByName(__.CategoryTemplate);
-
-            ///<summary>标题页模版。前台列表页</summary>
-            public static readonly Field TitleTemplate = FindByName(__.TitleTemplate);
-
-            ///<summary>内容页模版。前台内容页</summary>
-            public static readonly Field ContentTemplate = FindByName(__.ContentTemplate);
 
             ///<summary>创建人</summary>
             public static readonly Field CreateUserID = FindByName(__.CreateUserID);
@@ -284,23 +250,17 @@ namespace NewLife.CMX
             ///<summary>名称</summary>
             public const String Name = "Name";
 
+            ///<summary>显示名</summary>
+            public const String DisplayName = "DisplayName";
+
             ///<summary>缩写</summary>
             public const String ShortName = "ShortName";
 
-            ///<summary>类名</summary>
-            public const String ClassName = "ClassName";
+            ///<summary>提供者</summary>
+            public const String ProviderName = "ProviderName";
 
             ///<summary>启用</summary>
             public const String Enable = "Enable";
-
-            ///<summary>分类页模版。前台分类页</summary>
-            public const String CategoryTemplate = "CategoryTemplate";
-
-            ///<summary>标题页模版。前台列表页</summary>
-            public const String TitleTemplate = "TitleTemplate";
-
-            ///<summary>内容页模版。前台内容页</summary>
-            public const String ContentTemplate = "ContentTemplate";
 
             ///<summary>创建人</summary>
             public const String CreateUserID = "CreateUserID";
@@ -332,23 +292,17 @@ namespace NewLife.CMX
         /// <summary>名称</summary>
         String Name { get; set; }
 
+        /// <summary>显示名</summary>
+        String DisplayName { get; set; }
+
         /// <summary>缩写</summary>
         String ShortName { get; set; }
 
-        /// <summary>类名</summary>
-        String ClassName { get; set; }
+        /// <summary>提供者</summary>
+        String ProviderName { get; set; }
 
         /// <summary>启用</summary>
         Boolean Enable { get; set; }
-
-        /// <summary>分类页模版。前台分类页</summary>
-        String CategoryTemplate { get; set; }
-
-        /// <summary>标题页模版。前台列表页</summary>
-        String TitleTemplate { get; set; }
-
-        /// <summary>内容页模版。前台内容页</summary>
-        String ContentTemplate { get; set; }
 
         /// <summary>创建人</summary>
         Int32 CreateUserID { get; set; }
