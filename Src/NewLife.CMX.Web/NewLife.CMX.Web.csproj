@@ -91,6 +91,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Views\Shared\_Form_Item.generated.cs">
+      <DependentUpon>_Form_Item.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Areas\CMS\CMSAreaRegistration.cs" />
     <Compile Include="Areas\CMS\Common\ContentController.cs" />
     <Compile Include="Areas\CMS\Common\StatisticsController.cs" />
@@ -170,6 +175,10 @@
       <LastGenOutput>_Left.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Areas\Admin\Views\Web.config" />
+    <Content Include="Views\Shared\_Form_Item.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>_Form_Item.generated.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -220,6 +229,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\CMS\Views\Shared\" />
   </ItemGroup>
   <PropertyGroup>
