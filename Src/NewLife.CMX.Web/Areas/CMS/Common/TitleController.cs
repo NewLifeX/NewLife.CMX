@@ -9,7 +9,7 @@ using XCode.Membership;
 
 namespace NewLife.CMX.Web
 {
-    public class TitleController<TEntity> : EntityController<TEntity> where TEntity : EntityTitle<TEntity>, new()
+    public class TitleController<TEntity> : EntityControllerBase<TEntity> where TEntity : EntityTitle<TEntity>, new()
     {
         protected override IDictionary<MethodInfo, int> ScanActionMenu(IMenu menu)
         {

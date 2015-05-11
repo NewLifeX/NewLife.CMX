@@ -89,6 +89,7 @@
     <Compile Include="Areas\CMS\CMSAreaRegistration.cs" />
     <Compile Include="Areas\CMS\Common\ContentController.cs" />
     <Compile Include="Areas\CMS\Common\StatisticsController.cs" />
+    <Compile Include="Areas\CMS\Common\EntityControllerBase.cs" />
     <Compile Include="Areas\CMS\Common\TitleController.cs" />
     <Compile Include="Areas\CMS\Common\CategoryController.cs" />
     <Compile Include="Areas\CMS\Controllers\ChannelController.cs" />
