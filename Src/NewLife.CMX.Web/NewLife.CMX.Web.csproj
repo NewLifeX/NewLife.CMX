@@ -86,6 +86,12 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\CMS\CMSAreaRegistration.cs" />
+    <Compile Include="Areas\CMS\Controllers\ChannelController.cs" />
+    <Compile Include="Areas\CMS\Controllers\ModelController.cs" />
+    <Compile Include="Areas\CMS\Controllers\ArticleController.cs" />
+    <Compile Include="Areas\CMS\Controllers\ProductController.cs" />
+    <Compile Include="Areas\CMS\Controllers\TextController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -148,6 +154,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Areas\CMS\Views\Web.config" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -181,6 +188,10 @@
       <Project>{4c2cf9bb-b920-43f5-9d87-b7288e416795}</Project>
       <Name>NewLife.CMX</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NewLife.Core\NewLife.Core.csproj">
+      <Project>{5813c22e-eeb3-4dee-a45c-bb218041193a}</Project>
+      <Name>NewLife.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NewLife.Cube\NewLife.Cube.csproj">
       <Project>{7ac0e99b-cfd8-4b59-8838-503eaa30523f}</Project>
       <Name>NewLife.Cube</Name>
@@ -192,6 +203,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\CMS\Views\Shared\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

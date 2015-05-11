@@ -12,6 +12,9 @@ namespace NewLife.CMX.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("Content/{*relpath}");
+            routes.IgnoreRoute("Scripts/{*relpath}");
+            routes.IgnoreRoute("Images/{*relpath}");
 
             routes.MapRoute(
                 name: "Default",
