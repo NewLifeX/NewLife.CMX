@@ -7,7 +7,7 @@
     var fields = ViewBag.Fields as List<FieldItem>;
     var isNew = (Model as IEntity).IsNullKey;
     var entity = Model as IEntity;
-    var article = Model as IArticle;
+    var product = Model as IProduct;
 }
 <div class="panel panel-default">
     <div class="form-horizontal">
@@ -25,23 +25,33 @@
             <div class="form-group">
                 <label class="control-label col-md-2">标题</label>
                 <div class="col-md-6">
-                    @Html.ForEditor(Article._.Title, entity)
+                    @Html.ForEditor(Product._.Title, entity)
                 </div>
             </div>
             <div class="form-group">
-                @{var item = Article._.CategoryID;}
+                @{var item = Product._.CategoryID;}
                 <label class="control-label col-md-2">@item.DisplayName</label>
                 <div class="col-md-2">
-                    @Html.DropDownList(item.Name, ArticleCategory.FindAllWithCache().ToList().Select(r => new SelectListItem { Text = r.Name, Value = r.ID + "" }))
+                    @Html.DropDownList(item.Name, ProductCategory.FindAllWithCache().ToList().Select(r => new SelectListItem { Text = r.Name, Value = r.ID + "" }))
                 </div>
-                @{ item = Article._.Views;}
+                @{ item = Product._.Views;}
                 <label class="control-label col-md-1">@item.DisplayName</label>
                 <div class="col-md-2">
                     @Html.ForEditor(item, entity)
                 </div>
                 <label class="control-label col-md-1">版本</label>
                 <div class="col-md-2">
-                    <span>@article.Version</span>
+                    <span>@product.Version</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">价格</label>
+                <div class="col-md-2">
+                    @Html.ForEditor(Product._.Price, entity)
+                </div>
+                <label class="control-label col-md-1">图片</label>
+                <div class="col-md-2">
+                    @Html.ForEditor(Product._.PhotoPath, entity)
                 </div>
             </div>
             <div class="form-group">
@@ -53,13 +63,13 @@
             <div class="form-group">
                 <label class="control-label col-md-2">创建</label>
                 <div class="col-md-2">
-                    <span>@article.CreateUserName</span>
-                    <span>@article.CreateTime.ToFullString()</span>
+                    <span>@product.CreateUserName</span>
+                    <span>@product.CreateTime.ToFullString()</span>
                 </div>
                 <label class="control-label col-md-1">更新</label>
                 <div class="col-md-2">
-                    <span>@article.UpdateUserName</span>
-                    <span>@article.UpdateTime.ToFullString()</span>
+                    <span>@product.UpdateUserName</span>
+                    <span>@product.UpdateTime.ToFullString()</span>
                 </div>
             </div>
             @Html.Partial("_Form_Action", isNew)

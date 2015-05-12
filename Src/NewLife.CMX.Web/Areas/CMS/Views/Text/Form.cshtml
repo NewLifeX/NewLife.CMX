@@ -7,7 +7,7 @@
     var fields = ViewBag.Fields as List<FieldItem>;
     var isNew = (Model as IEntity).IsNullKey;
     var entity = Model as IEntity;
-    var article = Model as IArticle;
+    var text = Model as IText;
 }
 <div class="panel panel-default">
     <div class="form-horizontal">
@@ -25,23 +25,23 @@
             <div class="form-group">
                 <label class="control-label col-md-2">标题</label>
                 <div class="col-md-6">
-                    @Html.ForEditor(Article._.Title, entity)
+                    @Html.ForEditor(Text._.Title, entity)
                 </div>
             </div>
             <div class="form-group">
-                @{var item = Article._.CategoryID;}
+                @{var item = Text._.CategoryID;}
                 <label class="control-label col-md-2">@item.DisplayName</label>
                 <div class="col-md-2">
-                    @Html.DropDownList(item.Name, ArticleCategory.FindAllWithCache().ToList().Select(r => new SelectListItem { Text = r.Name, Value = r.ID + "" }))
+                    @Html.DropDownList(item.Name, TextCategory.FindAllWithCache().ToList().Select(r => new SelectListItem { Text = r.Name, Value = r.ID + "" }))
                 </div>
-                @{ item = Article._.Views;}
+                @{ item = Text._.Views;}
                 <label class="control-label col-md-1">@item.DisplayName</label>
                 <div class="col-md-2">
                     @Html.ForEditor(item, entity)
                 </div>
                 <label class="control-label col-md-1">版本</label>
                 <div class="col-md-2">
-                    <span>@article.Version</span>
+                    <span>@text.Version</span>
                 </div>
             </div>
             <div class="form-group">
@@ -53,13 +53,13 @@
             <div class="form-group">
                 <label class="control-label col-md-2">创建</label>
                 <div class="col-md-2">
-                    <span>@article.CreateUserName</span>
-                    <span>@article.CreateTime.ToFullString()</span>
+                    <span>@text.CreateUserName</span>
+                    <span>@text.CreateTime.ToFullString()</span>
                 </div>
                 <label class="control-label col-md-1">更新</label>
                 <div class="col-md-2">
-                    <span>@article.UpdateUserName</span>
-                    <span>@article.UpdateTime.ToFullString()</span>
+                    <span>@text.UpdateUserName</span>
+                    <span>@text.UpdateTime.ToFullString()</span>
                 </div>
             </div>
             @Html.Partial("_Form_Action", isNew)
