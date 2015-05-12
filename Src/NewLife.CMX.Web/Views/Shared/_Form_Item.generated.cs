@@ -121,20 +121,51 @@ WriteLiteral(">\r\n");
             #line 24 "..\..\Views\Shared\_Form_Item.cshtml"
      if (item.Name.EqualIgnoreCase("CreateUserID", "UpdateUserID"))
     {
-        
-            
-            #line default
-            #line hidden
-            
-            #line 26 "..\..\Views\Shared\_Form_Item.cshtml"
-   Write(Html.Label(item.Name));
 
             
             #line default
             #line hidden
+WriteLiteral("        <label");
+
+WriteLiteral(" class=\"control-label\"");
+
+WriteLiteral(">");
+
             
             #line 26 "..\..\Views\Shared\_Form_Item.cshtml"
-                              
+                                Write(entity[item.Name.TrimEnd("ID") + "Name"]);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</label>\r\n");
+
+            
+            #line 27 "..\..\Views\Shared\_Form_Item.cshtml"
+    }
+    else if (item.Name.EqualIgnoreCase("CreateTime", "UpdateTime"))
+    {
+
+            
+            #line default
+            #line hidden
+WriteLiteral("        <label");
+
+WriteLiteral(" class=\"control-label\"");
+
+WriteLiteral(">");
+
+            
+            #line 30 "..\..\Views\Shared\_Form_Item.cshtml"
+                                 Write(((DateTime)entity[item.Name]).ToFullString());
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</label>\r\n");
+
+            
+            #line 31 "..\..\Views\Shared\_Form_Item.cshtml"
     }
     else
     {
@@ -145,14 +176,14 @@ WriteLiteral(">\r\n");
             #line default
             #line hidden
             
-            #line 32 "..\..\Views\Shared\_Form_Item.cshtml"
+            #line 36 "..\..\Views\Shared\_Form_Item.cshtml"
        Write(Html.ForString(item.Name, (String)entity[item.Name], item.Length));
 
             
             #line default
             #line hidden
             
-            #line 32 "..\..\Views\Shared\_Form_Item.cshtml"
+            #line 36 "..\..\Views\Shared\_Form_Item.cshtml"
                                                                               
         }
         else
@@ -162,14 +193,14 @@ WriteLiteral(">\r\n");
             #line default
             #line hidden
             
-            #line 36 "..\..\Views\Shared\_Form_Item.cshtml"
+            #line 40 "..\..\Views\Shared\_Form_Item.cshtml"
        Write(Html.ForEditor(item.Name, entity[item.Name], item.Type));
 
             
             #line default
             #line hidden
             
-            #line 36 "..\..\Views\Shared\_Form_Item.cshtml"
+            #line 40 "..\..\Views\Shared\_Form_Item.cshtml"
                                                                     
         }
         if (!des.IsNullOrWhiteSpace())
@@ -185,7 +216,7 @@ WriteLiteral(" class=\"help-block\"");
 WriteLiteral(">");
 
             
-            #line 40 "..\..\Views\Shared\_Form_Item.cshtml"
+            #line 44 "..\..\Views\Shared\_Form_Item.cshtml"
                              Write(des);
 
             
@@ -194,7 +225,7 @@ WriteLiteral(">");
 WriteLiteral("</p>\r\n");
 
             
-            #line 41 "..\..\Views\Shared\_Form_Item.cshtml"
+            #line 45 "..\..\Views\Shared\_Form_Item.cshtml"
         }
     }
 

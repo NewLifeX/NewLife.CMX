@@ -23,7 +23,11 @@
 <div class="input-group col-md-@width">
     @if (item.Name.EqualIgnoreCase("CreateUserID", "UpdateUserID"))
     {
-        @Html.Label(item.Name)
+        <label class="control-label">@entity[item.Name.TrimEnd("ID") + "Name"]</label>
+    }
+    else if (item.Name.EqualIgnoreCase("CreateTime", "UpdateTime"))
+    {
+        <label class="control-label">@(((DateTime)entity[item.Name]).ToFullString())</label>
     }
     else
     {
