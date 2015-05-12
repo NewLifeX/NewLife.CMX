@@ -20,13 +20,24 @@ namespace NewLife.CMX.Web
         protected override ActionResult IndexView(Pager p)
         {
             var fields = ViewBag.Fields as List<FieldItem>;
+            var fs = Entity<TEntity>.Meta.AllFields;
 
             for (int i = 0; i < fields.Count; i++)
             {
                 if (fields[i].Name.EqualIgnoreCase("CreateUserID"))
-                    fields[i] = Entity<TEntity>.Meta.AllFields.FirstOrDefault(e => e.Name == "CreateUserName");
+                {
+                    if (!fields.Any(e => e.Name == "CreateUserName"))
+                        fields[i] = fs.FirstOrDefault(e => e.Name == "CreateUserName");
+                    else
+                        fields.RemoveAt(i--);
+                }
                 if (fields[i].Name.EqualIgnoreCase("UpdateUserID"))
-                    fields[i] = Entity<TEntity>.Meta.AllFields.FirstOrDefault(e => e.Name == "UpdateUserName");
+                {
+                    if (!fields.Any(e => e.Name == "UpdateUserName"))
+                        fields[i] = fs.FirstOrDefault(e => e.Name == "UpdateUserName");
+                    else
+                        fields.RemoveAt(i--);
+                }
             }
 
             return base.IndexView(p);
