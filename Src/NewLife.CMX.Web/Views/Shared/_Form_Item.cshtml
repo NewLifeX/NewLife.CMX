@@ -35,14 +35,7 @@
     }
     else
     {
-        if (item.Type == typeof(String) && (item.Length <= 0 || item.Length > 300))
-        {
-            @Html.ForString(item.Name, (String)entity[item.Name], item.Length)
-        }
-        else
-        {
-            @Html.ForEditor(item.Name, entity[item.Name], item.Type)
-        }
+        @Html.ForEditor(item, entity)
         if (!des.IsNullOrWhiteSpace())
         {
             <p class="help-block">@des</p>

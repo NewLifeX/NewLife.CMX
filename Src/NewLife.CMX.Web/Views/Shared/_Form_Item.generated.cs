@@ -193,40 +193,20 @@ WriteLiteral("</label>\r\n");
     }
     else
     {
-        if (item.Type == typeof(String) && (item.Length <= 0 || item.Length > 300))
-        {
-            
+        
             
             #line default
             #line hidden
             
-            #line 40 "..\..\Views\Shared\_Form_Item.cshtml"
-       Write(Html.ForString(item.Name, (String)entity[item.Name], item.Length));
+            #line 38 "..\..\Views\Shared\_Form_Item.cshtml"
+   Write(Html.ForEditor(item, entity));
 
             
             #line default
             #line hidden
             
-            #line 40 "..\..\Views\Shared\_Form_Item.cshtml"
-                                                                              
-        }
-        else
-        {
-            
-            
-            #line default
-            #line hidden
-            
-            #line 44 "..\..\Views\Shared\_Form_Item.cshtml"
-       Write(Html.ForEditor(item.Name, entity[item.Name], item.Type));
-
-            
-            #line default
-            #line hidden
-            
-            #line 44 "..\..\Views\Shared\_Form_Item.cshtml"
-                                                                    
-        }
+            #line 38 "..\..\Views\Shared\_Form_Item.cshtml"
+                                     
         if (!des.IsNullOrWhiteSpace())
         {
 
@@ -240,7 +220,7 @@ WriteLiteral(" class=\"help-block\"");
 WriteLiteral(">");
 
             
-            #line 48 "..\..\Views\Shared\_Form_Item.cshtml"
+            #line 41 "..\..\Views\Shared\_Form_Item.cshtml"
                              Write(des);
 
             
@@ -249,7 +229,7 @@ WriteLiteral(">");
 WriteLiteral("</p>\r\n");
 
             
-            #line 49 "..\..\Views\Shared\_Form_Item.cshtml"
+            #line 42 "..\..\Views\Shared\_Form_Item.cshtml"
         }
     }
 

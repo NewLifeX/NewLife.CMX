@@ -129,7 +129,7 @@ namespace NewLife.CMX
             {
                 if (_StatisticsText == null && !Dirtys.ContainsKey("StatisticsText"))
                 {
-                    _StatisticsText = Statistics + "";
+                    _StatisticsText = Statistics != null ? Statistics.Text : null;
                     Dirtys["StatisticsText"] = true;
                 }
                 return _StatisticsText;

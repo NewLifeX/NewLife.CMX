@@ -9,6 +9,7 @@ using System.ComponentModel;
 using NewLife.Web;
 using XCode;
 using System.Web;
+using System.Text;
 
 namespace NewLife.CMX
 {
@@ -68,6 +69,26 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
+        /// <summary>文本形式表示统计信息</summary>
+        public String Text
+        {
+            get
+            {
+                var sb = new StringBuilder();
+                foreach (var item in Meta.Fields)
+                {
+                    if (item.PrimaryKey) continue;
+                    if (item.Type != typeof(Int32)) continue;
+
+                    if (sb.Length > 0) sb.Append(" ");
+                    if (item.Type == typeof(Int32))
+                        sb.Append("{0}{1:n0}".F(item.DisplayName, this[item.Name]));
+                    else
+                        sb.Append("{0}{1}".F(item.DisplayName, this[item.Name]));
+                }
+                return sb.ToString();
+            }
+        }
         #endregion
 
         #region 扩展查询﻿
