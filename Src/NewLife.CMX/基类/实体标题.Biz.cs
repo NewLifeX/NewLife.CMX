@@ -119,6 +119,22 @@ namespace NewLife.CMX
             }
             set { _Statistics = value; }
         }
+
+        private String _StatisticsText;
+        /// <summary>统计文本</summary>
+        [DisplayName("访问统计")]
+        public String StatisticsText
+        {
+            get
+            {
+                if (_StatisticsText == null && !Dirtys.ContainsKey("StatisticsText"))
+                {
+                    _StatisticsText = Statistics + "";
+                    Dirtys["StatisticsText"] = true;
+                }
+                return _StatisticsText;
+            }
+        }
         #endregion
 
         #region 对象操作

@@ -11,6 +11,18 @@ namespace NewLife.CMX.Web
 {
     public class TitleController<TEntity> : EntityControllerBase<TEntity> where TEntity : EntityTitle<TEntity>, new()
     {
+        public TitleController()
+        {
+            var names = ListFields.ToList();
+            names.RemoveAll(e => e.EqualIgnoreCase("CategoryID", "StatisticsID", "Remark"));
+            ListFields = names.ToArray();
+
+            names = FormFields.ToList();
+            names.RemoveAll(e => e.EqualIgnoreCase("CategoryName", "StatisticsID"));
+            names.Add("StatisticsText");
+            FormFields = names.ToArray();
+        }
+
         protected override IDictionary<MethodInfo, int> ScanActionMenu(IMenu menu)
         {
             menu.Visible = false;
