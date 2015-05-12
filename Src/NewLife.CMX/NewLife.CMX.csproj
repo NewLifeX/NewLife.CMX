@@ -147,10 +147,6 @@
       <Project>{b49aba5a-c5da-45f4-87f1-b435ec51d710}</Project>
       <Name>XCode</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XTemplate\XTemplate.csproj">
-      <Project>{55ba37ee-01a2-438f-a0fb-6b57440bf2f0}</Project>
-      <Name>XTemplate</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
