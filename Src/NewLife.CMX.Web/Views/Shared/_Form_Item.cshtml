@@ -25,6 +25,10 @@
     {
         <label class="control-label">@entity[item.Name.TrimEnd("ID") + "Name"]</label>
     }
+    else if (item.Name.EqualIgnoreCase("CreateUserName", "UpdateUserName"))
+    {
+        <label class="control-label">@entity[item.Name]</label>
+    }
     else if (item.Name.EqualIgnoreCase("CreateTime", "UpdateTime"))
     {
         <label class="control-label">@(((DateTime)entity[item.Name]).ToFullString())</label>
