@@ -1,20 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Web;
-using System.Web.Mvc;
 using NewLife.Cube;
-using NewLife.Web;
 using XCode;
 using XCode.Configuration;
-using XCode.Membership;
 
 namespace NewLife.CMX.Web
 {
     public class EntityControllerBase<TEntity> : EntityController<TEntity> where TEntity : EntityBase<TEntity>, new()
     {
-        public EntityControllerBase()
+        static EntityControllerBase()
         {
             var fs = Entity<TEntity>.Meta.Fields.ToList();
             //var all = Entity<TEntity>.Meta.AllFields;
@@ -48,7 +43,7 @@ namespace NewLife.CMX.Web
         //    return base.FormView(entity);
         //}
 
-        void FieldFilter(List<FieldItem> fields)
+        static void FieldFilter(List<FieldItem> fields)
         {
             var fs = Entity<TEntity>.Meta.AllFields;
 

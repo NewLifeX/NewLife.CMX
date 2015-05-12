@@ -91,6 +91,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Areas\CMS\Controllers\NavController.cs" />
     <Compile Include="Areas\CMS\Views\Product\Form.generated.cs">
       <DependentUpon>Form.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
