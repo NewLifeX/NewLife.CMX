@@ -51,7 +51,7 @@ public class ajax : IHttpHandler, IRequiresSessionState
         if (admin == null) context.Response.Write("没有登陆");
         StringBuilder strTxt = new StringBuilder();
         strTxt.Append("[");
-        System.Collections.Generic.IList<IMenu> list2 = CommonManageProvider.Provider.GetMySubMenus(0);
+        System.Collections.Generic.IList<IMenu> list2 = ManageProvider.Menu.GetMySubMenus(0);
         foreach (IMenu item in list2)
         {
             strTxt.Append("{");
@@ -69,7 +69,7 @@ public class ajax : IHttpHandler, IRequiresSessionState
     public String SubMenu(Int32 ParentID)
     {
         StringBuilder strTxt = new StringBuilder();
-        System.Collections.Generic.IList<IMenu> list2 = CommonManageProvider.Provider.GetMySubMenus(ParentID);
+        System.Collections.Generic.IList<IMenu> list2 = ManageProvider.Menu.GetMySubMenus(ParentID);
 
         int j = 1;
         if (list2 != null && list2.Count > 0)

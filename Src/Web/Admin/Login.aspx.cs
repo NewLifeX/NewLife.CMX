@@ -5,6 +5,7 @@ using NewLife.Log;
 using NewLife.Threading;
 using NewLife.Web;
 using XCode;
+using XCode.Membership;
 
 public partial class Admin_Login : System.Web.UI.Page
 {
@@ -13,14 +14,14 @@ public partial class Admin_Login : System.Web.UI.Page
         if (!IsPostBack)
         {
             // 引发反向工程
-            ThreadPoolX.QueueUserWorkItem(delegate() { EntityFactory.CreateOperate(ManageProvider.Provider.ManageUserType).FindCount(); });
+            ThreadPoolX.QueueUserWorkItem(delegate() { EntityFactory.CreateOperate(ManageProvider.Provider.UserType).FindCount(); });
 
-            IAdministrator user = ManageProvider.Provider.Current as IAdministrator;
+            IUser user = ManageProvider.Provider.Current as IUser;
             if (user != null)
             {
                 if (String.Equals("logout", Request["action"], StringComparison.OrdinalIgnoreCase))
                 {
-                    IAdministrator admin = user as IAdministrator;
+                    IUser admin = user as IUser;
                     if (admin == null) admin.Logout();
                 }
                 else

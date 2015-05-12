@@ -1,23 +1,18 @@
-﻿using NewLife.CommonEntity;
-using NewLife.Reflection;
+﻿using System;
 using NewLife.Web;
-using System;
-using System.Collections.Generic;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using XCode;
+using XCode.Membership;
 
 public partial class Admin_Manager_Manager : MyEntityList
 {
     /// <summary>实体类型</summary>
-    public override Type EntityType { get { return CommonManageProvider.Provider.AdminstratorType; } set { base.EntityType = value; } }
+    public override Type EntityType { get { return ManageProvider.Provider.UserType; } set { base.EntityType = value; } }
 
-    IEntityOperate RoleFactory { get { return EntityFactory.CreateOperate(CommonManageProvider.Provider.RoleType); } }
+    IEntityOperate RoleFactory { get { return EntityFactory.CreateOperate(ManageProvider.Provider.GetService<IRole>().GetType()); } }
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        Type type = CommonManageProvider.Provider.RoleType;
+        Type type = ManageProvider.Provider.GetService<IRole>().GetType();
         odsRole.TypeName = type.FullName;
         odsRole.DataObjectTypeName = type.FullName;
     }
@@ -29,7 +24,7 @@ public partial class Admin_Manager_Manager : MyEntityList
 
     protected void btnDelete_Click(object sender, EventArgs e)
     {
-        DoBatch("删除", delegate(IAdministrator admin)
+        DoBatch("删除", delegate(IUser admin)
         {
             if (admin.Name == "admin") return false;
 
@@ -41,17 +36,17 @@ public partial class Admin_Manager_Manager : MyEntityList
 
     void EnableOrDisable(Boolean isenable)
     {
-        DoBatch(isenable ? "启用" : "禁用", delegate(IAdministrator admin)
+        DoBatch(isenable ? "启用" : "禁用", delegate(IUser admin)
         {
-            if (admin.IsEnable != isenable)
+            if (admin.Enable != isenable)
             {
-                admin.IsEnable = isenable;
+                admin.Enable = isenable;
                 return true;
             }
             return false;
         });
     }
-    void DoBatch(String action, Func<IAdministrator, Boolean> callback)
+    void DoBatch(String action, Func<IUser, Boolean> callback)
     {
         Int32[] vs = gvExt.SelectedIntValues;
         if (vs == null || vs.Length < 1) return;
@@ -63,7 +58,7 @@ public partial class Admin_Manager_Manager : MyEntityList
             foreach (Int32 item in vs)
             {
                 IEntity entity = eop.FindByKey(item);
-                IAdministrator admin = entity as IAdministrator;
+                IUser admin = entity as IUser;
                 if (admin != null && callback(admin))
                 {
                     entity.Save();

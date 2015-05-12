@@ -13,7 +13,7 @@ using XCode;
 public partial class Admin_Manager_Menu : MyEntityList
 {
     /// <summary>实体类型</summary>
-    public override Type EntityType { get { return CommonManageProvider.Provider.MenuType; } set { base.EntityType = value; } }
+    public override Type EntityType { get { return ManageProvider.Provider.MenuType; } set { base.EntityType = value; } }
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -36,7 +36,7 @@ public partial class Admin_Manager_Menu : MyEntityList
 
     protected void Button2_Click(object sender, EventArgs e)
     {
-        String xml = MethodInfoX.Create(EntityType, "Export").Invoke(null, CommonManageProvider.Provider.MenuRoot.Childs) as String;
+        String xml = MethodInfoX.Create(EntityType, "Export").Invoke(null, ManageProvider.Provider.MenuRoot.Childs) as String;
 
         Response.Clear();
         Response.Buffer = true;
@@ -74,7 +74,7 @@ public partial class Admin_Manager_Menu : MyEntityList
     {
         if (e.CommandName == "Up")
         {
-            IMenu entity = CommonManageProvider.Provider.FindByMenuID(Convert.ToInt32(e.CommandArgument));
+            IMenu entity = ManageProvider.Provider.FindByMenuID(Convert.ToInt32(e.CommandArgument));
             if (entity != null)
             {
                 entity.Up();
@@ -83,7 +83,7 @@ public partial class Admin_Manager_Menu : MyEntityList
         }
         else if (e.CommandName == "Down")
         {
-            IMenu entity = CommonManageProvider.Provider.FindByMenuID(Convert.ToInt32(e.CommandArgument));
+            IMenu entity = ManageProvider.Provider.FindByMenuID(Convert.ToInt32(e.CommandArgument));
             if (entity != null)
             {
                 entity.Down();
