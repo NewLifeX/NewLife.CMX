@@ -7,24 +7,47 @@
 ﻿using System;
 using System.ComponentModel;
 using NewLife.Log;
+using XCode;
+using XCode.Membership;
 
 namespace NewLife.CMX
 {
     /// <summary>导航</summary>
-    public partial class Nav : EntityBase<Nav>
+    public partial class Nav : EntityTree<Nav>, IUserInfo, ITimeInfo
     {
-        #region 对象操作﻿
-
-        /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
-        /// <param name="isNew"></param>
-        public override void Valid(Boolean isNew)
+        #region 验证数据
+        public override void Valid(bool isNew)
         {
             if (!isNew && !HasDirty) return;
 
-            // 建议先调用基类方法，基类方法会对唯一索引的数据进行验证
             base.Valid(isNew);
+
+            var fs = Meta.FieldNames;
+
+            // 当前登录用户
+            var user = ManageProvider.Provider.Current;
+            if (user != null)
+            {
+                if (isNew)
+                {
+                    SetDirtyItem(__.CreateUserID, user.ID);
+                }
+                SetDirtyItem(__.UpdateUserID, user.ID);
+            }
+            if (isNew) SetDirtyItem(__.CreateTime, DateTime.Now);
+            SetDirtyItem(__.UpdateTime, DateTime.Now);
         }
 
+        /// <summary>设置脏数据项。如果某个键存在并且数据没有脏，则设置</summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        private void SetDirtyItem(String name, Object value)
+        {
+            if (Meta.FieldNames.Contains(name) && !Dirtys[name]) SetItem(name, value);
+        }
+        #endregion
+
+        #region 对象操作﻿
         /// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void InitData()
@@ -38,11 +61,16 @@ namespace NewLife.CMX
             // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
             if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Nav).Name, Meta.Table.DataTable.DisplayName);
 
-            var entity = new Nav();
-            entity.Name = "首页";
-            entity.Url = "#";
-            entity.NewWindow = false;
-            entity.Insert();
+            var header = Root.Add("头部");
+            header.Add("首页");
+
+            var footer = Root.Add("尾部");
+            var link = footer.Add("友情链接");
+            link.Add("新生命团队", "http://www.NewLifeX.com");
+            link.Add("无声物联", "http://www.peacemoon.cn");
+
+            footer.Add("社区").Add("用户社区", "/Communicate");
+            footer.Add("关于").Add("关于我们", "/About"); ;
 
             if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Nav).Name, Meta.Table.DataTable.DisplayName);
         }
@@ -63,9 +91,69 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
+        private IManageUser _CreateUser;
+        /// <summary>创建人</summary>
+        public IManageUser CreateUser
+        {
+            get
+            {
+                var CreateUserID = this[__.CreateUserID].ToInt();
+                if (_CreateUser == null && CreateUserID > 0 && !Dirtys.ContainsKey("CreateUser"))
+                {
+                    _CreateUser = ManageProvider.Provider.FindByID(CreateUserID);
+                    Dirtys["CreateUser"] = true;
+                }
+                return _CreateUser;
+            }
+            set { _CreateUser = value; }
+        }
+
+        /// <summary>创建人名称</summary>
+        public String CreateUserName { get { return CreateUser + ""; } }
+
+        private IManageUser _UpdateUser;
+        /// <summary>更新人</summary>
+        public IManageUser UpdateUser
+        {
+            get
+            {
+                var UpdateUserID = this[__.UpdateUserID].ToInt();
+                if (_UpdateUser == null && UpdateUserID > 0 && !Dirtys.ContainsKey("UpdateUser"))
+                {
+                    _UpdateUser = ManageProvider.Provider.FindByID(UpdateUserID);
+                    Dirtys["UpdateUser"] = true;
+                }
+                return _UpdateUser;
+            }
+            set { _UpdateUser = value; }
+        }
+
+        /// <summary>更新人名称</summary>
+        public String UpdateUserName { get { return UpdateUser + ""; } }
+
+        Int32 IUserInfo.CreateUserID { get { return (Int32)this[__.CreateUserID]; } set { SetItem(__.CreateUserID, value); } }
+        Int32 IUserInfo.UpdateUserID { get { return (Int32)this[__.UpdateUserID]; } set { SetItem(__.UpdateUserID, value); } }
+
+        DateTime ITimeInfo.CreateTime { get { return (DateTime)this[__.CreateTime]; } set { SetItem(__.CreateTime, value); } }
+        DateTime ITimeInfo.UpdateTime { get { return (DateTime)this[__.UpdateTime]; } set { SetItem(__.UpdateTime, value); } }
         #endregion
 
         #region 扩展查询﻿
+        /// <summary>根据ID查找导航</summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static Nav FindByID(Int32 id)
+        {
+            return Meta.Cache.Entities.Find(__.ID, id);
+        }
+
+        /// <summary>根据名称查找导航</summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static Nav FindByName(String name)
+        {
+            return Meta.Cache.Entities.Find(__.Name, name);
+        }
         #endregion
 
         #region 高级查询
@@ -121,6 +209,22 @@ namespace NewLife.CMX
         #endregion
 
         #region 业务
+        /// <summary>添加导航</summary>
+        /// <param name="name"></param>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public Nav Add(String name, String url = null)
+        {
+            var entity = new Nav();
+            entity.ParentID = ID;
+            entity.Name = name;
+            entity.Url = url;
+            entity.Enable = true;
+
+            entity.Insert();
+
+            return entity;
+        }
         #endregion
     }
 }

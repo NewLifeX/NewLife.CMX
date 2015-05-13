@@ -40,12 +40,24 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.Name, value)) { _Name = value; OnPropertyChanged(__.Name); } }
         }
 
+        private Int32 _ParentID;
+        /// <summary>父类</summary>
+        [DisplayName("父类")]
+        [Description("父类")]
+        [DataObjectField(false, false, true, 10)]
+        [BindColumn(3, "ParentID", "父类", null, "int", 10, 0, false)]
+        public virtual Int32 ParentID
+        {
+            get { return _ParentID; }
+            set { if (OnPropertyChanging(__.ParentID, value)) { _ParentID = value; OnPropertyChanged(__.ParentID); } }
+        }
+
         private String _Url;
         /// <summary>地址</summary>
         [DisplayName("地址")]
         [Description("地址")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(3, "Url", "地址", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(4, "Url", "地址", null, "nvarchar(50)", 0, 0, true)]
         public virtual String Url
         {
             get { return _Url; }
@@ -57,7 +69,7 @@ namespace NewLife.CMX
         [DisplayName("是否空白窗口打开")]
         [Description("是否空白窗口打开")]
         [DataObjectField(false, false, true, 1)]
-        [BindColumn(4, "NewWindow", "是否空白窗口打开", null, "bit", 0, 0, false)]
+        [BindColumn(5, "NewWindow", "是否空白窗口打开", null, "bit", 0, 0, false)]
         public virtual Boolean NewWindow
         {
             get { return _NewWindow; }
@@ -69,7 +81,7 @@ namespace NewLife.CMX
         [DisplayName("启用")]
         [Description("启用")]
         [DataObjectField(false, false, true, 1)]
-        [BindColumn(5, "Enable", "启用", null, "bit", 0, 0, false)]
+        [BindColumn(6, "Enable", "启用", null, "bit", 0, 0, false)]
         public virtual Boolean Enable
         {
             get { return _Enable; }
@@ -81,7 +93,7 @@ namespace NewLife.CMX
         [DisplayName("创建人")]
         [Description("创建人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(6, "CreateUserID", "创建人", null, "int", 10, 0, false)]
+        [BindColumn(7, "CreateUserID", "创建人", null, "int", 10, 0, false)]
         public virtual Int32 CreateUserID
         {
             get { return _CreateUserID; }
@@ -93,7 +105,7 @@ namespace NewLife.CMX
         [DisplayName("创建时间")]
         [Description("创建时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(7, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
+        [BindColumn(8, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
         public virtual DateTime CreateTime
         {
             get { return _CreateTime; }
@@ -105,7 +117,7 @@ namespace NewLife.CMX
         [DisplayName("更新人")]
         [Description("更新人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(8, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
+        [BindColumn(9, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
         public virtual Int32 UpdateUserID
         {
             get { return _UpdateUserID; }
@@ -117,7 +129,7 @@ namespace NewLife.CMX
         [DisplayName("更新时间")]
         [Description("更新时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(9, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
+        [BindColumn(10, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
         public virtual DateTime UpdateTime
         {
             get { return _UpdateTime; }
@@ -129,7 +141,7 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(10, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(11, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Remark
         {
             get { return _Remark; }
@@ -153,6 +165,7 @@ namespace NewLife.CMX
                 {
                     case __.ID : return _ID;
                     case __.Name : return _Name;
+                    case __.ParentID : return _ParentID;
                     case __.Url : return _Url;
                     case __.NewWindow : return _NewWindow;
                     case __.Enable : return _Enable;
@@ -170,6 +183,7 @@ namespace NewLife.CMX
                 {
                     case __.ID : _ID = Convert.ToInt32(value); break;
                     case __.Name : _Name = Convert.ToString(value); break;
+                    case __.ParentID : _ParentID = Convert.ToInt32(value); break;
                     case __.Url : _Url = Convert.ToString(value); break;
                     case __.NewWindow : _NewWindow = Convert.ToBoolean(value); break;
                     case __.Enable : _Enable = Convert.ToBoolean(value); break;
@@ -193,6 +207,9 @@ namespace NewLife.CMX
 
             ///<summary>名称</summary>
             public static readonly Field Name = FindByName(__.Name);
+
+            ///<summary>父类</summary>
+            public static readonly Field ParentID = FindByName(__.ParentID);
 
             ///<summary>地址</summary>
             public static readonly Field Url = FindByName(__.Url);
@@ -230,6 +247,9 @@ namespace NewLife.CMX
             ///<summary>名称</summary>
             public const String Name = "Name";
 
+            ///<summary>父类</summary>
+            public const String ParentID = "ParentID";
+
             ///<summary>地址</summary>
             public const String Url = "Url";
 
@@ -259,7 +279,7 @@ namespace NewLife.CMX
     }
 
     /// <summary>导航接口</summary>
-    public partial interface INav
+    public partial interface INav : IEntityTree
     {
         #region 属性
         /// <summary>编号</summary>
@@ -267,6 +287,9 @@ namespace NewLife.CMX
 
         /// <summary>名称</summary>
         String Name { get; set; }
+
+        /// <summary>父类</summary>
+        Int32 ParentID { get; set; }
 
         /// <summary>地址</summary>
         String Url { get; set; }
@@ -291,13 +314,6 @@ namespace NewLife.CMX
 
         /// <summary>备注</summary>
         String Remark { get; set; }
-        #endregion
-
-        #region 获取/设置 字段值
-        /// <summary>获取/设置 字段值。</summary>
-        /// <param name="name">字段名</param>
-        /// <returns></returns>
-        Object this[String name] { get; set; }
         #endregion
     }
 }
