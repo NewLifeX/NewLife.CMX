@@ -1,31 +1,33 @@
 ﻿@{
     var header = Nav.Root.FindByPath("头部") ?? Nav.Root;
 }
-<div id="top" data-s-dt="content" data-s-n="head">
-    <div id="logo">
-        <a href="/" data-title="logo"><img src="/images/index/logo.png" data-retina="true" height="30" alt="网站Logo" /></a>
+<div class="container">
+    <div class="row">
+        <div style="float: left;">
+            <a href="/" data-title="logo"><img src="~/Content/images/logo.png" alt="网站Logo" /></a>
+        </div>
+        <nav class="navbar">
+            <ul class="nav nav-tabs">
+                @foreach (var nav in header.Childs)
+                {
+                    if (nav.Childs.Count == 0)
+                    {
+                        <li role="presentation"><a href="@nav.Url" class="active">@nav.Name</a></li>
+                    }
+                    else
+                    {
+                        <li role="presentation" class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">@nav.Name<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                @foreach (var item in nav.Childs)
+                                {
+                                    <li><a href="@item.Url" class="">@item.Name</a></li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                }
+            </ul>
+        </nav>
     </div>
-    <nav id="top-nav" class="hidden-phone">
-        <ul id="top-nav-menu">
-            @foreach (var nav in header.Childs)
-            {
-                if (nav.Childs.Count == 0)
-                {
-                    <li><a href="@nav.Url" class="current">@nav.Name</a></li>
-                }
-                else
-                {
-                    <li class="has-submenu">
-                        <a href="@nav.Url" class="current">@nav.Name</a>
-                        <ul class="last">
-                            @foreach (var item in nav.Childs)
-                            {
-                                <li><a href="@item.Url" class="current">@item.Name</a></li>
-                            }
-                        </ul>
-                    </li>
-                }
-            }
-        </ul>
-    </nav>
 </div>

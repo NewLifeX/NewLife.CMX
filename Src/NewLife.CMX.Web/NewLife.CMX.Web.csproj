@@ -160,6 +160,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\banner.png" />
+    <Content Include="Content\images\logo.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />

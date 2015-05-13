@@ -30,6 +30,12 @@ namespace ASP
     using NewLife;
     using NewLife.CMX;
     using NewLife.CMX.Web;
+    
+    #line 1 "..\..\Views\Shared\_Footer.cshtml"
+    using NewLife.Common;
+    
+    #line default
+    #line hidden
     using NewLife.Cube;
     using NewLife.Reflection;
     using NewLife.Web;
@@ -46,7 +52,7 @@ namespace ASP
         public override void Execute()
         {
             
-            #line 1 "..\..\Views\Shared\_Footer.cshtml"
+            #line 2 "..\..\Views\Shared\_Footer.cshtml"
   
     var footer = Nav.Root.FindByPath("尾部") ?? Nav.Root;
 
@@ -55,33 +61,43 @@ namespace ASP
             #line hidden
 WriteLiteral("\r\n<div");
 
-WriteLiteral(" class=\"inner\"");
+WriteLiteral(" class=\"footer\"");
 
-WriteLiteral(">\r\n    <nav");
+WriteLiteral(">\r\n    <div");
 
-WriteLiteral(" class=\"clearfix\"");
+WriteLiteral(" class=\"container\"");
+
+WriteLiteral(" style=\"\"");
+
+WriteLiteral(">\r\n        <div");
+
+WriteLiteral(" class=\"row\"");
 
 WriteLiteral(">\r\n");
 
             
-            #line 6 "..\..\Views\Shared\_Footer.cshtml"
-        
+            #line 8 "..\..\Views\Shared\_Footer.cshtml"
+            
             
             #line default
             #line hidden
             
-            #line 6 "..\..\Views\Shared\_Footer.cshtml"
-         foreach (var nav in footer.Childs)
-        {
+            #line 8 "..\..\Views\Shared\_Footer.cshtml"
+             foreach (var nav in footer.Childs)
+            {
 
             
             #line default
             #line hidden
-WriteLiteral("            <div>\r\n                <h3>");
+WriteLiteral("                <div");
+
+WriteLiteral(" class=\"span3\"");
+
+WriteLiteral(">\r\n                    <h3>");
 
             
-            #line 9 "..\..\Views\Shared\_Footer.cshtml"
-               Write(nav.Name);
+            #line 11 "..\..\Views\Shared\_Footer.cshtml"
+                   Write(nav.Name);
 
             
             #line default
@@ -89,46 +105,46 @@ WriteLiteral("            <div>\r\n                <h3>");
 WriteLiteral("</h3>\r\n");
 
             
-            #line 10 "..\..\Views\Shared\_Footer.cshtml"
-                
+            #line 12 "..\..\Views\Shared\_Footer.cshtml"
+                    
             
             #line default
             #line hidden
-            
-            #line 10 "..\..\Views\Shared\_Footer.cshtml"
-                 foreach (var item in nav.Childs)
-                {
-
-            
-            #line default
-            #line hidden
-WriteLiteral("                    <a");
-
-WriteAttribute("href", Tuple.Create(" href=\"", 316), Tuple.Create("\"", 332)
             
             #line 12 "..\..\Views\Shared\_Footer.cshtml"
-, Tuple.Create(Tuple.Create("", 323), Tuple.Create<System.Object, System.Int32>(item.Url
+                     foreach (var item in nav.Childs)
+                    {
+
             
             #line default
             #line hidden
-, 323), false)
+WriteLiteral("                        <a");
+
+WriteAttribute("href", Tuple.Create(" href=\"", 420), Tuple.Create("\"", 436)
+            
+            #line 14 "..\..\Views\Shared\_Footer.cshtml"
+, Tuple.Create(Tuple.Create("", 427), Tuple.Create<System.Object, System.Int32>(item.Url
+            
+            #line default
+            #line hidden
+, 427), false)
 );
 
-WriteAttribute("target", Tuple.Create(" target=\"", 333), Tuple.Create("\"", 394)
+WriteAttribute("target", Tuple.Create(" target=\"", 437), Tuple.Create("\"", 498)
             
-            #line 12 "..\..\Views\Shared\_Footer.cshtml"
-, Tuple.Create(Tuple.Create("", 342), Tuple.Create<System.Object, System.Int32>(item.Url.StartsWithIgnoreCase("http")?"_blank":""
+            #line 14 "..\..\Views\Shared\_Footer.cshtml"
+, Tuple.Create(Tuple.Create("", 446), Tuple.Create<System.Object, System.Int32>(item.Url.StartsWithIgnoreCase("http")?"_blank":""
             
             #line default
             #line hidden
-, 342), false)
+, 446), false)
 );
 
 WriteLiteral(">");
 
             
-            #line 12 "..\..\Views\Shared\_Footer.cshtml"
-                                                                                                 Write(item.Name);
+            #line 14 "..\..\Views\Shared\_Footer.cshtml"
+                                                                                                     Write(item.Name);
 
             
             #line default
@@ -138,30 +154,62 @@ WriteLiteral("</a>");
 WriteLiteral("<br>\r\n");
 
             
-            #line 13 "..\..\Views\Shared\_Footer.cshtml"
-                }
-
-            
-            #line default
-            #line hidden
-WriteLiteral("            </div>\r\n");
-
-            
             #line 15 "..\..\Views\Shared\_Footer.cshtml"
-        }
+                    }
 
             
             #line default
             #line hidden
-WriteLiteral("    </nav>\r\n    <p");
+WriteLiteral("                </div>\r\n");
 
-WriteLiteral(" id=\"copyright\"");
+            
+            #line 17 "..\..\Views\Shared\_Footer.cshtml"
+            }
 
-WriteLiteral(">© 1999-2015 </p>\r\n    <p");
+            
+            #line default
+            #line hidden
+WriteLiteral("        </div>\r\n    </div>\r\n    <div");
 
-WriteLiteral(" id=\"beian\"");
+WriteLiteral(" class=\"container\"");
 
-WriteLiteral(">京ICP证123456号</p>\r\n</div>");
+WriteLiteral(" style=\"padding: 15px 0;\"");
+
+WriteLiteral(">\r\n        <div");
+
+WriteLiteral(" class=\"row\"");
+
+WriteLiteral(">\r\n            <div");
+
+WriteLiteral(" class=\"span12\"");
+
+WriteLiteral(" style=\"text-align: center; color: #65676b;\"");
+
+WriteLiteral(">");
+
+            
+            #line 22 "..\..\Views\Shared\_Footer.cshtml"
+                                                                       Write(SysConfig.Current.Company);
+
+            
+            #line default
+            #line hidden
+WriteLiteral(" &copy; ");
+
+            
+            #line 22 "..\..\Views\Shared\_Footer.cshtml"
+                                                                                                         Write(DateTime.Now.Year);
+
+            
+            #line default
+            #line hidden
+WriteLiteral(" 设计制作：<a");
+
+WriteLiteral(" href=\"http://www.newlifex.com\"");
+
+WriteLiteral(" target=\"_blank\"");
+
+WriteLiteral(">新生命开发团队</a></div>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
 
         }
     }

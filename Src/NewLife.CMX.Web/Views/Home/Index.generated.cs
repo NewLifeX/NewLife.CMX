@@ -28,6 +28,8 @@ namespace ASP
     using System.Web.UI;
     using System.Web.WebPages;
     using NewLife;
+    using NewLife.CMX;
+    using NewLife.CMX.Web;
     using NewLife.Cube;
     using NewLife.Reflection;
     using NewLife.Web;
@@ -51,7 +53,15 @@ namespace ASP
             
             #line default
             #line hidden
-WriteLiteral("\r\n<h1>学无先后达者为师</h1>");
+WriteLiteral("\r\n<div");
+
+WriteLiteral(" class=\"container\"");
+
+WriteLiteral(">\r\n    <div");
+
+WriteLiteral(" class=\"row\"");
+
+WriteLiteral(">\r\n        <h1>学无先后达者为师</h1>\r\n    </div>\r\n</div>\r\n");
 
         }
     }

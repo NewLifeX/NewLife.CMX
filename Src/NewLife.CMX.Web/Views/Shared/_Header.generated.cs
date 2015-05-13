@@ -55,17 +55,17 @@ namespace ASP
             #line hidden
 WriteLiteral("\r\n<div");
 
-WriteLiteral(" id=\"top\"");
-
-WriteLiteral(" data-s-dt=\"content\"");
-
-WriteLiteral(" data-s-n=\"head\"");
+WriteLiteral(" class=\"container\"");
 
 WriteLiteral(">\r\n    <div");
 
-WriteLiteral(" id=\"logo\"");
+WriteLiteral(" class=\"row\"");
 
-WriteLiteral(">\r\n        <a");
+WriteLiteral(">\r\n        <div");
+
+WriteLiteral(" style=\"float: left;\"");
+
+WriteLiteral(">\r\n            <a");
 
 WriteLiteral(" href=\"/\"");
 
@@ -73,142 +73,62 @@ WriteLiteral(" data-title=\"logo\"");
 
 WriteLiteral("><img");
 
-WriteLiteral(" src=\"/images/index/logo.png\"");
-
-WriteLiteral(" data-retina=\"true\"");
-
-WriteLiteral(" height=\"30\"");
+WriteAttribute("src", Tuple.Create(" src=\"", 194), Tuple.Create("\"", 225)
+, Tuple.Create(Tuple.Create("", 200), Tuple.Create<System.Object, System.Int32>(Href("~/Content/images/logo.png")
+, 200), false)
+);
 
 WriteLiteral(" alt=\"网站Logo\"");
 
-WriteLiteral(" /></a>\r\n    </div>\r\n    <nav");
+WriteLiteral(" /></a>\r\n        </div>\r\n        <nav");
 
-WriteLiteral(" id=\"top-nav\"");
+WriteLiteral(" class=\"navbar\"");
 
-WriteLiteral(" class=\"hidden-phone\"");
+WriteLiteral(">\r\n            <ul");
 
-WriteLiteral(">\r\n        <ul");
-
-WriteLiteral(" id=\"top-nav-menu\"");
+WriteLiteral(" class=\"nav nav-tabs\"");
 
 WriteLiteral(">\r\n");
 
             
-            #line 10 "..\..\Views\Shared\_Header.cshtml"
-            
+            #line 11 "..\..\Views\Shared\_Header.cshtml"
+                
             
             #line default
             #line hidden
             
-            #line 10 "..\..\Views\Shared\_Header.cshtml"
-             foreach (var nav in header.Childs)
-            {
-                if (nav.Childs.Count == 0)
+            #line 11 "..\..\Views\Shared\_Header.cshtml"
+                 foreach (var nav in header.Childs)
                 {
+                    if (nav.Childs.Count == 0)
+                    {
 
             
             #line default
             #line hidden
-WriteLiteral("                    <li><a");
+WriteLiteral("                        <li");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 503), Tuple.Create("\"", 518)
+WriteLiteral(" role=\"presentation\"");
+
+WriteLiteral("><a");
+
+WriteAttribute("href", Tuple.Create(" href=\"", 526), Tuple.Create("\"", 541)
             
-            #line 14 "..\..\Views\Shared\_Header.cshtml"
-, Tuple.Create(Tuple.Create("", 510), Tuple.Create<System.Object, System.Int32>(nav.Url
+            #line 15 "..\..\Views\Shared\_Header.cshtml"
+, Tuple.Create(Tuple.Create("", 533), Tuple.Create<System.Object, System.Int32>(nav.Url
             
             #line default
             #line hidden
-, 510), false)
+, 533), false)
 );
 
-WriteLiteral(" class=\"current\"");
+WriteLiteral(" class=\"active\"");
 
 WriteLiteral(">");
-
-            
-            #line 14 "..\..\Views\Shared\_Header.cshtml"
-                                                      Write(nav.Name);
-
-            
-            #line default
-            #line hidden
-WriteLiteral("</a></li>\r\n");
 
             
             #line 15 "..\..\Views\Shared\_Header.cshtml"
-                }
-                else
-                {
-
-            
-            #line default
-            #line hidden
-WriteLiteral("                    <li");
-
-WriteLiteral(" class=\"has-submenu\"");
-
-WriteLiteral(">\r\n                        <a");
-
-WriteAttribute("href", Tuple.Create(" href=\"", 688), Tuple.Create("\"", 703)
-            
-            #line 19 "..\..\Views\Shared\_Header.cshtml"
-, Tuple.Create(Tuple.Create("", 695), Tuple.Create<System.Object, System.Int32>(nav.Url
-            
-            #line default
-            #line hidden
-, 695), false)
-);
-
-WriteLiteral(" class=\"current\"");
-
-WriteLiteral(">");
-
-            
-            #line 19 "..\..\Views\Shared\_Header.cshtml"
-                                                      Write(nav.Name);
-
-            
-            #line default
-            #line hidden
-WriteLiteral("</a>\r\n                        <ul");
-
-WriteLiteral(" class=\"last\"");
-
-WriteLiteral(">\r\n");
-
-            
-            #line 21 "..\..\Views\Shared\_Header.cshtml"
-                            
-            
-            #line default
-            #line hidden
-            
-            #line 21 "..\..\Views\Shared\_Header.cshtml"
-                             foreach (var item in nav.Childs)
-                            {
-
-            
-            #line default
-            #line hidden
-WriteLiteral("                                <li><a");
-
-WriteAttribute("href", Tuple.Create(" href=\"", 911), Tuple.Create("\"", 927)
-            
-            #line 23 "..\..\Views\Shared\_Header.cshtml"
-, Tuple.Create(Tuple.Create("", 918), Tuple.Create<System.Object, System.Int32>(item.Url
-            
-            #line default
-            #line hidden
-, 918), false)
-);
-
-WriteLiteral(" class=\"current\"");
-
-WriteLiteral(">");
-
-            
-            #line 23 "..\..\Views\Shared\_Header.cshtml"
-                                                                   Write(item.Name);
+                                                                             Write(nav.Name);
 
             
             #line default
@@ -216,23 +136,110 @@ WriteLiteral(">");
 WriteLiteral("</a></li>\r\n");
 
             
+            #line 16 "..\..\Views\Shared\_Header.cshtml"
+                    }
+                    else
+                    {
+
+            
+            #line default
+            #line hidden
+WriteLiteral("                        <li");
+
+WriteLiteral(" role=\"presentation\"");
+
+WriteLiteral(" class=\"dropdown\"");
+
+WriteLiteral(">\r\n                            <a");
+
+WriteLiteral(" href=\"#\"");
+
+WriteLiteral(" class=\"dropdown-toggle\"");
+
+WriteLiteral(" data-toggle=\"dropdown\"");
+
+WriteLiteral(" role=\"button\"");
+
+WriteLiteral(" aria-expanded=\"false\"");
+
+WriteLiteral(">");
+
+            
+            #line 20 "..\..\Views\Shared\_Header.cshtml"
+                                                                                                                      Write(nav.Name);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("<span");
+
+WriteLiteral(" class=\"caret\"");
+
+WriteLiteral("></span></a>\r\n                            <ul");
+
+WriteLiteral(" class=\"dropdown-menu\"");
+
+WriteLiteral(" role=\"menu\"");
+
+WriteLiteral(">\r\n");
+
+            
+            #line 22 "..\..\Views\Shared\_Header.cshtml"
+                                
+            
+            #line default
+            #line hidden
+            
+            #line 22 "..\..\Views\Shared\_Header.cshtml"
+                                 foreach (var item in nav.Childs)
+                                {
+
+            
+            #line default
+            #line hidden
+WriteLiteral("                                    <li><a");
+
+WriteAttribute("href", Tuple.Create(" href=\"", 1094), Tuple.Create("\"", 1110)
+            
             #line 24 "..\..\Views\Shared\_Header.cshtml"
-                            }
+, Tuple.Create(Tuple.Create("", 1101), Tuple.Create<System.Object, System.Int32>(item.Url
+            
+            #line default
+            #line hidden
+, 1101), false)
+);
+
+WriteLiteral(" class=\"\"");
+
+WriteLiteral(">");
+
+            
+            #line 24 "..\..\Views\Shared\_Header.cshtml"
+                                                                Write(item.Name);
 
             
             #line default
             #line hidden
-WriteLiteral("                        </ul>\r\n                    </li>\r\n");
+WriteLiteral("</a></li>\r\n");
 
             
-            #line 27 "..\..\Views\Shared\_Header.cshtml"
+            #line 25 "..\..\Views\Shared\_Header.cshtml"
+                                }
+
+            
+            #line default
+            #line hidden
+WriteLiteral("                            </ul>\r\n                        </li>\r\n");
+
+            
+            #line 28 "..\..\Views\Shared\_Header.cshtml"
+                    }
                 }
-            }
 
             
             #line default
             #line hidden
-WriteLiteral("        </ul>\r\n    </nav>\r\n</div>");
+WriteLiteral("            </ul>\r\n        </nav>\r\n    </div>\r\n</div>");
 
         }
     }

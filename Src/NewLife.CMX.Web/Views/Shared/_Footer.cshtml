@@ -1,19 +1,25 @@
-﻿@{
+﻿@using NewLife.Common;
+@{
     var footer = Nav.Root.FindByPath("尾部") ?? Nav.Root;
 }
-<div class="inner">
-    <nav class="clearfix">
-        @foreach (var nav in footer.Childs)
-        {
-            <div>
-                <h3>@nav.Name</h3>
-                @foreach (var item in nav.Childs)
-                {
-                    <a href="@item.Url" target="@(item.Url.StartsWithIgnoreCase("http")?"_blank":"")">@item.Name</a><br>
-                }
-            </div>
-        }
-    </nav>
-    <p id="copyright">© 1999-2015 </p>
-    <p id="beian">京ICP证123456号</p>
+<div class="footer">
+    <div class="container" style="">
+        <div class="row">
+            @foreach (var nav in footer.Childs)
+            {
+                <div class="span3">
+                    <h3>@nav.Name</h3>
+                    @foreach (var item in nav.Childs)
+                    {
+                        <a href="@item.Url" target="@(item.Url.StartsWithIgnoreCase("http")?"_blank":"")">@item.Name</a><br>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+    <div class="container" style="padding: 15px 0;">
+        <div class="row">
+            <div class="span12" style="text-align: center; color: #65676b;">@SysConfig.Current.Company &copy; @DateTime.Now.Year 设计制作：<a href="http://www.newlifex.com" target="_blank">新生命开发团队</a></div>
+        </div>
+    </div>
 </div>
