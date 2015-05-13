@@ -7,7 +7,7 @@ using XCode.Configuration;
 
 namespace NewLife.CMX.Web
 {
-    public class EntityControllerBase<TEntity> : EntityController<TEntity> where TEntity : EntityBase<TEntity>, new()
+    public class EntityControllerBase<TEntity> : EntityController<TEntity> where TEntity : Entity<TEntity>, new()
     {
         static EntityControllerBase()
         {

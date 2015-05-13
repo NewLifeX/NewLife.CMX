@@ -1,0 +1,31 @@
+﻿@{
+    var header = Nav.Root.FindByPath("头部") ?? Nav.Root;
+}
+<div id="top" data-s-dt="content" data-s-n="head">
+    <div id="logo">
+        <a href="/" data-title="logo"><img src="/images/index/logo.png" data-retina="true" height="30" alt="网站Logo" /></a>
+    </div>
+    <nav id="top-nav" class="hidden-phone">
+        <ul id="top-nav-menu">
+            @foreach (var nav in header.Childs)
+            {
+                if (nav.Childs.Count == 0)
+                {
+                    <li><a href="@nav.Url" class="current">@nav.Name</a></li>
+                }
+                else
+                {
+                    <li class="has-submenu">
+                        <a href="@nav.Url" class="current">@nav.Name</a>
+                        <ul class="last">
+                            @foreach (var item in nav.Childs)
+                            {
+                                <li><a href="@item.Url" class="current">@item.Name</a></li>
+                            }
+                        </ul>
+                    </li>
+                }
+            }
+        </ul>
+    </nav>
+</div>

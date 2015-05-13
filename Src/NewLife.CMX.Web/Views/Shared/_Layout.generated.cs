@@ -49,25 +49,39 @@ namespace ASP
         }
         public override void Execute()
         {
-WriteLiteral("<!DOCTYPE html>\r\n<html");
+            
+            #line 2 "..\..\Views\Shared\_Layout.cshtml"
+  
+    var menu = ManageProvider.Menu.Current;
 
-WriteLiteral(" lang=\"zh\"");
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n<!DOCTYPE html>\r\n<html");
 
-WriteLiteral(">\r\n    <head>\r\n<meta");
+WriteLiteral(" lang=\"zh-CN\"");
 
-WriteLiteral(" http-equiv=\"Content-Type\"");
-
-WriteLiteral(" content=\"text/html; charset=utf-8\"");
-
-WriteLiteral("/>\r\n        <meta");
+WriteLiteral(">\r\n<head>\r\n    <meta");
 
 WriteLiteral(" charset=\"utf-8\"");
 
-WriteLiteral(" />\r\n        <title>");
+WriteLiteral(" />\r\n    <meta");
+
+WriteLiteral(" http-equiv=\"X-UA-Compatible\"");
+
+WriteLiteral(" content=\"IE=edge\"");
+
+WriteLiteral(">\r\n    <meta");
+
+WriteLiteral(" name=\"viewport\"");
+
+WriteLiteral(" content=\"width=device-width, initial-scale=1\"");
+
+WriteLiteral(" />\r\n    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->\r\n\r\n    <title>");
 
             
-            #line 7 "..\..\Views\Shared\_Layout.cshtml"
-          Write(ViewBag.Title);
+            #line 13 "..\..\Views\Shared\_Layout.cshtml"
+      Write(ViewBag.Title);
 
             
             #line default
@@ -75,211 +89,152 @@ WriteLiteral(" />\r\n        <title>");
 WriteLiteral(" - ");
 
             
-            #line 7 "..\..\Views\Shared\_Layout.cshtml"
-                           Write(SysConfig.Current.DisplayName);
+            #line 13 "..\..\Views\Shared\_Layout.cshtml"
+                       Write(SysConfig.Current.DisplayName);
 
             
             #line default
             #line hidden
-WriteLiteral("</title>\r\n        <link");
+WriteLiteral("</title>\r\n    <link");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 260), Tuple.Create("\"", 280)
-, Tuple.Create(Tuple.Create("", 267), Tuple.Create<System.Object, System.Int32>(Href("~/favicon.ico")
-, 267), false)
+WriteAttribute("href", Tuple.Create(" href=\"", 417), Tuple.Create("\"", 437)
+, Tuple.Create(Tuple.Create("", 424), Tuple.Create<System.Object, System.Int32>(Href("~/favicon.ico")
+, 424), false)
 );
 
 WriteLiteral(" rel=\"shortcut icon\"");
 
 WriteLiteral(" type=\"image/x-icon\"");
 
-WriteLiteral(" />\r\n        <meta");
+WriteLiteral(" />\r\n\r\n    <!-- 页面内联样式 -->\r\n");
 
-WriteLiteral(" name=\"viewport\"");
-
-WriteLiteral(" content=\"width=device-width\"");
-
-WriteLiteral(" />\r\n");
-
-WriteLiteral("        ");
+WriteLiteral("    ");
 
             
-            #line 10 "..\..\Views\Shared\_Layout.cshtml"
-   Write(Styles.Render("~/Content/css"));
+            #line 17 "..\..\Views\Shared\_Layout.cshtml"
+Write(RenderSection("css", required: false));
 
             
             #line default
             #line hidden
-WriteLiteral("\r\n");
+WriteLiteral("\r\n\r\n    <!-- 最后引入基本样式 -->\r\n    <link");
 
-WriteLiteral("        ");
+WriteLiteral(" rel=\"stylesheet\"");
 
-            
-            #line 11 "..\..\Views\Shared\_Layout.cshtml"
-   Write(Scripts.Render("~/bundles/modernizr"));
+WriteAttribute("href", Tuple.Create(" href=\"", 601), Tuple.Create("\"", 649)
+, Tuple.Create(Tuple.Create("", 608), Tuple.Create<System.Object, System.Int32>(Href("~/Content/bootstrap/css/bootstrap.min.css")
+, 608), false)
+);
 
-            
-            #line default
-            #line hidden
-WriteLiteral("\r\n    </head>\r\n    <body>\r\n        <header>\r\n            <div");
+WriteLiteral(" />\r\n    <link");
 
-WriteLiteral(" class=\"content-wrapper\"");
+WriteLiteral(" rel=\"stylesheet\"");
 
-WriteLiteral(">\r\n                <div");
+WriteAttribute("href", Tuple.Create(" href=\"", 681), Tuple.Create("\"", 732)
+, Tuple.Create(Tuple.Create("", 688), Tuple.Create<System.Object, System.Int32>(Href("~/Content/bootstrap/css/font-awesome.min.css")
+, 688), false)
+);
 
-WriteLiteral(" class=\"float-left\"");
+WriteLiteral(" />\r\n\r\n    <link");
 
-WriteLiteral(">\r\n                    <p");
+WriteLiteral(" rel=\"stylesheet\"");
 
-WriteLiteral(" class=\"site-title\"");
+WriteAttribute("href", Tuple.Create(" href=\"", 766), Tuple.Create("\"", 820)
+, Tuple.Create(Tuple.Create("", 773), Tuple.Create<System.Object, System.Int32>(Href("~/Content/bootstrap/css/bootstrap-theme.min.css")
+, 773), false)
+);
 
-WriteLiteral("><a");
+WriteLiteral(" type=\"text/css\"");
 
-WriteLiteral(" href=\"http://www.newlifex.com\"");
+WriteLiteral(" />\r\n    <link");
 
-WriteLiteral("><img");
+WriteLiteral(" rel=\"stylesheet\"");
 
-WriteLiteral(" src=\"http://www.newlifex.com/templates/default/images/logo.png\"");
+WriteAttribute("href", Tuple.Create(" href=\"", 868), Tuple.Create("\"", 927)
+, Tuple.Create(Tuple.Create("", 875), Tuple.Create<System.Object, System.Int32>(Href("~/Content/bootstrap/css/bootstrap-responsive.min.css")
+, 875), false)
+);
 
-WriteLiteral(" /></a></p>\r\n                </div>\r\n                <div");
+WriteLiteral(" type=\"text/css\"");
 
-WriteLiteral(" class=\"float-right\"");
-
-WriteLiteral(">\r\n                    <section");
-
-WriteLiteral(" id=\"login\"");
-
-WriteLiteral(">\r\n");
-
-WriteLiteral("                        ");
-
-            
-            #line 21 "..\..\Views\Shared\_Layout.cshtml"
-                   Write(Html.Partial("_LoginPartial"));
-
-            
-            #line default
-            #line hidden
-WriteLiteral("\r\n                    </section>\r\n                    <nav>\r\n                    " +
-"    <ul");
-
-WriteLiteral(" id=\"menu\"");
-
-WriteLiteral(">\r\n                            <li>");
-
-            
-            #line 25 "..\..\Views\Shared\_Layout.cshtml"
-                           Write(Html.ActionLink("主页", "Index", "Home"));
-
-            
-            #line default
-            #line hidden
-WriteLiteral("</li>\r\n                            <li>");
-
-            
-            #line 26 "..\..\Views\Shared\_Layout.cshtml"
-                           Write(Html.ActionLink("关于", "About", "Home"));
-
-            
-            #line default
-            #line hidden
-WriteLiteral("</li>\r\n                            <li>");
+WriteLiteral(" />\r\n</head>\r\n<body>\r\n    <header>");
 
             
             #line 27 "..\..\Views\Shared\_Layout.cshtml"
-                           Write(Html.ActionLink("联系方式", "Contact", "Home"));
+       Write(Html.Partial("_Header"));
 
             
             #line default
             #line hidden
-WriteLiteral("</li>\r\n                            <li>");
+WriteLiteral("</header>\r\n    <div");
 
-            
-            #line 28 "..\..\Views\Shared\_Layout.cshtml"
-                           Write(Html.ActionLink("管理后台", "Index", "Admin"));
-
-            
-            #line default
-            #line hidden
-WriteLiteral("</li>\r\n                        </ul>\r\n                    </nav>\r\n               " +
-" </div>\r\n            </div>\r\n        </header>\r\n        <div");
-
-WriteLiteral(" id=\"body\"");
+WriteLiteral(" lass=\"content-wrapper main-content clear-fix\"");
 
 WriteLiteral(">\r\n");
-
-WriteLiteral("            ");
-
-            
-            #line 35 "..\..\Views\Shared\_Layout.cshtml"
-       Write(RenderSection("featured", required: false));
-
-            
-            #line default
-            #line hidden
-WriteLiteral("\r\n            <section");
-
-WriteLiteral(" class=\"content-wrapper main-content clear-fix\"");
-
-WriteLiteral(">\r\n");
-
-WriteLiteral("                ");
-
-            
-            #line 37 "..\..\Views\Shared\_Layout.cshtml"
-           Write(RenderBody());
-
-            
-            #line default
-            #line hidden
-WriteLiteral("\r\n            </section>\r\n        </div>\r\n        <footer>\r\n            <div");
-
-WriteLiteral(" class=\"content-wrapper\"");
-
-WriteLiteral(">\r\n                <div");
-
-WriteLiteral(" class=\"float-left\"");
-
-WriteLiteral(">\r\n                    <p>&copy; ");
-
-            
-            #line 43 "..\..\Views\Shared\_Layout.cshtml"
-                         Write(DateTime.Now.Year);
-
-            
-            #line default
-            #line hidden
-WriteLiteral(" - ");
-
-            
-            #line 43 "..\..\Views\Shared\_Layout.cshtml"
-                                              Write(SysConfig.Current.DisplayName);
-
-            
-            #line default
-            #line hidden
-WriteLiteral("</p>\r\n                </div>\r\n            </div>\r\n        </footer>\r\n\r\n");
 
 WriteLiteral("        ");
 
             
-            #line 48 "..\..\Views\Shared\_Layout.cshtml"
-   Write(Scripts.Render("~/bundles/jquery"));
+            #line 29 "..\..\Views\Shared\_Layout.cshtml"
+   Write(RenderBody());
 
             
             #line default
             #line hidden
-WriteLiteral("\r\n");
+WriteLiteral("\r\n    </div>\r\n    <footer");
 
-WriteLiteral("        ");
+WriteLiteral(" class=\"clearfix\"");
+
+WriteLiteral(">");
 
             
-            #line 49 "..\..\Views\Shared\_Layout.cshtml"
-   Write(RenderSection("scripts", required: false));
+            #line 31 "..\..\Views\Shared\_Layout.cshtml"
+                        Write(Html.Partial("_Footer"));
 
             
             #line default
             #line hidden
-WriteLiteral("\r\n    </body>\r\n</html>\r\n");
+WriteLiteral("</footer>\r\n    <!-- JQuery作为一等公民，页面内部随时可能使用 -->\r\n    <script");
+
+WriteAttribute("src", Tuple.Create(" src=\"", 1218), Tuple.Create("\"", 1256)
+, Tuple.Create(Tuple.Create("", 1224), Tuple.Create<System.Object, System.Int32>(Href("~/Content/js/jquery-2.1.3.min.js")
+, 1224), false)
+);
+
+WriteLiteral("></script>\r\n    <!-- 最早引入基本脚本 -->\r\n    <script");
+
+WriteAttribute("src", Tuple.Create(" src=\"", 1303), Tuple.Create("\"", 1348)
+, Tuple.Create(Tuple.Create("", 1309), Tuple.Create<System.Object, System.Int32>(Href("~/Content/bootstrap/js/bootstrap.min.js")
+, 1309), false)
+);
+
+WriteLiteral("></script>\r\n\r\n    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements" +
+" and media queries -->\r\n    <!--[if lte IE 8]>\r\n    <script");
+
+WriteAttribute("src", Tuple.Create(" src=\"", 1489), Tuple.Create("\"", 1524)
+, Tuple.Create(Tuple.Create("", 1495), Tuple.Create<System.Object, System.Int32>(Href("~/Content/js/html5shiv.min.js")
+, 1495), false)
+);
+
+WriteLiteral("></script>\r\n    <script");
+
+WriteAttribute("src", Tuple.Create(" src=\"", 1548), Tuple.Create("\"", 1581)
+, Tuple.Create(Tuple.Create("", 1554), Tuple.Create<System.Object, System.Int32>(Href("~/Content/js/respond.min.js")
+, 1554), false)
+);
+
+WriteLiteral("></script>\r\n    <![endif]-->\r\n");
+
+WriteLiteral("    ");
+
+            
+            #line 42 "..\..\Views\Shared\_Layout.cshtml"
+Write(RenderSection("scripts", required: false));
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n</body>\r\n</html>");
 
         }
     }

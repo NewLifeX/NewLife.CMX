@@ -1,0 +1,19 @@
+﻿@{
+    var footer = Nav.Root.FindByPath("尾部") ?? Nav.Root;
+}
+<div class="inner">
+    <nav class="clearfix">
+        @foreach (var nav in footer.Childs)
+        {
+            <div>
+                <h3>@nav.Name</h3>
+                @foreach (var item in nav.Childs)
+                {
+                    <a href="@item.Url" target="@(item.Url.StartsWithIgnoreCase("http")?"_blank":"")">@item.Name</a><br>
+                }
+            </div>
+        }
+    </nav>
+    <p id="copyright">© 1999-2015 网际傲游(北京)科技有限公司</p>
+    <p id="beian">京ICP证123456号 京ICP备11048873号 公网安备110108901521 京网文[2015]0070-020号</p>
+</div>

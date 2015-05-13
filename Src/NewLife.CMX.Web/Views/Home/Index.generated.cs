@@ -46,19 +46,12 @@ namespace ASP
             
             #line 1 "..\..\Views\Home\Index.cshtml"
   
-    Layout = null;
+    ViewBag.Title = "首页";
 
             
             #line default
             #line hidden
-WriteLiteral("\r\n\r\n<!DOCTYPE html>\r\n\r\n<html>\r\n<head>\r\n    <meta");
-
-WriteLiteral(" name=\"viewport\"");
-
-WriteLiteral(" content=\"width=device-width\"");
-
-WriteLiteral(" />\r\n    <title>新生命内容管理系统</title>\r\n</head>\r\n<body>\r\n    <div>\r\n        \r\n    </di" +
-"v>\r\n</body>\r\n</html>");
+WriteLiteral("\r\n<h1>学无先后达者为师</h1>");
 
         }
     }
