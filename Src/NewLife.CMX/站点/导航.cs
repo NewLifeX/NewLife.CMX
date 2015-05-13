@@ -76,12 +76,24 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.NewWindow, value)) { _NewWindow = value; OnPropertyChanged(__.NewWindow); } }
         }
 
+        private Int32 _Sort;
+        /// <summary>排序</summary>
+        [DisplayName("排序")]
+        [Description("排序")]
+        [DataObjectField(false, false, true, 10)]
+        [BindColumn(6, "Sort", "排序", null, "int", 10, 0, false)]
+        public virtual Int32 Sort
+        {
+            get { return _Sort; }
+            set { if (OnPropertyChanging(__.Sort, value)) { _Sort = value; OnPropertyChanged(__.Sort); } }
+        }
+
         private Boolean _Enable;
         /// <summary>启用</summary>
         [DisplayName("启用")]
         [Description("启用")]
         [DataObjectField(false, false, true, 1)]
-        [BindColumn(6, "Enable", "启用", null, "bit", 0, 0, false)]
+        [BindColumn(7, "Enable", "启用", null, "bit", 0, 0, false)]
         public virtual Boolean Enable
         {
             get { return _Enable; }
@@ -93,7 +105,7 @@ namespace NewLife.CMX
         [DisplayName("创建人")]
         [Description("创建人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(7, "CreateUserID", "创建人", null, "int", 10, 0, false)]
+        [BindColumn(8, "CreateUserID", "创建人", null, "int", 10, 0, false)]
         public virtual Int32 CreateUserID
         {
             get { return _CreateUserID; }
@@ -105,7 +117,7 @@ namespace NewLife.CMX
         [DisplayName("创建时间")]
         [Description("创建时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(8, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
+        [BindColumn(9, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
         public virtual DateTime CreateTime
         {
             get { return _CreateTime; }
@@ -117,7 +129,7 @@ namespace NewLife.CMX
         [DisplayName("更新人")]
         [Description("更新人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(9, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
+        [BindColumn(10, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
         public virtual Int32 UpdateUserID
         {
             get { return _UpdateUserID; }
@@ -129,7 +141,7 @@ namespace NewLife.CMX
         [DisplayName("更新时间")]
         [Description("更新时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(10, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
+        [BindColumn(11, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
         public virtual DateTime UpdateTime
         {
             get { return _UpdateTime; }
@@ -141,7 +153,7 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(11, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(12, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Remark
         {
             get { return _Remark; }
@@ -168,6 +180,7 @@ namespace NewLife.CMX
                     case __.ParentID : return _ParentID;
                     case __.Url : return _Url;
                     case __.NewWindow : return _NewWindow;
+                    case __.Sort : return _Sort;
                     case __.Enable : return _Enable;
                     case __.CreateUserID : return _CreateUserID;
                     case __.CreateTime : return _CreateTime;
@@ -186,6 +199,7 @@ namespace NewLife.CMX
                     case __.ParentID : _ParentID = Convert.ToInt32(value); break;
                     case __.Url : _Url = Convert.ToString(value); break;
                     case __.NewWindow : _NewWindow = Convert.ToBoolean(value); break;
+                    case __.Sort : _Sort = Convert.ToInt32(value); break;
                     case __.Enable : _Enable = Convert.ToBoolean(value); break;
                     case __.CreateUserID : _CreateUserID = Convert.ToInt32(value); break;
                     case __.CreateTime : _CreateTime = Convert.ToDateTime(value); break;
@@ -216,6 +230,9 @@ namespace NewLife.CMX
 
             ///<summary>是否空白窗口打开</summary>
             public static readonly Field NewWindow = FindByName(__.NewWindow);
+
+            ///<summary>排序</summary>
+            public static readonly Field Sort = FindByName(__.Sort);
 
             ///<summary>启用</summary>
             public static readonly Field Enable = FindByName(__.Enable);
@@ -255,6 +272,9 @@ namespace NewLife.CMX
 
             ///<summary>是否空白窗口打开</summary>
             public const String NewWindow = "NewWindow";
+
+            ///<summary>排序</summary>
+            public const String Sort = "Sort";
 
             ///<summary>启用</summary>
             public const String Enable = "Enable";
@@ -296,6 +316,9 @@ namespace NewLife.CMX
 
         /// <summary>是否空白窗口打开</summary>
         Boolean NewWindow { get; set; }
+
+        /// <summary>排序</summary>
+        Int32 Sort { get; set; }
 
         /// <summary>启用</summary>
         Boolean Enable { get; set; }

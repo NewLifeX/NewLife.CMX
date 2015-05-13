@@ -48,6 +48,11 @@ namespace NewLife.CMX
         #endregion
 
         #region 对象操作﻿
+        static Nav()
+        {
+            //Setting.BigSort = false;
+        }
+
         /// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void InitData()
@@ -62,7 +67,8 @@ namespace NewLife.CMX
             if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Nav).Name, Meta.Table.DataTable.DisplayName);
 
             var header = Root.Add("头部");
-            header.Add("首页");
+            header.Add("首页", "/");
+            header.Add("关于我们", "/About");
 
             var footer = Root.Add("尾部");
             var link = footer.Add("友情链接");
@@ -220,6 +226,9 @@ namespace NewLife.CMX
             entity.Name = name;
             entity.Url = url;
             entity.Enable = true;
+
+            // 排序，新的在后面
+            entity.Sort = this.Childs.Count + 1;
 
             entity.Insert();
 
