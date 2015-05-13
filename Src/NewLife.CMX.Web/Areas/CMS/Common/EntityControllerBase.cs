@@ -11,11 +11,19 @@ namespace NewLife.CMX.Web
     {
         static EntityControllerBase()
         {
-            var fs = Entity<TEntity>.Meta.Fields.ToList();
-            //var all = Entity<TEntity>.Meta.AllFields;
-            FieldFilter(fs);
-            var names = fs.Select(e => e.Name).ToList();
-            ListFields = FormFields = names.ToArray();
+            // 过滤掉一些字段
+            var list = ListFields ?? Entity<TEntity>.Meta.Fields.ToList();
+            FieldFilter(list);
+            ListFields = list;
+
+            if (FormFields == null)
+                FormFields = list;
+            else if (FormFields != ListFields)
+            {
+                list = FormFields ?? Entity<TEntity>.Meta.Fields.ToList();
+                FieldFilter(list);
+                FormFields = list;
+            }
         }
 
         ///// <summary>列表页视图。子控制器可重载，以传递更多信息给视图，比如修改要显示的列</summary>
@@ -56,7 +64,7 @@ namespace NewLife.CMX.Web
                     else
                         fields.RemoveAt(i--);
                 }
-                if (fields[i].Name.EqualIgnoreCase("UpdateUserID"))
+                else if (fields[i].Name.EqualIgnoreCase("UpdateUserID"))
                 {
                     if (!fields.Any(e => e.Name == "UpdateUserName"))
                         fields[i] = fs.FirstOrDefault(e => e.Name == "UpdateUserName");
