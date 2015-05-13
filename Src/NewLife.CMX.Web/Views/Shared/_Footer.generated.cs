@@ -157,11 +157,11 @@ WriteLiteral("    </nav>\r\n    <p");
 
 WriteLiteral(" id=\"copyright\"");
 
-WriteLiteral(">© 1999-2015 网际傲游(北京)科技有限公司</p>\r\n    <p");
+WriteLiteral(">© 1999-2015 </p>\r\n    <p");
 
 WriteLiteral(" id=\"beian\"");
 
-WriteLiteral(">京ICP证123456号 京ICP备11048873号 公网安备110108901521 京网文[2015]0070-020号</p>\r\n</div>");
+WriteLiteral(">京ICP证123456号</p>\r\n</div>");
 
         }
     }
