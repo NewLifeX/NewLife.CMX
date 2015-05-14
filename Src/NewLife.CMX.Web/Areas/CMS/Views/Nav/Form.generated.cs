@@ -175,7 +175,7 @@ WriteLiteral("        ");
             {
                 if (!item.PrimaryKey)
                 {
-                    if (item.Name == "ParentID")
+                    if (item.Name == "ChannelID")
                     {
 
             
@@ -208,7 +208,7 @@ WriteLiteral("                                ");
 
             
             #line 32 "..\..\Areas\CMS\Views\Nav\Form.cshtml"
-                           Write(Html.DropDownList(item.Name, Nav.Root.FindAllChildsExcept(Model).ToList().Select(r => new SelectListItem { Text = r.TreeNodeText, Value = r.ID + "" })));
+                           Write(Html.DropDownList(item.Name, Channel.FindAllWithCache().ToList().Select(r => new SelectListItem { Text = r.Name, Value = r.ID + "" })));
 
             
             #line default
@@ -229,60 +229,6 @@ WriteLiteral("\r\n                            </div>\r\n                        
             
             #line 36 "..\..\Areas\CMS\Views\Nav\Form.cshtml"
                     }
-                    else if (item.Name == "ChannelID")
-                    {
-
-            
-            #line default
-            #line hidden
-WriteLiteral("                        <div");
-
-WriteLiteral(" class=\"form-group\"");
-
-WriteLiteral(">\r\n                            <label");
-
-WriteLiteral(" class=\"control-label col-md-2\"");
-
-WriteLiteral(">");
-
-            
-            #line 40 "..\..\Areas\CMS\Views\Nav\Form.cshtml"
-                                                             Write(item.DisplayName);
-
-            
-            #line default
-            #line hidden
-WriteLiteral("</label>\r\n                            <div");
-
-WriteLiteral(" class=\"input-group col-md-2\"");
-
-WriteLiteral(">\r\n");
-
-WriteLiteral("                                ");
-
-            
-            #line 42 "..\..\Areas\CMS\Views\Nav\Form.cshtml"
-                           Write(Html.DropDownList(item.Name, Channel.FindAllWithCache().ToList().Select(r => new SelectListItem { Text = r.Name, Value = r.ID + "" })));
-
-            
-            #line default
-            #line hidden
-WriteLiteral("\r\n");
-
-WriteLiteral("                                ");
-
-            
-            #line 43 "..\..\Areas\CMS\Views\Nav\Form.cshtml"
-                           Write(Html.ForDescription(item));
-
-            
-            #line default
-            #line hidden
-WriteLiteral("\r\n                            </div>\r\n                        </div>\r\n");
-
-            
-            #line 46 "..\..\Areas\CMS\Views\Nav\Form.cshtml"
-                    }
                     else
                     {
 
@@ -298,7 +244,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                            ");
 
             
-            #line 50 "..\..\Areas\CMS\Views\Nav\Form.cshtml"
+            #line 40 "..\..\Areas\CMS\Views\Nav\Form.cshtml"
                        Write(Html.Partial("_Form_Item", new Pair(Model, item)));
 
             
@@ -307,7 +253,7 @@ WriteLiteral("                            ");
 WriteLiteral("\r\n                        </div>\r\n");
 
             
-            #line 52 "..\..\Areas\CMS\Views\Nav\Form.cshtml"
+            #line 42 "..\..\Areas\CMS\Views\Nav\Form.cshtml"
                     }
                 }
             }
@@ -316,14 +262,14 @@ WriteLiteral("\r\n                        </div>\r\n");
             #line default
             #line hidden
             
-            #line 55 "..\..\Areas\CMS\Views\Nav\Form.cshtml"
+            #line 45 "..\..\Areas\CMS\Views\Nav\Form.cshtml"
        Write(Html.Partial("_Form_Action", isNew));
 
             
             #line default
             #line hidden
             
-            #line 55 "..\..\Areas\CMS\Views\Nav\Form.cshtml"
+            #line 45 "..\..\Areas\CMS\Views\Nav\Form.cshtml"
                                                 
         }
 
