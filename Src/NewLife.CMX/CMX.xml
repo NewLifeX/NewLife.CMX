@@ -160,4 +160,7 @@
       <Column Name="Remark" DataType="String" Length="200" Description="备注" />
     </Columns>
   </Table>
+  <Relations>
+    <Relation Column="ChannelID" RelationTable="Channel" RelationColumn="ID" />
+  </Relations>
 </Tables>

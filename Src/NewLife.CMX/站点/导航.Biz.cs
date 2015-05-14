@@ -145,6 +145,7 @@ namespace NewLife.CMX
 
         private Channel _Channel;
         /// <summary>频道</summary>
+        [BindRelation("ChannelID", false, "Channel", "ID")]
         public Channel Channel
         {
             get
