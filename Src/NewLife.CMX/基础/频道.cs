@@ -15,6 +15,7 @@ namespace NewLife.CMX
     [BindIndex("IU_Channel_Name", true, "Name")]
     [BindIndex("IU_Channel_ModelID_Suffix", true, "ModelID,Suffix")]
     [BindIndex("IX_Channel_ModelID", false, "ModelID")]
+    [BindRelation("ModelID", false, "Model", "ID")]
     [BindTable("Channel", Description = "频道", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class Channel : IChannel
     {

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using NewLife.Log;
+using XCode;
 using XCode.Membership;
 
 namespace NewLife.CMX
@@ -81,6 +82,7 @@ namespace NewLife.CMX
         #region 扩展属性﻿
         private Model _Model;
         /// <summary>模型</summary>
+        [BindRelation("ModelID", false, "Model", "ID")]
         public Model Model
         {
             get

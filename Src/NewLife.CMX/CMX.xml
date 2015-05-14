@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Tables Version="8.18.5610.26498">
+<Tables Version="8.18.5612.32704">
   <Table Name="Model" Description="模型。默认有文章、文本、产品三种模型，可以扩展增加。" DbType="SqlServer" 实体分类="基础" 页面分类="Manager">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
-      <Column Name="Name" DataType="String" Nullable="False" Description="名称" />
+      <Column Name="Name" DataType="String" Master="True" Nullable="False" Description="名称" />
       <Column Name="DisplayName" DataType="String" Nullable="False" Description="显示名" />
       <Column Name="ShortName" DataType="String" Description="缩写" />
       <Column Name="ProviderName" DataType="String" Description="提供者" />
@@ -22,7 +22,7 @@
   <Table Name="Channel" Description="频道" DbType="SqlServer" 实体分类="基础" 页面分类="Manager">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
-      <Column Name="Name" DataType="String" Nullable="False" Description="名称" />
+      <Column Name="Name" DataType="String" Master="True" Nullable="False" Description="名称" />
       <Column Name="ModelID" DataType="Int32" Description="模型" />
       <Column Name="Suffix" DataType="String" Description="后缀。默认频道后缀为空，扩展频道必须有不同的表后缀" />
       <Column Name="Enable" DataType="Boolean" Description="启用" />
@@ -41,11 +41,14 @@
       <Index Columns="ModelID,Suffix" Unique="True" />
       <Index Columns="ModelID" />
     </Indexes>
+    <Relations>
+      <Relation Column="ModelID" RelationTable="Model" RelationColumn="ID" />
+    </Relations>
   </Table>
   <Table Name="EntityCategory" Description="实体分类" BaseType="EntityTree" 实体分类="基类" 页面分类="Base" RenderGenEntity="true">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
-      <Column Name="Name" DataType="String" Nullable="False" Description="名称" />
+      <Column Name="Name" DataType="String" Master="True" Nullable="False" Description="名称" />
       <Column Name="ParentID" DataType="Int32" Description="父类" />
       <Column Name="IsEnd" DataType="Boolean" Description="是否最终分类" />
       <Column Name="Sort" DataType="Int32" Description="排序" />
@@ -66,7 +69,7 @@
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="CategoryID" DataType="Int32" Description="分类" />
       <Column Name="CategoryName" DataType="String" Description="分类名称" />
-      <Column Name="Title" DataType="String" Length="200" Nullable="False" Description="标题" />
+      <Column Name="Title" DataType="String" Master="True" Length="200" Nullable="False" Description="标题" />
       <Column Name="Version" DataType="Int32" Description="最新版本" />
       <Column Name="StatisticsID" DataType="Int32" Description="访问统计" />
       <Column Name="Views" DataType="Int32" Description="访问量。由统计表同步过来" />
@@ -86,7 +89,7 @@
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="ParentID" DataType="Int32" Description="主题" />
-      <Column Name="Title" DataType="String" Length="200" Nullable="False" Description="标题" />
+      <Column Name="Title" DataType="String" Master="True" Length="200" Nullable="False" Description="标题" />
       <Column Name="Version" DataType="Int32" Description="版本" />
       <Column Name="CreateUserID" DataType="Int32" Description="创建人" />
       <Column Name="CreateUserName" DataType="String" Description="创建人" />
@@ -143,7 +146,7 @@
   <Table Name="Nav" Description="导航" DbType="SqlServer" BaseType="EntityTree" 实体分类="站点" 页面分类="Site">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
-      <Column Name="Name" DataType="String" Description="名称" />
+      <Column Name="Name" DataType="String" Master="True" Description="名称" />
       <Column Name="ParentID" DataType="Int32" Description="父类" />
       <Column Name="ChannelID" DataType="Int32" Description="频道" />
       <Column Name="Url" DataType="String" Description="地址" />
