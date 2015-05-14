@@ -12,18 +12,8 @@ namespace NewLife.CMX.Web
         static EntityControllerBase()
         {
             // 过滤掉一些字段
-            var list = ListFields ?? Entity<TEntity>.Meta.Fields.ToList();
-            FieldFilter(list);
-            ListFields = list;
-
-            if (FormFields == null)
-                FormFields = list;
-            else if (FormFields != ListFields)
-            {
-                list = FormFields ?? Entity<TEntity>.Meta.Fields.ToList();
-                FieldFilter(list);
-                FormFields = list;
-            }
+            FieldFilter(ListFields);
+            FieldFilter(FormFields);
         }
 
         ///// <summary>列表页视图。子控制器可重载，以传递更多信息给视图，比如修改要显示的列</summary>

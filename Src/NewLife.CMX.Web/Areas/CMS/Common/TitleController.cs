@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Web;
-using NewLife.Cube;
 using XCode;
 using XCode.Membership;
 
@@ -14,15 +12,13 @@ namespace NewLife.CMX.Web
         static TitleController()
         {
             // 过滤掉一些字段
-            var list = ListFields ?? Entity<TEntity>.Meta.Fields.ToList();
+            var list = ListFields;
             list.RemoveAll(e => e.Name.EqualIgnoreCase("CategoryID", "StatisticsID", "Remark"));
-            ListFields = list;
 
-            list = FormFields ?? Entity<TEntity>.Meta.Fields.ToList();
+            list = FormFields;
             list.RemoveAll(e => e.Name.EqualIgnoreCase("CategoryName", "StatisticsID"));
             var fi = Entity<TEntity>.Meta.AllFields.FirstOrDefault(e => e.Name == "StatisticsText");
             if (fi != null) list.Add(fi);
-            FormFields = list;
         }
 
         protected override IDictionary<MethodInfo, int> ScanActionMenu(IMenu menu)
