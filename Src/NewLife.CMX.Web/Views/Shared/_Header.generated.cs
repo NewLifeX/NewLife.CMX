@@ -239,7 +239,17 @@ WriteLiteral("                            </ul>\r\n                        </li>
             
             #line default
             #line hidden
-WriteLiteral("            </ul>\r\n        </nav>\r\n    </div>\r\n</div>");
+WriteLiteral("                <li");
+
+WriteLiteral(" role=\"presentation\"");
+
+WriteLiteral("><a");
+
+WriteLiteral(" href=\"/Admin\"");
+
+WriteLiteral(" target=\"_blank\"");
+
+WriteLiteral(">管理后台</a></li>\r\n            </ul>\r\n        </nav>\r\n    </div>\r\n</div>");
 
         }
     }
