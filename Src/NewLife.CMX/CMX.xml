@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Tables Version="8.18.5612.32704">
+<Tables Version="8.18.5613.1848">
   <Table Name="Model" Description="模型。默认有文章、文本、产品三种模型，可以扩展增加。" DbType="SqlServer" 实体分类="基础" 页面分类="Manager">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
@@ -159,8 +159,8 @@
       <Column Name="UpdateTime" DataType="DateTime" Description="更新时间" />
       <Column Name="Remark" DataType="String" Length="200" Description="备注" />
     </Columns>
+    <Relations>
+      <Relation Column="ChannelID" RelationTable="Channel" RelationColumn="ID" />
+    </Relations>
   </Table>
-  <Relations>
-    <Relation Column="ChannelID" RelationTable="Channel" RelationColumn="ID" />
-  </Relations>
 </Tables>

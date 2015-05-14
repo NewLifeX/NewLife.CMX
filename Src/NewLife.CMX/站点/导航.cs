@@ -12,6 +12,7 @@ namespace NewLife.CMX
     [Serializable]
     [DataObject]
     [Description("导航")]
+    [BindRelation("ChannelID", false, "Channel", "ID")]
     [BindTable("Nav", Description = "导航", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class Nav : INav
     {
@@ -33,7 +34,7 @@ namespace NewLife.CMX
         [DisplayName("名称")]
         [Description("名称")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(2, "Name", "名称", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(2, "Name", "名称", null, "nvarchar(50)", 0, 0, true, Master=true)]
         public virtual String Name
         {
             get { return _Name; }
