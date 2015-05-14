@@ -379,79 +379,35 @@ WriteLiteral("                    ");
             #line hidden
 WriteLiteral("\r\n                </div>\r\n            </div>\r\n");
 
-WriteLiteral("            <div");
-
-WriteLiteral(" class=\"form-group\"");
-
-WriteLiteral(">\r\n                <label");
-
-WriteLiteral(" class=\"control-label col-md-2\"");
-
-WriteLiteral(">创建</label>\r\n                <div");
-
-WriteLiteral(" class=\"col-md-2\"");
-
-WriteLiteral(">\r\n                    <span>");
-
             
-            #line 66 "..\..\Areas\CMS\Views\Product\Form.cshtml"
-                     Write(product.CreateUserName);
-
-            
-            #line default
-            #line hidden
-WriteLiteral("</span>\r\n                    <span>");
-
-            
-            #line 67 "..\..\Areas\CMS\Views\Product\Form.cshtml"
-                     Write(product.CreateTime.ToFullString());
-
-            
-            #line default
-            #line hidden
-WriteLiteral("</span>\r\n                </div>\r\n                <label");
-
-WriteLiteral(" class=\"control-label col-md-1\"");
-
-WriteLiteral(">更新</label>\r\n                <div");
-
-WriteLiteral(" class=\"col-md-2\"");
-
-WriteLiteral(">\r\n                    <span>");
-
-            
-            #line 71 "..\..\Areas\CMS\Views\Product\Form.cshtml"
-                     Write(product.UpdateUserName);
-
-            
-            #line default
-            #line hidden
-WriteLiteral("</span>\r\n                    <span>");
-
-            
-            #line 72 "..\..\Areas\CMS\Views\Product\Form.cshtml"
-                     Write(product.UpdateTime.ToFullString());
-
-            
-            #line default
-            #line hidden
-WriteLiteral("</span>\r\n                </div>\r\n            </div>\r\n");
-
-            
-            #line 75 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 63 "..\..\Areas\CMS\Views\Product\Form.cshtml"
             
             
             #line default
             #line hidden
             
-            #line 75 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 63 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+       Write(Html.Partial("_UserTime", Model as IEntity));
+
+            
+            #line default
+            #line hidden
+            
+            #line 63 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+                                                        
+            
+            
+            #line default
+            #line hidden
+            
+            #line 64 "..\..\Areas\CMS\Views\Product\Form.cshtml"
        Write(Html.Partial("_Form_Action", isNew));
 
             
             #line default
             #line hidden
             
-            #line 75 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 64 "..\..\Areas\CMS\Views\Product\Form.cshtml"
                                                 
         }
 

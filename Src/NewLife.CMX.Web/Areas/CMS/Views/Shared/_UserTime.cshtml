@@ -1,0 +1,17 @@
+﻿@using NewLife.CMX;
+@{
+    var user = Model as IUserInfo;
+    var time = Model as ITimeInfo;
+}
+<div class="form-group">
+    <label class="control-label col-md-2">创建</label>
+    <div class="col-md-2">
+        <span class="text-primary">@user.CreateUserName</span>
+        <span class="text-success">@time.CreateTime.ToFullString()</span>
+    </div>
+    <label class="control-label col-md-2">更新</label>
+    <div class="col-md-2">
+        <span class="text-primary">@user.UpdateUserName</span>
+        <span class="text-success">@time.UpdateTime.ToFullString()</span>
+    </div>
+</div>

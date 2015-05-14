@@ -1,10 +1,12 @@
 ﻿@using System.Reflection
 @using XCode
 @using XCode.Configuration
+@using NewLife.CMX
 @{
     Layout = "~/Views/Shared/_Ace_Layout.cshtml";
     var fact = ViewBag.Factory as IEntityOperate;
     var fields = ViewBag.Fields as List<FieldItem>;
+    var entity = Model as IEntity;
     var isNew = (Model as IEntity).IsNullKey;
 
     // 创建更新等信息统一放在尾部
@@ -23,7 +25,7 @@
                 <strong>@ViewBag.StatusMessage</strong>
             </div>
         }
-        @using (Html.BeginForm((isNew ? "Add" : "Edit"), null, new { id = Model[fact.Unique.Name] }))
+        @using (Html.BeginForm((isNew ? "Add" : "Edit"), null, new { id = entity[fact.Unique.Name] }))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary()
@@ -32,26 +34,13 @@
                 if (!item.PrimaryKey)
                 {
                     <div class="form-group">
-                        @Html.Partial("_Form_Item", new Pair(Model, item))
+                        @Html.Partial("_Form_Item", new Pair(entity, item))
                     </div>
                 }
             }
-            if (Model is IUserInfo || Model is ITimeInfo)
+            if (entity is IUserInfo || entity is ITimeInfo)
             {
-                var user = Model as IUserInfo;
-                var time = Model as ITimeInfo;
-                <div class="form-group">
-                    <label class="control-label col-md-2">创建</label>
-                    <div class="input-group col-md-2" style="float: left;">
-                        <span class="text-primary">@user.CreateUserName</span>
-                        <span class="text-success">@time.CreateTime.ToFullString()</span>
-                    </div>
-                    <label class="control-label col-md-2">更新</label>
-                    <div class="input-group col-md-2">
-                        <span class="text-primary">@user.UpdateUserName</span>
-                        <span class="text-success">@time.UpdateTime.ToFullString()</span>
-                    </div>
-                </div>
+                @Html.Partial("_UserTime", entity as IEntity)
             }
             var remark = fact.Table.FindByName("Remark") as FieldItem;
             if (remark != null)
@@ -59,7 +48,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">@remark.DisplayName</label>
                     <div class="input-group col-md-6">
-                        @Html.ForString(remark.Name, (String)Model[remark.Name], -1)
+                        @Html.ForString(remark.Name, (String)entity[remark.Name], -1)
                         @Html.ForDescription(remark)
                     </div>
                 </div>

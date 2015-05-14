@@ -102,6 +102,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Areas\CMS\Views\Shared\Form.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Form.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CMS\Views\Shared\_UserTime.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_UserTime.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="Areas\CMS\Views\Text\Form.generated.cs">
       <DependentUpon>Form.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -122,11 +132,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Index.cshtml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Shared\Form.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Form.cshtml</DependentUpon>
     </Compile>
     <Compile Include="Views\Shared\_Footer.generated.cs">
       <AutoGen>True</AutoGen>
@@ -245,6 +250,10 @@
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Index.generated.cs</LastGenOutput>
     </Content>
+    <None Include="Areas\CMS\Views\Shared\_UserTime.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>_UserTime.generated.cs</LastGenOutput>
+    </None>
     <None Include="Areas\CMS\Views\_ViewStart.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>_ViewStart.generated.cs</LastGenOutput>
@@ -255,7 +264,7 @@
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Index.generated.cs</LastGenOutput>
     </None>
-    <Content Include="Views\Shared\Form.cshtml">
+    <Content Include="Areas\CMS\Views\Shared\Form.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Form.generated.cs</LastGenOutput>
     </Content>
@@ -323,7 +332,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Areas\CMS\Views\Shared\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
