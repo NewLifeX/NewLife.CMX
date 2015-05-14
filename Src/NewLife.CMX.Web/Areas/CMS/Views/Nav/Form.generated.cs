@@ -208,7 +208,7 @@ WriteLiteral("                                ");
 
             
             #line 32 "..\..\Areas\CMS\Views\Nav\Form.cshtml"
-                           Write(Html.DropDownList(item.Name, Nav.Root.AllChilds.ToList().Where(e => e != (Nav)Model).Select(r => new SelectListItem { Text = r.TreeNodeText, Value = r.ID + "" })));
+                           Write(Html.DropDownList(item.Name, Nav.Root.FindAllChildsExcept(Model).ToList().Select(r => new SelectListItem { Text = r.TreeNodeText, Value = r.ID + "" })));
 
             
             #line default
