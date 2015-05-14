@@ -82,6 +82,7 @@ namespace NewLife.CMX
         #region 扩展属性﻿
         private Model _Model;
         /// <summary>模型</summary>
+        [DisplayName("模型")]
         [BindRelation("ModelID", false, "Model", "ID")]
         public Model Model
         {
@@ -98,6 +99,7 @@ namespace NewLife.CMX
         }
 
         /// <summary>模型名称</summary>
+        [DisplayName("模型")]
         public String ModelName { get { return Model != null ? Model.Name : "未命名"; } }
         #endregion
 

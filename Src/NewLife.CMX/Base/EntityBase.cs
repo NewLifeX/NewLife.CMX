@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using XCode;
 using XCode.Membership;
 
@@ -63,6 +64,7 @@ namespace NewLife.CMX
         #region 扩展属性
         private IManageUser _CreateUser;
         /// <summary>创建人</summary>
+        [DisplayName("创建人")]
         public IManageUser CreateUser
         {
             get
@@ -79,10 +81,12 @@ namespace NewLife.CMX
         }
 
         /// <summary>创建人名称</summary>
+        [DisplayName("创建人")]
         public String CreateUserName { get { return CreateUser + ""; } }
 
         private IManageUser _UpdateUser;
         /// <summary>更新人</summary>
+        [DisplayName("更新人")]
         public IManageUser UpdateUser
         {
             get
@@ -99,6 +103,7 @@ namespace NewLife.CMX
         }
 
         /// <summary>更新人名称</summary>
+        [DisplayName("更新人")]
         public String UpdateUserName { get { return UpdateUser + ""; } }
 
         Int32 IUserInfo.CreateUserID { get { return (Int32)this[__.CreateUserID]; } set { SetItem(__.CreateUserID, value); } }
