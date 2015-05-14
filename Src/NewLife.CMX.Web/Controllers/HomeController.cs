@@ -12,7 +12,7 @@ namespace NewLife.CMX.Web.Controllers
         {
             ViewBag.Message = "主页面";
 
-            return View("Home/Index");
+            return View();
         }
 
         /// <summary>应用程序描述</summary>
