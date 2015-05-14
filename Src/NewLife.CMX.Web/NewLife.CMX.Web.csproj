@@ -92,6 +92,16 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Areas\CMS\Controllers\NavController.cs" />
+    <Compile Include="Areas\CMS\Views\Nav\Form.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Form.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CMS\Views\Nav\Index.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Index.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="Areas\CMS\Views\Product\Form.generated.cs">
       <DependentUpon>Form.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -235,6 +245,14 @@
     <Content Include="Areas\CMS\Views\Product\Form.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Form.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\CMS\Views\Nav\Form.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Form.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\CMS\Views\Nav\Index.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Index.generated.cs</LastGenOutput>
     </Content>
     <None Include="Areas\CMS\Views\_ViewStart.cshtml">
       <Generator>RazorGenerator</Generator>

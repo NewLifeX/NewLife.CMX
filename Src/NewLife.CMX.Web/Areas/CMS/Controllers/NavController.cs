@@ -7,5 +7,5 @@ using NewLife.Cube;
 
 namespace NewLife.CMX.Web.Controllers
 {
-    public class NavController : EntityControllerBase<Nav> { }
+    public class NavController : EntityTreeController<Nav> { }
 }

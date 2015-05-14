@@ -145,6 +145,7 @@
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Description="名称" />
       <Column Name="ParentID" DataType="Int32" Description="父类" />
+      <Column Name="ChannelID" DataType="Int32" Description="频道" />
       <Column Name="Url" DataType="String" Description="地址" />
       <Column Name="NewWindow" DataType="Boolean" Description="是否空白窗口打开" />
       <Column Name="Sort" DataType="Int32" Description="排序" />

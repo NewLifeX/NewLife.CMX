@@ -52,12 +52,24 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.ParentID, value)) { _ParentID = value; OnPropertyChanged(__.ParentID); } }
         }
 
+        private Int32 _ChannelID;
+        /// <summary>频道</summary>
+        [DisplayName("频道")]
+        [Description("频道")]
+        [DataObjectField(false, false, true, 10)]
+        [BindColumn(4, "ChannelID", "频道", null, "int", 10, 0, false)]
+        public virtual Int32 ChannelID
+        {
+            get { return _ChannelID; }
+            set { if (OnPropertyChanging(__.ChannelID, value)) { _ChannelID = value; OnPropertyChanged(__.ChannelID); } }
+        }
+
         private String _Url;
         /// <summary>地址</summary>
         [DisplayName("地址")]
         [Description("地址")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(4, "Url", "地址", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(5, "Url", "地址", null, "nvarchar(50)", 0, 0, true)]
         public virtual String Url
         {
             get { return _Url; }
@@ -69,7 +81,7 @@ namespace NewLife.CMX
         [DisplayName("是否空白窗口打开")]
         [Description("是否空白窗口打开")]
         [DataObjectField(false, false, true, 1)]
-        [BindColumn(5, "NewWindow", "是否空白窗口打开", null, "bit", 0, 0, false)]
+        [BindColumn(6, "NewWindow", "是否空白窗口打开", null, "bit", 0, 0, false)]
         public virtual Boolean NewWindow
         {
             get { return _NewWindow; }
@@ -81,7 +93,7 @@ namespace NewLife.CMX
         [DisplayName("排序")]
         [Description("排序")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(6, "Sort", "排序", null, "int", 10, 0, false)]
+        [BindColumn(7, "Sort", "排序", null, "int", 10, 0, false)]
         public virtual Int32 Sort
         {
             get { return _Sort; }
@@ -93,7 +105,7 @@ namespace NewLife.CMX
         [DisplayName("启用")]
         [Description("启用")]
         [DataObjectField(false, false, true, 1)]
-        [BindColumn(7, "Enable", "启用", null, "bit", 0, 0, false)]
+        [BindColumn(8, "Enable", "启用", null, "bit", 0, 0, false)]
         public virtual Boolean Enable
         {
             get { return _Enable; }
@@ -105,7 +117,7 @@ namespace NewLife.CMX
         [DisplayName("创建人")]
         [Description("创建人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(8, "CreateUserID", "创建人", null, "int", 10, 0, false)]
+        [BindColumn(9, "CreateUserID", "创建人", null, "int", 10, 0, false)]
         public virtual Int32 CreateUserID
         {
             get { return _CreateUserID; }
@@ -117,7 +129,7 @@ namespace NewLife.CMX
         [DisplayName("创建时间")]
         [Description("创建时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(9, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
+        [BindColumn(10, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
         public virtual DateTime CreateTime
         {
             get { return _CreateTime; }
@@ -129,7 +141,7 @@ namespace NewLife.CMX
         [DisplayName("更新人")]
         [Description("更新人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(10, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
+        [BindColumn(11, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
         public virtual Int32 UpdateUserID
         {
             get { return _UpdateUserID; }
@@ -141,7 +153,7 @@ namespace NewLife.CMX
         [DisplayName("更新时间")]
         [Description("更新时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(11, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
+        [BindColumn(12, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
         public virtual DateTime UpdateTime
         {
             get { return _UpdateTime; }
@@ -153,7 +165,7 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(12, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(13, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Remark
         {
             get { return _Remark; }
@@ -178,6 +190,7 @@ namespace NewLife.CMX
                     case __.ID : return _ID;
                     case __.Name : return _Name;
                     case __.ParentID : return _ParentID;
+                    case __.ChannelID : return _ChannelID;
                     case __.Url : return _Url;
                     case __.NewWindow : return _NewWindow;
                     case __.Sort : return _Sort;
@@ -197,6 +210,7 @@ namespace NewLife.CMX
                     case __.ID : _ID = Convert.ToInt32(value); break;
                     case __.Name : _Name = Convert.ToString(value); break;
                     case __.ParentID : _ParentID = Convert.ToInt32(value); break;
+                    case __.ChannelID : _ChannelID = Convert.ToInt32(value); break;
                     case __.Url : _Url = Convert.ToString(value); break;
                     case __.NewWindow : _NewWindow = Convert.ToBoolean(value); break;
                     case __.Sort : _Sort = Convert.ToInt32(value); break;
@@ -224,6 +238,9 @@ namespace NewLife.CMX
 
             ///<summary>父类</summary>
             public static readonly Field ParentID = FindByName(__.ParentID);
+
+            ///<summary>频道</summary>
+            public static readonly Field ChannelID = FindByName(__.ChannelID);
 
             ///<summary>地址</summary>
             public static readonly Field Url = FindByName(__.Url);
@@ -266,6 +283,9 @@ namespace NewLife.CMX
 
             ///<summary>父类</summary>
             public const String ParentID = "ParentID";
+
+            ///<summary>频道</summary>
+            public const String ChannelID = "ChannelID";
 
             ///<summary>地址</summary>
             public const String Url = "Url";
@@ -310,6 +330,9 @@ namespace NewLife.CMX
 
         /// <summary>父类</summary>
         Int32 ParentID { get; set; }
+
+        /// <summary>频道</summary>
+        Int32 ChannelID { get; set; }
 
         /// <summary>地址</summary>
         String Url { get; set; }

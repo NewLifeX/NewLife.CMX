@@ -142,6 +142,25 @@ namespace NewLife.CMX
 
         DateTime ITimeInfo.CreateTime { get { return (DateTime)this[__.CreateTime]; } set { SetItem(__.CreateTime, value); } }
         DateTime ITimeInfo.UpdateTime { get { return (DateTime)this[__.UpdateTime]; } set { SetItem(__.UpdateTime, value); } }
+
+        private Channel _Channel;
+        /// <summary>频道</summary>
+        public Channel Channel
+        {
+            get
+            {
+                if (_Channel == null && ChannelID > 0 && !Dirtys.ContainsKey("Channel"))
+                {
+                    _Channel = Channel.FindByID(ChannelID);
+                    Dirtys["Channel"] = true;
+                }
+                return _Channel;
+            }
+            set { _Channel = value; }
+        }
+
+        /// <summary>频道名称</summary>
+        public String ChannelName { get { return Channel + ""; } }
         #endregion
 
         #region 扩展查询﻿
