@@ -78,11 +78,11 @@ namespace NewLife.CMX
         }
 
         private Boolean _NewWindow;
-        /// <summary>是否空白窗口打开</summary>
-        [DisplayName("是否空白窗口打开")]
-        [Description("是否空白窗口打开")]
+        /// <summary>新窗口打开</summary>
+        [DisplayName("新窗口打开")]
+        [Description("新窗口打开")]
         [DataObjectField(false, false, true, 1)]
-        [BindColumn(6, "NewWindow", "是否空白窗口打开", null, "bit", 0, 0, false)]
+        [BindColumn(6, "NewWindow", "新窗口打开", null, "bit", 0, 0, false)]
         public virtual Boolean NewWindow
         {
             get { return _NewWindow; }
@@ -246,7 +246,7 @@ namespace NewLife.CMX
             ///<summary>地址</summary>
             public static readonly Field Url = FindByName(__.Url);
 
-            ///<summary>是否空白窗口打开</summary>
+            ///<summary>新窗口打开</summary>
             public static readonly Field NewWindow = FindByName(__.NewWindow);
 
             ///<summary>排序</summary>
@@ -291,7 +291,7 @@ namespace NewLife.CMX
             ///<summary>地址</summary>
             public const String Url = "Url";
 
-            ///<summary>是否空白窗口打开</summary>
+            ///<summary>新窗口打开</summary>
             public const String NewWindow = "NewWindow";
 
             ///<summary>排序</summary>
@@ -338,7 +338,7 @@ namespace NewLife.CMX
         /// <summary>地址</summary>
         String Url { get; set; }
 
-        /// <summary>是否空白窗口打开</summary>
+        /// <summary>新窗口打开</summary>
         Boolean NewWindow { get; set; }
 
         /// <summary>排序</summary>

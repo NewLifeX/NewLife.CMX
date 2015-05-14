@@ -123,15 +123,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Index.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Shared\Form.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Form.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Shared\_Footer.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>_Footer.cshtml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Shared\_Form_Item.generated.cs">
-      <DependentUpon>_Form_Item.cshtml</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Areas\CMS\CMSAreaRegistration.cs" />
     <Compile Include="Areas\CMS\Common\ContentController.cs" />
@@ -255,13 +255,13 @@
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Index.generated.cs</LastGenOutput>
     </None>
+    <Content Include="Views\Shared\Form.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Form.generated.cs</LastGenOutput>
+    </Content>
     <None Include="Views\Shared\_Footer.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>_Footer.generated.cs</LastGenOutput>
-    </None>
-    <None Include="Views\Shared\_Form_Item.cshtml">
-      <Generator>RazorGenerator</Generator>
-      <LastGenOutput>_Form_Item.generated.cs</LastGenOutput>
     </None>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
