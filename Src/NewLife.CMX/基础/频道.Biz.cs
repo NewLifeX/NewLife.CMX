@@ -100,7 +100,7 @@ namespace NewLife.CMX
 
         /// <summary>模型名称</summary>
         [DisplayName("模型")]
-        public String ModelName { get { return Model != null ? Model.Name : "未命名"; } }
+        public String ModelName { get { return Model != null ? (Model.DisplayName ?? Model.Name) : "未命名"; } }
         #endregion
 
         #region 扩展查询﻿
