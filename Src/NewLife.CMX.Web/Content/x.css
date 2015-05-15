@@ -14,11 +14,11 @@ body {
 }
 
 a {
-    color: #cf4646;
+    color: #274e13;
 }
 
     a:hover, a:focus {
-        color: #A62C2C;
+        color: #4ca91c;
     }
 
 pre {
@@ -28,7 +28,7 @@ pre {
 
 .jumbotron {
     text-align: center;
-    background-color: #cf4646;
+    background-color: #274e13;
     color: #fff;
 }
 
@@ -43,8 +43,9 @@ pre {
     }
 
 .navbar-inverse {
-    background-color: #cf4646;
+    background-color: #274e13;
     border-color: transparent;
+    background-image: none;
 }
 
     .navbar-inverse .navbar-brand {
@@ -63,7 +64,7 @@ pre {
     }
 
     .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
-        border-color: #CA3131;
+        border-color: #274e13;
     }
 
     .navbar-inverse .navbar-toggle {

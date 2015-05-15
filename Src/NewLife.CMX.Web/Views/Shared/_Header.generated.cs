@@ -67,6 +67,8 @@ WriteLiteral(">\r\n    <div");
 
 WriteLiteral(" class=\"container\"");
 
+WriteLiteral(" style=\"width: 970px;\"");
+
 WriteLiteral(">\r\n        <div");
 
 WriteLiteral(" class=\"navbar-header\"");
@@ -150,14 +152,14 @@ WriteLiteral(" role=\"presentation\"");
 
 WriteLiteral("><a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 989), Tuple.Create("\"", 1004)
+WriteAttribute("href", Tuple.Create(" href=\"", 1011), Tuple.Create("\"", 1026)
             
             #line 22 "..\..\Views\Shared\_Header.cshtml"
-, Tuple.Create(Tuple.Create("", 996), Tuple.Create<System.Object, System.Int32>(nav.Url
+, Tuple.Create(Tuple.Create("", 1018), Tuple.Create<System.Object, System.Int32>(nav.Url
             
             #line default
             #line hidden
-, 996), false)
+, 1018), false)
 );
 
 WriteLiteral(" class=\"active\"");
@@ -237,14 +239,14 @@ WriteLiteral(">\r\n");
             #line hidden
 WriteLiteral("                                    <li><a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 1557), Tuple.Create("\"", 1573)
+WriteAttribute("href", Tuple.Create(" href=\"", 1579), Tuple.Create("\"", 1595)
             
             #line 31 "..\..\Views\Shared\_Header.cshtml"
-, Tuple.Create(Tuple.Create("", 1564), Tuple.Create<System.Object, System.Int32>(item.Url
+, Tuple.Create(Tuple.Create("", 1586), Tuple.Create<System.Object, System.Int32>(item.Url
             
             #line default
             #line hidden
-, 1564), false)
+, 1586), false)
 );
 
 WriteLiteral(" class=\"\"");
