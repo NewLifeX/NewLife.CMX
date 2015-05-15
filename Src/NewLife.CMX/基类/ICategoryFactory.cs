@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using XCode;
 
@@ -29,7 +30,7 @@ namespace NewLife.CMX
             return EntityCategory<TEntity>.FindByID(id);
         }
 
-        public IEntityCategory FindByName(String name) { return EntityCategory<TEntity>.Root.FindByPath(name); }
+        public IEntityCategory FindByName(String name) { return EntityCategory<TEntity>.FindAllByName(name).ToList().FirstOrDefault(); }
 
         /// <summary>查询子类以及子类的ID如果子类不是最终类，返回的时候ID会被改为负数</summary>
         /// <param name="parentKey"></param>
