@@ -220,10 +220,8 @@ namespace NewLife.CMX
         #region 高级查询
         public IList<IEntityTitle> GetTitles(Int32 pageIndex = 1, Int32 pageCount = 10)
         {
-            if (pageIndex <= 0) pageIndex = 1;
-
             var provider = ModelProvider.Get(this.GetType());
-            return provider.TitleFactory.FindAll(null, null, null, (pageIndex - 1) * pageCount, pageCount).Cast<IEntityTitle>().ToList();
+            return provider.TitleFactory.GetTitles(ID, pageIndex, pageCount);
         }
         #endregion
 

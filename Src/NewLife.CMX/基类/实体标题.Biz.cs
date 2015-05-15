@@ -303,6 +303,15 @@ namespace NewLife.CMX
         #endregion
 
         #region 高级查询
+        public static EntityList<TEntity> GetTitles(Int32 categoryid, Int32 pageIndex = 1, Int32 pageCount = 10)
+        {
+            if (pageIndex <= 0) pageIndex = 1;
+
+            var exp = _.CategoryID == categoryid;
+            exp.SetStrict();
+
+            return FindAll(exp, null, null, (pageIndex - 1) * pageCount, pageCount);
+        }
         #endregion
 
         #region 扩展操作

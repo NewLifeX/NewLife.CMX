@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using XCode;
 
 namespace NewLife.CMX
@@ -9,6 +9,8 @@ namespace NewLife.CMX
     public interface ITitleFactory : IEntityOperate
     {
         IEntityTitle FindByID(Int32 id);
+
+        IList<IEntityTitle> GetTitles(Int32 categoryid, Int32 pageIndex = 1, Int32 pageCount = 10);
     }
 
     class TitleFactory<TEntity> : Entity<TEntity>.EntityOperate, ITitleFactory where TEntity : EntityTitle<TEntity>, new()
@@ -18,5 +20,9 @@ namespace NewLife.CMX
             return EntityTitle<TEntity>.FindByID(id);
         }
 
+        public IList<IEntityTitle> GetTitles(Int32 categoryid, Int32 pageIndex = 1, Int32 pageCount = 10)
+        {
+            return EntityTitle<TEntity>.GetTitles(categoryid, pageIndex, pageCount).ToList().Cast<IEntityTitle>().ToList();
+        }
     }
 }
