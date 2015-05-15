@@ -61,35 +61,174 @@ WriteLiteral(">\r\n    <p>\r\n        <h1>学无先后达者为师</h1>\r\n    <
 
 WriteLiteral(" class=\"benefits container\"");
 
-WriteLiteral(">\r\n    <div");
+WriteLiteral(">\r\n");
+
+            
+            #line 10 "..\..\Views\Home\Index.cshtml"
+    
+            
+            #line default
+            #line hidden
+            
+            #line 10 "..\..\Views\Home\Index.cshtml"
+     foreach (var chn in Channel.FindAllWithCache())
+    {
+        var cats = chn.AllCategories;
+        if (cats.Count > 0)
+        {
+            var width = 12 / cats.Count;
+            var left = 12 - width * cats.Count;
+            var right = left / 2;
+            left -= right;
+
+            
+            #line default
+            #line hidden
+WriteLiteral("            <div");
 
 WriteLiteral(" class=\"row\"");
 
-WriteLiteral(">\r\n        <div");
+WriteAttribute("channel", Tuple.Create(" channel=\"", 469), Tuple.Create("\"", 488)
+            
+            #line 19 "..\..\Views\Home\Index.cshtml"
+, Tuple.Create(Tuple.Create("", 479), Tuple.Create<System.Object, System.Int32>(chn.Name
+            
+            #line default
+            #line hidden
+, 479), false)
+);
 
-WriteLiteral(" class=\"col-md-6\"");
+WriteLiteral(">\r\n");
 
-WriteLiteral(">\r\n            <h2>易于使用</h2>\r\n            <p>通过代码优于配置的策略，Gulp让简单的任务简单，复杂的任务可管理。</" +
-"p>\r\n        </div>\r\n        <div");
+            
+            #line 20 "..\..\Views\Home\Index.cshtml"
+                
+            
+            #line default
+            #line hidden
+            
+            #line 20 "..\..\Views\Home\Index.cshtml"
+                 if (left > 0)
+                {
 
-WriteLiteral(" class=\"col-md-6\"");
+            
+            #line default
+            #line hidden
+WriteLiteral("                    <div");
 
-WriteLiteral(">\r\n            <h2>构建快速</h2>\r\n            <p>利用node流的威力，你可以快速构建项目并减少频繁的 IO 操作。</p" +
-">\r\n        </div>\r\n    </div>\r\n    <div");
+WriteAttribute("class", Tuple.Create(" class=\"", 567), Tuple.Create("\"", 587)
+, Tuple.Create(Tuple.Create("", 575), Tuple.Create("col-md-", 575), true)
+            
+            #line 22 "..\..\Views\Home\Index.cshtml"
+, Tuple.Create(Tuple.Create("", 582), Tuple.Create<System.Object, System.Int32>(left
+            
+            #line default
+            #line hidden
+, 582), false)
+);
 
-WriteLiteral(" class=\"row\"");
+WriteLiteral("></div>\r\n");
 
-WriteLiteral(">\r\n        <div");
+            
+            #line 23 "..\..\Views\Home\Index.cshtml"
+                }
 
-WriteLiteral(" class=\"col-md-6\"");
+            
+            #line default
+            #line hidden
+WriteLiteral("                ");
 
-WriteLiteral(">\r\n            <h2>插件高质</h2>\r\n            <p>gulp严格的插件指南确保插件如你期望的那样简洁高质得工作。</p>\r\n" +
-"        </div>\r\n        <div");
+            
+            #line 24 "..\..\Views\Home\Index.cshtml"
+                 foreach (var cat in chn.Categories)
+                {
 
-WriteLiteral(" class=\"col-md-6\"");
+            
+            #line default
+            #line hidden
+WriteLiteral("                    <div");
 
-WriteLiteral(">\r\n            <h2>易于学习</h2>\r\n            <p>通过最少的API，掌握Gulp毫不费力，构建工作尽在掌握：如同一系列流管" +
-"道。</p>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
+WriteAttribute("class", Tuple.Create(" class=\"", 713), Tuple.Create("\"", 734)
+, Tuple.Create(Tuple.Create("", 721), Tuple.Create("col-md-", 721), true)
+            
+            #line 26 "..\..\Views\Home\Index.cshtml"
+, Tuple.Create(Tuple.Create("", 728), Tuple.Create<System.Object, System.Int32>(width
+            
+            #line default
+            #line hidden
+, 728), false)
+);
+
+WriteLiteral(">\r\n                        <h2>");
+
+            
+            #line 27 "..\..\Views\Home\Index.cshtml"
+                       Write(cat.Name);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</h2>\r\n                        <p>");
+
+            
+            #line 28 "..\..\Views\Home\Index.cshtml"
+                      Write(cat.Num);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</p>\r\n                    </div>\r\n");
+
+            
+            #line 30 "..\..\Views\Home\Index.cshtml"
+                }
+
+            
+            #line default
+            #line hidden
+WriteLiteral("                ");
+
+            
+            #line 31 "..\..\Views\Home\Index.cshtml"
+                 if (right > 0)
+                {
+
+            
+            #line default
+            #line hidden
+WriteLiteral("                    <div");
+
+WriteAttribute("class", Tuple.Create(" class=\"", 946), Tuple.Create("\"", 967)
+, Tuple.Create(Tuple.Create("", 954), Tuple.Create("col-md-", 954), true)
+            
+            #line 33 "..\..\Views\Home\Index.cshtml"
+, Tuple.Create(Tuple.Create("", 961), Tuple.Create<System.Object, System.Int32>(right
+            
+            #line default
+            #line hidden
+, 961), false)
+);
+
+WriteLiteral("></div>\r\n");
+
+            
+            #line 34 "..\..\Views\Home\Index.cshtml"
+                }
+
+            
+            #line default
+            #line hidden
+WriteLiteral("            </div>\r\n");
+
+            
+            #line 36 "..\..\Views\Home\Index.cshtml"
+        }
+    }
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</div>\r\n");
 
         }
     }

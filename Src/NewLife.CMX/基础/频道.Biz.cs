@@ -355,29 +355,34 @@ namespace NewLife.CMX
         #endregion
 
         #region 业务
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="obj">可以是ID也可以SuffixStr</param>
+        /// <summary>当前频道的类别</summary>
+        public IList<IEntityCategory> Categories
+        {
+            get
+            {
+                var tree = Model.Provider.CategoryFactory.Root;
+                return tree.Childs.Cast<IEntityCategory>().ToList();
+            }
+        }
+
+        /// <summary>所有末端类别</summary>
+        public IList<IEntityCategory> AllCategories
+        {
+            get
+            {
+                var tree = Model.Provider.CategoryFactory.Root;
+                return tree.AllChilds.Cast<IEntityCategory>().Where(e => e.Childs.Count == 0).ToList();
+            }
+        }
+
+        /// <summary>查找频道</summary>
+        /// <param name="name"></param>
         /// <returns></returns>
-        //public static String GetListUrl(Object obj)
-        //{
-        //    if (obj == null) return null;
-
-        //    Channel c = GetModel(obj);
-
-        //    return c == null ? "" : c.Model.CategoryTemplatePath;
-        //}
-
-        //public static Channel GetModel(Object obj)
-        //{
-        //    if (obj == null) return null;
-        //    Int32 i;
-        //    if (Int32.TryParse(obj.ToString(), out i))
-        //        return FindByID(i);
-        //    else
-        //        return FindBySuffix(obj.ToString());
-        //}
+        public IEntityCategory FindCategory(String name)
+        {
+            var tree = Model.Provider.CategoryFactory.Root;
+            return tree.AllChilds.Cast<IEntityCategory>().FirstOrDefault(e => e.Name == name);
+        }
         #endregion
     }
 }

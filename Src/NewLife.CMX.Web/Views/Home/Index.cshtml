@@ -7,24 +7,32 @@
     </p>
 </div>
 <div class="benefits container">
-    <div class="row">
-        <div class="col-md-6">
-            <h2>易于使用</h2>
-            <p>通过代码优于配置的策略，Gulp让简单的任务简单，复杂的任务可管理。</p>
-        </div>
-        <div class="col-md-6">
-            <h2>构建快速</h2>
-            <p>利用node流的威力，你可以快速构建项目并减少频繁的 IO 操作。</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <h2>插件高质</h2>
-            <p>gulp严格的插件指南确保插件如你期望的那样简洁高质得工作。</p>
-        </div>
-        <div class="col-md-6">
-            <h2>易于学习</h2>
-            <p>通过最少的API，掌握Gulp毫不费力，构建工作尽在掌握：如同一系列流管道。</p>
-        </div>
-    </div>
+    @foreach (var chn in Channel.FindAllWithCache())
+    {
+        var cats = chn.AllCategories;
+        if (cats.Count > 0)
+        {
+            var width = 12 / cats.Count;
+            var left = 12 - width * cats.Count;
+            var right = left / 2;
+            left -= right;
+            <div class="row" channel="@chn.Name">
+                @if (left > 0)
+                {
+                    <div class="col-md-@left"></div>
+                }
+                @foreach (var cat in chn.Categories)
+                {
+                    <div class="col-md-@width">
+                        <h2>@cat.Name</h2>
+                        <p>@cat.Num</p>
+                    </div>
+                }
+                @if (right > 0)
+                {
+                    <div class="col-md-@right"></div>
+                }
+            </div>
+        }
+    }
 </div>

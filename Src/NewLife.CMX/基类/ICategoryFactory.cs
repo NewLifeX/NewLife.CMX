@@ -7,6 +7,8 @@ namespace NewLife.CMX
     /// <summary>分类实体工厂</summary>
     public interface ICategoryFactory : IEntityOperate
     {
+        IEntityCategory Root { get; }
+
         IEntityCategory FindByID(Int32 id);
 
         /// <summary>查询子类以及子类的ID如果子类不是最终类，返回的时候ID会被改为负数</summary>
@@ -18,6 +20,8 @@ namespace NewLife.CMX
 
     class CategoryFactory<TEntity> : Entity<TEntity>.EntityOperate, ICategoryFactory where TEntity : EntityCategory<TEntity>, new()
     {
+        public IEntityCategory Root { get { return EntityCategory<TEntity>.Root; } }
+
         public virtual IEntityCategory FindByID(Int32 id)
         {
             return EntityCategory<TEntity>.FindByID(id);
