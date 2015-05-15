@@ -55,13 +55,41 @@ namespace ASP
             #line hidden
 WriteLiteral("\r\n<div");
 
-WriteLiteral(" class=\"container\"");
+WriteLiteral(" class=\"jumbotron\"");
+
+WriteLiteral(">\r\n    <p>\r\n        <h1>学无先后达者为师</h1>\r\n    </p>\r\n</div>\r\n<div");
+
+WriteLiteral(" class=\"benefits container\"");
 
 WriteLiteral(">\r\n    <div");
 
 WriteLiteral(" class=\"row\"");
 
-WriteLiteral(">\r\n        <h1>学无先后达者为师</h1>\r\n    </div>\r\n</div>\r\n");
+WriteLiteral(">\r\n        <div");
+
+WriteLiteral(" class=\"col-md-6\"");
+
+WriteLiteral(">\r\n            <h2>易于使用</h2>\r\n            <p>通过代码优于配置的策略，Gulp让简单的任务简单，复杂的任务可管理。</" +
+"p>\r\n        </div>\r\n        <div");
+
+WriteLiteral(" class=\"col-md-6\"");
+
+WriteLiteral(">\r\n            <h2>构建快速</h2>\r\n            <p>利用node流的威力，你可以快速构建项目并减少频繁的 IO 操作。</p" +
+">\r\n        </div>\r\n    </div>\r\n    <div");
+
+WriteLiteral(" class=\"row\"");
+
+WriteLiteral(">\r\n        <div");
+
+WriteLiteral(" class=\"col-md-6\"");
+
+WriteLiteral(">\r\n            <h2>插件高质</h2>\r\n            <p>gulp严格的插件指南确保插件如你期望的那样简洁高质得工作。</p>\r\n" +
+"        </div>\r\n        <div");
+
+WriteLiteral(" class=\"col-md-6\"");
+
+WriteLiteral(">\r\n            <h2>易于学习</h2>\r\n            <p>通过最少的API，掌握Gulp毫不费力，构建工作尽在掌握：如同一系列流管" +
+"道。</p>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
 
         }
     }

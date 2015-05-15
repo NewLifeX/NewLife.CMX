@@ -30,6 +30,12 @@ namespace ASP
     using NewLife;
     using NewLife.CMX;
     using NewLife.CMX.Web;
+    
+    #line 1 "..\..\Views\Shared\_Header.cshtml"
+    using NewLife.Common;
+    
+    #line default
+    #line hidden
     using NewLife.Cube;
     using NewLife.Reflection;
     using NewLife.Web;
@@ -46,58 +52,90 @@ namespace ASP
         public override void Execute()
         {
             
-            #line 1 "..\..\Views\Shared\_Header.cshtml"
+            #line 2 "..\..\Views\Shared\_Header.cshtml"
   
     var header = Nav.Root.FindByPath("头部") ?? Nav.Root;
 
             
             #line default
             #line hidden
-WriteLiteral("\r\n<div");
+WriteLiteral("\r\n<nav");
 
-WriteLiteral(" class=\"container\"");
+WriteLiteral(" class=\"navbar navbar-inverse navbar-fixed-top\"");
 
 WriteLiteral(">\r\n    <div");
 
-WriteLiteral(" class=\"row\"");
+WriteLiteral(" class=\"container\"");
 
 WriteLiteral(">\r\n        <div");
 
-WriteLiteral(" style=\"float: left;\"");
+WriteLiteral(" class=\"navbar-header\"");
 
-WriteLiteral(">\r\n            <a");
+WriteLiteral(">\r\n            <button");
 
-WriteLiteral(" href=\"/\"");
+WriteLiteral(" type=\"button\"");
 
-WriteLiteral(" data-title=\"logo\"");
+WriteLiteral(" class=\"navbar-toggle collapsed\"");
 
-WriteLiteral("><img");
+WriteLiteral(" data-toggle=\"collapse\"");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 194), Tuple.Create("\"", 225)
-, Tuple.Create(Tuple.Create("", 200), Tuple.Create<System.Object, System.Int32>(Href("~/Content/images/logo.png")
-, 200), false)
-);
+WriteLiteral(" data-target=\"#navbar\"");
 
-WriteLiteral(" alt=\"网站Logo\"");
+WriteLiteral(" aria-expanded=\"false\"");
 
-WriteLiteral(" /></a>\r\n        </div>\r\n        <nav");
+WriteLiteral(" aria-controls=\"navbar\"");
 
-WriteLiteral(" class=\"navbar\"");
+WriteLiteral(">\r\n                <span");
+
+WriteLiteral(" class=\"sr-only\"");
+
+WriteLiteral(">Toggle navigation</span>\r\n                <span");
+
+WriteLiteral(" class=\"icon-bar\"");
+
+WriteLiteral("></span>\r\n                <span");
+
+WriteLiteral(" class=\"icon-bar\"");
+
+WriteLiteral("></span>\r\n                <span");
+
+WriteLiteral(" class=\"icon-bar\"");
+
+WriteLiteral("></span>\r\n            </button>\r\n            <a");
+
+WriteLiteral(" class=\"navbar-brand\"");
+
+WriteLiteral(" href=\"./\"");
+
+WriteLiteral(">");
+
+            
+            #line 14 "..\..\Views\Shared\_Header.cshtml"
+                                         Write(SysConfig.Current.DisplayName);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</a>\r\n        </div>\r\n        <div");
+
+WriteLiteral(" id=\"navbar\"");
+
+WriteLiteral(" class=\"collapse navbar-collapse\"");
 
 WriteLiteral(">\r\n            <ul");
 
-WriteLiteral(" class=\"nav nav-tabs\"");
+WriteLiteral(" class=\"nav navbar-nav\"");
 
 WriteLiteral(">\r\n");
 
             
-            #line 11 "..\..\Views\Shared\_Header.cshtml"
+            #line 18 "..\..\Views\Shared\_Header.cshtml"
                 
             
             #line default
             #line hidden
             
-            #line 11 "..\..\Views\Shared\_Header.cshtml"
+            #line 18 "..\..\Views\Shared\_Header.cshtml"
                  foreach (var nav in header.Childs)
                 {
                     if (nav.Childs.Count == 0)
@@ -112,14 +150,14 @@ WriteLiteral(" role=\"presentation\"");
 
 WriteLiteral("><a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 526), Tuple.Create("\"", 541)
+WriteAttribute("href", Tuple.Create(" href=\"", 989), Tuple.Create("\"", 1004)
             
-            #line 15 "..\..\Views\Shared\_Header.cshtml"
-, Tuple.Create(Tuple.Create("", 533), Tuple.Create<System.Object, System.Int32>(nav.Url
+            #line 22 "..\..\Views\Shared\_Header.cshtml"
+, Tuple.Create(Tuple.Create("", 996), Tuple.Create<System.Object, System.Int32>(nav.Url
             
             #line default
             #line hidden
-, 533), false)
+, 996), false)
 );
 
 WriteLiteral(" class=\"active\"");
@@ -127,7 +165,7 @@ WriteLiteral(" class=\"active\"");
 WriteLiteral(">");
 
             
-            #line 15 "..\..\Views\Shared\_Header.cshtml"
+            #line 22 "..\..\Views\Shared\_Header.cshtml"
                                                                              Write(nav.Name);
 
             
@@ -136,7 +174,7 @@ WriteLiteral(">");
 WriteLiteral("</a></li>\r\n");
 
             
-            #line 16 "..\..\Views\Shared\_Header.cshtml"
+            #line 23 "..\..\Views\Shared\_Header.cshtml"
                     }
                     else
                     {
@@ -165,7 +203,7 @@ WriteLiteral(" aria-expanded=\"false\"");
 WriteLiteral(">");
 
             
-            #line 20 "..\..\Views\Shared\_Header.cshtml"
+            #line 27 "..\..\Views\Shared\_Header.cshtml"
                                                                                                                       Write(nav.Name);
 
             
@@ -184,13 +222,13 @@ WriteLiteral(" role=\"menu\"");
 WriteLiteral(">\r\n");
 
             
-            #line 22 "..\..\Views\Shared\_Header.cshtml"
+            #line 29 "..\..\Views\Shared\_Header.cshtml"
                                 
             
             #line default
             #line hidden
             
-            #line 22 "..\..\Views\Shared\_Header.cshtml"
+            #line 29 "..\..\Views\Shared\_Header.cshtml"
                                  foreach (var item in nav.Childs)
                                 {
 
@@ -199,14 +237,14 @@ WriteLiteral(">\r\n");
             #line hidden
 WriteLiteral("                                    <li><a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 1094), Tuple.Create("\"", 1110)
+WriteAttribute("href", Tuple.Create(" href=\"", 1557), Tuple.Create("\"", 1573)
             
-            #line 24 "..\..\Views\Shared\_Header.cshtml"
-, Tuple.Create(Tuple.Create("", 1101), Tuple.Create<System.Object, System.Int32>(item.Url
+            #line 31 "..\..\Views\Shared\_Header.cshtml"
+, Tuple.Create(Tuple.Create("", 1564), Tuple.Create<System.Object, System.Int32>(item.Url
             
             #line default
             #line hidden
-, 1101), false)
+, 1564), false)
 );
 
 WriteLiteral(" class=\"\"");
@@ -214,7 +252,7 @@ WriteLiteral(" class=\"\"");
 WriteLiteral(">");
 
             
-            #line 24 "..\..\Views\Shared\_Header.cshtml"
+            #line 31 "..\..\Views\Shared\_Header.cshtml"
                                                                 Write(item.Name);
 
             
@@ -223,7 +261,7 @@ WriteLiteral(">");
 WriteLiteral("</a></li>\r\n");
 
             
-            #line 25 "..\..\Views\Shared\_Header.cshtml"
+            #line 32 "..\..\Views\Shared\_Header.cshtml"
                                 }
 
             
@@ -232,7 +270,7 @@ WriteLiteral("</a></li>\r\n");
 WriteLiteral("                            </ul>\r\n                        </li>\r\n");
 
             
-            #line 28 "..\..\Views\Shared\_Header.cshtml"
+            #line 35 "..\..\Views\Shared\_Header.cshtml"
                     }
                 }
 
@@ -249,7 +287,7 @@ WriteLiteral(" href=\"/Admin\"");
 
 WriteLiteral(" target=\"_blank\"");
 
-WriteLiteral(">管理后台</a></li>\r\n            </ul>\r\n        </nav>\r\n    </div>\r\n</div>");
+WriteLiteral(">管理后台</a></li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</nav>");
 
         }
     }

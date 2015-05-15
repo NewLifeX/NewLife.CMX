@@ -1,0 +1,88 @@
+﻿/*
+ * 覆盖 Bootstrap 的默认样式
+ */
+
+@media (min-width: 1200px) {
+    .container {
+        width: 970px;
+    }
+}
+
+
+body {
+    padding-top: 50px;
+}
+
+a {
+    color: #cf4646;
+}
+
+    a:hover, a:focus {
+        color: #A62C2C;
+    }
+
+pre {
+    border: none;
+    background-color: transparent;
+}
+
+.jumbotron {
+    text-align: center;
+    background-color: #cf4646;
+    color: #fff;
+}
+
+    .jumbotron .logo {
+        max-width: 20vh;
+        max-height: 20vh;
+    }
+
+    .jumbotron .btn {
+        background-color: #fff;
+        color: #333;
+    }
+
+.navbar-inverse {
+    background-color: #cf4646;
+    border-color: transparent;
+}
+
+    .navbar-inverse .navbar-brand {
+        color: #efefef;
+    }
+
+    .navbar-inverse .navbar-nav > li > a {
+        color: #e8e8e8;
+    }
+
+    .navbar-inverse .navbar-nav > .active > a,
+    .navbar-inverse .navbar-nav > .active > a:focus,
+    .navbar-inverse .navbar-nav > .active > a:hover {
+        color: #fff;
+        background-color: transparent;
+    }
+
+    .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+        border-color: #CA3131;
+    }
+
+    .navbar-inverse .navbar-toggle {
+        border-color: #fff;
+    }
+
+        .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+            background-color: transparent;
+        }
+
+.footer {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.docs-wrapper {
+    margin-top: 30px;
+}
+
+.benefits p {
+    font-size: 18px;
+}

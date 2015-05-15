@@ -61,43 +61,33 @@ namespace ASP
             #line hidden
 WriteLiteral("\r\n<div");
 
-WriteLiteral(" class=\"footer\"");
-
-WriteLiteral(">\r\n    <div");
-
 WriteLiteral(" class=\"container\"");
-
-WriteLiteral(" style=\"\"");
-
-WriteLiteral(">\r\n        <div");
-
-WriteLiteral(" class=\"row\"");
 
 WriteLiteral(">\r\n");
 
             
-            #line 8 "..\..\Views\Shared\_Footer.cshtml"
-            
+            #line 6 "..\..\Views\Shared\_Footer.cshtml"
+    
             
             #line default
             #line hidden
             
-            #line 8 "..\..\Views\Shared\_Footer.cshtml"
-             foreach (var nav in footer.Childs)
-            {
+            #line 6 "..\..\Views\Shared\_Footer.cshtml"
+     foreach (var nav in footer.Childs)
+    {
 
             
             #line default
             #line hidden
-WriteLiteral("                <div");
+WriteLiteral("        <div");
 
 WriteLiteral(" class=\"span3\"");
 
-WriteLiteral(">\r\n                    <h3>");
+WriteLiteral(">\r\n            <h3>");
 
             
-            #line 11 "..\..\Views\Shared\_Footer.cshtml"
-                   Write(nav.Name);
+            #line 9 "..\..\Views\Shared\_Footer.cshtml"
+           Write(nav.Name);
 
             
             #line default
@@ -105,46 +95,46 @@ WriteLiteral(">\r\n                    <h3>");
 WriteLiteral("</h3>\r\n");
 
             
-            #line 12 "..\..\Views\Shared\_Footer.cshtml"
-                    
+            #line 10 "..\..\Views\Shared\_Footer.cshtml"
+            
             
             #line default
             #line hidden
             
-            #line 12 "..\..\Views\Shared\_Footer.cshtml"
-                     foreach (var item in nav.Childs)
-                    {
+            #line 10 "..\..\Views\Shared\_Footer.cshtml"
+             foreach (var item in nav.Childs)
+            {
 
             
             #line default
             #line hidden
-WriteLiteral("                        <a");
+WriteLiteral("                <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 420), Tuple.Create("\"", 436)
+WriteAttribute("href", Tuple.Create(" href=\"", 302), Tuple.Create("\"", 318)
             
-            #line 14 "..\..\Views\Shared\_Footer.cshtml"
-, Tuple.Create(Tuple.Create("", 427), Tuple.Create<System.Object, System.Int32>(item.Url
+            #line 12 "..\..\Views\Shared\_Footer.cshtml"
+, Tuple.Create(Tuple.Create("", 309), Tuple.Create<System.Object, System.Int32>(item.Url
             
             #line default
             #line hidden
-, 427), false)
+, 309), false)
 );
 
-WriteAttribute("target", Tuple.Create(" target=\"", 437), Tuple.Create("\"", 498)
+WriteAttribute("target", Tuple.Create(" target=\"", 319), Tuple.Create("\"", 380)
             
-            #line 14 "..\..\Views\Shared\_Footer.cshtml"
-, Tuple.Create(Tuple.Create("", 446), Tuple.Create<System.Object, System.Int32>(item.Url.StartsWithIgnoreCase("http")?"_blank":""
+            #line 12 "..\..\Views\Shared\_Footer.cshtml"
+, Tuple.Create(Tuple.Create("", 328), Tuple.Create<System.Object, System.Int32>(item.Url.StartsWithIgnoreCase("http")?"_blank":""
             
             #line default
             #line hidden
-, 446), false)
+, 328), false)
 );
 
 WriteLiteral(">");
 
             
-            #line 14 "..\..\Views\Shared\_Footer.cshtml"
-                                                                                                     Write(item.Name);
+            #line 12 "..\..\Views\Shared\_Footer.cshtml"
+                                                                                             Write(item.Name);
 
             
             #line default
@@ -154,42 +144,34 @@ WriteLiteral("</a>");
 WriteLiteral("<br>\r\n");
 
             
-            #line 15 "..\..\Views\Shared\_Footer.cshtml"
-                    }
-
-            
-            #line default
-            #line hidden
-WriteLiteral("                </div>\r\n");
-
-            
-            #line 17 "..\..\Views\Shared\_Footer.cshtml"
+            #line 13 "..\..\Views\Shared\_Footer.cshtml"
             }
 
             
             #line default
             #line hidden
-WriteLiteral("        </div>\r\n    </div>\r\n    <div");
+WriteLiteral("        </div>\r\n");
+
+            
+            #line 15 "..\..\Views\Shared\_Footer.cshtml"
+    }
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</div>\r\n<div");
 
 WriteLiteral(" class=\"container\"");
 
-WriteLiteral(" style=\"padding: 15px 0;\"");
-
-WriteLiteral(">\r\n        <div");
+WriteLiteral(">\r\n    <div");
 
 WriteLiteral(" class=\"row\"");
 
-WriteLiteral(">\r\n            <div");
-
-WriteLiteral(" class=\"span12\"");
-
-WriteLiteral(" style=\"text-align: center; color: #65676b;\"");
-
-WriteLiteral(">");
+WriteLiteral(">\r\n        <p>");
 
             
-            #line 22 "..\..\Views\Shared\_Footer.cshtml"
-                                                                       Write(SysConfig.Current.Company);
+            #line 19 "..\..\Views\Shared\_Footer.cshtml"
+      Write(SysConfig.Current.Company);
 
             
             #line default
@@ -197,8 +179,8 @@ WriteLiteral(">");
 WriteLiteral(" &copy; ");
 
             
-            #line 22 "..\..\Views\Shared\_Footer.cshtml"
-                                                                                                         Write(DateTime.Now.Year);
+            #line 19 "..\..\Views\Shared\_Footer.cshtml"
+                                        Write(DateTime.Now.Year);
 
             
             #line default
@@ -209,7 +191,7 @@ WriteLiteral(" href=\"http://www.newlifex.com\"");
 
 WriteLiteral(" target=\"_blank\"");
 
-WriteLiteral(">新生命开发团队</a></div>\r\n        </div>\r\n    </div>\r\n</div>\r\n");
+WriteLiteral(">新生命开发团队</a></p>\r\n    </div>\r\n</div>");
 
         }
     }
