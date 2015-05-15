@@ -380,8 +380,15 @@ namespace NewLife.CMX
         /// <returns></returns>
         public IEntityCategory FindCategory(String name)
         {
-            var tree = Model.Provider.CategoryFactory.Root;
-            return tree.AllChilds.Cast<IEntityCategory>().FirstOrDefault(e => e.Name == name);
+            var fact = Model.Provider.CategoryFactory;
+            var cat = fact.FindByName(name);
+            if (cat == null)
+            {
+                cat = fact.Create() as IEntityCategory;
+                cat.Name = name;
+                cat.Insert();
+            }
+            return cat;
         }
         #endregion
     }
