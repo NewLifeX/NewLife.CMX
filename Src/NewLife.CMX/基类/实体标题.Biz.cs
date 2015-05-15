@@ -23,6 +23,18 @@ namespace NewLife.CMX
         where TContent : EntityContent<TContent>, new()
         where TStatistics : Statistics<TStatistics>, new()
     {
+        #region 对象操作﻿
+        public override void Valid(bool isNew)
+        {
+            base.Valid(isNew);
+
+            // 自动保存分类名称
+            if (Meta.FieldNames.Contains("CategoryName"))
+            {
+                if (!Dirtys["CategoryName"] && Category != null) SetItem("CategoryName", Category.Name);
+            }
+        }
+
         /// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void InitData()
@@ -52,6 +64,7 @@ namespace NewLife.CMX
 
             if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
         }
+        #endregion
 
         #region 扩展属性
         private TCategory _Category;
@@ -67,7 +80,7 @@ namespace NewLife.CMX
                 }
                 return _Category;
             }
-            set { _Category = value; }
+            //set { _Category = value; }
         }
 
         private TContent _Content;
@@ -84,7 +97,7 @@ namespace NewLife.CMX
                 }
                 return _Content;
             }
-            set { _Content = value; }
+            //set { _Content = value; }
         }
 
         private String _ContentText;
@@ -117,7 +130,7 @@ namespace NewLife.CMX
                 }
                 return _Statistics;
             }
-            set { _Statistics = value; }
+            //set { _Statistics = value; }
         }
 
         private String _StatisticsText;
