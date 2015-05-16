@@ -122,6 +122,8 @@ namespace NewLife.CMX
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public static Channel FindByName(String name)
         {
+            if (name.IsNullOrEmpty()) return null;
+
             if (Meta.Count >= 1000)
                 return Find(__.Name, name);
             else // 实体缓存
@@ -390,6 +392,18 @@ namespace NewLife.CMX
             }
             return cat;
         }
+
+        ///// <summary>获取标题列表</summary>
+        ///// <param name="channelName">频道</param>
+        ///// <param name="categoryPath"></param>
+        ///// <param name="pageIndex"></param>
+        ///// <param name="pageCount"></param>
+        ///// <returns></returns>
+        //public static IList<IEntityTitle> GetTitles(String channelName, String categoryPath, Int32 pageIndex = 1, Int32 pageCount = 10)
+        //{
+        //    var provider = ModelProvider.Get(this.GetType());
+        //    return provider.TitleFactory.GetTitles(ID, pageIndex, pageCount);
+        //}
         #endregion
     }
 }

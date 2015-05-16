@@ -320,6 +320,38 @@ namespace NewLife.CMX
         #region 业务
         /// <summary>增加访问量</summary>
         public abstract void IncView();
+
+        /// <summary>获取标题列表</summary>
+        /// <param name="categoryPath"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageCount"></param>
+        /// <returns></returns>
+        public static EntityList<TEntity> GetTitles(String categoryPath, Int32 pageIndex = 1, Int32 pageCount = 10)
+        {
+            return GetTitles(null, categoryPath, pageIndex, pageCount);
+        }
+
+        /// <summary>获取标题列表</summary>
+        /// <param name="channelName">频道</param>
+        /// <param name="categoryPath"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageCount"></param>
+        /// <returns></returns>
+        public static EntityList<TEntity> GetTitles(String channelName, String categoryPath, Int32 pageIndex = 1, Int32 pageCount = 10)
+        {
+            var chn = Channel.FindByName(channelName);
+            if (chn == null)
+            {
+                var provider = ModelProvider.Get<TEntity>();
+                var model = Model.FindByName(provider.Name);
+                chn = Channel.FindAllWithCache().ToList().FirstOrDefault(e => e.ModelID == model.ID);
+            }
+            if (chn == null) throw new XException("设计错误！在实体[{0}]中无法找到频道[{1}]", typeof(TEntity).FullName, channelName);
+
+            var cat = chn.FindCategory(categoryPath);
+
+            return GetTitles(cat.ID, pageIndex, pageCount);
+        }
         #endregion
     }
 }

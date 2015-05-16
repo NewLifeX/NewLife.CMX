@@ -13,6 +13,9 @@ namespace NewLife.CMX
         /// <summary>模型名称</summary>
         String Name { get; }
 
+        /// <summary>显示名</summary>
+        String DisplayName { get; }
+
         /// <summary>标题实体类</summary>
         Type TitleType { get; }
 
@@ -118,11 +121,24 @@ namespace NewLife.CMX
                 if (_Name == null)
                 {
                     var type = typeof(TTitle);
-                    _Name = type.GetCustomAttributeValue<DisplayNameAttribute, String>();
-                    if (String.IsNullOrEmpty(_Name)) _Name = type.GetCustomAttributeValue<DescriptionAttribute, String>();
-                    if (String.IsNullOrEmpty(_Name)) _Name = type.Name;
+                    _Name = type.Name;
                 }
                 return _Name;
+            }
+        }
+
+        private String _DisplayName;
+        /// <summary>显示名</summary>
+        public String DisplayName
+        {
+            get
+            {
+                if (_DisplayName == null)
+                {
+                    var type = typeof(TTitle);
+                    _DisplayName = type.GetDisplayName() ?? type.Name;
+                }
+                return _DisplayName;
             }
         }
 

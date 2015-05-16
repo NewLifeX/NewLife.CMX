@@ -79,10 +79,12 @@ namespace NewLife.CMX
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public static Model FindByName(String name)
         {
-            if (Meta.Count >= 1000)
-                return Find(__.Name, name);
-            else // 实体缓存
-                return Meta.Cache.Entities.Find(__.Name, name);
+            //if (Meta.Count >= 1000)
+            //    return Find(__.Name, name);
+            //else // 实体缓存
+            var entity = Meta.Cache.Entities.Find(__.Name, name);
+            if (entity == null) entity = Meta.Cache.Entities.Find(__.DisplayName, name);
+            return entity;
             // 单对象缓存
             //return Meta.SingleCache[name];
         }
@@ -126,20 +128,20 @@ namespace NewLife.CMX
 
             foreach (var item in ModelProvider.Providers)
             {
-                var model = item.Value;
+                var provider = item.Value;
 
-                var name = model.GetType().Name.TrimEnd("Provider");
-                var entity = FindByName(name);
+                var entity = FindByName(provider.Name);
+                if (entity == null) FindByName(provider.GetType().Name.TrimEnd("Provider"));
                 if (entity == null) entity = new Model();
 
-                entity.Name = name;
-                entity.DisplayName = model.Name;
+                entity.Name = provider.Name;
+                entity.DisplayName = provider.DisplayName;
                 entity.ProviderName = item.Key;
 
                 //entity.TitleTemplate = String.Format("CMX/{0}/{0}.aspx", model.TitleType.Name);
                 //entity.CategoryTemplate = String.Format("CMX/{0}/{1}.aspx", model.TitleType.Name, model.CategoryType.Name);
                 entity.Enable = true;
-                entity.ShortName = PinYin.GetFirst(model.Name);
+                entity.ShortName = PinYin.GetFirst(provider.Name);
                 entity.Save();
 
                 count++;
