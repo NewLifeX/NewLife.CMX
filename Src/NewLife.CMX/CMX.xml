@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Tables Version="8.18.5613.1906">
+<Tables Version="8.18.5615.33662">
   <Table Name="Model" Description="模型。默认有文章、文本、产品三种模型，可以扩展增加。" DbType="SqlServer" 实体分类="基础" 页面分类="Manager">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
@@ -95,6 +95,10 @@
       <Column Name="CreateUserName" DataType="String" Description="创建人" />
       <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
       <Column Name="Content" DataType="String" Length="-1" Description="内容" />
+      <Column Name="Top" DataType="Boolean" Description="置顶" />
+      <Column Name="Recommend" DataType="Boolean" Description="推荐" />
+      <Column Name="Hot" DataType="Boolean" Description="热门" />
+      <Column Name="Slide" DataType="Boolean" Description="幻灯片" />
     </Columns>
     <Indexes>
       <Index Columns="ParentID" />
