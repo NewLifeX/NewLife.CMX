@@ -80,6 +80,11 @@
       <Column Name="UpdateUserName" DataType="String" Description="更新人" />
       <Column Name="UpdateTime" DataType="DateTime" Description="更新时间" />
       <Column Name="Remark" DataType="String" Length="200" Description="备注" />
+      <Column Name="Top" DataType="Boolean" Description="置顶" />
+      <Column Name="Recommend" DataType="Boolean" Description="推荐" />
+      <Column Name="Hot" DataType="Boolean" Description="热门" />
+      <Column Name="Slide" DataType="Boolean" Description="幻灯片" />
+      <Column Name="Cover" DataType="String" Length="200" Description="封面" />
     </Columns>
     <Indexes>
       <Index Columns="CategoryID" />
@@ -95,10 +100,6 @@
       <Column Name="CreateUserName" DataType="String" Description="创建人" />
       <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
       <Column Name="Content" DataType="String" Length="-1" Description="内容" />
-      <Column Name="Top" DataType="Boolean" Description="置顶" />
-      <Column Name="Recommend" DataType="Boolean" Description="推荐" />
-      <Column Name="Hot" DataType="Boolean" Description="热门" />
-      <Column Name="Slide" DataType="Boolean" Description="幻灯片" />
     </Columns>
     <Indexes>
       <Index Columns="ParentID" />
