@@ -184,6 +184,66 @@ namespace NewLife.CMX
             get { return _Remark; }
             set { if (OnPropertyChanging(__.Remark, value)) { _Remark = value; OnPropertyChanged(__.Remark); } }
         }
+
+        private Boolean _Top;
+        /// <summary>置顶</summary>
+        [DisplayName("置顶")]
+        [Description("置顶")]
+        [DataObjectField(false, false, true, 1)]
+        [BindColumn(15, "Top", "置顶", null, "bit", 0, 0, false)]
+        public virtual Boolean Top
+        {
+            get { return _Top; }
+            set { if (OnPropertyChanging(__.Top, value)) { _Top = value; OnPropertyChanged(__.Top); } }
+        }
+
+        private Boolean _Recommend;
+        /// <summary>推荐</summary>
+        [DisplayName("推荐")]
+        [Description("推荐")]
+        [DataObjectField(false, false, true, 1)]
+        [BindColumn(16, "Recommend", "推荐", null, "bit", 0, 0, false)]
+        public virtual Boolean Recommend
+        {
+            get { return _Recommend; }
+            set { if (OnPropertyChanging(__.Recommend, value)) { _Recommend = value; OnPropertyChanged(__.Recommend); } }
+        }
+
+        private Boolean _Hot;
+        /// <summary>热门</summary>
+        [DisplayName("热门")]
+        [Description("热门")]
+        [DataObjectField(false, false, true, 1)]
+        [BindColumn(17, "Hot", "热门", null, "bit", 0, 0, false)]
+        public virtual Boolean Hot
+        {
+            get { return _Hot; }
+            set { if (OnPropertyChanging(__.Hot, value)) { _Hot = value; OnPropertyChanged(__.Hot); } }
+        }
+
+        private Boolean _Slide;
+        /// <summary>幻灯片</summary>
+        [DisplayName("幻灯片")]
+        [Description("幻灯片")]
+        [DataObjectField(false, false, true, 1)]
+        [BindColumn(18, "Slide", "幻灯片", null, "bit", 0, 0, false)]
+        public virtual Boolean Slide
+        {
+            get { return _Slide; }
+            set { if (OnPropertyChanging(__.Slide, value)) { _Slide = value; OnPropertyChanged(__.Slide); } }
+        }
+
+        private String _Cover;
+        /// <summary>封面</summary>
+        [DisplayName("封面")]
+        [Description("封面")]
+        [DataObjectField(false, false, true, 200)]
+        [BindColumn(19, "Cover", "封面", null, "nvarchar(200)", 0, 0, true)]
+        public virtual String Cover
+        {
+            get { return _Cover; }
+            set { if (OnPropertyChanging(__.Cover, value)) { _Cover = value; OnPropertyChanged(__.Cover); } }
+        }
         #endregion
 
         #region 获取/设置 字段值
@@ -214,6 +274,11 @@ namespace NewLife.CMX
                     case __.UpdateUserName : return _UpdateUserName;
                     case __.UpdateTime : return _UpdateTime;
                     case __.Remark : return _Remark;
+                    case __.Top : return _Top;
+                    case __.Recommend : return _Recommend;
+                    case __.Hot : return _Hot;
+                    case __.Slide : return _Slide;
+                    case __.Cover : return _Cover;
                     default: return base[name];
                 }
             }
@@ -235,6 +300,11 @@ namespace NewLife.CMX
                     case __.UpdateUserName : _UpdateUserName = Convert.ToString(value); break;
                     case __.UpdateTime : _UpdateTime = Convert.ToDateTime(value); break;
                     case __.Remark : _Remark = Convert.ToString(value); break;
+                    case __.Top : _Top = Convert.ToBoolean(value); break;
+                    case __.Recommend : _Recommend = Convert.ToBoolean(value); break;
+                    case __.Hot : _Hot = Convert.ToBoolean(value); break;
+                    case __.Slide : _Slide = Convert.ToBoolean(value); break;
+                    case __.Cover : _Cover = Convert.ToString(value); break;
                     default: base[name] = value; break;
                 }
             }
@@ -287,6 +357,21 @@ namespace NewLife.CMX
             ///<summary>备注</summary>
             public static readonly Field Remark = FindByName(__.Remark);
 
+            ///<summary>置顶</summary>
+            public static readonly Field Top = FindByName(__.Top);
+
+            ///<summary>推荐</summary>
+            public static readonly Field Recommend = FindByName(__.Recommend);
+
+            ///<summary>热门</summary>
+            public static readonly Field Hot = FindByName(__.Hot);
+
+            ///<summary>幻灯片</summary>
+            public static readonly Field Slide = FindByName(__.Slide);
+
+            ///<summary>封面</summary>
+            public static readonly Field Cover = FindByName(__.Cover);
+
             static Field FindByName(String name) { return Meta.Table.FindByName(name); }
         }
 
@@ -334,6 +419,21 @@ namespace NewLife.CMX
 
             ///<summary>备注</summary>
             public const String Remark = "Remark";
+
+            ///<summary>置顶</summary>
+            public const String Top = "Top";
+
+            ///<summary>推荐</summary>
+            public const String Recommend = "Recommend";
+
+            ///<summary>热门</summary>
+            public const String Hot = "Hot";
+
+            ///<summary>幻灯片</summary>
+            public const String Slide = "Slide";
+
+            ///<summary>封面</summary>
+            public const String Cover = "Cover";
 
         }
         #endregion
@@ -384,6 +484,21 @@ namespace NewLife.CMX
 
         /// <summary>备注</summary>
         String Remark { get; set; }
+
+        /// <summary>置顶</summary>
+        Boolean Top { get; set; }
+
+        /// <summary>推荐</summary>
+        Boolean Recommend { get; set; }
+
+        /// <summary>热门</summary>
+        Boolean Hot { get; set; }
+
+        /// <summary>幻灯片</summary>
+        Boolean Slide { get; set; }
+
+        /// <summary>封面</summary>
+        String Cover { get; set; }
         #endregion
 
         #region 获取/设置 字段值

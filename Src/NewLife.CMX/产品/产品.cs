@@ -118,6 +118,21 @@ namespace NewLife.CMX
             ///<summary>备注</summary>
             public static readonly Field Remark = FindByName(__.Remark);
 
+            ///<summary>置顶</summary>
+            public static readonly Field Top = FindByName(__.Top);
+
+            ///<summary>推荐</summary>
+            public static readonly Field Recommend = FindByName(__.Recommend);
+
+            ///<summary>热门</summary>
+            public static readonly Field Hot = FindByName(__.Hot);
+
+            ///<summary>幻灯片</summary>
+            public static readonly Field Slide = FindByName(__.Slide);
+
+            ///<summary>封面</summary>
+            public static readonly Field Cover = FindByName(__.Cover);
+
             ///<summary>价格</summary>
             public static readonly Field Price = FindByName(__.Price);
 
@@ -171,6 +186,21 @@ namespace NewLife.CMX
 
             ///<summary>备注</summary>
             public const String Remark = "Remark";
+
+            ///<summary>置顶</summary>
+            public const String Top = "Top";
+
+            ///<summary>推荐</summary>
+            public const String Recommend = "Recommend";
+
+            ///<summary>热门</summary>
+            public const String Hot = "Hot";
+
+            ///<summary>幻灯片</summary>
+            public const String Slide = "Slide";
+
+            ///<summary>封面</summary>
+            public const String Cover = "Cover";
 
             ///<summary>价格</summary>
             public const String Price = "Price";
