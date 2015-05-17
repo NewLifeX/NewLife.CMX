@@ -50,6 +50,15 @@
                     @Html.TextArea("ContentText", (String)entity["ContentText"], 10, 20, new { @class = "form-control" })
                 </div>
             </div>
+            <div class="form-group">
+                <label class="control-list col-md-2">推荐</label>
+                <div class="col-md-10">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="Top" value="True" />
+                        @Html.CheckBox("Top", entity)
+                    </label>
+                </div>
+            </div>
             @Html.Partial("_UserTime", Model as IEntity)
             @Html.Partial("_Form_Action", isNew)
         }
