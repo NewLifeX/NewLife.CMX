@@ -92,6 +92,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Areas\CMS\Controllers\NavController.cs" />
+    <Compile Include="Areas\CMS\Controllers\SysController.cs" />
     <Compile Include="Areas\CMS\Views\Nav\Index.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -111,6 +112,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>_UserTime.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CMS\Views\Sys\AttachConfig.generated.cs">
+      <DependentUpon>AttachConfig.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Areas\CMS\Views\Sys\SiteConfig.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SiteConfig.cshtml</DependentUpon>
     </Compile>
     <Compile Include="Areas\CMS\Views\Text\Form.generated.cs">
       <DependentUpon>Form.cshtml</DependentUpon>
@@ -255,6 +266,14 @@
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>_UserTime.generated.cs</LastGenOutput>
     </None>
+    <Content Include="Areas\CMS\Views\Sys\SiteConfig.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>SiteConfig.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\CMS\Views\Sys\AttachConfig.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>AttachConfig.generated.cs</LastGenOutput>
+    </Content>
     <None Include="Areas\CMS\Views\_ViewStart.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>_ViewStart.generated.cs</LastGenOutput>

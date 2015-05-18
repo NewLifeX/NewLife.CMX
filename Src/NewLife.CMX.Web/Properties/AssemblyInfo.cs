@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过下列特性集
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("NewLife.CMX.Web")]
+[assembly: AssemblyTitle("新生命内容管理系统")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("新生命开发团队")]
 [assembly: AssemblyProduct("NewLife.CMX.Web")]
-[assembly: AssemblyCopyright("版权所有(C) Microsoft 2015")]
+[assembly: AssemblyCopyright("\x00a92002-2015 新生命开发团队")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -31,5 +31,12 @@ using System.Runtime.InteropServices;
 //
 // 可以指定所有这些值，也可以使用“修订号”和“内部版本号”的默认值，
 // 方法是按如下所示使用“*”:
-[assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("2.0.*")]
+[assembly: AssemblyFileVersion("2.0.2015.0518")]
+
+/*
+ * v2.0.2015.0518   升级到Mvc
+ * 
+ * v1.0.2013.0803   创建项目
+ *
+*/
