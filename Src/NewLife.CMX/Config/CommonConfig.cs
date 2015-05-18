@@ -8,7 +8,7 @@ namespace NewLife.CMX.Config
     /// <summary>通用设置</summary>
     [Description("通用设置")]
     [Serializable]
-    public class CommonConfig : CMXmlConfig<CommonConfig>
+    public class CommonConfig : XmlConfig<CommonConfig>
     {
         private String _Copyright;
         /// <summary>版权所有</summary>

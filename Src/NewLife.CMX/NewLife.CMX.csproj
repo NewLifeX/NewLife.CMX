@@ -39,10 +39,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\EntityBase.cs" />
-    <Compile Include="Handlers\FormRouting.cs" />
-    <Compile Include="Handlers\GoPageUrl.cs" />
-    <Compile Include="Handlers\ListRouting.cs" />
-    <Compile Include="Handlers\UpdateImageLoad.cs" />
     <Compile Include="Interface\ILeftMenuModel.cs" />
     <Compile Include="基类\ITitleFactory.cs" />
     <Compile Include="基类\IContentFactory.cs" />
@@ -55,16 +51,7 @@
     <Compile Include="基类\统计.cs" />
     <Compile Include="文本\TextProvider.cs" />
     <Compile Include="文章\ArticleProvider.cs" />
-    <Compile Include="Base\基础信息.Biz.cs" />
-    <Compile Include="Base\基础信息.cs" />
-    <Compile Include="CMS\SysModel.cs" />
-    <Compile Include="Common\ModelKinds.cs" />
-    <Compile Include="Config\CMXConfigBase.cs" />
-    <Compile Include="Config\CMXDefaultModelConfig.cs" />
-    <Compile Include="Config\CMXmlConfig.cs" />
     <Compile Include="Config\CommonConfig.cs" />
-    <Compile Include="Config\TemplateConfig.cs" />
-    <Compile Include="Config\UploadImage.cs" />
     <Compile Include="Config\WebSettingConfig.cs" />
     <Compile Include="Editor\UEditorAjaxCore.cs" />
     <Compile Include="Editor\UEditorConfig.cs" />
@@ -76,10 +63,6 @@
     <Compile Include="Manager\MailConfig.cs" />
     <Compile Include="Manager\SiteConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tool\HelperTool.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Tool\TemplateRescources.cs" />
     <Compile Include="产品\产品.Biz.cs" />
     <Compile Include="产品\产品.cs" />
     <Compile Include="产品\产品内容.Biz.cs" />

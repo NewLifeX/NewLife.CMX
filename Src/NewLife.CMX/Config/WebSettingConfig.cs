@@ -4,13 +4,13 @@ using NewLife.Xml;
 
 namespace NewLife.CMX.Config
 {
-    [XmlConfigFile("config/WebSettingConfig.config", 15000)]
+    [XmlConfigFile("config/WebSetting.config", 15000)]
     /// <summary>网站配置</summary>
     [Description("网站配置")]
     [Serializable]
-    public class WebSettingConfig : CMXmlConfig<WebSettingConfig>
+    public class WebSettingConfig : XmlConfig<WebSettingConfig>
     {
-        private String _Index = CMXConfigBase.Current.CurrentRootPath + "/Index.html";
+        private String _Index = "Index.html";
         /// <summary>首页地址</summary>
         [Description("首页地址")]
         public String Index { get { return _Index; } set { _Index = value; } }

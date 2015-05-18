@@ -54,7 +54,7 @@ namespace NewLife.CMX
                     _FirstImagePath = m.Groups[2].ToString();
 
                     _FirstImagePath = _FirstImagePath.StartsWith("~/update") ? _FirstImagePath : UEditorConfig.Current.UploadPath + _FirstImagePath;
-                    FirstImagePath = _FirstImagePath.Replace("~", CMXConfigBase.Current.CurrentRootPath);
+                    //FirstImagePath = _FirstImagePath.Replace("~", CMXConfigBase.Current.CurrentRootPath);
                     Dirtys["FirstImagePath"] = true;
                 }
                 return _FirstImagePath;
