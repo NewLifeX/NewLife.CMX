@@ -352,33 +352,6 @@ namespace NewLife.CMX
 
             return GetTitles(cat.ID, pageIndex, pageCount);
         }
-
-        /// <summary>
-        /// 获取幻灯片实体列表
-        /// </summary>
-        /// <param name="take"></param>
-        /// <returns></returns>
-        public static EntityList<TEntity> GetSlides(Int32 take)
-        {
-            if (take <= 0) throw new ArgumentOutOfRangeException("take", "必须大于0!");
-            //var provider = ModelProvider.Get<TEntity>();
-            //var model = Model.FindByName(provider.Name);
-            var where = _.Slide == true;
-            var order = _.ID.Desc();
-            return FindAll(where, order, null, 0, take);
-        }
-        /// <summary>
-        /// 获取推荐实体列表
-        /// </summary>
-        /// <param name="take"></param>
-        /// <returns></returns>
-        public static EntityList<TEntity> GetRecommends(Int32 take)
-        {
-            if (take <= 0) throw new ArgumentOutOfRangeException("take", "必须大于0!");
-            var where = _.Recommend == true;
-            var order = _.ID.Desc();
-            return FindAll(where, order, null, 0, take);
-        } 
         #endregion
     }
 }

@@ -9,13 +9,13 @@ using XCode.DataAccessLayer;
 namespace NewLife.CMX
 {
     /// <summary>模型</summary>
-    /// <remarks>模型。默认有文章、文本、产品三种模型，可以扩展增加。</remarks>
+    /// <remarks>模型。默认有文章、文本、产品三种模型，可以扩展增加</remarks>
     [Serializable]
     [DataObject]
-    [Description("模型。默认有文章、文本、产品三种模型，可以扩展增加。")]
+    [Description("模型。默认有文章、文本、产品三种模型，可以扩展增加")]
     [BindIndex("IU_Model_Name", true, "Name")]
     [BindIndex("IU_Model_ShortName", true, "ShortName")]
-    [BindTable("Model", Description = "模型。默认有文章、文本、产品三种模型，可以扩展增加。", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
+    [BindTable("Model", Description = "模型。默认有文章、文本、产品三种模型，可以扩展增加", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class Model : IModel
     {
         #region 属性
@@ -282,7 +282,7 @@ namespace NewLife.CMX
     }
 
     /// <summary>模型接口</summary>
-    /// <remarks>模型。默认有文章、文本、产品三种模型，可以扩展增加。</remarks>
+    /// <remarks>模型。默认有文章、文本、产品三种模型，可以扩展增加</remarks>
     public partial interface IModel
     {
         #region 属性

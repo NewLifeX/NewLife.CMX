@@ -15,6 +15,105 @@ namespace NewLife.CMX
     [BindTable("Article", Description = "文章", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class Article : IArticle
     {
+        #region 属性
+        private Boolean _Top;
+        /// <summary>置顶</summary>
+        [DisplayName("置顶")]
+        [Description("置顶")]
+        [DataObjectField(false, false, true, 1)]
+        [BindColumn(1, "Top", "置顶", null, "bit", 0, 0, false)]
+        public virtual Boolean Top
+        {
+            get { return _Top; }
+            set { if (OnPropertyChanging(__.Top, value)) { _Top = value; OnPropertyChanged(__.Top); } }
+        }
+
+        private Boolean _Recommend;
+        /// <summary>推荐</summary>
+        [DisplayName("推荐")]
+        [Description("推荐")]
+        [DataObjectField(false, false, true, 1)]
+        [BindColumn(2, "Recommend", "推荐", null, "bit", 0, 0, false)]
+        public virtual Boolean Recommend
+        {
+            get { return _Recommend; }
+            set { if (OnPropertyChanging(__.Recommend, value)) { _Recommend = value; OnPropertyChanged(__.Recommend); } }
+        }
+
+        private Boolean _Hot;
+        /// <summary>热门</summary>
+        [DisplayName("热门")]
+        [Description("热门")]
+        [DataObjectField(false, false, true, 1)]
+        [BindColumn(3, "Hot", "热门", null, "bit", 0, 0, false)]
+        public virtual Boolean Hot
+        {
+            get { return _Hot; }
+            set { if (OnPropertyChanging(__.Hot, value)) { _Hot = value; OnPropertyChanged(__.Hot); } }
+        }
+
+        private Boolean _Slide;
+        /// <summary>幻灯片</summary>
+        [DisplayName("幻灯片")]
+        [Description("幻灯片")]
+        [DataObjectField(false, false, true, 1)]
+        [BindColumn(4, "Slide", "幻灯片", null, "bit", 0, 0, false)]
+        public virtual Boolean Slide
+        {
+            get { return _Slide; }
+            set { if (OnPropertyChanging(__.Slide, value)) { _Slide = value; OnPropertyChanged(__.Slide); } }
+        }
+
+        private String _Cover;
+        /// <summary>封面</summary>
+        [DisplayName("封面")]
+        [Description("封面")]
+        [DataObjectField(false, false, true, 200)]
+        [BindColumn(5, "Cover", "封面", null, "nvarchar(200)", 0, 0, true)]
+        public virtual String Cover
+        {
+            get { return _Cover; }
+            set { if (OnPropertyChanging(__.Cover, value)) { _Cover = value; OnPropertyChanged(__.Cover); } }
+        }
+        #endregion
+
+        #region 获取/设置 字段值
+        /// <summary>
+        /// 获取/设置 字段值。
+        /// 一个索引，基类使用反射实现。
+        /// 派生实体类可重写该索引，以避免反射带来的性能损耗
+        /// </summary>
+        /// <param name="name">字段名</param>
+        /// <returns></returns>
+        public override Object this[String name]
+        {
+            get
+            {
+                switch (name)
+                {
+                    case __.Top : return _Top;
+                    case __.Recommend : return _Recommend;
+                    case __.Hot : return _Hot;
+                    case __.Slide : return _Slide;
+                    case __.Cover : return _Cover;
+                    default: return base[name];
+                }
+            }
+            set
+            {
+                switch (name)
+                {
+                    case __.Top : _Top = Convert.ToBoolean(value); break;
+                    case __.Recommend : _Recommend = Convert.ToBoolean(value); break;
+                    case __.Hot : _Hot = Convert.ToBoolean(value); break;
+                    case __.Slide : _Slide = Convert.ToBoolean(value); break;
+                    case __.Cover : _Cover = Convert.ToString(value); break;
+                    default: base[name] = value; break;
+                }
+            }
+        }
+        #endregion
+
         #region 字段名
         /// <summary>取得文章字段信息的快捷方式</summary>
         public partial class _
@@ -146,5 +245,21 @@ namespace NewLife.CMX
     /// <summary>文章接口</summary>
     public partial interface IArticle : IEntityTitle
     {
+        #region 属性
+        /// <summary>置顶</summary>
+        Boolean Top { get; set; }
+
+        /// <summary>推荐</summary>
+        Boolean Recommend { get; set; }
+
+        /// <summary>热门</summary>
+        Boolean Hot { get; set; }
+
+        /// <summary>幻灯片</summary>
+        Boolean Slide { get; set; }
+
+        /// <summary>封面</summary>
+        String Cover { get; set; }
+        #endregion
     }
 }
