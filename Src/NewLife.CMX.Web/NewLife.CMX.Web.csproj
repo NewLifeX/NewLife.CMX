@@ -150,8 +150,6 @@
       <DependentUpon>_Footer.cshtml</DependentUpon>
     </Compile>
     <Compile Include="Areas\CMS\CMSAreaRegistration.cs" />
-    <Compile Include="Areas\CMS\Common\ContentController.cs" />
-    <Compile Include="Areas\CMS\Common\StatisticsController.cs" />
     <Compile Include="Areas\CMS\Common\EntityControllerBase.cs" />
     <Compile Include="Areas\CMS\Common\TitleController.cs" />
     <Compile Include="Areas\CMS\Common\CategoryController.cs" />
@@ -367,16 +365,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>9191</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:9191/</IISUrl>
-          <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

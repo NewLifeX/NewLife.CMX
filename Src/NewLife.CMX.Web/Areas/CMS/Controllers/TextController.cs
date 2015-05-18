@@ -11,8 +11,8 @@ namespace NewLife.CMX.Web.Controllers
 
     public class TextCategoryController : CategoryController<TextCategory> { }
 
-    public class TextContentController : ContentController<TextContent> { }
+    //public class TextContentController : ContentController<TextContent> { }
 
-    public class TextStatisticsController : StatisticsController<TextStatistics> { }
+    //public class TextStatisticsController : StatisticsController<TextStatistics> { }
 
 }
