@@ -98,8 +98,6 @@ namespace NewLife.CMX
                 Url = str;
             }
         }
-
-        //static SiteConfig() { }
         #endregion
     }
 }

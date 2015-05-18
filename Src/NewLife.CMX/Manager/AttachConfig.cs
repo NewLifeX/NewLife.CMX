@@ -8,13 +8,13 @@ namespace NewLife.CMX
     [XmlConfigFile("Config/Attach.config", 15000)]
     public class AttachConfig : XmlConfig<AttachConfig>
     {
-        private String _Path = "../../Upload";
+        private String _Path = "../Upload";
         /// <summary>附件上传目录</summary>
         [DisplayName("附件上传目录")]
         [Description("上传图片或附件的目录，自动创建在网站根目录下")]
         public String Path { get { return _Path; } set { _Path = value; } }
 
-        private String _extension = "jpg,gif,rar";
+        private String _extension = "png,jpg,gif,rar,zip,7z,doc,docx,xls,ppt";
         /// <summary>附件上传类型</summary>
         [DisplayName("附件上传类型")]
         [Description("以英文的逗号分隔开，如：“jpg,gif,rar”")]
@@ -36,19 +36,19 @@ namespace NewLife.CMX
         /// <summary>图片上传大小</summary>
         [DisplayName("图片上传大小")]
         [Description("单位KB。超过设置的图片大小不予上传，0不限制")]
-        public Int32 SiteAttachimgsize { get { return _imgsize; } set { _imgsize = value; } }
+        public Int32 ImageSize { get { return _imgsize; } set { _imgsize = value; } }
 
         private Int32 _imgmaxheight;
         /// <summary>图片最大尺寸高</summary>
         [DisplayName("图片最大尺寸高")]
         [Description("设置图片高和宽，超出自动裁剪，0为不受限制")]
-        public Int32 ImgMaxHeight { get { return _imgmaxheight; } set { _imgmaxheight = value; } }
+        public Int32 ImageMaxHeight { get { return _imgmaxheight; } set { _imgmaxheight = value; } }
 
         private Int32 _imgmaxwidth;
         /// <summary>图片最大尺寸宽</summary>
         [DisplayName("图片最大尺寸宽")]
         [Description("设置图片高和宽，超出自动裁剪，0为不受限制")]
-        public Int32 ImgMaxWidth { get { return _imgmaxwidth; } set { _imgmaxwidth = value; } }
+        public Int32 ImageMaxWidth { get { return _imgmaxwidth; } set { _imgmaxwidth = value; } }
 
         private Int32 _Thumbnailheight;
         /// <summary>生成缩略图大小高</summary>
@@ -78,7 +78,7 @@ namespace NewLife.CMX
         /// <summary>图片生成质量</summary>
         [DisplayName("图片生成质量")]
         [Description("只适用于加水印的jpeg格式图片.取值范围 0-100, 0质量最低, 100质量最高, 默认80")]
-        public Int32 WatermarkImgQuality { get { return _Watermarkimgquality; } set { _Watermarkimgquality = value; } }
+        public Int32 WatermarkImageQuality { get { return _Watermarkimgquality; } set { _Watermarkimgquality = value; } }
 
         private String _Watermarkpic = "";
         /// <summary>图片水印文件</summary>
