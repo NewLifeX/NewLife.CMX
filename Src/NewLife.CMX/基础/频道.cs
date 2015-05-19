@@ -92,12 +92,24 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.Roles, value)) { _Roles = value; OnPropertyChanged(__.Roles); } }
         }
 
+        private String _IndexTemplate;
+        /// <summary>索引页模版。前台分类页</summary>
+        [DisplayName("索引页模版")]
+        [Description("索引页模版。前台分类页")]
+        [DataObjectField(false, false, true, 200)]
+        [BindColumn(7, "IndexTemplate", "索引页模版。前台分类页", null, "nvarchar(200)", 0, 0, true)]
+        public virtual String IndexTemplate
+        {
+            get { return _IndexTemplate; }
+            set { if (OnPropertyChanging(__.IndexTemplate, value)) { _IndexTemplate = value; OnPropertyChanged(__.IndexTemplate); } }
+        }
+
         private String _CategoryTemplate;
         /// <summary>分类页模版。前台分类页</summary>
         [DisplayName("分类页模版")]
         [Description("分类页模版。前台分类页")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(7, "CategoryTemplate", "分类页模版。前台分类页", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(8, "CategoryTemplate", "分类页模版。前台分类页", null, "nvarchar(200)", 0, 0, true)]
         public virtual String CategoryTemplate
         {
             get { return _CategoryTemplate; }
@@ -109,7 +121,7 @@ namespace NewLife.CMX
         [DisplayName("标题页模版")]
         [Description("标题页模版。前台列表页")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(8, "TitleTemplate", "标题页模版。前台列表页", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(9, "TitleTemplate", "标题页模版。前台列表页", null, "nvarchar(200)", 0, 0, true)]
         public virtual String TitleTemplate
         {
             get { return _TitleTemplate; }
@@ -121,7 +133,7 @@ namespace NewLife.CMX
         [DisplayName("内容页模版")]
         [Description("内容页模版。前台内容页")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(9, "ContentTemplate", "内容页模版。前台内容页", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(10, "ContentTemplate", "内容页模版。前台内容页", null, "nvarchar(200)", 0, 0, true)]
         public virtual String ContentTemplate
         {
             get { return _ContentTemplate; }
@@ -133,7 +145,7 @@ namespace NewLife.CMX
         [DisplayName("创建人")]
         [Description("创建人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(10, "CreateUserID", "创建人", null, "int", 10, 0, false)]
+        [BindColumn(11, "CreateUserID", "创建人", null, "int", 10, 0, false)]
         public virtual Int32 CreateUserID
         {
             get { return _CreateUserID; }
@@ -145,7 +157,7 @@ namespace NewLife.CMX
         [DisplayName("创建时间")]
         [Description("创建时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(11, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
+        [BindColumn(12, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
         public virtual DateTime CreateTime
         {
             get { return _CreateTime; }
@@ -157,7 +169,7 @@ namespace NewLife.CMX
         [DisplayName("更新人")]
         [Description("更新人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(12, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
+        [BindColumn(13, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
         public virtual Int32 UpdateUserID
         {
             get { return _UpdateUserID; }
@@ -169,7 +181,7 @@ namespace NewLife.CMX
         [DisplayName("更新时间")]
         [Description("更新时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(13, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
+        [BindColumn(14, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
         public virtual DateTime UpdateTime
         {
             get { return _UpdateTime; }
@@ -181,7 +193,7 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(14, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(15, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Remark
         {
             get { return _Remark; }
@@ -209,6 +221,7 @@ namespace NewLife.CMX
                     case __.Suffix : return _Suffix;
                     case __.Enable : return _Enable;
                     case __.Roles : return _Roles;
+                    case __.IndexTemplate : return _IndexTemplate;
                     case __.CategoryTemplate : return _CategoryTemplate;
                     case __.TitleTemplate : return _TitleTemplate;
                     case __.ContentTemplate : return _ContentTemplate;
@@ -230,6 +243,7 @@ namespace NewLife.CMX
                     case __.Suffix : _Suffix = Convert.ToString(value); break;
                     case __.Enable : _Enable = Convert.ToBoolean(value); break;
                     case __.Roles : _Roles = Convert.ToString(value); break;
+                    case __.IndexTemplate : _IndexTemplate = Convert.ToString(value); break;
                     case __.CategoryTemplate : _CategoryTemplate = Convert.ToString(value); break;
                     case __.TitleTemplate : _TitleTemplate = Convert.ToString(value); break;
                     case __.ContentTemplate : _ContentTemplate = Convert.ToString(value); break;
@@ -265,6 +279,9 @@ namespace NewLife.CMX
 
             ///<summary>角色列表</summary>
             public static readonly Field Roles = FindByName(__.Roles);
+
+            ///<summary>索引页模版。前台分类页</summary>
+            public static readonly Field IndexTemplate = FindByName(__.IndexTemplate);
 
             ///<summary>分类页模版。前台分类页</summary>
             public static readonly Field CategoryTemplate = FindByName(__.CategoryTemplate);
@@ -313,6 +330,9 @@ namespace NewLife.CMX
 
             ///<summary>角色列表</summary>
             public const String Roles = "Roles";
+
+            ///<summary>索引页模版。前台分类页</summary>
+            public const String IndexTemplate = "IndexTemplate";
 
             ///<summary>分类页模版。前台分类页</summary>
             public const String CategoryTemplate = "CategoryTemplate";
@@ -363,6 +383,9 @@ namespace NewLife.CMX
 
         /// <summary>角色列表</summary>
         String Roles { get; set; }
+
+        /// <summary>索引页模版。前台分类页</summary>
+        String IndexTemplate { get; set; }
 
         /// <summary>分类页模版。前台分类页</summary>
         String CategoryTemplate { get; set; }
