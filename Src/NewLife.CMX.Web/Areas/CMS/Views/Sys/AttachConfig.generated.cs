@@ -49,8 +49,6 @@ namespace ASP
     Layout = "~/Views/Shared/_Ace_Layout.cshtml";
     ViewBag.Title = "网站配置";
 
-    var isNew = false;
-
             
             #line default
             #line hidden
@@ -67,7 +65,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("        ");
 
             
-            #line 11 "..\..\Areas\CMS\Views\Sys\AttachConfig.cshtml"
+            #line 9 "..\..\Areas\CMS\Views\Sys\AttachConfig.cshtml"
    Write(Html.EditorForModel());
 
             
@@ -82,7 +80,7 @@ WriteLiteral("\r\n");
 WriteLiteral("    ");
 
             
-            #line 16 "..\..\Areas\CMS\Views\Sys\AttachConfig.cshtml"
+            #line 14 "..\..\Areas\CMS\Views\Sys\AttachConfig.cshtml"
 Write(Scripts.Render("~/bundles/jqueryval"));
 
             
