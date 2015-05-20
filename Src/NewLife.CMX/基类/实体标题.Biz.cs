@@ -300,6 +300,14 @@ namespace NewLife.CMX
             else // 实体缓存
                 return Meta.Cache.Entities.FindAll(__.CategoryID, categoryid).Page(start, max);
         }
+
+        public static EntityList<TEntity> GetPages(Int32 categoryId, Int32 pageIndex, Int32 pageSize,
+            out Int32 recordCount)
+        {
+            var where = _.CategoryID == categoryId;
+            recordCount = FindCount(where);
+            return FindAll(where, _.ID.Desc(), null, (pageIndex - 1)*pageSize, pageSize);
+        } 
         #endregion
 
         #region 高级查询
