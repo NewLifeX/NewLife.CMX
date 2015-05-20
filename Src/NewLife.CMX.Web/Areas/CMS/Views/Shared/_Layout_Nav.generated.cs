@@ -58,20 +58,32 @@ namespace ASP
             
             #line default
             #line hidden
-WriteLiteral("\r\n<i");
+WriteLiteral("\r\n");
 
-WriteLiteral(" class=\"ace-icon fa fa-home home-icon\"");
-
-WriteLiteral("></i>\r\n<a");
-
-WriteAttribute("href", Tuple.Create(" href=\"", 172), Tuple.Create("\"", 244)
             
-            #line 7 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
-, Tuple.Create(Tuple.Create("", 179), Tuple.Create<System.Object, System.Int32>(Url.Action("Index", new { channel = chn.ID, category = cat.ID })
+            #line 6 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
+ if (chn != null && cat != null)
+{
+
             
             #line default
             #line hidden
-, 179), false)
+WriteLiteral("    <i");
+
+WriteLiteral(" class=\"ace-icon fa fa-home home-icon\"");
+
+WriteLiteral("></i>\r\n");
+
+WriteLiteral("    <a");
+
+WriteAttribute("href", Tuple.Create(" href=\"", 217), Tuple.Create("\"", 289)
+            
+            #line 9 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
+, Tuple.Create(Tuple.Create("", 224), Tuple.Create<System.Object, System.Int32>(Url.Action("Index", new { channel = chn.ID, category = cat.ID })
+            
+            #line default
+            #line hidden
+, 224), false)
 );
 
 WriteLiteral(" class=\"h4\"");
@@ -79,8 +91,8 @@ WriteLiteral(" class=\"h4\"");
 WriteLiteral("><strong>");
 
             
-            #line 7 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
-                                                                                          Write(chn.Name);
+            #line 9 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
+                                                                                              Write(chn.Name);
 
             
             #line default
@@ -88,33 +100,39 @@ WriteLiteral("><strong>");
 WriteLiteral("</strong></a>\r\n");
 
             
-            #line 8 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
- if (cat != null)
-{
-    foreach (IEntityCategory item in cat.AllParents)
+            #line 10 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
+    
+            
+            #line default
+            #line hidden
+            
+            #line 10 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
+     if (cat != null)
     {
-        if (item.ID != 0)
+        foreach (IEntityCategory item in cat.AllParents)
         {
+            if (item.ID != 0)
+            {
 
             
             #line default
             #line hidden
-WriteLiteral("            ");
+WriteLiteral("                ");
 
 WriteLiteral("&nbsp;/&nbsp;");
 
 WriteLiteral("\r\n");
 
-WriteLiteral("            <a");
+WriteLiteral("                <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 464), Tuple.Create("\"", 537)
+WriteAttribute("href", Tuple.Create(" href=\"", 541), Tuple.Create("\"", 614)
             
-            #line 15 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
-, Tuple.Create(Tuple.Create("", 471), Tuple.Create<System.Object, System.Int32>(Url.Action("Index", new { channel = chn.ID, category = item.ID })
+            #line 17 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
+, Tuple.Create(Tuple.Create("", 548), Tuple.Create<System.Object, System.Int32>(Url.Action("Index", new { channel = chn.ID, category = item.ID })
             
             #line default
             #line hidden
-, 471), false)
+, 548), false)
 );
 
 WriteLiteral(" class=\"h4\"");
@@ -122,8 +140,8 @@ WriteLiteral(" class=\"h4\"");
 WriteLiteral(">");
 
             
-            #line 15 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
-                                                                                               Write(item.Name);
+            #line 17 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
+                                                                                                   Write(item.Name);
 
             
             #line default
@@ -131,24 +149,36 @@ WriteLiteral(">");
 WriteLiteral("</a>\r\n");
 
             
-            #line 16 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
+            #line 18 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
+            }
         }
     }
-}
+            
+            #line default
+            #line hidden
+            
+            #line 20 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
+     
 
             
             #line default
             #line hidden
-WriteLiteral("&nbsp;/&nbsp;<a");
+WriteLiteral("    ");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 602), Tuple.Create("\"", 674)
+WriteLiteral("&nbsp;/&nbsp;");
+
+WriteLiteral("\r\n");
+
+WriteLiteral("    <a");
+
+WriteAttribute("href", Tuple.Create(" href=\"", 714), Tuple.Create("\"", 786)
             
-            #line 19 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
-, Tuple.Create(Tuple.Create("", 609), Tuple.Create<System.Object, System.Int32>(Url.Action("Index", new { channel = chn.ID, category = cat.ID })
+            #line 22 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
+, Tuple.Create(Tuple.Create("", 721), Tuple.Create<System.Object, System.Int32>(Url.Action("Index", new { channel = chn.ID, category = cat.ID })
             
             #line default
             #line hidden
-, 609), false)
+, 721), false)
 );
 
 WriteLiteral(" class=\"h4\"");
@@ -156,14 +186,125 @@ WriteLiteral(" class=\"h4\"");
 WriteLiteral("><strong>");
 
             
-            #line 19 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
-                                                                                                       Write(cat.Name);
+            #line 22 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
+                                                                                              Write(cat.Name);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</strong></a>\r\n");
+
+            
+            #line 23 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
+}
+else
+{
+    var menu = ManageProvider.Menu.Current;
+
+            
+            #line default
+            #line hidden
+WriteLiteral("    <i");
+
+WriteLiteral(" class=\"ace-icon fa fa-home home-icon\"");
+
+WriteLiteral("></i>\r\n");
+
+            
+            #line 28 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
+    
+            
+            #line default
+            #line hidden
+            
+            #line 28 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
+     if (menu != null)
+    {
+        foreach (IMenu item in menu.AllParents)
+        {
+            if (item.ID != 0)
+            {
+
+            
+            #line default
+            #line hidden
+WriteLiteral("                <a");
+
+WriteAttribute("href", Tuple.Create(" href=\"", 1094), Tuple.Create("\"", 1145)
+            
+            #line 34 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
+, Tuple.Create(Tuple.Create("", 1101), Tuple.Create<System.Object, System.Int32>(item.Url!=null? Url.Content(item.Url):"#"
+            
+            #line default
+            #line hidden
+, 1101), false)
+);
+
+WriteLiteral(" class=\"h4\"");
+
+WriteLiteral(">");
+
+            
+            #line 34 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
+                                                                             Write(item.DisplayName);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</a>\r\n");
+
+WriteLiteral("                ");
+
+WriteLiteral("&nbsp;/&nbsp;");
+
+WriteLiteral("\r\n");
+
+            
+            #line 36 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
+            }
+        }
+    }
+            
+            #line default
+            #line hidden
+            
+            #line 38 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
+     
+
+            
+            #line default
+            #line hidden
+WriteLiteral("    <a");
+
+WriteAttribute("href", Tuple.Create(" href=\"", 1264), Tuple.Create("\"", 1291)
+            
+            #line 39 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
+, Tuple.Create(Tuple.Create("", 1271), Tuple.Create<System.Object, System.Int32>(Url.Action("Index")
+            
+            #line default
+            #line hidden
+, 1271), false)
+);
+
+WriteLiteral(" class=\"h4\"");
+
+WriteLiteral("><strong>");
+
+            
+            #line 39 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
+                                                  Write(menu != null ? menu.DisplayName : ViewBag.Title);
 
             
             #line default
             #line hidden
 WriteLiteral("</strong></a>");
 
+            
+            #line 39 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
+                                                                                                                     }
+            
+            #line default
+            #line hidden
         }
     }
 }
