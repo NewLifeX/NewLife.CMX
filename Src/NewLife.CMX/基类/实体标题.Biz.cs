@@ -8,6 +8,7 @@
 using System.ComponentModel;
 using System.Linq;
 using NewLife.Log;
+using NewLife.Web;
 using XCode;
 using XCode.Membership;
 
@@ -311,6 +312,14 @@ namespace NewLife.CMX
         #endregion
 
         #region 高级查询
+        public static EntityList<TEntity> Search(Int32 categoryid, Pager p)
+        {
+            var exp = _.CategoryID == categoryid;
+            exp.SetStrict();
+
+            return FindAll(exp, p);
+        }
+
         public static EntityList<TEntity> GetTitles(Int32 categoryid, Int32 pageIndex = 1, Int32 pageCount = 10)
         {
             if (pageIndex <= 0) pageIndex = 1;

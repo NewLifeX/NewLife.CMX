@@ -42,6 +42,9 @@ namespace NewLife.CMX.Web
                 var catid = RouteData.Values["category"].ToInt();
                 var cat = chn.AllCategories.FirstOrDefault(e => e.ID == catid);
                 ViewBag.Category = cat;
+
+                // 设置当前频道
+                ModelProvider.Get(cat.GetType()).CurrentChannel = chn.ID;
             }
         }
 
@@ -53,13 +56,18 @@ namespace NewLife.CMX.Web
             // 加载频道和分类
             LoadChannel();
 
-            return base.IndexView(p);
+            //return base.IndexView(p);
+
+            var cat = ViewBag.Category as IEntityCategory;
+            var list = EntityTitle<TEntity>.Search(cat.ID, p);
+
+            return View(list);
         }
 
         /// <summary>表单页视图。子控制器可以重载，以传递更多信息给视图，比如修改要显示的列</summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        protected override System.Web.Mvc.ActionResult FormView(TEntity entity)
+        protected override ActionResult FormView(TEntity entity)
         {
             // 加载频道和分类
             LoadChannel();
