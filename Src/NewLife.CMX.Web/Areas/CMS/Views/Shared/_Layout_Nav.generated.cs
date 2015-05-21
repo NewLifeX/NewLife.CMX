@@ -101,13 +101,7 @@ WriteLiteral("</strong></a>\r\n");
 
             
             #line 10 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
-    
-            
-            #line default
-            #line hidden
-            
-            #line 10 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
-     if (cat != null)
+    if (cat != null)
     {
         foreach (IEntityCategory item in cat.AllParents)
         {
@@ -125,14 +119,14 @@ WriteLiteral("\r\n");
 
 WriteLiteral("                <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 541), Tuple.Create("\"", 614)
+WriteAttribute("href", Tuple.Create(" href=\"", 540), Tuple.Create("\"", 613)
             
             #line 17 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
-, Tuple.Create(Tuple.Create("", 548), Tuple.Create<System.Object, System.Int32>(Url.Action("Index", new { channel = chn.ID, category = item.ID })
+, Tuple.Create(Tuple.Create("", 547), Tuple.Create<System.Object, System.Int32>(Url.Action("Index", new { channel = chn.ID, category = item.ID })
             
             #line default
             #line hidden
-, 548), false)
+, 547), false)
 );
 
 WriteLiteral(" class=\"h4\"");
@@ -153,12 +147,6 @@ WriteLiteral("</a>\r\n");
             }
         }
     }
-            
-            #line default
-            #line hidden
-            
-            #line 20 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
-     
 
             
             #line default
@@ -171,14 +159,14 @@ WriteLiteral("\r\n");
 
 WriteLiteral("    <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 714), Tuple.Create("\"", 786)
+WriteAttribute("href", Tuple.Create(" href=\"", 713), Tuple.Create("\"", 785)
             
             #line 22 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
-, Tuple.Create(Tuple.Create("", 721), Tuple.Create<System.Object, System.Int32>(Url.Action("Index", new { channel = chn.ID, category = cat.ID })
+, Tuple.Create(Tuple.Create("", 720), Tuple.Create<System.Object, System.Int32>(Url.Action("Index", new { channel = chn.ID, category = cat.ID })
             
             #line default
             #line hidden
-, 721), false)
+, 720), false)
 );
 
 WriteLiteral(" class=\"h4\"");
@@ -212,13 +200,7 @@ WriteLiteral("></i>\r\n");
 
             
             #line 28 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
-    
-            
-            #line default
-            #line hidden
-            
-            #line 28 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
-     if (menu != null)
+    if (menu != null)
     {
         foreach (IMenu item in menu.AllParents)
         {
@@ -230,14 +212,14 @@ WriteLiteral("></i>\r\n");
             #line hidden
 WriteLiteral("                <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 1094), Tuple.Create("\"", 1145)
+WriteAttribute("href", Tuple.Create(" href=\"", 1092), Tuple.Create("\"", 1143)
             
             #line 34 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
-, Tuple.Create(Tuple.Create("", 1101), Tuple.Create<System.Object, System.Int32>(item.Url!=null? Url.Content(item.Url):"#"
+, Tuple.Create(Tuple.Create("", 1099), Tuple.Create<System.Object, System.Int32>(item.Url!=null? Url.Content(item.Url):"#"
             
             #line default
             #line hidden
-, 1101), false)
+, 1099), false)
 );
 
 WriteLiteral(" class=\"h4\"");
@@ -264,26 +246,20 @@ WriteLiteral("\r\n");
             }
         }
     }
-            
-            #line default
-            #line hidden
-            
-            #line 38 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
-     
 
             
             #line default
             #line hidden
 WriteLiteral("    <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 1264), Tuple.Create("\"", 1291)
+WriteAttribute("href", Tuple.Create(" href=\"", 1262), Tuple.Create("\"", 1289)
             
             #line 39 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
-, Tuple.Create(Tuple.Create("", 1271), Tuple.Create<System.Object, System.Int32>(Url.Action("Index")
+, Tuple.Create(Tuple.Create("", 1269), Tuple.Create<System.Object, System.Int32>(Url.Action("Index")
             
             #line default
             #line hidden
-, 1271), false)
+, 1269), false)
 );
 
 WriteLiteral(" class=\"h4\"");

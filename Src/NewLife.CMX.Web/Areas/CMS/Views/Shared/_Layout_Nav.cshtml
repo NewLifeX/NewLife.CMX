@@ -7,7 +7,7 @@
 {
     <i class="ace-icon fa fa-home home-icon"></i>
     <a href="@Url.Action("Index", new { channel = chn.ID, category = cat.ID })" class="h4"><strong>@chn.Name</strong></a>
-    @if (cat != null)
+    if (cat != null)
     {
         foreach (IEntityCategory item in cat.AllParents)
         {
@@ -25,7 +25,7 @@ else
 {
     var menu = ManageProvider.Menu.Current;
     <i class="ace-icon fa fa-home home-icon"></i>
-    @if (menu != null)
+    if (menu != null)
     {
         foreach (IMenu item in menu.AllParents)
         {
