@@ -15,7 +15,7 @@ using XCode.Membership;
 namespace NewLife.CMX
 {
     /// <summary>频道</summary>
-    public partial class Channel : UserTimeEntityBase<Channel>
+    public partial class Channel : UserTimeEntity<Channel>
     {
         #region 对象操作﻿
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
