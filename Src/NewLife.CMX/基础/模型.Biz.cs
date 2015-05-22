@@ -8,12 +8,13 @@
 using System.ComponentModel;
 using NewLife.Common;
 using NewLife.Log;
+using XCode.Membership;
 
 namespace NewLife.CMX
 {
     /// <summary>模型</summary>
     /// <remarks>模型。默认有文章、文本、产品三种模型，可以扩展增加。</remarks>
-    public partial class Model : EntityBase<Model>
+    public partial class Model : UserTimeEntityBase<Model>
     {
         #region 对象操作﻿
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
