@@ -223,6 +223,13 @@ namespace NewLife.CMX
             var provider = ModelProvider.Get(this.GetType());
             return provider.TitleFactory.GetTitles(ID, pageIndex, pageCount);
         }
+
+        public IEntityTitle FindTitle(int id)
+        {
+            var provider = ModelProvider.Get(this.GetType());
+            return provider.TitleFactory.FindByID(id);
+        }
+
         #endregion
 
         #region 扩展操作
@@ -235,5 +242,6 @@ namespace NewLife.CMX
     partial interface IEntityCategory
     {
         IList<IEntityTitle> GetTitles(Int32 pageIndex = 1, Int32 pageCount = 10);
+        IEntityTitle FindTitle(Int32 id);
     }
 }

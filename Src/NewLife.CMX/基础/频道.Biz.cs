@@ -377,6 +377,12 @@ namespace NewLife.CMX
             }
         }
 
+        public IEntityCategory FindCategory(Int32 id)
+        {
+            var fact = Model.Provider.CategoryFactory;
+            var cat = fact.FindByID(id);
+            return cat;
+        }
         /// <summary>查找频道</summary>
         /// <param name="name"></param>
         /// <returns></returns>
