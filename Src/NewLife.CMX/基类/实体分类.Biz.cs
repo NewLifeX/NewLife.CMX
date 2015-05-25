@@ -259,5 +259,6 @@ namespace NewLife.CMX
     {
         IList<IEntityTitle> GetTitles(Int32 pageIndex = 1, Int32 pageCount = 10);
         IEntityTitle FindTitle(Int32 id);
+
     }
 }
