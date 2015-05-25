@@ -68,6 +68,22 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
+
+        private Channel _channel;
+
+        public Channel Channel
+        {
+            get
+            {
+                if (this._channel == null && this.ChannelID > 0 && !this.Dirtys.ContainsKey("Channel"))
+                {
+                    this._channel = Channel.FindByID(this.ChannelID);
+                    this.Dirtys.Add("Channel", true);
+                }
+                return this._channel;
+            }
+        }
+
         #endregion
 
         #region 扩展查询﻿
