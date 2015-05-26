@@ -29,7 +29,7 @@ namespace NewLife.CMX
         public override void Valid(Boolean isNew)
         {
             // 这里验证参数范围，建议抛出参数异常，指定参数名，前端用户界面可以捕获参数异常并聚焦到对应的参数输入框
-            //if (String.IsNullOrEmpty(Name)) throw new ArgumentNullException(__.Name, _.Name.DisplayName + "无效！");
+            if (Channel == null) throw new ArgumentNullException(__.ChannelID, _.ChannelID.DisplayName + "无效！");
             //if (!isNew && ID < 1) throw new ArgumentOutOfRangeException(__.ID, _.ID.DisplayName + "必须大于0！");
 
             // 建议先调用基类方法，基类方法会对唯一索引的数据进行验证
@@ -53,12 +53,19 @@ namespace NewLife.CMX
             // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
             if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
 
+            // 找到频道
+            var provider = ModelProvider.Get<TEntity>();
+            var model = Model.FindByName(provider.Name);
+            var chn = Channel.FindBySuffixAndModel(null, model.ID);
+
             var entity = new TEntity();
             entity.Name = "默认" + Meta.Table.Description;
+            entity.ChannelID = chn.ID;
             entity.Insert();
 
             entity = new TEntity { ParentID = entity.ID };
             entity.Name = "二级分类";
+            entity.ChannelID = chn.ID;
             entity.Insert();
 
             if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
@@ -66,7 +73,6 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
-        private Channel _channel;
         /// <summary>当前分类所在频道</summary>
         public Channel Channel { get { return Channel.FindByID(this.ChannelID); } }
         #endregion
@@ -242,6 +248,8 @@ namespace NewLife.CMX
 
     partial interface IEntityCategory
     {
+        Channel Channel { get; }
+
         IList<IEntityTitle> GetTitles(Int32 pageIndex = 1, Int32 pageCount = 10);
 
         IEntityTitle FindTitle(Int32 id);

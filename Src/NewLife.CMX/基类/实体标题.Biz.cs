@@ -84,6 +84,8 @@ namespace NewLife.CMX
             //set { _Category = value; }
         }
 
+        protected internal override IEntityCategory Category_ { get { return Category; } }
+
         private TContent _Content;
         /// <summary>内容</summary>
         public TContent Content
@@ -275,6 +277,10 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
+        /// <summary>当前主题的分类</summary>
+        IEntityCategory IEntityTitle.Category { get { return Category_; } }
+
+        protected internal abstract IEntityCategory Category_ { get; }
         #endregion
 
         #region 扩展查询﻿
@@ -307,8 +313,8 @@ namespace NewLife.CMX
         {
             var where = _.CategoryID == categoryId;
             recordCount = FindCount(where);
-            return FindAll(where, _.ID.Desc(), null, (pageIndex - 1)*pageSize, pageSize);
-        } 
+            return FindAll(where, _.ID.Desc(), null, (pageIndex - 1) * pageSize, pageSize);
+        }
         #endregion
 
         #region 高级查询
@@ -370,5 +376,11 @@ namespace NewLife.CMX
             return GetTitles(cat.ID, pageIndex, pageCount);
         }
         #endregion
+    }
+
+    partial interface IEntityTitle
+    {
+        /// <summary>当前主题的分类</summary>
+        IEntityCategory Category { get; }
     }
 }

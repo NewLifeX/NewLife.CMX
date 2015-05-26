@@ -164,19 +164,19 @@ namespace NewLife.CMX
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Suffix"></param>
-        /// <param name="ModelID"></param>
+        /// <param name="suffix"></param>
+        /// <param name="modelID"></param>
         /// <returns></returns>
-        public static Channel FindBySuffixAndModel(String Suffix, Int32 ModelID)
+        public static Channel FindBySuffixAndModel(String suffix, Int32 modelID)
         {
-            if (Suffix == null || ModelID < 1) return null;
+            //if (Suffix == null || ModelID < 1) return null;
 
             if (Meta.Count > 1000)
-                return Find(new String[] { __.Suffix, __.ModelID }, new Object[] { Suffix, ModelID });
-            else if (Suffix == "")
-                return Meta.Cache.Entities.Find(e => (e.Suffix.IsNullOrEmpty() && e.ModelID == ModelID));
+                return Find(new String[] { __.Suffix, __.ModelID }, new Object[] { suffix, modelID });
+            else if (suffix.IsNullOrEmpty())
+                return Meta.Cache.Entities.Find(e => (e.Suffix.IsNullOrEmpty() && e.ModelID == modelID));
             else
-                return Meta.Cache.Entities.Find(e => e.Suffix == Suffix & e.ModelID == ModelID);
+                return Meta.Cache.Entities.Find(e => e.Suffix == suffix & e.ModelID == modelID);
 
         }
 
@@ -307,6 +307,15 @@ namespace NewLife.CMX
                 cat.Insert();
             }
             return cat;
+        }
+
+        /// <summary>查找主题</summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IEntityTitle FindTitle(Int32 id)
+        {
+            var fact = Model.Provider.TitleFactory;
+            return fact.FindByID(id);
         }
 
         ///// <summary>获取标题列表</summary>
