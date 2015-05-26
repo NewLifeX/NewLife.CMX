@@ -37,14 +37,15 @@ namespace NewLife.CMX.Web
             if (RouteData.Values.ContainsKey("channel"))
             {
                 var chn = Channel.FindByID(RouteData.Values["channel"].ToInt());
+
+                // 设置当前频道，改变分类表、主题表、内容表等扩展表的链接定向
+                chn.Model.Provider.CurrentChannel = chn.ID;
+
                 ViewBag.Channel = chn;
 
                 var catid = RouteData.Values["category"].ToInt();
                 var cat = chn.AllCategories.FirstOrDefault(e => e.ID == catid);
                 ViewBag.Category = cat;
-
-                // 设置当前频道
-                ModelProvider.Get(cat.GetType()).CurrentChannel = chn.ID;
             }
         }
 
