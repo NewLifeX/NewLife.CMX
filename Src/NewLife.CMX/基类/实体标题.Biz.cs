@@ -103,21 +103,8 @@ namespace NewLife.CMX
             //set { _Content = value; }
         }
 
-        private String _ContentText;
         /// <summary>内容文本</summary>
-        public String ContentText
-        {
-            get
-            {
-                if (_ContentText == null && !Dirtys.ContainsKey("ContentText"))
-                {
-                    _ContentText = Content.Content ?? "";
-                    Dirtys["ContentText"] = true;
-                }
-                return _ContentText;
-            }
-            set { _ContentText = value; Content.Content = value; }
-        }
+        public override String ContentText { get { return Content != null ? Content.Content : ""; } }
 
         private TStatistics _Statistics;
         /// <summary>统计</summary>
@@ -281,6 +268,8 @@ namespace NewLife.CMX
         IEntityCategory IEntityTitle.Category { get { return Category_; } }
 
         protected internal abstract IEntityCategory Category_ { get; }
+
+        public abstract String ContentText { get; }
         #endregion
 
         #region 扩展查询﻿
@@ -382,5 +371,8 @@ namespace NewLife.CMX
     {
         /// <summary>当前主题的分类</summary>
         IEntityCategory Category { get; }
+
+        /// <summary>主要内容</summary>
+        String ContentText { get; }
     }
 }

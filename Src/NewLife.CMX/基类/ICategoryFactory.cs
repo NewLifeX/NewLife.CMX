@@ -14,6 +14,8 @@ namespace NewLife.CMX
 
         IEntityCategory FindByName(String name);
 
+        IEntityCategory FindByPath(String path);
+
         ///// <summary>查询子类以及子类的ID如果子类不是最终类，返回的时候ID会被改为负数</summary>
         ///// <param name="parentKey"></param>
         ///// <param name="deepth"></param>
@@ -31,6 +33,11 @@ namespace NewLife.CMX
         }
 
         public IEntityCategory FindByName(String name) { return EntityCategory<TEntity>.FindAllByName(name).ToList().FirstOrDefault(); }
+
+        public IEntityCategory FindByPath(String path)
+        {
+            return EntityCategory<TEntity>.Root.FindByPath(path);
+        }
 
         ///// <summary>查询子类以及子类的ID如果子类不是最终类，返回的时候ID会被改为负数</summary>
         ///// <param name="parentKey"></param>

@@ -300,12 +300,25 @@ namespace NewLife.CMX
         {
             var fact = Model.Provider.CategoryFactory;
             var cat = fact.FindByName(name);
+            if (cat == null) cat = fact.FindByPath(name);
             if (cat == null)
             {
-                cat = fact.Create() as IEntityCategory;
-                cat.Name = name;
-                cat.ChannelID = ID;
-                cat.Insert();
+                var root = fact.Root;
+
+                foreach (var item in name.Split("/"))
+                {
+                    cat = fact.FindByName(item);
+                    if (cat == null)
+                    {
+                        cat = fact.Create() as IEntityCategory;
+                        cat.ParentID = root.ID;
+                        cat.Name = item;
+                        cat.ChannelID = ID;
+                        cat.Insert();
+                    }
+
+                    root = cat;
+                }
             }
             return cat;
         }
