@@ -250,27 +250,27 @@ namespace NewLife.CMX
             // 建议先调用基类方法，基类方法会对唯一索引的数据进行验证
             base.Valid(isNew);
 
-            var mp = ManageProvider.Provider;
-            // 创建者信息
-            if (isNew && !Dirtys[__.CreateTime])
-            {
-                CreateTime = DateTime.Now;
-                if (mp.Current != null)
-                {
-                    CreateUserID = mp.Current.ID;
-                    CreateUserName = mp.Current.ToString();
-                }
-            }
-            // 更新者信息
-            if (!Dirtys[__.UpdateTime])
-            {
-                UpdateTime = DateTime.Now;
-                if (mp.Current != null)
-                {
-                    UpdateUserID = mp.Current.ID;
-                    UpdateUserName = mp.Current.ToString();
-                }
-            }
+            //var mp = ManageProvider.Provider;
+            //// 创建者信息
+            //if (isNew && !Dirtys[__.CreateTime])
+            //{
+            //    CreateTime = DateTime.Now;
+            //    if (mp.Current != null)
+            //    {
+            //        CreateUserID = mp.Current.ID;
+            //        CreateUserName = mp.Current.ToString();
+            //    }
+            //}
+            //// 更新者信息
+            //if (!Dirtys[__.UpdateTime])
+            //{
+            //    UpdateTime = DateTime.Now;
+            //    if (mp.Current != null)
+            //    {
+            //        UpdateUserID = mp.Current.ID;
+            //        UpdateUserName = mp.Current.ToString();
+            //    }
+            //}
         }
         #endregion
 

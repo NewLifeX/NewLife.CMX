@@ -93,10 +93,10 @@
     </Compile>
     <Compile Include="Areas\CMS\Controllers\NavController.cs" />
     <Compile Include="Areas\CMS\Controllers\SysController.cs" />
-    <Compile Include="Areas\CMS\Views\Nav\Index.generated.cs">
+    <Compile Include="Areas\CMS\Views\Nav\List.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Index.cshtml</DependentUpon>
+      <DependentUpon>List.cshtml</DependentUpon>
     </Compile>
     <Compile Include="Areas\CMS\Views\Product\Form.generated.cs">
       <DependentUpon>Form.cshtml</DependentUpon>
@@ -261,9 +261,9 @@
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Form.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Areas\CMS\Views\Nav\Index.cshtml">
+    <Content Include="Areas\CMS\Views\Nav\List.cshtml">
       <Generator>RazorGenerator</Generator>
-      <LastGenOutput>Index.generated.cs</LastGenOutput>
+      <LastGenOutput>List.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Areas\CMS\Views\Shared\_Layout_Nav.cshtml">
       <Generator>RazorGenerator</Generator>
