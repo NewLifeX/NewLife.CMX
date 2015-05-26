@@ -60,7 +60,7 @@ namespace NewLife.CMX
         /// <summary>模型</summary>
         [DisplayName("模型")]
         [Description("模型")]
-        [DataObjectField(false, false, true, 10)]
+        [DataObjectField(false, false, false, 10)]
         [BindColumn(4, "ModelID", "模型", null, "int", 10, 0, false)]
         public virtual Int32 ModelID
         {

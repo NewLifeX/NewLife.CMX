@@ -15,6 +15,7 @@ namespace NewLife.CMX
     [BindIndex("IX_EntityCategory_Name", false, "Name")]
     [BindIndex("IX_EntityCategory_ParentID", false, "ParentID")]
     [BindIndex("IU_EntityCategory_ParentID_Name", true, "ParentID,Name")]
+    [BindRelation("ChannelID", false, "Channel", "ID")]
     [BindTable("EntityCategory", Description = "实体分类", ConnName = "CMX", DbType = DatabaseType.None)]
     public abstract partial class EntityCategory<TEntity> : IEntityCategory
     {
@@ -56,11 +57,11 @@ namespace NewLife.CMX
         }
 
         private Int32 _ChannelID;
-        /// <summary>频道编号</summary>
-        [DisplayName("频道编号")]
-        [Description("频道编号")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(4, "ChannelID", "频道编号", null, "int", 10, 0, false)]
+        /// <summary>频道</summary>
+        [DisplayName("频道")]
+        [Description("频道")]
+        [DataObjectField(false, false, false, 10)]
+        [BindColumn(4, "ChannelID", "频道", null, "int", 10, 0, false)]
         public virtual Int32 ChannelID
         {
             get { return _ChannelID; }
@@ -200,7 +201,7 @@ namespace NewLife.CMX
             ///<summary>父类</summary>
             public static readonly Field ParentID = FindByName(__.ParentID);
 
-            ///<summary>频道编号</summary>
+            ///<summary>频道</summary>
             public static readonly Field ChannelID = FindByName(__.ChannelID);
 
             ///<summary>排序</summary>
@@ -236,7 +237,7 @@ namespace NewLife.CMX
             ///<summary>父类</summary>
             public const String ParentID = "ParentID";
 
-            ///<summary>频道编号</summary>
+            ///<summary>频道</summary>
             public const String ChannelID = "ChannelID";
 
             ///<summary>排序</summary>
@@ -274,7 +275,7 @@ namespace NewLife.CMX
         /// <summary>父类</summary>
         Int32 ParentID { get; set; }
 
-        /// <summary>频道编号</summary>
+        /// <summary>频道</summary>
         Int32 ChannelID { get; set; }
 
         /// <summary>排序</summary>

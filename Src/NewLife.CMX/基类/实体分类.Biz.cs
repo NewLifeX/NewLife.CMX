@@ -74,7 +74,11 @@ namespace NewLife.CMX
 
         #region 扩展属性﻿
         /// <summary>当前分类所在频道</summary>
+        [BindRelation("ChannelID", false, "Channel", "ID")]
         public Channel Channel { get { return Channel.FindByID(this.ChannelID); } }
+
+        [DisplayName("频道名")]
+        public String ChannelName { get { return Channel != null ? Channel.DisplayName : null; } }
         #endregion
 
         #region 扩展查询﻿

@@ -28,7 +28,7 @@ namespace NewLife.CMX
             ///<summary>父类</summary>
             public static readonly Field ParentID = FindByName(__.ParentID);
 
-            ///<summary>频道编号</summary>
+            ///<summary>频道</summary>
             public static readonly Field ChannelID = FindByName(__.ChannelID);
 
             ///<summary>排序</summary>
@@ -64,7 +64,7 @@ namespace NewLife.CMX
             ///<summary>父类</summary>
             public const String ParentID = "ParentID";
 
-            ///<summary>频道编号</summary>
+            ///<summary>频道</summary>
             public const String ChannelID = "ChannelID";
 
             ///<summary>排序</summary>

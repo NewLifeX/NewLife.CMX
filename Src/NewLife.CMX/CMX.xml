@@ -22,7 +22,7 @@
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Nullable="False" Description="名称" />
       <Column Name="DisplayName" DataType="String" Master="True" Nullable="False" Description="显示名" />
-      <Column Name="ModelID" DataType="Int32" Description="模型" />
+      <Column Name="ModelID" DataType="Int32" Nullable="False" Description="模型" />
       <Column Name="Suffix" DataType="String" Description="后缀。默认频道后缀为空，扩展频道必须有不同的表后缀" />
       <Column Name="Enable" DataType="Boolean" Description="启用" />
       <Column Name="Roles" DataType="String" Description="角色列表" />
@@ -50,7 +50,7 @@
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Master="True" Nullable="False" Description="名称" />
       <Column Name="ParentID" DataType="Int32" Description="父类" />
-      <Column Name="ChannelID" DataType="Int32" Description="频道编号" />
+      <Column Name="ChannelID" DataType="Int32" Nullable="False" Description="频道" />
       <Column Name="Sort" DataType="Int32" Description="排序" />
       <Column Name="Num" DataType="Int32" Description="数量" />
       <Column Name="CategoryTemplate" DataType="String" Length="200" Description="分类页模版。前台分类页" />
@@ -63,6 +63,9 @@
       <Index Columns="ParentID" />
       <Index Columns="ParentID,Name" Unique="True" />
     </Indexes>
+    <Relations>
+      <Relation Column="ChannelID" RelationTable="Channel" RelationColumn="ID" />
+    </Relations>
   </Table>
   <Table Name="EntityTitle" Description="实体标题" 实体分类="基类" RenderGenEntity="true">
     <Columns>
