@@ -304,6 +304,7 @@ namespace NewLife.CMX
             {
                 cat = fact.Create() as IEntityCategory;
                 cat.Name = name;
+                cat.ChannelID = ID;
                 cat.Insert();
             }
             return cat;
