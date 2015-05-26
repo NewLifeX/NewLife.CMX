@@ -14,11 +14,11 @@ namespace NewLife.CMX
 
         IEntityCategory FindByName(String name);
 
-        /// <summary>查询子类以及子类的ID如果子类不是最终类，返回的时候ID会被改为负数</summary>
-        /// <param name="parentKey"></param>
-        /// <param name="deepth"></param>
-        /// <returns></returns>
-        Dictionary<Int32, String> FindChildNameAndIDByNoParent(Int32 parentKey, Int32 deepth);
+        ///// <summary>查询子类以及子类的ID如果子类不是最终类，返回的时候ID会被改为负数</summary>
+        ///// <param name="parentKey"></param>
+        ///// <param name="deepth"></param>
+        ///// <returns></returns>
+        //Dictionary<Int32, String> FindChildNameAndIDByNoParent(Int32 parentKey, Int32 deepth);
     }
 
     class CategoryFactory<TEntity> : Entity<TEntity>.EntityOperate, ICategoryFactory where TEntity : EntityCategory<TEntity>, new()
@@ -32,13 +32,13 @@ namespace NewLife.CMX
 
         public IEntityCategory FindByName(String name) { return EntityCategory<TEntity>.FindAllByName(name).ToList().FirstOrDefault(); }
 
-        /// <summary>查询子类以及子类的ID如果子类不是最终类，返回的时候ID会被改为负数</summary>
-        /// <param name="parentKey"></param>
-        /// <param name="deepth"></param>
-        /// <returns></returns>
-        public Dictionary<Int32, String> FindChildNameAndIDByNoParent(Int32 parentKey, Int32 deepth)
-        {
-            return EntityCategory<TEntity>.FindChildNameAndIDByNoParent(parentKey, deepth);
-        }
+        ///// <summary>查询子类以及子类的ID如果子类不是最终类，返回的时候ID会被改为负数</summary>
+        ///// <param name="parentKey"></param>
+        ///// <param name="deepth"></param>
+        ///// <returns></returns>
+        //public Dictionary<Int32, String> FindChildNameAndIDByNoParent(Int32 parentKey, Int32 deepth)
+        //{
+        //    return EntityCategory<TEntity>.FindChildNameAndIDByNoParent(parentKey, deepth);
+        //}
     }
 }

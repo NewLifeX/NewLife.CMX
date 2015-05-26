@@ -37,11 +37,23 @@ namespace NewLife.CMX
         [DisplayName("名称")]
         [Description("名称")]
         [DataObjectField(false, false, false, 50)]
-        [BindColumn(2, "Name", "名称", null, "nvarchar(50)", 0, 0, true, Master=true)]
+        [BindColumn(2, "Name", "名称", null, "nvarchar(50)", 0, 0, true)]
         public virtual String Name
         {
             get { return _Name; }
             set { if (OnPropertyChanging(__.Name, value)) { _Name = value; OnPropertyChanged(__.Name); } }
+        }
+
+        private String _DisplayName;
+        /// <summary>显示名</summary>
+        [DisplayName("显示名")]
+        [Description("显示名")]
+        [DataObjectField(false, false, false, 50)]
+        [BindColumn(3, "DisplayName", "显示名", null, "nvarchar(50)", 0, 0, true, Master=true)]
+        public virtual String DisplayName
+        {
+            get { return _DisplayName; }
+            set { if (OnPropertyChanging(__.DisplayName, value)) { _DisplayName = value; OnPropertyChanged(__.DisplayName); } }
         }
 
         private Int32 _ModelID;
@@ -49,7 +61,7 @@ namespace NewLife.CMX
         [DisplayName("模型")]
         [Description("模型")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(3, "ModelID", "模型", null, "int", 10, 0, false)]
+        [BindColumn(4, "ModelID", "模型", null, "int", 10, 0, false)]
         public virtual Int32 ModelID
         {
             get { return _ModelID; }
@@ -61,7 +73,7 @@ namespace NewLife.CMX
         [DisplayName("后缀")]
         [Description("后缀。默认频道后缀为空，扩展频道必须有不同的表后缀")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(4, "Suffix", "后缀。默认频道后缀为空，扩展频道必须有不同的表后缀", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(5, "Suffix", "后缀。默认频道后缀为空，扩展频道必须有不同的表后缀", null, "nvarchar(50)", 0, 0, true)]
         public virtual String Suffix
         {
             get { return _Suffix; }
@@ -73,7 +85,7 @@ namespace NewLife.CMX
         [DisplayName("启用")]
         [Description("启用")]
         [DataObjectField(false, false, true, 1)]
-        [BindColumn(5, "Enable", "启用", null, "bit", 0, 0, false)]
+        [BindColumn(6, "Enable", "启用", null, "bit", 0, 0, false)]
         public virtual Boolean Enable
         {
             get { return _Enable; }
@@ -85,7 +97,7 @@ namespace NewLife.CMX
         [DisplayName("角色列表")]
         [Description("角色列表")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(6, "Roles", "角色列表", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(7, "Roles", "角色列表", null, "nvarchar(50)", 0, 0, true)]
         public virtual String Roles
         {
             get { return _Roles; }
@@ -97,7 +109,7 @@ namespace NewLife.CMX
         [DisplayName("索引页模版")]
         [Description("索引页模版。前台分类页")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(7, "IndexTemplate", "索引页模版。前台分类页", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(8, "IndexTemplate", "索引页模版。前台分类页", null, "nvarchar(200)", 0, 0, true)]
         public virtual String IndexTemplate
         {
             get { return _IndexTemplate; }
@@ -109,7 +121,7 @@ namespace NewLife.CMX
         [DisplayName("分类页模版")]
         [Description("分类页模版。前台分类页")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(8, "CategoryTemplate", "分类页模版。前台分类页", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(9, "CategoryTemplate", "分类页模版。前台分类页", null, "nvarchar(200)", 0, 0, true)]
         public virtual String CategoryTemplate
         {
             get { return _CategoryTemplate; }
@@ -121,7 +133,7 @@ namespace NewLife.CMX
         [DisplayName("标题页模版")]
         [Description("标题页模版。前台列表页")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(9, "TitleTemplate", "标题页模版。前台列表页", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(10, "TitleTemplate", "标题页模版。前台列表页", null, "nvarchar(200)", 0, 0, true)]
         public virtual String TitleTemplate
         {
             get { return _TitleTemplate; }
@@ -133,7 +145,7 @@ namespace NewLife.CMX
         [DisplayName("内容页模版")]
         [Description("内容页模版。前台内容页")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(10, "ContentTemplate", "内容页模版。前台内容页", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(11, "ContentTemplate", "内容页模版。前台内容页", null, "nvarchar(200)", 0, 0, true)]
         public virtual String ContentTemplate
         {
             get { return _ContentTemplate; }
@@ -145,7 +157,7 @@ namespace NewLife.CMX
         [DisplayName("创建人")]
         [Description("创建人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(11, "CreateUserID", "创建人", null, "int", 10, 0, false)]
+        [BindColumn(12, "CreateUserID", "创建人", null, "int", 10, 0, false)]
         public virtual Int32 CreateUserID
         {
             get { return _CreateUserID; }
@@ -157,7 +169,7 @@ namespace NewLife.CMX
         [DisplayName("创建时间")]
         [Description("创建时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(12, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
+        [BindColumn(13, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
         public virtual DateTime CreateTime
         {
             get { return _CreateTime; }
@@ -169,7 +181,7 @@ namespace NewLife.CMX
         [DisplayName("更新人")]
         [Description("更新人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(13, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
+        [BindColumn(14, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
         public virtual Int32 UpdateUserID
         {
             get { return _UpdateUserID; }
@@ -181,7 +193,7 @@ namespace NewLife.CMX
         [DisplayName("更新时间")]
         [Description("更新时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(14, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
+        [BindColumn(15, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
         public virtual DateTime UpdateTime
         {
             get { return _UpdateTime; }
@@ -193,7 +205,7 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(15, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(16, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Remark
         {
             get { return _Remark; }
@@ -217,6 +229,7 @@ namespace NewLife.CMX
                 {
                     case __.ID : return _ID;
                     case __.Name : return _Name;
+                    case __.DisplayName : return _DisplayName;
                     case __.ModelID : return _ModelID;
                     case __.Suffix : return _Suffix;
                     case __.Enable : return _Enable;
@@ -239,6 +252,7 @@ namespace NewLife.CMX
                 {
                     case __.ID : _ID = Convert.ToInt32(value); break;
                     case __.Name : _Name = Convert.ToString(value); break;
+                    case __.DisplayName : _DisplayName = Convert.ToString(value); break;
                     case __.ModelID : _ModelID = Convert.ToInt32(value); break;
                     case __.Suffix : _Suffix = Convert.ToString(value); break;
                     case __.Enable : _Enable = Convert.ToBoolean(value); break;
@@ -267,6 +281,9 @@ namespace NewLife.CMX
 
             ///<summary>名称</summary>
             public static readonly Field Name = FindByName(__.Name);
+
+            ///<summary>显示名</summary>
+            public static readonly Field DisplayName = FindByName(__.DisplayName);
 
             ///<summary>模型</summary>
             public static readonly Field ModelID = FindByName(__.ModelID);
@@ -318,6 +335,9 @@ namespace NewLife.CMX
 
             ///<summary>名称</summary>
             public const String Name = "Name";
+
+            ///<summary>显示名</summary>
+            public const String DisplayName = "DisplayName";
 
             ///<summary>模型</summary>
             public const String ModelID = "ModelID";
@@ -371,6 +391,9 @@ namespace NewLife.CMX
 
         /// <summary>名称</summary>
         String Name { get; set; }
+
+        /// <summary>显示名</summary>
+        String DisplayName { get; set; }
 
         /// <summary>模型</summary>
         Int32 ModelID { get; set; }

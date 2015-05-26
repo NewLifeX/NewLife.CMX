@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Tables Version="8.18.5615.33662">
+<Tables Version="8.18.5614.1400">
   <Table Name="Model" Description="模型。默认有文章、文本、产品三种模型，可以扩展增加" DbType="SqlServer" 实体分类="基础">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
-      <Column Name="Name" DataType="String" Master="True" Nullable="False" Description="名称" />
-      <Column Name="DisplayName" DataType="String" Nullable="False" Description="显示名" />
-      <Column Name="ShortName" DataType="String" Description="缩写" />
+      <Column Name="Name" DataType="String" Nullable="False" Description="名称" />
+      <Column Name="DisplayName" DataType="String" Master="True" Nullable="False" Description="显示名" />
       <Column Name="ProviderName" DataType="String" Description="提供者" />
       <Column Name="Enable" DataType="Boolean" Description="启用" />
       <Column Name="CreateUserID" DataType="Int32" Description="创建人" />
@@ -16,13 +15,13 @@
     </Columns>
     <Indexes>
       <Index Columns="Name" Unique="True" />
-      <Index Columns="ShortName" Unique="True" />
     </Indexes>
   </Table>
   <Table Name="Channel" Description="频道" DbType="SqlServer" 实体分类="基础">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
-      <Column Name="Name" DataType="String" Master="True" Nullable="False" Description="名称" />
+      <Column Name="Name" DataType="String" Nullable="False" Description="名称" />
+      <Column Name="DisplayName" DataType="String" Master="True" Nullable="False" Description="显示名" />
       <Column Name="ModelID" DataType="Int32" Description="模型" />
       <Column Name="Suffix" DataType="String" Description="后缀。默认频道后缀为空，扩展频道必须有不同的表后缀" />
       <Column Name="Enable" DataType="Boolean" Description="启用" />
@@ -52,7 +51,6 @@
       <Column Name="Name" DataType="String" Master="True" Nullable="False" Description="名称" />
       <Column Name="ParentID" DataType="Int32" Description="父类" />
       <Column Name="ChannelID" DataType="Int32" Description="频道编号" />
-      <Column Name="IsEnd" DataType="Boolean" Description="是否最终分类" />
       <Column Name="Sort" DataType="Int32" Description="排序" />
       <Column Name="Num" DataType="Int32" Description="数量" />
       <Column Name="CategoryTemplate" DataType="String" Length="200" Description="分类页模版。前台分类页" />

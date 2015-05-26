@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using NewLife.Log;
 using XCode;
-using System.Linq;
 
 namespace NewLife.CMX
 {
@@ -60,7 +59,6 @@ namespace NewLife.CMX
 
             entity = new TEntity { ParentID = entity.ID };
             entity.Name = "二级分类";
-            entity.IsEnd = true;
             entity.Insert();
 
             if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
@@ -68,22 +66,9 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
-
         private Channel _channel;
-
-        public Channel Channel
-        {
-            get
-            {
-                if (this._channel == null && this.ChannelID > 0 && !this.Dirtys.ContainsKey("Channel"))
-                {
-                    this._channel = Channel.FindByID(this.ChannelID);
-                    this.Dirtys.Add("Channel", true);
-                }
-                return this._channel;
-            }
-        }
-
+        /// <summary>当前分类所在频道</summary>
+        public Channel Channel { get { return Channel.FindByID(this.ChannelID); } }
         #endregion
 
         #region 扩展查询﻿
@@ -136,56 +121,56 @@ namespace NewLife.CMX
                 return Meta.Cache.Entities.Find(e => e.Name == name && e.ParentID == parentid);
         }
 
-        /// <summary>查询所有子孙类以及子孙类的ID如果子类不是最终类，返回的时候ID会被改为负数</summary>
-        /// <param name="parentKey"></param>
-        /// <returns></returns>
-        public static Dictionary<Int32, String> FindAllChildsNameAndIDByNoParent(Int32 parentKey)
-        {
-            var entity = Meta.Factory.Default as TEntity;
-            var list = FindAllChildsNoParent(parentKey);
-            var dic = new Dictionary<Int32, String>();
+        ///// <summary>查询所有子孙类以及子孙类的ID如果子类不是最终类，返回的时候ID会被改为负数</summary>
+        ///// <param name="parentKey"></param>
+        ///// <returns></returns>
+        //public static Dictionary<Int32, String> FindAllChildsNameAndIDByNoParent(Int32 parentKey)
+        //{
+        //    var entity = Meta.Factory.Default as TEntity;
+        //    var list = FindAllChildsNoParent(parentKey);
+        //    var dic = new Dictionary<Int32, String>();
 
-            foreach (TEntity item in list)
-            {
-                if (item.IsEnd)
-                    dic.Add(item.ID, item.TreeNodeName);
-                else
-                    dic.Add(-item.ID, item.TreeNodeName);
-            }
+        //    foreach (var item in list)
+        //    {
+        //        //if (item.IsEnd)
+        //        //    dic.Add(item.ID, item.TreeNodeName);
+        //        //else
+        //        dic.Add(-item.ID, item.TreeNodeName);
+        //    }
 
-            return dic;
-        }
+        //    return dic;
+        //}
 
-        /// <summary>查询子类以及子类的ID如果子类不是最终类，返回的时候ID会被改为负数</summary>
-        /// <param name="parentKey"></param>
-        /// <returns></returns>
-        public static Dictionary<Int32, String> FindChildNameAndIDByNoParent(Int32 parentKey, Int32 deepth)
-        {
-            var entity = Meta.Factory.Default as TEntity;
-            var list = FindAllChildsNoParent(parentKey);
-            var dic = new Dictionary<Int32, String>();
+        ///// <summary>查询子类以及子类的ID如果子类不是最终类，返回的时候ID会被改为负数</summary>
+        ///// <param name="parentKey"></param>
+        ///// <returns></returns>
+        //public static Dictionary<Int32, String> FindChildNameAndIDByNoParent(Int32 parentKey, Int32 deepth)
+        //{
+        //    var entity = Meta.Factory.Default as TEntity;
+        //    var list = FindAllChildsNoParent(parentKey);
+        //    var dic = new Dictionary<Int32, String>();
 
-            foreach (TEntity item in list)
-            {
-                if (item.Deepth > deepth) continue;
+        //    foreach (TEntity item in list)
+        //    {
+        //        if (item.Deepth > deepth) continue;
 
-                if (item.IsEnd)
-                    dic.Add(item.ID, item.TreeNodeName);
-                else
-                    dic.Add(-item.ID, item.TreeNodeName);
-            }
-            return dic;
-        }
+        //        //if (item.IsEnd)
+        //        //    dic.Add(item.ID, item.TreeNodeName);
+        //        //else
+        //        dic.Add(-item.ID, item.TreeNodeName);
+        //    }
+        //    return dic;
+        //}
 
-        /// <summary>查询所有不是终节点的节点</summary>
-        /// <param name="parentkey"></param>
-        /// <returns></returns>
-        public static EntityList<TEntity> FindAllByNoEnd(Int32 parentkey)
-        {
-            var entitylist = FindAllChildsByParent(parentkey);
-            entitylist.RemoveAll(e => e.IsEnd);
-            return entitylist;
-        }
+        ///// <summary>查询所有不是终节点的节点</summary>
+        ///// <param name="parentkey"></param>
+        ///// <returns></returns>
+        //public static EntityList<TEntity> FindAllByNoEnd(Int32 parentkey)
+        //{
+        //    var entitylist = FindAllChildsByParent(parentkey);
+        //    entitylist.RemoveAll(e => e.IsEnd);
+        //    return entitylist;
+        //}
 
         ///// <summary>
         ///// 根据分类ID查询，RootDeepth当前分类的父级根目录级别，DisDeepth决定显示分类层级
@@ -217,20 +202,20 @@ namespace NewLife.CMX
         //    return CategoryEntities;
         //}
 
-        /// <summary>
-        /// 根据ID以及深度查询父类
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="RootDeepth"></param>
-        /// <returns></returns>
-        public static TEntity FindParentByIDAndDeepth(Int32 id, Int32 RootDeepth)
-        {
-            var entity = FindByID(id);
+        ///// <summary>
+        ///// 根据ID以及深度查询父类
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <param name="RootDeepth"></param>
+        ///// <returns></returns>
+        //public static TEntity FindParentByIDAndDeepth(Int32 id, Int32 RootDeepth)
+        //{
+        //    var entity = FindByID(id);
 
-            if (id == 0 || entity.Parent == null || RootDeepth == 0) return entity = Root;
+        //    if (id == 0 || entity.Parent == null || RootDeepth == 0) return entity = Root;
 
-            return entity.AllParents.Find(e => e.Deepth == RootDeepth);
-        }
+        //    return entity.AllParents.Find(e => e.Deepth == RootDeepth);
+        //}
         #endregion
 
         #region 高级查询
@@ -258,7 +243,7 @@ namespace NewLife.CMX
     partial interface IEntityCategory
     {
         IList<IEntityTitle> GetTitles(Int32 pageIndex = 1, Int32 pageCount = 10);
-        IEntityTitle FindTitle(Int32 id);
 
+        IEntityTitle FindTitle(Int32 id);
     }
 }

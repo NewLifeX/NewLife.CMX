@@ -30,6 +30,8 @@ namespace NewLife.CMX
             base.Valid(isNew);
 
             if (String.IsNullOrEmpty(Roles)) AddRole(1);
+
+            if (String.IsNullOrEmpty(DisplayName)) DisplayName = Name;
         }
 
         /// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
@@ -55,7 +57,8 @@ namespace NewLife.CMX
                 //entity.FormTemplate = String.Format("{0}ModelContent", item.Provider.TitleType.Name);
                 // 考虑到在查询中null与string.empty在构造查询语句时的不同
                 entity.Suffix = "";
-                entity.Name = "默认" + (item.DisplayName ?? item.Name);
+                entity.Name = item.Name;
+                entity.DisplayName = "默认" + (item.DisplayName ?? item.Name);
                 entity.AddRole(1);
                 entity.Enable = true;
                 entity.Save();
@@ -63,40 +66,13 @@ namespace NewLife.CMX
 
             if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Channel).Name, Meta.Table.DataTable.DisplayName);
         }
-
-        ///// <summary>已重载。基类先调用Valid(true)验证数据，然后在事务保护内调用OnInsert</summary>
-        ///// <returns></returns>
-        //public override Int32 Insert()
-        //{
-        //    return base.Insert();
-        //}
-
-        ///// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
-        ///// <returns></returns>
-        //protected override Int32 OnInsert()
-        //{
-        //    return base.OnInsert();
-        //}
         #endregion
 
         #region 扩展属性﻿
-        private Model _Model;
         /// <summary>模型</summary>
         [DisplayName("模型")]
         [BindRelation("ModelID", false, "Model", "ID")]
-        public Model Model
-        {
-            get
-            {
-                if (_Model == null && ModelID > 0 && !Dirtys.ContainsKey("Model"))
-                {
-                    _Model = Model.FindByID(ModelID);
-                    Dirtys["Model"] = true;
-                }
-                return _Model;
-            }
-            set { _Model = value; }
-        }
+        public Model Model { get { return Model.FindByID(ModelID); } }
 
         /// <summary>模型名称</summary>
         [DisplayName("模型")]
@@ -128,13 +104,9 @@ namespace NewLife.CMX
                 return Find(__.Name, name);
             else // 实体缓存
                 return Meta.Cache.Entities.Find(__.Name, name);
-            // 单对象缓存
-            //return Meta.SingleCache[name];
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
+        /// <summary>查找模型下的第一个频道</summary>
         /// <param name="ModelID"></param>
         /// <returns></returns>
         private static Channel FindByModelID(int ModelID)
@@ -159,33 +131,15 @@ namespace NewLife.CMX
                 return Meta.Cache.Entities.Find(__.Suffix, Suffix);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
+        /// <summary>查找模型下的频道数</summary>
         /// <param name="modelid"></param>
         /// <returns></returns>
         public static Int32 FindCountByModel(Int32 modelid)
         {
-            return FindCount(__.ModelID, modelid);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Suffix"></param>
-        /// <param name="ModelShortName"></param>
-        /// <returns></returns>
-        public static Channel FindBySuffixOrModelShortName(String Suffix, String ModelShortName)
-        {
-            //if (!Suffix.IsNullOrEmpty()) FindBySuffix(Suffix);
-
-            if (ModelShortName == "$") ModelShortName = null;
-
-            var m = Model.FindByShortName(ModelShortName);
-            if (m != null)
-                return FindBySuffixOrModel(Suffix, m.ID);
+            if (Meta.Count > 1000)
+                return FindCount(__.ModelID, modelid);
             else
-                return FindBySuffixOrModel(Suffix);
+                return Meta.Cache.Entities.ToList().Count(e => e.ModelID == modelid);
         }
 
         /// <summary>
@@ -220,9 +174,7 @@ namespace NewLife.CMX
             if (Meta.Count > 1000)
                 return Find(new String[] { __.Suffix, __.ModelID }, new Object[] { Suffix, ModelID });
             else if (Suffix == "")
-            {
                 return Meta.Cache.Entities.Find(e => (e.Suffix.IsNullOrEmpty() && e.ModelID == ModelID));
-            }
             else
                 return Meta.Cache.Entities.Find(e => e.Suffix == Suffix & e.ModelID == ModelID);
 
@@ -244,52 +196,6 @@ namespace NewLife.CMX
         #endregion
 
         #region 高级查询
-        // 以下为自定义高级查询的例子
-
-        ///// <summary>
-        ///// 查询满足条件的记录集，分页、排序
-        ///// </summary>
-        ///// <param name="key">关键字</param>
-        ///// <param name="orderClause">排序，不带Order By</param>
-        ///// <param name="startRowIndex">开始行，0表示第一行</param>
-        ///// <param name="maximumRows">最大返回行数，0表示所有行</param>
-        ///// <returns>实体集</returns>
-        //[DataObjectMethod(DataObjectMethodType.Select, true)]
-        //public static EntityList<Channel> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
-        //{
-        //    return FindAll(SearchWhere(key), orderClause, null, startRowIndex, maximumRows);
-        //}
-
-        ///// <summary>
-        ///// 查询满足条件的记录总数，分页和排序无效，带参数是因为ObjectDataSource要求它跟Search统一
-        ///// </summary>
-        ///// <param name="key">关键字</param>
-        ///// <param name="orderClause">排序，不带Order By</param>
-        ///// <param name="startRowIndex">开始行，0表示第一行</param>
-        ///// <param name="maximumRows">最大返回行数，0表示所有行</param>
-        ///// <returns>记录数</returns>
-        //public static Int32 SearchCount(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
-        //{
-        //    return FindCount(SearchWhere(key), null, null, 0, 0);
-        //}
-
-        /// <summary>构造搜索条件</summary>
-        /// <param name="key">关键字</param>
-        /// <returns></returns>
-        private static String SearchWhere(String key)
-        {
-            // WhereExpression重载&和|运算符，作为And和Or的替代
-            // SearchWhereByKeys系列方法用于构建针对字符串字段的模糊搜索
-            var exp = SearchWhereByKeys(key, null);
-
-            // 以下仅为演示，Field（继承自FieldItem）重载了==、!=、>、<、>=、<=等运算符（第4行）
-            //if (userid > 0) exp &= _.OperatorID == userid;
-            //if (isSign != null) exp &= _.IsSign == isSign.Value;
-            //if (start > DateTime.MinValue) exp &= _.OccurTime >= start;
-            //if (end > DateTime.MinValue) exp &= _.OccurTime < end.AddDays(1).Date;
-
-            return exp;
-        }
         #endregion
 
         #region 扩展操作
@@ -377,13 +283,17 @@ namespace NewLife.CMX
             }
         }
 
+        /// <summary>查找当前频道之下的分类</summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public IEntityCategory FindCategory(Int32 id)
         {
             var fact = Model.Provider.CategoryFactory;
             var cat = fact.FindByID(id);
             return cat;
         }
-        /// <summary>查找频道</summary>
+
+        /// <summary>查找当前频道之下的分类</summary>
         /// <param name="name"></param>
         /// <returns></returns>
         public IEntityCategory FindCategory(String name)

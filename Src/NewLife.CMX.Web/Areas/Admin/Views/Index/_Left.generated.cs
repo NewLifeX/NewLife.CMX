@@ -378,7 +378,7 @@ WriteLiteral(">");
 
             
             #line 80 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-                                   Write(chn.Name);
+                                   Write(chn.DisplayName);
 
             
             #line default
@@ -397,24 +397,24 @@ WriteLiteral(" class=\"submenu\"");
 
 WriteLiteral(">\r\n                <li>\r\n                    <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 3302), Tuple.Create("\"", 3348)
-, Tuple.Create(Tuple.Create("", 3309), Tuple.Create<System.Object, System.Int32>(Href("~/CMS/")
-, 3309), false)
+WriteAttribute("href", Tuple.Create(" href=\"", 3309), Tuple.Create("\"", 3355)
+, Tuple.Create(Tuple.Create("", 3316), Tuple.Create<System.Object, System.Int32>(Href("~/CMS/")
+, 3316), false)
             
             #line 89 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-, Tuple.Create(Tuple.Create("", 3315), Tuple.Create<System.Object, System.Int32>(chn.Model.Name
+, Tuple.Create(Tuple.Create("", 3322), Tuple.Create<System.Object, System.Int32>(chn.Model.Name
             
             #line default
             #line hidden
-, 3315), false)
-, Tuple.Create(Tuple.Create("", 3332), Tuple.Create("Category/", 3332), true)
+, 3322), false)
+, Tuple.Create(Tuple.Create("", 3339), Tuple.Create("Category/", 3339), true)
             
             #line 89 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-, Tuple.Create(Tuple.Create("", 3341), Tuple.Create<System.Object, System.Int32>(chn.ID
+, Tuple.Create(Tuple.Create("", 3348), Tuple.Create<System.Object, System.Int32>(chn.ID
             
             #line default
             #line hidden
-, 3341), false)
+, 3348), false)
 );
 
 WriteLiteral(" target=\"main\"");
@@ -490,32 +490,32 @@ WriteLiteral("\r\n                            </a>\r\n");
             #line hidden
 WriteLiteral("                            <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 4028), Tuple.Create("\"", 4076)
-, Tuple.Create(Tuple.Create("", 4035), Tuple.Create<System.Object, System.Int32>(Href("~/CMS/")
-, 4035), false)
+WriteAttribute("href", Tuple.Create(" href=\"", 4035), Tuple.Create("\"", 4083)
+, Tuple.Create(Tuple.Create("", 4042), Tuple.Create<System.Object, System.Int32>(Href("~/CMS/")
+, 4042), false)
             
             #line 106 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-, Tuple.Create(Tuple.Create("", 4041), Tuple.Create<System.Object, System.Int32>(chn.Model.Name
+, Tuple.Create(Tuple.Create("", 4048), Tuple.Create<System.Object, System.Int32>(chn.Model.Name
             
             #line default
             #line hidden
-, 4041), false)
-, Tuple.Create(Tuple.Create("", 4058), Tuple.Create("/", 4058), true)
+, 4048), false)
+, Tuple.Create(Tuple.Create("", 4065), Tuple.Create("/", 4065), true)
             
             #line 106 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-, Tuple.Create(Tuple.Create("", 4059), Tuple.Create<System.Object, System.Int32>(chn.ID
+, Tuple.Create(Tuple.Create("", 4066), Tuple.Create<System.Object, System.Int32>(chn.ID
             
             #line default
             #line hidden
-, 4059), false)
-, Tuple.Create(Tuple.Create("", 4068), Tuple.Create("_", 4068), true)
+, 4066), false)
+, Tuple.Create(Tuple.Create("", 4075), Tuple.Create("_", 4075), true)
             
             #line 106 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-, Tuple.Create(Tuple.Create("", 4069), Tuple.Create<System.Object, System.Int32>(cat.ID
+, Tuple.Create(Tuple.Create("", 4076), Tuple.Create<System.Object, System.Int32>(cat.ID
             
             #line default
             #line hidden
-, 4069), false)
+, 4076), false)
 );
 
 WriteLiteral(" target=\"main\"");
@@ -570,32 +570,32 @@ WriteLiteral(">\r\n");
             #line hidden
 WriteLiteral("                                <li>\r\n                                    <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 4550), Tuple.Create("\"", 4599)
-, Tuple.Create(Tuple.Create("", 4557), Tuple.Create<System.Object, System.Int32>(Href("~/CMS/")
-, 4557), false)
+WriteAttribute("href", Tuple.Create(" href=\"", 4557), Tuple.Create("\"", 4606)
+, Tuple.Create(Tuple.Create("", 4564), Tuple.Create<System.Object, System.Int32>(Href("~/CMS/")
+, 4564), false)
             
             #line 116 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-, Tuple.Create(Tuple.Create("", 4563), Tuple.Create<System.Object, System.Int32>(chn.Model.Name
+, Tuple.Create(Tuple.Create("", 4570), Tuple.Create<System.Object, System.Int32>(chn.Model.Name
             
             #line default
             #line hidden
-, 4563), false)
-, Tuple.Create(Tuple.Create("", 4580), Tuple.Create("/", 4580), true)
+, 4570), false)
+, Tuple.Create(Tuple.Create("", 4587), Tuple.Create("/", 4587), true)
             
             #line 116 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-, Tuple.Create(Tuple.Create("", 4581), Tuple.Create<System.Object, System.Int32>(chn.ID
+, Tuple.Create(Tuple.Create("", 4588), Tuple.Create<System.Object, System.Int32>(chn.ID
             
             #line default
             #line hidden
-, 4581), false)
-, Tuple.Create(Tuple.Create("", 4590), Tuple.Create("_", 4590), true)
+, 4588), false)
+, Tuple.Create(Tuple.Create("", 4597), Tuple.Create("_", 4597), true)
             
             #line 116 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-, Tuple.Create(Tuple.Create("", 4591), Tuple.Create<System.Object, System.Int32>(cat2.ID
+, Tuple.Create(Tuple.Create("", 4598), Tuple.Create<System.Object, System.Int32>(cat2.ID
             
             #line default
             #line hidden
-, 4591), false)
+, 4598), false)
 );
 
 WriteLiteral(" target=\"main\"");

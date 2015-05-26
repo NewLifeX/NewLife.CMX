@@ -26,6 +26,8 @@ namespace NewLife.CMX
 
             // 建议先调用基类方法，基类方法会对唯一索引的数据进行验证
             base.Valid(isNew);
+
+            if (String.IsNullOrEmpty(DisplayName)) DisplayName = Name;
         }
 
         /// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
@@ -80,27 +82,10 @@ namespace NewLife.CMX
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public static Model FindByName(String name)
         {
-            //if (Meta.Count >= 1000)
-            //    return Find(__.Name, name);
-            //else // 实体缓存
+            // 实体缓存
             var entity = Meta.Cache.Entities.Find(__.Name, name);
             if (entity == null) entity = Meta.Cache.Entities.Find(__.DisplayName, name);
             return entity;
-            // 单对象缓存
-            //return Meta.SingleCache[name];
-        }
-
-        /// <summary>
-        /// 根据缩写名称查询
-        /// </summary>
-        /// <param name="ShortName"></param>
-        /// <returns></returns>
-        public static Model FindByShortName(String ShortName)
-        {
-            if (Meta.Count >= 1000)
-                return Find(__.ShortName, ShortName);
-            else
-                return Meta.Cache.Entities.Find(__.ShortName, ShortName);
         }
         #endregion
 
@@ -142,7 +127,6 @@ namespace NewLife.CMX
                 //entity.TitleTemplate = String.Format("CMX/{0}/{0}.aspx", model.TitleType.Name);
                 //entity.CategoryTemplate = String.Format("CMX/{0}/{1}.aspx", model.TitleType.Name, model.CategoryType.Name);
                 entity.Enable = true;
-                entity.ShortName = PinYin.GetFirst(provider.Name);
                 entity.Save();
 
                 count++;

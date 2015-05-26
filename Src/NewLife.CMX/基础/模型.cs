@@ -14,7 +14,6 @@ namespace NewLife.CMX
     [DataObject]
     [Description("模型。默认有文章、文本、产品三种模型，可以扩展增加")]
     [BindIndex("IU_Model_Name", true, "Name")]
-    [BindIndex("IU_Model_ShortName", true, "ShortName")]
     [BindTable("Model", Description = "模型。默认有文章、文本、产品三种模型，可以扩展增加", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class Model : IModel
     {
@@ -36,7 +35,7 @@ namespace NewLife.CMX
         [DisplayName("名称")]
         [Description("名称")]
         [DataObjectField(false, false, false, 50)]
-        [BindColumn(2, "Name", "名称", null, "nvarchar(50)", 0, 0, true, Master=true)]
+        [BindColumn(2, "Name", "名称", null, "nvarchar(50)", 0, 0, true)]
         public virtual String Name
         {
             get { return _Name; }
@@ -48,23 +47,11 @@ namespace NewLife.CMX
         [DisplayName("显示名")]
         [Description("显示名")]
         [DataObjectField(false, false, false, 50)]
-        [BindColumn(3, "DisplayName", "显示名", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(3, "DisplayName", "显示名", null, "nvarchar(50)", 0, 0, true, Master=true)]
         public virtual String DisplayName
         {
             get { return _DisplayName; }
             set { if (OnPropertyChanging(__.DisplayName, value)) { _DisplayName = value; OnPropertyChanged(__.DisplayName); } }
-        }
-
-        private String _ShortName;
-        /// <summary>缩写</summary>
-        [DisplayName("缩写")]
-        [Description("缩写")]
-        [DataObjectField(false, false, true, 50)]
-        [BindColumn(4, "ShortName", "缩写", null, "nvarchar(50)", 0, 0, true)]
-        public virtual String ShortName
-        {
-            get { return _ShortName; }
-            set { if (OnPropertyChanging(__.ShortName, value)) { _ShortName = value; OnPropertyChanged(__.ShortName); } }
         }
 
         private String _ProviderName;
@@ -72,7 +59,7 @@ namespace NewLife.CMX
         [DisplayName("提供者")]
         [Description("提供者")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(5, "ProviderName", "提供者", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(4, "ProviderName", "提供者", null, "nvarchar(50)", 0, 0, true)]
         public virtual String ProviderName
         {
             get { return _ProviderName; }
@@ -84,7 +71,7 @@ namespace NewLife.CMX
         [DisplayName("启用")]
         [Description("启用")]
         [DataObjectField(false, false, true, 1)]
-        [BindColumn(6, "Enable", "启用", null, "bit", 0, 0, false)]
+        [BindColumn(5, "Enable", "启用", null, "bit", 0, 0, false)]
         public virtual Boolean Enable
         {
             get { return _Enable; }
@@ -96,7 +83,7 @@ namespace NewLife.CMX
         [DisplayName("创建人")]
         [Description("创建人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(7, "CreateUserID", "创建人", null, "int", 10, 0, false)]
+        [BindColumn(6, "CreateUserID", "创建人", null, "int", 10, 0, false)]
         public virtual Int32 CreateUserID
         {
             get { return _CreateUserID; }
@@ -108,7 +95,7 @@ namespace NewLife.CMX
         [DisplayName("创建时间")]
         [Description("创建时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(8, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
+        [BindColumn(7, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
         public virtual DateTime CreateTime
         {
             get { return _CreateTime; }
@@ -120,7 +107,7 @@ namespace NewLife.CMX
         [DisplayName("更新人")]
         [Description("更新人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(9, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
+        [BindColumn(8, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
         public virtual Int32 UpdateUserID
         {
             get { return _UpdateUserID; }
@@ -132,7 +119,7 @@ namespace NewLife.CMX
         [DisplayName("更新时间")]
         [Description("更新时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(10, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
+        [BindColumn(9, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
         public virtual DateTime UpdateTime
         {
             get { return _UpdateTime; }
@@ -144,7 +131,7 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(11, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(10, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Remark
         {
             get { return _Remark; }
@@ -169,7 +156,6 @@ namespace NewLife.CMX
                     case __.ID : return _ID;
                     case __.Name : return _Name;
                     case __.DisplayName : return _DisplayName;
-                    case __.ShortName : return _ShortName;
                     case __.ProviderName : return _ProviderName;
                     case __.Enable : return _Enable;
                     case __.CreateUserID : return _CreateUserID;
@@ -187,7 +173,6 @@ namespace NewLife.CMX
                     case __.ID : _ID = Convert.ToInt32(value); break;
                     case __.Name : _Name = Convert.ToString(value); break;
                     case __.DisplayName : _DisplayName = Convert.ToString(value); break;
-                    case __.ShortName : _ShortName = Convert.ToString(value); break;
                     case __.ProviderName : _ProviderName = Convert.ToString(value); break;
                     case __.Enable : _Enable = Convert.ToBoolean(value); break;
                     case __.CreateUserID : _CreateUserID = Convert.ToInt32(value); break;
@@ -213,9 +198,6 @@ namespace NewLife.CMX
 
             ///<summary>显示名</summary>
             public static readonly Field DisplayName = FindByName(__.DisplayName);
-
-            ///<summary>缩写</summary>
-            public static readonly Field ShortName = FindByName(__.ShortName);
 
             ///<summary>提供者</summary>
             public static readonly Field ProviderName = FindByName(__.ProviderName);
@@ -252,9 +234,6 @@ namespace NewLife.CMX
 
             ///<summary>显示名</summary>
             public const String DisplayName = "DisplayName";
-
-            ///<summary>缩写</summary>
-            public const String ShortName = "ShortName";
 
             ///<summary>提供者</summary>
             public const String ProviderName = "ProviderName";
@@ -294,9 +273,6 @@ namespace NewLife.CMX
 
         /// <summary>显示名</summary>
         String DisplayName { get; set; }
-
-        /// <summary>缩写</summary>
-        String ShortName { get; set; }
 
         /// <summary>提供者</summary>
         String ProviderName { get; set; }

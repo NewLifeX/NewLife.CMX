@@ -42,7 +42,6 @@
     <Compile Include="基类\IContentFactory.cs" />
     <Compile Include="基类\IStatisticsFactory.cs" />
     <Compile Include="基础\IModelProvider.cs" />
-    <Compile Include="基础\ListMenu.cs" />
     <Compile Include="基类\ICategoryFactory.cs" />
     <Compile Include="产品\ProductProvider.cs" />
     <Compile Include="基类\统计.Biz.cs" />

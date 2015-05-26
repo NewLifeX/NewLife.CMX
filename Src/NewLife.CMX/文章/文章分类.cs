@@ -28,8 +28,8 @@ namespace NewLife.CMX
             ///<summary>父类</summary>
             public static readonly Field ParentID = FindByName(__.ParentID);
 
-            ///<summary>是否最终分类</summary>
-            public static readonly Field IsEnd = FindByName(__.IsEnd);
+            ///<summary>频道编号</summary>
+            public static readonly Field ChannelID = FindByName(__.ChannelID);
 
             ///<summary>排序</summary>
             public static readonly Field Sort = FindByName(__.Sort);
@@ -64,8 +64,8 @@ namespace NewLife.CMX
             ///<summary>父类</summary>
             public const String ParentID = "ParentID";
 
-            ///<summary>是否最终分类</summary>
-            public const String IsEnd = "IsEnd";
+            ///<summary>频道编号</summary>
+            public const String ChannelID = "ChannelID";
 
             ///<summary>排序</summary>
             public const String Sort = "Sort";
