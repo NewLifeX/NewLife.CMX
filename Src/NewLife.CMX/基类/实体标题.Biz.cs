@@ -123,6 +123,8 @@ namespace NewLife.CMX
             //set { _Statistics = value; }
         }
 
+        protected internal override IStatistics Statistics_ { get { return Statistics; } }
+
         private String _StatisticsText;
         /// <summary>统计文本</summary>
         [DisplayName("访问统计")]
@@ -270,6 +272,12 @@ namespace NewLife.CMX
         protected internal abstract IEntityCategory Category_ { get; }
 
         public abstract String ContentText { get; }
+
+        /// <summary>当前主题的统计</summary>
+        IStatistics IEntityTitle.Statistics { get { return Statistics_; } }
+
+        protected internal abstract IStatistics Statistics_ { get; }
+
         #endregion
 
         #region 扩展查询﻿
@@ -374,5 +382,7 @@ namespace NewLife.CMX
 
         /// <summary>主要内容</summary>
         String ContentText { get; }
+
+        IStatistics Statistics { get; }
     }
 }

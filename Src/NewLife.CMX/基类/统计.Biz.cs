@@ -197,4 +197,12 @@ namespace NewLife.CMX
         }
         #endregion
     }
+
+    partial interface IStatistics
+    {
+        /// <summary>增加计数</summary>
+        /// <param name="remark">备注</param>
+        void Increment(String remark);
+
+    }
 }
