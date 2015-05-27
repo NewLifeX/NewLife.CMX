@@ -11,6 +11,7 @@ namespace NewLife.CMX.Web
     {
         public override void RegisterArea(AreaRegistrationContext context)
         {
+            // 用于左边菜单的两条路由
             context.MapRoute(
                "CMS_category",
                "CMS/{controller}/{channel}_{category}/{action}/{id}",
