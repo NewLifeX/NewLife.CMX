@@ -78,6 +78,10 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="UEditor, Version=1.0.5625.37043, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\UEditor.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.3.0\lib\WebGrease.dll</HintPath>
@@ -624,10 +628,6 @@
     <ProjectReference Include="..\NewLife.Cube\NewLife.Cube.csproj">
       <Project>{7ac0e99b-cfd8-4b59-8838-503eaa30523f}</Project>
       <Name>NewLife.Cube</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UEditor\UEditor.csproj">
-      <Project>{69e51073-ff79-4742-bcff-dcc085d512dd}</Project>
-      <Name>UEditor</Name>
     </ProjectReference>
     <ProjectReference Include="..\XCode\XCode.csproj">
       <Project>{b49aba5a-c5da-45f4-87f1-b435ec51d710}</Project>
