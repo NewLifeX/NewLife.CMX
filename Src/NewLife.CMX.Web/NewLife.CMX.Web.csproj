@@ -40,6 +40,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NewLife.Core, Version=5.4.5624.15003, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\NewLife.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NewLife.Cube">
+      <HintPath>..\DLL\NewLife.Cube.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
@@ -89,6 +96,10 @@
     <Reference Include="Antlr3.Runtime">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="XCode, Version=8.18.5624.26027, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\XCode.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -411,7 +422,6 @@
     <Content Include="Content\ueditor\lang\zh-cn\images\music.png" />
     <Content Include="Content\ueditor\lang\zh-cn\images\upload.png" />
     <Content Include="Content\ueditor\lang\zh-cn\zh-cn.js" />
-    <Content Include="Content\ueditor\themes\default\css\ueditor.css" />
     <Content Include="Content\ueditor\themes\default\css\ueditor.min.css" />
     <Content Include="Content\ueditor\themes\default\dialogbase.css" />
     <Content Include="Content\ueditor\themes\default\images\anchor.gif" />
@@ -452,68 +462,43 @@
     <Content Include="Content\ueditor\third-party\codemirror\codemirror.css" />
     <Content Include="Content\ueditor\third-party\codemirror\codemirror.js" />
     <Content Include="Content\ueditor\third-party\highcharts\adapters\mootools-adapter.js" />
-    <Content Include="Content\ueditor\third-party\highcharts\adapters\mootools-adapter.src.js" />
     <Content Include="Content\ueditor\third-party\highcharts\adapters\prototype-adapter.js" />
-    <Content Include="Content\ueditor\third-party\highcharts\adapters\prototype-adapter.src.js" />
     <Content Include="Content\ueditor\third-party\highcharts\adapters\standalone-framework.js" />
-    <Content Include="Content\ueditor\third-party\highcharts\adapters\standalone-framework.src.js" />
     <Content Include="Content\ueditor\third-party\highcharts\highcharts-more.js" />
-    <Content Include="Content\ueditor\third-party\highcharts\highcharts-more.src.js" />
     <Content Include="Content\ueditor\third-party\highcharts\highcharts.js" />
-    <Content Include="Content\ueditor\third-party\highcharts\highcharts.src.js" />
     <Content Include="Content\ueditor\third-party\highcharts\modules\annotations.js" />
-    <Content Include="Content\ueditor\third-party\highcharts\modules\annotations.src.js" />
     <Content Include="Content\ueditor\third-party\highcharts\modules\canvas-tools.js" />
-    <Content Include="Content\ueditor\third-party\highcharts\modules\canvas-tools.src.js" />
     <Content Include="Content\ueditor\third-party\highcharts\modules\data.js" />
-    <Content Include="Content\ueditor\third-party\highcharts\modules\data.src.js" />
     <Content Include="Content\ueditor\third-party\highcharts\modules\drilldown.js" />
-    <Content Include="Content\ueditor\third-party\highcharts\modules\drilldown.src.js" />
     <Content Include="Content\ueditor\third-party\highcharts\modules\exporting.js" />
-    <Content Include="Content\ueditor\third-party\highcharts\modules\exporting.src.js" />
     <Content Include="Content\ueditor\third-party\highcharts\modules\funnel.js" />
-    <Content Include="Content\ueditor\third-party\highcharts\modules\funnel.src.js" />
     <Content Include="Content\ueditor\third-party\highcharts\modules\heatmap.js" />
-    <Content Include="Content\ueditor\third-party\highcharts\modules\heatmap.src.js" />
     <Content Include="Content\ueditor\third-party\highcharts\modules\map.js" />
-    <Content Include="Content\ueditor\third-party\highcharts\modules\map.src.js" />
     <Content Include="Content\ueditor\third-party\highcharts\modules\no-data-to-display.js" />
-    <Content Include="Content\ueditor\third-party\highcharts\modules\no-data-to-display.src.js" />
     <Content Include="Content\ueditor\third-party\highcharts\themes\dark-blue.js" />
     <Content Include="Content\ueditor\third-party\highcharts\themes\dark-green.js" />
     <Content Include="Content\ueditor\third-party\highcharts\themes\gray.js" />
     <Content Include="Content\ueditor\third-party\highcharts\themes\grid.js" />
     <Content Include="Content\ueditor\third-party\highcharts\themes\skies.js" />
-    <Content Include="Content\ueditor\third-party\jquery-1.10.2.js" />
     <Content Include="Content\ueditor\third-party\jquery-1.10.2.min.js" />
     <Content Include="Content\ueditor\third-party\snapscreen\UEditorSnapscreen.exe" />
     <Content Include="Content\ueditor\third-party\SyntaxHighlighter\shCore.js" />
     <Content Include="Content\ueditor\third-party\SyntaxHighlighter\shCoreDefault.css" />
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.svg" />
-    <Content Include="Content\ueditor\third-party\video-js\video-js.css" />
     <Content Include="Content\ueditor\third-party\video-js\video-js.min.css" />
     <Content Include="Content\ueditor\third-party\video-js\video-js.swf" />
-    <Content Include="Content\ueditor\third-party\video-js\video.dev.js" />
     <Content Include="Content\ueditor\third-party\video-js\video.js" />
     <Content Include="Content\ueditor\third-party\webuploader\Uploader.swf" />
     <Content Include="Content\ueditor\third-party\webuploader\webuploader.css" />
-    <Content Include="Content\ueditor\third-party\webuploader\webuploader.custom.js" />
     <Content Include="Content\ueditor\third-party\webuploader\webuploader.custom.min.js" />
-    <Content Include="Content\ueditor\third-party\webuploader\webuploader.flashonly.js" />
     <Content Include="Content\ueditor\third-party\webuploader\webuploader.flashonly.min.js" />
-    <Content Include="Content\ueditor\third-party\webuploader\webuploader.html5only.js" />
     <Content Include="Content\ueditor\third-party\webuploader\webuploader.html5only.min.js" />
-    <Content Include="Content\ueditor\third-party\webuploader\webuploader.js" />
     <Content Include="Content\ueditor\third-party\webuploader\webuploader.min.js" />
-    <Content Include="Content\ueditor\third-party\webuploader\webuploader.withoutimage.js" />
     <Content Include="Content\ueditor\third-party\webuploader\webuploader.withoutimage.min.js" />
-    <Content Include="Content\ueditor\third-party\zeroclipboard\ZeroClipboard.js" />
     <Content Include="Content\ueditor\third-party\zeroclipboard\ZeroClipboard.min.js" />
     <Content Include="Content\ueditor\third-party\zeroclipboard\ZeroClipboard.swf" />
-    <Content Include="Content\ueditor\ueditor.all.js" />
     <Content Include="Content\ueditor\ueditor.all.min.js" />
     <Content Include="Content\ueditor\ueditor.config.js" />
-    <Content Include="Content\ueditor\ueditor.parse.js" />
     <Content Include="Content\ueditor\ueditor.parse.min.js" />
     <Content Include="Content\x.css" />
     <Content Include="Global.asax" />
@@ -563,7 +548,6 @@
       </SubType>
     </None>
     <Content Include="config.json" />
-    <Content Include="Content\ueditor\third-party\jquery-1.10.2.min.map" />
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.eot" />
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.ttf" />
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.woff" />
@@ -620,18 +604,6 @@
     <ProjectReference Include="..\NewLife.CMX\NewLife.CMX.csproj">
       <Project>{4c2cf9bb-b920-43f5-9d87-b7288e416795}</Project>
       <Name>NewLife.CMX</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NewLife.Core\NewLife.Core.csproj">
-      <Project>{5813c22e-eeb3-4dee-a45c-bb218041193a}</Project>
-      <Name>NewLife.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NewLife.Cube\NewLife.Cube.csproj">
-      <Project>{7ac0e99b-cfd8-4b59-8838-503eaa30523f}</Project>
-      <Name>NewLife.Cube</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XCode\XCode.csproj">
-      <Project>{b49aba5a-c5da-45f4-87f1-b435ec51d710}</Project>
-      <Name>XCode</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

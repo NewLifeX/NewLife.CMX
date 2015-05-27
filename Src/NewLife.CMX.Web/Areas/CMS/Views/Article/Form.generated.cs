@@ -351,7 +351,7 @@ WriteLiteral(" name=\"ContentText\"");
 
 WriteLiteral(" type=\"text/plain\"");
 
-WriteLiteral(" style=\"width:500px;height:500px;\"");
+WriteLiteral(" style=\"width:800px;height:500px;\"");
 
 WriteLiteral(">\r\n                    </script>\r\n                    <script");
 

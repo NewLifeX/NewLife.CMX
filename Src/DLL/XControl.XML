@@ -257,7 +257,7 @@
             <summary>用于获取资源URL</summary>
             <returns></returns>
         </member>
-        <member name="M:XControl.TreeMenuRoot.GetTreeMenu``1(``0,NewLife.Reflection.Func{``0,System.Collections.Generic.List{``0}},NewLife.Reflection.Func{``0,XControl.TreeMenuNode})">
+        <member name="M:XControl.TreeMenuRoot.GetTreeMenu``1(``0,System.Func{``0,System.Collections.Generic.List{``0}},System.Func{``0,XControl.TreeMenuNode})">
             <summary>获取菜单树</summary>
             <typeparam name="T"></typeparam>
             <param name="rootNode"></param>
@@ -265,7 +265,7 @@
             <param name="convertToTreeMenu"></param>
             <returns></returns>
         </member>
-        <member name="M:XControl.TreeMenuRoot.GetTreeMenuRoot``1(``0,NewLife.Reflection.Func{``0,System.Collections.Generic.List{``0}},NewLife.Reflection.Func{``0,XControl.TreeMenuNode})">
+        <member name="M:XControl.TreeMenuRoot.GetTreeMenuRoot``1(``0,System.Func{``0,System.Collections.Generic.List{``0}},System.Func{``0,XControl.TreeMenuNode})">
             <summary>通过根节点获取</summary>
             <typeparam name="T"></typeparam>
             <param name="rootNode"></param>
@@ -273,7 +273,7 @@
             <param name="convertToTreeMenu"></param>
             <returns></returns>
         </member>
-        <member name="M:XControl.TreeMenuRoot.GetTreeMenuRoot``1(System.Collections.Generic.List{``0},NewLife.Reflection.Func{``0,System.Collections.Generic.List{``0}},NewLife.Reflection.Func{``0,XControl.TreeMenuNode})">
+        <member name="M:XControl.TreeMenuRoot.GetTreeMenuRoot``1(System.Collections.Generic.List{``0},System.Func{``0,System.Collections.Generic.List{``0}},System.Func{``0,XControl.TreeMenuNode})">
             <summary>通过节点列表</summary>
             <typeparam name="T"></typeparam>
             <param name="nodeList"></param>
@@ -425,7 +425,7 @@
         <member name="M:XControl.MenuField.GetDataFileValue(System.Object,System.String)">
             <summary>获取字段值</summary>
             <param name="component"></param>
-            <param name="field"></param>
+            <param name="field">字段</param>
             <returns></returns>
         </member>
         <member name="P:XControl.MenuField.MenuCss">
@@ -730,7 +730,7 @@
             <summary>设置属性值</summary>
             <typeparam name="V"></typeparam>
             <param name="propertyName"></param>
-            <param name="value"></param>
+            <param name="value">数值</param>
         </member>
         <member name="M:XControl.ExtenderControl`1.UpdateTargetDesignTimeHtml">
             <summary>更新目标设计时</summary>
@@ -787,7 +787,7 @@
             <param name="args"></param>
             <returns></returns>
         </member>
-        <member name="M:XControl.Helper.JsObjectString(NewLife.Reflection.Func{System.String,System.Object,System.Boolean},System.Object[])">
+        <member name="M:XControl.Helper.JsObjectString(System.Func{System.String,System.Object,System.Boolean},System.Object[])">
              <summary>
              使用指定的名值对创建对应的Javascript Object的声明字符串
              返回的结果类似 {'a':0.1, 'b':'2', 'c':true},如果args长度为0则返回{}
@@ -799,7 +799,7 @@
              <param name="args"></param>
              <returns></returns>
         </member>
-        <member name="M:XControl.Helper.JsObjectString(System.Boolean,NewLife.Reflection.Func{System.String,System.Object,System.Boolean},System.Object[])">
+        <member name="M:XControl.Helper.JsObjectString(System.Boolean,System.Func{System.String,System.Object,System.Boolean},System.Object[])">
             <summary>使用指定的名值对创建对应的Javascript Object的声明字符串</summary>
             <param name="escapeValue"></param>
             <param name="filter"></param>
@@ -1149,13 +1149,13 @@
         </member>
         <member name="M:XControl.SR.GetString(System.String,System.Object[])">
             <summary>取得System.Web资源中的字符串</summary>
-            <param name="name"></param>
+            <param name="name">名称</param>
             <param name="args"></param>
             <returns></returns>
         </member>
         <member name="M:XControl.SR.GetString(System.String)">
             <summary>取得System.Web资源中的字符串</summary>
-            <param name="name"></param>
+            <param name="name">名称</param>
             <returns></returns>
         </member>
         <member name="P:XControl.SR.SRType">
@@ -1449,6 +1449,9 @@
         <member name="P:XControl.DateTimePicker.MinTime">
             <summary>是否只显示时间部分格式</summary>
         </member>
+        <member name="P:XControl.DateTimePicker.CDateFmt">
+            <summary>用户自定义日期格式</summary>
+        </member>
         <member name="P:XControl.DateTimePicker.ClientReadOnly">
             <summary>客户端只读</summary>
         </member>
@@ -1469,6 +1472,9 @@
         </member>
         <member name="F:XControl.Skins.默认">
             <summary>默认</summary>
+        </member>
+        <member name="F:XControl.Skins.浅色">
+            <summary>浅色</summary>
         </member>
         <member name="F:XControl.Skins.绿色">
             <summary>绿色</summary>
@@ -1521,7 +1527,7 @@
         </member>
         <member name="M:XControl.TargetControlTypeAttribute.#ctor(System.Type)">
             <summary>指定目标控件类型</summary>
-            <param name="type"></param>
+            <param name="type">类型</param>
         </member>
         <member name="P:XControl.TargetControlTypeAttribute.Type">
             <summary>目标控件类型</summary>

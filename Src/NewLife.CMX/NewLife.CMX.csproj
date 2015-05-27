@@ -31,11 +31,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NewLife.Core, Version=5.4.5625.37090, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\NewLife.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
+    <Reference Include="XCode, Version=8.18.5625.37090, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\XCode.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="基类\ITitleFactory.cs" />
@@ -112,16 +120,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\NewLife.Core\NewLife.Core.csproj">
-      <Project>{5813c22e-eeb3-4dee-a45c-bb218041193a}</Project>
-      <Name>NewLife.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XCode\XCode.csproj">
-      <Project>{b49aba5a-c5da-45f4-87f1-b435ec51d710}</Project>
-      <Name>XCode</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
