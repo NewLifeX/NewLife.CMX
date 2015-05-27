@@ -16,6 +16,8 @@ namespace NewLife.CMX.Web
             routes.IgnoreRoute("Scripts/{*relpath}");
             routes.IgnoreRoute("Images/{*relpath}");
 
+            routes.Add(new Route("UEditor", new UEditor.RouteHandler()));
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

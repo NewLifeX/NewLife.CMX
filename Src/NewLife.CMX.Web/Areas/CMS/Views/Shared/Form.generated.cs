@@ -185,29 +185,90 @@ WriteLiteral("        ");
             {
                 if (!item.PrimaryKey)
                 {
+                    if (item.Name == "ContentText")
+                    {
 
             
             #line default
             #line hidden
-WriteLiteral("                    <div");
+WriteLiteral("                        <script");
+
+WriteAttribute("src", Tuple.Create(" src=\"", 1458), Tuple.Create("\"", 1499)
+, Tuple.Create(Tuple.Create("", 1464), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.config.js")
+, 1464), false)
+);
+
+WriteLiteral("></script>\r\n");
+
+WriteLiteral("                        <script");
+
+WriteAttribute("src", Tuple.Create(" src=\"", 1543), Tuple.Create("\"", 1585)
+, Tuple.Create(Tuple.Create("", 1549), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.all.min.js")
+, 1549), false)
+);
+
+WriteLiteral("></script>\r\n");
+
+WriteLiteral("                        <script");
+
+WriteAttribute("src", Tuple.Create(" src=\"", 1629), Tuple.Create("\"", 1672)
+, Tuple.Create(Tuple.Create("", 1635), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/lang/zh-cn/zh-cn.js")
+, 1635), false)
+);
+
+WriteLiteral("></script>\r\n");
+
+WriteLiteral("                        <script");
+
+WriteLiteral(" id=\"ContentText\"");
+
+WriteLiteral(" name=\"ContentText\"");
+
+WriteLiteral(" type=\"text/plain\"");
+
+WriteLiteral(" style=\"width:1024px;height:500px;\"");
+
+WriteLiteral(">\r\n                        </script>\r\n");
+
+WriteLiteral("                        <script");
+
+WriteLiteral(" type=\"text/javascript\"");
+
+WriteLiteral(">\r\n                            //实例化编辑器\r\n                            //建议使用工厂方法ge" +
+"tEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor(\'editor\')就能拿到相关的实例\r\n          " +
+"                  var ue = UE.getEditor(\'ContentText\');\r\n                       " +
+" </script>\r\n");
+
+            
+            #line 48 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+                    }
+                    else
+                    {
+
+            
+            #line default
+            #line hidden
+WriteLiteral("                        <div");
 
 WriteLiteral(" class=\"form-group\"");
 
 WriteLiteral(">\r\n");
 
-WriteLiteral("                        ");
+WriteLiteral("                            ");
 
             
-            #line 37 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
-                   Write(Html.Partial("_Form_Item", new Pair(entity, item)));
+            #line 52 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+                       Write(Html.Partial("_Form_Item", new Pair(entity, item)));
 
             
             #line default
             #line hidden
-WriteLiteral("\r\n                    </div>\r\n");
+WriteLiteral("\r\n                        </div>\r\n");
 
             
-            #line 39 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 54 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+                    }
+
                 }
             }
             if (entity is IUserInfo || entity is ITimeInfo)
@@ -217,14 +278,14 @@ WriteLiteral("\r\n                    </div>\r\n");
             #line default
             #line hidden
             
-            #line 43 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 60 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
            Write(Html.Partial("_UserTime", entity as IEntity));
 
             
             #line default
             #line hidden
             
-            #line 43 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 60 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
                                                              
             }
             var remark = fact.Table.FindByName("Remark") as FieldItem;
@@ -245,7 +306,7 @@ WriteLiteral(" class=\"control-label col-md-2\"");
 WriteLiteral(">");
 
             
-            #line 49 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 66 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
                                                      Write(remark.DisplayName);
 
             
@@ -260,7 +321,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                        ");
 
             
-            #line 51 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 68 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
                    Write(Html.ForString(remark.Name, (String)entity[remark.Name], -1));
 
             
@@ -271,7 +332,7 @@ WriteLiteral("\r\n");
 WriteLiteral("                        ");
 
             
-            #line 52 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 69 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
                    Write(Html.ForDescription(remark));
 
             
@@ -280,21 +341,21 @@ WriteLiteral("                        ");
 WriteLiteral("\r\n                    </div>\r\n                </div>\r\n");
 
             
-            #line 55 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 72 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
             }
             
             
             #line default
             #line hidden
             
-            #line 56 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 73 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
        Write(Html.Partial("_Form_Action", isNew));
 
             
             #line default
             #line hidden
             
-            #line 56 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 73 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
                                                 
         }
 

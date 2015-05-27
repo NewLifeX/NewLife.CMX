@@ -366,48 +366,79 @@ WriteLiteral(">内容</label>\r\n                <div");
 
 WriteLiteral(" class=\"col-md-6\"");
 
-WriteLiteral(">\r\n");
+WriteLiteral(">\r\n                    <script");
 
-WriteLiteral("                    ");
+WriteAttribute("src", Tuple.Create(" src=\"", 2696), Tuple.Create("\"", 2737)
+, Tuple.Create(Tuple.Create("", 2702), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.config.js")
+, 2702), false)
+);
+
+WriteLiteral("></script>\r\n                    <script");
+
+WriteAttribute("src", Tuple.Create(" src=\"", 2777), Tuple.Create("\"", 2819)
+, Tuple.Create(Tuple.Create("", 2783), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.all.min.js")
+, 2783), false)
+);
+
+WriteLiteral("></script>\r\n                    <script");
+
+WriteAttribute("src", Tuple.Create(" src=\"", 2859), Tuple.Create("\"", 2902)
+, Tuple.Create(Tuple.Create("", 2865), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/lang/zh-cn/zh-cn.js")
+, 2865), false)
+);
+
+WriteLiteral("></script>\r\n                    <script");
+
+WriteLiteral(" id=\"ContentText\"");
+
+WriteLiteral(" name=\"ContentText\"");
+
+WriteLiteral(" type=\"text/plain\"");
+
+WriteLiteral(" style=\"width:500px;height:500px;\"");
+
+WriteLiteral(">\r\n                    </script>\r\n                    <script");
+
+WriteLiteral(" type=\"text/javascript\"");
+
+WriteLiteral(@">
+                            //实例化编辑器
+                            //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+                            var ue = UE.getEditor('ContentText');
+                    </script>
+                </div>
+            </div>
+");
 
             
-            #line 60 "..\..\Areas\CMS\Views\Product\Form.cshtml"
-               Write(Html.TextArea("ContentText", (String)entity["ContentText"], 10, 20, new { @class = "form-control" }));
-
+            #line 72 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            
             
             #line default
             #line hidden
-WriteLiteral("\r\n                </div>\r\n            </div>\r\n");
-
             
-            #line 63 "..\..\Areas\CMS\Views\Product\Form.cshtml"
-            
-            
-            #line default
-            #line hidden
-            
-            #line 63 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 72 "..\..\Areas\CMS\Views\Product\Form.cshtml"
        Write(Html.Partial("_UserTime", Model as IEntity));
 
             
             #line default
             #line hidden
             
-            #line 63 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 72 "..\..\Areas\CMS\Views\Product\Form.cshtml"
                                                         
             
             
             #line default
             #line hidden
             
-            #line 64 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 73 "..\..\Areas\CMS\Views\Product\Form.cshtml"
        Write(Html.Partial("_Form_Action", isNew));
 
             
             #line default
             #line hidden
             
-            #line 64 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 73 "..\..\Areas\CMS\Views\Product\Form.cshtml"
                                                 
         }
 

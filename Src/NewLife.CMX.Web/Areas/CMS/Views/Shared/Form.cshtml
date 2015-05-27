@@ -33,9 +33,26 @@
             {
                 if (!item.PrimaryKey)
                 {
-                    <div class="form-group">
-                        @Html.Partial("_Form_Item", new Pair(entity, item))
-                    </div>
+                    if (item.Name == "ContentText")
+                    {
+                        <script src="~/Content/ueditor/ueditor.config.js"></script>
+                        <script src="~/Content/ueditor/ueditor.all.min.js"></script>
+                        <script src="~/Content/ueditor/lang/zh-cn/zh-cn.js"></script>
+                        <script id="ContentText" name="ContentText" type="text/plain" style="width:1024px;height:500px;">
+                        </script>
+                        <script type="text/javascript">
+                            //实例化编辑器
+                            //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+                            var ue = UE.getEditor('ContentText');
+                        </script>
+                    }
+                    else
+                    {
+                        <div class="form-group">
+                            @Html.Partial("_Form_Item", new Pair(entity, item))
+                        </div>
+                    }
+
                 }
             }
             if (entity is IUserInfo || entity is ITimeInfo)

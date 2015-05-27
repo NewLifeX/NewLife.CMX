@@ -1,0 +1,1355 @@
+﻿#Software: iisexpress
+#ProcessID: 5420
+#AppDomain: /LM/W3SVC/7/ROOT-1-130771852846370100
+#FileName: C:\Program Files (x86)\IIS Express\iisexpress.exe
+#BaseDirectory: C:\X\CMX\Src\NewLife.CMX.Web\
+#CurrentDirectory: C:\Program Files (x86)\IIS Express
+#CommandLine: /config:"C:\Users\jjhgt\Documents\IISExpress\config\applicationhost.config"  /site:"NewLife.CMX.Web" /apppool:"Clr4IntegratedAppPool"
+#ApplicationType: Web
+#CLR: 4.0.30319.18444
+#OS: Windows 7 Service Pack 1 x64, jjhgt/JJHGT-PC
+#CPU: AMD A10-5800K APU with Radeon(tm) HD Graphics 3.80GHz 178BFBFF00610F01
+#Memory: 3,865M/7,369M
+#Date: 2015-05-27
+#字段: 时间 线程ID 线程池Y网页W普通N 线程名 消息内容
+#Fields: Time ThreadID IsPoolThread ThreadName Message
+15:28:06.232  1 N - NewLife.Core v5.4.2015.0511 Build 2015-05-27 15:27:58
+15:28:06.589  1 N - ================================ Start 初始化魔方 ================================
+15:28:06.922  1 N - 注册区域视图程序集：NewLife.Cube, Version=1.0.5625.27840, Culture=neutral, PublicKeyToken=null
+15:28:06.922  1 N - 注册区域视图程序集：NewLife.CMX.Web, Version=2.0.5625.27841, Culture=neutral, PublicKeyToken=null
+15:28:06.929  1 N - 注册复合预编译引擎，共有视图程序集2个
+15:28:06.932  1 N - 注册实体模型绑定器：NewLife.Cube.EntityModelBinderProvider
+15:28:06.932  1 N - 注册过滤器：NewLife.Cube.MvcHandleErrorAttribute
+15:28:06.932  1 N - 注册过滤器：NewLife.Cube.EntityAuthorizeAttribute
+15:28:06.932  1 N - ================================ End   初始化魔方 ================================
+15:28:06.932  1 N - 开始注册权限管理区域[Admin]
+15:28:06.934  1 N - 初始化权限管理体系
+15:28:06.934  7 Y - 初始化[Admin]的菜单体系
+15:28:07.049  7 Y - 开始初始化实体类Menu
+15:28:07.049  1 N - XCode        v8.18.2015.0522 Build 2015-05-27 15:27:58
+15:28:07.049  1 N - 开始初始化实体类UserX
+15:28:07.049  7 Y - 完成初始化实体类Menu
+15:28:07.049  1 N - 完成初始化实体类UserX
+15:28:07.054  1 N - 开始注册权限管理区域[CMS]
+15:28:07.054 10 Y - 初始化[CMS]的菜单体系
+15:28:07.154 11 W - 配置文件C:\X\CMX\Src\NewLife.CMX.Web\Config\Sys.config格式不一致，保存为最新格式！
+15:28:07.182 11 W - SysConfig的配置文件Config/Sys.config不存在或加载出错，准备用默认配置覆盖！
+15:28:07.362  7 Y - 使用数据库方式：独占，加大缓存权重
+15:28:07.397 10 Y - 自动为[Membership]设置连接字符串：Data Source=..\Data\Membership.db
+15:28:07.414 10 Y - 创建数据库：C:\X\CMX\Src\Data\Membership.db
+15:28:07.419 10 Y - 下载C:\X\System.Data.SQLiteFx40.zip完成（1,078,692字节），耗时00:00:00.0003206，准备解压到C:\X\CMX\Src\NewLife.CMX.Web\bin！
+15:28:07.657 10 Y - 解压完成！
+15:28:07.877 10 Y - TypeX.GetType("System.Data.SQLite.SQLiteFactory")导致加载C:\Users\jjhgt\AppData\Local\Temp\Temporary ASP.NET Files\vs\cd9f535d\a444189d\assembly\dl3\7317eded\001e4fcc_8f57ce01\System.Data.SQLite.dll
+15:28:07.992 10 Y - [Membership]GetSchema("MetaDataCollections")
+15:28:08.007 10 Y - [Membership]GetSchema("ReservedWords")
+15:28:08.017 10 Y - 开始同步检查表[Menu/SQLite]的数据表架构……
+15:28:08.022 10 Y - [Membership]GetSchema("Tables")
+15:28:08.024 10 Y - 创建表：Menu(菜单)
+15:28:08.032 10 Y - [Membership]GetSchema("DataTypes")
+15:28:08.039 10 Y - Create Table Menu(
+	ID integer Primary Key AUTOINCREMENT,
+	Name nvarchar(50) NOT NULL COLLATE NOCASE,
+	DisplayName nvarchar(50) NULL COLLATE NOCASE,
+	ParentID int NULL,
+	Url nvarchar(200) NULL COLLATE NOCASE,
+	Sort int NULL,
+	Visible bit NULL,
+	Necessary bit NULL,
+	Permission nvarchar(200) NULL COLLATE NOCASE
+)
+15:28:08.042 10 Y - Create Index IX_Menu_Name On Menu (Name)
+15:28:08.042 10 Y - Create Unique Index IU_Menu_ParentID_Name On Menu (ParentID, Name)
+15:28:08.042 10 Y - 检查表[Menu/SQLite]的数据表架构耗时26ms
+15:28:08.047 11 W - 开始初始化实体类Channel
+15:28:08.047 11 W - 完成初始化实体类Channel
+15:28:08.052 10 Y - 开始检查连接[Membership/SQLite]的数据库架构……
+15:28:08.052 11 W - 自动为[CMX]设置连接字符串：Data Source=..\Data\CMX.db
+15:28:08.054 11 W - 创建数据库：C:\X\CMX\Src\Data\CMX.db
+15:28:08.057 11 W - [CMX]GetSchema("MetaDataCollections")
+15:28:08.057 11 W - [CMX]GetSchema("ReservedWords")
+15:28:08.057 11 W - 开始同步检查表[Channel/SQLite]的数据表架构……
+15:28:08.057 11 W - [CMX]GetSchema("Tables")
+15:28:08.057 11 W - 创建表：Channel(频道)
+15:28:08.057 11 W - [CMX]GetSchema("DataTypes")
+15:28:08.087 11 W - Create Table Channel(
+	ID integer Primary Key AUTOINCREMENT,
+	Name nvarchar(50) NOT NULL COLLATE NOCASE,
+	DisplayName nvarchar(50) NOT NULL COLLATE NOCASE,
+	ModelID int NOT NULL,
+	Suffix nvarchar(50) NULL COLLATE NOCASE,
+	Enable bit NULL,
+	Roles nvarchar(50) NULL COLLATE NOCASE,
+	IndexTemplate nvarchar(200) NULL COLLATE NOCASE,
+	CategoryTemplate nvarchar(200) NULL COLLATE NOCASE,
+	TitleTemplate nvarchar(200) NULL COLLATE NOCASE,
+	ContentTemplate nvarchar(200) NULL COLLATE NOCASE,
+	CreateUserID int NULL,
+	CreateTime datetime NULL,
+	UpdateUserID int NULL,
+	UpdateTime datetime NULL,
+	Remark nvarchar(200) NULL COLLATE NOCASE
+)
+15:28:08.087 11 W - Create Unique Index IU_Channel_Name On Channel (Name)
+15:28:08.089 11 W - Create Unique Index IU_Channel_ModelID_Suffix On Channel (ModelID, Suffix)
+15:28:08.089 11 W - Create Index IX_Channel_ModelID On Channel (ModelID)
+15:28:08.089 11 W - 检查表[Channel/SQLite]的数据表架构耗时33ms
+15:28:08.089 11 W - 开始检查连接[CMX/SQLite]的数据库架构……
+15:28:08.137 10 Y - 检查连接[Membership/SQLite]的数据库架构耗时85ms
+15:28:08.137 11 W - CMX待检查表架构的实体个数：14
+15:28:08.137 11 W - 创建表：Product(产品)
+15:28:08.137 11 W - Create Table Product(
+	ID integer Primary Key AUTOINCREMENT,
+	CategoryID int NULL,
+	CategoryName nvarchar(50) NULL COLLATE NOCASE,
+	Title nvarchar(200) NOT NULL COLLATE NOCASE,
+	Version int NULL,
+	StatisticsID int NULL,
+	Views int NULL,
+	CreateUserID int NULL,
+	CreateUserName nvarchar(50) NULL COLLATE NOCASE,
+	CreateTime datetime NULL,
+	UpdateUserID int NULL,
+	UpdateUserName nvarchar(50) NULL COLLATE NOCASE,
+	UpdateTime datetime NULL,
+	Remark nvarchar(200) NULL COLLATE NOCASE,
+	Price money NULL,
+	PhotoPath nvarchar(200) NULL COLLATE NOCASE
+)
+15:28:08.137 11 W - Create Index IX_Product_CategoryID On Product (CategoryID)
+15:28:08.137 11 W - 创建表：ProductContent(产品内容)
+15:28:08.139 11 W - Create Table ProductContent(
+	ID integer Primary Key AUTOINCREMENT,
+	ParentID int NULL,
+	Title nvarchar(200) NOT NULL COLLATE NOCASE,
+	Version int NULL,
+	CreateUserID int NULL,
+	CreateUserName nvarchar(50) NULL COLLATE NOCASE,
+	CreateTime datetime NULL,
+	Content ntext(-1) NULL COLLATE NOCASE,
+	Specification ntext(-1) NULL COLLATE NOCASE,
+	Feature ntext(-1) NULL COLLATE NOCASE,
+	App ntext(-1) NULL COLLATE NOCASE,
+	Fitting ntext(-1) NULL COLLATE NOCASE,
+	Video ntext(-1) NULL COLLATE NOCASE
+)
+15:28:08.139 10 Y - Select * From Menu Order By ID Desc limit 1
+15:28:08.139 11 W - Create Unique Index IX_ProductContent_ParentID_Version On ProductContent (ParentID, Version)
+15:28:08.139 11 W - Create Index IX_ProductContent_ParentID On ProductContent (ParentID)
+15:28:08.139 11 W - 创建表：ProductCategory(产品分类)
+15:28:08.142 11 W - Create Table ProductCategory(
+	ID integer Primary Key AUTOINCREMENT,
+	Name nvarchar(50) NOT NULL COLLATE NOCASE,
+	ParentID int NULL,
+	ChannelID int NOT NULL,
+	Sort int NULL,
+	Num int NULL,
+	CategoryTemplate nvarchar(200) NULL COLLATE NOCASE,
+	TitleTemplate nvarchar(200) NULL COLLATE NOCASE,
+	ContentTemplate nvarchar(200) NULL COLLATE NOCASE,
+	Remark nvarchar(200) NULL COLLATE NOCASE
+)
+15:28:08.142 11 W - Create Unique Index IX_ProductCategory_ParentID_Name On ProductCategory (ParentID, Name)
+15:28:08.142 11 W - Create Index IX_ProductCategory_Name On ProductCategory (Name)
+15:28:08.142 11 W - Create Index IX_ProductCategory_ParentID On ProductCategory (ParentID)
+15:28:08.142 11 W - 创建表：ProductStatistics(产品统计)
+15:28:08.142 11 W - Create Table ProductStatistics(
+	ID integer Primary Key AUTOINCREMENT,
+	Total int NULL,
+	Today int NULL,
+	Yesterday int NULL,
+	ThisWeek int NULL,
+	LastWeek int NULL,
+	ThisMonth int NULL,
+	LastMonth int NULL,
+	ThisYear int NULL,
+	LastYear int NULL,
+	LastTime datetime NULL,
+	LastIP nvarchar(50) NULL COLLATE NOCASE,
+	Remark nvarchar(200) NULL COLLATE NOCASE
+)
+15:28:08.142 11 W - 创建表：Model(模型。默认有文章、文本、产品三种模型，可以扩展增加)
+15:28:08.144 11 W - Create Table Model(
+	ID integer Primary Key AUTOINCREMENT,
+	Name nvarchar(50) NOT NULL COLLATE NOCASE,
+	DisplayName nvarchar(50) NOT NULL COLLATE NOCASE,
+	ProviderName nvarchar(50) NULL COLLATE NOCASE,
+	Enable bit NULL,
+	CreateUserID int NULL,
+	CreateTime datetime NULL,
+	UpdateUserID int NULL,
+	UpdateTime datetime NULL,
+	Remark nvarchar(200) NULL COLLATE NOCASE
+)
+15:28:08.144 11 W - Create Unique Index IU_Model_Name On Model (Name)
+15:28:08.144 11 W - 创建表：Text(文本)
+15:28:08.144 11 W - Create Table Text(
+	ID integer Primary Key AUTOINCREMENT,
+	CategoryID int NULL,
+	CategoryName nvarchar(50) NULL COLLATE NOCASE,
+	Title nvarchar(200) NOT NULL COLLATE NOCASE,
+	Version int NULL,
+	StatisticsID int NULL,
+	Views int NULL,
+	CreateUserID int NULL,
+	CreateUserName nvarchar(50) NULL COLLATE NOCASE,
+	CreateTime datetime NULL,
+	UpdateUserID int NULL,
+	UpdateUserName nvarchar(50) NULL COLLATE NOCASE,
+	UpdateTime datetime NULL,
+	Remark nvarchar(200) NULL COLLATE NOCASE
+)
+15:28:08.144 11 W - Create Index IX_Text_CategoryID On Text (CategoryID)
+15:28:08.144 11 W - 创建表：TextContent(文本内容)
+15:28:08.144 11 W - Create Table TextContent(
+	ID integer Primary Key AUTOINCREMENT,
+	ParentID int NULL,
+	Title nvarchar(200) NOT NULL COLLATE NOCASE,
+	Version int NULL,
+	CreateUserID int NULL,
+	CreateUserName nvarchar(50) NULL COLLATE NOCASE,
+	CreateTime datetime NULL,
+	Content ntext(-1) NULL COLLATE NOCASE
+)
+15:28:08.144 11 W - Create Unique Index IX_TextContent_ParentID_Version On TextContent (ParentID, Version)
+15:28:08.147 11 W - Create Index IX_TextContent_ParentID On TextContent (ParentID)
+15:28:08.147 11 W - 创建表：TextCategory(文本分类)
+15:28:08.147 11 W - Create Table TextCategory(
+	ID integer Primary Key AUTOINCREMENT,
+	Name nvarchar(50) NOT NULL COLLATE NOCASE,
+	ParentID int NULL,
+	ChannelID int NOT NULL,
+	Sort int NULL,
+	Num int NULL,
+	CategoryTemplate nvarchar(200) NULL COLLATE NOCASE,
+	TitleTemplate nvarchar(200) NULL COLLATE NOCASE,
+	ContentTemplate nvarchar(200) NULL COLLATE NOCASE,
+	Remark nvarchar(200) NULL COLLATE NOCASE
+)
+15:28:08.147 11 W - Create Unique Index IX_TextCategory_ParentID_Name On TextCategory (ParentID, Name)
+15:28:08.147 11 W - Create Index IX_TextCategory_Name On TextCategory (Name)
+15:28:08.147 11 W - Create Index IX_TextCategory_ParentID On TextCategory (ParentID)
+15:28:08.147 11 W - 创建表：TextStatistics(文本统计)
+15:28:08.147 10 Y - Select Count(*) From Menu
+15:28:08.149 11 W - Create Table TextStatistics(
+	ID integer Primary Key AUTOINCREMENT,
+	Total int NULL,
+	Today int NULL,
+	Yesterday int NULL,
+	ThisWeek int NULL,
+	LastWeek int NULL,
+	ThisMonth int NULL,
+	LastMonth int NULL,
+	ThisYear int NULL,
+	LastYear int NULL,
+	LastTime datetime NULL,
+	LastIP nvarchar(50) NULL COLLATE NOCASE,
+	Remark nvarchar(200) NULL COLLATE NOCASE
+)
+15:28:08.149 11 W - 创建表：Article(文章)
+15:28:08.149 11 W - Create Table Article(
+	ID integer Primary Key AUTOINCREMENT,
+	CategoryID int NULL,
+	CategoryName nvarchar(50) NULL COLLATE NOCASE,
+	Title nvarchar(200) NOT NULL COLLATE NOCASE,
+	Version int NULL,
+	StatisticsID int NULL,
+	Views int NULL,
+	CreateUserID int NULL,
+	CreateUserName nvarchar(50) NULL COLLATE NOCASE,
+	CreateTime datetime NULL,
+	UpdateUserID int NULL,
+	UpdateUserName nvarchar(50) NULL COLLATE NOCASE,
+	UpdateTime datetime NULL,
+	Remark nvarchar(200) NULL COLLATE NOCASE,
+	Top bit NULL,
+	Recommend bit NULL,
+	Hot bit NULL,
+	Slide bit NULL,
+	Cover nvarchar(200) NULL COLLATE NOCASE
+)
+15:28:08.149 11 W - Create Index IX_Article_CategoryID On Article (CategoryID)
+15:28:08.149 10 Y - 开始初始化Menu菜单数据……
+15:28:08.149 11 W - 创建表：ArticleContent(文章内容)
+15:28:08.149 11 W - Create Table ArticleContent(
+	ID integer Primary Key AUTOINCREMENT,
+	ParentID int NULL,
+	Title nvarchar(200) NOT NULL COLLATE NOCASE,
+	Version int NULL,
+	CreateUserID int NULL,
+	CreateUserName nvarchar(50) NULL COLLATE NOCASE,
+	CreateTime datetime NULL,
+	Content ntext(-1) NULL COLLATE NOCASE
+)
+15:28:08.149 11 W - Create Unique Index IX_ArticleContent_ParentID_Version On ArticleContent (ParentID, Version)
+15:28:08.152 11 W - Create Index IX_ArticleContent_ParentID On ArticleContent (ParentID)
+15:28:08.152 11 W - 创建表：ArticleCategory(文章分类)
+15:28:08.152 11 W - Create Table ArticleCategory(
+	ID integer Primary Key AUTOINCREMENT,
+	Name nvarchar(50) NOT NULL COLLATE NOCASE,
+	ParentID int NULL,
+	ChannelID int NOT NULL,
+	Sort int NULL,
+	Num int NULL,
+	CategoryTemplate nvarchar(200) NULL COLLATE NOCASE,
+	TitleTemplate nvarchar(200) NULL COLLATE NOCASE,
+	ContentTemplate nvarchar(200) NULL COLLATE NOCASE,
+	Remark nvarchar(200) NULL COLLATE NOCASE
+)
+15:28:08.152 11 W - Create Unique Index IX_ArticleCategory_ParentID_Name On ArticleCategory (ParentID, Name)
+15:28:08.152 11 W - Create Index IX_ArticleCategory_Name On ArticleCategory (Name)
+15:28:08.152 11 W - Create Index IX_ArticleCategory_ParentID On ArticleCategory (ParentID)
+15:28:08.152 11 W - 创建表：ArticleStatistics(文章统计)
+15:28:08.154 10 Y - 扫描目录生成菜单 C:\X\CMX\Src\NewLife.CMX.Web\App_Start
+15:28:08.154 11 W - Create Table ArticleStatistics(
+	ID integer Primary Key AUTOINCREMENT,
+	Total int NULL,
+	Today int NULL,
+	Yesterday int NULL,
+	ThisWeek int NULL,
+	LastWeek int NULL,
+	ThisMonth int NULL,
+	LastMonth int NULL,
+	ThisYear int NULL,
+	LastYear int NULL,
+	LastTime datetime NULL,
+	LastIP nvarchar(50) NULL COLLATE NOCASE,
+	Remark nvarchar(200) NULL COLLATE NOCASE
+)
+15:28:08.154 11 W - 创建表：Nav(导航)
+15:28:08.154 11 W - Create Table Nav(
+	ID integer Primary Key AUTOINCREMENT,
+	Name nvarchar(50) NULL COLLATE NOCASE,
+	ParentID int NULL,
+	ChannelID int NULL,
+	Url nvarchar(50) NULL COLLATE NOCASE,
+	NewWindow bit NULL,
+	Sort int NULL,
+	Enable bit NULL,
+	CreateUserID int NULL,
+	CreateTime datetime NULL,
+	UpdateUserID int NULL,
+	UpdateTime datetime NULL,
+	Remark nvarchar(200) NULL COLLATE NOCASE
+)
+15:28:08.154 11 W - 检查连接[CMX/SQLite]的数据库架构耗时65ms
+15:28:08.157 11 W - Select * From Channel Order By ID Desc limit 1
+15:28:08.157 11 W - Select Count(*) From Channel
+15:28:08.157 11 W - 开始初始化Channel[频道]数据……
+15:28:08.164 11 W - 开始初始化实体类Model
+15:28:08.164 11 W - 完成初始化实体类Model
+15:28:08.164 11 W - Select * From Model Order By ID Desc limit 1
+15:28:08.164 11 W - Select Count(*) From Model
+15:28:08.164 11 W - 开始初始化Model[模型]数据……
+15:28:08.205 11 W - Select * From Model Order By ID Desc
+15:28:08.236 11 W - Insert Into Model(Name, DisplayName, ProviderName, Enable, CreateUserID, CreateTime, UpdateUserID, UpdateTime) Values('Product', '产品', 'NewLife.CMX.ProductProvider', 1, 0, '2015-05-27 15:28:08', 0, null);Select last_insert_rowid() newid
+15:28:08.245 11 W - Insert Into Model(Name, DisplayName, ProviderName, Enable, CreateUserID, CreateTime, UpdateUserID, UpdateTime) Values('Text', '文本', 'NewLife.CMX.TextProvider', 1, 0, '2015-05-27 15:28:08', 0, null);Select last_insert_rowid() newid
+15:28:08.246 11 W - Insert Into Model(Name, DisplayName, ProviderName, Enable, CreateUserID, CreateTime, UpdateUserID, UpdateTime) Values('Article', '文章', 'NewLife.CMX.ArticleProvider', 1, 0, '2015-05-27 15:28:08', 0, null);Select last_insert_rowid() newid
+15:28:08.246 11 W - 完成初始化Model[模型]数据！
+15:28:08.261 11 W - Select Count(*) From Channel Where Name='Product'
+15:28:08.261 11 W - Select Count(*) From Channel Where ModelID=1 And Suffix=''
+15:28:08.262 11 W - Insert Into Channel(Name, DisplayName, ModelID, Suffix, Enable, Roles, CreateUserID, CreateTime, UpdateUserID, UpdateTime) Values('Product', '默认产品', 1, '', 1, '1', 0, '2015-05-27 15:28:08', 0, null);Select last_insert_rowid() newid
+15:28:08.263 11 W - Select Count(*) From Channel Where Name='Text'
+15:28:08.263 11 W - Select Count(*) From Channel Where ModelID=2 And Suffix=''
+15:28:08.263 11 W - Insert Into Channel(Name, DisplayName, ModelID, Suffix, Enable, Roles, CreateUserID, CreateTime, UpdateUserID, UpdateTime) Values('Text', '默认文本', 2, '', 1, '1', 0, '2015-05-27 15:28:08', 0, null);Select last_insert_rowid() newid
+15:28:08.264 11 W - Select Count(*) From Channel Where Name='Article'
+15:28:08.264 11 W - Select Count(*) From Channel Where ModelID=3 And Suffix=''
+15:28:08.264 11 W - Insert Into Channel(Name, DisplayName, ModelID, Suffix, Enable, Roles, CreateUserID, CreateTime, UpdateUserID, UpdateTime) Values('Article', '默认文章', 3, '', 1, '1', 0, '2015-05-27 15:28:08', 0, null);Select last_insert_rowid() newid
+15:28:08.264 11 W - 完成初始化Channel[频道]数据！
+15:28:08.265 11 W - Select * From Channel Order By ID Desc
+15:28:08.272 11 W - 开始初始化实体类ArticleCategory
+15:28:08.272 11 W - 完成初始化实体类ArticleCategory
+15:28:08.276 11 W - Select * From ArticleCategory Order By ID Desc limit 1
+15:28:08.277 11 W - Select Count(*) From ArticleCategory
+15:28:08.277 11 W - 开始初始化ArticleCategory[文章分类]数据……
+15:28:08.280 11 W - Select Count(*) From ArticleCategory Where Name='默认文章分类' And ParentID=0
+15:28:08.281 11 W - Insert Into ArticleCategory(Name, ParentID, ChannelID, Sort, Num) Values('默认文章分类', 0, 3, 0, 0);Select last_insert_rowid() newid
+15:28:08.285 11 W - Select Count(*) From ArticleCategory Where Name='二级分类' And ParentID=1
+15:28:08.286 11 W - Select * From ArticleCategory Where ID=1
+15:28:08.288 11 W - Insert Into ArticleCategory(Name, ParentID, ChannelID, Sort, Num) Values('二级分类', 1, 3, 0, 0);Select last_insert_rowid() newid
+15:28:08.288 11 W - 完成初始化ArticleCategory[文章分类]数据！
+15:28:08.289 11 W - Select * From ArticleCategory Order By ID Desc
+15:28:08.294 11 W - 开始初始化实体类TextCategory
+15:28:08.294 11 W - 完成初始化实体类TextCategory
+15:28:08.296 11 W - Select * From TextCategory Order By ID Desc limit 1
+15:28:08.296 11 W - Select Count(*) From TextCategory
+15:28:08.297 11 W - 开始初始化TextCategory[文本分类]数据……
+15:28:08.297 11 W - Select Count(*) From TextCategory Where Name='默认文本分类' And ParentID=0
+15:28:08.297 11 W - Insert Into TextCategory(Name, ParentID, ChannelID, Sort, Num) Values('默认文本分类', 0, 2, 0, 0);Select last_insert_rowid() newid
+15:28:08.298 11 W - Select Count(*) From TextCategory Where Name='二级分类' And ParentID=1
+15:28:08.298 11 W - Select * From TextCategory Where ID=1
+15:28:08.299 11 W - Insert Into TextCategory(Name, ParentID, ChannelID, Sort, Num) Values('二级分类', 1, 2, 0, 0);Select last_insert_rowid() newid
+15:28:08.299 11 W - 完成初始化TextCategory[文本分类]数据！
+15:28:08.299 11 W - Select * From TextCategory Order By ID Desc
+15:28:08.301 11 W - 开始初始化实体类ProductCategory
+15:28:08.301 11 W - 完成初始化实体类ProductCategory
+15:28:08.302 11 W - Select * From ProductCategory Order By ID Desc limit 1
+15:28:08.303 11 W - Select Count(*) From ProductCategory
+15:28:08.303 11 W - 开始初始化ProductCategory[产品分类]数据……
+15:28:08.303 11 W - Select Count(*) From ProductCategory Where Name='默认产品分类' And ParentID=0
+15:28:08.303 11 W - Insert Into ProductCategory(Name, ParentID, ChannelID, Sort, Num) Values('默认产品分类', 0, 1, 0, 0);Select last_insert_rowid() newid
+15:28:08.304 11 W - Select Count(*) From ProductCategory Where Name='二级分类' And ParentID=1
+15:28:08.304 11 W - Select * From ProductCategory Where ID=1
+15:28:08.306 11 W - Insert Into ProductCategory(Name, ParentID, ChannelID, Sort, Num) Values('二级分类', 1, 1, 0, 0);Select last_insert_rowid() newid
+15:28:08.306 11 W - 完成初始化ProductCategory[产品分类]数据！
+15:28:08.306 11 W - Select * From ProductCategory Order By ID Desc
+
+#Software: iisexpress
+#ProcessID: 5420
+#AppDomain: /LM/W3SVC/7/ROOT-2-130771854113186621
+#FileName: C:\Program Files (x86)\IIS Express\iisexpress.exe
+#BaseDirectory: C:\X\CMX\Src\NewLife.CMX.Web\
+#CurrentDirectory: C:\Program Files (x86)\IIS Express
+#CommandLine: /config:"C:\Users\jjhgt\Documents\IISExpress\config\applicationhost.config"  /site:"NewLife.CMX.Web" /apppool:"Clr4IntegratedAppPool"
+#ApplicationType: Web
+#CLR: 4.0.30319.18444
+#OS: Windows 7 Service Pack 1 x64, jjhgt/JJHGT-PC
+#CPU: AMD A10-5800K APU with Radeon(tm) HD Graphics 3.80GHz 178BFBFF00610F01
+#Memory: 3,799M/7,369M
+#Date: 2015-05-27
+#字段: 时间 线程ID 线程池Y网页W普通N 线程名 消息内容
+#Fields: Time ThreadID IsPoolThread ThreadName Message
+15:30:12.101  1 N - NewLife.Core v5.4.2015.0511 Build 2015-05-27 15:27:58
+15:30:12.454  1 N - ================================ Start 初始化魔方 ================================
+15:30:12.649  1 N - 注册区域视图程序集：NewLife.Cube, Version=1.0.5625.27840, Culture=neutral, PublicKeyToken=null
+15:30:12.649  1 N - 注册区域视图程序集：NewLife.CMX.Web, Version=2.0.5625.27841, Culture=neutral, PublicKeyToken=null
+15:30:12.656  1 N - 注册复合预编译引擎，共有视图程序集2个
+15:30:12.656  1 N - 注册实体模型绑定器：NewLife.Cube.EntityModelBinderProvider
+15:30:12.656  1 N - 注册过滤器：NewLife.Cube.MvcHandleErrorAttribute
+15:30:12.656  1 N - 注册过滤器：NewLife.Cube.EntityAuthorizeAttribute
+15:30:12.656  1 N - ================================ End   初始化魔方 ================================
+15:30:12.661  1 N - 开始注册权限管理区域[CMS]
+15:30:12.664 15 Y - 初始化[CMS]的菜单体系
+15:30:12.666  1 N - 开始注册权限管理区域[Admin]
+15:30:12.666  1 N - 初始化权限管理体系
+15:30:12.804 15 Y - 开始初始化实体类Menu
+15:30:12.804  1 N - XCode        v8.18.2015.0522 Build 2015-05-27 15:27:58
+15:30:12.804  1 N - 开始初始化实体类UserX
+15:30:12.806  1 N - 完成初始化实体类UserX
+15:30:12.806 15 Y - 完成初始化实体类Menu
+15:30:13.116 15 Y - 使用数据库方式：独占，加大缓存权重
+15:30:13.139 15 Y - 自动为[Membership]设置连接字符串：Data Source=..\Data\Membership.db
+15:30:13.191 15 Y - [Membership]GetSchema("MetaDataCollections")
+15:30:13.206 15 Y - [Membership]GetSchema("ReservedWords")
+15:30:13.211 15 Y - 开始同步检查表[Menu/SQLite]的数据表架构……
+15:30:13.219 15 Y - [Membership]GetSchema("Tables")
+15:30:13.229 15 Y - [Membership]GetSchema("Columns")
+15:30:13.256 15 Y - [Membership]GetSchema("Indexes")
+15:30:13.256 15 Y - [Membership]GetSchema("IndexColumns")
+15:30:13.261 15 Y - [Membership]GetSchema("DataTypes")
+15:30:13.286 15 Y - 检查表[Menu/SQLite]的数据表架构耗时73ms
+15:30:13.294 15 Y - 开始检查连接[Membership/SQLite]的数据库架构……
+15:30:13.391 15 Y - 检查连接[Membership/SQLite]的数据库架构耗时99ms
+15:30:13.394 15 Y - Select * From Menu Order By ID Desc limit 1
+15:30:13.399 15 Y - Select Count(*) From Menu
+15:30:13.399 15 Y - 开始初始化Menu菜单数据……
+15:30:13.709  9 Y - 初始化[Admin]的菜单体系
+15:30:13.899 16 W - 开始初始化实体类Channel
+15:30:13.899 16 W - 完成初始化实体类Channel
+15:30:13.899 16 W - 自动为[CMX]设置连接字符串：Data Source=..\Data\CMX.db
+15:30:13.901 16 W - [CMX]GetSchema("MetaDataCollections")
+15:30:13.901 16 W - [CMX]GetSchema("ReservedWords")
+15:30:13.904 16 W - 开始同步检查表[Channel/SQLite]的数据表架构……
+15:30:13.904 16 W - [CMX]GetSchema("Tables")
+15:30:13.904 16 W - [CMX]GetSchema("Columns")
+15:30:14.004 16 W - [CMX]GetSchema("Indexes")
+15:30:14.006 16 W - [CMX]GetSchema("IndexColumns")
+15:30:14.009 16 W - [CMX]GetSchema("DataTypes")
+15:30:14.011 16 W - 检查表[Channel/SQLite]的数据表架构耗时108ms
+15:30:14.011 16 W - 开始检查连接[CMX/SQLite]的数据库架构……
+15:30:14.041 16 W - CMX待检查表架构的实体个数：14
+15:30:14.049 16 W - 检查连接[CMX/SQLite]的数据库架构耗时37ms
+15:30:14.051 16 W - Select * From Channel Order By ID Desc limit 1
+15:30:14.054 16 W - Select Count(*) From Channel
+15:30:14.054 16 W - Select * From Channel Order By ID Desc
+15:30:14.071 16 W - 开始初始化实体类Model
+15:30:14.071 16 W - 完成初始化实体类Model
+15:30:14.074 16 W - Select * From Model Order By ID Desc limit 1
+15:30:14.074 16 W - Select Count(*) From Model
+15:30:14.074 16 W - Select * From Model Order By ID Desc
+15:30:14.106 16 W - 开始初始化实体类ArticleCategory
+15:30:14.106 16 W - 完成初始化实体类ArticleCategory
+15:30:14.111 16 W - Select * From ArticleCategory Order By ID Desc limit 1
+15:30:14.111 16 W - Select Count(*) From ArticleCategory
+15:30:14.111 16 W - Select * From ArticleCategory Order By ID Desc
+15:30:14.119 16 W - 开始初始化实体类TextCategory
+15:30:14.119 16 W - 完成初始化实体类TextCategory
+15:30:14.121 16 W - Select * From TextCategory Order By ID Desc limit 1
+15:30:14.121 16 W - Select Count(*) From TextCategory
+15:30:14.121 16 W - Select * From TextCategory Order By ID Desc
+15:30:14.124 16 W - 开始初始化实体类ProductCategory
+15:30:14.124 16 W - 完成初始化实体类ProductCategory
+15:30:14.126 16 W - Select * From ProductCategory Order By ID Desc limit 1
+15:30:14.126 16 W - Select Count(*) From ProductCategory
+15:30:14.126 16 W - Select * From ProductCategory Order By ID Desc
+15:30:15.496 15 Y - 初始化数据出错！XCode.Exceptions.XDbSessionException: database is locked
+database is locked[DB:Membership/SQLite] ---> System.Data.SQLite.SQLiteException: database is locked
+database is locked
+   在 System.Data.SQLite.SQLite3.Step(SQLiteStatement stmt)
+   在 System.Data.SQLite.SQLiteDataReader.NextResult()
+   在 System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   在 System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   在 System.Data.SQLite.SQLiteTransaction..ctor(SQLiteConnection connection, Boolean deferredLock)
+   在 System.Data.SQLite.SQLiteConnection.BeginDbTransaction(IsolationLevel isolationLevel)
+   在 System.Data.Common.DbConnection.BeginTransaction()
+   在 XCode.DataAccessLayer.DbSession.BeginTransaction() 位置 c:\X\CMX\Src\XCode\DataAccessLayer\Common\DbSession.cs:行号 258
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 XCode.DataAccessLayer.DbSession.BeginTransaction() 位置 c:\X\CMX\Src\XCode\DataAccessLayer\Common\DbSession.cs:行号 264
+   在 XCode.DataAccessLayer.DAL.BeginTransaction() 位置 c:\X\CMX\Src\XCode\DataAccessLayer\DAL_DbOperate.cs:行号 302
+   在 XCode.EntitySession`1.BeginTrans() 位置 c:\X\CMX\Src\XCode\Entity\EntitySession.cs:行号 878
+   在 XCode.EntityTransaction`1..ctor() 位置 c:\X\CMX\Src\XCode\Entity\EntityTransaction.cs:行号 27
+   在 XCode.Membership.Menu`1.InitData() 位置 c:\X\CMX\Src\XCode\Membership\菜单.Biz.cs:行号 47
+   在 XCode.EntitySession`1.WaitForInitData(Int32 ms) 位置 c:\X\CMX\Src\XCode\Entity\EntitySession.cs:行号 170
+15:30:15.499 15 Y - Select * From Menu Order By ID Desc
+15:30:15.516 16 W - 开始初始化实体类Nav
+15:30:15.516 16 W - 完成初始化实体类Nav
+15:30:15.521 16 W - Select * From Nav Order By ID Desc limit 1
+15:30:15.521 16 W - Select Count(*) From Nav
+15:30:15.521 16 W - 开始初始化Nav[导航]数据……
+15:30:15.524 15 Y - Insert Into Menu(Name, DisplayName, ParentID, Url, Sort, Visible, Necessary, Permission) Values('CMS', null, 0, '~/CMS', 0, 1, 0, '');Select last_insert_rowid() newid
+15:30:15.526 16 W - Insert Into Nav(Name, ParentID, ChannelID, Url, NewWindow, Sort, Enable, CreateUserID, CreateTime, UpdateUserID, UpdateTime) Values('头部', 0, 0, null, 0, 1, 1, 0, '2015-05-27 15:30:15', 0, '2015-05-27 15:30:15');Select last_insert_rowid() newid
+15:30:15.536 16 W - Select * From Nav Where ID=1
+15:30:15.539 16 W - Insert Into Nav(Name, ParentID, ChannelID, Url, NewWindow, Sort, Enable, CreateUserID, CreateTime, UpdateUserID, UpdateTime) Values('首页', 1, 0, '/', 0, 1, 1, 0, '2015-05-27 15:30:15', 0, '2015-05-27 15:30:15');Select last_insert_rowid() newid
+15:30:15.539 16 W - Select * From Nav Where ID=1
+15:30:15.539 16 W - Insert Into Nav(Name, ParentID, ChannelID, Url, NewWindow, Sort, Enable, CreateUserID, CreateTime, UpdateUserID, UpdateTime) Values('关于我们', 1, 0, '/About', 0, 1, 1, 0, '2015-05-27 15:30:15', 0, '2015-05-27 15:30:15');Select last_insert_rowid() newid
+15:30:15.539 16 W - Insert Into Nav(Name, ParentID, ChannelID, Url, NewWindow, Sort, Enable, CreateUserID, CreateTime, UpdateUserID, UpdateTime) Values('尾部', 0, 0, null, 0, 1, 1, 0, '2015-05-27 15:30:15', 0, '2015-05-27 15:30:15');Select last_insert_rowid() newid
+15:30:15.539 16 W - Select * From Nav Where ID=4
+15:30:15.541 16 W - Insert Into Nav(Name, ParentID, ChannelID, Url, NewWindow, Sort, Enable, CreateUserID, CreateTime, UpdateUserID, UpdateTime) Values('友情链接', 4, 0, null, 0, 1, 1, 0, '2015-05-27 15:30:15', 0, '2015-05-27 15:30:15');Select last_insert_rowid() newid
+15:30:15.541 16 W - Select * From Nav Where ID=5
+15:30:15.541 16 W - Insert Into Nav(Name, ParentID, ChannelID, Url, NewWindow, Sort, Enable, CreateUserID, CreateTime, UpdateUserID, UpdateTime) Values('新生命团队', 5, 0, 'http://www.NewLifeX.com', 0, 1, 1, 0, '2015-05-27 15:30:15', 0, '2015-05-27 15:30:15');Select last_insert_rowid() newid
+15:30:15.541 16 W - Select * From Nav Where ID=5
+15:30:15.541 16 W - Insert Into Nav(Name, ParentID, ChannelID, Url, NewWindow, Sort, Enable, CreateUserID, CreateTime, UpdateUserID, UpdateTime) Values('无声物联', 5, 0, 'http://www.peacemoon.cn', 0, 1, 1, 0, '2015-05-27 15:30:15', 0, '2015-05-27 15:30:15');Select last_insert_rowid() newid
+15:30:15.544 16 W - Select * From Nav Where ID=4
+15:30:15.544 16 W - Insert Into Nav(Name, ParentID, ChannelID, Url, NewWindow, Sort, Enable, CreateUserID, CreateTime, UpdateUserID, UpdateTime) Values('社区', 4, 0, null, 0, 1, 1, 0, '2015-05-27 15:30:15', 0, '2015-05-27 15:30:15');Select last_insert_rowid() newid
+15:30:15.544 16 W - Select * From Nav Where ID=8
+15:30:15.544 16 W - Insert Into Nav(Name, ParentID, ChannelID, Url, NewWindow, Sort, Enable, CreateUserID, CreateTime, UpdateUserID, UpdateTime) Values('用户社区', 8, 0, '/Communicate', 0, 1, 1, 0, '2015-05-27 15:30:15', 0, '2015-05-27 15:30:15');Select last_insert_rowid() newid
+15:30:15.544 16 W - Select * From Nav Where ID=4
+15:30:15.544 16 W - Insert Into Nav(Name, ParentID, ChannelID, Url, NewWindow, Sort, Enable, CreateUserID, CreateTime, UpdateUserID, UpdateTime) Values('关于', 4, 0, null, 0, 1, 1, 0, '2015-05-27 15:30:15', 0, '2015-05-27 15:30:15');Select last_insert_rowid() newid
+15:30:15.544 16 W - Select * From Nav Where ID=10
+15:30:15.546 16 W - Insert Into Nav(Name, ParentID, ChannelID, Url, NewWindow, Sort, Enable, CreateUserID, CreateTime, UpdateUserID, UpdateTime) Values('关于我们', 10, 0, '/About', 0, 1, 1, 0, '2015-05-27 15:30:15', 0, '2015-05-27 15:30:15');Select last_insert_rowid() newid
+15:30:15.546 16 W - 完成初始化Nav[导航]数据！
+15:30:15.546 16 W - Select * From Nav Order By ID Desc
+15:30:17.579  9 Y - XCode.Exceptions.XDbSessionException: database is locked
+database is locked[DB:Membership/SQLite] ---> System.Data.SQLite.SQLiteException: database is locked
+database is locked
+   在 System.Data.SQLite.SQLite3.Step(SQLiteStatement stmt)
+   在 System.Data.SQLite.SQLiteDataReader.NextResult()
+   在 System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   在 System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   在 System.Data.SQLite.SQLiteTransaction..ctor(SQLiteConnection connection, Boolean deferredLock)
+   在 System.Data.SQLite.SQLiteConnection.BeginDbTransaction(IsolationLevel isolationLevel)
+   在 System.Data.Common.DbConnection.BeginTransaction()
+   在 XCode.DataAccessLayer.DbSession.BeginTransaction() 位置 c:\X\CMX\Src\XCode\DataAccessLayer\Common\DbSession.cs:行号 258
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 XCode.DataAccessLayer.DbSession.BeginTransaction() 位置 c:\X\CMX\Src\XCode\DataAccessLayer\Common\DbSession.cs:行号 264
+   在 XCode.DataAccessLayer.DAL.BeginTransaction() 位置 c:\X\CMX\Src\XCode\DataAccessLayer\DAL_DbOperate.cs:行号 302
+   在 XCode.EntitySession`1.BeginTrans() 位置 c:\X\CMX\Src\XCode\Entity\EntitySession.cs:行号 878
+   在 XCode.EntityTransaction`1..ctor() 位置 c:\X\CMX\Src\XCode\Entity\EntityTransaction.cs:行号 27
+   在 XCode.Entity`1.DoAction(Func`1 func, Nullable`1 isnew) 位置 c:\X\CMX\Src\XCode\Entity\Entity.cs:行号 229
+   在 XCode.Entity`1.Insert() 位置 c:\X\CMX\Src\XCode\Entity\Entity.cs:行号 167
+   在 XCode.Membership.Menu`1.Add(String name, String displayName, String url) 位置 c:\X\CMX\Src\XCode\Membership\菜单.Biz.cs:行号 212
+   在 XCode.Membership.Menu`1.MenuFactory.ScanController(String rootName, Assembly asm, String nameSpace) 位置 c:\X\CMX\Src\XCode\Membership\菜单.Biz.cs:行号 705
+   在 NewLife.Cube.AreaRegistrationBase.ScanController() 位置 c:\X\CMX\Src\NewLife.Cube\Common\AreaRegistrationBase.cs:行号 139
+   在 NewLife.Cube.AreaRegistrationBase.<RegisterArea>b__6(Object s) 位置 c:\X\CMX\Src\NewLife.Cube\Common\AreaRegistrationBase.cs:行号 129
+   在 System.Threading.QueueUserWorkItemCallback.WaitCallback_Context(Object state)
+   在 System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   在 System.Threading.QueueUserWorkItemCallback.System.Threading.IThreadPoolWorkItem.ExecuteWorkItem()
+   在 System.Threading.ThreadPoolWorkQueue.Dispatch()
+   在 System.Threading._ThreadPoolWaitCallback.PerformWaitCallback()
+15:30:17.579  9 Y - 异常退出！
+
+#Software: iisexpress
+#ProcessID: 5268
+#AppDomain: /LM/W3SVC/7/ROOT-1-130771854422329507
+#FileName: C:\Program Files (x86)\IIS Express\iisexpress.exe
+#BaseDirectory: C:\X\CMX\Src\NewLife.CMX.Web\
+#CurrentDirectory: C:\Program Files (x86)\IIS Express
+#CommandLine: /config:"C:\Users\jjhgt\Documents\IISExpress\config\applicationhost.config"  /site:"NewLife.CMX.Web" /apppool:"Clr4IntegratedAppPool"
+#ApplicationType: Web
+#CLR: 4.0.30319.18444
+#OS: Windows 7 Service Pack 1 x64, jjhgt/JJHGT-PC
+#CPU: AMD A10-5800K APU with Radeon(tm) HD Graphics 3.80GHz 178BFBFF00610F01
+#Memory: 3,750M/7,369M
+#Date: 2015-05-27
+#字段: 时间 线程ID 线程池Y网页W普通N 线程名 消息内容
+#Fields: Time ThreadID IsPoolThread ThreadName Message
+15:30:43.786  1 N - NewLife.Core v5.4.2015.0511 Build 2015-05-27 15:27:58
+15:30:44.006  1 N - ================================ Start 初始化魔方 ================================
+15:30:44.441  1 N - 注册区域视图程序集：NewLife.Cube, Version=1.0.5625.27919, Culture=neutral, PublicKeyToken=null
+15:30:44.441  1 N - 注册区域视图程序集：NewLife.CMX.Web, Version=2.0.5625.27919, Culture=neutral, PublicKeyToken=null
+15:30:44.448  1 N - 注册复合预编译引擎，共有视图程序集2个
+15:30:44.451  1 N - 注册实体模型绑定器：NewLife.Cube.EntityModelBinderProvider
+15:30:44.451  1 N - 注册过滤器：NewLife.Cube.MvcHandleErrorAttribute
+15:30:44.451  1 N - 注册过滤器：NewLife.Cube.EntityAuthorizeAttribute
+15:30:44.451  1 N - ================================ End   初始化魔方 ================================
+15:30:44.451  1 N - 开始注册权限管理区域[Admin]
+15:30:44.453  1 N - 初始化权限管理体系
+15:30:44.456  6 Y - 初始化[Admin]的菜单体系
+15:30:44.576  6 Y - 开始初始化实体类Menu
+15:30:44.576  1 N - XCode        v8.18.2015.0522 Build 2015-05-27 15:27:58
+15:30:44.576  1 N - 开始初始化实体类UserX
+15:30:44.576  6 Y - 完成初始化实体类Menu
+15:30:44.576  1 N - 完成初始化实体类UserX
+15:30:44.581  1 N - 开始注册权限管理区域[CMS]
+15:30:44.581  7 Y - 初始化[CMS]的菜单体系
+15:30:44.917  7 Y - 使用数据库方式：独占，加大缓存权重
+15:30:44.955  7 Y - 自动为[Membership]设置连接字符串：Data Source=..\Data\Membership.db
+15:30:45.035  7 Y - [Membership]GetSchema("MetaDataCollections")
+15:30:45.050  7 Y - [Membership]GetSchema("ReservedWords")
+15:30:45.060  7 Y - 开始同步检查表[Menu/SQLite]的数据表架构……
+15:30:45.066  7 Y - [Membership]GetSchema("Tables")
+15:30:45.079  7 Y - [Membership]GetSchema("Columns")
+15:30:45.112  7 Y - [Membership]GetSchema("Indexes")
+15:30:45.112  7 Y - [Membership]GetSchema("IndexColumns")
+15:30:45.118  7 Y - [Membership]GetSchema("DataTypes")
+15:30:45.148  7 Y - 检查表[Menu/SQLite]的数据表架构耗时87ms
+15:30:45.158  7 Y - 开始检查连接[Membership/SQLite]的数据库架构……
+15:30:45.235  7 Y - 检查连接[Membership/SQLite]的数据库架构耗时79ms
+15:30:45.240  7 Y - Select * From Menu Order By ID Desc limit 1
+15:30:45.248  7 Y - Select Count(*) From Menu
+15:30:45.248  7 Y - 开始初始化Menu菜单数据……
+15:30:45.253  7 Y - 扫描目录生成菜单 C:\X\CMX\Src\NewLife.CMX.Web\App_Start
+15:30:45.521  9 W - 开始初始化实体类Channel
+15:30:45.521  9 W - 完成初始化实体类Channel
+15:30:45.521  9 W - 自动为[CMX]设置连接字符串：Data Source=..\Data\CMX.db
+15:30:45.524  9 W - [CMX]GetSchema("MetaDataCollections")
+15:30:45.524  9 W - [CMX]GetSchema("ReservedWords")
+15:30:45.524  9 W - 开始同步检查表[Channel/SQLite]的数据表架构……
+15:30:45.526  9 W - [CMX]GetSchema("Tables")
+15:30:45.526  9 W - [CMX]GetSchema("Columns")
+15:30:45.661  9 W - [CMX]GetSchema("Indexes")
+15:30:45.664  9 W - [CMX]GetSchema("IndexColumns")
+15:30:45.666  9 W - [CMX]GetSchema("DataTypes")
+15:30:45.669  9 W - 检查表[Channel/SQLite]的数据表架构耗时144ms
+15:30:45.669  9 W - 开始检查连接[CMX/SQLite]的数据库架构……
+15:30:45.706  9 W - CMX待检查表架构的实体个数：14
+15:30:45.718  9 W - 检查连接[CMX/SQLite]的数据库架构耗时48ms
+15:30:45.719  9 W - Select * From Channel Order By ID Desc limit 1
+15:30:45.720  9 W - Select Count(*) From Channel
+15:30:45.720  9 W - Select * From Channel Order By ID Desc
+15:30:45.753  9 W - 开始初始化实体类Model
+15:30:45.753  9 W - 完成初始化实体类Model
+15:30:45.753  9 W - Select * From Model Order By ID Desc limit 1
+15:30:45.753  9 W - Select Count(*) From Model
+15:30:45.755  9 W - Select * From Model Order By ID Desc
+15:30:45.875  9 W - SQL耗时较长，建议优化 120.00毫秒 Select * From Model Order By ID Desc
+15:30:45.913  9 W - 开始初始化实体类ArticleCategory
+15:30:45.913  9 W - 完成初始化实体类ArticleCategory
+15:30:45.918  9 W - Select * From ArticleCategory Order By ID Desc limit 1
+15:30:45.920  9 W - Select Count(*) From ArticleCategory
+15:30:45.920  9 W - Select * From ArticleCategory Order By ID Desc
+15:30:45.932  9 W - 开始初始化实体类TextCategory
+15:30:45.932  9 W - 完成初始化实体类TextCategory
+15:30:45.936  9 W - Select * From TextCategory Order By ID Desc limit 1
+15:30:45.936  9 W - Select Count(*) From TextCategory
+15:30:45.937  9 W - Select * From TextCategory Order By ID Desc
+15:30:45.940  9 W - 开始初始化实体类ProductCategory
+15:30:45.940  9 W - 完成初始化实体类ProductCategory
+15:30:45.942  9 W - Select * From ProductCategory Order By ID Desc limit 1
+15:30:45.942  9 W - Select Count(*) From ProductCategory
+15:30:45.943  9 W - Select * From ProductCategory Order By ID Desc
+15:31:00.603  8 W - 开始同步检查表[UserX/SQLite]的数据表架构……
+15:31:00.606  8 W - [Membership]GetSchema("Tables")
+15:31:00.606  8 W - 创建表：User(用户)
+15:31:00.611  8 W - Create Table User(
+	ID integer Primary Key AUTOINCREMENT,
+	Name nvarchar(50) NOT NULL COLLATE NOCASE,
+	Password nvarchar(50) NULL COLLATE NOCASE,
+	DisplayName nvarchar(50) NULL COLLATE NOCASE,
+	Mail nvarchar(50) NULL COLLATE NOCASE,
+	Phone nvarchar(50) NULL COLLATE NOCASE,
+	Code nvarchar(50) NULL COLLATE NOCASE,
+	RoleID int NOT NULL,
+	Logins int NULL,
+	LastLogin datetime NULL,
+	LastLoginIP nvarchar(50) NULL COLLATE NOCASE,
+	Enable bit NULL,
+	Profile nvarchar(500) NULL COLLATE NOCASE
+)
+15:31:30.641  8 W - SQL耗时较长，建议优化 30,030.00毫秒 Create Table User(
+	ID integer Primary Key AUTOINCREMENT,
+	Name nvarchar(50) NOT NULL COLLATE NOCASE,
+	Password nvarchar(50) NULL COLLATE NOCASE,
+	DisplayName nvarchar(50) NULL COLLATE NOCASE,
+	Mail nvarchar(50) NULL COLLATE NOCASE,
+	Phone nvarchar(50) NULL COLLATE NOCASE,
+	Code nvarchar(50) NULL COLLATE NOCASE,
+	RoleID int NOT NULL,
+	Logins int NULL,
+	LastLogin datetime NULL,
+	LastLoginIP nvarchar(50) NULL COLLATE NOCASE,
+	Enable bit NULL,
+	Profile nvarchar(500) NULL COLLATE NOCASE
+)
+15:31:30.643  8 W - 修改表CreateTable失败！database is locked
+database is locked[SQL:
+Create Table User(
+	ID integer Primary Key AUTOINCREMENT,
+	Name nvarchar(50) NOT NULL COLLATE NOCASE,
+	Password nvarchar(50) NULL COLLATE NOCASE,
+	DisplayName nvarchar(50) NULL COLLATE NOCASE,
+	Mail nvarchar(50) NULL COLLATE NOCASE,
+	Phone nvarchar(50) NULL COLLATE NOCASE,
+	Code nvarchar(50) NULL COLLATE NOCASE,
+	RoleID int NOT NULL,
+	Logins int NULL,
+	LastLogin datetime NULL,
+	LastLoginIP nvarchar(50) NULL COLLATE NOCASE,
+	Enable bit NULL,
+	Profile nvarchar(500) NULL COLLATE NOCASE
+)
+][DB:Membership/SQLite]
+15:31:30.646  8 W - Create Unique Index IU_User_Name On User (Name)
+15:31:30.646  8 W - 修改表CreateIndex失败！SQL logic error or missing database
+no such table: main.User[SQL:Create Unique Index IU_User_Name On User (Name)][DB:Membership/SQLite]
+15:31:30.646  8 W - Create Index IX_User_RoleID On User (RoleID)
+15:31:30.648  8 W - 修改表CreateIndex失败！SQL logic error or missing database
+no such table: main.User[SQL:Create Index IX_User_RoleID On User (RoleID)][DB:Membership/SQLite]
+15:31:30.648  8 W - 检查表[UserX/SQLite]的数据表架构耗时30,043ms
+15:31:30.648  8 W - Select * From User Order By ID Desc limit 1
+15:31:30.705  8 W - 开始初始化实体类Log
+15:31:30.707  8 W - 完成初始化实体类Log
+15:31:30.710  8 W - 开始同步检查表[Log/SQLite]的数据表架构……
+15:31:30.710  8 W - [Membership]GetSchema("Tables")
+15:31:30.710  8 W - 创建表：Log(日志)
+15:31:30.712  8 W - Create Table Log(
+	ID integer Primary Key AUTOINCREMENT,
+	Category nvarchar(50) NULL COLLATE NOCASE,
+	Action nvarchar(50) NULL COLLATE NOCASE,
+	UserID int NULL,
+	UserName nvarchar(50) NULL COLLATE NOCASE,
+	IP nvarchar(50) NULL COLLATE NOCASE,
+	OccurTime datetime NULL,
+	Remark nvarchar(500) NULL COLLATE NOCASE
+)
+15:32:00.747  8 W - SQL耗时较长，建议优化 30,034.00毫秒 Create Table Log(
+	ID integer Primary Key AUTOINCREMENT,
+	Category nvarchar(50) NULL COLLATE NOCASE,
+	Action nvarchar(50) NULL COLLATE NOCASE,
+	UserID int NULL,
+	UserName nvarchar(50) NULL COLLATE NOCASE,
+	IP nvarchar(50) NULL COLLATE NOCASE,
+	OccurTime datetime NULL,
+	Remark nvarchar(500) NULL COLLATE NOCASE
+)
+15:32:00.747  8 W - 修改表CreateTable失败！database is locked
+database is locked[SQL:
+Create Table Log(
+	ID integer Primary Key AUTOINCREMENT,
+	Category nvarchar(50) NULL COLLATE NOCASE,
+	Action nvarchar(50) NULL COLLATE NOCASE,
+	UserID int NULL,
+	UserName nvarchar(50) NULL COLLATE NOCASE,
+	IP nvarchar(50) NULL COLLATE NOCASE,
+	OccurTime datetime NULL,
+	Remark nvarchar(500) NULL COLLATE NOCASE
+)
+][DB:Membership/SQLite]
+15:32:00.747  8 W - Create Index IX_Log_Category On Log (Category)
+15:32:00.750  8 W - 修改表CreateIndex失败！SQL logic error or missing database
+no such table: main.Log[SQL:Create Index IX_Log_Category On Log (Category)][DB:Membership/SQLite]
+15:32:00.750  8 W - 检查表[Log/SQLite]的数据表架构耗时30,038ms
+15:32:03.236 12 W - Select * From User Order By ID Desc limit 1
+15:33:00.452 12 W - Select * From User Order By ID Desc limit 1
+15:33:00.462 12 W - Insert Into Log(Category, Action, UserID, IP, OccurTime, Remark) Values('用户', '登录', 0, '::1', '2015-05-27 15:33:00', 'admin登录失败！SQL logic error or missing database
+no such table: User[SQL:Select * From User Order By ID Desc limit 1][DB:Membership/SQLite]');Select last_insert_rowid() newid
+15:33:05.100 12 W - Select * From User Order By ID Desc limit 1
+15:33:05.100 12 W - Insert Into Log(Category, Action, UserID, IP, OccurTime, Remark) Values('用户', '登录', 0, '::1', '2015-05-27 15:33:05', 'admin登录失败！SQL logic error or missing database
+no such table: User[SQL:Select * From User Order By ID Desc limit 1][DB:Membership/SQLite]');Select last_insert_rowid() newid
+15:33:11.065  8 W - Select * From User Order By ID Desc limit 1
+15:33:11.065  8 W - Insert Into Log(Category, Action, UserID, IP, OccurTime, Remark) Values('用户', '登录', 0, '::1', '2015-05-27 15:33:11', 'admin登录失败！SQL logic error or missing database
+no such table: User[SQL:Select * From User Order By ID Desc limit 1][DB:Membership/SQLite]');Select last_insert_rowid() newid
+15:33:25.623 11 W - Select * From User Order By ID Desc limit 1
+
+#Software: iisexpress
+#ProcessID: 7340
+#AppDomain: /LM/W3SVC/7/ROOT-1-130771856355489709
+#FileName: C:\Program Files (x86)\IIS Express\iisexpress.exe
+#BaseDirectory: C:\X\CMX\Src\NewLife.CMX.Web\
+#CurrentDirectory: C:\Program Files (x86)\IIS Express
+#CommandLine: /config:"C:\Users\jjhgt\Documents\IISExpress\config\applicationhost.config"  /site:"NewLife.CMX.Web" /apppool:"Clr4IntegratedAppPool"
+#ApplicationType: Web
+#CLR: 4.0.30319.18444
+#OS: Windows 7 Service Pack 1 x64, jjhgt/JJHGT-PC
+#CPU: AMD A10-5800K APU with Radeon(tm) HD Graphics 3.80GHz 178BFBFF00610F01
+#Memory: 3,625M/7,369M
+#Date: 2015-05-27
+#字段: 时间 线程ID 线程池Y网页W普通N 线程名 消息内容
+#Fields: Time ThreadID IsPoolThread ThreadName Message
+15:33:59.246  1 N - NewLife.Core v5.4.2015.0511 Build 2015-05-27 15:27:58
+15:33:59.564  1 N - ================================ Start 初始化魔方 ================================
+15:34:00.064  1 N - 注册区域视图程序集：NewLife.Cube, Version=1.0.5625.27919, Culture=neutral, PublicKeyToken=null
+15:34:00.066  1 N - 注册区域视图程序集：NewLife.CMX.Web, Version=2.0.5625.27919, Culture=neutral, PublicKeyToken=null
+15:34:00.074  1 N - 注册复合预编译引擎，共有视图程序集2个
+15:34:00.076  1 N - 注册实体模型绑定器：NewLife.Cube.EntityModelBinderProvider
+15:34:00.076  1 N - 注册过滤器：NewLife.Cube.MvcHandleErrorAttribute
+15:34:00.076  1 N - 注册过滤器：NewLife.Cube.EntityAuthorizeAttribute
+15:34:00.076  1 N - ================================ End   初始化魔方 ================================
+15:34:00.076  1 N - 开始注册权限管理区域[Admin]
+15:34:00.079  1 N - 初始化权限管理体系
+15:34:00.079  9 Y - 初始化[Admin]的菜单体系
+15:34:00.209  9 Y - 开始初始化实体类Menu
+15:34:00.209  1 N - XCode        v8.18.2015.0522 Build 2015-05-27 15:27:58
+15:34:00.209  1 N - 开始初始化实体类UserX
+15:34:00.209  9 Y - 完成初始化实体类Menu
+15:34:00.209  1 N - 完成初始化实体类UserX
+15:34:00.214  1 N - 开始注册权限管理区域[CMS]
+15:34:00.214  8 Y - 初始化[CMS]的菜单体系
+15:34:00.789  8 Y - 使用数据库方式：独占，加大缓存权重
+15:34:00.809  9 Y - 自动为[Membership]设置连接字符串：Data Source=..\Data\Membership.db
+15:34:00.909  9 Y - [Membership]GetSchema("MetaDataCollections")
+15:34:00.966  9 Y - [Membership]GetSchema("ReservedWords")
+15:34:00.976  9 Y - 开始同步检查表[Menu/SQLite]的数据表架构……
+15:34:00.984  9 Y - [Membership]GetSchema("Tables")
+15:34:00.996  9 Y - [Membership]GetSchema("Columns")
+15:34:01.031  9 Y - [Membership]GetSchema("Indexes")
+15:34:01.034  9 Y - [Membership]GetSchema("IndexColumns")
+15:34:01.041  9 Y - [Membership]GetSchema("DataTypes")
+15:34:01.084  9 Y - 检查表[Menu/SQLite]的数据表架构耗时106ms
+15:34:01.098  9 Y - 开始检查连接[Membership/SQLite]的数据库架构……
+15:34:01.183  9 Y - 检查连接[Membership/SQLite]的数据库架构耗时87ms
+15:34:01.188  9 Y - Select * From Menu Order By ID Desc limit 1
+15:34:01.193  9 Y - Select Count(*) From Menu
+15:34:01.193  9 Y - 开始初始化Menu菜单数据……
+15:34:01.198  9 Y - 扫描目录生成菜单 C:\X\CMX\Src\NewLife.CMX.Web\App_Start
+15:34:01.203  9 Y - 扫描目录生成菜单 C:\X\CMX\Src\NewLife.CMX.Web\Areas
+15:34:01.206  9 Y - 扫描目录生成菜单 C:\X\CMX\Src\NewLife.CMX.Web\bin
+15:34:01.206  9 Y - 扫描目录生成菜单 C:\X\CMX\Src\NewLife.CMX.Web\Config
+15:34:01.206  9 Y - 扫描目录生成菜单 C:\X\CMX\Src\NewLife.CMX.Web\Content
+15:34:01.208  9 Y - 扫描目录生成菜单 C:\X\CMX\Src\NewLife.CMX.Web\Controllers
+15:34:01.208  9 Y - 扫描目录生成菜单 C:\X\CMX\Src\NewLife.CMX.Web\Log
+15:34:01.208  9 Y - 扫描目录生成菜单 C:\X\CMX\Src\NewLife.CMX.Web\obj
+15:34:01.211  9 Y - 扫描目录生成菜单 C:\X\CMX\Src\NewLife.CMX.Web\Properties
+15:34:01.211  9 Y - 扫描目录生成菜单 C:\X\CMX\Src\NewLife.CMX.Web\Scripts
+15:34:01.211  9 Y - 扫描目录生成菜单 C:\X\CMX\Src\NewLife.CMX.Web\Views
+15:34:01.211  9 Y - 扫描目录共生成菜单 0 个
+15:34:01.213  9 Y - 完成初始化Menu菜单数据！
+15:34:01.213  9 Y - Select * From Menu Order By ID Desc
+15:34:01.243  9 Y - Insert Into Menu(Name, DisplayName, ParentID, Url, Sort, Visible, Necessary, Permission) Values('Admin', null, 0, '~/Admin', 0, 1, 0, '');Select last_insert_rowid() newid
+15:34:01.256  9 Y - Insert Into Menu(Name, DisplayName, ParentID, Url, Sort, Visible, Necessary, Permission) Values('Role', '角色', 1, '~/Admin/Role', 0, 1, 0, '');Select last_insert_rowid() newid
+15:34:01.326  8 Y - Insert Into Menu(Name, DisplayName, ParentID, Url, Sort, Visible, Necessary, Permission) Values('CMS', null, 0, '~/CMS', 0, 1, 0, '');Select last_insert_rowid() newid
+15:34:01.326  8 Y - Insert Into Menu(Name, DisplayName, ParentID, Url, Sort, Visible, Necessary, Permission) Values('Nav', null, 3, '~/CMS/Nav', 0, 0, 0, '');Select last_insert_rowid() newid
+15:34:01.488  9 Y - Update Menu Set Permission='1#查看,2#添加,4#修改,8#删除' Where ID=2
+15:34:01.583  8 Y - Update Menu Set DisplayName='导航', Visible=1, Permission='1#查看,2#添加,4#修改,8#删除,16#上升,32#下降' Where ID=4
+15:34:01.603  9 Y - 开始初始化实体类Log
+15:34:01.603  9 Y - 完成初始化实体类Log
+15:34:01.673  8 Y - 开始同步检查表[Log/SQLite]的数据表架构……
+15:34:01.673  8 Y - [Membership]GetSchema("Tables")
+15:34:01.673  8 Y - 创建表：Log(日志)
+15:34:01.676  8 Y - Create Table Log(
+	ID integer Primary Key AUTOINCREMENT,
+	Category nvarchar(50) NULL COLLATE NOCASE,
+	Action nvarchar(50) NULL COLLATE NOCASE,
+	UserID int NULL,
+	UserName nvarchar(50) NULL COLLATE NOCASE,
+	IP nvarchar(50) NULL COLLATE NOCASE,
+	OccurTime datetime NULL,
+	Remark nvarchar(500) NULL COLLATE NOCASE
+)
+15:34:01.678  8 Y - Create Index IX_Log_Category On Log (Category)
+15:34:01.678  8 Y - 检查表[Log/SQLite]的数据表架构耗时6ms
+15:34:01.681  8 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:34:01', '');Select last_insert_rowid() newid
+15:34:01.681  8 Y - Insert Into Menu(Name, DisplayName, ParentID, Url, Sort, Visible, Necessary, Permission) Values('Sys', '高级设置', 3, '~/CMS/Sys', 0, 1, 0, '');Select last_insert_rowid() newid
+15:34:01.686  8 Y - Insert Into Menu(Name, DisplayName, ParentID, Url, Sort, Visible, Necessary, Permission) Values('站点配置', '站点配置', 3, '~/CMS/Sys/站点配置', 0, 1, 0, '');Select last_insert_rowid() newid
+15:34:01.686  8 Y - Update Menu Set Permission='16#站点配置' Where ID=6
+15:34:01.686  8 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:34:01', '');Select last_insert_rowid() newid
+15:34:01.688  8 Y - Insert Into Menu(Name, DisplayName, ParentID, Url, Sort, Visible, Necessary, Permission) Values('附件设置', '附件设置', 3, '~/CMS/Sys/附件设置', 0, 1, 0, '');Select last_insert_rowid() newid
+15:34:01.688  8 Y - Update Menu Set Permission='32#附件设置' Where ID=7
+15:34:01.688  8 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:34:01', '');Select last_insert_rowid() newid
+15:34:01.688  8 Y - Insert Into Menu(Name, DisplayName, ParentID, Url, Sort, Visible, Necessary, Permission) Values('Content', null, 3, '~/CMS/Content', 0, 0, 0, '');Select last_insert_rowid() newid
+15:34:01.688  8 Y - Insert Into Menu(Name, DisplayName, ParentID, Url, Sort, Visible, Necessary, Permission) Values('Home', null, 3, '~/CMS/Home', 0, 0, 0, '');Select last_insert_rowid() newid
+15:34:01.691  8 Y - Insert Into Menu(Name, DisplayName, ParentID, Url, Sort, Visible, Necessary, Permission) Values('Channel', null, 3, '~/CMS/Channel', 0, 0, 0, '');Select last_insert_rowid() newid
+15:34:01.691  8 Y - 开始初始化实体类Channel
+15:34:01.691  8 Y - 完成初始化实体类Channel
+15:34:01.703  6 W - 自动为[CMX]设置连接字符串：Data Source=..\Data\CMX.db
+15:34:01.706  6 W - [CMX]GetSchema("MetaDataCollections")
+15:34:01.706  6 W - [CMX]GetSchema("ReservedWords")
+15:34:01.708  6 W - 开始同步检查表[Channel/SQLite]的数据表架构……
+15:34:01.708  6 W - [CMX]GetSchema("Tables")
+15:34:01.708  6 W - [CMX]GetSchema("Columns")
+15:34:01.716  9 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:34:01', '');Select last_insert_rowid() newid
+15:34:01.716  9 Y - Insert Into Menu(Name, DisplayName, ParentID, Url, Sort, Visible, Necessary, Permission) Values('Log', '日志', 1, '~/Admin/Log', 0, 1, 0, '');Select last_insert_rowid() newid
+15:34:01.768  9 Y - Update Menu Set Permission='1#查看' Where ID=11
+15:34:01.768  9 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:34:01', '');Select last_insert_rowid() newid
+15:34:01.771  9 Y - Insert Into Menu(Name, DisplayName, ParentID, Url, Sort, Visible, Necessary, Permission) Values('Menu', '菜单', 1, '~/Admin/Menu', 0, 1, 0, '');Select last_insert_rowid() newid
+15:34:01.818  9 Y - Update Menu Set Permission='1#查看,2#添加,4#修改,8#删除,16#上升,32#下降' Where ID=12
+15:34:01.818  9 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:34:01', '');Select last_insert_rowid() newid
+15:34:01.821  9 Y - Insert Into Menu(Name, DisplayName, ParentID, Url, Sort, Visible, Necessary, Permission) Values('Sys', '高级设置', 1, '~/Admin/Sys', 0, 1, 0, '');Select last_insert_rowid() newid
+15:34:01.821  9 Y - Update Menu Set Permission='1#查看' Where ID=13
+15:34:01.821  9 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:34:01', '');Select last_insert_rowid() newid
+15:34:01.821  9 Y - Insert Into Menu(Name, DisplayName, ParentID, Url, Sort, Visible, Necessary, Permission) Values('User', '用户', 1, '~/Admin/User', 0, 1, 0, '');Select last_insert_rowid() newid
+15:34:01.886  9 Y - Update Menu Set Permission='1#查看,2#添加,4#修改,8#删除' Where ID=14
+15:34:01.886  9 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:34:01', '');Select last_insert_rowid() newid
+15:34:01.888  9 Y - Insert Into Menu(Name, DisplayName, ParentID, Url, Sort, Visible, Necessary, Permission) Values('Index', '首页', 1, '~/Admin/Index', 0, 1, 0, '');Select last_insert_rowid() newid
+15:34:01.891  9 Y - Update Menu Set Visible=0, Permission='' Where ID=15
+15:34:01.891  9 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:34:01', '');Select last_insert_rowid() newid
+15:34:01.891  9 Y - Insert Into Menu(Name, DisplayName, ParentID, Url, Sort, Visible, Necessary, Permission) Values('Main', '服务器信息', 1, '~/Admin/Index/Main', 0, 1, 0, '');Select last_insert_rowid() newid
+15:34:01.896  9 Y - Update Menu Set Permission='1#查看' Where ID=16
+15:34:01.896  9 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:34:01', '');Select last_insert_rowid() newid
+15:34:01.896  9 Y - Update Menu Set Permission='1#查看' Where ID=15
+15:34:01.896  9 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:34:01', '');Select last_insert_rowid() newid
+15:34:01.898  9 Y - 开始初始化实体类Role
+15:34:01.898  9 Y - 完成初始化实体类Role
+15:34:01.906  9 Y - 开始同步检查表[Role/SQLite]的数据表架构……
+15:34:01.906  9 Y - 创建表：Role(角色)
+15:34:01.906  9 Y - Create Table Role(
+	ID integer Primary Key AUTOINCREMENT,
+	Name nvarchar(50) NOT NULL COLLATE NOCASE,
+	IsSystem bit NULL,
+	Permission nvarchar(500) NULL COLLATE NOCASE
+)
+15:34:01.906  9 Y - Create Unique Index IU_Role_Name On Role (Name)
+15:34:01.908  9 Y - 检查表[Role/SQLite]的数据表架构耗时2ms
+15:34:01.908  9 Y - Select * From Role Order By ID Desc limit 1
+15:34:01.911  9 Y - Select Count(*) From Role
+15:34:01.911  9 Y - 开始初始化Role角色数据……
+15:34:01.913  9 Y - Select * From Role Order By ID Desc
+15:34:01.916  9 Y - Insert Into Role(Name, IsSystem, Permission) Values('管理员', 1, '');Select last_insert_rowid() newid
+15:34:01.918  9 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('角色', '添加', 0, '2015-05-27 15:34:01', 'ID=1,Name=管理员,IsSystem=True,Permission=');Select last_insert_rowid() newid
+15:34:01.918  9 Y - Insert Into Role(Name, IsSystem, Permission) Values('高级用户', 1, '');Select last_insert_rowid() newid
+15:34:01.918  9 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('角色', '添加', 0, '2015-05-27 15:34:01', 'ID=2,Name=高级用户,IsSystem=True,Permission=');Select last_insert_rowid() newid
+15:34:01.921  9 Y - Insert Into Role(Name, IsSystem, Permission) Values('普通用户', 1, '');Select last_insert_rowid() newid
+15:34:01.921  9 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('角色', '添加', 0, '2015-05-27 15:34:01', 'ID=3,Name=普通用户,IsSystem=True,Permission=');Select last_insert_rowid() newid
+15:34:01.921  9 Y - 完成初始化Role角色数据！
+15:34:01.921  9 Y - Select * From Role Order By ID Desc
+15:34:01.938  9 Y - 共有16个必要菜单，没有任何角色拥有权限，准备授权第一系统角色[管理员]拥有其完全管理权！
+15:34:01.943  9 Y - Update Role Set Permission='1#255,2#255,3#255,4#255,5#255,6#255,7#255,8#255,9#255,10#255,11#255,12#255,13#255,14#255,15#255,16#255' Where ID=1
+15:34:01.943  9 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('角色', '修改', 0, '2015-05-27 15:34:01', '');Select last_insert_rowid() newid
+15:34:01.946  9 Y - Select * From Role Order By ID Desc
+15:34:01.948  7 Y - Select * From Role Order By ID Desc
+15:34:01.951  9 Y - Update Menu Set DisplayName='管理平台', Permission='' Where ID=1
+15:34:01.951  9 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:34:01', '');Select last_insert_rowid() newid
+15:34:01.991  6 W - [CMX]GetSchema("Indexes")
+15:34:01.996  6 W - [CMX]GetSchema("IndexColumns")
+15:34:01.998  6 W - [CMX]GetSchema("DataTypes")
+15:34:02.266  8 Y - 开始初始化实体类Model
+15:34:02.266  8 Y - 完成初始化实体类Model
+15:34:02.268  6 W - 检查表[Channel/SQLite]的数据表架构耗时560ms
+15:34:02.268  6 W - 开始检查连接[CMX/SQLite]的数据库架构……
+15:34:02.311  8 Y - Update Menu Set DisplayName='频道', Visible=1, Permission='1#查看,2#添加,4#修改,8#删除' Where ID=10
+15:34:02.323  8 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:34:02', '');Select last_insert_rowid() newid
+15:34:02.326  8 Y - Insert Into Menu(Name, DisplayName, ParentID, Url, Sort, Visible, Necessary, Permission) Values('Model', null, 3, '~/CMS/Model', 0, 0, 0, '');Select last_insert_rowid() newid
+15:34:02.373  8 Y - Update Menu Set DisplayName='模型', Visible=1, Permission='1#查看,2#添加,4#修改,8#删除' Where ID=17
+15:34:02.373  8 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:34:02', '');Select last_insert_rowid() newid
+15:34:02.373  8 Y - Insert Into Menu(Name, DisplayName, ParentID, Url, Sort, Visible, Necessary, Permission) Values('Article', null, 3, '~/CMS/Article', 0, 0, 0, '');Select last_insert_rowid() newid
+15:34:02.378  8 Y - 开始初始化实体类Article
+15:34:02.378  8 Y - 完成初始化实体类Article
+15:34:02.426  6 W - CMX待检查表架构的实体个数：14
+15:34:02.426  8 Y - Update Menu Set DisplayName='文章', Visible=1, Permission='1#查看,2#添加,4#修改,8#删除' Where ID=18
+15:34:02.428  8 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:34:02', '');Select last_insert_rowid() newid
+15:34:02.428  8 Y - Insert Into Menu(Name, DisplayName, ParentID, Url, Sort, Visible, Necessary, Permission) Values('ArticleCategory', null, 3, '~/CMS/ArticleCategory', 0, 0, 0, '');Select last_insert_rowid() newid
+15:34:02.473  8 Y - Update Menu Set DisplayName='文章分类', Visible=1, Permission='1#查看,2#添加,4#修改,8#删除' Where ID=19
+15:34:02.473  8 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:34:02', '');Select last_insert_rowid() newid
+15:34:02.473  8 Y - Insert Into Menu(Name, DisplayName, ParentID, Url, Sort, Visible, Necessary, Permission) Values('Product', null, 3, '~/CMS/Product', 0, 0, 0, '');Select last_insert_rowid() newid
+15:34:02.476  8 Y - 开始初始化实体类Product
+15:34:02.476  8 Y - 完成初始化实体类Product
+15:34:02.523  6 W - 检查连接[CMX/SQLite]的数据库架构耗时255ms
+15:34:02.526  8 Y - Update Menu Set DisplayName='产品', Visible=1, Permission='1#查看,2#添加,4#修改,8#删除' Where ID=20
+15:34:02.526  8 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:34:02', '');Select last_insert_rowid() newid
+15:34:02.526  6 W - Select * From Channel Order By ID Desc limit 1
+15:34:02.526  8 Y - Insert Into Menu(Name, DisplayName, ParentID, Url, Sort, Visible, Necessary, Permission) Values('ProductCategory', null, 3, '~/CMS/ProductCategory', 0, 0, 0, '');Select last_insert_rowid() newid
+15:34:02.528  6 W - Select Count(*) From Channel
+15:34:02.528  6 W - Select * From Channel Order By ID Desc
+15:34:02.571  8 Y - Update Menu Set DisplayName='产品分类', Visible=1, Permission='1#查看,2#添加,4#修改,8#删除' Where ID=21
+15:34:02.573  8 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:34:02', '');Select last_insert_rowid() newid
+15:34:02.573  8 Y - Insert Into Menu(Name, DisplayName, ParentID, Url, Sort, Visible, Necessary, Permission) Values('Text', null, 3, '~/CMS/Text', 0, 0, 0, '');Select last_insert_rowid() newid
+15:34:02.573  6 W - Select * From Model Order By ID Desc limit 1
+15:34:02.576  8 Y - 开始初始化实体类Text
+15:34:02.576  8 Y - 完成初始化实体类Text
+15:34:02.576  6 W - Select Count(*) From Model
+15:34:02.576  6 W - Select * From Model Order By ID Desc
+15:34:02.621  8 Y - Update Menu Set DisplayName='文本', Visible=1, Permission='1#查看,2#添加,4#修改,8#删除' Where ID=22
+15:34:02.621  8 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:34:02', '');Select last_insert_rowid() newid
+15:34:02.621  8 Y - Insert Into Menu(Name, DisplayName, ParentID, Url, Sort, Visible, Necessary, Permission) Values('TextCategory', null, 3, '~/CMS/TextCategory', 0, 0, 0, '');Select last_insert_rowid() newid
+15:34:02.668  8 Y - Update Menu Set DisplayName='文本分类', Visible=1, Permission='1#查看,2#添加,4#修改,8#删除' Where ID=23
+15:34:02.668  8 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:34:02', '');Select last_insert_rowid() newid
+15:34:02.668  8 Y - 共有7个必要菜单，没有任何角色拥有权限，准备授权第一系统角色[管理员]拥有其完全管理权！
+15:34:02.668  8 Y - Update Role Set Permission='1#255,2#255,3#255,4#255,5#255,6#255,7#255,8#255,9#255,10#255,11#255,12#255,13#255,14#255,15#255,16#255,17#255,18#255,19#255,20#255,21#255,22#255,23#255' Where ID=1
+15:34:02.671  8 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('角色', '修改', 0, '2015-05-27 15:34:02', '');Select last_insert_rowid() newid
+15:34:02.671  7 Y - Select * From Role Order By ID Desc
+15:34:02.671  8 Y - Update Menu Set DisplayName='内容管理', Permission='' Where ID=3
+15:34:02.671  8 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:34:02', '');Select last_insert_rowid() newid
+15:34:02.691  6 W - 开始初始化实体类ArticleCategory
+15:34:02.691  6 W - 完成初始化实体类ArticleCategory
+15:34:02.696  6 W - Select * From ArticleCategory Order By ID Desc limit 1
+15:34:02.696  6 W - Select Count(*) From ArticleCategory
+15:34:02.696  6 W - Select * From ArticleCategory Order By ID Desc
+15:34:02.698  6 W - 开始初始化实体类TextCategory
+15:34:02.698  6 W - 完成初始化实体类TextCategory
+15:34:02.701  6 W - Select * From TextCategory Order By ID Desc limit 1
+15:34:02.701  6 W - Select Count(*) From TextCategory
+15:34:02.701  6 W - Select * From TextCategory Order By ID Desc
+15:34:02.703  6 W - 开始初始化实体类ProductCategory
+15:34:02.703  6 W - 完成初始化实体类ProductCategory
+15:34:02.706  6 W - Select * From ProductCategory Order By ID Desc limit 1
+15:34:02.706  6 W - Select Count(*) From ProductCategory
+15:34:02.706  6 W - Select * From ProductCategory Order By ID Desc
+15:34:03.151  6 W - 开始初始化实体类Nav
+15:34:03.151  6 W - 完成初始化实体类Nav
+15:34:03.153  6 W - Select * From Nav Order By ID Desc limit 1
+15:34:03.153  6 W - Select Count(*) From Nav
+15:34:03.153  6 W - Select * From Nav Order By ID Desc
+15:34:10.369  7 W - 开始同步检查表[UserX/SQLite]的数据表架构……
+15:34:10.369  7 W - [Membership]GetSchema("Tables")
+15:34:10.369  7 W - 创建表：User(用户)
+15:34:10.369  7 W - Create Table User(
+	ID integer Primary Key AUTOINCREMENT,
+	Name nvarchar(50) NOT NULL COLLATE NOCASE,
+	Password nvarchar(50) NULL COLLATE NOCASE,
+	DisplayName nvarchar(50) NULL COLLATE NOCASE,
+	Mail nvarchar(50) NULL COLLATE NOCASE,
+	Phone nvarchar(50) NULL COLLATE NOCASE,
+	Code nvarchar(50) NULL COLLATE NOCASE,
+	RoleID int NOT NULL,
+	Logins int NULL,
+	LastLogin datetime NULL,
+	LastLoginIP nvarchar(50) NULL COLLATE NOCASE,
+	Enable bit NULL,
+	Profile nvarchar(500) NULL COLLATE NOCASE
+)
+15:34:10.369  7 W - Create Unique Index IU_User_Name On User (Name)
+15:34:10.369  7 W - Create Index IX_User_RoleID On User (RoleID)
+15:34:10.369  7 W - 检查表[UserX/SQLite]的数据表架构耗时3ms
+15:34:10.369  7 W - Select * From User Order By ID Desc limit 1
+15:34:10.369  7 W - Select Count(*) From User
+15:34:10.369  7 W - 开始初始化UserX用户数据……
+15:34:10.369  7 W - Select * From User Order By ID Desc
+15:34:10.385  7 W - Insert Into User(Name, Password, DisplayName, RoleID, Logins, LastLogin, Enable) Values('admin', '21232F297A57A5A743894A0E4A801FC3', '管理员', 1, 0, null, 1);Select last_insert_rowid() newid
+15:34:10.385  7 W - Insert Into Log(Category, Action, UserID, IP, OccurTime, Remark) Values('用户', '添加', 0, '::1', '2015-05-27 15:34:10', 'ID=1,Name=admin,Password=21232F297A57A5A743894A0E4A801FC3,DisplayName=管理员,Mail=,Phone=,Code=,RoleID=1,Logins=0,LastLogin=0001/1/1 0:00:00,LastLoginIP=,Enable=True,Profile=');Select last_insert_rowid() newid
+15:34:10.385  7 W - Insert Into User(Name, Password, DisplayName, RoleID, Logins, LastLogin, Enable) Values('poweruser', '66554110BC63A8D025B738F96E4597C4', '高级用户', 2, 0, null, 1);Select last_insert_rowid() newid
+15:34:10.385  7 W - Insert Into Log(Category, Action, UserID, IP, OccurTime, Remark) Values('用户', '添加', 0, '::1', '2015-05-27 15:34:10', 'ID=2,Name=poweruser,Password=66554110BC63A8D025B738F96E4597C4,DisplayName=高级用户,Mail=,Phone=,Code=,RoleID=2,Logins=0,LastLogin=0001/1/1 0:00:00,LastLoginIP=,Enable=True,Profile=');Select last_insert_rowid() newid
+15:34:10.385  7 W - Insert Into User(Name, Password, DisplayName, RoleID, Logins, LastLogin, Enable) Values('user', 'EE11CBB19052E40B07AAC0CA060C23EE', '普通用户', 3, 0, null, 1);Select last_insert_rowid() newid
+15:34:10.385  7 W - Insert Into Log(Category, Action, UserID, IP, OccurTime, Remark) Values('用户', '添加', 0, '::1', '2015-05-27 15:34:10', 'ID=3,Name=user,Password=EE11CBB19052E40B07AAC0CA060C23EE,DisplayName=普通用户,Mail=,Phone=,Code=,RoleID=3,Logins=0,LastLogin=0001/1/1 0:00:00,LastLoginIP=,Enable=True,Profile=');Select last_insert_rowid() newid
+15:34:10.385  7 W - 完成初始化UserX用户数据！
+15:34:10.385  7 W - Update User Set Logins=1, LastLogin='2015-05-27 15:34:10', LastLoginIP='::1' Where ID=1
+15:34:10.385  7 W - Insert Into Log(Category, Action, UserID, UserName, IP, OccurTime, Remark) Values('用户', '登录', 1, '管理员', '::1', '2015-05-27 15:34:10', 'admin');Select last_insert_rowid() newid
+15:34:59.778 12 W - System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 NewLife.CMX.Web.TitleController`1.IndexView(Pager p) 位置 c:\X\CMX\Src\NewLife.CMX.Web\Areas\CMS\Common\TitleController.cs:行号 63
+   在 NewLife.Cube.EntityController`1.Index(Pager p) 位置 c:\X\CMX\Src\NewLife.Cube\Common\EntityController.cs:行号 42
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+15:35:01.440  8 W - System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 NewLife.CMX.Web.TitleController`1.IndexView(Pager p) 位置 c:\X\CMX\Src\NewLife.CMX.Web\Areas\CMS\Common\TitleController.cs:行号 63
+   在 NewLife.Cube.EntityController`1.Index(Pager p) 位置 c:\X\CMX\Src\NewLife.Cube\Common\EntityController.cs:行号 42
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+15:35:14.051  8 W - System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 NewLife.CMX.Web.TitleController`1.IndexView(Pager p) 位置 c:\X\CMX\Src\NewLife.CMX.Web\Areas\CMS\Common\TitleController.cs:行号 63
+   在 NewLife.Cube.EntityController`1.Index(Pager p) 位置 c:\X\CMX\Src\NewLife.Cube\Common\EntityController.cs:行号 42
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+15:35:18.148 13 W - Select Count(*) From ArticleCategory
+15:35:18.150 13 W - Select * From ArticleCategory Order By ID Desc limit 20
+15:35:20.663 13 W - Select * From Article Order By ID Desc limit 1
+15:35:20.663 13 W - Select Count(*) From Article
+15:35:20.663 13 W - 开始初始化Article[文章]数据……
+15:35:20.671 13 W - 开始初始化实体类ArticleStatistics
+15:35:20.673 13 W - 完成初始化实体类ArticleStatistics
+15:35:20.673 13 W - Select * From ArticleStatistics Order By ID Desc limit 1
+15:35:20.673 13 W - Select Count(*) From ArticleStatistics
+15:35:20.673 13 W - Select * From ArticleStatistics Order By ID Desc
+15:35:20.676 13 W - Insert Into ArticleStatistics(Total, Today, Yesterday, ThisWeek, LastWeek, ThisMonth, LastMonth, ThisYear, LastYear, LastTime, LastIP) Values(0, 0, 0, 0, 0, 0, 0, 0, 0, null, '::1');Select last_insert_rowid() newid
+15:35:20.678 13 W - Insert Into Article(CategoryID, CategoryName, Title, Version, StatisticsID, Views, CreateUserID, CreateUserName, CreateTime, UpdateUserID, UpdateUserName, UpdateTime, Top, Recommend, Hot, Slide) Values(2, '二级分类', '文章1', 1, 1, 0, 1, '管理员', '2015-05-27 15:35:20', 1, '管理员', null, 0, 0, 0, 0);Select last_insert_rowid() newid
+15:35:20.681 13 W - 开始初始化实体类ArticleContent
+15:35:20.681 13 W - 完成初始化实体类ArticleContent
+15:35:20.683 13 W - Select * From ArticleContent Order By ID Desc limit 1
+15:35:20.683 13 W - Select Count(*) From ArticleContent
+15:35:20.683 13 W - Select * From ArticleContent Order By ID Desc
+15:35:20.688 13 W - Insert Into ArticleContent(ParentID, Title, Version, CreateUserID, CreateUserName, CreateTime) Values(1, '文章1', 1, 1, '管理员', '2015-05-27 15:35:20');Select last_insert_rowid() newid
+15:35:20.688 13 W - 完成初始化Article[文章]数据！
+15:35:20.688 13 W - Select Count(*) From Article Where CategoryID=2
+15:35:20.688 13 W - Select * From Article Where CategoryID=2 Order By ID Desc limit 20
+15:35:50.342  8 W - Select Count(*) From TextCategory
+15:35:50.342  8 W - Select * From TextCategory Order By ID Desc limit 20
+15:35:52.034 12 W - Select * From Text Order By ID Desc limit 1
+15:35:52.034 12 W - Select Count(*) From Text
+15:35:52.034 12 W - 开始初始化Text[文本]数据……
+15:35:52.036 12 W - 开始初始化实体类TextStatistics
+15:35:52.036 12 W - 完成初始化实体类TextStatistics
+15:35:52.037 12 W - Select * From TextStatistics Order By ID Desc limit 1
+15:35:52.037 12 W - Select Count(*) From TextStatistics
+15:35:52.038 12 W - Select * From TextStatistics Order By ID Desc
+15:35:52.039 12 W - Insert Into TextStatistics(Total, Today, Yesterday, ThisWeek, LastWeek, ThisMonth, LastMonth, ThisYear, LastYear, LastTime, LastIP) Values(0, 0, 0, 0, 0, 0, 0, 0, 0, null, '::1');Select last_insert_rowid() newid
+15:35:52.039 12 W - Insert Into Text(CategoryID, CategoryName, Title, Version, StatisticsID, Views, CreateUserID, CreateUserName, CreateTime, UpdateUserID, UpdateUserName, UpdateTime) Values(2, '二级分类', '文本1', 1, 1, 0, 1, '管理员', '2015-05-27 15:35:52', 1, '管理员', null);Select last_insert_rowid() newid
+15:35:52.039 12 W - 开始初始化实体类TextContent
+15:35:52.039 12 W - 完成初始化实体类TextContent
+15:35:52.041 12 W - Select * From TextContent Order By ID Desc limit 1
+15:35:52.041 12 W - Select Count(*) From TextContent
+15:35:52.042 12 W - Select * From TextContent Order By ID Desc
+15:35:52.043 12 W - Insert Into TextContent(ParentID, Title, Version, CreateUserID, CreateUserName, CreateTime) Values(1, '文本1', 1, 1, '管理员', '2015-05-27 15:35:52');Select last_insert_rowid() newid
+15:35:52.043 12 W - 完成初始化Text[文本]数据！
+15:35:52.043 12 W - Select Count(*) From Text Where CategoryID=2
+15:35:52.043 12 W - Select * From Text Where CategoryID=2 Order By ID Desc limit 20
+15:36:03.845 13 W - Select * From Product Order By ID Desc limit 1
+15:36:03.846 13 W - Select Count(*) From Product
+15:36:03.846 13 W - 开始初始化Product[产品]数据……
+15:36:03.847 13 W - 开始初始化实体类ProductStatistics
+15:36:03.847 13 W - 完成初始化实体类ProductStatistics
+15:36:03.849 13 W - Select * From ProductStatistics Order By ID Desc limit 1
+15:36:03.849 13 W - Select Count(*) From ProductStatistics
+15:36:03.850 13 W - Select * From ProductStatistics Order By ID Desc
+15:36:03.851 13 W - Insert Into ProductStatistics(Total, Today, Yesterday, ThisWeek, LastWeek, ThisMonth, LastMonth, ThisYear, LastYear, LastTime, LastIP) Values(0, 0, 0, 0, 0, 0, 0, 0, 0, null, '::1');Select last_insert_rowid() newid
+15:36:03.851 13 W - Insert Into Product(CategoryID, CategoryName, Title, Version, StatisticsID, Views, CreateUserID, CreateUserName, CreateTime, UpdateUserID, UpdateUserName, UpdateTime, Price) Values(2, '二级分类', '产品1', 1, 1, 0, 1, '管理员', '2015-05-27 15:36:03', 1, '管理员', null, 0);Select last_insert_rowid() newid
+15:36:03.851 13 W - 开始初始化实体类ProductContent
+15:36:03.851 13 W - 完成初始化实体类ProductContent
+15:36:03.853 13 W - Select * From ProductContent Order By ID Desc limit 1
+15:36:03.853 13 W - Select Count(*) From ProductContent
+15:36:03.854 13 W - Select * From ProductContent Order By ID Desc
+15:36:03.855 13 W - Insert Into ProductContent(ParentID, Title, Version, CreateUserID, CreateUserName, CreateTime) Values(1, '产品1', 1, 1, '管理员', '2015-05-27 15:36:03');Select last_insert_rowid() newid
+15:36:03.856 13 W - 完成初始化Product[产品]数据！
+15:36:03.856 13 W - Select Count(*) From Product Where CategoryID=2
+15:36:03.856 13 W - Select * From Product Where CategoryID=2 Order By ID Desc limit 20
+
+#Software: iisexpress
+#ProcessID: 7648
+#AppDomain: /LM/W3SVC/7/ROOT-1-130771866420990999
+#FileName: C:\Program Files (x86)\IIS Express\iisexpress.exe
+#BaseDirectory: C:\X\CMX\Src\NewLife.CMX.Web\
+#CurrentDirectory: C:\Program Files (x86)\IIS Express
+#CommandLine: /config:"C:\Users\jjhgt\Documents\IISExpress\config\applicationhost.config"  /site:"NewLife.CMX.Web" /apppool:"Clr4IntegratedAppPool"
+#ApplicationType: Web
+#CLR: 4.0.30319.18444
+#OS: Windows 7 Service Pack 1 x64, jjhgt/JJHGT-PC
+#CPU: AMD A10-5800K APU with Radeon(tm) HD Graphics 3.80GHz 178BFBFF00610F01
+#Memory: 2,943M/7,369M
+#Date: 2015-05-27
+#字段: 时间 线程ID 线程池Y网页W普通N 线程名 消息内容
+#Fields: Time ThreadID IsPoolThread ThreadName Message
+15:50:43.711  1 N - NewLife.Core v5.4.2015.0511 Build 2015-05-27 15:39:00
+15:50:44.019  1 N - ================================ Start 初始化魔方 ================================
+15:50:44.381  1 N - 注册区域视图程序集：NewLife.Cube, Version=1.0.5625.28171, Culture=neutral, PublicKeyToken=null
+15:50:44.384  1 N - 注册区域视图程序集：NewLife.CMX.Web, Version=2.0.5625.28491, Culture=neutral, PublicKeyToken=null
+15:50:44.391  1 N - 注册复合预编译引擎，共有视图程序集2个
+15:50:44.394  1 N - 注册实体模型绑定器：NewLife.Cube.EntityModelBinderProvider
+15:50:44.394  1 N - 注册过滤器：NewLife.Cube.MvcHandleErrorAttribute
+15:50:44.394  1 N - 注册过滤器：NewLife.Cube.EntityAuthorizeAttribute
+15:50:44.394  1 N - ================================ End   初始化魔方 ================================
+15:50:44.394  1 N - 开始注册权限管理区域[Admin]
+15:50:44.396  1 N - 初始化权限管理体系
+15:50:44.396  6 Y - 初始化[Admin]的菜单体系
+15:50:44.554  6 Y - 开始初始化实体类Menu
+15:50:44.556  1 N - XCode        v8.18.2015.0522 Build 2015-05-27 15:39:00
+15:50:44.556  1 N - 开始初始化实体类UserX
+15:50:44.556  6 Y - 完成初始化实体类Menu
+15:50:44.556  1 N - 完成初始化实体类UserX
+15:50:44.559  1 N - 开始注册权限管理区域[CMS]
+15:50:44.559  7 Y - 初始化[CMS]的菜单体系
+15:50:44.998  6 Y - 使用数据库方式：独占，加大缓存权重
+15:50:45.031  6 Y - 自动为[Membership]设置连接字符串：Data Source=..\Data\Membership.db
+15:50:45.115  6 Y - [Membership]GetSchema("MetaDataCollections")
+15:50:45.130  6 Y - [Membership]GetSchema("ReservedWords")
+15:50:45.138  6 Y - 开始同步检查表[Menu/SQLite]的数据表架构……
+15:50:45.143  6 Y - [Membership]GetSchema("Tables")
+15:50:45.155  6 Y - [Membership]GetSchema("Columns")
+15:50:45.210  6 Y - [Membership]GetSchema("Indexes")
+15:50:45.210  6 Y - [Membership]GetSchema("IndexColumns")
+15:50:45.218  6 Y - [Membership]GetSchema("DataTypes")
+15:50:45.255  6 Y - 检查表[Menu/SQLite]的数据表架构耗时117ms
+15:50:45.263  6 Y - 开始检查连接[Membership/SQLite]的数据库架构……
+15:50:45.335  6 Y - 检查连接[Membership/SQLite]的数据库架构耗时74ms
+15:50:45.340  6 Y - Select * From Menu Order By ID Desc limit 1
+15:50:45.345  6 Y - Select Count(*) From Menu
+15:50:45.345  6 Y - Select * From Menu Order By ID Desc
+15:50:45.389  6 Y - 开始初始化实体类Log
+15:50:45.389  6 Y - 完成初始化实体类Log
+15:50:45.392  7 Y - 开始初始化实体类Channel
+15:50:45.392  7 Y - 完成初始化实体类Channel
+15:50:45.712  8 W - 自动为[CMX]设置连接字符串：Data Source=..\Data\CMX.db
+15:50:45.715  8 W - [CMX]GetSchema("MetaDataCollections")
+15:50:45.715  8 W - [CMX]GetSchema("ReservedWords")
+15:50:45.715  8 W - 开始同步检查表[Channel/SQLite]的数据表架构……
+15:50:45.717  8 W - [CMX]GetSchema("Tables")
+15:50:45.717  8 W - [CMX]GetSchema("Columns")
+15:50:45.810  7 Y - 开始初始化实体类Model
+15:50:45.810  7 Y - 完成初始化实体类Model
+15:50:45.820  7 Y - 开始初始化实体类Article
+15:50:45.820  7 Y - 完成初始化实体类Article
+15:50:45.830  8 W - [CMX]GetSchema("Indexes")
+15:50:45.832  8 W - [CMX]GetSchema("IndexColumns")
+15:50:45.835  8 W - [CMX]GetSchema("DataTypes")
+15:50:45.857  8 W - 检查表[Channel/SQLite]的数据表架构耗时142ms
+15:50:45.860  8 W - 开始检查连接[CMX/SQLite]的数据库架构……
+15:50:45.860  7 Y - Update Menu Set Visible=0 Where ID=18
+15:50:45.895  8 W - CMX待检查表架构的实体个数：14
+15:50:45.905  8 W - 检查连接[CMX/SQLite]的数据库架构耗时46ms
+15:50:45.907  8 W - Select * From Channel Order By ID Desc limit 1
+15:50:45.907  8 W - Select Count(*) From Channel
+15:50:45.910  8 W - Select * From Channel Order By ID Desc
+15:50:45.915  7 Y - 开始同步检查表[Log/SQLite]的数据表架构……
+15:50:45.915  7 Y - [Membership]GetSchema("Tables")
+15:50:45.917  8 W - Select * From Model Order By ID Desc limit 1
+15:50:45.917  7 Y - [Membership]GetSchema("Columns")
+15:50:45.917  8 W - Select Count(*) From Model
+15:50:45.917  8 W - Select * From Model Order By ID Desc
+15:50:45.940  7 Y - [Membership]GetSchema("Indexes")
+15:50:45.940  7 Y - [Membership]GetSchema("IndexColumns")
+15:50:45.942  7 Y - 检查表[Log/SQLite]的数据表架构耗时26ms
+15:50:45.947  7 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:50:45', '');Select last_insert_rowid() newid
+15:50:45.950  7 Y - Update Menu Set Visible=0 Where ID=19
+15:50:45.952  7 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:50:45', '');Select last_insert_rowid() newid
+15:50:45.952  7 Y - 开始初始化实体类Product
+15:50:45.952  7 Y - 完成初始化实体类Product
+15:50:45.955  8 W - 开始初始化实体类ArticleCategory
+15:50:45.955  8 W - 完成初始化实体类ArticleCategory
+15:50:45.955  7 Y - Update Menu Set Visible=0 Where ID=20
+15:50:45.957  7 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:50:45', '');Select last_insert_rowid() newid
+15:50:45.960  8 W - Select * From ArticleCategory Order By ID Desc limit 1
+15:50:45.960  8 W - Select Count(*) From ArticleCategory
+15:50:45.960  8 W - Select * From ArticleCategory Order By ID Desc
+15:50:45.960  7 Y - Update Menu Set Visible=0 Where ID=21
+15:50:45.960  7 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:50:45', '');Select last_insert_rowid() newid
+15:50:45.962  7 Y - 开始初始化实体类Text
+15:50:45.962  7 Y - 完成初始化实体类Text
+15:50:45.962  8 W - 开始初始化实体类TextCategory
+15:50:45.962  8 W - 完成初始化实体类TextCategory
+15:50:45.965  8 W - Select * From TextCategory Order By ID Desc limit 1
+15:50:45.965  7 Y - Update Menu Set Visible=0 Where ID=22
+15:50:45.965  8 W - Select Count(*) From TextCategory
+15:50:45.965  7 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:50:45', '');Select last_insert_rowid() newid
+15:50:45.965  8 W - Select * From TextCategory Order By ID Desc
+15:50:45.967  8 W - 开始初始化实体类ProductCategory
+15:50:45.967  8 W - 完成初始化实体类ProductCategory
+15:50:45.967  7 Y - Update Menu Set Visible=0 Where ID=23
+15:50:45.970  7 Y - Insert Into Log(Category, Action, UserID, OccurTime, Remark) Values('菜单', '修改', 0, '2015-05-27 15:50:45', '');Select last_insert_rowid() newid
+15:50:45.970  8 W - Select * From ProductCategory Order By ID Desc limit 1
+15:50:45.970  8 W - Select Count(*) From ProductCategory
+15:50:45.970  8 W - Select * From ProductCategory Order By ID Desc
+15:50:46.385  8 W - 开始初始化实体类Nav
+15:50:46.385  8 W - 完成初始化实体类Nav
+15:50:46.388  8 W - Select * From Nav Order By ID Desc limit 1
+15:50:46.388  8 W - Select Count(*) From Nav
+15:50:46.388  8 W - Select * From Nav Order By ID Desc
+15:50:46.458 10 W - 开始同步检查表[UserX/SQLite]的数据表架构……
+15:50:46.459 10 W - [Membership]GetSchema("Tables")
+15:50:46.460 10 W - [Membership]GetSchema("Columns")
+15:50:46.496 10 W - [Membership]GetSchema("Indexes")
+15:50:46.498 10 W - [Membership]GetSchema("IndexColumns")
+15:50:46.500 10 W - 检查表[UserX/SQLite]的数据表架构耗时42ms
+15:50:46.501 10 W - Select * From User Order By ID Desc limit 1
+15:50:46.502 10 W - Select Count(*) From User
+15:50:46.508 10 W - Select * From User Order By ID Desc
+15:50:46.521 10 W - Update User Set Logins=Logins+1, LastLogin='2015-05-27 15:50:46' Where ID=1
+15:50:46.529 10 W - Insert Into Log(Category, Action, UserID, UserName, IP, OccurTime, Remark) Values('用户', '自动登录', 1, '管理员', '::1', '2015-05-27 15:50:46', 'admin');Select last_insert_rowid() newid
+15:50:46.534 10 W - 开始初始化实体类Role
+15:50:46.534 10 W - 完成初始化实体类Role
+15:50:46.541 10 W - 开始同步检查表[Role/SQLite]的数据表架构……
+15:50:46.542 10 W - 检查表[Role/SQLite]的数据表架构耗时1ms
+15:50:46.546 10 W - Select * From Role Order By ID Desc limit 1
+15:50:46.548 10 W - Select Count(*) From Role
+15:50:46.549 10 W - Select * From Role Order By ID Desc
+15:50:47.508 10 W - 开始初始化实体类ArticleContent
+15:50:47.511 10 W - 完成初始化实体类ArticleContent
+15:50:47.513 10 W - Select * From ArticleContent Order By ID Desc limit 1
+15:50:47.513 10 W - Select Count(*) From ArticleContent
+15:50:47.513 10 W - Select * From ArticleContent Order By ID Desc
+15:52:38.567 13 W - Select * From Product Order By ID Desc limit 1
+15:52:38.570 13 W - Select Count(*) From Product
+15:52:38.572 13 W - Select Count(*) From Product Where CategoryID=2
+15:52:38.572 13 W - Select * From Product Where CategoryID=2 Order By ID Desc limit 20
+15:52:41.178 11 W - 配置文件C:\X\CMX\Src\NewLife.CMX.Web\Config\QiniuConfig.config格式不一致，保存为最新格式！
+15:52:41.189 11 W - QiniuConfig的配置文件Config/QiniuConfig.config不存在或加载出错，准备用默认配置覆盖！
+15:53:44.845  8 W - UEditor.QiniuConfig的配置文件C:\X\CMX\Src\NewLife.CMX.Web\Config\QiniuConfig.config有更新，重新加载配置！
+
+#Software: iisexpress
+#ProcessID: 7648
+#AppDomain: /LM/W3SVC/7/ROOT-2-130771870588212451
+#FileName: C:\Program Files (x86)\IIS Express\iisexpress.exe
+#BaseDirectory: C:\X\CMX\Src\NewLife.CMX.Web\
+#CurrentDirectory: C:\Program Files (x86)\IIS Express
+#CommandLine: /config:"C:\Users\jjhgt\Documents\IISExpress\config\applicationhost.config"  /site:"NewLife.CMX.Web" /apppool:"Clr4IntegratedAppPool"
+#ApplicationType: Web
+#CLR: 4.0.30319.18444
+#OS: Windows 7 Service Pack 1 x64, jjhgt/JJHGT-PC
+#CPU: AMD A10-5800K APU with Radeon(tm) HD Graphics 3.80GHz 178BFBFF00610F01
+#Memory: 2,571M/7,369M
+#Date: 2015-05-27
+#字段: 时间 线程ID 线程池Y网页W普通N 线程名 消息内容
+#Fields: Time ThreadID IsPoolThread ThreadName Message
+15:57:40.572  1 N - NewLife.Core v5.4.2015.0511 Build 2015-05-27 15:39:00
+15:57:40.879  1 N - ================================ Start 初始化魔方 ================================
+15:57:41.230  1 N - 注册区域视图程序集：NewLife.Cube, Version=1.0.5625.28171, Culture=neutral, PublicKeyToken=null
+15:57:41.231  1 N - 注册区域视图程序集：NewLife.CMX.Web, Version=2.0.5625.28727, Culture=neutral, PublicKeyToken=null
+15:57:41.240  1 N - 注册复合预编译引擎，共有视图程序集2个
+15:57:41.240  1 N - 注册实体模型绑定器：NewLife.Cube.EntityModelBinderProvider
+15:57:41.240  1 N - 注册过滤器：NewLife.Cube.MvcHandleErrorAttribute
+15:57:41.241  1 N - 注册过滤器：NewLife.Cube.EntityAuthorizeAttribute
+15:57:41.241  1 N - ================================ End   初始化魔方 ================================
+15:57:41.245  1 N - 开始注册权限管理区域[CMS]
+15:57:41.248 24 Y - 初始化[CMS]的菜单体系
+15:57:41.252  1 N - 开始注册权限管理区域[Admin]
+15:57:41.252 28 Y - 初始化[Admin]的菜单体系
+15:57:41.252  1 N - 初始化权限管理体系
+15:57:41.434 24 Y - 开始初始化实体类Menu
+15:57:41.434  1 N - XCode        v8.18.2015.0522 Build 2015-05-27 15:39:00
+15:57:41.434  1 N - 开始初始化实体类UserX
+15:57:41.435 24 Y - 完成初始化实体类Menu
+15:57:41.436  1 N - 完成初始化实体类UserX
+15:57:41.858 24 Y - 使用数据库方式：独占，加大缓存权重
+15:57:41.877 28 Y - 自动为[Membership]设置连接字符串：Data Source=..\Data\Membership.db
+15:57:41.945 28 Y - [Membership]GetSchema("MetaDataCollections")
+15:57:41.956 28 Y - [Membership]GetSchema("ReservedWords")
+15:57:41.965 28 Y - 开始同步检查表[Menu/SQLite]的数据表架构……
+15:57:41.970 28 Y - [Membership]GetSchema("Tables")
+15:57:41.979 28 Y - [Membership]GetSchema("Columns")
+15:57:42.016 28 Y - [Membership]GetSchema("Indexes")
+15:57:42.018 28 Y - [Membership]GetSchema("IndexColumns")
+15:57:42.023 28 Y - [Membership]GetSchema("DataTypes")
+15:57:42.055 28 Y - 检查表[Menu/SQLite]的数据表架构耗时89ms
+15:57:42.064 28 Y - 开始检查连接[Membership/SQLite]的数据库架构……
+15:57:42.129 28 Y - 检查连接[Membership/SQLite]的数据库架构耗时66ms
+15:57:42.131 28 Y - Select * From Menu Order By ID Desc limit 1
+15:57:42.136 28 Y - Select Count(*) From Menu
+15:57:42.136 28 Y - Select * From Menu Order By ID Desc
+15:57:42.190 28 Y - 开始初始化实体类Log
+15:57:42.190 28 Y - 完成初始化实体类Log
+15:57:42.190 24 Y - 开始初始化实体类Channel
+15:57:42.190 24 Y - 完成初始化实体类Channel
+15:57:42.667 24 Y - 开始初始化实体类Model
+15:57:42.667 24 Y - 完成初始化实体类Model
+15:57:42.675 24 Y - 开始初始化实体类Article
+15:57:42.675 24 Y - 完成初始化实体类Article
+15:57:42.680 24 Y - 开始初始化实体类Product
+15:57:42.682 24 Y - 完成初始化实体类Product
+15:57:42.687 24 Y - 开始初始化实体类Text
+15:57:42.687 24 Y - 完成初始化实体类Text

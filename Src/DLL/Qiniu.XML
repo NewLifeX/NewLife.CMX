@@ -1,0 +1,872 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Qiniu.4.0</name>
+    </assembly>
+    <members>
+        <member name="T:Qiniu.Auth.digest.Mac">
+            <summary>
+            七牛消息认证(Message Authentication)
+            </summary>
+        </member>
+        <member name="M:Qiniu.Auth.digest.Mac._sign(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Qiniu.Auth.digest.Mac.Sign(System.Byte[])">
+            <summary>
+            Sign
+            </summary>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Qiniu.Auth.digest.Mac.SignWithData(System.Byte[])">
+            <summary>
+            SignWithData
+            </summary>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Qiniu.Auth.digest.Mac.SignRequest(System.Net.HttpWebRequest,System.Byte[])">
+            <summary>
+            SignRequest
+            </summary>
+            <param name="request"></param>
+            <param name="body"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Qiniu.Auth.digest.Mac.AccessKey">
+            <summary>
+            Gets or sets the access key.
+            </summary>
+            <value>The access key.</value>
+        </member>
+        <member name="P:Qiniu.Auth.digest.Mac.SecretKey">
+            <summary>
+            Gets the secret key.
+            </summary>
+            <value>The secret key.</value>
+        </member>
+        <member name="M:Qiniu.Auth.PutAuthClient.SetAuth(System.Net.HttpWebRequest,System.IO.Stream)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="body"></param>
+        </member>
+        <member name="M:Qiniu.FileOp.ImageView.MakeRequest(System.String)">
+            <summary>
+            Makes the request.
+            </summary>
+            <returns>The request.</returns>
+            <param name="url">URL.</param>
+        </member>
+        <member name="P:Qiniu.FileOp.ImageView.Mode">
+            <summary>
+            缩略模式
+            </summary>
+            <value>The mode.</value>
+        </member>
+        <member name="P:Qiniu.FileOp.ImageView.Width">
+            <summary>
+            Width = 0 表示不限定宽度
+            </summary>
+            <value>The width.</value>
+        </member>
+        <member name="P:Qiniu.FileOp.ImageView.Height">
+            <summary>
+            Height = 0 表示不限定高度
+            </summary>
+            <value>The height.</value>
+        </member>
+        <member name="P:Qiniu.FileOp.ImageView.Quality">
+             <summary>
+            质量, 1-100
+             </summary>
+             <value>The quality.</value>
+        </member>
+        <member name="P:Qiniu.FileOp.ImageView.Format">
+            <summary>
+            输出格式，如jpg, gif, png, tif等等
+            </summary>
+            <value>The format.</value>
+        </member>
+        <member name="T:Qiniu.FileOp.TextWaterMarker">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Qiniu.IO.IOClient">
+            <summary>
+            上传客户端
+            </summary>
+        </member>
+        <member name="M:Qiniu.IO.IOClient.PutFile(System.String,System.String,System.String,Qiniu.IO.PutExtra)">
+            <summary>
+            上传文件
+            </summary>
+            <param name="upToken"></param>
+            <param name="key"></param>h
+            <param name="localFile"></param>
+            <param name="extra"></param>
+        </member>
+        <member name="M:Qiniu.IO.IOClient.PutFileWithoutKey(System.String,System.String,Qiniu.IO.PutExtra)">
+            <summary>
+            Puts the file without key.
+            </summary>
+            <returns>The file without key.</returns>
+            <param name="upToken">Up token.</param>
+            <param name="localFile">Local file.</param>
+            <param name="extra">Extra.</param>
+        </member>
+        <member name="M:Qiniu.IO.IOClient.Put(System.String,System.String,System.IO.Stream,Qiniu.IO.PutExtra)">
+            <summary>
+            
+            </summary>
+            <param name="upToken">Up token.</param>
+            <param name="key">Key.</param>
+            <param name="putStream">Put stream.</param>
+            <param name="extra">Extra.</param>
+        </member>
+        <member name="E:Qiniu.IO.IOClient.PutFinished">
+            <summary>
+            无论成功或失败，上传结束时触发的事件
+            </summary>
+        </member>
+        <member name="F:Qiniu.IO.CheckCrcType.DEFAULT_CHECK">
+            <summary>
+            default
+            </summary>
+        </member>
+        <member name="F:Qiniu.IO.CheckCrcType.NO_CHECK">
+            <summary>
+            表示不进行 crc32 校验
+            </summary>
+        </member>
+        <member name="F:Qiniu.IO.CheckCrcType.CHECK_AUTO">
+             <summary>
+            对于 Put 等同于 CheckCrc = 2；对于 PutFile 会自动计算 crc32 值
+             </summary>
+        </member>
+        <member name="F:Qiniu.IO.CheckCrcType.CHECK">
+            <summary>
+            表示进行 crc32 校验，且 crc32 值就是PutExtra:Crc32
+            </summary>
+        </member>
+        <member name="T:Qiniu.IO.PutExtra">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Qiniu.IO.PutExtra.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Qiniu.IO.PutExtra.Params">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Qiniu.IO.PutExtra.Crc32">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Qiniu.IO.PutExtra.CheckCrc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Qiniu.IO.PutRet.Hash">
+            <summary>
+            如果 uptoken 没有指定 ReturnBody，那么返回值是标准的 PutRet 结构
+            </summary>
+        </member>
+        <member name="P:Qiniu.IO.PutRet.key">
+            <summary>
+            如果传入的 key == UNDEFINED_KEY，则服务端返回 key
+            </summary>
+        </member>
+        <member name="T:Qiniu.IO.Resumable.PutNotifyEvent">
+            <summary>
+            Block上传成功事件参数
+            </summary>
+        </member>
+        <member name="T:Qiniu.IO.Resumable.PutNotifyErrorEvent">
+            <summary>
+            上传错误事件参数
+            </summary>
+        </member>
+        <member name="T:Qiniu.IO.Resumable.ResumablePutExtra">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Qiniu.IO.Resumable.Settings">
+            <summary>
+            断点续传上传参数设置
+            </summary>
+        </member>
+        <member name="M:Qiniu.IO.Resumable.Settings.#ctor(System.Int32,System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="chunkSize">chunk大小,默认为4MB</param>
+            <param name="tryTimes">失败重试次数,默认为3</param>
+        </member>
+        <member name="P:Qiniu.IO.Resumable.Settings.ChunkSize">
+            <summary>
+            chunk大小,默认为4MB;
+            兼容保留
+            </summary>
+        </member>
+        <member name="P:Qiniu.IO.Resumable.Settings.TryTimes">
+            <summary>
+            失败重试次数,默认为3
+            </summary>
+        </member>
+        <member name="T:Qiniu.RS.GetPolicy">
+            <summary>
+            GetPolicy
+            </summary>
+        </member>
+        <member name="T:Qiniu.RS.PutPolicy">
+            <summary>
+            PutPolicy
+            </summary>
+        </member>
+        <member name="M:Qiniu.RS.PutPolicy.#ctor(System.String,System.UInt32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Qiniu.RS.PutPolicy"/> class.
+            </summary>
+            <param name="scope">Scope.</param>
+            <param name="expires">Expires.</param>
+        </member>
+        <member name="M:Qiniu.RS.PutPolicy.Token(Qiniu.Auth.digest.Mac)">
+            <summary>
+            生成上传Token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Qiniu.RS.PutPolicy.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Qiniu.RS.PutPolicy"/> in json formmat.
+            </summary>
+            <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Qiniu.RS.PutPolicy"/>.</returns>
+        </member>
+        <member name="P:Qiniu.RS.PutPolicy.Scope">
+            <summary>
+            一般指文件要上传到的目标存储空间（Bucket）。若为”Bucket”，表示限定只能传到该Bucket（仅限于新增文件）；若为”Bucket:Key”，表示限定特定的文件，可修改该文件。
+            </summary>
+        </member>
+        <member name="P:Qiniu.RS.PutPolicy.CallBackUrl">
+            <summary>
+            文件上传成功后，Qiniu-Cloud-Server 向 App-Server 发送POST请求的URL，必须是公网上可以正常进行POST请求并能响应 HTTP Status 200 OK 的有效 URL
+            </summary>
+        </member>
+        <member name="P:Qiniu.RS.PutPolicy.CallBackBody">
+            <summary>
+            文件上传成功后，Qiniu-Cloud-Server 向 App-Server 发送POST请求的数据。支持 魔法变量 和 自定义变量，不可与 returnBody 同时使用。
+            </summary>
+        </member>
+        <member name="P:Qiniu.RS.PutPolicy.ReturnUrl">
+            <summary>
+            设置用于浏览器端文件上传成功后，浏览器执行301跳转的URL，一般为 HTML Form 上传时使用。文件上传成功后会跳转到 returnUrl?query_string, query_string 会包含 returnBody 内容。returnUrl 不可与 callbackUrl 同时使用
+            </summary>
+        </member>
+        <member name="P:Qiniu.RS.PutPolicy.ReturnBody">
+            <summary>
+            文件上传成功后，自定义从 Qiniu-Cloud-Server 最终返回給终端 App-Client 的数据。支持 魔法变量，不可与 callbackBody 同时使用。
+            </summary>
+        </member>
+        <member name="P:Qiniu.RS.PutPolicy.EndUser">
+            <summary>
+            给上传的文件添加唯一属主标识，特殊场景下非常有用，比如根据终端用户标识给图片或视频打水印
+            </summary>
+        </member>
+        <member name="P:Qiniu.RS.PutPolicy.Deadline">
+            <summary>
+            定义 uploadToken 的失效时间，Unix时间戳，精确到秒，缺省为 3600 秒
+            </summary>
+        </member>
+        <member name="P:Qiniu.RS.PutPolicy.SaveKey">
+            <summary>
+            可选, Gets or sets the save key.
+            </summary>
+            <value>The save key.</value>
+        </member>
+        <member name="P:Qiniu.RS.PutPolicy.InsertOnly">
+            <summary>
+            可选。 若非0, 即使Scope为 Bucket:Key 的形式也是insert only.
+            </summary>
+            <value>The insert only.</value>
+        </member>
+        <member name="P:Qiniu.RS.PutPolicy.DetectMime">
+            <summary>
+            可选。若非0, 则服务端根据内容自动确定 MimeType */
+            </summary>
+            <value>The detect MIME.</value>
+        </member>
+        <member name="P:Qiniu.RS.PutPolicy.MimeLimit">
+             <summary>
+             限定用户上传的文件类型
+             指定本字段值，七牛服务器会侦测文件内容以判断MimeType，再用判断值跟指定值进行匹配，匹配成功则允许上传，匹配失败返回400状态码
+             示例:
+            1. “image/*“表示只允许上传图片类型
+            2. “image/jpeg;image/png”表示只允许上传jpg和png类型的图片
+             </summary>
+             <value>The detect MIME.</value>
+        </member>
+        <member name="P:Qiniu.RS.PutPolicy.FsizeLimit">
+            <summary>
+            可选, Gets or sets the fsize limit.
+            </summary>
+            <value>The fsize limit.</value>
+        </member>
+        <member name="P:Qiniu.RS.PutPolicy.PersistentNotifyUrl">
+            <summary>
+            音视频转码持久化完成后，七牛的服务器会向用户发送处理结果通知。这里指定的url就是用于接收通知的接口。设置了`persistentOps`,则需要同时设置此字段
+            </summary>
+        </member>
+        <member name="P:Qiniu.RS.PutPolicy.PersistentOps">
+            <summary>
+            可指定音视频文件上传完成后，需要进行的转码持久化操作。persistentOps的处理结果以文件形式保存在bucket中，体验更佳。[数据处理(持久化)](http://docs.qiniu.com/api/persistent-ops.html
+            </summary>
+        </member>
+        <!-- 对于成员“P:Qiniu.RS.PutPolicy.PersistentPipeline”忽略有格式错误的 XML 注释 -->
+        <member name="T:Qiniu.FileOp.ImageInfoRet">
+            <summary>
+            Image Info
+            </summary>
+        </member>
+        <member name="M:Qiniu.FileOp.ImageInfoRet.#ctor(Qiniu.RPC.CallRet)">
+            <summary>
+            construct
+            </summary>
+            <param name="ret"></param>
+        </member>
+        <member name="P:Qiniu.FileOp.ImageInfoRet.Width">
+            <summary>
+            Width
+            </summary>
+        </member>
+        <member name="P:Qiniu.FileOp.ImageInfoRet.Height">
+            <summary>
+            Height
+            </summary>
+        </member>
+        <member name="P:Qiniu.FileOp.ImageInfoRet.Format">
+            <summary>
+            Format
+            </summary>
+        </member>
+        <member name="P:Qiniu.FileOp.ImageInfoRet.ColorModel">
+            <summary>
+            Color Model
+            </summary>
+        </member>
+        <member name="T:Qiniu.RS.EntryPath">
+            <summary>
+            bucket+   ":"+ key
+            </summary>
+        </member>
+        <member name="P:Qiniu.RS.EntryPath.Bucket">
+            <summary>
+            七年云存储空间名
+            </summary>
+        </member>
+        <member name="P:Qiniu.RS.EntryPath.Key">
+            <summary>
+            文件key
+            </summary>
+        </member>
+        <member name="P:Qiniu.RS.EntryPath.URI">
+            <summary>
+            bucket+ ":"+ key
+            </summary>
+        </member>
+        <member name="T:Qiniu.RS.EntryPathPair">
+            <summary>
+            二元操作路径
+            </summary>
+        </member>
+        <member name="M:Qiniu.RS.EntryPathPair.#ctor(Qiniu.RS.EntryPath,Qiniu.RS.EntryPath)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Qiniu.RS.EntryPathPair"/> class.
+            </summary>
+        </member>
+        <member name="M:Qiniu.RS.EntryPathPair.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            二元操作路径构造函数
+            </summary>
+            <param name="bucketSrc">源空间名称</param>
+            <param name="keySrc">源文件key</param>
+            <param name="bucketDest">目标空间名称</param>
+            <param name="keyDest">目文件key</param>
+        </member>
+        <member name="M:Qiniu.RS.EntryPathPair.#ctor(System.String,System.String,System.String)">
+            <summary>
+            二元操作路径构造函数
+            </summary>
+            <param name="bucket">源空间名称，目标空间名称</param>
+            <param name="keySrc">源文件key</param>
+            <param name="keyDest">目文件key</param>
+        </member>
+        <member name="P:Qiniu.RS.EntryPathPair.URISrc">
+            <summary>
+            bucketSrc+":"+keySrc
+            </summary>
+        </member>
+        <member name="P:Qiniu.RS.EntryPathPair.URIDest">
+            <summary>
+            bucketDest+":"+keyDest
+            </summary>
+        </member>
+        <member name="P:Qiniu.RS.BatchRetData.FSize">
+            <summary>
+            文件大小.
+            </summary>
+        </member>
+        <member name="P:Qiniu.RS.BatchRetData.PutTime">
+            <summary>
+            修改时间.
+            </summary>
+        </member>
+        <member name="P:Qiniu.RS.BatchRetData.Key">
+            <summary>
+            文件名.
+            </summary>
+        </member>
+        <member name="P:Qiniu.RS.BatchRetData.Hash">
+            <summary>
+            Gets a value indicating whether this instance hash.
+            </summary>
+        </member>
+        <member name="P:Qiniu.RS.BatchRetData.Mime">
+            <summary>
+            Gets the MIME.
+            </summary>
+        </member>
+        <member name="P:Qiniu.RS.BatchRetData.Error">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Qiniu.RS.Entry.Hash">
+            <summary>
+            文件的Hash值
+            </summary>
+            <value><c>true</c> if this instance hash; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Qiniu.RS.Entry.Fsize">
+            <summary>
+            文件的大小(单位: 字节)
+            </summary>
+            <value>The fsize.</value>
+        </member>
+        <member name="P:Qiniu.RS.Entry.PutTime">
+            <summary>
+            文件上传到七牛云的时间(Unix时间戳)
+            </summary>
+            <value>The put time.</value>
+        </member>
+        <member name="P:Qiniu.RS.Entry.MimeType">
+            <summary>
+            文件的媒体类型，比如"image/gif"
+            </summary>
+            <value>The type of the MIME.</value>
+        </member>
+        <member name="P:Qiniu.RS.Entry.Customer">
+            <summary>
+            Gets the customer.
+            </summary>
+            <value>The customer.</value>
+        </member>
+        <member name="M:Qiniu.Util.Base64URLSafe.ToBase64URLSafe(System.String)">
+            <summary>
+            string扩展方法，生成base64UrlSafe
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Qiniu.Conf.Config.ACCESS_KEY">
+            <summary>
+            七牛提供的公钥，用于识别用户
+            </summary>
+        </member>
+        <member name="F:Qiniu.Conf.Config.SECRET_KEY">
+            <summary>
+            七牛提供的秘钥，不要在客户端初始化该变量
+            </summary>
+        </member>
+        <member name="F:Qiniu.Conf.Config.RS_HOST">
+            <summary>
+            七牛资源管理服务器地址
+            </summary>
+        </member>
+        <member name="F:Qiniu.Conf.Config.UP_HOST">
+            <summary>
+            七牛资源上传服务器地址.
+            </summary>
+        </member>
+        <member name="F:Qiniu.Conf.Config.RSF_HOST">
+            <summary>
+            七牛资源列表服务器地址.
+            </summary>
+        </member>
+        <member name="F:Qiniu.Conf.Config.Encoding">
+            <summary>
+            七牛SDK对所有的字节编码采用utf-8形式 .
+            </summary>
+        </member>
+        <member name="M:Qiniu.Conf.Config.Init">
+            <summary>
+            初始化七牛帐户、请求地址等信息，不应在客户端调用。
+            </summary>
+        </member>
+        <member name="T:Qiniu.IO.Resumable.ResumablePut">
+            <summary>
+            异步并行断点上传类
+            </summary>
+        </member>
+        <member name="M:Qiniu.IO.Resumable.ResumablePut.#ctor(Qiniu.IO.Resumable.Settings,Qiniu.IO.Resumable.ResumablePutExtra)">
+            <summary>
+            断点续传类
+            </summary>
+            <param name="putSetting"></param>
+            <param name="extra"></param>
+        </member>
+        <member name="M:Qiniu.IO.Resumable.ResumablePut.PutFile(System.String,System.String,System.String)">
+            <summary>
+            上传文件
+            </summary>
+            <param name="upToken">上传Token</param>
+            <param name="key">key</param>
+            <param name="localFile">本地文件名</param>
+        </member>
+        <member name="E:Qiniu.IO.Resumable.ResumablePut.PutFinished">
+            <summary>
+            上传完成事件
+            </summary>
+        </member>
+        <member name="E:Qiniu.IO.Resumable.ResumablePut.PutFailure">
+            <summary>
+            上传Failure事件
+            </summary>
+        </member>
+        <member name="P:Qiniu.IO.Resumable.ResumablePut.PutSetting">
+            <summary>
+            上传设置
+            </summary>
+        </member>
+        <member name="P:Qiniu.IO.Resumable.ResumablePut.Extra">
+            <summary>
+            PutExtra
+            </summary>
+        </member>
+        <member name="T:Qiniu.RS.FileHandle">
+            <summary>
+            文件管理操作
+            </summary>
+        </member>
+        <member name="F:Qiniu.RS.FileHandle.STAT">
+            <summary>
+            查看
+            </summary>
+        </member>
+        <member name="F:Qiniu.RS.FileHandle.MOVE">
+            <summary>
+            移动move
+            </summary>
+        </member>
+        <member name="F:Qiniu.RS.FileHandle.COPY">
+            <summary>
+            复制copy
+            </summary>
+        </member>
+        <member name="F:Qiniu.RS.FileHandle.DELETE">
+            <summary>
+            删除delete
+            </summary>
+        </member>
+        <member name="F:Qiniu.RS.FileHandle.FETCH">
+            <summary>
+            抓取资源fetch
+            </summary>
+        </member>
+        <member name="T:Qiniu.RS.RSClient">
+            <summary>
+            资源存储客户端，提供对文件的查看（stat），移动(move)，复制（copy）,删除（delete）, 抓取资源（fetch） 操作
+            以及与这些操作对应的批量操作
+            </summary>
+        </member>
+        <member name="M:Qiniu.RS.RSClient.op(Qiniu.RS.FileHandle,Qiniu.RS.EntryPath)">
+            <summary>
+            
+            </summary>
+            <param name="op"></param>
+            <param name="scope"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Qiniu.RS.RSClient.op2(Qiniu.RS.FileHandle,Qiniu.RS.EntryPathPair)">
+            <summary>
+            
+            </summary>
+            <param name="op"></param>
+            <param name="pair"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Qiniu.RS.RSClient.Stat(Qiniu.RS.EntryPath)">
+            <summary>
+            文件信息查看
+            </summary>
+            <param name="scope"></param>
+            <returns>文件的基本信息，见<see cref="T:Qiniu.RS.Entry">Entry</see></returns>
+        </member>
+        <member name="M:Qiniu.RS.RSClient.Delete(Qiniu.RS.EntryPath)">
+            <summary>
+            删除文件
+            </summary>
+            <param name="bucket">七牛云存储空间名称</param>
+            <param name="key">需要删除的文件key</param>
+            <returns></returns>
+        </member>
+        <member name="M:Qiniu.RS.RSClient.Move(Qiniu.RS.EntryPathPair)">
+            <summary>
+            移动文件
+            </summary>
+            <param name="bucketSrc">文件所属的源空间名称</param>
+            <param name="keySrc">源key</param>
+            <param name="bucketDest">目标空间名称</param>
+            <param name="keyDest">目标key</param>
+            <returns>见<see cref="T:Qiniu.RPC.CallRet">CallRet</see></returns>
+        </member>
+        <member name="M:Qiniu.RS.RSClient.Copy(Qiniu.RS.EntryPathPair)">
+            <summary>
+            复制
+            </summary>
+            <param name="bucketSrc">文件所属的空间名称</param>
+            <param name="keySrc">需要复制的文件key</param>
+            <param name="bucketDest">复制至目标空间</param>
+            <param name="keyDest">复制的副本文件key</param>
+            <returns>见<see cref="T:Qiniu.RPC.CallRet">CallRet</see></returns>
+        </member>
+        <member name="M:Qiniu.RS.RSClient.Fetch(System.String,Qiniu.RS.EntryPath)">
+            <summary>
+            抓取资源
+            </summary>
+            <param name="fromUrl">需要抓取的文件URL</param>
+            <param name="entryPath">目标entryPath</param>
+            <returns>见<see cref="T:Qiniu.RPC.CallRet">CallRet</see></returns>
+        </member>
+        <member name="M:Qiniu.RS.RSClient.getBatchOp_1(Qiniu.RS.FileHandle,Qiniu.RS.EntryPath[])">
+            <summary>
+            获取一元批操作http request Body
+            </summary>
+            <param name="opName">操作名</param>
+            <param name="keys">操作对象keys</param>
+            <returns>Request Body</returns>
+        </member>
+        <member name="M:Qiniu.RS.RSClient.getBatchOp_2(Qiniu.RS.FileHandle,Qiniu.RS.EntryPathPair[])">
+            <summary>
+            
+            </summary>
+            <param name="opName"></param>
+            <param name="keys"></param>
+            <returns></returns>
+        </member>
+        <!-- 对于成员“M:Qiniu.RS.RSClient.BatchStat(Qiniu.RS.EntryPath[])”忽略有格式错误的 XML 注释 -->
+        <member name="M:Qiniu.RS.RSClient.BatchMove(Qiniu.RS.EntryPathPair[])">
+            <summary>
+            批操作：文件移动
+            </summary>
+            <param name="entryPathPair"><see cref="!:">EntryPathPair</see></param>
+        </member>
+        <member name="M:Qiniu.RS.RSClient.BatchCopy(Qiniu.RS.EntryPathPair[])">
+            <summary>
+            
+            </summary>
+            <param name="bucket"></param>
+            <param name="entryPathPari"></param>
+        </member>
+        <member name="M:Qiniu.RS.RSClient.BatchDelete(Qiniu.RS.EntryPath[])">
+            <summary>
+            批量删除
+            </summary>
+            <param name="keys"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Qiniu.RSF.DumpItem">
+            <summary>
+            Dump item文件信息.
+            </summary>
+        </member>
+        <member name="P:Qiniu.RSF.DumpItem.FSize">
+            <summary>
+            文件大小.
+            </summary>
+        </member>
+        <member name="P:Qiniu.RSF.DumpItem.PutTime">
+            <summary>
+            修改时间.
+            </summary>
+        </member>
+        <member name="P:Qiniu.RSF.DumpItem.Key">
+            <summary>
+            文件名.
+            </summary>
+        </member>
+        <member name="P:Qiniu.RSF.DumpItem.Hash">
+            <summary>
+            Gets a value indicating whether this instance hash.
+            </summary>
+        </member>
+        <member name="P:Qiniu.RSF.DumpItem.Mime">
+            <summary>
+            Gets the MIME.
+            </summary>
+        </member>
+        <member name="T:Qiniu.RSF.DumpRet">
+            <summary>
+            Fetch 返回结果.
+            </summary>
+        </member>
+        <member name="P:Qiniu.RSF.DumpRet.Marker">
+            <summary>
+            fetch 定位符
+            </summary>
+        </member>
+        <member name="P:Qiniu.RSF.DumpRet.Items">
+            <summary>
+            The items.
+            </summary>
+        </member>
+        <member name="T:Qiniu.RSF.RSFClient">
+            <summary>
+            RS Fetch 
+            </summary>
+        </member>
+        <member name="M:Qiniu.RSF.RSFClient.#ctor(System.String)">
+            <summary>
+            RS Fetch Client
+            </summary>
+            <param name="bucketName">七牛云存储空间名称</param>
+        </member>
+        <member name="M:Qiniu.RSF.RSFClient.ListPrefix(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            The origin Fetch interface,we recomment to use Next().
+            </summary>
+            <returns>
+            Dump
+            </returns>
+            <param name='bucketName'>
+            Bucket name.
+            </param>
+            <param name='prefix'>
+            Prefix.
+            </param>
+            <param name='markerIn'>
+            Marker in.
+            </param>
+            <param name='limit'>
+            Limit.
+            </param>
+        </member>
+        <member name="M:Qiniu.RSF.RSFClient.Init">
+            <summary>
+            call this func before invoke Next()
+            </summary>
+        </member>
+        <!-- 对于成员“M:Qiniu.RSF.RSFClient.Next”忽略有格式错误的 XML 注释 -->
+        <member name="P:Qiniu.RSF.RSFClient.BucketName">
+            <summary>
+            bucket name
+            </summary>
+        </member>
+        <member name="P:Qiniu.RSF.RSFClient.Limit">
+            <summary>
+            Fetch返回结果条目数量限制
+            </summary>
+        </member>
+        <member name="P:Qiniu.RSF.RSFClient.Prefix">
+            <summary>
+            文件前缀
+            </summary>
+            <value>
+            The prefix.
+            </value>
+        </member>
+        <member name="P:Qiniu.RSF.RSFClient.Marker">
+            <summary>
+            Fetch 定位符.
+            </summary>
+        </member>
+        <member name="M:Qiniu.Util.StreamEx.ToStream(System.String)">
+            <summary>
+            string To Stream
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Qiniu.Util.StringEx">
+            <summary>
+            String辅助函数
+            </summary>
+        </member>
+        <member name="M:Qiniu.Util.StringEx.ToUrlEncode(System.String)">
+            <summary>
+            对字符串进行Url编码 
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Qiniu.PreFetch.PreFetchClient">
+            <summary>
+            RS Fetch 
+            </summary>
+        </member>
+        <member name="M:Qiniu.PreFetch.PreFetchClient.PreFetch(Qiniu.RS.EntryPath)">
+            <summary>
+            Pres the fetch.
+            </summary>
+            <returns><c>true</c>, if fetch was pred, <c>false</c> otherwise.</returns>
+            <param name="path">Path.</param>
+        </member>
+        <member name="T:Qiniu.RS.PersistentId">
+            <summary>
+            Persistent identifier.
+            </summary>
+        </member>
+        <member name="T:Qiniu.RS.PersitentError">
+            <summary>
+            Persitent error.
+            </summary>
+        </member>
+        <member name="T:Qiniu.RS.PersistentException">
+            <summary>
+            Persistent exception.
+            </summary>
+        </member>
+        <!-- 对于成员“T:Qiniu.RS.Pfop”忽略有格式错误的 XML 注释 -->
+        <member name="M:Qiniu.RS.Pfop.Do(Qiniu.RS.EntryPath,System.String[],System.Uri)">
+            <summary>
+            请求持久化
+            </summary>
+            <param name="entry"></param>
+            <param name="fops"></param>
+            <param name="notifyURL"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Qiniu.RS.Pfop.QueryPfopStatus(System.String)">
+            <summary>
+            Queries the pfop status.
+            </summary>
+            <returns>The pfop status.</returns>
+            <param name="persistentId">Persistent identifier.</param>
+        </member>
+    </members>
+</doc>
