@@ -353,7 +353,18 @@ WriteLiteral(" type=\"text/plain\"");
 
 WriteLiteral(" style=\"width:800px;height:500px;\"");
 
-WriteLiteral(">\r\n                    </script>\r\n                    <script");
+WriteLiteral(">\r\n");
+
+WriteLiteral("                        ");
+
+            
+            #line 54 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+                   Write(article.ContentText);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n                    </script>\r\n                    <script");
 
 WriteLiteral(" type=\"text/javascript\"");
 
@@ -367,34 +378,34 @@ WriteLiteral(@">
 ");
 
             
-            #line 62 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 63 "..\..\Areas\CMS\Views\Article\Form.cshtml"
             
             
             #line default
             #line hidden
             
-            #line 62 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 63 "..\..\Areas\CMS\Views\Article\Form.cshtml"
        Write(Html.Partial("_UserTime", Model as IEntity));
 
             
             #line default
             #line hidden
             
-            #line 62 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 63 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                                                         
             
             
             #line default
             #line hidden
             
-            #line 63 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 64 "..\..\Areas\CMS\Views\Article\Form.cshtml"
        Write(Html.Partial("_Form_Action", isNew));
 
             
             #line default
             #line hidden
             
-            #line 63 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 64 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                                                 
         }
 
