@@ -63,6 +63,9 @@ namespace NewLife.CMX.Web
                 defaults: new { controller = "Content", action = "Search" },
                 constraints: new { channelName = new ChannelUrlConstraint() }
             );
+
+            // 用于UE的处理器
+            routes.Add(new Route("UEditor", new UEditor.RouteHandler()));
         }
     }
 
