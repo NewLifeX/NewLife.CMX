@@ -4492,6 +4492,9 @@
         <member name="P:XCode.Membership.IRole.IsSystem">
             <summary>是否系统角色。系统角色用于业务系统开发使用，禁止修改名称或删除</summary>
         </member>
+        <member name="P:XCode.Membership.IRole.Remark">
+            <summary>说明</summary>
+        </member>
         <member name="P:XCode.Membership.IRole.Permission">
             <summary>权限。对不同资源的权限，逗号分隔，每个资源的权限子项竖线分隔</summary>
         </member>
@@ -4570,10 +4573,11 @@
             <param name="name"></param>
             <returns></returns>
         </member>
-        <member name="M:XCode.Membership.Role`1.Add(System.String,System.Boolean)">
+        <member name="M:XCode.Membership.Role`1.Add(System.String,System.Boolean,System.String)">
             <summary>添加角色，如果存在，则直接返回，否则创建</summary>
             <param name="name"></param>
             <param name="issys"></param>
+            <param name="remark"></param>
             <returns></returns>
         </member>
         <member name="M:XCode.Membership.Role`1.RowDataBound(System.Object,System.Web.UI.WebControls.GridViewRowEventArgs,XCode.Membership.IRole,System.Boolean)">
@@ -4614,6 +4618,9 @@
         <member name="P:XCode.Membership.Role`1.IsSystem">
             <summary>是否系统角色。系统角色用于业务系统开发使用，禁止修改名称或删除</summary>
         </member>
+        <member name="P:XCode.Membership.Role`1.Remark">
+            <summary>说明</summary>
+        </member>
         <member name="P:XCode.Membership.Role`1.Permission">
             <summary>权限。对不同资源的权限，逗号分隔，每个资源的权限子项竖线分隔</summary>
         </member>
@@ -4638,6 +4645,9 @@
         <member name="F:XCode.Membership.Role`1._.IsSystem">
             <summary>是否系统角色。系统角色用于业务系统开发使用，禁止修改名称或删除</summary>
         </member>
+        <member name="F:XCode.Membership.Role`1._.Remark">
+            <summary>说明</summary>
+        </member>
         <member name="F:XCode.Membership.Role`1._.Permission">
             <summary>权限。对不同资源的权限，逗号分隔，每个资源的权限子项竖线分隔</summary>
         </member>
@@ -4652,6 +4662,9 @@
         </member>
         <member name="F:XCode.Membership.Role`1.__.IsSystem">
             <summary>是否系统角色。系统角色用于业务系统开发使用，禁止修改名称或删除</summary>
+        </member>
+        <member name="F:XCode.Membership.Role`1.__.Remark">
+            <summary>说明</summary>
         </member>
         <member name="F:XCode.Membership.Role`1.__.Permission">
             <summary>权限。对不同资源的权限，逗号分隔，每个资源的权限子项竖线分隔</summary>

@@ -92,11 +92,10 @@ namespace NewLife.CMX
         {
             get
             {
-                if (_Content == null && !Dirtys.ContainsKey("Content"))
+                if (_Content == null)
                 {
                     _Content = EntityContent<TContent>.FindLastByParentID(ID);
                     if (_Content == null) _Content = new TContent { ParentID = ID };
-                    Dirtys["Content"] = true;
                 }
                 return _Content;
             }
@@ -104,7 +103,7 @@ namespace NewLife.CMX
         }
 
         /// <summary>内容文本</summary>
-        public override String ContentText { get { return Content != null ? Content.Content : ""; } }
+        public override String ContentText { get { return Content != null ? Content.Content : ""; } set { Content.Content = value; } }
 
         private TStatistics _Statistics;
         /// <summary>统计</summary>
@@ -271,7 +270,8 @@ namespace NewLife.CMX
 
         protected internal abstract IEntityCategory Category_ { get; }
 
-        public abstract String ContentText { get; }
+        /// <summary>内容文本</summary>
+        public abstract String ContentText { get; set; }
 
         /// <summary>当前主题的统计</summary>
         IStatistics IEntityTitle.Statistics { get { return Statistics_; } }
@@ -381,7 +381,7 @@ namespace NewLife.CMX
         IEntityCategory Category { get; }
 
         /// <summary>主要内容</summary>
-        String ContentText { get; }
+        String ContentText { get; set; }
 
         IStatistics Statistics { get; }
     }

@@ -359,7 +359,7 @@ WriteLiteral("                        ");
 
             
             #line 54 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-                   Write(article.ContentText);
+                   Write(Html.Raw(article.ContentText));
 
             
             #line default
@@ -369,9 +369,9 @@ WriteLiteral("\r\n                    </script>\r\n                    <script")
 WriteLiteral(" type=\"text/javascript\"");
 
 WriteLiteral(@">
-                            //实例化编辑器
-                            //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-                            var ue = UE.getEditor('ContentText');
+                        //实例化编辑器
+                        //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+                        var ue = UE.getEditor('ContentText');
                     </script>
                 </div>
             </div>
