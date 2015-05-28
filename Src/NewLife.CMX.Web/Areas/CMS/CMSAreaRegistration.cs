@@ -3,6 +3,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using NewLife.Cube;
+using NewLife.Threading;
 
 namespace NewLife.CMX.Web
 {
@@ -65,7 +66,9 @@ namespace NewLife.CMX.Web
             );
 
             // 用于UE的处理器
-            routes.Add(new Route("UEditor", new UEditor.RouteHandler()));
+            //routes.Add(new Route("UEditor", new UEditor.RouteHandler()));
+            // UE这条路由太霸道，让它最后注册
+            TimerX.Delay(s => routes.Add(new Route("UEditor", new UEditor.RouteHandler())), 5000);
         }
     }
 
