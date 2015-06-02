@@ -16,7 +16,7 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展查询﻿
-        
+
         #endregion
 
         #region 高级查询
