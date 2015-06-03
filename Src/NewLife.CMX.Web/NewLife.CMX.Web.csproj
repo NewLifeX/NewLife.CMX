@@ -208,6 +208,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\cube-list.js" />
     <Content Include="Content\images\banner.png" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
