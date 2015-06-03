@@ -62,16 +62,102 @@ WriteLiteral(" class=\"form-horizontal\"");
 
 WriteLiteral(">\r\n");
 
-WriteLiteral("        ");
-
             
             #line 9 "..\..\Areas\CMS\Views\Sys\SiteConfig.cshtml"
-   Write(Html.EditorForModel());
+        
+            
+            #line default
+            #line hidden
+            
+            #line 9 "..\..\Areas\CMS\Views\Sys\SiteConfig.cshtml"
+         using (Html.BeginForm())
+        {
+            
+            
+            #line default
+            #line hidden
+            
+            #line 11 "..\..\Areas\CMS\Views\Sys\SiteConfig.cshtml"
+       Write(Html.AntiForgeryToken());
 
             
             #line default
             #line hidden
-WriteLiteral("\r\n    </div>\r\n</div>\r\n\r\n");
+            
+            #line 11 "..\..\Areas\CMS\Views\Sys\SiteConfig.cshtml"
+                                    
+            
+            
+            #line default
+            #line hidden
+            
+            #line 12 "..\..\Areas\CMS\Views\Sys\SiteConfig.cshtml"
+       Write(Html.ValidationSummary());
+
+            
+            #line default
+            #line hidden
+            
+            #line 12 "..\..\Areas\CMS\Views\Sys\SiteConfig.cshtml"
+                                     
+            
+            
+            #line default
+            #line hidden
+            
+            #line 13 "..\..\Areas\CMS\Views\Sys\SiteConfig.cshtml"
+       Write(Html.EditorForModel());
+
+            
+            #line default
+            #line hidden
+            
+            #line 13 "..\..\Areas\CMS\Views\Sys\SiteConfig.cshtml"
+                                  
+
+            
+            #line default
+            #line hidden
+WriteLiteral("            <div");
+
+WriteLiteral(" class=\"clearfix form-actions\"");
+
+WriteLiteral(">\r\n                <label");
+
+WriteLiteral(" class=\"control-label col-md-4\"");
+
+WriteLiteral("></label>\r\n                <button");
+
+WriteLiteral(" type=\"submit\"");
+
+WriteLiteral(" class=\"btn btn-success btn-sm\"");
+
+WriteLiteral("><i");
+
+WriteLiteral(" class=\"glyphicon glyphicon-save\"");
+
+WriteLiteral("></i><strong>保存</strong></button>\r\n                <button");
+
+WriteLiteral(" type=\"button\"");
+
+WriteLiteral(" class=\"btn btn-danger btn-sm\"");
+
+WriteLiteral(" onclick=\"history.go(-1);\"");
+
+WriteLiteral("><i");
+
+WriteLiteral(" class=\"glyphicon glyphicon-remove\"");
+
+WriteLiteral("></i><strong>取消</strong></button>\r\n            </div>\r\n");
+
+            
+            #line 19 "..\..\Areas\CMS\Views\Sys\SiteConfig.cshtml"
+        }
+
+            
+            #line default
+            #line hidden
+WriteLiteral("    </div>\r\n</div>\r\n\r\n");
 
 DefineSection("Scripts", () => {
 
@@ -80,7 +166,7 @@ WriteLiteral("\r\n");
 WriteLiteral("    ");
 
             
-            #line 14 "..\..\Areas\CMS\Views\Sys\SiteConfig.cshtml"
+            #line 24 "..\..\Areas\CMS\Views\Sys\SiteConfig.cshtml"
 Write(Scripts.Render("~/bundles/jqueryval"));
 
             
