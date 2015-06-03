@@ -7,7 +7,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using NewLife.Log;
+﻿using System.IO;
+﻿using System.Text;
+﻿using System.Xml.Serialization;
+﻿using NewLife.Log;
 using XCode;
 
 namespace NewLife.CMX
@@ -39,6 +42,7 @@ namespace NewLife.CMX
             //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
 
         }
+        public EntityList<TEntity> Childrens { get; set; }
 
         /// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -52,22 +56,55 @@ namespace NewLife.CMX
 
             // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
             if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
+            var fn = ("../InitData/" + Meta.TableName + ".json").GetFullPath();
+            if (File.Exists(fn))
+            {
+                if (XTrace.Debug)
+                {
+                    XTrace.WriteLine("使用数据初始化文件【{0}】初始化{1}[{2}]数据……", fn, typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
+                }
+                var list = EntityList<TEntity>.FromJson(File.ReadAllText(fn, Encoding.UTF8));
+                var queue = new Queue<TEntity>(list);
+                var provider = ModelProvider.Get<TEntity>();
+                var model = Model.FindByName(provider.Name);
+                var chn = Channel.FindBySuffixAndModel(null, model.ID);
+                while (queue.Count > 0)
+                {
+                    var item = queue.Dequeue();
+                    item.ChannelID = chn.ID;
+                    item.Save();
+                    if (item.Childrens != null && item.Childrens.Count > 0)
+                    {
+                        foreach (var child in item.Childrens)
+                        {
+                            child.ParentID = item.ID;
+                            queue.Enqueue(child);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                // 找到频道
+                var provider = ModelProvider.Get<TEntity>();
+                var model = Model.FindByName(provider.Name);
+                var chn = Channel.FindBySuffixAndModel(null, model.ID);
 
-            // 找到频道
-            var provider = ModelProvider.Get<TEntity>();
-            var model = Model.FindByName(provider.Name);
-            var chn = Channel.FindBySuffixAndModel(null, model.ID);
+                var entity = new TEntity
+                {
+                    Name = "默认" + Meta.Table.Description,
+                    ChannelID = chn.ID
+                };
+                entity.Insert();
 
-            var entity = new TEntity();
-            entity.Name = "默认" + Meta.Table.Description;
-            entity.ChannelID = chn.ID;
-            entity.Insert();
-
-            entity = new TEntity { ParentID = entity.ID };
-            entity.Name = "二级分类";
-            entity.ChannelID = chn.ID;
-            entity.Insert();
-
+                entity = new TEntity
+                {
+                    ParentID = entity.ID,
+                    Name = "二级分类",
+                    ChannelID = chn.ID
+                };
+                entity.Insert();
+            }
             if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
         }
         #endregion
