@@ -168,6 +168,8 @@
     </Compile>
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Models\Content\CategoryModel.cs" />
+    <Compile Include="Models\Content\DetailModel.cs" />
     <Compile Include="Views\Home\Index.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using NewLife.CMX.Web.Models.Content;
 
 namespace NewLife.CMX.Web.Controllers
 {
@@ -42,12 +43,20 @@ namespace NewLife.CMX.Web.Controllers
 
             if (!String.IsNullOrEmpty(cat.CategoryTemplate)) viewName = cat.CategoryTemplate;
 
-            ViewBag.Category = cat;
-            ViewBag.Channel = Channel;
-            ViewBag.PageIndex = pageindex ?? 1;
-            ViewBag.PageSize = PageSize;
+            //ViewBag.Category = cat;
+            //ViewBag.Channel = Channel;
+            //ViewBag.PageIndex = pageindex ?? 1;
+            //ViewBag.PageSize = PageSize;
 
-            return View(viewName, cat);
+            //return View(viewName, cat);
+            var vm = new CategoryModel
+            {
+                Category = cat,
+                Channel = Channel,
+                PageIndex = pageindex ?? 1,
+                PageSize = PageSize
+            };
+            return View(viewName, vm);
         }
 
         /// <summary>主题详细页</summary>
@@ -69,10 +78,18 @@ namespace NewLife.CMX.Web.Controllers
             title.Views++;
             title.Statistics.Increment(null);
 
-            ViewBag.Channel = Channel;
-            ViewBag.Category = cat;
+            //ViewBag.Channel = Channel;
+            //ViewBag.Category = cat;
 
-            return View(viewName, title);
+            //return View(viewName, title);
+            var vm = new DetailModel
+            {
+                Channel = Channel,
+                Category = cat,
+                Detail = title
+            };
+
+            return View(viewName,vm);
         }
     }
 }
