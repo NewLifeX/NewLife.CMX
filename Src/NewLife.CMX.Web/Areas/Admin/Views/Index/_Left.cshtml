@@ -1,7 +1,7 @@
 ﻿@using NewLife.Model;
 @using NewLife.CMX;
 @{
-    var user = ManageProvider.Provider.Current as IUser;
+    var user = ManageProvider.User;
 
     var fact = ObjectContainer.Current.Resolve<IMenuFactory>();
 
@@ -76,6 +76,9 @@
     @*遍历产生内容管理菜单*@
     @foreach (var chn in Channel.FindAllWithCache().ToList().Where(e => e.Enable))
     {
+        // 判断是否有权访问该频道
+        var res = "CMS\\" + chn.Name;
+        if (!user.Has(res) && !user.Has(res + "Category")) { continue; }
         var provider = chn.Model.Provider;
         var cats = (provider.CategoryFactory.Default as IEntityTree).Childs;
         <li>
@@ -89,65 +92,71 @@
             <b class="arrow"></b>
 
             <ul class="submenu">
-                <li>
-                    <a href="~/CMS/@(chn.Model.Name)Category/@chn.ID" target="main">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        分类管理
-                    </a>
-                </li>
-                @foreach (IEntityCategory cat in cats)
+                @if (user.Has(res + "Category"))
                 {
                     <li>
-                        @if (cat.Childs.Count > 0)
-                        {
-                            <a href="#" class="dropdown-toggle">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                @cat.Name
-                            </a>
-                        }
-                        else
-                        {
-                            <a href="~/CMS/@(chn.Model.Name)/@(chn.ID)_@cat.ID" target="main">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                @cat.Name
-                            </a>
-                        }
-                        <b class="arrow"></b>
-                        <ul class="submenu">
-                            @foreach (IEntityCategory cat2 in cat.Childs)
-                            {
-                                <li>
-                                    @if (cat2.Childs.Count > 0)
-                                    {
-                                        <a href="#" class="dropdown-toggle">
-                                            <i class="menu-icon fa fa-caret-right"></i>
-                                            @cat2.Name
-                                        </a>
-                                    }
-                                    else
-                                    {
-                                        <a href="~/CMS/@(chn.Model.Name)/@(chn.ID)_@cat2.ID" target="main">
-                                            <i class="menu-icon fa fa-caret-right"></i>
-                                            @cat2.Name
-                                        </a>
-                                    }
-                                    <b class="arrow"></b>
-                                    <ul class="submenu">
-                                        @foreach (IEntityCategory cat3 in cat2.Childs)
-                                        {
-                                            <li>
-                                                <a href="~/CMS/@(chn.Model.Name)/@(chn.ID)_@cat3.ID" target="main">
-                                                    <i class="menu-icon fa fa-caret-right"></i>
-                                                    @cat3.Name
-                                                </a>
-                                                <b class="arrow"></b>
-                                            </li>
-                                        }
-                                    </ul>
-                                </li>
-                            }
-                        </ul>
+                        <a href="~/CMS/@(chn.Model.Name)Category/@chn.ID" target="main">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            分类管理
+                        </a>
                     </li>
+                }
+                @if (user.Has(res))
+                {
+                    foreach (IEntityCategory cat in cats)
+                    {
+                        <li>
+                            @if (cat.Childs.Count > 0)
+                            {
+                                <a href="#" class="dropdown-toggle">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    @cat.Name
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="~/CMS/@(chn.Model.Name)/@(chn.ID)_@cat.ID" target="main">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    @cat.Name
+                                </a>
+                            }
+                            <b class="arrow"></b>
+                            <ul class="submenu">
+                                @foreach (IEntityCategory cat2 in cat.Childs)
+                                {
+                                    <li>
+                                        @if (cat2.Childs.Count > 0)
+                                        {
+                                            <a href="#" class="dropdown-toggle">
+                                                <i class="menu-icon fa fa-caret-right"></i>
+                                                @cat2.Name
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a href="~/CMS/@(chn.Model.Name)/@(chn.ID)_@cat2.ID" target="main">
+                                                <i class="menu-icon fa fa-caret-right"></i>
+                                                @cat2.Name
+                                            </a>
+                                        }
+                                        <b class="arrow"></b>
+                                        <ul class="submenu">
+                                            @foreach (IEntityCategory cat3 in cat2.Childs)
+                                            {
+                                                <li>
+                                                    <a href="~/CMS/@(chn.Model.Name)/@(chn.ID)_@cat3.ID" target="main">
+                                                        <i class="menu-icon fa fa-caret-right"></i>
+                                                        @cat3.Name
+                                                    </a>
+                                                    <b class="arrow"></b>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+                    }
                 }
             </ul>
         </li>
