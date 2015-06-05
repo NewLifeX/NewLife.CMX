@@ -113,11 +113,33 @@
                             @foreach (IEntityCategory cat2 in cat.Childs)
                             {
                                 <li>
-                                    <a href="~/CMS/@(chn.Model.Name)/@(chn.ID)_@cat2.ID" target="main">
-                                        <i class="menu-icon fa fa-caret-right"></i>
-                                        @cat2.Name
-                                    </a>
+                                    @if (cat2.Childs.Count > 0)
+                                    {
+                                        <a href="#" class="dropdown-toggle">
+                                            <i class="menu-icon fa fa-caret-right"></i>
+                                            @cat2.Name
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="~/CMS/@(chn.Model.Name)/@(chn.ID)_@cat2.ID" target="main">
+                                            <i class="menu-icon fa fa-caret-right"></i>
+                                            @cat2.Name
+                                        </a>
+                                    }
                                     <b class="arrow"></b>
+                                    <ul class="submenu">
+                                        @foreach (IEntityCategory cat3 in cat2.Childs)
+                                        {
+                                            <li>
+                                                <a href="~/CMS/@(chn.Model.Name)/@(chn.ID)_@cat3.ID" target="main">
+                                                    <i class="menu-icon fa fa-caret-right"></i>
+                                                    @cat3.Name
+                                                </a>
+                                                <b class="arrow"></b>
+                                            </li>
+                                        }
+                                    </ul>
                                 </li>
                             }
                         </ul>

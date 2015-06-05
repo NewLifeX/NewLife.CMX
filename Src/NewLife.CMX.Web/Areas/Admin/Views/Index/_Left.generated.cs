@@ -568,62 +568,201 @@ WriteLiteral(">\r\n");
             
             #line default
             #line hidden
-WriteLiteral("                                <li>\r\n                                    <a");
+WriteLiteral("                                <li>\r\n");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 4557), Tuple.Create("\"", 4606)
-, Tuple.Create(Tuple.Create("", 4564), Tuple.Create<System.Object, System.Int32>(Href("~/CMS/")
-, 4564), false)
             
             #line 116 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-, Tuple.Create(Tuple.Create("", 4570), Tuple.Create<System.Object, System.Int32>(chn.Model.Name
+                                    
             
             #line default
             #line hidden
-, 4570), false)
-, Tuple.Create(Tuple.Create("", 4587), Tuple.Create("/", 4587), true)
             
             #line 116 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-, Tuple.Create(Tuple.Create("", 4588), Tuple.Create<System.Object, System.Int32>(chn.ID
+                                     if (cat2.Childs.Count > 0)
+                                    {
+
             
             #line default
             #line hidden
-, 4588), false)
-, Tuple.Create(Tuple.Create("", 4597), Tuple.Create("_", 4597), true)
-            
-            #line 116 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-, Tuple.Create(Tuple.Create("", 4598), Tuple.Create<System.Object, System.Int32>(cat2.ID
-            
-            #line default
-            #line hidden
-, 4598), false)
-);
+WriteLiteral("                                        <a");
 
-WriteLiteral(" target=\"main\"");
+WriteLiteral(" href=\"#\"");
 
-WriteLiteral(">\r\n                                        <i");
+WriteLiteral(" class=\"dropdown-toggle\"");
+
+WriteLiteral(">\r\n                                            <i");
 
 WriteLiteral(" class=\"menu-icon fa fa-caret-right\"");
 
 WriteLiteral("></i>\r\n");
 
-WriteLiteral("                                        ");
+WriteLiteral("                                            ");
 
             
-            #line 118 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-                                   Write(cat2.Name);
+            #line 120 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
+                                       Write(cat2.Name);
 
             
             #line default
             #line hidden
-WriteLiteral("\r\n                                    </a>\r\n                                    <" +
-"b");
-
-WriteLiteral(" class=\"arrow\"");
-
-WriteLiteral("></b>\r\n                                </li>\r\n");
+WriteLiteral("\r\n                                        </a>\r\n");
 
             
             #line 122 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
+                                    }
+                                    else
+                                    {
+
+            
+            #line default
+            #line hidden
+WriteLiteral("                                        <a");
+
+WriteAttribute("href", Tuple.Create(" href=\"", 5054), Tuple.Create("\"", 5103)
+, Tuple.Create(Tuple.Create("", 5061), Tuple.Create<System.Object, System.Int32>(Href("~/CMS/")
+, 5061), false)
+            
+            #line 125 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
+, Tuple.Create(Tuple.Create("", 5067), Tuple.Create<System.Object, System.Int32>(chn.Model.Name
+            
+            #line default
+            #line hidden
+, 5067), false)
+, Tuple.Create(Tuple.Create("", 5084), Tuple.Create("/", 5084), true)
+            
+            #line 125 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
+, Tuple.Create(Tuple.Create("", 5085), Tuple.Create<System.Object, System.Int32>(chn.ID
+            
+            #line default
+            #line hidden
+, 5085), false)
+, Tuple.Create(Tuple.Create("", 5094), Tuple.Create("_", 5094), true)
+            
+            #line 125 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
+   , Tuple.Create(Tuple.Create("", 5095), Tuple.Create<System.Object, System.Int32>(cat2.ID
+            
+            #line default
+            #line hidden
+, 5095), false)
+);
+
+WriteLiteral(" target=\"main\"");
+
+WriteLiteral(">\r\n                                            <i");
+
+WriteLiteral(" class=\"menu-icon fa fa-caret-right\"");
+
+WriteLiteral("></i>\r\n");
+
+WriteLiteral("                                            ");
+
+            
+            #line 127 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
+                                       Write(cat2.Name);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n                                        </a>\r\n");
+
+            
+            #line 129 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
+                                    }
+
+            
+            #line default
+            #line hidden
+WriteLiteral("                                    <b");
+
+WriteLiteral(" class=\"arrow\"");
+
+WriteLiteral("></b>\r\n                                    <ul");
+
+WriteLiteral(" class=\"submenu\"");
+
+WriteLiteral(">\r\n");
+
+            
+            #line 132 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
+                                        
+            
+            #line default
+            #line hidden
+            
+            #line 132 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
+                                         foreach (IEntityCategory cat3 in cat2.Childs)
+                                        {
+
+            
+            #line default
+            #line hidden
+WriteLiteral("                                            <li>\r\n                               " +
+"                 <a");
+
+WriteAttribute("href", Tuple.Create(" href=\"", 5699), Tuple.Create("\"", 5748)
+, Tuple.Create(Tuple.Create("", 5706), Tuple.Create<System.Object, System.Int32>(Href("~/CMS/")
+, 5706), false)
+            
+            #line 135 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
+, Tuple.Create(Tuple.Create("", 5712), Tuple.Create<System.Object, System.Int32>(chn.Model.Name
+            
+            #line default
+            #line hidden
+, 5712), false)
+, Tuple.Create(Tuple.Create("", 5729), Tuple.Create("/", 5729), true)
+            
+            #line 135 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
+  , Tuple.Create(Tuple.Create("", 5730), Tuple.Create<System.Object, System.Int32>(chn.ID
+            
+            #line default
+            #line hidden
+, 5730), false)
+, Tuple.Create(Tuple.Create("", 5739), Tuple.Create("_", 5739), true)
+            
+            #line 135 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
+           , Tuple.Create(Tuple.Create("", 5740), Tuple.Create<System.Object, System.Int32>(cat3.ID
+            
+            #line default
+            #line hidden
+, 5740), false)
+);
+
+WriteLiteral(" target=\"main\"");
+
+WriteLiteral(">\r\n                                                    <i");
+
+WriteLiteral(" class=\"menu-icon fa fa-caret-right\"");
+
+WriteLiteral("></i>\r\n");
+
+WriteLiteral("                                                    ");
+
+            
+            #line 137 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
+                                               Write(cat3.Name);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n                                                </a>\r\n                         " +
+"                       <b");
+
+WriteLiteral(" class=\"arrow\"");
+
+WriteLiteral("></b>\r\n                                            </li>\r\n");
+
+            
+            #line 141 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
+                                        }
+
+            
+            #line default
+            #line hidden
+WriteLiteral("                                    </ul>\r\n                                </li>\r" +
+"\n");
+
+            
+            #line 144 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
                             }
 
             
@@ -632,7 +771,7 @@ WriteLiteral("></b>\r\n                                </li>\r\n");
 WriteLiteral("                        </ul>\r\n                    </li>\r\n");
 
             
-            #line 125 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
+            #line 147 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
                 }
 
             
@@ -641,7 +780,7 @@ WriteLiteral("                        </ul>\r\n                    </li>\r\n");
 WriteLiteral("            </ul>\r\n        </li>\r\n");
 
             
-            #line 128 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
+            #line 150 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
     }
 
             
