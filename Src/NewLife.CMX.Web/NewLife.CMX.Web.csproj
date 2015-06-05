@@ -114,6 +114,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Areas\Admin\Views\Index\_Left_Category.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_Left_Category.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="Areas\CMS\Controllers\NavController.cs" />
     <Compile Include="Areas\CMS\Controllers\SysController.cs" />
     <Compile Include="Areas\CMS\Views\Nav\List.generated.cs">
@@ -536,6 +541,10 @@
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>_Layout_Nav.generated.cs</LastGenOutput>
     </Content>
+    <None Include="Areas\Admin\Views\Index\_Left_Category.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>_Left_Category.generated.cs</LastGenOutput>
+    </None>
     <None Include="Areas\CMS\Views\Shared\_UserTime.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>_UserTime.generated.cs</LastGenOutput>

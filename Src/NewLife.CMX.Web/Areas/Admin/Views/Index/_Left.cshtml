@@ -21,56 +21,25 @@
     @foreach (IMenu menu in Menus.Where(m => m.Visible))
     {
         var childs = fact.GetMySubMenus(menu.ID).Where(m => m.Visible);
-        if (childs.IsEmpty()) { continue; }
         if (_idx >= icos.Length) { _idx = 0; }
-        <li>
+        <li @Html.Raw(menu == Menus[0] ? "class=\"active open\"" : "")>
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa @icos[_idx++]"></i>
                 <span class="menu-text">@menu.DisplayName</span>
 
                 <b class="arrow fa fa-angle-down"></b>
             </a>
+            @if (childs.Any())
+            {
+                <b class="arrow"></b>
 
-            <b class="arrow"></b>
-
-            <ul class="submenu">
-                @foreach (IMenu menu2 in childs)
-                {
-                    var childs2 = fact.GetMySubMenus(menu2.ID).Where(m => m.Visible);
-                    if (childs2.IsEmpty()) { continue; }
-                    <li>
-                        @if (menu2.Childs.Count > 0)
-                        {
-                            <a href="#" class="dropdown-toggle">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                @menu2.DisplayName
-                            </a>
-                        }
-                        else
-                        {
-                            <a href="@Url.Content(menu2.Url)" target="main">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                @menu2.DisplayName
-                            </a>
-                        }
-
-                        <b class="arrow"></b>
-                        <ul class="submenu">
-                            @foreach (IMenu menu3 in childs2)
-                            {
-                                <li>
-                                    <a href="@Url.Content(menu3.Url)" target="main">
-                                        <i class="menu-icon fa fa-caret-right"></i>
-                                        @menu3.DisplayName
-                                    </a>
-
-                                    <b class="arrow"></b>
-                                </li>
-                            }
-                        </ul>
-                    </li>
-                }
-            </ul>
+                <ul class="submenu">
+                    @foreach (IMenu menu2 in childs)
+                    {
+                        @Html.Partial("_Left_Item", menu2);
+                    }
+                </ul>
+            }
         </li>
     }
     @*遍历产生内容管理菜单*@
@@ -105,57 +74,7 @@
                 {
                     foreach (IEntityCategory cat in cats)
                     {
-                        <li>
-                            @if (cat.Childs.Count > 0)
-                            {
-                                <a href="#" class="dropdown-toggle">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    @cat.Name
-                                </a>
-                            }
-                            else
-                            {
-                                <a href="~/CMS/@(chn.Model.Name)/@(chn.ID)_@cat.ID" target="main">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    @cat.Name
-                                </a>
-                            }
-                            <b class="arrow"></b>
-                            <ul class="submenu">
-                                @foreach (IEntityCategory cat2 in cat.Childs)
-                                {
-                                    <li>
-                                        @if (cat2.Childs.Count > 0)
-                                        {
-                                            <a href="#" class="dropdown-toggle">
-                                                <i class="menu-icon fa fa-caret-right"></i>
-                                                @cat2.Name
-                                            </a>
-                                        }
-                                        else
-                                        {
-                                            <a href="~/CMS/@(chn.Model.Name)/@(chn.ID)_@cat2.ID" target="main">
-                                                <i class="menu-icon fa fa-caret-right"></i>
-                                                @cat2.Name
-                                            </a>
-                                        }
-                                        <b class="arrow"></b>
-                                        <ul class="submenu">
-                                            @foreach (IEntityCategory cat3 in cat2.Childs)
-                                            {
-                                                <li>
-                                                    <a href="~/CMS/@(chn.Model.Name)/@(chn.ID)_@cat3.ID" target="main">
-                                                        <i class="menu-icon fa fa-caret-right"></i>
-                                                        @cat3.Name
-                                                    </a>
-                                                    <b class="arrow"></b>
-                                                </li>
-                                            }
-                                        </ul>
-                                    </li>
-                                }
-                            </ul>
-                        </li>
+                        @Html.Partial("_Left_Category", cat);
                     }
                 }
             </ul>
