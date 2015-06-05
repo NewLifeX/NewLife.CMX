@@ -44,7 +44,7 @@ namespace NewLife.CMX.Web
                 ViewBag.Channel = chn;
 
                 var catid = RouteData.Values["category"].ToInt();
-                var cat = chn.AllCategories.FirstOrDefault(e => e.ID == catid);
+                var cat = chn.FindCategory(catid);
                 ViewBag.Category = cat;
             }
         }
