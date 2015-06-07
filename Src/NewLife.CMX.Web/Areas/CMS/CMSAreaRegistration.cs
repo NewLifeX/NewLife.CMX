@@ -16,14 +16,14 @@ namespace NewLife.CMX.Web
             context.MapRoute(
                "CMS_category",
                "CMS/{controller}/{channel}_{category}/{action}/{id}",
-               new { action = "Index", id = UrlParameter.Optional }, 
+               new { action = "Index", id = UrlParameter.Optional },
                new { channel = "[\\d]+", category = "[\\d]+" }
                );
 
             context.MapRoute(
                  "CMS_channel",
                  "CMS/{controller}/{channel}/{action}/{id}",
-                 new { action = "Index", id = UrlParameter.Optional }, 
+                 new { action = "Index", id = UrlParameter.Optional },
                  new { channel = "[\\d]+" }
                  );
 
@@ -66,14 +66,11 @@ namespace NewLife.CMX.Web
             );
 
             // 用于UE的处理器
-            routes.Add(new Route("UEditor", new UEditor.RouteHandler()));
+            //routes.Add(new Route("UEditor", new UEditor.RouteHandler()));
+            //context.Routes.IgnoreRoute("ueditor/{*relpath}");
             // UE这条路由太霸道，让它最后注册
-            //TimerX.Delay(s =>
-            //{
-            //    routes.Add(new Route("UEditor", new UEditor.RouteHandler()));
-            //}, 5000);
-            context.Routes.IgnoreRoute("ueditor/{*relpath}");
-                
+            TimerX.Delay(s => routes.Add(new Route("UEditor", new UEditor.RouteHandler())), 5000);
+
         }
     }
 
