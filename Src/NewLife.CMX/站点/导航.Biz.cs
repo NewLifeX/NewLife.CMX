@@ -84,9 +84,9 @@ namespace NewLife.CMX
                 {
                     var item = queue.Dequeue();
                     item.Insert();
-                    if (item.Childs != null && item.Childs.Count > 0)
+                    if (item.Childrens != null && item.Childrens.Count > 0)
                     {
-                        foreach (var child in item.Childs)
+                        foreach (var child in item.Childrens)
                         {
                             child.ParentID = item.ID;
                             queue.Enqueue(child);
@@ -120,6 +120,8 @@ namespace NewLife.CMX
 
             if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Nav).Name, Meta.Table.DataTable.DisplayName);
         }
+
+        public EntityList<Nav> Childrens { get; set; }
         #endregion
 
         #region 扩展属性﻿
