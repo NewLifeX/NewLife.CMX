@@ -56,13 +56,11 @@ namespace NewLife.CMX
 
             // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
             if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
-            var fn = ("../InitData/" + Meta.TableName + ".json").GetFullPath();
+            var fn = "../InitData/{0}.json".F(Meta.TableName).GetFullPath();
             if (File.Exists(fn))
             {
-                if (XTrace.Debug)
-                {
-                    XTrace.WriteLine("使用数据初始化文件【{0}】初始化{1}[{2}]数据……", fn, typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
-                }
+                if (XTrace.Debug) XTrace.WriteLine("使用数据初始化文件【{0}】初始化{1}[{2}]数据……", fn, typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
+
                 var list = EntityList<TEntity>.FromJson(File.ReadAllText(fn, Encoding.UTF8));
                 var queue = new Queue<TEntity>(list);
                 var provider = ModelProvider.Get<TEntity>();

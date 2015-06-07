@@ -5,7 +5,11 @@
  * 版权：版权所有 (C) 新生命开发团队 2002~2014
 */
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
+using System.Xml.Serialization;
+using NewLife.Common;
 using NewLife.Log;
 using XCode;
 using XCode.Membership;
@@ -13,7 +17,7 @@ using XCode.Membership;
 namespace NewLife.CMX
 {
     /// <summary>导航</summary>
-    public partial class Nav : EntityTree<Nav>, IUserInfo, ITimeInfo
+    public partial class Nav : UserTimeEntityTree<Nav>, IUserInfo, ITimeInfo
     {
         #region 验证数据
         public override void Valid(bool isNew)
@@ -50,7 +54,8 @@ namespace NewLife.CMX
         #region 对象操作﻿
         static Nav()
         {
-            //Setting.BigSort = false;
+            if (Setting == null) Setting = new EntityTreeSetting<Nav> { Factory = Meta.Factory };
+            Setting.EnableCaching = false;
         }
 
         /// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
@@ -66,85 +71,61 @@ namespace NewLife.CMX
             // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
             if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Nav).Name, Meta.Table.DataTable.DisplayName);
 
-            var header = Root.Add("头部");
-            header.Add("首页", "/");
-            header.Add("关于我们", "/About");
+            var fn = "../InitData/{0}.json".F(Meta.TableName).GetFullPath();
+            if (File.Exists(fn))
+            {
+                if (XTrace.Debug) XTrace.WriteLine("使用数据初始化文件【{0}】初始化{1}[{2}]数据……", fn, typeof(Nav).Name, Meta.Table.DataTable.DisplayName);
 
-            var footer = Root.Add("尾部");
-            var link = footer.Add("友情链接");
-            link.Add("新生命团队", "http://www.NewLifeX.com");
-            link.Add("无声物联", "http://www.peacemoon.cn");
+                var list = EntityList<Nav>.FromJson(File.ReadAllText(fn));
+                //var list = new EntityList<Nav>();
+                //list.FromXml(File.ReadAllText(fn));
+                var queue = new Queue<Nav>(list);
+                while (queue.Count > 0)
+                {
+                    var item = queue.Dequeue();
+                    item.Insert();
+                    if (item.Childs != null && item.Childs.Count > 0)
+                    {
+                        foreach (var child in item.Childs)
+                        {
+                            child.ParentID = item.ID;
+                            queue.Enqueue(child);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                var header = Root.Add("头部");
+                header.Add("首页", "/");
+                header.Add("关于我们", "/About");
 
-            footer.Add("社区").Add("用户社区", "/Communicate");
-            footer.Add("关于").Add("关于我们", "/About"); ;
+                var footer = Root.Add("尾部");
+                var link = footer.Add("友情链接");
+                link.Add("新生命团队", "http://www.NewLifeX.com");
+                link.Add("无声物联", "http://www.peacemoon.cn");
+
+                footer.Add("社区").Add("用户社区", "/Communicate");
+                footer.Add("关于").Add("关于我们", "/About");
+
+                // 开发模式下输出初始化配置
+                if (SysConfig.Current.Develop)
+                {
+                    var list = new EntityList<Nav>();
+                    list.Add(header);
+                    list.Add(footer);
+                    File.WriteAllText(fn, list.ToJson());
+                }
+            }
 
             if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Nav).Name, Meta.Table.DataTable.DisplayName);
         }
-
-        ///// <summary>已重载。基类先调用Valid(true)验证数据，然后在事务保护内调用OnInsert</summary>
-        ///// <returns></returns>
-        //public override Int32 Insert()
-        //{
-        //    return base.Insert();
-        //}
-
-        ///// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
-        ///// <returns></returns>
-        //protected override Int32 OnInsert()
-        //{
-        //    return base.OnInsert();
-        //}
         #endregion
 
         #region 扩展属性﻿
-        private IManageUser _CreateUser;
-        /// <summary>创建人</summary>
-        public IManageUser CreateUser
-        {
-            get
-            {
-                var CreateUserID = this[__.CreateUserID].ToInt();
-                if (_CreateUser == null && CreateUserID > 0 && !Dirtys.ContainsKey("CreateUser"))
-                {
-                    _CreateUser = ManageProvider.Provider.FindByID(CreateUserID);
-                    Dirtys["CreateUser"] = true;
-                }
-                return _CreateUser;
-            }
-            set { _CreateUser = value; }
-        }
-
-        /// <summary>创建人名称</summary>
-        public String CreateUserName { get { return CreateUser + ""; } }
-
-        private IManageUser _UpdateUser;
-        /// <summary>更新人</summary>
-        public IManageUser UpdateUser
-        {
-            get
-            {
-                var UpdateUserID = this[__.UpdateUserID].ToInt();
-                if (_UpdateUser == null && UpdateUserID > 0 && !Dirtys.ContainsKey("UpdateUser"))
-                {
-                    _UpdateUser = ManageProvider.Provider.FindByID(UpdateUserID);
-                    Dirtys["UpdateUser"] = true;
-                }
-                return _UpdateUser;
-            }
-            set { _UpdateUser = value; }
-        }
-
-        /// <summary>更新人名称</summary>
-        public String UpdateUserName { get { return UpdateUser + ""; } }
-
-        Int32 IUserInfo.CreateUserID { get { return (Int32)this[__.CreateUserID]; } set { SetItem(__.CreateUserID, value); } }
-        Int32 IUserInfo.UpdateUserID { get { return (Int32)this[__.UpdateUserID]; } set { SetItem(__.UpdateUserID, value); } }
-
-        DateTime ITimeInfo.CreateTime { get { return (DateTime)this[__.CreateTime]; } set { SetItem(__.CreateTime, value); } }
-        DateTime ITimeInfo.UpdateTime { get { return (DateTime)this[__.UpdateTime]; } set { SetItem(__.UpdateTime, value); } }
-
         private Channel _Channel;
         /// <summary>频道</summary>
+        [XmlIgnore]
         [BindRelation("ChannelID", false, "Channel", "ID")]
         public Channel Channel
         {
@@ -161,6 +142,8 @@ namespace NewLife.CMX
         }
 
         /// <summary>频道名称</summary>
+        [XmlIgnore]
+        [DisplayName("频道名称")]
         public String ChannelName { get { return Channel + ""; } }
         #endregion
 
