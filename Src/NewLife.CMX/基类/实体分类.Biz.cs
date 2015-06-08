@@ -270,6 +270,12 @@ namespace NewLife.CMX
             return provider.TitleFactory.GetTitles(ID, pageIndex, pageCount);
         }
 
+        public int GetTitleCount()
+        {
+            var provider = ModelProvider.Get(this.GetType());
+            return provider.TitleFactory.GetTitleCount(this.ID);
+        }
+
         public IEntityTitle FindTitle(int id)
         {
             var provider = ModelProvider.Get(this.GetType());
@@ -290,6 +296,7 @@ namespace NewLife.CMX
         Channel Channel { get; }
 
         IList<IEntityTitle> GetTitles(Int32 pageIndex = 1, Int32 pageCount = 10);
+        Int32 GetTitleCount();
 
         IEntityTitle FindTitle(Int32 id);
     }

@@ -332,6 +332,11 @@ namespace NewLife.CMX
 
             return FindAll(exp, null, null, (pageIndex - 1) * pageCount, pageCount);
         }
+
+        public static Int32 GetTitleCount(Int32 categoryid)
+        {
+            return FindCount(_.CategoryID, categoryid);
+        }
         #endregion
 
         #region 扩展操作
