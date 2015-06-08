@@ -48,7 +48,19 @@ namespace NewLife.CMX.Web
                 ViewBag.Category = cat;
             }
         }
+ 
+        public override ActionResult Add()
+        {
+            // 加载频道和分类
+            LoadChannel();
+            var entity = Factory.Create() as TEntity;
+            entity.CategoryID = RouteData.Values["category"].ToInt();
 
+                // 记下添加前的来源页，待会添加成功以后跳转
+            Session["Cube_Add_Referrer"] = Request.UrlReferrer.ToString();
+
+            return FormView(entity);
+        }
         /// <summary>列表页视图。子控制器可重载，以传递更多信息给视图，比如修改要显示的列</summary>
         /// <param name="p"></param>
         /// <returns></returns>
@@ -60,7 +72,7 @@ namespace NewLife.CMX.Web
             //return base.IndexView(p);
 
             var cat = ViewBag.Category as IEntityCategory;
-            var list = EntityTitle<TEntity>.Search(cat.ID, p);
+            var list = EntityTitle<TEntity>.Search(cat.ID, p).Sort("CreateTime",true);
 
             return View("List", list);
         }
