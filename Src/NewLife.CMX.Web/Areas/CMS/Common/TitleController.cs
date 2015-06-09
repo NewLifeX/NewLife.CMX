@@ -48,7 +48,18 @@ namespace NewLife.CMX.Web
                 ViewBag.Category = cat;
             }
         }
- 
+        /// <summary>列表页视图。子控制器可重载，以传递更多信息给视图，比如修改要显示的列</summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        protected override ActionResult IndexView(Pager p)
+        {
+            p.Sort = "CreateTime";
+            p.Desc = true;
+            LoadChannel();
+            var cat = ViewBag.Category as IEntityCategory;
+            var list = EntityTitle<TEntity>.Search(cat.ID, p);
+            return View("List", list);
+        }
         public override ActionResult Add()
         {
             // 加载频道和分类
