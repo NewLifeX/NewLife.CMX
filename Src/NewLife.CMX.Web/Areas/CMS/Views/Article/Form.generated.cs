@@ -351,7 +351,7 @@ WriteLiteral(" name=\"ContentText\"");
 
 WriteLiteral(" type=\"text/plain\"");
 
-WriteLiteral(" style=\"width:800px;height:500px;\"");
+WriteLiteral(" style=\"width:800px;height:400px;\"");
 
 WriteLiteral(">\r\n");
 
