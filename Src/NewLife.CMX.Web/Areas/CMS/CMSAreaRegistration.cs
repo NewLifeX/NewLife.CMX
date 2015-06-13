@@ -67,7 +67,7 @@ namespace NewLife.CMX.Web
 
             // 用于UE的处理器
             routes.Add(new Route("UEditor", new UEditor.RouteHandler()));
-            //context.Routes.IgnoreRoute("ueditor/{*relpath}");
+            context.Routes.IgnoreRoute("ueditor/{*relpath}");
             // UE这条路由太霸道，让它最后注册
             //TimerX.Delay(s => routes.Add(new Route("UEditor", new UEditor.RouteHandler())), 5000);
         }

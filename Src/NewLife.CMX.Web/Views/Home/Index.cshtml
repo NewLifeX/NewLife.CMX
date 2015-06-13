@@ -30,6 +30,9 @@
                                 @foreach (var item in cat.GetTitles(1, 5))
                                 {
                                     <li>
+                                        [<a href="@this.GetCategoryUrl(item.Category)" target="_blank">
+                                            <i></i>@item.CategoryName
+                                        </a>]
                                         <a href="@this.GetUrl(item)" target="_blank">
                                             <i></i>@item.Title
                                         </a>

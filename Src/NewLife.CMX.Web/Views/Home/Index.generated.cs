@@ -189,16 +189,16 @@ WriteLiteral(">\r\n                            <ul>\r\n");
             #line default
             #line hidden
 WriteLiteral("                                    <li>\r\n                                       " +
-" <a");
+" [<a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 1089), Tuple.Create("\"", 1114)
+WriteAttribute("href", Tuple.Create(" href=\"", 1090), Tuple.Create("\"", 1132)
             
             #line 33 "..\..\Views\Home\Index.cshtml"
-, Tuple.Create(Tuple.Create("", 1096), Tuple.Create<System.Object, System.Int32>(this.GetUrl(item)
+, Tuple.Create(Tuple.Create("", 1097), Tuple.Create<System.Object, System.Int32>(this.GetCategoryUrl(item.Category)
             
             #line default
             #line hidden
-, 1096), false)
+, 1097), false)
 );
 
 WriteLiteral(" target=\"_blank\"");
@@ -207,6 +207,30 @@ WriteLiteral(">\r\n                                            <i></i>");
 
             
             #line 34 "..\..\Views\Home\Index.cshtml"
+                                              Write(item.CategoryName);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n                                        </a>]\r\n                                " +
+"        <a");
+
+WriteAttribute("href", Tuple.Create(" href=\"", 1312), Tuple.Create("\"", 1337)
+            
+            #line 36 "..\..\Views\Home\Index.cshtml"
+, Tuple.Create(Tuple.Create("", 1319), Tuple.Create<System.Object, System.Int32>(this.GetUrl(item)
+            
+            #line default
+            #line hidden
+, 1319), false)
+);
+
+WriteLiteral(" target=\"_blank\"");
+
+WriteLiteral(">\r\n                                            <i></i>");
+
+            
+            #line 37 "..\..\Views\Home\Index.cshtml"
                                               Write(item.Title);
 
             
@@ -216,7 +240,7 @@ WriteLiteral("\r\n                                        </a>\r\n              
 "   </li>\r\n");
 
             
-            #line 37 "..\..\Views\Home\Index.cshtml"
+            #line 40 "..\..\Views\Home\Index.cshtml"
                                 }
 
             
@@ -226,7 +250,7 @@ WriteLiteral("                            </ul>\r\n                        </div
 "      </div>\r\n");
 
             
-            #line 41 "..\..\Views\Home\Index.cshtml"
+            #line 44 "..\..\Views\Home\Index.cshtml"
                 }
 
             
@@ -235,7 +259,7 @@ WriteLiteral("                            </ul>\r\n                        </div
 WriteLiteral("                ");
 
             
-            #line 42 "..\..\Views\Home\Index.cshtml"
+            #line 45 "..\..\Views\Home\Index.cshtml"
                  if (right > 0)
                 {
 
@@ -244,21 +268,21 @@ WriteLiteral("                ");
             #line hidden
 WriteLiteral("                    <div");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 1512), Tuple.Create("\"", 1533)
-, Tuple.Create(Tuple.Create("", 1520), Tuple.Create("col-md-", 1520), true)
+WriteAttribute("class", Tuple.Create(" class=\"", 1735), Tuple.Create("\"", 1756)
+, Tuple.Create(Tuple.Create("", 1743), Tuple.Create("col-md-", 1743), true)
             
-            #line 44 "..\..\Views\Home\Index.cshtml"
-, Tuple.Create(Tuple.Create("", 1527), Tuple.Create<System.Object, System.Int32>(right
+            #line 47 "..\..\Views\Home\Index.cshtml"
+, Tuple.Create(Tuple.Create("", 1750), Tuple.Create<System.Object, System.Int32>(right
             
             #line default
             #line hidden
-, 1527), false)
+, 1750), false)
 );
 
 WriteLiteral("></div>\r\n");
 
             
-            #line 45 "..\..\Views\Home\Index.cshtml"
+            #line 48 "..\..\Views\Home\Index.cshtml"
                 }
 
             
@@ -267,7 +291,7 @@ WriteLiteral("></div>\r\n");
 WriteLiteral("            </div>\r\n");
 
             
-            #line 47 "..\..\Views\Home\Index.cshtml"
+            #line 50 "..\..\Views\Home\Index.cshtml"
         }
     }
 
