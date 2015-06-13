@@ -6,6 +6,7 @@ using NewLife.Xml;
 namespace NewLife.CMX
 {
     /// <summary>网站设置</summary>
+    [DisplayName("站点配置")]
     [XmlConfigFile("Config/Site.config", 15000)]
     public class SiteConfig : XmlConfig<SiteConfig>
     {

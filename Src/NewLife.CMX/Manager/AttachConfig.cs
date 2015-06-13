@@ -5,6 +5,7 @@ using NewLife.Xml;
 namespace NewLife.CMX
 {
     /// <summary>附件设置</summary>
+    [DisplayName("附件配置")]
     [XmlConfigFile("Config/Attach.config", 15000)]
     public class AttachConfig : XmlConfig<AttachConfig>
     {
