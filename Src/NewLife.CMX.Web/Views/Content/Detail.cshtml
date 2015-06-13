@@ -4,96 +4,75 @@
     this.PushTitle(Model.Category.Name);
     this.PushTitle(Model.Detail.Title);
 }
-@section Styles
-{
-    <link rel="stylesheet" type="text/css" href="~/assets/css/content_share.css" />
-    <link rel="stylesheet" type="text/css" href="~/assets/css/pageview.css" />
-    <link rel="stylesheet" type="text/css" href="~/assets/css/other_common.css" />
-}
-<div class="rh_box fixed">
-    <!--other_center-->
-    <div class="flater_tab">
+<div class="container">
+    <div class="row">
+        <h2 class="text-center">
+            @Model.Detail.Title
+        </h2>
+        <h3 class="text-center">
+            <em class="e e1">来源：@Model.Detail.CreateUserName</em>
+            <em class="e e2">发布时间：@Model.Detail.CreateTime.ToFullString()</em>
+            <em class="e e3">浏览：@Model.Detail.Views.ToString("n0")</em>
+        </h3>
+        <div class="content">
+            <style type="text/css">
+                .TRS_Editor P {
+                    margin-top: 0;
+                    margin-bottom: 1em;
+                    line-height: 2;
+                }
 
-        <div class="Article_61">
-            <h2 class="tit">
-                @Model.Detail.Title
-            </h2>
-            <h3 class="daty">
-                <div class="daty_con">
-                    <em class="e e1">来源：@Model.Detail.CreateUserName</em>
-                    <em class="e e2">发布时间：@Model.Detail.CreateTime.ToFullString()</em>
-                    <em class="e e3">浏览：@Model.Detail.Views.ToString("n0")</em>
-                </div>
-            </h3>
-            <div class="content">
-                <div class="TRS_Editor">
-                    <style type="text/css">
-                        .TRS_Editor P {
-                            margin-top: 0;
-                            margin-bottom: 1em;
-                            line-height: 2;
-                        }
+                .TRS_Editor DIV {
+                    margin-top: 0;
+                    margin-bottom: 1em;
+                    line-height: 2;
+                }
 
-                        .TRS_Editor DIV {
-                            margin-top: 0;
-                            margin-bottom: 1em;
-                            line-height: 2;
-                        }
+                .TRS_Editor TD {
+                    margin-top: 0;
+                    margin-bottom: 1em;
+                    line-height: 2;
+                }
 
-                        .TRS_Editor TD {
-                            margin-top: 0;
-                            margin-bottom: 1em;
-                            line-height: 2;
-                        }
+                .TRS_Editor TH {
+                    margin-top: 0;
+                    margin-bottom: 1em;
+                    line-height: 2;
+                }
 
-                        .TRS_Editor TH {
-                            margin-top: 0;
-                            margin-bottom: 1em;
-                            line-height: 2;
-                        }
+                .TRS_Editor SPAN {
+                    margin-top: 0;
+                    margin-bottom: 1em;
+                    line-height: 2;
+                }
 
-                        .TRS_Editor SPAN {
-                            margin-top: 0;
-                            margin-bottom: 1em;
-                            line-height: 2;
-                        }
+                .TRS_Editor FONT {
+                    margin-top: 0;
+                    margin-bottom: 1em;
+                    line-height: 2;
+                }
 
-                        .TRS_Editor FONT {
-                            margin-top: 0;
-                            margin-bottom: 1em;
-                            line-height: 2;
-                        }
+                .TRS_Editor UL {
+                    margin-top: 0;
+                    margin-bottom: 1em;
+                    line-height: 2;
+                }
 
-                        .TRS_Editor UL {
-                            margin-top: 0;
-                            margin-bottom: 1em;
-                            line-height: 2;
-                        }
+                .TRS_Editor LI {
+                    margin-top: 0;
+                    margin-bottom: 1em;
+                    line-height: 2;
+                }
 
-                        .TRS_Editor LI {
-                            margin-top: 0;
-                            margin-bottom: 1em;
-                            line-height: 2;
-                        }
-
-                        .TRS_Editor A {
-                            margin-top: 0;
-                            margin-bottom: 1em;
-                            line-height: 2;
-                        }
-                    </style>
-                    <div class="TRS_Editor">
-                        @Html.Raw(Model.Detail.ContentText)
-                    </div>
-                </div>
+                .TRS_Editor A {
+                    margin-top: 0;
+                    margin-bottom: 1em;
+                    line-height: 2;
+                }
+            </style>
+            <div class="TRS_Editor">
+                @Html.Raw(Model.Detail.ContentText)
             </div>
-        </div>
-
-        <div class="clear"></div>
-        <div class="page">
-            <script type="text/javascript">
-                //createPageHTML_ZW(1, 0, "t20150403_54247", "html");
-            </script>
         </div>
     </div>
 </div>

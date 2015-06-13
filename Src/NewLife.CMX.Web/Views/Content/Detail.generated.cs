@@ -55,187 +55,115 @@ namespace ASP
             
             #line default
             #line hidden
-WriteLiteral("\r\n");
+WriteLiteral("\r\n<div");
 
-DefineSection("Styles", () => {
+WriteLiteral(" class=\"container\"");
 
-WriteLiteral("\r\n    <link");
+WriteLiteral(">\r\n    <div");
 
-WriteLiteral(" rel=\"stylesheet\"");
+WriteLiteral(" class=\"row\"");
 
-WriteLiteral(" type=\"text/css\"");
+WriteLiteral(">\r\n        <h2");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 280), Tuple.Create("\"", 317)
-, Tuple.Create(Tuple.Create("", 287), Tuple.Create<System.Object, System.Int32>(Href("~/assets/css/content_share.css")
-, 287), false)
-);
-
-WriteLiteral(" />\r\n    <link");
-
-WriteLiteral(" rel=\"stylesheet\"");
-
-WriteLiteral(" type=\"text/css\"");
-
-WriteAttribute("href", Tuple.Create(" href=\"", 365), Tuple.Create("\"", 397)
-, Tuple.Create(Tuple.Create("", 372), Tuple.Create<System.Object, System.Int32>(Href("~/assets/css/pageview.css")
-, 372), false)
-);
-
-WriteLiteral(" />\r\n    <link");
-
-WriteLiteral(" rel=\"stylesheet\"");
-
-WriteLiteral(" type=\"text/css\"");
-
-WriteAttribute("href", Tuple.Create(" href=\"", 445), Tuple.Create("\"", 481)
-, Tuple.Create(Tuple.Create("", 452), Tuple.Create<System.Object, System.Int32>(Href("~/assets/css/other_common.css")
-, 452), false)
-);
-
-WriteLiteral(" />\r\n");
-
-});
-
-WriteLiteral("<div");
-
-WriteLiteral(" class=\"rh_box fixed\"");
-
-WriteLiteral(">\r\n    <!--other_center-->\r\n    <div");
-
-WriteLiteral(" class=\"flater_tab\"");
-
-WriteLiteral(">\r\n\r\n        <div");
-
-WriteLiteral(" class=\"Article_61\"");
-
-WriteLiteral(">\r\n            <h2");
-
-WriteLiteral(" class=\"tit\"");
+WriteLiteral(" class=\"text-center\"");
 
 WriteLiteral(">\r\n");
 
-WriteLiteral("                ");
+WriteLiteral("            ");
 
             
-            #line 19 "..\..\Views\Content\Detail.cshtml"
-           Write(Model.Detail.Title);
+            #line 10 "..\..\Views\Content\Detail.cshtml"
+       Write(Model.Detail.Title);
 
             
             #line default
             #line hidden
-WriteLiteral("\r\n            </h2>\r\n            <h3");
+WriteLiteral("\r\n        </h2>\r\n        <h3");
 
-WriteLiteral(" class=\"daty\"");
+WriteLiteral(" class=\"text-center\"");
 
-WriteLiteral(">\r\n                <div");
-
-WriteLiteral(" class=\"daty_con\"");
-
-WriteLiteral(">\r\n                    <em");
+WriteLiteral(">\r\n            <em");
 
 WriteLiteral(" class=\"e e1\"");
 
 WriteLiteral(">来源：");
 
             
-            #line 23 "..\..\Views\Content\Detail.cshtml"
-                                   Write(Model.Detail.CreateUserName);
+            #line 13 "..\..\Views\Content\Detail.cshtml"
+                           Write(Model.Detail.CreateUserName);
 
             
             #line default
             #line hidden
-WriteLiteral("</em>\r\n                    <em");
+WriteLiteral("</em>\r\n            <em");
 
 WriteLiteral(" class=\"e e2\"");
 
 WriteLiteral(">发布时间：");
 
             
-            #line 24 "..\..\Views\Content\Detail.cshtml"
-                                     Write(Model.Detail.CreateTime.ToFullString());
+            #line 14 "..\..\Views\Content\Detail.cshtml"
+                             Write(Model.Detail.CreateTime.ToFullString());
 
             
             #line default
             #line hidden
-WriteLiteral("</em>\r\n                    <em");
+WriteLiteral("</em>\r\n            <em");
 
 WriteLiteral(" class=\"e e3\"");
 
 WriteLiteral(">浏览：");
 
             
-            #line 25 "..\..\Views\Content\Detail.cshtml"
-                                   Write(Model.Detail.Views.ToString("n0"));
+            #line 15 "..\..\Views\Content\Detail.cshtml"
+                           Write(Model.Detail.Views.ToString("n0"));
 
             
             #line default
             #line hidden
-WriteLiteral("</em>\r\n                </div>\r\n            </h3>\r\n            <div");
+WriteLiteral("</em>\r\n        </h3>\r\n        <div");
 
 WriteLiteral(" class=\"content\"");
 
-WriteLiteral(">\r\n                <div");
-
-WriteLiteral(" class=\"TRS_Editor\"");
-
-WriteLiteral(">\r\n                    <style");
+WriteLiteral(">\r\n            <style");
 
 WriteLiteral(" type=\"text/css\"");
 
-WriteLiteral(">\r\n                        .TRS_Editor P {\r\n                            margin-to" +
-"p: 0;\r\n                            margin-bottom: 1em;\r\n                        " +
-"    line-height: 2;\r\n                        }\r\n\r\n                        .TRS_E" +
-"ditor DIV {\r\n                            margin-top: 0;\r\n                       " +
-"     margin-bottom: 1em;\r\n                            line-height: 2;\r\n         " +
-"               }\r\n\r\n                        .TRS_Editor TD {\r\n                  " +
-"          margin-top: 0;\r\n                            margin-bottom: 1em;\r\n     " +
-"                       line-height: 2;\r\n                        }\r\n\r\n           " +
-"             .TRS_Editor TH {\r\n                            margin-top: 0;\r\n     " +
-"                       margin-bottom: 1em;\r\n                            line-hei" +
-"ght: 2;\r\n                        }\r\n\r\n                        .TRS_Editor SPAN {" +
-"\r\n                            margin-top: 0;\r\n                            margin" +
-"-bottom: 1em;\r\n                            line-height: 2;\r\n                    " +
-"    }\r\n\r\n                        .TRS_Editor FONT {\r\n                           " +
-" margin-top: 0;\r\n                            margin-bottom: 1em;\r\n              " +
-"              line-height: 2;\r\n                        }\r\n\r\n                    " +
-"    .TRS_Editor UL {\r\n                            margin-top: 0;\r\n              " +
-"              margin-bottom: 1em;\r\n                            line-height: 2;\r\n" +
-"                        }\r\n\r\n                        .TRS_Editor LI {\r\n         " +
-"                   margin-top: 0;\r\n                            margin-bottom: 1e" +
-"m;\r\n                            line-height: 2;\r\n                        }\r\n\r\n  " +
-"                      .TRS_Editor A {\r\n                            margin-top: 0" +
-";\r\n                            margin-bottom: 1em;\r\n                            " +
-"line-height: 2;\r\n                        }\r\n                    </style>\r\n      " +
-"              <div");
+WriteLiteral(">\r\n                .TRS_Editor P {\r\n                    margin-top: 0;\r\n         " +
+"           margin-bottom: 1em;\r\n                    line-height: 2;\r\n           " +
+"     }\r\n\r\n                .TRS_Editor DIV {\r\n                    margin-top: 0;\r" +
+"\n                    margin-bottom: 1em;\r\n                    line-height: 2;\r\n " +
+"               }\r\n\r\n                .TRS_Editor TD {\r\n                    margin" +
+"-top: 0;\r\n                    margin-bottom: 1em;\r\n                    line-heig" +
+"ht: 2;\r\n                }\r\n\r\n                .TRS_Editor TH {\r\n                 " +
+"   margin-top: 0;\r\n                    margin-bottom: 1em;\r\n                    " +
+"line-height: 2;\r\n                }\r\n\r\n                .TRS_Editor SPAN {\r\n      " +
+"              margin-top: 0;\r\n                    margin-bottom: 1em;\r\n         " +
+"           line-height: 2;\r\n                }\r\n\r\n                .TRS_Editor FON" +
+"T {\r\n                    margin-top: 0;\r\n                    margin-bottom: 1em;" +
+"\r\n                    line-height: 2;\r\n                }\r\n\r\n                .TRS" +
+"_Editor UL {\r\n                    margin-top: 0;\r\n                    margin-bot" +
+"tom: 1em;\r\n                    line-height: 2;\r\n                }\r\n\r\n           " +
+"     .TRS_Editor LI {\r\n                    margin-top: 0;\r\n                    m" +
+"argin-bottom: 1em;\r\n                    line-height: 2;\r\n                }\r\n\r\n  " +
+"              .TRS_Editor A {\r\n                    margin-top: 0;\r\n             " +
+"       margin-bottom: 1em;\r\n                    line-height: 2;\r\n               " +
+" }\r\n            </style>\r\n            <div");
 
 WriteLiteral(" class=\"TRS_Editor\"");
 
 WriteLiteral(">\r\n");
 
-WriteLiteral("                        ");
+WriteLiteral("                ");
 
             
-            #line 86 "..\..\Views\Content\Detail.cshtml"
-                   Write(Html.Raw(Model.Detail.ContentText));
+            #line 74 "..\..\Views\Content\Detail.cshtml"
+           Write(Html.Raw(Model.Detail.ContentText));
 
             
             #line default
             #line hidden
-WriteLiteral("\r\n                    </div>\r\n                </div>\r\n            </div>\r\n       " +
-" </div>\r\n\r\n        <div");
-
-WriteLiteral(" class=\"clear\"");
-
-WriteLiteral("></div>\r\n        <div");
-
-WriteLiteral(" class=\"page\"");
-
-WriteLiteral(">\r\n            <script");
-
-WriteLiteral(" type=\"text/javascript\"");
-
-WriteLiteral(">\r\n                //createPageHTML_ZW(1, 0, \"t20150403_54247\", \"html\");\r\n       " +
-"     </script>\r\n        </div>\r\n    </div>\r\n</div>");
+WriteLiteral("\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>");
 
         }
     }
