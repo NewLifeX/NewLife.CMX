@@ -19,3 +19,9 @@
         <p>@SysConfig.Current.Company &copy; @DateTime.Now.Year 设计制作：<a href="http://www.newlifex.com" target="_blank">新生命开发团队</a></p>
     </div>
 </div>
+@if (DbRunTimeModule.Enable)
+{
+    <div class="panel-footer">
+        @Html.Raw(DbRunTimeModule.GetInfo())
+    </div>
+}

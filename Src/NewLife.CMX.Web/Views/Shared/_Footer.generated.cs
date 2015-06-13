@@ -191,8 +191,39 @@ WriteLiteral(" href=\"http://www.newlifex.com\"");
 
 WriteLiteral(" target=\"_blank\"");
 
-WriteLiteral(">新生命开发团队</a></p>\r\n    </div>\r\n</div>");
+WriteLiteral(">新生命开发团队</a></p>\r\n    </div>\r\n</div>\r\n");
 
+            
+            #line 22 "..\..\Views\Shared\_Footer.cshtml"
+ if (DbRunTimeModule.Enable)
+{
+
+            
+            #line default
+            #line hidden
+WriteLiteral("    <div");
+
+WriteLiteral(" class=\"panel-footer\"");
+
+WriteLiteral(">\r\n");
+
+WriteLiteral("        ");
+
+            
+            #line 25 "..\..\Views\Shared\_Footer.cshtml"
+   Write(Html.Raw(DbRunTimeModule.GetInfo()));
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n    </div>\r\n");
+
+            
+            #line 27 "..\..\Views\Shared\_Footer.cshtml"
+}
+            
+            #line default
+            #line hidden
         }
     }
 }
