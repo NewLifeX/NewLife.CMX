@@ -314,6 +314,180 @@ WriteLiteral("            <div");
 
 WriteLiteral(" class=\"form-group\"");
 
+WriteLiteral(">\r\n");
+
+            
+            #line 48 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+                
+            
+            #line default
+            #line hidden
+            
+            #line 48 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+                   item = Article._.Top;
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n                <label");
+
+WriteLiteral(" class=\"control-label col-md-2\"");
+
+WriteLiteral(">");
+
+            
+            #line 49 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+                                                 Write(item.DisplayName);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</label>\r\n                <div");
+
+WriteLiteral(" class=\"col-md-1\"");
+
+WriteLiteral(">\r\n");
+
+WriteLiteral("                    ");
+
+            
+            #line 51 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+               Write(Html.ForEditor(item, entity));
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n                </div>\r\n");
+
+            
+            #line 53 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+                
+            
+            #line default
+            #line hidden
+            
+            #line 53 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+                   item = Article._.Recommend;
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n                <label");
+
+WriteLiteral(" class=\"control-label col-md-1\"");
+
+WriteLiteral(">");
+
+            
+            #line 54 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+                                                 Write(item.DisplayName);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</label>\r\n                <div");
+
+WriteLiteral(" class=\"col-md-1\"");
+
+WriteLiteral(">\r\n");
+
+WriteLiteral("                    ");
+
+            
+            #line 56 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+               Write(Html.ForEditor(item, entity));
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n                </div>\r\n");
+
+            
+            #line 58 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+                
+            
+            #line default
+            #line hidden
+            
+            #line 58 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+                   item = Article._.Hot;
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n                <label");
+
+WriteLiteral(" class=\"control-label col-md-1\"");
+
+WriteLiteral(">");
+
+            
+            #line 59 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+                                                 Write(item.DisplayName);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</label>\r\n                <div");
+
+WriteLiteral(" class=\"col-md-1\"");
+
+WriteLiteral(">\r\n");
+
+WriteLiteral("                    ");
+
+            
+            #line 61 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+               Write(Html.ForEditor(item, entity));
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n                </div>\r\n");
+
+            
+            #line 63 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+                
+            
+            #line default
+            #line hidden
+            
+            #line 63 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+                   item = Article._.Slide;
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n                <label");
+
+WriteLiteral(" class=\"control-label col-md-1\"");
+
+WriteLiteral(">");
+
+            
+            #line 64 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+                                                 Write(item.DisplayName);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</label>\r\n                <div");
+
+WriteLiteral(" class=\"col-md-1\"");
+
+WriteLiteral(">\r\n");
+
+WriteLiteral("                    ");
+
+            
+            #line 66 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+               Write(Html.ForEditor(item, entity));
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n                </div>\r\n            </div>\r\n");
+
+WriteLiteral("            <div");
+
+WriteLiteral(" class=\"form-group\"");
+
 WriteLiteral(">\r\n                <label");
 
 WriteLiteral(" class=\"control-label col-md-2\"");
@@ -324,23 +498,23 @@ WriteLiteral(" class=\"col-md-6\"");
 
 WriteLiteral(">\r\n                    <script");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 2250), Tuple.Create("\"", 2291)
-, Tuple.Create(Tuple.Create("", 2256), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.config.js")
-, 2256), false)
+WriteAttribute("src", Tuple.Create(" src=\"", 3272), Tuple.Create("\"", 3313)
+, Tuple.Create(Tuple.Create("", 3278), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.config.js")
+, 3278), false)
 );
 
 WriteLiteral("></script>\r\n                    <script");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 2331), Tuple.Create("\"", 2373)
-, Tuple.Create(Tuple.Create("", 2337), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.all.min.js")
-, 2337), false)
+WriteAttribute("src", Tuple.Create(" src=\"", 3353), Tuple.Create("\"", 3395)
+, Tuple.Create(Tuple.Create("", 3359), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.all.min.js")
+, 3359), false)
 );
 
 WriteLiteral("></script>\r\n                    <script");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 2413), Tuple.Create("\"", 2456)
-, Tuple.Create(Tuple.Create("", 2419), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/lang/zh-cn/zh-cn.js")
-, 2419), false)
+WriteAttribute("src", Tuple.Create(" src=\"", 3435), Tuple.Create("\"", 3478)
+, Tuple.Create(Tuple.Create("", 3441), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/lang/zh-cn/zh-cn.js")
+, 3441), false)
 );
 
 WriteLiteral("></script>\r\n                    <script");
@@ -358,7 +532,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                        ");
 
             
-            #line 54 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 76 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                    Write(Html.Raw(article.ContentText));
 
             
@@ -378,34 +552,34 @@ WriteLiteral(@">
 ");
 
             
-            #line 63 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 85 "..\..\Areas\CMS\Views\Article\Form.cshtml"
             
             
             #line default
             #line hidden
             
-            #line 63 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 85 "..\..\Areas\CMS\Views\Article\Form.cshtml"
        Write(Html.Partial("_UserTime", Model as IEntity));
 
             
             #line default
             #line hidden
             
-            #line 63 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 85 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                                                         
             
             
             #line default
             #line hidden
             
-            #line 64 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 86 "..\..\Areas\CMS\Views\Article\Form.cshtml"
        Write(Html.Partial("_Form_Action", isNew));
 
             
             #line default
             #line hidden
             
-            #line 64 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 86 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                                                 
         }
 

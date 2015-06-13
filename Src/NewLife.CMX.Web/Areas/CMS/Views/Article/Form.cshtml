@@ -45,6 +45,28 @@
                 </div>
             </div>
             <div class="form-group">
+                @{ item = Article._.Top;}
+                <label class="control-label col-md-2">@item.DisplayName</label>
+                <div class="col-md-1">
+                    @Html.ForEditor(item, entity)
+                </div>
+                @{ item = Article._.Recommend;}
+                <label class="control-label col-md-1">@item.DisplayName</label>
+                <div class="col-md-1">
+                    @Html.ForEditor(item, entity)
+                </div>
+                @{ item = Article._.Hot;}
+                <label class="control-label col-md-1">@item.DisplayName</label>
+                <div class="col-md-1">
+                    @Html.ForEditor(item, entity)
+                </div>
+                @{ item = Article._.Slide;}
+                <label class="control-label col-md-1">@item.DisplayName</label>
+                <div class="col-md-1">
+                    @Html.ForEditor(item, entity)
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="control-label col-md-2">内容</label>
                 <div class="col-md-6">
                     <script src="~/Content/ueditor/ueditor.config.js"></script>
