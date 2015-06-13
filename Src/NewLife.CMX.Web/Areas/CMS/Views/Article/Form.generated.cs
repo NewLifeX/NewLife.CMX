@@ -551,35 +551,60 @@ WriteLiteral(@">
             </div>
 ");
 
+WriteLiteral("            <div");
+
+WriteLiteral(" class=\"form-group\"");
+
+WriteLiteral(">\r\n                <label");
+
+WriteLiteral(" class=\"control-label col-md-2\"");
+
+WriteLiteral(">摘要</label>\r\n                <div");
+
+WriteLiteral(" class=\"col-md-6\"");
+
+WriteLiteral(">\r\n");
+
+WriteLiteral("                    ");
+
             
-            #line 85 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 88 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+               Write(Html.TextArea(Article._.Remark, article.Remark, 5, 100, null));
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n                </div>\r\n            </div>\r\n");
+
+            
+            #line 91 "..\..\Areas\CMS\Views\Article\Form.cshtml"
             
             
             #line default
             #line hidden
             
-            #line 85 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 91 "..\..\Areas\CMS\Views\Article\Form.cshtml"
        Write(Html.Partial("_UserTime", Model as IEntity));
 
             
             #line default
             #line hidden
             
-            #line 85 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 91 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                                                         
             
             
             #line default
             #line hidden
             
-            #line 86 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 92 "..\..\Areas\CMS\Views\Article\Form.cshtml"
        Write(Html.Partial("_Form_Action", isNew));
 
             
             #line default
             #line hidden
             
-            #line 86 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 92 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                                                 
         }
 
