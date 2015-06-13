@@ -1141,6 +1141,13 @@
             <param name="emptyValue">字符串空值时（DateTime.MinValue）显示的字符串，null表示原样显示最小时间，String.Empty表示不显示</param>
             <returns></returns>
         </member>
+        <member name="M:System.Utility.ToString(System.DateTime,System.String,System.String)">
+            <summary>时间日期转为指定格式字符串</summary>
+            <param name="value">待转换对象</param>
+            <param name="format">格式化字符串</param>
+            <param name="emptyValue">字符串空值时显示的字符串，null表示原样显示最小时间，String.Empty表示不显示</param>
+            <returns></returns>
+        </member>
         <member name="P:System.Utility.Convert">
             <summary>类型转换提供者</summary>
             <remarks>重载默认提供者<seealso cref="T:System.DefaultConvert"/>并赋值给<see cref="P:System.Utility.Convert"/>可改变所有类型转换的行为</remarks>
@@ -1181,6 +1188,13 @@
         <member name="M:System.DefaultConvert.ToFullString(System.DateTime,System.String)">
             <summary>时间日期转为yyyy-MM-dd HH:mm:ss完整字符串</summary>
             <param name="value">待转换对象</param>
+            <param name="emptyValue">字符串空值时显示的字符串，null表示原样显示最小时间，String.Empty表示不显示</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.DefaultConvert.ToString(System.DateTime,System.String,System.String)">
+            <summary>时间日期转为指定格式字符串</summary>
+            <param name="value">待转换对象</param>
+            <param name="format">格式化字符串</param>
             <param name="emptyValue">字符串空值时显示的字符串，null表示原样显示最小时间，String.Empty表示不显示</param>
             <returns></returns>
         </member>
@@ -6219,7 +6233,12 @@
             <summary>编码</summary>
         </member>
         <member name="T:NewLife.Log.TextFileLog">
-            <summary>文本文件日志类。提供向文本文件写日志的能力</summary>
+            <summary>文本文件日志类。提供向文本文件写日志的能力
+            2015-06-01 为了继承TextFileLog，增加了无参构造函数，修改了异步写日志方法为虚方法，可以进行重载
+            </summary>
+        </member>
+        <member name="M:NewLife.Log.TextFileLog.#ctor">
+            <summary>该构造函数没有作用，为了继承而设置</summary>
         </member>
         <member name="M:NewLife.Log.TextFileLog.Create(System.String)">
             <summary>每个目录的日志实例应该只有一个，所以采用静态创建</summary>
@@ -7524,8 +7543,8 @@
         </member>
         <member name="M:NewLife.Security.RC4.Encrypt(System.Byte[],System.Byte[])">
             <summary>加密</summary>
-            <param name="data"></param>
-            <param name="pass"></param>
+            <param name="data">数据</param>
+            <param name="pass">密码</param>
             <returns></returns>
         </member>
         <member name="M:NewLife.Security.RC4.GetKey(System.Byte[],System.Int32)">
@@ -8439,49 +8458,56 @@
         <member name="T:NewLife.Serialization.BinaryHandlerBase">
             <summary>二进制读写处理器基类</summary>
         </member>
-        <member name="T:NewLife.Serialization.IBinaryHandler">
-            <summary>二进制读写处理器接口</summary>
+        <member name="T:NewLife.Serialization.HandlerBase`2">
+            <summary>读写处理器基类</summary>
         </member>
-        <member name="M:NewLife.Serialization.IBinaryHandler.Write(System.Object,System.Type)">
+        <member name="T:NewLife.Serialization.IHandler`1">
+            <summary>序列化处理器接口</summary>
+            <typeparam name="THost"></typeparam>
+        </member>
+        <member name="M:NewLife.Serialization.IHandler`1.Write(System.Object,System.Type)">
             <summary>写入一个对象</summary>
             <param name="value">目标对象</param>
             <param name="type">类型</param>
             <returns></returns>
         </member>
-        <member name="M:NewLife.Serialization.IBinaryHandler.TryRead(System.Type,System.Object@)">
+        <member name="M:NewLife.Serialization.IHandler`1.TryRead(System.Type,System.Object@)">
             <summary>尝试读取指定类型对象</summary>
             <param name="type"></param>
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="P:NewLife.Serialization.IBinaryHandler.Host">
+        <member name="P:NewLife.Serialization.IHandler`1.Host">
             <summary>宿主读写器</summary>
         </member>
-        <member name="P:NewLife.Serialization.IBinaryHandler.Priority">
+        <member name="P:NewLife.Serialization.IHandler`1.Priority">
             <summary>优先级</summary>
         </member>
-        <member name="M:NewLife.Serialization.BinaryHandlerBase.Write(System.Object,System.Type)">
+        <member name="M:NewLife.Serialization.HandlerBase`2.Write(System.Object,System.Type)">
             <summary>写入一个对象</summary>
             <param name="value">目标对象</param>
             <param name="type">类型</param>
             <returns></returns>
         </member>
-        <member name="M:NewLife.Serialization.BinaryHandlerBase.TryRead(System.Type,System.Object@)">
+        <member name="M:NewLife.Serialization.HandlerBase`2.TryRead(System.Type,System.Object@)">
             <summary>尝试读取指定类型对象</summary>
             <param name="type"></param>
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:NewLife.Serialization.BinaryHandlerBase.WriteLog(System.String,System.Object[])">
+        <member name="M:NewLife.Serialization.HandlerBase`2.WriteLog(System.String,System.Object[])">
             <summary>输出日志</summary>
             <param name="format"></param>
             <param name="args"></param>
         </member>
-        <member name="P:NewLife.Serialization.BinaryHandlerBase.Host">
+        <member name="P:NewLife.Serialization.HandlerBase`2.Host">
             <summary>宿主读写器</summary>
         </member>
-        <member name="P:NewLife.Serialization.BinaryHandlerBase.Priority">
+        <member name="P:NewLife.Serialization.HandlerBase`2.Priority">
             <summary>优先级</summary>
+        </member>
+        <member name="T:NewLife.Serialization.IBinaryHandler">
+            <summary>二进制读写处理器接口</summary>
         </member>
         <member name="M:NewLife.Serialization.BinaryList.#ctor">
             <summary>初始化</summary>
@@ -8658,6 +8684,11 @@
             <summary>获取流里面的数据</summary>
             <returns></returns>
         </member>
+        <member name="M:NewLife.Serialization.FormatterBase.WriteLog(System.String,System.Object[])">
+            <summary>输出日志</summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
         <member name="P:NewLife.Serialization.FormatterBase.Stream">
             <summary>数据流。默认实例化一个内存数据流</summary>
         </member>
@@ -8669,6 +8700,9 @@
         </member>
         <member name="P:NewLife.Serialization.FormatterBase.Encoding">
             <summary>字符串编码，默认Default</summary>
+        </member>
+        <member name="P:NewLife.Serialization.FormatterBase.Log">
+            <summary>日志提供者</summary>
         </member>
         <member name="T:NewLife.Serialization.IBinary">
             <summary>二进制序列化接口</summary>
@@ -8707,6 +8741,9 @@
         <member name="P:NewLife.Serialization.IFormatterX.Member">
             <summary>成员</summary>
         </member>
+        <member name="P:NewLife.Serialization.IFormatterX.Log">
+            <summary>日志提供者</summary>
+        </member>
         <member name="M:NewLife.Serialization.IBinary.Write(System.Byte)">
             <summary>写入字节</summary>
             <param name="value"></param>
@@ -8735,11 +8772,6 @@
             <summary>读取大小</summary>
             <returns></returns>
         </member>
-        <member name="M:NewLife.Serialization.IBinary.WriteLog(System.String,System.Object[])">
-            <summary>输出日志</summary>
-            <param name="format"></param>
-            <param name="args"></param>
-        </member>
         <member name="P:NewLife.Serialization.IBinary.EncodeInt">
             <summary>编码整数</summary>
         </member>
@@ -8754,9 +8786,6 @@
         </member>
         <member name="P:NewLife.Serialization.IBinary.Handlers">
             <summary>处理器列表</summary>
-        </member>
-        <member name="P:NewLife.Serialization.IBinary.Debug">
-            <summary>是否启用调试</summary>
         </member>
         <member name="M:NewLife.Serialization.Binary.#ctor">
             <summary>实例化</summary>
@@ -8858,11 +8887,6 @@
         <member name="M:NewLife.Serialization.Binary.EnableTrace">
             <summary>使用跟踪流。实际上是重新包装一次Stream，必须在设置Stream，使用之前</summary>
         </member>
-        <member name="M:NewLife.Serialization.Binary.WriteLog(System.String,System.Object[])">
-            <summary>输出日志</summary>
-            <param name="format"></param>
-            <param name="args"></param>
-        </member>
         <member name="P:NewLife.Serialization.Binary.EncodeInt">
             <summary>使用7位编码整数。默认false不使用</summary>
         </member>
@@ -8874,9 +8898,6 @@
         </member>
         <member name="P:NewLife.Serialization.Binary.Handlers">
             <summary>处理器列表</summary>
-        </member>
-        <member name="P:NewLife.Serialization.Binary.Debug">
-            <summary>是否调试</summary>
         </member>
         <member name="T:NewLife.Serialization.BinarySettings">
             <summary>二进制序列化设置</summary>
@@ -11832,6 +11853,12 @@
             <param name="inherit"></param>
             <returns></returns>
         </member>
+        <member name="M:System.AttributeX.GetDescription(System.Reflection.MemberInfo,System.Boolean)">
+            <summary>获取成员绑定的显示名，优先DisplayName，然后Description</summary>
+            <param name="member"></param>
+            <param name="inherit"></param>
+            <returns></returns>
+        </member>
         <member name="M:System.AttributeX.GetCustomAttributeValue``2(System.Reflection.Assembly)">
             <summary>获取自定义属性的值。可用于ReflectionOnly加载的程序集</summary>
             <typeparam name="TAttribute"></typeparam>
@@ -12122,30 +12149,6 @@
         <member name="T:NewLife.Serialization.IXmlHandler">
             <summary>二进制读写处理器接口</summary>
         </member>
-        <member name="M:NewLife.Serialization.IXmlHandler.Write(System.Object,System.Type)">
-            <summary>写入一个对象</summary>
-            <param name="value">目标对象</param>
-            <param name="type">类型</param>
-            <returns></returns>
-        </member>
-        <member name="P:NewLife.Serialization.IXmlHandler.Host">
-            <summary>宿主读写器</summary>
-        </member>
-        <member name="P:NewLife.Serialization.IXmlHandler.Priority">
-            <summary>优先级</summary>
-        </member>
-        <member name="M:NewLife.Serialization.XmlHandlerBase.Write(System.Object,System.Type)">
-            <summary>写入一个对象</summary>
-            <param name="value">目标对象</param>
-            <param name="type">类型</param>
-            <returns></returns>
-        </member>
-        <member name="P:NewLife.Serialization.XmlHandlerBase.Host">
-            <summary>宿主读写器</summary>
-        </member>
-        <member name="P:NewLife.Serialization.XmlHandlerBase.Priority">
-            <summary>优先级</summary>
-        </member>
         <member name="M:NewLife.Serialization.XmlComposite.#ctor">
             <summary>实例化</summary>
         </member>
@@ -12153,6 +12156,12 @@
             <summary>写入对象</summary>
             <param name="value">目标对象</param>
             <param name="type">类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.XmlComposite.TryRead(System.Type,System.Object@)">
+            <summary>尝试读取</summary>
+            <param name="type"></param>
+            <param name="value"></param>
             <returns></returns>
         </member>
         <member name="M:NewLife.Serialization.XmlComposite.GetMembers(System.Type)">
@@ -12176,6 +12185,12 @@
             <param name="value">目标对象</param>
             <param name="type">类型</param>
             <returns>是否处理成功</returns>
+        </member>
+        <member name="M:NewLife.Serialization.XmlGeneral.TryRead(System.Type,System.Object@)">
+            <summary>尝试读取</summary>
+            <param name="type"></param>
+            <param name="value"></param>
+            <returns></returns>
         </member>
         <member name="T:NewLife.Serialization.IXml">
             <summary>二进制序列化接口</summary>
@@ -12249,8 +12264,9 @@
             <summary>获取Xml读取器</summary>
             <returns></returns>
         </member>
-        <member name="M:NewLife.Serialization.Xml.EnableTrace">
-            <summary>使用跟踪流。实际上是重新包装一次Stream，必须在设置Stream，使用之前</summary>
+        <member name="M:NewLife.Serialization.Xml.GetString">
+            <summary>获取字符串</summary>
+            <returns></returns>
         </member>
         <member name="P:NewLife.Serialization.Xml.Depth">
             <summary>深度</summary>
@@ -13715,7 +13731,7 @@
         <member name="T:NewLife.Web.Js">
             <summary>JavaScript脚本。提供Js的基本操作，同时也支持继承扩展</summary>
             <remarks>
-            提供静态成员<see cref="P:NewLife.Web.Js.Current"/>，以及常用的<see cref="M:NewLife.Web.Js.WriteScript(System.String,System.Boolean)"/>和<see cref="M:NewLife.Web.Js.Alert(System.String,System.Object[])"/>
+            提供静态成员<see cref="P:NewLife.Web.Js.Current"/>，以及常用的<see cref="M:NewLife.Web.Js.WriteScript(System.String,System.Boolean)"/>和<see cref="M:NewLife.Web.Js.Alert(System.String,System.String,System.Int32,System.String)"/>
             </remarks>
         </member>
         <member name="T:NewLife.Web.IJs">
@@ -13727,10 +13743,12 @@
             <param name="addScriptTags"></param>
             <returns></returns>
         </member>
-        <member name="M:NewLife.Web.IJs.Alert(System.String,System.Object[])">
+        <member name="M:NewLife.Web.IJs.Alert(System.String,System.String,System.Int32,System.String)">
             <summary>弹出页面提示</summary>
-            <param name="format">格式化字符串</param>
-            <param name="args">格式化参数</param>
+            <param name="message">消息内容</param>
+            <param name="title">标题</param>
+            <param name="msDelay">延迟指定毫秒数以后自动关闭，默认0表示不关闭</param>
+            <param name="kind">种类，info/success/error等</param>
             <returns></returns>
         </member>
         <member name="M:NewLife.Web.IJs.End">
@@ -13760,10 +13778,12 @@
             <param name="addScriptTags"></param>
             <returns></returns>
         </member>
-        <member name="M:NewLife.Web.Js.Alert(System.String,System.Object[])">
+        <member name="M:NewLife.Web.Js.Alert(System.String,System.String,System.Int32,System.String)">
             <summary>弹出页面提示</summary>
-            <param name="format">格式化字符串</param>
-            <param name="args">格式化参数</param>
+            <param name="message">消息内容</param>
+            <param name="title">标题</param>
+            <param name="delaySecond">延迟指定秒数以后自动关闭，默认0表示不关闭</param>
+            <param name="kind">种类，info/success/error等</param>
             <returns></returns>
         </member>
         <member name="M:NewLife.Web.Js.NewLife#Web#IJs#WriteScript(System.String,System.Boolean)">
@@ -13778,15 +13798,20 @@
             <param name="addScriptTags"></param>
             <returns></returns>
         </member>
-        <member name="M:NewLife.Web.Js.NewLife#Web#IJs#Alert(System.String,System.Object[])">
+        <member name="M:NewLife.Web.Js.NewLife#Web#IJs#Alert(System.String,System.String,System.Int32,System.String)">
             <summary>弹出页面提示</summary>
-            <param name="format">格式化字符串</param>
-            <param name="args">格式化参数</param>
+            <param name="message">消息内容</param>
+            <param name="title">标题</param>
+            <param name="msDelay">延迟指定毫秒数以后自动关闭，默认0表示不关闭</param>
+            <param name="kind">种类，info/success/error等</param>
             <returns></returns>
         </member>
-        <member name="M:NewLife.Web.Js.OnAlert(System.String)">
+        <member name="M:NewLife.Web.Js.OnAlert(System.String,System.String,System.Int32,System.String)">
             <summary>弹出页面提示</summary>
-            <param name="msg">字符串</param>
+            <param name="message">消息内容</param>
+            <param name="title">标题</param>
+            <param name="msDelay">延迟指定毫秒数以后自动关闭，默认0表示不关闭</param>
+            <param name="kind">种类，info/success/error等</param>
             <returns></returns>
         </member>
         <member name="M:NewLife.Web.Js.End">

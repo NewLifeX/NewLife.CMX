@@ -957,7 +957,7 @@
             <summary>实体扩展</summary>
         </member>
         <member name="M:XCode.EntityExtend.#ctor">
-            <summary>实体类一个不区分键大小写的实体扩展</summary>
+            <summary>实例化一个不区分键大小写的实体扩展</summary>
         </member>
         <member name="M:XCode.EntityExtend.GetExtend``2(System.String,System.Func{System.String,System.Object})">
             <summary>获取扩展属性，获取数据时向指定的依赖实体类注册数据更改事件</summary>
@@ -2948,11 +2948,6 @@
             <param name="action">操作</param>
             <param name="remark">备注</param>
         </member>
-        <member name="M:XCode.Membership.LogEntity`1.WriteLog(System.String,XCode.IEntity)">
-            <summary>输出实体对象日志</summary>
-            <param name="action"></param>
-            <param name="entity"></param>
-        </member>
         <member name="T:XCode.Membership.IManageProvider">
             <summary>管理提供者接口</summary>
             <remarks>
@@ -3169,6 +3164,11 @@
             <param name="action">操作</param>
             <param name="remark">备注</param>
         </member>
+        <member name="M:XCode.Membership.LogProvider.WriteLog(System.String,XCode.IEntity)">
+            <summary>输出实体对象日志</summary>
+            <param name="action"></param>
+            <param name="entity"></param>
+        </member>
         <member name="P:XCode.Membership.LogProvider.Enable">
             <summary>是否使用日志</summary>
         </member>
@@ -3264,565 +3264,9 @@
         <member name="F:XCode.Membership.UserTimeEntity`1.__Name.UpdateTime">
             <summary>更新时间</summary>
         </member>
-        <member name="T:XCode.Membership.Log`1">
-            <summary>日志</summary>
-            <summary>日志</summary>
-        </member>
-        <member name="T:XCode.Membership.ILog">
-            <summary>日志接口</summary>
-        </member>
-        <member name="M:XCode.Membership.ILog.Create(System.Type,System.String)">
-            <summary>创建</summary>
-            <param name="type"></param>
-            <param name="action"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Membership.ILog.WriteLog(System.Type,System.String,System.String)">
-            <summary>写日志</summary>
-            <param name="type">类型</param>
-            <param name="action">操作</param>
-            <param name="remark">备注</param>
-        </member>
-        <member name="M:XCode.Membership.ILog.Save">
-            <summary>保存</summary>
-            <returns></returns>
-        </member>
-        <member name="P:XCode.Membership.ILog.ID">
-            <summary>编号</summary>
-        </member>
-        <member name="P:XCode.Membership.ILog.Category">
-            <summary>类别</summary>
-        </member>
-        <member name="P:XCode.Membership.ILog.Action">
-            <summary>操作</summary>
-        </member>
-        <member name="P:XCode.Membership.ILog.UserID">
-            <summary>用户编号</summary>
-        </member>
-        <member name="P:XCode.Membership.ILog.UserName">
-            <summary>用户名</summary>
-        </member>
-        <member name="P:XCode.Membership.ILog.IP">
-            <summary>IP地址</summary>
-        </member>
-        <member name="P:XCode.Membership.ILog.OccurTime">
-            <summary>时间</summary>
-        </member>
-        <member name="P:XCode.Membership.ILog.Remark">
-            <summary>详细信息</summary>
-        </member>
-        <member name="P:XCode.Membership.ILog.Item(System.String)">
-            <summary>获取/设置 字段值。</summary>
-            <param name="name">字段名</param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Membership.Log`1.Valid(System.Boolean)">
-            <summary>已重载。记录当前管理员</summary>
-            <param name="isNew"></param>
-        </member>
-        <member name="M:XCode.Membership.Log`1.Search(System.String,System.Int32,System.String,System.DateTime,System.DateTime,System.String,System.Int32,System.Int32)">
-            <summary>查询</summary>
-            <param name="key"></param>
-            <param name="adminid"></param>
-            <param name="category"></param>
-            <param name="start"></param>
-            <param name="end"></param>
-            <param name="orderClause"></param>
-            <param name="startRowIndex"></param>
-            <param name="maximumRows"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Membership.Log`1.SearchCount(System.String,System.Int32,System.String,System.DateTime,System.DateTime,System.String,System.Int32,System.Int32)">
-            <summary>查询</summary>
-            <param name="key"></param>
-            <param name="adminid"></param>
-            <param name="category"></param>
-            <param name="start"></param>
-            <param name="end"></param>
-            <param name="orderClause"></param>
-            <param name="startRowIndex"></param>
-            <param name="maximumRows"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Membership.Log`1.SearchWhere(System.String,System.Int32,System.String,System.DateTime,System.DateTime)">
-            <summary>查询</summary>
-            <param name="key"></param>
-            <param name="adminid"></param>
-            <param name="category"></param>
-            <param name="start"></param>
-            <param name="end"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Membership.Log`1.FindAllCategory">
-            <summary>查找所有类别名</summary>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Membership.Log`1.Create(System.String,System.String)">
-            <summary>创建日志</summary>
-            <param name="category"></param>
-            <param name="action"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Membership.Log`1.Create(System.Type,System.String)">
-            <summary>创建日志</summary>
-            <param name="type">类型</param>
-            <param name="action"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Membership.Log`1.XCode#Membership#ILog#Create(System.Type,System.String)">
-            <summary>创建</summary>
-            <param name="type"></param>
-            <param name="action"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Membership.Log`1.GetDescription(System.Type)">
-            <summary>获取实体类的描述名</summary>
-            <param name="type">类型</param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Membership.Log`1.WriteLog(System.Type,System.String,System.String)">
-            <summary>写日志</summary>
-            <param name="type">类型</param>
-            <param name="action">操作</param>
-            <param name="remark">备注</param>
-        </member>
-        <member name="M:XCode.Membership.Log`1.ToString">
-            <summary>已重载。</summary>
-            <returns></returns>
-        </member>
-        <member name="P:XCode.Membership.Log`1.ID">
-            <summary>编号</summary>
-        </member>
-        <member name="P:XCode.Membership.Log`1.Category">
-            <summary>类别</summary>
-        </member>
-        <member name="P:XCode.Membership.Log`1.Action">
-            <summary>操作</summary>
-        </member>
-        <member name="P:XCode.Membership.Log`1.UserID">
-            <summary>用户编号</summary>
-        </member>
-        <member name="P:XCode.Membership.Log`1.UserName">
-            <summary>用户名</summary>
-        </member>
-        <member name="P:XCode.Membership.Log`1.IP">
-            <summary>IP地址</summary>
-        </member>
-        <member name="P:XCode.Membership.Log`1.OccurTime">
-            <summary>时间</summary>
-        </member>
-        <member name="P:XCode.Membership.Log`1.Remark">
-            <summary>详细信息</summary>
-        </member>
-        <member name="P:XCode.Membership.Log`1.Item(System.String)">
-            <summary>
-            获取/设置 字段值。
-            一个索引，基类使用反射实现。
-            派生实体类可重写该索引，以避免反射带来的性能损耗
-            </summary>
-            <param name="name">字段名</param>
-            <returns></returns>
-        </member>
-        <member name="P:XCode.Membership.Log`1.CategoryCache">
-            <summary>类别名实体缓存，异步，缓存10分钟</summary>
-        </member>
-        <member name="T:XCode.Membership.Log`1._">
-            <summary>取得日志字段信息的快捷方式</summary>
-        </member>
-        <member name="F:XCode.Membership.Log`1._.ID">
-            <summary>编号</summary>
-        </member>
-        <member name="F:XCode.Membership.Log`1._.Category">
-            <summary>类别</summary>
-        </member>
-        <member name="F:XCode.Membership.Log`1._.Action">
-            <summary>操作</summary>
-        </member>
-        <member name="F:XCode.Membership.Log`1._.UserID">
-            <summary>用户编号</summary>
-        </member>
-        <member name="F:XCode.Membership.Log`1._.UserName">
-            <summary>用户名</summary>
-        </member>
-        <member name="F:XCode.Membership.Log`1._.IP">
-            <summary>IP地址</summary>
-        </member>
-        <member name="F:XCode.Membership.Log`1._.OccurTime">
-            <summary>时间</summary>
-        </member>
-        <member name="F:XCode.Membership.Log`1._.Remark">
-            <summary>详细信息</summary>
-        </member>
-        <member name="T:XCode.Membership.Log`1.__">
-            <summary>取得日志字段名称的快捷方式</summary>
-        </member>
-        <member name="F:XCode.Membership.Log`1.__.ID">
-            <summary>编号</summary>
-        </member>
-        <member name="F:XCode.Membership.Log`1.__.Category">
-            <summary>类别</summary>
-        </member>
-        <member name="F:XCode.Membership.Log`1.__.Action">
-            <summary>操作</summary>
-        </member>
-        <member name="F:XCode.Membership.Log`1.__.UserID">
-            <summary>用户编号</summary>
-        </member>
-        <member name="F:XCode.Membership.Log`1.__.UserName">
-            <summary>用户名</summary>
-        </member>
-        <member name="F:XCode.Membership.Log`1.__.IP">
-            <summary>IP地址</summary>
-        </member>
-        <member name="F:XCode.Membership.Log`1.__.OccurTime">
-            <summary>时间</summary>
-        </member>
-        <member name="F:XCode.Membership.Log`1.__.Remark">
-            <summary>详细信息</summary>
-        </member>
-        <member name="T:XCode.Membership.Log">
-            <summary>日志</summary>
-        </member>
-        <member name="T:XCode.Membership.UserX">
-            <summary>管理员</summary>
-        </member>
-        <member name="T:XCode.Membership.User`1">
-            <summary>管理员</summary>
-            <remarks>
-            基础实体类应该是只有一个泛型参数的，需要用到别的类型时，可以继承一个，也可以通过虚拟重载等手段让基类实现
-            </remarks>
-            <typeparam name="TEntity">管理员类型</typeparam>
-            <summary>用户</summary>
-        </member>
-        <member name="T:XCode.Membership.IUser">
-            <summary>用户接口</summary>
-        </member>
-        <member name="M:XCode.Membership.IUser.Logout">
-            <summary>注销</summary>
-        </member>
-        <member name="M:XCode.Membership.IUser.Save">
-            <summary>保存</summary>
-            <returns></returns>
-        </member>
-        <member name="P:XCode.Membership.IUser.FriendName">
-            <summary>友好名字</summary>
-        </member>
-        <member name="P:XCode.Membership.IUser.Role">
-            <summary>角色</summary>
-        </member>
-        <member name="P:XCode.Membership.IUser.RoleName">
-            <summary>角色名</summary>
-        </member>
-        <member name="P:XCode.Membership.IUser.ID">
-            <summary>编号</summary>
-        </member>
-        <member name="P:XCode.Membership.IUser.Name">
-            <summary>名称。登录用户名</summary>
-        </member>
-        <member name="P:XCode.Membership.IUser.Password">
-            <summary>密码</summary>
-        </member>
-        <member name="P:XCode.Membership.IUser.DisplayName">
-            <summary>显示名。昵称、中文名等</summary>
-        </member>
-        <member name="P:XCode.Membership.IUser.Mail">
-            <summary>邮件</summary>
-        </member>
-        <member name="P:XCode.Membership.IUser.Phone">
-            <summary>电话</summary>
-        </member>
-        <member name="P:XCode.Membership.IUser.Code">
-            <summary>代码。身份证、员工编号等</summary>
-        </member>
-        <member name="P:XCode.Membership.IUser.RoleID">
-            <summary>角色</summary>
-        </member>
-        <member name="P:XCode.Membership.IUser.Logins">
-            <summary>登录次数</summary>
-        </member>
-        <member name="P:XCode.Membership.IUser.LastLogin">
-            <summary>最后登录</summary>
-        </member>
-        <member name="P:XCode.Membership.IUser.LastLoginIP">
-            <summary>最后登录IP</summary>
-        </member>
-        <member name="P:XCode.Membership.IUser.Enable">
-            <summary>是否启用</summary>
-        </member>
-        <member name="P:XCode.Membership.IUser.Profile">
-            <summary>配置信息</summary>
-        </member>
-        <member name="P:XCode.Membership.IUser.Item(System.String)">
-            <summary>获取/设置 字段值。</summary>
-            <param name="name">字段名</param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Membership.User`1.InitData">
-            <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
-        </member>
-        <member name="M:XCode.Membership.User`1.Valid(System.Boolean)">
-            <summary>验证</summary>
-            <param name="isNew"></param>
-        </member>
-        <member name="M:XCode.Membership.User`1.FindByID(System.Int32)">
-            <summary>根据编号查找</summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Membership.User`1.FindByName(System.String)">
-            <summary>根据名称查找</summary>
-            <param name="name">名称</param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Membership.User`1.FindByMail(System.String)">
-            <summary>根据邮箱地址查找</summary>
-            <param name="mail"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Membership.User`1.FindByPhone(System.String)">
-            <summary>根据手机号码查找</summary>
-            <param name="phone"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Membership.User`1.FindByCode(System.String)">
-            <summary>根据唯一代码查找</summary>
-            <param name="code"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Membership.User`1.Search(System.String,System.Int32,System.String,System.Int32,System.Int32)">
-            <summary>查询满足条件的记录集，分页、排序</summary>
-            <param name="key">关键字</param>
-            <param name="roleId">角色ID</param>
-            <param name="orderClause">排序，不带Order By</param>
-            <param name="startRowIndex">开始行，0表示第一行</param>
-            <param name="maximumRows">最大返回行数，0表示所有行</param>
-            <returns>实体集</returns>
-        </member>
-        <member name="M:XCode.Membership.User`1.SearchCount(System.String,System.Int32,System.String,System.Int32,System.Int32)">
-            <summary>查询满足条件的记录总数，分页和排序无效，带参数是因为ObjectDataSource要求它跟Search统一</summary>
-            <param name="key">关键字</param>
-            <param name="roleId">角色ID</param>
-            <param name="orderClause">排序，不带Order By</param>
-            <param name="startRowIndex">开始行，0表示第一行</param>
-            <param name="maximumRows">最大返回行数，0表示所有行</param>
-            <returns>记录数</returns>
-        </member>
-        <member name="M:XCode.Membership.User`1.Search(System.String,System.Int32,System.Nullable{System.Boolean},System.String,System.Int32,System.Int32)">
-            <summary>查询满足条件的记录集，分页、排序</summary>
-            <param name="key">关键字</param>
-            <param name="roleId">角色ID</param>
-            <param name="isEnable">是否启用</param>
-            <param name="orderClause">排序，不带Order By</param>
-            <param name="startRowIndex">开始行，0表示第一行</param>
-            <param name="maximumRows">最大返回行数，0表示所有行</param>
-            <returns>实体集</returns>
-        </member>
-        <member name="M:XCode.Membership.User`1.SearchCount(System.String,System.Int32,System.Nullable{System.Boolean},System.String,System.Int32,System.Int32)">
-            <summary>查询满足条件的记录总数，分页和排序无效，带参数是因为ObjectDataSource要求它跟Search统一</summary>
-            <param name="key">关键字</param>
-            <param name="roleId">角色ID</param>
-            <param name="isEnable">是否启用</param>
-            <param name="orderClause">排序，不带Order By</param>
-            <param name="startRowIndex">开始行，0表示第一行</param>
-            <param name="maximumRows">最大返回行数，0表示所有行</param>
-            <returns>记录数</returns>
-        </member>
-        <member name="M:XCode.Membership.User`1.SearchWhere(System.String,System.Int32,System.Nullable{System.Boolean})">
-            <summary>构造搜索条件</summary>
-            <param name="key">关键字</param>
-            <param name="roleId">角色ID</param>
-            <param name="isEnable">是否启用</param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Membership.User`1.Add(System.String,System.String,System.Int32,System.String)">
-            <summary>添加用户，如果存在则直接返回</summary>
-            <param name="name"></param>
-            <param name="pass"></param>
-            <param name="roleid"></param>
-            <param name="display"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Membership.User`1.ToString">
-            <summary>已重载。显示友好名字</summary>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Membership.User`1.Login(System.String,System.String,System.Boolean)">
-            <summary>登录</summary>
-            <param name="username"></param>
-            <param name="password"></param>
-            <param name="rememberme">是否记住密码</param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Membership.User`1.SaveLoginInfo">
-            <summary>保存登录信息</summary>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Membership.User`1.Logout">
-            <summary>注销</summary>
-        </member>
-        <member name="M:XCode.Membership.User`1.Register">
-            <summary>注册用户。默认写日志后Insert，注册仅保存基本信息，需要扩展的同学请重载</summary>
-        </member>
-        <member name="P:XCode.Membership.User`1.Current">
-            <summary>当前登录用户</summary>
-        </member>
-        <member name="P:XCode.Membership.User`1.FriendName">
-            <summary>友好名字</summary>
-        </member>
-        <member name="P:XCode.Membership.User`1.Role">
-            <summary>角色</summary>
-            <remarks>扩展属性不缓存空对象，一般来说，每个管理员都有对应的角色，如果没有，可能是在初始化</remarks>
-        </member>
-        <member name="P:XCode.Membership.User`1.RoleName">
-            <summary>角色名</summary>
-        </member>
-        <member name="P:XCode.Membership.User`1.XCode#Membership#IManageUser#Uid">
-            <summary>编号</summary>
-        </member>
-        <member name="P:XCode.Membership.User`1.XCode#Membership#IManageUser#Password">
-            <summary>密码</summary>
-        </member>
-        <member name="P:XCode.Membership.User`1.XCode#Membership#IManageUser#IsAdmin">
-            <summary>是否管理员</summary>
-        </member>
-        <member name="P:XCode.Membership.User`1.ID">
-            <summary>编号</summary>
-        </member>
-        <member name="P:XCode.Membership.User`1.Name">
-            <summary>名称。登录用户名</summary>
-        </member>
-        <member name="P:XCode.Membership.User`1.Password">
-            <summary>密码</summary>
-        </member>
-        <member name="P:XCode.Membership.User`1.DisplayName">
-            <summary>显示名。昵称、中文名等</summary>
-        </member>
-        <member name="P:XCode.Membership.User`1.Mail">
-            <summary>邮件</summary>
-        </member>
-        <member name="P:XCode.Membership.User`1.Phone">
-            <summary>电话</summary>
-        </member>
-        <member name="P:XCode.Membership.User`1.Code">
-            <summary>代码。身份证、员工编号等</summary>
-        </member>
-        <member name="P:XCode.Membership.User`1.RoleID">
-            <summary>角色</summary>
-        </member>
-        <member name="P:XCode.Membership.User`1.Logins">
-            <summary>登录次数</summary>
-        </member>
-        <member name="P:XCode.Membership.User`1.LastLogin">
-            <summary>最后登录</summary>
-        </member>
-        <member name="P:XCode.Membership.User`1.LastLoginIP">
-            <summary>最后登录IP</summary>
-        </member>
-        <member name="P:XCode.Membership.User`1.Enable">
-            <summary>是否启用</summary>
-        </member>
-        <member name="P:XCode.Membership.User`1.Profile">
-            <summary>配置信息</summary>
-        </member>
-        <member name="P:XCode.Membership.User`1.Item(System.String)">
-            <summary>
-            获取/设置 字段值。
-            一个索引，基类使用反射实现。
-            派生实体类可重写该索引，以避免反射带来的性能损耗
-            </summary>
-            <param name="name">字段名</param>
-            <returns></returns>
-        </member>
-        <member name="T:XCode.Membership.User`1._">
-            <summary>取得用户字段信息的快捷方式</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1._.ID">
-            <summary>编号</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1._.Name">
-            <summary>名称。登录用户名</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1._.Password">
-            <summary>密码</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1._.DisplayName">
-            <summary>显示名。昵称、中文名等</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1._.Mail">
-            <summary>邮件</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1._.Phone">
-            <summary>电话</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1._.Code">
-            <summary>代码。身份证、员工编号等</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1._.RoleID">
-            <summary>角色</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1._.Logins">
-            <summary>登录次数</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1._.LastLogin">
-            <summary>最后登录</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1._.LastLoginIP">
-            <summary>最后登录IP</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1._.Enable">
-            <summary>是否启用</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1._.Profile">
-            <summary>配置信息</summary>
-        </member>
-        <member name="T:XCode.Membership.User`1.__">
-            <summary>取得用户字段名称的快捷方式</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1.__.ID">
-            <summary>编号</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1.__.Name">
-            <summary>名称。登录用户名</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1.__.Password">
-            <summary>密码</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1.__.DisplayName">
-            <summary>显示名。昵称、中文名等</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1.__.Mail">
-            <summary>邮件</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1.__.Phone">
-            <summary>电话</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1.__.Code">
-            <summary>代码。身份证、员工编号等</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1.__.RoleID">
-            <summary>角色</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1.__.Logins">
-            <summary>登录次数</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1.__.LastLogin">
-            <summary>最后登录</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1.__.LastLoginIP">
-            <summary>最后登录IP</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1.__.Enable">
-            <summary>是否启用</summary>
-        </member>
-        <member name="F:XCode.Membership.User`1.__.Profile">
-            <summary>配置信息</summary>
-        </member>
-        <member name="T:XCode.Membership.Menu">
-            <summary>菜单</summary>
-        </member>
-        <member name="T:XCode.Membership.Menu`1">
-            <summary>菜单</summary>
-            <summary>菜单</summary>
+        <member name="T:XCode.Membership.UserTimeEntityTree`1">
+            <summary>用户时间实体基类</summary>
+            <typeparam name="TEntity"></typeparam>
         </member>
         <member name="T:XCode.EntityTree`1">
             <summary>主键为整型的实体树基类</summary>
@@ -4035,6 +3479,626 @@
         <member name="P:XCode.EntityTree`2.XCode#IEntityTree#AllParents">
             <summary>父亲实体集合。以深度层次树结构输出</summary>
         </member>
+        <member name="M:XCode.Membership.UserTimeEntityTree`1.Valid(System.Boolean)">
+            <summary>验证数据，自动加上创建和更新的信息</summary>
+            <param name="isNew"></param>
+        </member>
+        <member name="M:XCode.Membership.UserTimeEntityTree`1.SetDirtyItem(System.String,System.Object)">
+            <summary>设置脏数据项。如果某个键存在并且数据没有脏，则设置</summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="P:XCode.Membership.UserTimeEntityTree`1.CreateUser">
+            <summary>创建人</summary>
+        </member>
+        <member name="P:XCode.Membership.UserTimeEntityTree`1.CreateUserName">
+            <summary>创建人名称</summary>
+        </member>
+        <member name="P:XCode.Membership.UserTimeEntityTree`1.UpdateUser">
+            <summary>更新人</summary>
+        </member>
+        <member name="P:XCode.Membership.UserTimeEntityTree`1.UpdateUserName">
+            <summary>更新人名称</summary>
+        </member>
+        <member name="T:XCode.Membership.UserTimeEntityTree`1.__Name">
+            <summary>字段名</summary>
+        </member>
+        <member name="F:XCode.Membership.UserTimeEntityTree`1.__Name.CreateUserID">
+            <summary>创建人</summary>
+        </member>
+        <member name="F:XCode.Membership.UserTimeEntityTree`1.__Name.UpdateUserID">
+            <summary>更新人</summary>
+        </member>
+        <member name="F:XCode.Membership.UserTimeEntityTree`1.__Name.CreateUserName">
+            <summary>创建人</summary>
+        </member>
+        <member name="F:XCode.Membership.UserTimeEntityTree`1.__Name.UpdateUserName">
+            <summary>更新人</summary>
+        </member>
+        <member name="F:XCode.Membership.UserTimeEntityTree`1.__Name.CreateTime">
+            <summary>创建时间</summary>
+        </member>
+        <member name="F:XCode.Membership.UserTimeEntityTree`1.__Name.UpdateTime">
+            <summary>更新时间</summary>
+        </member>
+        <member name="T:XCode.Membership.Log`1">
+            <summary>日志</summary>
+            <summary>日志</summary>
+        </member>
+        <member name="T:XCode.Membership.ILog">
+            <summary>日志接口</summary>
+        </member>
+        <member name="M:XCode.Membership.ILog.Create(System.Type,System.String)">
+            <summary>创建</summary>
+            <param name="type"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.ILog.WriteLog(System.Type,System.String,System.String)">
+            <summary>写日志</summary>
+            <param name="type">类型</param>
+            <param name="action">操作</param>
+            <param name="remark">备注</param>
+        </member>
+        <member name="M:XCode.Membership.ILog.Save">
+            <summary>保存</summary>
+            <returns></returns>
+        </member>
+        <member name="P:XCode.Membership.ILog.ID">
+            <summary>编号</summary>
+        </member>
+        <member name="P:XCode.Membership.ILog.Category">
+            <summary>类别</summary>
+        </member>
+        <member name="P:XCode.Membership.ILog.Action">
+            <summary>操作</summary>
+        </member>
+        <member name="P:XCode.Membership.ILog.UserID">
+            <summary>用户编号</summary>
+        </member>
+        <member name="P:XCode.Membership.ILog.UserName">
+            <summary>用户名</summary>
+        </member>
+        <member name="P:XCode.Membership.ILog.IP">
+            <summary>IP地址</summary>
+        </member>
+        <member name="P:XCode.Membership.ILog.OccurTime">
+            <summary>时间</summary>
+        </member>
+        <member name="P:XCode.Membership.ILog.Remark">
+            <summary>详细信息</summary>
+        </member>
+        <member name="P:XCode.Membership.ILog.Item(System.String)">
+            <summary>获取/设置 字段值。</summary>
+            <param name="name">字段名</param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.Log`1.Valid(System.Boolean)">
+            <summary>已重载。记录当前管理员</summary>
+            <param name="isNew"></param>
+        </member>
+        <member name="M:XCode.Membership.Log`1.OnUpdate">
+            <summary></summary>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.Log`1.OnDelete">
+            <summary></summary>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.Log`1.Search(System.String,System.Int32,System.String,System.DateTime,System.DateTime,System.String,System.Int32,System.Int32)">
+            <summary>查询</summary>
+            <param name="key"></param>
+            <param name="adminid"></param>
+            <param name="category"></param>
+            <param name="start"></param>
+            <param name="end"></param>
+            <param name="orderClause"></param>
+            <param name="startRowIndex"></param>
+            <param name="maximumRows"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.Log`1.SearchCount(System.String,System.Int32,System.String,System.DateTime,System.DateTime,System.String,System.Int32,System.Int32)">
+            <summary>查询</summary>
+            <param name="key"></param>
+            <param name="adminid"></param>
+            <param name="category"></param>
+            <param name="start"></param>
+            <param name="end"></param>
+            <param name="orderClause"></param>
+            <param name="startRowIndex"></param>
+            <param name="maximumRows"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.Log`1.SearchWhere(System.String,System.Int32,System.String,System.DateTime,System.DateTime)">
+            <summary>查询</summary>
+            <param name="key"></param>
+            <param name="adminid"></param>
+            <param name="category"></param>
+            <param name="start"></param>
+            <param name="end"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.Log`1.FindAllCategory">
+            <summary>查找所有类别名</summary>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.Log`1.FindAllCategoryName">
+            <summary>获取所有类别名称</summary>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.Log`1.Create(System.String,System.String)">
+            <summary>创建日志</summary>
+            <param name="category"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.Log`1.Create(System.Type,System.String)">
+            <summary>创建日志</summary>
+            <param name="type">类型</param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.Log`1.XCode#Membership#ILog#Create(System.Type,System.String)">
+            <summary>创建</summary>
+            <param name="type"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.Log`1.WriteLog(System.Type,System.String,System.String)">
+            <summary>写日志</summary>
+            <param name="type">类型</param>
+            <param name="action">操作</param>
+            <param name="remark">备注</param>
+        </member>
+        <member name="M:XCode.Membership.Log`1.ToString">
+            <summary>已重载。</summary>
+            <returns></returns>
+        </member>
+        <member name="P:XCode.Membership.Log`1.ID">
+            <summary>编号</summary>
+        </member>
+        <member name="P:XCode.Membership.Log`1.Category">
+            <summary>类别</summary>
+        </member>
+        <member name="P:XCode.Membership.Log`1.Action">
+            <summary>操作</summary>
+        </member>
+        <member name="P:XCode.Membership.Log`1.UserID">
+            <summary>用户编号</summary>
+        </member>
+        <member name="P:XCode.Membership.Log`1.UserName">
+            <summary>用户名</summary>
+        </member>
+        <member name="P:XCode.Membership.Log`1.IP">
+            <summary>IP地址</summary>
+        </member>
+        <member name="P:XCode.Membership.Log`1.OccurTime">
+            <summary>时间</summary>
+        </member>
+        <member name="P:XCode.Membership.Log`1.Remark">
+            <summary>详细信息</summary>
+        </member>
+        <member name="P:XCode.Membership.Log`1.Item(System.String)">
+            <summary>
+            获取/设置 字段值。
+            一个索引，基类使用反射实现。
+            派生实体类可重写该索引，以避免反射带来的性能损耗
+            </summary>
+            <param name="name">字段名</param>
+            <returns></returns>
+        </member>
+        <member name="P:XCode.Membership.Log`1.Address">
+            <summary>物理地址</summary>
+        </member>
+        <member name="P:XCode.Membership.Log`1.CategoryCache">
+            <summary>类别名实体缓存，异步，缓存10分钟</summary>
+        </member>
+        <member name="T:XCode.Membership.Log`1._">
+            <summary>取得日志字段信息的快捷方式</summary>
+        </member>
+        <member name="F:XCode.Membership.Log`1._.ID">
+            <summary>编号</summary>
+        </member>
+        <member name="F:XCode.Membership.Log`1._.Category">
+            <summary>类别</summary>
+        </member>
+        <member name="F:XCode.Membership.Log`1._.Action">
+            <summary>操作</summary>
+        </member>
+        <member name="F:XCode.Membership.Log`1._.UserID">
+            <summary>用户编号</summary>
+        </member>
+        <member name="F:XCode.Membership.Log`1._.UserName">
+            <summary>用户名</summary>
+        </member>
+        <member name="F:XCode.Membership.Log`1._.IP">
+            <summary>IP地址</summary>
+        </member>
+        <member name="F:XCode.Membership.Log`1._.OccurTime">
+            <summary>时间</summary>
+        </member>
+        <member name="F:XCode.Membership.Log`1._.Remark">
+            <summary>详细信息</summary>
+        </member>
+        <member name="T:XCode.Membership.Log`1.__">
+            <summary>取得日志字段名称的快捷方式</summary>
+        </member>
+        <member name="F:XCode.Membership.Log`1.__.ID">
+            <summary>编号</summary>
+        </member>
+        <member name="F:XCode.Membership.Log`1.__.Category">
+            <summary>类别</summary>
+        </member>
+        <member name="F:XCode.Membership.Log`1.__.Action">
+            <summary>操作</summary>
+        </member>
+        <member name="F:XCode.Membership.Log`1.__.UserID">
+            <summary>用户编号</summary>
+        </member>
+        <member name="F:XCode.Membership.Log`1.__.UserName">
+            <summary>用户名</summary>
+        </member>
+        <member name="F:XCode.Membership.Log`1.__.IP">
+            <summary>IP地址</summary>
+        </member>
+        <member name="F:XCode.Membership.Log`1.__.OccurTime">
+            <summary>时间</summary>
+        </member>
+        <member name="F:XCode.Membership.Log`1.__.Remark">
+            <summary>详细信息</summary>
+        </member>
+        <member name="T:XCode.Membership.Log">
+            <summary>日志</summary>
+        </member>
+        <member name="T:XCode.Membership.UserX">
+            <summary>管理员</summary>
+        </member>
+        <member name="T:XCode.Membership.User`1">
+            <summary>管理员</summary>
+            <remarks>
+            基础实体类应该是只有一个泛型参数的，需要用到别的类型时，可以继承一个，也可以通过虚拟重载等手段让基类实现
+            </remarks>
+            <typeparam name="TEntity">管理员类型</typeparam>
+            <summary>用户</summary>
+        </member>
+        <member name="T:XCode.Membership.IUser">
+            <summary>用户接口</summary>
+        </member>
+        <member name="M:XCode.Membership.IUser.Logout">
+            <summary>注销</summary>
+        </member>
+        <member name="M:XCode.Membership.IUser.Save">
+            <summary>保存</summary>
+            <returns></returns>
+        </member>
+        <member name="P:XCode.Membership.IUser.FriendName">
+            <summary>友好名字</summary>
+        </member>
+        <member name="P:XCode.Membership.IUser.Role">
+            <summary>角色</summary>
+        </member>
+        <member name="P:XCode.Membership.IUser.RoleName">
+            <summary>角色名</summary>
+        </member>
+        <member name="P:XCode.Membership.IUser.ID">
+            <summary>编号</summary>
+        </member>
+        <member name="P:XCode.Membership.IUser.Name">
+            <summary>名称。登录用户名</summary>
+        </member>
+        <member name="P:XCode.Membership.IUser.Password">
+            <summary>密码</summary>
+        </member>
+        <member name="P:XCode.Membership.IUser.DisplayName">
+            <summary>显示名。昵称、中文名等</summary>
+        </member>
+        <member name="P:XCode.Membership.IUser.Mail">
+            <summary>邮件</summary>
+        </member>
+        <member name="P:XCode.Membership.IUser.Phone">
+            <summary>电话</summary>
+        </member>
+        <member name="P:XCode.Membership.IUser.Code">
+            <summary>代码。身份证、员工编号等</summary>
+        </member>
+        <member name="P:XCode.Membership.IUser.RoleID">
+            <summary>角色</summary>
+        </member>
+        <member name="P:XCode.Membership.IUser.Logins">
+            <summary>登录次数</summary>
+        </member>
+        <member name="P:XCode.Membership.IUser.LastLogin">
+            <summary>最后登录</summary>
+        </member>
+        <member name="P:XCode.Membership.IUser.LastLoginIP">
+            <summary>最后登录IP</summary>
+        </member>
+        <member name="P:XCode.Membership.IUser.Enable">
+            <summary>是否启用</summary>
+        </member>
+        <member name="P:XCode.Membership.IUser.Profile">
+            <summary>配置信息</summary>
+        </member>
+        <member name="P:XCode.Membership.IUser.Item(System.String)">
+            <summary>获取/设置 字段值。</summary>
+            <param name="name">字段名</param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.User`1.InitData">
+            <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
+        </member>
+        <member name="M:XCode.Membership.User`1.Valid(System.Boolean)">
+            <summary>验证</summary>
+            <param name="isNew"></param>
+        </member>
+        <member name="M:XCode.Membership.User`1.FindByID(System.Int32)">
+            <summary>根据编号查找</summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.User`1.FindByName(System.String)">
+            <summary>根据名称查找</summary>
+            <param name="name">名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.User`1.FindByMail(System.String)">
+            <summary>根据邮箱地址查找</summary>
+            <param name="mail"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.User`1.FindByPhone(System.String)">
+            <summary>根据手机号码查找</summary>
+            <param name="phone"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.User`1.FindByCode(System.String)">
+            <summary>根据唯一代码查找</summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.User`1.Search(System.String,System.Int32,System.String,System.Int32,System.Int32)">
+            <summary>查询满足条件的记录集，分页、排序</summary>
+            <param name="key">关键字</param>
+            <param name="roleId">角色ID</param>
+            <param name="orderClause">排序，不带Order By</param>
+            <param name="startRowIndex">开始行，0表示第一行</param>
+            <param name="maximumRows">最大返回行数，0表示所有行</param>
+            <returns>实体集</returns>
+        </member>
+        <member name="M:XCode.Membership.User`1.SearchCount(System.String,System.Int32,System.String,System.Int32,System.Int32)">
+            <summary>查询满足条件的记录总数，分页和排序无效，带参数是因为ObjectDataSource要求它跟Search统一</summary>
+            <param name="key">关键字</param>
+            <param name="roleId">角色ID</param>
+            <param name="orderClause">排序，不带Order By</param>
+            <param name="startRowIndex">开始行，0表示第一行</param>
+            <param name="maximumRows">最大返回行数，0表示所有行</param>
+            <returns>记录数</returns>
+        </member>
+        <member name="M:XCode.Membership.User`1.Search(System.String,System.Int32,System.Nullable{System.Boolean},System.String,System.Int32,System.Int32)">
+            <summary>查询满足条件的记录集，分页、排序</summary>
+            <param name="key">关键字</param>
+            <param name="roleId">角色ID</param>
+            <param name="isEnable">是否启用</param>
+            <param name="orderClause">排序，不带Order By</param>
+            <param name="startRowIndex">开始行，0表示第一行</param>
+            <param name="maximumRows">最大返回行数，0表示所有行</param>
+            <returns>实体集</returns>
+        </member>
+        <member name="M:XCode.Membership.User`1.SearchCount(System.String,System.Int32,System.Nullable{System.Boolean},System.String,System.Int32,System.Int32)">
+            <summary>查询满足条件的记录总数，分页和排序无效，带参数是因为ObjectDataSource要求它跟Search统一</summary>
+            <param name="key">关键字</param>
+            <param name="roleId">角色ID</param>
+            <param name="isEnable">是否启用</param>
+            <param name="orderClause">排序，不带Order By</param>
+            <param name="startRowIndex">开始行，0表示第一行</param>
+            <param name="maximumRows">最大返回行数，0表示所有行</param>
+            <returns>记录数</returns>
+        </member>
+        <member name="M:XCode.Membership.User`1.SearchWhere(System.String,System.Int32,System.Nullable{System.Boolean})">
+            <summary>构造搜索条件</summary>
+            <param name="key">关键字</param>
+            <param name="roleId">角色ID</param>
+            <param name="isEnable">是否启用</param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.User`1.Search(System.String,System.Int32,System.Nullable{System.Boolean},NewLife.Web.Pager)">
+            <summary>参数化查询</summary>
+            <param name="key"></param>
+            <param name="roleId"></param>
+            <param name="isEnable"></param>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.User`1.Add(System.String,System.String,System.Int32,System.String)">
+            <summary>添加用户，如果存在则直接返回</summary>
+            <param name="name"></param>
+            <param name="pass"></param>
+            <param name="roleid"></param>
+            <param name="display"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.User`1.ToString">
+            <summary>已重载。显示友好名字</summary>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.User`1.Login(System.String,System.String,System.Boolean)">
+            <summary>登录</summary>
+            <param name="username"></param>
+            <param name="password"></param>
+            <param name="rememberme">是否记住密码</param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.User`1.SaveLoginInfo">
+            <summary>保存登录信息</summary>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.User`1.Logout">
+            <summary>注销</summary>
+        </member>
+        <member name="M:XCode.Membership.User`1.Register">
+            <summary>注册用户。默认写日志后Insert，注册仅保存基本信息，需要扩展的同学请重载</summary>
+        </member>
+        <member name="P:XCode.Membership.User`1.Current">
+            <summary>当前登录用户</summary>
+        </member>
+        <member name="P:XCode.Membership.User`1.FriendName">
+            <summary>友好名字</summary>
+        </member>
+        <member name="P:XCode.Membership.User`1.Role">
+            <summary>角色</summary>
+            <remarks>扩展属性不缓存空对象，一般来说，每个管理员都有对应的角色，如果没有，可能是在初始化</remarks>
+        </member>
+        <member name="P:XCode.Membership.User`1.RoleName">
+            <summary>角色名</summary>
+        </member>
+        <member name="P:XCode.Membership.User`1.XCode#Membership#IManageUser#Uid">
+            <summary>编号</summary>
+        </member>
+        <member name="P:XCode.Membership.User`1.XCode#Membership#IManageUser#Password">
+            <summary>密码</summary>
+        </member>
+        <member name="P:XCode.Membership.User`1.XCode#Membership#IManageUser#IsAdmin">
+            <summary>是否管理员</summary>
+        </member>
+        <member name="P:XCode.Membership.User`1.ID">
+            <summary>编号</summary>
+        </member>
+        <member name="P:XCode.Membership.User`1.Name">
+            <summary>名称。登录用户名</summary>
+        </member>
+        <member name="P:XCode.Membership.User`1.Password">
+            <summary>密码</summary>
+        </member>
+        <member name="P:XCode.Membership.User`1.DisplayName">
+            <summary>显示名。昵称、中文名等</summary>
+        </member>
+        <member name="P:XCode.Membership.User`1.Mail">
+            <summary>邮件</summary>
+        </member>
+        <member name="P:XCode.Membership.User`1.Phone">
+            <summary>电话</summary>
+        </member>
+        <member name="P:XCode.Membership.User`1.Code">
+            <summary>代码。身份证、员工编号等</summary>
+        </member>
+        <member name="P:XCode.Membership.User`1.RoleID">
+            <summary>角色</summary>
+        </member>
+        <member name="P:XCode.Membership.User`1.Logins">
+            <summary>登录次数</summary>
+        </member>
+        <member name="P:XCode.Membership.User`1.LastLogin">
+            <summary>最后登录</summary>
+        </member>
+        <member name="P:XCode.Membership.User`1.LastLoginIP">
+            <summary>最后登录IP</summary>
+        </member>
+        <member name="P:XCode.Membership.User`1.Enable">
+            <summary>是否启用</summary>
+        </member>
+        <member name="P:XCode.Membership.User`1.Profile">
+            <summary>配置信息</summary>
+        </member>
+        <member name="P:XCode.Membership.User`1.Item(System.String)">
+            <summary>
+            获取/设置 字段值。
+            一个索引，基类使用反射实现。
+            派生实体类可重写该索引，以避免反射带来的性能损耗
+            </summary>
+            <param name="name">字段名</param>
+            <returns></returns>
+        </member>
+        <member name="T:XCode.Membership.User`1._">
+            <summary>取得用户字段信息的快捷方式</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1._.ID">
+            <summary>编号</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1._.Name">
+            <summary>名称。登录用户名</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1._.Password">
+            <summary>密码</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1._.DisplayName">
+            <summary>显示名。昵称、中文名等</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1._.Mail">
+            <summary>邮件</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1._.Phone">
+            <summary>电话</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1._.Code">
+            <summary>代码。身份证、员工编号等</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1._.RoleID">
+            <summary>角色</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1._.Logins">
+            <summary>登录次数</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1._.LastLogin">
+            <summary>最后登录</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1._.LastLoginIP">
+            <summary>最后登录IP</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1._.Enable">
+            <summary>是否启用</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1._.Profile">
+            <summary>配置信息</summary>
+        </member>
+        <member name="T:XCode.Membership.User`1.__">
+            <summary>取得用户字段名称的快捷方式</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1.__.ID">
+            <summary>编号</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1.__.Name">
+            <summary>名称。登录用户名</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1.__.Password">
+            <summary>密码</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1.__.DisplayName">
+            <summary>显示名。昵称、中文名等</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1.__.Mail">
+            <summary>邮件</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1.__.Phone">
+            <summary>电话</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1.__.Code">
+            <summary>代码。身份证、员工编号等</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1.__.RoleID">
+            <summary>角色</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1.__.Logins">
+            <summary>登录次数</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1.__.LastLogin">
+            <summary>最后登录</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1.__.LastLoginIP">
+            <summary>最后登录IP</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1.__.Enable">
+            <summary>是否启用</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1.__.Profile">
+            <summary>配置信息</summary>
+        </member>
+        <member name="T:XCode.Membership.Menu">
+            <summary>菜单</summary>
+        </member>
+        <member name="T:XCode.Membership.Menu`1">
+            <summary>菜单</summary>
+            <summary>菜单</summary>
+        </member>
         <member name="T:XCode.Membership.IMenu">
             <summary>菜单接口</summary>
         </member>
@@ -4195,11 +4259,6 @@
             <summary>写日志</summary>
             <param name="action">操作</param>
             <param name="remark">备注</param>
-        </member>
-        <member name="M:XCode.Membership.Menu`1.WriteLog(System.String,XCode.IEntity)">
-            <summary>输出实体对象日志</summary>
-            <param name="action"></param>
-            <param name="entity"></param>
         </member>
         <member name="M:XCode.Membership.Menu`1.Export(System.Collections.Generic.IList{XCode.Membership.IMenu})">
             <summary>导出</summary>
@@ -5189,9 +5248,6 @@
         </member>
         <member name="M:XCode.Cache.IEntityCache.Clear(System.String)">
             <summary>清除缓存</summary>
-        </member>
-        <member name="P:XCode.Cache.IEntityCache.HoldCache">
-            <summary>在数据修改时保持缓存，不再过期，独占数据库时默认打开，否则默认关闭</summary>
         </member>
         <member name="P:XCode.Cache.IEntityCache.Entities">
             <summary>实体集合。因为涉及一个转换，数据量大时很耗性能，建议不要使用。</summary>
@@ -9842,9 +9898,6 @@
         </member>
         <member name="P:XCode.Cache.EntityCache`1.Expriod">
             <summary>过期时间。单位是秒，默认60秒</summary>
-        </member>
-        <member name="P:XCode.Cache.EntityCache`1.HoldCache">
-            <summary>在数据修改时保持缓存，不再过期，独占数据库时默认打开，否则默认关闭</summary>
         </member>
         <member name="P:XCode.Cache.EntityCache`1.Asynchronous">
             <summary>异步更新，默认打开</summary>

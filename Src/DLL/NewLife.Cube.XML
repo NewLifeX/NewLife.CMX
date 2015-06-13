@@ -75,6 +75,13 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:NewLife.Cube.EntityController`1.DeleteAjax(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:NewLife.Cube.EntityController`1.Add">
             <summary>表单，添加/修改</summary>
             <returns></returns>
@@ -99,6 +106,45 @@
             <param name="entity"></param>
             <returns></returns>
         </member>
+        <member name="M:NewLife.Cube.EntityController`1.ExportXml">
+            <summary>导出Xml</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Cube.EntityController`1.ImportXml">
+            <summary>导入Xml</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Cube.EntityController`1.ExportJson">
+            <summary>导出Json</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Cube.EntityController`1.ImportJson">
+            <summary>导入Json</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Cube.EntityController`1.ExportExcel">
+            <summary>导出Excel</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Cube.EntityController`1.Clear">
+            <summary>清空全表数据</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Cube.EntityController`1.OnInsert(`0)">
+            <summary>添加实体对象</summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Cube.EntityController`1.OnUpdate(`0)">
+            <summary>更新实体对象</summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Cube.EntityController`1.OnDelete(`0)">
+            <summary>删除实体对象</summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
         <member name="M:NewLife.Cube.EntityController`1.Valid(`0)">
             <summary>验证实体对象</summary>
             <param name="entity"></param>
@@ -117,6 +163,9 @@
         <member name="M:NewLife.Cube.EntityController`1.OnActionExecuting(System.Web.Mvc.ActionExecutingContext)">
             <summary>动作执行前</summary>
             <param name="filterContext"></param>
+        </member>
+        <member name="P:NewLife.Cube.EntityController`1.Factory">
+            <summary>实体工厂</summary>
         </member>
         <member name="P:NewLife.Cube.EntityController`1.ListFields">
             <summary>列表字段过滤</summary>
@@ -140,6 +189,11 @@
             <summary>动作执行前</summary>
             <param name="filterContext"></param>
         </member>
+        <member name="M:NewLife.Cube.Admin.Controllers.LogController.IndexView(NewLife.Web.Pager)">
+            <summary>列表页视图。子控制器可重载，以传递更多信息给视图，比如修改要显示的列</summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
         <member name="M:NewLife.Cube.Admin.Controllers.LogController.Add(XCode.Membership.Log)">
             <summary>不允许添加修改日志</summary>
             <param name="entity"></param>
@@ -151,6 +205,11 @@
             <returns></returns>
         </member>
         <member name="M:NewLife.Cube.Admin.Controllers.LogController.Delete(System.Int32)">
+            <summary>不允许删除日志</summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Cube.Admin.Controllers.LogController.DeleteAjax(System.Int32)">
             <summary>不允许删除日志</summary>
             <param name="id"></param>
             <returns></returns>
@@ -194,10 +253,38 @@
         <member name="T:NewLife.Cube.Admin.Controllers.SysController">
             <summary>系统设置控制器</summary>
         </member>
-        <member name="M:NewLife.Cube.Admin.Controllers.SysController.Index(NewLife.Common.SysConfig)">
-            <summary>系统设置</summary>
-            <param name="config"></param>
+        <member name="T:NewLife.Cube.ConfigController`1">
+            <summary>设置控制器</summary>
+        </member>
+        <member name="T:NewLife.Cube.ObjectController`1">
+            <summary>对象控制器</summary>
+        </member>
+        <member name="M:NewLife.Cube.ObjectController`1.OnActionExecuting(System.Web.Mvc.ActionExecutingContext)">
+            <summary>动作执行前</summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="M:NewLife.Cube.ObjectController`1.Index">
+            <summary>显示对象</summary>
             <returns></returns>
+        </member>
+        <member name="M:NewLife.Cube.ObjectController`1.Index(`0)">
+            <summary>保存对象</summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Cube.ObjectController`1.WriteLog(`0)">
+            <summary>写日志</summary>
+            <param name="obj"></param>
+        </member>
+        <member name="P:NewLife.Cube.ObjectController`1.Value">
+            <summary>要展现和修改的对象</summary>
+        </member>
+        <member name="M:NewLife.Cube.ConfigController`1.OnActionExecuting(System.Web.Mvc.ActionExecutingContext)">
+            <summary>重载。过滤掉标识为XmlIgnore的属性</summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="P:NewLife.Cube.ConfigController`1.Value">
+            <summary>要展现和修改的对象</summary>
         </member>
         <member name="T:NewLife.Cube.Admin.Controllers.UserController">
             <summary>用户控制器</summary>
@@ -205,6 +292,11 @@
         <member name="M:NewLife.Cube.Admin.Controllers.UserController.OnActionExecuting(System.Web.Mvc.ActionExecutingContext)">
             <summary>动作执行前</summary>
             <param name="filterContext"></param>
+        </member>
+        <member name="M:NewLife.Cube.Admin.Controllers.UserController.IndexView(NewLife.Web.Pager)">
+            <summary>列表页视图。子控制器可重载，以传递更多信息给视图，比如修改要显示的列</summary>
+            <param name="p"></param>
+            <returns></returns>
         </member>
         <member name="M:NewLife.Cube.Admin.Controllers.UserController.FormView(XCode.Membership.UserX)">
             <summary>表单页视图。</summary>
@@ -266,6 +358,17 @@
         <member name="M:NewLife.Cube.Admin.Controllers.IndexController.ScanActionMenu(XCode.Membership.IMenu)">
             <summary>菜单不可见</summary>
             <param name="menu"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Bootstrap.BootstrapJs">
+            <summary>Bootstrap脚本提供者</summary>
+        </member>
+        <member name="M:NewLife.Bootstrap.BootstrapJs.OnAlert(System.String,System.String,System.Int32,System.String)">
+            <summary>重载Alert实现</summary>
+            <param name="message">消息内容</param>
+            <param name="title">标题</param>
+            <param name="msDelay">延迟指定毫秒数以后自动关闭，默认0表示不关闭</param>
+            <param name="kind">种类，info/success/error等</param>
             <returns></returns>
         </member>
         <member name="T:NewLife.Cube.DbRunTimeModule">
@@ -439,44 +542,49 @@
             <param name="label"></param>
             <returns></returns>
         </member>
-        <member name="M:NewLife.Cube.HtmlExtensions.ForEnum``1(System.Web.Mvc.HtmlHelper,System.String,System.Boolean)">
+        <member name="M:NewLife.Cube.HtmlExtensions.ForEnum``1(System.Web.Mvc.HtmlHelper,System.String,System.Boolean,System.Boolean)">
             <summary>枚举多选，支持默认全选或不选。需要部分选中可使用ForListBox</summary>
             <typeparam name="T"></typeparam>
             <param name="Html"></param>
             <param name="name"></param>
             <param name="selectAll">是否全部选中。默认false</param>
+            <param name="autoPostback">自动回发</param>
             <returns></returns>
         </member>
-        <member name="M:NewLife.Cube.HtmlExtensions.ForDropDownList(System.Web.Mvc.HtmlHelper,System.String,System.Collections.IDictionary,System.Object,System.String)">
+        <member name="M:NewLife.Cube.HtmlExtensions.ForDropDownList(System.Web.Mvc.HtmlHelper,System.String,System.Collections.IEnumerable,System.Object,System.String,System.Boolean)">
             <summary>字典的下拉列表</summary>
             <param name="Html"></param>
             <param name="name"></param>
-            <param name="dic"></param>
+            <param name="items"></param>
             <param name="selectedValue"></param>
             <param name="optionLabel"></param>
+            <param name="autoPostback">自动回发</param>
             <returns></returns>
         </member>
-        <member name="M:NewLife.Cube.HtmlExtensions.ForDropDownList(System.Web.Mvc.HtmlHelper,System.String,XCode.IEntityList,System.String)">
+        <member name="M:NewLife.Cube.HtmlExtensions.ForDropDownList(System.Web.Mvc.HtmlHelper,System.String,XCode.IEntityList,System.String,System.Boolean)">
             <summary>实体列表的下拉列表。单选，自动匹配当前模型的选中项</summary>
             <param name="Html"></param>
             <param name="name"></param>
             <param name="list"></param>
             <param name="optionLabel"></param>
+            <param name="autoPostback">自动回发</param>
             <returns></returns>
         </member>
-        <member name="M:NewLife.Cube.HtmlExtensions.ForListBox(System.Web.Mvc.HtmlHelper,System.String,System.Collections.IDictionary,System.Collections.IEnumerable)">
+        <member name="M:NewLife.Cube.HtmlExtensions.ForListBox(System.Web.Mvc.HtmlHelper,System.String,System.Collections.IDictionary,System.Collections.IEnumerable,System.Boolean)">
             <summary>字典的下拉列表</summary>
             <param name="Html"></param>
             <param name="name"></param>
             <param name="dic"></param>
             <param name="selectedValues"></param>
+            <param name="autoPostback">自动回发</param>
             <returns></returns>
         </member>
-        <member name="M:NewLife.Cube.HtmlExtensions.ForListBox(System.Web.Mvc.HtmlHelper,System.String,XCode.IEntityList)">
+        <member name="M:NewLife.Cube.HtmlExtensions.ForListBox(System.Web.Mvc.HtmlHelper,System.String,XCode.IEntityList,System.Boolean)">
             <summary>实体列表的下拉列表。多选，自动匹配当前模型的选中项，支持数组类型或字符串类型（自动分割）的选中项</summary>
             <param name="Html"></param>
             <param name="name"></param>
             <param name="list"></param>
+            <param name="autoPostback">自动回发</param>
             <returns></returns>
         </member>
         <member name="T:NewLife.Cube.RazorViewEngineX">
