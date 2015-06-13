@@ -327,8 +327,14 @@ namespace NewLife.CMX
         {
             if (pageIndex <= 0) pageIndex = 1;
 
-            var exp = _.CategoryID == categoryid;
-            exp.SetStrict();
+            var provider = ModelProvider.Get(typeof(TEntity));
+            var cat = provider.CategoryFactory.FindByID(categoryid);
+            var childs = cat.FindAllChildsExcept(null).Cast<IEntityCategory>();
+            // 只要末级节点
+            childs = childs.Where(e => e.Childs.Count == 0);
+
+            var exp = _.CategoryID.In(childs.Select(e => e.ID));
+            //exp.SetStrict();
 
             return FindAll(exp, null, null, (pageIndex - 1) * pageCount, pageCount);
         }

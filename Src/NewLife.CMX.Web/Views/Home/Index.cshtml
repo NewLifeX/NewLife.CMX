@@ -25,7 +25,18 @@
                 {
                     <div class="col-md-@width">
                         <h2>@cat.Name</h2>
-                        <p>@cat.Num</p>
+                        <div class="widget_list lz_con fixed tab_list show">
+                            <ul>
+                                @foreach (var item in cat.GetTitles(1, 5))
+                                {
+                                    <li>
+                                        <a href="@this.GetUrl(item)" target="_blank">
+                                            <i></i>@item.Title
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
                     </div>
                 }
                 @if (right > 0)
