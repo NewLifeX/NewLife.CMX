@@ -576,35 +576,60 @@ WriteLiteral("                    ");
             #line hidden
 WriteLiteral("\r\n                </div>\r\n            </div>\r\n");
 
+WriteLiteral("            <div");
+
+WriteLiteral(" class=\"form-group\"");
+
+WriteLiteral(">\r\n                <label");
+
+WriteLiteral(" class=\"control-label col-md-2\"");
+
+WriteLiteral(">封面</label>\r\n                <div");
+
+WriteLiteral(" class=\"col-md-6\"");
+
+WriteLiteral(">\r\n");
+
+WriteLiteral("                    ");
+
             
-            #line 91 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 94 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+               Write(Html.Editor(Article._.Cover, entity));
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n                </div>\r\n            </div>\r\n");
+
+            
+            #line 97 "..\..\Areas\CMS\Views\Article\Form.cshtml"
             
             
             #line default
             #line hidden
             
-            #line 91 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 97 "..\..\Areas\CMS\Views\Article\Form.cshtml"
        Write(Html.Partial("_UserTime", Model as IEntity));
 
             
             #line default
             #line hidden
             
-            #line 91 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 97 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                                                         
             
             
             #line default
             #line hidden
             
-            #line 92 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 98 "..\..\Areas\CMS\Views\Article\Form.cshtml"
        Write(Html.Partial("_Form_Action", isNew));
 
             
             #line default
             #line hidden
             
-            #line 92 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 98 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                                                 
         }
 

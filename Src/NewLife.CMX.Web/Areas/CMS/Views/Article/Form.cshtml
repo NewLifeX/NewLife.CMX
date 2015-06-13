@@ -88,6 +88,12 @@
                     @Html.TextArea(Article._.Remark, article.Remark, 5, 100, null)
                 </div>
             </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">封面</label>
+                <div class="col-md-6">
+                    @Html.Editor(Article._.Cover, entity)
+                </div>
+            </div>
             @Html.Partial("_UserTime", Model as IEntity)
             @Html.Partial("_Form_Action", isNew)
         }
