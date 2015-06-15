@@ -39,9 +39,9 @@ namespace NewLife.CMX.Web.Controllers
 
             // 选择模版
             var viewName = "Category";
-            if (!String.IsNullOrEmpty(Channel.CategoryTemplate)) viewName = Channel.CategoryTemplate;
+            if (!String.IsNullOrEmpty(Channel.TitleTemplate)) viewName = Channel.TitleTemplate;
 
-            if (!String.IsNullOrEmpty(cat.CategoryTemplate)) viewName = cat.CategoryTemplate;
+            if (!String.IsNullOrEmpty(cat.TitleTemplate)) viewName = cat.TitleTemplate;
 
             //ViewBag.Category = cat;
             //ViewBag.Channel = Channel;
@@ -69,10 +69,10 @@ namespace NewLife.CMX.Web.Controllers
 
             // 选择模版
             var viewName = "Detail";
-            if (!String.IsNullOrEmpty(Channel.TitleTemplate)) viewName = Channel.TitleTemplate;
+            if (!String.IsNullOrEmpty(Channel.ContentTemplate)) viewName = Channel.ContentTemplate;
 
             var cat = title.Category;
-            if (!String.IsNullOrEmpty(cat.TitleTemplate)) viewName = cat.TitleTemplate;
+            if (!String.IsNullOrEmpty(cat.ContentTemplate)) viewName = cat.ContentTemplate;
 
             // 增加浏览数
             title.Views++;
