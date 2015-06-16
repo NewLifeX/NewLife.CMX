@@ -341,7 +341,15 @@ namespace NewLife.CMX
 
         public static Int32 GetTitleCount(Int32 categoryid)
         {
-            return FindCount(_.CategoryID, categoryid);
+            var provider = ModelProvider.Get(typeof(TEntity));
+            var cat = provider.CategoryFactory.FindByID(categoryid);
+            var childs = cat.FindAllChildsExcept(null).Cast<IEntityCategory>();
+            // 只要末级节点
+            childs = childs.Where(e => e.Childs.Count == 0);
+
+            var exp = _.CategoryID.In(childs.Select(e => e.ID));
+            return FindCount(exp);
+            //return FindCount(_.CategoryID, categoryid);
         }
         #endregion
 
