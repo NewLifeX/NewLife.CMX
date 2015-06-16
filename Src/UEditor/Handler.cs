@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using Newtonsoft.Json;
 
 namespace UEditor
 {
 
-    /// <summary>
-    /// Handler 的摘要说明
-    /// </summary>
+    /// <summary>处理器基类</summary>
     public abstract class Handler
     {
         public Handler(HttpContext context)

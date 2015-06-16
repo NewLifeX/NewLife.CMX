@@ -1,11 +1,8 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Dynamic;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Web;
+using Newtonsoft.Json.Linq;
 
 namespace UEditor
 {
@@ -14,7 +11,6 @@ namespace UEditor
     /// </summary>
     public static class Config
     {
-
         private static bool noCache = true;
         private static JObject BuildItems()
         {
@@ -34,7 +30,6 @@ namespace UEditor
             }
         }
         private static JObject _Items;
-
 
         public static T GetValue<T>(string key)
         {

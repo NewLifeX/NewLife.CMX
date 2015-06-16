@@ -1,6 +1,4 @@
-﻿using Qiniu.RS;
-using Qiniu.RSF;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -53,31 +51,12 @@ namespace UEditor
             var buildingList = new List<String>();
             try
             {
-                if (!QiniuConfig.Current.IsEnable)
-                {
-                    var localPath = Server.MapPath(PathToList);
-                    buildingList.AddRange(Directory.GetFiles(localPath, "*", SearchOption.AllDirectories)
-                        .Where(x => SearchExtensions.Contains(Path.GetExtension(x).ToLower()))
-                        .Select(x => PathToList + x.Substring(localPath.Length).Replace("\\", "/")));
-                    Total = buildingList.Count;
-                    FileList = buildingList.OrderBy(x => x).Skip(Start).Take(Size).ToArray();
-                }
-                else
-                {
-                    Qiniu.RSF.RSFClient rsf = new Qiniu.RSF.RSFClient(QiniuConfig.Current.BucketName);
-                    rsf.Prefix = "Demo";
-                    rsf.Limit = 100;
-                    List<DumpItem> items;
-                    List<string> list = new List<string>();
-                    while ((items = rsf.Next()) != null)
-                    {
-                        foreach (DumpItem item in items)
-                        {
-                            list.Add(GetPolicy.MakeBaseUrl(QiniuConfig.Current.Domain, item.Key) + "#" + Utilities.getExtensionForMimeType(item.Mime));
-                        }                        
-                    }
-                    FileList = list.ToArray();
-                }
+                var localPath = Server.MapPath(PathToList);
+                buildingList.AddRange(Directory.GetFiles(localPath, "*", SearchOption.AllDirectories)
+                    .Where(x => SearchExtensions.Contains(Path.GetExtension(x).ToLower()))
+                    .Select(x => PathToList + x.Substring(localPath.Length).Replace("\\", "/")));
+                Total = buildingList.Count;
+                FileList = buildingList.OrderBy(x => x).Skip(Start).Take(Size).ToArray();
             }
             catch (UnauthorizedAccessException)
             {

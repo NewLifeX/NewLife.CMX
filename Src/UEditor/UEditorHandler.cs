@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web;
-using Qiniu;
+﻿using System.Web;
 
 namespace UEditor
 {
-
+    /// <summary>UE处理器</summary>
     public class UEditorHandler : IHttpHandler
     {
         public void ProcessRequest(HttpContext context)
         {
-            QiniuConfig.QiuniuInit();
-
             Handler action = null;
             switch (context.Request["action"])
             {
@@ -74,12 +67,6 @@ namespace UEditor
             action.Process();
         }
 
-        public bool IsReusable
-        {
-            get
-            {
-                return false;
-            }
-        }
+        public bool IsReusable { get { return false; } }
     }
 }

@@ -1,11 +1,6 @@
-﻿using Qiniu.FileOp;
-using Qiniu.IO;
-using Qiniu.RS;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Web;
 
 namespace UEditor
@@ -13,7 +8,6 @@ namespace UEditor
     /// <summary>UploadHandler 的摘要说明</summary>
     public class UploadHandler : Handler
     {
-        public string domain = "7xioaj.com1.z0.glb.clouddn.com";
         public UploadConfig UploadConfig { get; private set; }
         public UploadResult Result { get; private set; }
 
@@ -23,14 +17,7 @@ namespace UEditor
             this.UploadConfig = config;
             this.Result = new UploadResult() { State = UploadState.Unknown };
         }
-        public static PutRet PutFile(string bucket, string key, string fname)
-        {
-            var policy = new PutPolicy(bucket, 3600);
-            string upToken = policy.Token();
-            PutExtra extra = new PutExtra();
-            IOClient client = new IOClient();
-            return client.PutFile(upToken, key, fname, extra);
-        }
+
         public override void Process()
         {
             byte[] uploadFileBytes = null;
@@ -82,13 +69,6 @@ namespace UEditor
                     Directory.CreateDirectory(Path.GetDirectoryName(localPath));
                 }
                 File.WriteAllBytes(localPath, uploadFileBytes);
-                ///是否开启云存储
-                if (QiniuConfig.Current.IsEnable)
-                {
-                    var rs = PutFile(QiniuConfig.Current.BucketName, "Demo" + Guid.NewGuid().ToString(), localPath);
-                    var url = GetPolicy.MakeBaseUrl(domain, rs.key);
-                    savePath = url;
-                }
                 Result.Url = savePath;
                 Result.State = UploadState.Success;
             }
@@ -184,5 +164,4 @@ namespace UEditor
         NetworkError = -4,
         Unknown = 1,
     }
-
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -7,9 +6,7 @@ using System.Web;
 
 namespace UEditor
 {
-    /// <summary>
-    /// Crawler 的摘要说明
-    /// </summary>
+    /// <summary>抓取处理器</summary>
     public class CrawlerHandler : Handler
     {
         private string[] Sources;
@@ -72,11 +69,7 @@ namespace UEditor
                     return this;
                 }
                 ServerUrl = PathFormatter.Format(Path.GetFileName(this.SourceUrl), Config.GetString("catcherPathFormat"));
-                var savePath = Server.MapPath(ServerUrl);
-                if (!Directory.Exists(Path.GetDirectoryName(savePath)))
-                {
-                    Directory.CreateDirectory(Path.GetDirectoryName(savePath));
-                }
+                var savePath = ServerUrl.GetFullPath().EnsureDirectory();
                 try
                 {
                     var stream = response.GetResponseStream();

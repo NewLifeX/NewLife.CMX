@@ -1,10 +1,9 @@
-﻿
-using System.IO;
+﻿using System.IO;
+
 namespace UEditor
 {
     public class Utilities
     {
-
         public static string getExtensionForMimeType(string MimeType)
         {
             string retval = "";
