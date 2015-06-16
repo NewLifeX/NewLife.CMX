@@ -7648,9 +7648,8 @@
             <returns></returns>
         </member>
         <member name="M:System.SecurityHelper.Encrypt(System.Security.Cryptography.SymmetricAlgorithm,System.IO.Stream,System.IO.Stream)">
-            <summary>对称加密算法扩展
-            <para>注意：CryptoStream会把 outstream 数据流关闭</para>
-            </summary>
+            <summary>对称加密算法扩展</summary>
+            <remarks>注意：CryptoStream会把 outstream 数据流关闭</remarks>
             <param name="sa"></param>
             <param name="instream"></param>
             <param name="outstream"></param>
@@ -13134,75 +13133,6 @@
         </member>
         <member name="P:NewLife.Security.Crc32.Value">
             <summary>校验值</summary>
-        </member>
-        <member name="T:NewLife.Security.DataHelper">
-            <summary>数据助手</summary>
-        </member>
-        <member name="M:NewLife.Security.DataHelper.Hash(System.String)">
-            <summary>MD5散列</summary>
-            <param name="str"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Security.DataHelper.HashFile(System.String)">
-            <summary>文件散列</summary>
-            <param name="filename"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Security.DataHelper.Encrypt(System.String,System.String)">
-            <summary>TripleDES加密</summary>
-            <param name="content">UTD8编码的明文</param>
-            <param name="key">密码字符串经MD5散列后作为DES密码</param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Security.DataHelper.Encrypt(System.Byte[],System.String)">
-            <summary>TripleDES加密</summary>
-            <param name="data"></param>
-            <param name="key">密码字符串经MD5散列后作为DES密码</param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Security.DataHelper.Descrypt(System.String,System.String)">
-            <summary>TripleDES解密</summary>
-            <param name="content">UTD8编码的密文</param>
-            <param name="key">密码字符串经MD5散列后作为DES密码</param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Security.DataHelper.Descrypt(System.Byte[],System.String)">
-            <summary>TripleDES解密</summary>
-            <param name="data"></param>
-            <param name="key">密码字符串经MD5散列后作为DES密码</param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Security.DataHelper.RC4(System.Byte[],System.String)">
-            <summary>RC4加密解密</summary>
-            <param name="data">数据</param>
-            <param name="pass">UTF8编码的密码</param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Security.DataHelper.GetKey(System.Byte[],System.Int32)">
-            <summary>打乱密码</summary>
-            <param name="pass">密码</param>
-            <param name="kLen">密码箱长度</param>
-            <returns>打乱后的密码</returns>
-        </member>
-        <member name="M:NewLife.Security.DataHelper.Sign(System.Byte[],System.String)">
-            <summary>签名</summary>
-            <param name="data"></param>
-            <param name="priKey"></param>
-            <returns>Base64编码的签名</returns>
-        </member>
-        <member name="M:NewLife.Security.DataHelper.Verify(System.Byte[],System.String,System.String)">
-            <summary>验证签名</summary>
-            <param name="data">待验证的数据</param>
-            <param name="signdata">Base64编码的签名</param>
-            <param name="pubKey">公钥</param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Security.DataHelper.FromHex(System.String,System.Int32,System.Int32)">
-            <summary>把十六进制字符串解码字节数组</summary>
-            <param name="data"></param>
-            <param name="startIndex">起始位置</param>
-            <param name="length">长度</param>
-            <returns></returns>
         </member>
         <member name="T:NewLife.Common.HardInfo">
             <summary>硬件信息</summary>
