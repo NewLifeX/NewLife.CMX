@@ -1,18 +1,20 @@
-﻿@model NewLife.CMX.Web.Models.Content.DetailModel
+﻿@model NewLife.CMX.IEntityTitle
 @{
-    //ViewBag.Title = Model.Detail.Title + " " + Model.Detail.CategoryName;
+    var Channel = ViewBag.Channel as Channel;
+    var Category = ViewBag.Category as IEntityCategory;
+
     this.PushTitle(Model.Category.Name);
-    this.PushTitle(Model.Detail.Title);
+    this.PushTitle(Model.Title);
 }
 <div class="container">
     <div class="row">
         <h2 class="text-center">
-            @Model.Detail.Title
+            @Model.Title
         </h2>
         <h3 class="text-center">
-            <em class="e e1">来源：@Model.Detail.CreateUserName</em>
-            <em class="e e2">发布时间：@Model.Detail.CreateTime.ToFullString()</em>
-            <em class="e e3">浏览：@Model.Detail.Views.ToString("n0")</em>
+            <em class="e e1">来源：@Model.CreateUserName</em>
+            <em class="e e2">发布时间：@Model.CreateTime.ToFullString()</em>
+            <em class="e e3">浏览：@Model.Views.ToString("n0")</em>
         </h3>
         <div class="content">
             <style type="text/css">
@@ -71,7 +73,7 @@
                 }
             </style>
             <div class="TRS_Editor">
-                @Html.Raw(Model.Detail.ContentText)
+                @Html.Raw(Model.ContentText)
             </div>
         </div>
     </div>

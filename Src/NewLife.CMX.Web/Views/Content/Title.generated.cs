@@ -37,31 +37,36 @@ namespace ASP
     using XCode.Membership;
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorGenerator", "2.0.0.0")]
-    [System.Web.WebPages.PageVirtualPathAttribute("~/Views/Content/Index.cshtml")]
-    public partial class _Views_Content_Index_cshtml : System.Web.Mvc.WebViewPage<NewLife.CMX.Channel>
+    [System.Web.WebPages.PageVirtualPathAttribute("~/Views/Content/Title.cshtml")]
+    public partial class _Views_Content_Title_cshtml : System.Web.Mvc.WebViewPage<NewLife.CMX.IEntityTitle>
     {
-        public _Views_Content_Index_cshtml()
+        public _Views_Content_Title_cshtml()
         {
         }
         public override void Execute()
         {
             
-            #line 2 "..\..\Views\Content\Index.cshtml"
+            #line 2 "..\..\Views\Content\Title.cshtml"
   
+    var Channel = ViewBag.Channel as Channel;
+    var Category = ViewBag.Category as IEntityCategory;
+
+    this.PushTitle(Model.Category.Name);
+    this.PushTitle(Model.Title);
 
             
             #line default
             #line hidden
-WriteLiteral("\r\n请配置频道【");
+WriteLiteral("\r\n请设置【");
 
             
-            #line 4 "..\..\Views\Content\Index.cshtml"
- Write(Model);
+            #line 9 "..\..\Views\Content\Title.cshtml"
+Write(Model.Category);
 
             
             #line default
             #line hidden
-WriteLiteral("】的Index模板。");
+WriteLiteral("】的标题模版。");
 
         }
     }

@@ -175,17 +175,30 @@
     <Compile Include="Common\ViewHelper.cs" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Models\Content\CategoryModel.cs" />
-    <Compile Include="Models\Content\DetailModel.cs" />
+    <Compile Include="Views\Article\Category.generated.cs">
+      <DependentUpon>Category.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Views\Article\Index.generated.cs">
+      <DependentUpon>Index.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Views\Article\Title.generated.cs">
+      <DependentUpon>Title.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Views\Content\Category.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Category.cshtml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Content\Detail.generated.cs">
+    <Compile Include="Views\Content\Title.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Detail.cshtml</DependentUpon>
+      <DependentUpon>Title.cshtml</DependentUpon>
     </Compile>
     <Compile Include="Views\Content\Index.generated.cs">
       <AutoGen>True</AutoGen>
@@ -584,13 +597,25 @@
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.eot" />
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.ttf" />
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.woff" />
+    <Content Include="Views\Article\Category.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Category.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Views\Article\Index.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Index.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Views\Article\Title.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Title.generated.cs</LastGenOutput>
+    </Content>
     <None Include="Views\Content\Category.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Category.generated.cs</LastGenOutput>
     </None>
-    <None Include="Views\Content\Detail.cshtml">
+    <None Include="Views\Content\Title.cshtml">
       <Generator>RazorGenerator</Generator>
-      <LastGenOutput>Detail.generated.cs</LastGenOutput>
+      <LastGenOutput>Title.generated.cs</LastGenOutput>
     </None>
     <None Include="Views\Content\Index.cshtml">
       <Generator>RazorGenerator</Generator>
@@ -656,6 +681,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

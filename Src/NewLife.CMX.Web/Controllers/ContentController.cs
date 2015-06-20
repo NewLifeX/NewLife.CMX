@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web.Mvc;
-using NewLife.CMX.Web.Models.Content;
 
 namespace NewLife.CMX.Web.Controllers
 {
@@ -32,6 +31,17 @@ namespace NewLife.CMX.Web.Controllers
             _channel = Channel.FindByName(name);
         }
 
+        public ActionResult Index()
+        {
+            // 选择模版
+            var viewName = Channel.IndexTemplate;
+            if (viewName.IsNullOrEmpty()) viewName = Channel.Name + ".Index";
+
+            ViewBag.Channel = Channel;
+
+            return View(viewName, Channel);
+        }
+
         public ActionResult List(Int32 categoryid, Int32? pageindex)
         {
             var cat = Channel.FindCategory(categoryid);
@@ -39,22 +49,14 @@ namespace NewLife.CMX.Web.Controllers
 
             // 选择模版
             var viewName = cat.GetCategoryTemplate();
-            if (viewName.IsNullOrEmpty()) viewName = "Category." + Channel.Name;
+            if (viewName.IsNullOrEmpty()) viewName = Channel.Name + ".Category";
 
-            //ViewBag.Category = cat;
-            //ViewBag.Channel = Channel;
-            //ViewBag.PageIndex = pageindex ?? 1;
-            //ViewBag.PageSize = PageSize;
+            ViewBag.Channel = Channel;
+            ViewBag.Category = cat;
+            ViewBag.PageIndex = pageindex ?? 1;
+            ViewBag.PageSize = PageSize;
 
-            //return View(viewName, cat);
-            var vm = new CategoryModel
-            {
-                Category = cat,
-                Channel = Channel,
-                PageIndex = pageindex ?? 1,
-                PageSize = PageSize
-            };
-            return View(viewName, vm);
+            return View(viewName, cat);
         }
 
         /// <summary>主题详细页</summary>
@@ -68,24 +70,16 @@ namespace NewLife.CMX.Web.Controllers
 
             // 选择模版
             var viewName = cat.GetTitleTemplate();
-            if (viewName.IsNullOrEmpty()) viewName = "Title." + Channel.Name;
+            if (viewName.IsNullOrEmpty()) viewName = Channel.Name + ".Title";
 
             // 增加浏览数
             title.Views++;
             title.Statistics.Increment(null);
 
-            //ViewBag.Channel = Channel;
-            //ViewBag.Category = cat;
+            ViewBag.Channel = Channel;
+            ViewBag.Category = cat;
 
-            //return View(viewName, title);
-            var vm = new DetailModel
-            {
-                Channel = Channel,
-                Category = cat,
-                Detail = title
-            };
-
-            return View(viewName, vm);
+            return View(viewName, title);
         }
     }
 }

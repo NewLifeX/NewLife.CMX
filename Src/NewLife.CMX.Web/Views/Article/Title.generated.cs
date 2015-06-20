@@ -37,20 +37,22 @@ namespace ASP
     using XCode.Membership;
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorGenerator", "2.0.0.0")]
-    [System.Web.WebPages.PageVirtualPathAttribute("~/Views/Content/Detail.cshtml")]
-    public partial class _Views_Content_Detail_cshtml : System.Web.Mvc.WebViewPage<NewLife.CMX.Web.Models.Content.DetailModel>
+    [System.Web.WebPages.PageVirtualPathAttribute("~/Views/Article/Title.cshtml")]
+    public partial class _Views_Article_Title_cshtml : System.Web.Mvc.WebViewPage<NewLife.CMX.IEntityTitle>
     {
-        public _Views_Content_Detail_cshtml()
+        public _Views_Article_Title_cshtml()
         {
         }
         public override void Execute()
         {
             
-            #line 2 "..\..\Views\Content\Detail.cshtml"
+            #line 2 "..\..\Views\Article\Title.cshtml"
   
-    //ViewBag.Title = Model.Detail.Title + " " + Model.Detail.CategoryName;
+    var Channel = ViewBag.Channel as Channel;
+    var Category = ViewBag.Category as IEntityCategory;
+
     this.PushTitle(Model.Category.Name);
-    this.PushTitle(Model.Detail.Title);
+    this.PushTitle(Model.Title);
 
             
             #line default
@@ -72,8 +74,8 @@ WriteLiteral(">\r\n");
 WriteLiteral("            ");
 
             
-            #line 10 "..\..\Views\Content\Detail.cshtml"
-       Write(Model.Detail.Title);
+            #line 12 "..\..\Views\Article\Title.cshtml"
+       Write(Model.Title);
 
             
             #line default
@@ -89,8 +91,8 @@ WriteLiteral(" class=\"e e1\"");
 WriteLiteral(">来源：");
 
             
-            #line 13 "..\..\Views\Content\Detail.cshtml"
-                           Write(Model.Detail.CreateUserName);
+            #line 15 "..\..\Views\Article\Title.cshtml"
+                           Write(Model.CreateUserName);
 
             
             #line default
@@ -102,8 +104,8 @@ WriteLiteral(" class=\"e e2\"");
 WriteLiteral(">发布时间：");
 
             
-            #line 14 "..\..\Views\Content\Detail.cshtml"
-                             Write(Model.Detail.CreateTime.ToFullString());
+            #line 16 "..\..\Views\Article\Title.cshtml"
+                             Write(Model.CreateTime.ToFullString());
 
             
             #line default
@@ -115,8 +117,8 @@ WriteLiteral(" class=\"e e3\"");
 WriteLiteral(">浏览：");
 
             
-            #line 15 "..\..\Views\Content\Detail.cshtml"
-                           Write(Model.Detail.Views.ToString("n0"));
+            #line 17 "..\..\Views\Article\Title.cshtml"
+                           Write(Model.Views.ToString("n0"));
 
             
             #line default
@@ -157,8 +159,8 @@ WriteLiteral(">\r\n");
 WriteLiteral("                ");
 
             
-            #line 74 "..\..\Views\Content\Detail.cshtml"
-           Write(Html.Raw(Model.Detail.ContentText));
+            #line 76 "..\..\Views\Article\Title.cshtml"
+           Write(Html.Raw(Model.ContentText));
 
             
             #line default

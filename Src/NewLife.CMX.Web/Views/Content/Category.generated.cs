@@ -38,7 +38,7 @@ namespace ASP
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorGenerator", "2.0.0.0")]
     [System.Web.WebPages.PageVirtualPathAttribute("~/Views/Content/Category.cshtml")]
-    public partial class _Views_Content_Category_cshtml : System.Web.Mvc.WebViewPage<dynamic>
+    public partial class _Views_Content_Category_cshtml : System.Web.Mvc.WebViewPage<NewLife.CMX.IEntityCategory>
     {
         public _Views_Content_Category_cshtml()
         {
@@ -46,13 +46,24 @@ namespace ASP
         public override void Execute()
         {
             
-            #line 1 "..\..\Views\Content\Category.cshtml"
+            #line 2 "..\..\Views\Content\Category.cshtml"
   
-    ViewBag.Title = "Category";
+    var Channel = ViewBag.Channel as Channel;
 
             
             #line default
             #line hidden
+WriteLiteral("\r\n请设置分类【");
+
+            
+            #line 5 "..\..\Views\Content\Category.cshtml"
+ Write(Model);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("】的分类模版。");
+
         }
     }
 }

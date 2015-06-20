@@ -1,0 +1,9 @@
+﻿@model NewLife.CMX.IEntityTitle
+@{
+    var Channel = ViewBag.Channel as Channel;
+    var Category = ViewBag.Category as IEntityCategory;
+
+    this.PushTitle(Model.Category.Name);
+    this.PushTitle(Model.Title);
+}
+请设置【@Model.Category】的标题模版。

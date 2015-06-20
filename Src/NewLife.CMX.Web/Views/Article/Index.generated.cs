@@ -37,16 +37,16 @@ namespace ASP
     using XCode.Membership;
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorGenerator", "2.0.0.0")]
-    [System.Web.WebPages.PageVirtualPathAttribute("~/Views/Content/Index.cshtml")]
-    public partial class _Views_Content_Index_cshtml : System.Web.Mvc.WebViewPage<NewLife.CMX.Channel>
+    [System.Web.WebPages.PageVirtualPathAttribute("~/Views/Article/Index.cshtml")]
+    public partial class _Views_Article_Index_cshtml : System.Web.Mvc.WebViewPage<NewLife.CMX.Channel>
     {
-        public _Views_Content_Index_cshtml()
+        public _Views_Article_Index_cshtml()
         {
         }
         public override void Execute()
         {
             
-            #line 2 "..\..\Views\Content\Index.cshtml"
+            #line 2 "..\..\Views\Article\Index.cshtml"
   
 
             
@@ -55,7 +55,7 @@ namespace ASP
 WriteLiteral("\r\n请配置频道【");
 
             
-            #line 4 "..\..\Views\Content\Index.cshtml"
+            #line 4 "..\..\Views\Article\Index.cshtml"
  Write(Model);
 
             
