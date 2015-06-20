@@ -55,7 +55,7 @@ namespace NewLife.CMX.Web.Controllers
             viewName = "../{0}/{1}".F(Channel.Name, viewName);
 
             ViewBag.Channel = Channel;
-            //ViewBag.Category = cat;
+            ViewBag.Category = cat;
             //ViewBag.PageIndex = pageindex ?? 1;
             //ViewBag.PageSize = PageSize;
 
