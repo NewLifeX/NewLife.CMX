@@ -180,8 +180,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Views\Article\Index.generated.cs">
-      <DependentUpon>Index.cshtml</DependentUpon>
+    <Compile Include="Views\Article\Channel.generated.cs">
+      <DependentUpon>Channel.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -601,9 +601,9 @@
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Category.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Views\Article\Index.cshtml">
+    <Content Include="Views\Article\Channel.cshtml">
       <Generator>RazorGenerator</Generator>
-      <LastGenOutput>Index.generated.cs</LastGenOutput>
+      <LastGenOutput>Channel.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Views\Article\Title.cshtml">
       <Generator>RazorGenerator</Generator>

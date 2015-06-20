@@ -36,7 +36,7 @@ namespace NewLife.CMX.Web.Controllers
         {
             // 选择模版
             var viewName = Channel.IndexTemplate;
-            if (viewName.IsNullOrEmpty()) viewName = "Index";
+            if (viewName.IsNullOrEmpty()) viewName = "Channel";
             viewName = "../{0}/{1}".F(Channel.Name, viewName);
 
             ViewBag.Channel = Channel;
