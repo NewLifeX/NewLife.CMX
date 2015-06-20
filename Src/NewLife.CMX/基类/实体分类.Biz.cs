@@ -289,6 +289,48 @@ namespace NewLife.CMX
 
         #region 业务
         #endregion
+
+        #region 模版
+        /// <summary>获取模版。就近原则</summary>
+        /// <param name="kind">模版类型。Category/Title/Detail</param>
+        /// <returns></returns>
+        public String GetTemplate(String kind)
+        {
+            if (String.IsNullOrEmpty(kind)) kind = "category";
+
+            kind = (kind + "").Trim().ToLower();
+
+            var tmp = "";
+            switch (kind)
+            {
+                case "category":
+                    tmp = CategoryTemplate;
+                    break;
+                case "title":
+                    tmp = TitleTemplate;
+                    break;
+                default:
+                    break;
+            }
+            if (!tmp.IsNullOrWhiteSpace()) return tmp;
+
+            // 找上一级
+            if (ParentID > 0 && Parent != null) return Parent.GetTemplate(kind);
+
+            // 如果顶级分类，则找频道
+            if (Channel != null) return Channel.CategoryTemplate;
+
+            return null;
+        }
+
+        /// <summary>获取分类模版</summary>
+        /// <returns></returns>
+        public String GetCategoryTemplate() { return GetTemplate("category"); }
+
+        /// <summary>获取标题模版</summary>
+        /// <returns></returns>
+        public String GetTitleTemplate() { return GetTemplate("title"); }
+        #endregion
     }
 
     partial interface IEntityCategory
@@ -299,5 +341,13 @@ namespace NewLife.CMX
         Int32 GetTitleCount();
 
         IEntityTitle FindTitle(Int32 id);
+
+        /// <summary>获取分类模版</summary>
+        /// <returns></returns>
+        String GetCategoryTemplate();
+
+        /// <summary>获取标题模版</summary>
+        /// <returns></returns>
+        String GetTitleTemplate();
     }
 }

@@ -38,10 +38,8 @@ namespace NewLife.CMX.Web.Controllers
             if (cat == null) return HttpNotFound();
 
             // 选择模版
-            var viewName = "Category";
-            if (!String.IsNullOrEmpty(Channel.TitleTemplate)) viewName = Channel.TitleTemplate;
-
-            if (!String.IsNullOrEmpty(cat.TitleTemplate)) viewName = cat.TitleTemplate;
+            var viewName = cat.GetCategoryTemplate();
+            if (viewName.IsNullOrEmpty()) viewName = "Category";
 
             //ViewBag.Category = cat;
             //ViewBag.Channel = Channel;
@@ -66,13 +64,11 @@ namespace NewLife.CMX.Web.Controllers
         {
             var title = Channel.FindTitle(id);
             if (title == null) return HttpNotFound();
+            var cat = title.Category;
 
             // 选择模版
-            var viewName = "Detail";
-            if (!String.IsNullOrEmpty(Channel.ContentTemplate)) viewName = Channel.ContentTemplate;
-
-            var cat = title.Category;
-            if (!String.IsNullOrEmpty(cat.ContentTemplate)) viewName = cat.ContentTemplate;
+            var viewName = cat.GetCategoryTemplate();
+            if (viewName.IsNullOrEmpty()) viewName = "Title";
 
             // 增加浏览数
             title.Views++;
@@ -89,7 +85,7 @@ namespace NewLife.CMX.Web.Controllers
                 Detail = title
             };
 
-            return View(viewName,vm);
+            return View(viewName, vm);
         }
     }
 }
