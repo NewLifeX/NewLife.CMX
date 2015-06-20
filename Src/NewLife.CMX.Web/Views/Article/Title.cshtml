@@ -12,7 +12,7 @@
             @Model.Title
         </h2>
         <h3 class="text-center">
-            <em class="e e1">来源：@Model.CreateUserName</em>
+            <em class="e e1">来源：@(Model as IUserInfo).CreateUserName</em>
             <em class="e e2">发布时间：@Model.CreateTime.ToFullString()</em>
             <em class="e e3">浏览：@Model.Views.ToString("n0")</em>
         </h3>

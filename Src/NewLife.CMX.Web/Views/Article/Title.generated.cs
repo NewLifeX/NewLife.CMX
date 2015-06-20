@@ -92,12 +92,12 @@ WriteLiteral(">来源：");
 
             
             #line 15 "..\..\Views\Article\Title.cshtml"
-                           Write(Model.CreateUserName);
+                            Write(Model as IUserInfo);
 
             
             #line default
             #line hidden
-WriteLiteral("</em>\r\n            <em");
+WriteLiteral(".CreateUserName</em>\r\n            <em");
 
 WriteLiteral(" class=\"e e2\"");
 

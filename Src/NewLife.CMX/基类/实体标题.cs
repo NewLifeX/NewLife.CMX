@@ -13,6 +13,7 @@ namespace NewLife.CMX
     [DataObject]
     [Description("实体标题")]
     [BindIndex("IX_EntityTitle_CategoryID", false, "CategoryID")]
+    [BindIndex("IX_EntityTitle_PublishTime", false, "PublishTime")]
     [BindTable("EntityTitle", Description = "实体标题", ConnName = "CMX", DbType = DatabaseType.None)]
     public abstract partial class EntityTitle<TEntity> : IEntityTitle
     {
@@ -101,28 +102,28 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.Views, value)) { _Views = value; OnPropertyChanged(__.Views); } }
         }
 
+        private DateTime _PublishTime;
+        /// <summary>发布时间</summary>
+        [DisplayName("发布时间")]
+        [Description("发布时间")]
+        [DataObjectField(false, false, true, 3)]
+        [BindColumn(8, "PublishTime", "发布时间", null, "datetime", 3, 0, false)]
+        public virtual DateTime PublishTime
+        {
+            get { return _PublishTime; }
+            set { if (OnPropertyChanging(__.PublishTime, value)) { _PublishTime = value; OnPropertyChanged(__.PublishTime); } }
+        }
+
         private Int32 _CreateUserID;
         /// <summary>创建人</summary>
         [DisplayName("创建人")]
         [Description("创建人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(8, "CreateUserID", "创建人", null, "int", 10, 0, false)]
+        [BindColumn(9, "CreateUserID", "创建人", null, "int", 10, 0, false)]
         public virtual Int32 CreateUserID
         {
             get { return _CreateUserID; }
             set { if (OnPropertyChanging(__.CreateUserID, value)) { _CreateUserID = value; OnPropertyChanged(__.CreateUserID); } }
-        }
-
-        private String _CreateUserName;
-        /// <summary>创建人</summary>
-        [DisplayName("创建人")]
-        [Description("创建人")]
-        [DataObjectField(false, false, true, 50)]
-        [BindColumn(9, "CreateUserName", "创建人", null, "nvarchar(50)", 0, 0, true)]
-        public virtual String CreateUserName
-        {
-            get { return _CreateUserName; }
-            set { if (OnPropertyChanging(__.CreateUserName, value)) { _CreateUserName = value; OnPropertyChanged(__.CreateUserName); } }
         }
 
         private DateTime _CreateTime;
@@ -149,24 +150,12 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.UpdateUserID, value)) { _UpdateUserID = value; OnPropertyChanged(__.UpdateUserID); } }
         }
 
-        private String _UpdateUserName;
-        /// <summary>更新人</summary>
-        [DisplayName("更新人")]
-        [Description("更新人")]
-        [DataObjectField(false, false, true, 50)]
-        [BindColumn(12, "UpdateUserName", "更新人", null, "nvarchar(50)", 0, 0, true)]
-        public virtual String UpdateUserName
-        {
-            get { return _UpdateUserName; }
-            set { if (OnPropertyChanging(__.UpdateUserName, value)) { _UpdateUserName = value; OnPropertyChanged(__.UpdateUserName); } }
-        }
-
         private DateTime _UpdateTime;
         /// <summary>更新时间</summary>
         [DisplayName("更新时间")]
         [Description("更新时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(13, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
+        [BindColumn(12, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
         public virtual DateTime UpdateTime
         {
             get { return _UpdateTime; }
@@ -178,7 +167,7 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(14, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(13, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Remark
         {
             get { return _Remark; }
@@ -207,11 +196,10 @@ namespace NewLife.CMX
                     case __.Version : return _Version;
                     case __.StatisticsID : return _StatisticsID;
                     case __.Views : return _Views;
+                    case __.PublishTime : return _PublishTime;
                     case __.CreateUserID : return _CreateUserID;
-                    case __.CreateUserName : return _CreateUserName;
                     case __.CreateTime : return _CreateTime;
                     case __.UpdateUserID : return _UpdateUserID;
-                    case __.UpdateUserName : return _UpdateUserName;
                     case __.UpdateTime : return _UpdateTime;
                     case __.Remark : return _Remark;
                     default: return base[name];
@@ -228,11 +216,10 @@ namespace NewLife.CMX
                     case __.Version : _Version = Convert.ToInt32(value); break;
                     case __.StatisticsID : _StatisticsID = Convert.ToInt32(value); break;
                     case __.Views : _Views = Convert.ToInt32(value); break;
+                    case __.PublishTime : _PublishTime = Convert.ToDateTime(value); break;
                     case __.CreateUserID : _CreateUserID = Convert.ToInt32(value); break;
-                    case __.CreateUserName : _CreateUserName = Convert.ToString(value); break;
                     case __.CreateTime : _CreateTime = Convert.ToDateTime(value); break;
                     case __.UpdateUserID : _UpdateUserID = Convert.ToInt32(value); break;
-                    case __.UpdateUserName : _UpdateUserName = Convert.ToString(value); break;
                     case __.UpdateTime : _UpdateTime = Convert.ToDateTime(value); break;
                     case __.Remark : _Remark = Convert.ToString(value); break;
                     default: base[name] = value; break;
@@ -266,20 +253,17 @@ namespace NewLife.CMX
             ///<summary>访问量。由统计表同步过来</summary>
             public static readonly Field Views = FindByName(__.Views);
 
-            ///<summary>创建人</summary>
-            public static readonly Field CreateUserID = FindByName(__.CreateUserID);
+            ///<summary>发布时间</summary>
+            public static readonly Field PublishTime = FindByName(__.PublishTime);
 
             ///<summary>创建人</summary>
-            public static readonly Field CreateUserName = FindByName(__.CreateUserName);
+            public static readonly Field CreateUserID = FindByName(__.CreateUserID);
 
             ///<summary>创建时间</summary>
             public static readonly Field CreateTime = FindByName(__.CreateTime);
 
             ///<summary>更新人</summary>
             public static readonly Field UpdateUserID = FindByName(__.UpdateUserID);
-
-            ///<summary>更新人</summary>
-            public static readonly Field UpdateUserName = FindByName(__.UpdateUserName);
 
             ///<summary>更新时间</summary>
             public static readonly Field UpdateTime = FindByName(__.UpdateTime);
@@ -314,20 +298,17 @@ namespace NewLife.CMX
             ///<summary>访问量。由统计表同步过来</summary>
             public const String Views = "Views";
 
-            ///<summary>创建人</summary>
-            public const String CreateUserID = "CreateUserID";
+            ///<summary>发布时间</summary>
+            public const String PublishTime = "PublishTime";
 
             ///<summary>创建人</summary>
-            public const String CreateUserName = "CreateUserName";
+            public const String CreateUserID = "CreateUserID";
 
             ///<summary>创建时间</summary>
             public const String CreateTime = "CreateTime";
 
             ///<summary>更新人</summary>
             public const String UpdateUserID = "UpdateUserID";
-
-            ///<summary>更新人</summary>
-            public const String UpdateUserName = "UpdateUserName";
 
             ///<summary>更新时间</summary>
             public const String UpdateTime = "UpdateTime";
@@ -364,20 +345,17 @@ namespace NewLife.CMX
         /// <summary>访问量。由统计表同步过来</summary>
         Int32 Views { get; set; }
 
-        /// <summary>创建人</summary>
-        Int32 CreateUserID { get; set; }
+        /// <summary>发布时间</summary>
+        DateTime PublishTime { get; set; }
 
         /// <summary>创建人</summary>
-        String CreateUserName { get; set; }
+        Int32 CreateUserID { get; set; }
 
         /// <summary>创建时间</summary>
         DateTime CreateTime { get; set; }
 
         /// <summary>更新人</summary>
         Int32 UpdateUserID { get; set; }
-
-        /// <summary>更新人</summary>
-        String UpdateUserName { get; set; }
 
         /// <summary>更新时间</summary>
         DateTime UpdateTime { get; set; }

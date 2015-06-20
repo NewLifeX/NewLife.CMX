@@ -410,7 +410,7 @@ namespace NewLife.CMX
         #endregion
     }
 
-    partial interface IEntityTitle
+    partial interface IEntityTitle : IUserInfo
     {
         /// <summary>当前主题的分类</summary>
         IEntityCategory Category { get; }

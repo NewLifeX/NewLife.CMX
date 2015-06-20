@@ -139,20 +139,17 @@ namespace NewLife.CMX
             ///<summary>访问量。由统计表同步过来</summary>
             public static readonly Field Views = FindByName(__.Views);
 
-            ///<summary>创建人</summary>
-            public static readonly Field CreateUserID = FindByName(__.CreateUserID);
+            ///<summary>发布时间</summary>
+            public static readonly Field PublishTime = FindByName(__.PublishTime);
 
             ///<summary>创建人</summary>
-            public static readonly Field CreateUserName = FindByName(__.CreateUserName);
+            public static readonly Field CreateUserID = FindByName(__.CreateUserID);
 
             ///<summary>创建时间</summary>
             public static readonly Field CreateTime = FindByName(__.CreateTime);
 
             ///<summary>更新人</summary>
             public static readonly Field UpdateUserID = FindByName(__.UpdateUserID);
-
-            ///<summary>更新人</summary>
-            public static readonly Field UpdateUserName = FindByName(__.UpdateUserName);
 
             ///<summary>更新时间</summary>
             public static readonly Field UpdateTime = FindByName(__.UpdateTime);
@@ -202,20 +199,17 @@ namespace NewLife.CMX
             ///<summary>访问量。由统计表同步过来</summary>
             public const String Views = "Views";
 
-            ///<summary>创建人</summary>
-            public const String CreateUserID = "CreateUserID";
+            ///<summary>发布时间</summary>
+            public const String PublishTime = "PublishTime";
 
             ///<summary>创建人</summary>
-            public const String CreateUserName = "CreateUserName";
+            public const String CreateUserID = "CreateUserID";
 
             ///<summary>创建时间</summary>
             public const String CreateTime = "CreateTime";
 
             ///<summary>更新人</summary>
             public const String UpdateUserID = "UpdateUserID";
-
-            ///<summary>更新人</summary>
-            public const String UpdateUserName = "UpdateUserName";
 
             ///<summary>更新时间</summary>
             public const String UpdateTime = "UpdateTime";
