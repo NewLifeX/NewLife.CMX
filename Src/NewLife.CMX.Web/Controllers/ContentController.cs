@@ -67,8 +67,8 @@ namespace NewLife.CMX.Web.Controllers
             var cat = title.Category;
 
             // 选择模版
-            var viewName = cat.GetCategoryTemplate();
-            if (viewName.IsNullOrEmpty()) viewName = "Detail." + Channel.Name;
+            var viewName = cat.GetTitleTemplate();
+            if (viewName.IsNullOrEmpty()) viewName = "Title." + Channel.Name;
 
             // 增加浏览数
             title.Views++;

@@ -318,7 +318,21 @@ namespace NewLife.CMX
             if (ParentID > 0 && Parent != null) return Parent.GetTemplate(kind);
 
             // 如果顶级分类，则找频道
-            if (Channel != null) return Channel.CategoryTemplate;
+            if (Channel != null)
+            {
+                switch (kind)
+                {
+                    case "category":
+                        tmp = Channel.CategoryTemplate;
+                        break;
+                    case "title":
+                        tmp = Channel.TitleTemplate;
+                        break;
+                    default:
+                        break;
+                }
+                if (!tmp.IsNullOrWhiteSpace()) return tmp;
+            }
 
             return null;
         }
