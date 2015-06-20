@@ -1,5 +1,7 @@
 ﻿@model NewLife.CMX.IEntityCategory
 @{
     var Channel = ViewBag.Channel as Channel;
+    var Titles = ViewBag.Titles as IList<IEntityTitle>;
+    var Pager = ViewBag.Pager as Pager;
 }
 请设置分类【@Model】的分类模版。

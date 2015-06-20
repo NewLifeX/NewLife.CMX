@@ -7,6 +7,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using NewLife.Data;
 using NewLife.Log;
 using NewLife.Web;
 using XCode;
@@ -350,6 +351,20 @@ namespace NewLife.CMX
             var exp = _.CategoryID.In(childs.Select(e => e.ID));
             return FindCount(exp);
             //return FindCount(_.CategoryID, categoryid);
+        }
+
+        public static EntityList<TEntity> GetTitles(Int32 categoryid, PageParameter pager)
+        {
+            var provider = ModelProvider.Get(typeof(TEntity));
+            var cat = provider.CategoryFactory.FindByID(categoryid);
+            var childs = cat.FindAllChildsExcept(null).Cast<IEntityCategory>();
+            // 只要末级节点
+            childs = childs.Where(e => e.Childs.Count == 0);
+
+            var exp = _.CategoryID.In(childs.Select(e => e.ID));
+            //exp.SetStrict();
+
+            return FindAll(exp, pager);
         }
         #endregion
 

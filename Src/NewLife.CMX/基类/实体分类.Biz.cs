@@ -7,10 +7,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-﻿using System.IO;
-﻿using System.Text;
-﻿using System.Xml.Serialization;
-﻿using NewLife.Log;
+using System.IO;
+using System.Text;
+using System.Xml.Serialization;
+using NewLife.Data;
+using NewLife.Log;
+using NewLife.Web;
 using XCode;
 
 namespace NewLife.CMX
@@ -276,6 +278,12 @@ namespace NewLife.CMX
             return provider.TitleFactory.GetTitleCount(this.ID);
         }
 
+        public IList<IEntityTitle> GetTitles(PageParameter pager)
+        {
+            var provider = ModelProvider.Get(this.GetType());
+            return provider.TitleFactory.GetTitles(ID, pager);
+        }
+
         public IEntityTitle FindTitle(int id)
         {
             var provider = ModelProvider.Get(this.GetType());
@@ -353,6 +361,8 @@ namespace NewLife.CMX
 
         IList<IEntityTitle> GetTitles(Int32 pageIndex = 1, Int32 pageCount = 10);
         Int32 GetTitleCount();
+
+        IList<IEntityTitle> GetTitles(PageParameter pager);
 
         IEntityTitle FindTitle(Int32 id);
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using NewLife.Web;
 
 namespace NewLife.CMX.Web.Controllers
 {
@@ -54,9 +55,15 @@ namespace NewLife.CMX.Web.Controllers
             viewName = "../{0}/{1}".F(Channel.Name, viewName);
 
             ViewBag.Channel = Channel;
-            ViewBag.Category = cat;
-            ViewBag.PageIndex = pageindex ?? 1;
-            ViewBag.PageSize = PageSize;
+            //ViewBag.Category = cat;
+            //ViewBag.PageIndex = pageindex ?? 1;
+            //ViewBag.PageSize = PageSize;
+
+            var pager = new Pager { PageIndex = pageindex ?? 1, PageSize = PageSize };
+            var list = cat.GetTitles(pager);
+
+            ViewBag.Titles = list;
+            ViewBag.Pager = pager;
 
             return View(viewName, cat);
         }

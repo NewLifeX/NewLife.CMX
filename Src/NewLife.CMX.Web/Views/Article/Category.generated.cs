@@ -49,6 +49,8 @@ namespace ASP
             #line 2 "..\..\Views\Article\Category.cshtml"
   
     var Channel = ViewBag.Channel as Channel;
+    var Titles = ViewBag.Titles as IList<IEntityTitle>;
+    var Pager = ViewBag.Pager as Pager;
 
             
             #line default
@@ -56,7 +58,7 @@ namespace ASP
 WriteLiteral("\r\n请设置分类【");
 
             
-            #line 5 "..\..\Views\Article\Category.cshtml"
+            #line 7 "..\..\Views\Article\Category.cshtml"
  Write(Model);
 
             

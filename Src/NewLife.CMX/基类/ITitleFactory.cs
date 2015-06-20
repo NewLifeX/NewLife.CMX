@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using NewLife.Data;
 using XCode;
 
 namespace NewLife.CMX
@@ -12,6 +13,8 @@ namespace NewLife.CMX
 
         IList<IEntityTitle> GetTitles(Int32 categoryid, Int32 pageIndex = 1, Int32 pageCount = 10);
         Int32 GetTitleCount(Int32 categoryId);
+
+        IList<IEntityTitle> GetTitles(Int32 categoryid, PageParameter pager);
     }
 
     class TitleFactory<TEntity> : Entity<TEntity>.EntityOperate, ITitleFactory where TEntity : EntityTitle<TEntity>, new()
@@ -29,6 +32,11 @@ namespace NewLife.CMX
         public int GetTitleCount(int categoryId)
         {
             return EntityTitle<TEntity>.GetTitleCount(categoryId);
+        }
+
+        public IList<IEntityTitle> GetTitles(Int32 categoryid, PageParameter pager)
+        {
+            return EntityTitle<TEntity>.GetTitles(categoryid, pager).ToList().Cast<IEntityTitle>().ToList();
         }
     }
 }
