@@ -11,8 +11,8 @@ namespace NewLife.CMX
     {
         IEntityTitle FindByID(Int32 id);
 
-        IList<IEntityTitle> GetTitles(Int32 categoryid, Int32 pageIndex = 1, Int32 pageCount = 10);
-        Int32 GetTitleCount(Int32 categoryId);
+        //IList<IEntityTitle> GetTitles(Int32 categoryid, Int32 pageIndex = 1, Int32 pageCount = 10);
+        //Int32 GetTitleCount(Int32 categoryId);
 
         IList<IEntityTitle> GetTitles(Int32 categoryid, PageParameter pager);
     }
@@ -24,15 +24,15 @@ namespace NewLife.CMX
             return EntityTitle<TEntity>.FindByID(id);
         }
 
-        public IList<IEntityTitle> GetTitles(Int32 categoryid, Int32 pageIndex = 1, Int32 pageCount = 10)
-        {
-            return EntityTitle<TEntity>.GetTitles(categoryid, pageIndex, pageCount).ToList().Cast<IEntityTitle>().ToList();
-        }
+        //public IList<IEntityTitle> GetTitles(Int32 categoryid, Int32 pageIndex = 1, Int32 pageCount = 10)
+        //{
+        //    return EntityTitle<TEntity>.GetTitles(categoryid, pageIndex, pageCount).ToList().Cast<IEntityTitle>().ToList();
+        //}
 
-        public int GetTitleCount(int categoryId)
-        {
-            return EntityTitle<TEntity>.GetTitleCount(categoryId);
-        }
+        //public int GetTitleCount(int categoryId)
+        //{
+        //    return EntityTitle<TEntity>.GetTitleCount(categoryId);
+        //}
 
         public IList<IEntityTitle> GetTitles(Int32 categoryid, PageParameter pager)
         {

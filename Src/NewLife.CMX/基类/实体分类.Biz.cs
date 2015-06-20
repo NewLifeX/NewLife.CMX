@@ -266,17 +266,19 @@ namespace NewLife.CMX
         #endregion
 
         #region 高级查询
-        public IList<IEntityTitle> GetTitles(Int32 pageIndex = 1, Int32 pageCount = 10)
+        public IList<IEntityTitle> GetTitles(Int32 pageIndex = 1, Int32 pageSize = 10)
         {
-            var provider = ModelProvider.Get(this.GetType());
-            return provider.TitleFactory.GetTitles(ID, pageIndex, pageCount);
+            //var provider = ModelProvider.Get(this.GetType());
+            //return provider.TitleFactory.GetTitles(ID, pageIndex, pageSize);
+            var pager = new PageParameter { PageIndex = pageIndex, PageSize = pageSize };
+            return GetTitles(pager);
         }
 
-        public int GetTitleCount()
-        {
-            var provider = ModelProvider.Get(this.GetType());
-            return provider.TitleFactory.GetTitleCount(this.ID);
-        }
+        //public int GetTitleCount()
+        //{
+        //    var provider = ModelProvider.Get(this.GetType());
+        //    return provider.TitleFactory.GetTitleCount(this.ID);
+        //}
 
         public IList<IEntityTitle> GetTitles(PageParameter pager)
         {
@@ -360,7 +362,7 @@ namespace NewLife.CMX
         Channel Channel { get; }
 
         IList<IEntityTitle> GetTitles(Int32 pageIndex = 1, Int32 pageCount = 10);
-        Int32 GetTitleCount();
+        //Int32 GetTitleCount();
 
         IList<IEntityTitle> GetTitles(PageParameter pager);
 

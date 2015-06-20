@@ -324,34 +324,34 @@ namespace NewLife.CMX
             return FindAll(exp, p);
         }
 
-        public static EntityList<TEntity> GetTitles(Int32 categoryid, Int32 pageIndex = 1, Int32 pageCount = 10)
-        {
-            if (pageIndex <= 0) pageIndex = 1;
+        //public static EntityList<TEntity> GetTitles(Int32 categoryid, Int32 pageIndex = 1, Int32 pageCount = 10)
+        //{
+        //    if (pageIndex <= 0) pageIndex = 1;
 
-            var provider = ModelProvider.Get(typeof(TEntity));
-            var cat = provider.CategoryFactory.FindByID(categoryid);
-            var childs = cat.FindAllChildsExcept(null).Cast<IEntityCategory>();
-            // 只要末级节点
-            childs = childs.Where(e => e.Childs.Count == 0);
+        //    var provider = ModelProvider.Get(typeof(TEntity));
+        //    var cat = provider.CategoryFactory.FindByID(categoryid);
+        //    var childs = cat.FindAllChildsExcept(null).Cast<IEntityCategory>();
+        //    // 只要末级节点
+        //    childs = childs.Where(e => e.Childs.Count == 0);
 
-            var exp = _.CategoryID.In(childs.Select(e => e.ID));
-            //exp.SetStrict();
+        //    var exp = _.CategoryID.In(childs.Select(e => e.ID));
+        //    //exp.SetStrict();
 
-            return FindAll(exp, null, null, (pageIndex - 1) * pageCount, pageCount);
-        }
+        //    return FindAll(exp, null, null, (pageIndex - 1) * pageCount, pageCount);
+        //}
 
-        public static Int32 GetTitleCount(Int32 categoryid)
-        {
-            var provider = ModelProvider.Get(typeof(TEntity));
-            var cat = provider.CategoryFactory.FindByID(categoryid);
-            var childs = cat.FindAllChildsExcept(null).Cast<IEntityCategory>();
-            // 只要末级节点
-            childs = childs.Where(e => e.Childs.Count == 0);
+        //public static Int32 GetTitleCount(Int32 categoryid)
+        //{
+        //    var provider = ModelProvider.Get(typeof(TEntity));
+        //    var cat = provider.CategoryFactory.FindByID(categoryid);
+        //    var childs = cat.FindAllChildsExcept(null).Cast<IEntityCategory>();
+        //    // 只要末级节点
+        //    childs = childs.Where(e => e.Childs.Count == 0);
 
-            var exp = _.CategoryID.In(childs.Select(e => e.ID));
-            return FindCount(exp);
-            //return FindCount(_.CategoryID, categoryid);
-        }
+        //    var exp = _.CategoryID.In(childs.Select(e => e.ID));
+        //    return FindCount(exp);
+        //    //return FindCount(_.CategoryID, categoryid);
+        //}
 
         public static EntityList<TEntity> GetTitles(Int32 categoryid, PageParameter pager)
         {
@@ -380,9 +380,9 @@ namespace NewLife.CMX
         /// <param name="pageIndex"></param>
         /// <param name="pageCount"></param>
         /// <returns></returns>
-        public static EntityList<TEntity> GetTitles(String categoryPath, Int32 pageIndex = 1, Int32 pageCount = 10)
+        public static EntityList<TEntity> GetTitles(String categoryPath, Int32 pageIndex = 1, Int32 pageSize = 10)
         {
-            return GetTitles(null, categoryPath, pageIndex, pageCount);
+            return GetTitles(null, categoryPath, pageIndex, pageSize);
         }
 
         /// <summary>获取标题列表</summary>
@@ -391,7 +391,7 @@ namespace NewLife.CMX
         /// <param name="pageIndex"></param>
         /// <param name="pageCount"></param>
         /// <returns></returns>
-        public static EntityList<TEntity> GetTitles(String channelName, String categoryPath, Int32 pageIndex = 1, Int32 pageCount = 10)
+        public static EntityList<TEntity> GetTitles(String channelName, String categoryPath, Int32 pageIndex = 1, Int32 pageSize = 10)
         {
             var chn = Channel.FindByName(channelName);
             if (chn == null)
@@ -403,8 +403,9 @@ namespace NewLife.CMX
             if (chn == null) throw new XException("设计错误！在实体[{0}]中无法找到频道[{1}]", typeof(TEntity).FullName, channelName);
 
             var cat = chn.FindCategory(categoryPath);
+            var pager = new PageParameter { PageIndex = pageIndex, PageSize = pageSize };
 
-            return GetTitles(cat.ID, pageIndex, pageCount);
+            return GetTitles(cat.ID, pager);
         }
         #endregion
     }
