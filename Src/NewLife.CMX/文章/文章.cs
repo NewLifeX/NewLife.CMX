@@ -12,16 +12,29 @@ namespace NewLife.CMX
     [Serializable]
     [DataObject]
     [Description("文章")]
+    [BindRelation("SourceID", false, "Source", "ID")]
     [BindTable("Article", Description = "文章", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class Article : IArticle
     {
         #region 属性
+        private Int32 _SourceID;
+        /// <summary>来源</summary>
+        [DisplayName("来源")]
+        [Description("来源")]
+        [DataObjectField(false, false, true, 10)]
+        [BindColumn(1, "SourceID", "来源", null, "int", 10, 0, false)]
+        public virtual Int32 SourceID
+        {
+            get { return _SourceID; }
+            set { if (OnPropertyChanging(__.SourceID, value)) { _SourceID = value; OnPropertyChanged(__.SourceID); } }
+        }
+
         private Boolean _Top;
         /// <summary>置顶</summary>
         [DisplayName("置顶")]
         [Description("置顶")]
         [DataObjectField(false, false, true, 1)]
-        [BindColumn(1, "Top", "置顶", null, "bit", 0, 0, false)]
+        [BindColumn(2, "Top", "置顶", null, "bit", 0, 0, false)]
         public virtual Boolean Top
         {
             get { return _Top; }
@@ -33,7 +46,7 @@ namespace NewLife.CMX
         [DisplayName("推荐")]
         [Description("推荐")]
         [DataObjectField(false, false, true, 1)]
-        [BindColumn(2, "Recommend", "推荐", null, "bit", 0, 0, false)]
+        [BindColumn(3, "Recommend", "推荐", null, "bit", 0, 0, false)]
         public virtual Boolean Recommend
         {
             get { return _Recommend; }
@@ -45,7 +58,7 @@ namespace NewLife.CMX
         [DisplayName("热门")]
         [Description("热门")]
         [DataObjectField(false, false, true, 1)]
-        [BindColumn(3, "Hot", "热门", null, "bit", 0, 0, false)]
+        [BindColumn(4, "Hot", "热门", null, "bit", 0, 0, false)]
         public virtual Boolean Hot
         {
             get { return _Hot; }
@@ -57,7 +70,7 @@ namespace NewLife.CMX
         [DisplayName("幻灯片")]
         [Description("幻灯片")]
         [DataObjectField(false, false, true, 1)]
-        [BindColumn(4, "Slide", "幻灯片", null, "bit", 0, 0, false)]
+        [BindColumn(5, "Slide", "幻灯片", null, "bit", 0, 0, false)]
         public virtual Boolean Slide
         {
             get { return _Slide; }
@@ -69,7 +82,7 @@ namespace NewLife.CMX
         [DisplayName("封面")]
         [Description("封面")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(5, "Cover", "封面", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(6, "Cover", "封面", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Cover
         {
             get { return _Cover; }
@@ -91,6 +104,7 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
+                    case __.SourceID : return _SourceID;
                     case __.Top : return _Top;
                     case __.Recommend : return _Recommend;
                     case __.Hot : return _Hot;
@@ -103,6 +117,7 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
+                    case __.SourceID : _SourceID = Convert.ToInt32(value); break;
                     case __.Top : _Top = Convert.ToBoolean(value); break;
                     case __.Recommend : _Recommend = Convert.ToBoolean(value); break;
                     case __.Hot : _Hot = Convert.ToBoolean(value); break;
@@ -156,6 +171,9 @@ namespace NewLife.CMX
 
             ///<summary>备注</summary>
             public static readonly Field Remark = FindByName(__.Remark);
+
+            ///<summary>来源</summary>
+            public static readonly Field SourceID = FindByName(__.SourceID);
 
             ///<summary>置顶</summary>
             public static readonly Field Top = FindByName(__.Top);
@@ -217,6 +235,9 @@ namespace NewLife.CMX
             ///<summary>备注</summary>
             public const String Remark = "Remark";
 
+            ///<summary>来源</summary>
+            public const String SourceID = "SourceID";
+
             ///<summary>置顶</summary>
             public const String Top = "Top";
 
@@ -240,6 +261,9 @@ namespace NewLife.CMX
     public partial interface IArticle : IEntityTitle
     {
         #region 属性
+        /// <summary>来源</summary>
+        Int32 SourceID { get; set; }
+
         /// <summary>置顶</summary>
         Boolean Top { get; set; }
 

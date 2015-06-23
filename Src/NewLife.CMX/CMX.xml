@@ -124,12 +124,16 @@
   <Table Name="ArticleCategory" Description="文章分类" DbType="SqlServer" BaseType="EntityCategory" 实体分类="文章" />
   <Table Name="Article" Description="文章" DbType="SqlServer" BaseType="EntityTitle" 实体分类="文章">
     <Columns>
+      <Column Name="SourceID" DataType="Int32" Description="来源" />
       <Column Name="Top" DataType="Boolean" Description="置顶" />
       <Column Name="Recommend" DataType="Boolean" Description="推荐" />
       <Column Name="Hot" DataType="Boolean" Description="热门" />
       <Column Name="Slide" DataType="Boolean" Description="幻灯片" />
       <Column Name="Cover" DataType="String" Length="200" Description="封面" />
     </Columns>
+    <Relations>
+      <Relation Column="SourceID" RelationTable="Source" RelationColumn="ID" />
+    </Relations>
   </Table>
   <Table Name="ArticleContent" Description="文章内容" DbType="SqlServer" BaseType="EntityContent" 实体分类="文章" />
   <Table Name="ArticleStatistics" Description="文章统计" DbType="SqlServer" BaseType="Statistics" 实体分类="文章" />
@@ -173,5 +177,19 @@
     <Relations>
       <Relation Column="ChannelID" RelationTable="Channel" RelationColumn="ID" />
     </Relations>
+  </Table>
+  <Table Name="Source" Description="来源" DbType="SqlServer" 实体分类="站点">
+    <Columns>
+      <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
+      <Column Name="Name" DataType="String" Master="True" Description="名称" />
+      <Column Name="Url" DataType="String" Description="地址" />
+      <Column Name="Sort" DataType="Int32" Description="排序" />
+      <Column Name="Enable" DataType="Boolean" Description="启用" />
+      <Column Name="CreateUserID" DataType="Int32" Description="创建人" />
+      <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
+      <Column Name="UpdateUserID" DataType="Int32" Description="更新人" />
+      <Column Name="UpdateTime" DataType="DateTime" Description="更新时间" />
+      <Column Name="Remark" DataType="String" Length="200" Description="备注" />
+    </Columns>
   </Table>
 </Tables>
