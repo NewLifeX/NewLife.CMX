@@ -19,12 +19,13 @@ namespace NewLife.CMX
     public partial class Article : EntityTitle<Article, ArticleCategory, ArticleContent, ArticleStatistics>
     {
         #region 对象操作﻿
-        //public override void Valid(bool isNew)
-        //{
-        //    base.Valid(isNew);
+        public override void Valid(bool isNew)
+        {
+            base.Valid(isNew);
 
-        //    if (!Dirtys[__.PublishTime]) PublishTime = DateTime.Now;
-        //}
+            // 没有为幻灯片新闻设置封面图片时，自动选择第一张
+            if (Slide && Cover.IsNullOrWhiteSpace() && !Dirtys[__.Cover]) Cover = FirstImagePath;
+        }
         #endregion
 
         #region 扩展属性﻿
@@ -66,11 +67,11 @@ namespace NewLife.CMX
                 if (String.IsNullOrEmpty(_FirstImagePath) && !String.IsNullOrEmpty(ContentText) && !Dirtys.ContainsKey("FirstImagePath"))
                 {
                     //获取文章中的第一张照片
-                    Regex r = new Regex(@"<img\ssrc=""([^>]*)file=([^>=""]*)""(.*)/>");
+                    Regex r = new Regex(@"<img\ssrc=""([^>""]*)""(.*)/>");
                     Match m = r.Match(ContentText);
-                    _FirstImagePath = m.Groups[2].ToString();
+                    _FirstImagePath = m.Groups[1].ToString();
 
-                    _FirstImagePath = _FirstImagePath.StartsWith("~/update") ? _FirstImagePath : UEditorConfig.Current.UploadPath + _FirstImagePath;
+                    //_FirstImagePath = _FirstImagePath.StartsWith("~/update") ? _FirstImagePath : UEditorConfig.Current.UploadPath + _FirstImagePath;
                     //FirstImagePath = _FirstImagePath.Replace("~", CMXConfigBase.Current.CurrentRootPath);
                     Dirtys["FirstImagePath"] = true;
                 }
