@@ -1,0 +1,18 @@
+﻿@model NewLife.CMX.IEntityTitle
+@{
+    var Channel = ViewBag.Channel as Channel;
+    var Category = ViewBag.Category as IEntityCategory;
+
+    this.PushTitle(Model.Category.Name);
+    this.PushTitle(Model.Title);
+}
+<div class="container">
+    <div class="row">
+        <h2 class="text-center">
+            @Model.Title
+        </h2>
+        <div class="content">
+            @Html.Raw(Model.ContentText)
+        </div>
+    </div>
+</div>

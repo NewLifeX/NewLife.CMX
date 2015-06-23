@@ -239,6 +239,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>_Layout.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Text\Category.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Category.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Text\Index.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Index.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Text\Title.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Title.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="Views\_ViewStart.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -598,18 +613,18 @@
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.eot" />
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.ttf" />
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.woff" />
-    <Content Include="Views\Article\Category.cshtml">
+    <None Include="Views\Article\Category.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Category.generated.cs</LastGenOutput>
-    </Content>
-    <Content Include="Views\Article\Channel.cshtml">
+    </None>
+    <None Include="Views\Article\Channel.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Channel.generated.cs</LastGenOutput>
-    </Content>
-    <Content Include="Views\Article\Title.cshtml">
+    </None>
+    <None Include="Views\Article\Title.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Title.generated.cs</LastGenOutput>
-    </Content>
+    </None>
     <None Include="Views\Content\Category.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Category.generated.cs</LastGenOutput>
@@ -661,6 +676,18 @@
     <None Include="Views\Shared\_Header.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>_Header.generated.cs</LastGenOutput>
+    </None>
+    <None Include="Views\Text\Category.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Category.generated.cs</LastGenOutput>
+    </None>
+    <None Include="Views\Text\Index.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Index.generated.cs</LastGenOutput>
+    </None>
+    <None Include="Views\Text\Title.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Title.generated.cs</LastGenOutput>
     </None>
     <None Include="Views\_ViewStart.cshtml">
       <Generator>RazorGenerator</Generator>

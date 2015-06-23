@@ -411,6 +411,18 @@ namespace NewLife.CMX
         /// <returns></returns>
         public static EntityList<TEntity> GetTitles(String channelName, String categoryPath, Int32 pageIndex = 1, Int32 pageSize = 10)
         {
+            var cat = FindOrCreateCategory(channelName, categoryPath);
+            var pager = new PageParameter { PageIndex = pageIndex, PageSize = pageSize };
+
+            return GetTitles(cat.ID, pager);
+        }
+
+        /// <summary>查找或创建分类</summary>
+        /// <param name="channelName"></param>
+        /// <param name="categoryPath"></param>
+        /// <returns></returns>
+        protected static IEntityCategory FindOrCreateCategory(String channelName, String categoryPath)
+        {
             var chn = Channel.FindByName(channelName);
             if (chn == null)
             {
@@ -420,10 +432,7 @@ namespace NewLife.CMX
             }
             if (chn == null) throw new XException("设计错误！在实体[{0}]中无法找到频道[{1}]", typeof(TEntity).FullName, channelName);
 
-            var cat = chn.FindCategory(categoryPath);
-            var pager = new PageParameter { PageIndex = pageIndex, PageSize = pageSize };
-
-            return GetTitles(cat.ID, pager);
+            return chn.FindCategory(categoryPath);
         }
         #endregion
     }

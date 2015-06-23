@@ -293,7 +293,7 @@ namespace NewLife.CMX
             return cat;
         }
 
-        /// <summary>查找当前频道之下的分类</summary>
+        /// <summary>查找当前频道之下的分类，如果分类不存在则按照层次创建</summary>
         /// <param name="name"></param>
         /// <returns></returns>
         public IEntityCategory FindCategory(String name)
