@@ -7,6 +7,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
+using System.Xml.Serialization;
 using NewLife.CMX.Config;
 using NewLife.CMX.Editor;
 using NewLife.Log;
@@ -21,24 +22,27 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
-        //private String _ConentTxt;
-        ///// <summary></summary>
-        //public String ConentTxt
-        //{
-        //    get
-        //    {
-        //        if (_ConentTxt == null && !Dirtys.ContainsKey("ConentTxt"))
-        //        {
-        //            _ConentTxt = Content.Content ?? "";
-        //            Dirtys["ConentTxt"] = true;
-        //        }
-        //        return _ConentTxt;
-        //    }
-        //    set
-        //    {
-        //        _ConentTxt = value;
-        //    }
-        //}
+        [NonSerialized]
+        private Source _Source;
+        /// <summary>该文章所对应的来源</summary>
+        [XmlIgnore]
+        public Source Source
+        {
+            get
+            {
+                if (_Source == null && SourceID > 0 && !Dirtys.ContainsKey("Source"))
+                {
+                    _Source = Source.FindByID(SourceID);
+                    Dirtys["Source"] = true;
+                }
+                return _Source;
+            }
+            set { _Source = value; }
+        }
+
+        /// <summary>该文章所对应的来源名称</summary>
+        [XmlIgnore]
+        public String SourceName { get { return Source != null ? Source.Name : String.Empty; } }
 
         private String _FirstImagePath;
         /// <summary>图片路径</summary>
