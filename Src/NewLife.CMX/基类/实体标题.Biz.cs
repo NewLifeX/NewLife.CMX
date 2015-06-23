@@ -38,9 +38,10 @@ namespace NewLife.CMX
 
             // 发布时间为创建时间
             //if (!Dirtys[__.PublishTime]) PublishTime = DateTime.Now;
-            if (isNew && Meta.FieldNames.Contains("PublishTime"))
+            if (Meta.FieldNames.Contains("PublishTime"))
             {
-                if (!Dirtys["PublishTime"]) SetItem("PublishTime", CreateTime);
+                var dt = (DateTime)this["PublishTime"];
+                if ((isNew || dt.Year < 2000) && !Dirtys["PublishTime"]) SetItem("PublishTime", CreateTime);
             }
         }
 
