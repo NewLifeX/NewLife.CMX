@@ -17,7 +17,7 @@ namespace NewLife.CMX.Web
         {
             // 过滤掉一些字段
             var list = ListFields;
-            list.RemoveAll(e => e.Name.EqualIgnoreCase("CategoryID", "StatisticsID", "Remark"));
+            list.RemoveAll(e => e.Name.EqualIgnoreCase("CategoryID", "Version", "SourceID", "SourceUrl", "StatisticsID", "Remark"));
 
             list = FormFields;
             list.RemoveAll(e => e.Name.EqualIgnoreCase("CategoryName", "StatisticsID"));
@@ -67,7 +67,7 @@ namespace NewLife.CMX.Web
             var entity = Factory.Create() as TEntity;
             entity.CategoryID = RouteData.Values["category"].ToInt();
 
-                // 记下添加前的来源页，待会添加成功以后跳转
+            // 记下添加前的来源页，待会添加成功以后跳转
             Session["Cube_Add_Referrer"] = Request.UrlReferrer.ToString();
 
             return FormView(entity);
