@@ -35,6 +35,13 @@ namespace NewLife.CMX
             {
                 if (!Dirtys["CategoryName"] && Category != null) SetItem("CategoryName", Category.Name);
             }
+
+            // 发布时间为创建时间
+            //if (!Dirtys[__.PublishTime]) PublishTime = DateTime.Now;
+            if (isNew && Meta.FieldNames.Contains("PublishTime"))
+            {
+                if (!Dirtys["PublishTime"]) SetItem("PublishTime", CreateTime);
+            }
         }
 
         /// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>

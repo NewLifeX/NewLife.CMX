@@ -19,12 +19,12 @@ namespace NewLife.CMX
     public partial class Article : EntityTitle<Article, ArticleCategory, ArticleContent, ArticleStatistics>
     {
         #region 对象操作﻿
-        public override void Valid(bool isNew)
-        {
-            base.Valid(isNew);
+        //public override void Valid(bool isNew)
+        //{
+        //    base.Valid(isNew);
 
-            if (!Dirtys[__.PublishTime]) PublishTime = DateTime.Now;
-        }
+        //    if (!Dirtys[__.PublishTime]) PublishTime = DateTime.Now;
+        //}
         #endregion
 
         #region 扩展属性﻿
