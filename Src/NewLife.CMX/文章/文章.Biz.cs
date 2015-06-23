@@ -30,7 +30,7 @@ namespace NewLife.CMX
         {
             get
             {
-                if (_Source == null && SourceID > 0 && !Dirtys.ContainsKey("Source"))
+                if (_Source == null && !Dirtys.ContainsKey("Source"))
                 {
                     _Source = Source.FindByID(SourceID);
                     if (_Source == null)
