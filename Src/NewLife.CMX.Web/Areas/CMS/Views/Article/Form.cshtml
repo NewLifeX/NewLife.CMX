@@ -53,25 +53,9 @@
                 </div>
             </div>
             <div class="form-group">
-                @{ item = Article._.Top;}
-                <label class="control-label col-md-2">@item.DisplayName</label>
-                <div class="col-md-1">
-                    @Html.ForEditor(item, entity)
-                </div>
-                @{ item = Article._.Recommend;}
-                <label class="control-label col-md-1">@item.DisplayName</label>
-                <div class="col-md-1">
-                    @Html.ForEditor(item, entity)
-                </div>
-                @{ item = Article._.Hot;}
-                <label class="control-label col-md-1">@item.DisplayName</label>
-                <div class="col-md-1">
-                    @Html.ForEditor(item, entity)
-                </div>
-                @{ item = Article._.Slide;}
-                <label class="control-label col-md-1">@item.DisplayName</label>
-                <div class="col-md-1">
-                    @Html.ForEditor(item, entity)
+                <label class="control-label col-md-2">来源</label>
+                <div class="col-md-2">
+                    @Html.ForDropDownList(Article._.SourceID, Source.FindAllVisible())
                 </div>
             </div>
             <div class="form-group">
@@ -94,6 +78,28 @@
                 <label class="control-label col-md-2">摘要</label>
                 <div class="col-md-6">
                     @Html.TextArea(Article._.Remark, article.Remark, 5, 100, null)
+                </div>
+            </div>
+            <div class="form-group">
+                @{ item = Article._.Top;}
+                <label class="control-label col-md-2">@item.DisplayName</label>
+                <div class="col-md-1">
+                    @Html.ForEditor(item, entity)
+                </div>
+                @{ item = Article._.Recommend;}
+                <label class="control-label col-md-1">@item.DisplayName</label>
+                <div class="col-md-1">
+                    @Html.ForEditor(item, entity)
+                </div>
+                @{ item = Article._.Hot;}
+                <label class="control-label col-md-1">@item.DisplayName</label>
+                <div class="col-md-1">
+                    @Html.ForEditor(item, entity)
+                </div>
+                @{ item = Article._.Slide;}
+                <label class="control-label col-md-1">@item.DisplayName</label>
+                <div class="col-md-1">
+                    @Html.ForEditor(item, entity)
                 </div>
             </div>
             <div class="form-group">
