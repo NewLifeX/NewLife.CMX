@@ -364,6 +364,16 @@ namespace NewLife.CMX
             var exp = _.CategoryID.In(childs.Select(e => e.ID));
             //exp.SetStrict();
 
+            // 发布时间未到
+            //exp &= _.PublishTime <= DateTime.Now;
+            // 为了避免给一级缓存带来压力，不要实时更新
+            var dt = DateTime.Now;
+            dt = new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, 0);
+            exp &= _.PublishTime <= dt;
+
+            // 按照发布时间降序
+            if (pager.Sort.IsNullOrWhiteSpace()) pager.Sort = _.PublishTime.Desc();
+
             return FindAll(exp, pager);
         }
         #endregion
@@ -375,38 +385,38 @@ namespace NewLife.CMX
         /// <summary>增加访问量</summary>
         public abstract void IncView();
 
-        /// <summary>获取标题列表</summary>
-        /// <param name="categoryPath"></param>
-        /// <param name="pageIndex"></param>
-        /// <param name="pageCount"></param>
-        /// <returns></returns>
-        public static EntityList<TEntity> GetTitles(String categoryPath, Int32 pageIndex = 1, Int32 pageSize = 10)
-        {
-            return GetTitles(null, categoryPath, pageIndex, pageSize);
-        }
+        ///// <summary>获取标题列表</summary>
+        ///// <param name="categoryPath"></param>
+        ///// <param name="pageIndex"></param>
+        ///// <param name="pageCount"></param>
+        ///// <returns></returns>
+        //public static EntityList<TEntity> GetTitles(String categoryPath, Int32 pageIndex = 1, Int32 pageSize = 10)
+        //{
+        //    return GetTitles(null, categoryPath, pageIndex, pageSize);
+        //}
 
-        /// <summary>获取标题列表</summary>
-        /// <param name="channelName">频道</param>
-        /// <param name="categoryPath"></param>
-        /// <param name="pageIndex"></param>
-        /// <param name="pageCount"></param>
-        /// <returns></returns>
-        public static EntityList<TEntity> GetTitles(String channelName, String categoryPath, Int32 pageIndex = 1, Int32 pageSize = 10)
-        {
-            var chn = Channel.FindByName(channelName);
-            if (chn == null)
-            {
-                var provider = ModelProvider.Get<TEntity>();
-                var model = Model.FindByName(provider.Name);
-                chn = Channel.FindAllWithCache().ToList().FirstOrDefault(e => e.ModelID == model.ID);
-            }
-            if (chn == null) throw new XException("设计错误！在实体[{0}]中无法找到频道[{1}]", typeof(TEntity).FullName, channelName);
+        ///// <summary>获取标题列表</summary>
+        ///// <param name="channelName">频道</param>
+        ///// <param name="categoryPath"></param>
+        ///// <param name="pageIndex"></param>
+        ///// <param name="pageCount"></param>
+        ///// <returns></returns>
+        //public static EntityList<TEntity> GetTitles(String channelName, String categoryPath, Int32 pageIndex = 1, Int32 pageSize = 10)
+        //{
+        //    var chn = Channel.FindByName(channelName);
+        //    if (chn == null)
+        //    {
+        //        var provider = ModelProvider.Get<TEntity>();
+        //        var model = Model.FindByName(provider.Name);
+        //        chn = Channel.FindAllWithCache().ToList().FirstOrDefault(e => e.ModelID == model.ID);
+        //    }
+        //    if (chn == null) throw new XException("设计错误！在实体[{0}]中无法找到频道[{1}]", typeof(TEntity).FullName, channelName);
 
-            var cat = chn.FindCategory(categoryPath);
-            var pager = new PageParameter { PageIndex = pageIndex, PageSize = pageSize };
+        //    var cat = chn.FindCategory(categoryPath);
+        //    var pager = new PageParameter { PageIndex = pageIndex, PageSize = pageSize };
 
-            return GetTitles(cat.ID, pager);
-        }
+        //    return GetTitles(cat.ID, pager);
+        //}
         #endregion
     }
 
