@@ -651,7 +651,32 @@ WriteLiteral("                    ");
 
             
             #line 108 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-               Write(Html.Editor(Article._.Cover, entity));
+               Write(Html.ForEditor(Article._.Cover, entity));
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n                </div>\r\n            </div>\r\n");
+
+WriteLiteral("            <div");
+
+WriteLiteral(" class=\"form-group\"");
+
+WriteLiteral(">\r\n                <label");
+
+WriteLiteral(" class=\"control-label col-md-2\"");
+
+WriteLiteral(">发布时间</label>\r\n                <div");
+
+WriteLiteral(" class=\"col-md-2 input-group\"");
+
+WriteLiteral(">\r\n");
+
+WriteLiteral("                    ");
+
+            
+            #line 114 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+               Write(Html.ForEditor(Article._.PublishTime, entity));
 
             
             #line default
@@ -659,34 +684,34 @@ WriteLiteral("                    ");
 WriteLiteral("\r\n                </div>\r\n            </div>\r\n");
 
             
-            #line 111 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 117 "..\..\Areas\CMS\Views\Article\Form.cshtml"
             
             
             #line default
             #line hidden
             
-            #line 111 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 117 "..\..\Areas\CMS\Views\Article\Form.cshtml"
        Write(Html.Partial("_UserTime", Model as IEntity));
 
             
             #line default
             #line hidden
             
-            #line 111 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 117 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                                                         
             
             
             #line default
             #line hidden
             
-            #line 112 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 118 "..\..\Areas\CMS\Views\Article\Form.cshtml"
        Write(Html.Partial("_Form_Action", isNew));
 
             
             #line default
             #line hidden
             
-            #line 112 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 118 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                                                 
         }
 

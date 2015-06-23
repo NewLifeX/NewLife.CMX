@@ -105,7 +105,13 @@
             <div class="form-group">
                 <label class="control-label col-md-2">封面</label>
                 <div class="col-md-10">
-                    @Html.Editor(Article._.Cover, entity)
+                    @Html.ForEditor(Article._.Cover, entity)
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">发布时间</label>
+                <div class="col-md-2 input-group">
+                    @Html.ForEditor(Article._.PublishTime, entity)
                 </div>
             </div>
             @Html.Partial("_UserTime", Model as IEntity)
