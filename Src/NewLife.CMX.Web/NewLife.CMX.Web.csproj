@@ -119,6 +119,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>_Left_Category.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="Areas\CMS\Controllers\SourceController.cs" />
     <Compile Include="Areas\CMS\Controllers\NavController.cs" />
     <Compile Include="Areas\CMS\Controllers\AttachController.cs" />
     <Compile Include="Areas\CMS\Controllers\SiteController.cs" />

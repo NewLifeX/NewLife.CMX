@@ -7,14 +7,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
-using System.Xml.Serialization;
+using System.Linq;
+using NewLife.Data;
 using NewLife.Log;
-using NewLife.Web;
-﻿using NewLife.Data;
 using XCode;
-using XCode.Configuration;
-using XCode.Membership;
 
 namespace NewLife.CMX
 {
@@ -45,34 +41,27 @@ namespace NewLife.CMX
             if (!Dirtys[__.UpdateTime]) UpdateTime = DateTime.Now;
         }
 
-        ///// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //protected override void InitData()
-        //{
-        //    base.InitData();
+        /// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void InitData()
+        {
+            base.InitData();
 
-        //    // InitData一般用于当数据表没有数据时添加一些默认数据，该实体类的任何第一次数据库操作都会触发该方法，默认异步调用
-        //    // Meta.Count是快速取得表记录数
-        //    if (Meta.Count > 0) return;
+            // InitData一般用于当数据表没有数据时添加一些默认数据，该实体类的任何第一次数据库操作都会触发该方法，默认异步调用
+            // Meta.Count是快速取得表记录数
+            if (Meta.Count > 0) return;
 
-        //    // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
-        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Source).Name, Meta.Table.DataTable.DisplayName);
+            // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
+            if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Source).Name, Meta.Table.DataTable.DisplayName);
 
-        //    var entity = new Source();
-        //    entity.Name = "abc";
-        //    entity.Url = "abc";
-        //    entity.Sort = 0;
-        //    entity.Enable = true;
-        //    entity.CreateUserID = 0;
-        //    entity.CreateTime = DateTime.Now;
-        //    entity.UpdateUserID = 0;
-        //    entity.UpdateTime = DateTime.Now;
-        //    entity.Remark = "abc";
-        //    entity.Insert();
+            var entity = new Source();
+            entity.Name = "本站";
+            entity.Url = "/";
+            entity.Enable = true;
+            entity.Insert();
 
-        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Source).Name, Meta.Table.DataTable.DisplayName);
-        //}
-
+            if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Source).Name, Meta.Table.DataTable.DisplayName);
+        }
 
         ///// <summary>已重载。基类先调用Valid(true)验证数据，然后在事务保护内调用OnInsert</summary>
         ///// <returns></returns>
@@ -110,7 +99,12 @@ namespace NewLife.CMX
         #endregion
 
         #region 高级查询
-        // 以下为自定义高级查询的例子
+        /// <summary>查找所有可见</summary>
+        /// <returns></returns>
+        public static List<Source> FindAllVisible()
+        {
+            return Meta.Cache.Entities.ToList().Where(e => e.Enable).OrderBy(e => e.Sort).ToList();
+        }
 
         /// <summary>查询满足条件的记录集，分页、排序</summary>
         /// <param name="userid">用户编号</param>
