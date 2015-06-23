@@ -322,7 +322,7 @@ WriteLiteral(">访问量</label>\r\n                    <span>");
 
             
             #line 50 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-                     Write(article.Version);
+                     Write(article.Views);
 
             
             #line default
@@ -396,23 +396,23 @@ WriteLiteral(" class=\"col-md-6\"");
 
 WriteLiteral(">\r\n                    <script");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 2891), Tuple.Create("\"", 2932)
-, Tuple.Create(Tuple.Create("", 2897), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.config.js")
-, 2897), false)
+WriteAttribute("src", Tuple.Create(" src=\"", 2889), Tuple.Create("\"", 2930)
+, Tuple.Create(Tuple.Create("", 2895), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.config.js")
+, 2895), false)
 );
 
 WriteLiteral("></script>\r\n                    <script");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 2972), Tuple.Create("\"", 3014)
-, Tuple.Create(Tuple.Create("", 2978), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.all.min.js")
-, 2978), false)
+WriteAttribute("src", Tuple.Create(" src=\"", 2970), Tuple.Create("\"", 3012)
+, Tuple.Create(Tuple.Create("", 2976), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.all.min.js")
+, 2976), false)
 );
 
 WriteLiteral("></script>\r\n                    <script");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 3054), Tuple.Create("\"", 3097)
-, Tuple.Create(Tuple.Create("", 3060), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/lang/zh-cn/zh-cn.js")
-, 3060), false)
+WriteAttribute("src", Tuple.Create(" src=\"", 3052), Tuple.Create("\"", 3095)
+, Tuple.Create(Tuple.Create("", 3058), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/lang/zh-cn/zh-cn.js")
+, 3058), false)
 );
 
 WriteLiteral("></script>\r\n                    <script");
