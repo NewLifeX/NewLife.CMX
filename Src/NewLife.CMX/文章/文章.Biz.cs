@@ -33,6 +33,13 @@ namespace NewLife.CMX
                 if (_Source == null && SourceID > 0 && !Dirtys.ContainsKey("Source"))
                 {
                     _Source = Source.FindByID(SourceID);
+                    if (_Source == null)
+                    {
+                        _Source = new Source();
+                        _Source.Name = "本站";
+                        _Source.Url = "/";
+                    }
+
                     Dirtys["Source"] = true;
                 }
                 return _Source;
