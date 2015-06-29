@@ -24,7 +24,8 @@ namespace NewLife.CMX
             base.Valid(isNew);
 
             // 没有为幻灯片新闻设置封面图片时，自动选择第一张
-            if (Slide && Cover.IsNullOrWhiteSpace() && !Dirtys[__.Cover]) Cover = FirstImagePath;
+            //if (Slide && Cover.IsNullOrWhiteSpace() && !Dirtys[__.Cover]) Cover = FirstImagePath;
+            if (Cover.IsNullOrWhiteSpace() && !Dirtys[__.Cover]) Cover = FirstImagePath;
         }
         #endregion
 
