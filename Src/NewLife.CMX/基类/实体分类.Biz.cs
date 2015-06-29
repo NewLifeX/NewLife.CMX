@@ -168,6 +168,14 @@ namespace NewLife.CMX
                 return Meta.Cache.Entities.Find(e => e.Name == name && e.ParentID == parentid);
         }
 
+        public static TEntity FindByName(String name)
+        {
+            if (Meta.Count >= 1000)
+                return Find(new String[] { _.Name }, new Object[] { name });
+            else // 实体缓存
+                return Meta.Cache.Entities.Find(e => e.Name == name);
+        }
+
         ///// <summary>查询所有子孙类以及子孙类的ID如果子类不是最终类，返回的时候ID会被改为负数</summary>
         ///// <param name="parentKey"></param>
         ///// <returns></returns>
