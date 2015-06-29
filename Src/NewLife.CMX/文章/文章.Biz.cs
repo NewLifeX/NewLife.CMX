@@ -55,9 +55,9 @@ namespace NewLife.CMX
             set { _Source = value; }
         }
 
-        /// <summary>该文章所对应的来源名称</summary>
-        [XmlIgnore]
-        public String SourceName { get { return Source != null ? Source.Name : String.Empty; } }
+        ///// <summary>该文章所对应的来源名称</summary>
+        //[XmlIgnore]
+        //public String SourceName { get { return Source != null ? Source.Name : String.Empty; } }
 
         private String _FirstImagePath;
         /// <summary>图片路径</summary>

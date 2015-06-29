@@ -58,6 +58,9 @@
                     @Html.ForDropDownList(Article._.SourceID, Source.FindAllVisible(), null, false)
                 </div>
                 <div class="col-md-8">
+                    @Html.ForEditor(Article._.SourceName, entity)
+                </div>
+                <div class="col-md-8">
                     @Html.ForEditor(Article._.SourceUrl, entity)
                 </div>
             </div>

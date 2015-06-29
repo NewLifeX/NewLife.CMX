@@ -29,12 +29,24 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.SourceID, value)) { _SourceID = value; OnPropertyChanged(__.SourceID); } }
         }
 
+        private String _SourceName;
+        /// <summary>来源名称</summary>
+        [DisplayName("来源名称")]
+        [Description("来源名称")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn(2, "SourceName", "来源名称", null, "nvarchar(50)", 0, 0, true)]
+        public virtual String SourceName
+        {
+            get { return _SourceName; }
+            set { if (OnPropertyChanging(__.SourceName, value)) { _SourceName = value; OnPropertyChanged(__.SourceName); } }
+        }
+
         private String _SourceUrl;
         /// <summary>来源地址</summary>
         [DisplayName("来源地址")]
         [Description("来源地址")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(2, "SourceUrl", "来源地址", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(3, "SourceUrl", "来源地址", null, "nvarchar(50)", 0, 0, true)]
         public virtual String SourceUrl
         {
             get { return _SourceUrl; }
@@ -46,7 +58,7 @@ namespace NewLife.CMX
         [DisplayName("置顶")]
         [Description("置顶")]
         [DataObjectField(false, false, true, 1)]
-        [BindColumn(3, "Top", "置顶", null, "bit", 0, 0, false)]
+        [BindColumn(4, "Top", "置顶", null, "bit", 0, 0, false)]
         public virtual Boolean Top
         {
             get { return _Top; }
@@ -58,7 +70,7 @@ namespace NewLife.CMX
         [DisplayName("推荐")]
         [Description("推荐")]
         [DataObjectField(false, false, true, 1)]
-        [BindColumn(4, "Recommend", "推荐", null, "bit", 0, 0, false)]
+        [BindColumn(5, "Recommend", "推荐", null, "bit", 0, 0, false)]
         public virtual Boolean Recommend
         {
             get { return _Recommend; }
@@ -70,7 +82,7 @@ namespace NewLife.CMX
         [DisplayName("热门")]
         [Description("热门")]
         [DataObjectField(false, false, true, 1)]
-        [BindColumn(5, "Hot", "热门", null, "bit", 0, 0, false)]
+        [BindColumn(6, "Hot", "热门", null, "bit", 0, 0, false)]
         public virtual Boolean Hot
         {
             get { return _Hot; }
@@ -82,7 +94,7 @@ namespace NewLife.CMX
         [DisplayName("幻灯片")]
         [Description("幻灯片")]
         [DataObjectField(false, false, true, 1)]
-        [BindColumn(6, "Slide", "幻灯片", null, "bit", 0, 0, false)]
+        [BindColumn(7, "Slide", "幻灯片", null, "bit", 0, 0, false)]
         public virtual Boolean Slide
         {
             get { return _Slide; }
@@ -94,7 +106,7 @@ namespace NewLife.CMX
         [DisplayName("封面")]
         [Description("封面")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(7, "Cover", "封面", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(8, "Cover", "封面", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Cover
         {
             get { return _Cover; }
@@ -117,6 +129,7 @@ namespace NewLife.CMX
                 switch (name)
                 {
                     case __.SourceID : return _SourceID;
+                    case __.SourceName : return _SourceName;
                     case __.SourceUrl : return _SourceUrl;
                     case __.Top : return _Top;
                     case __.Recommend : return _Recommend;
@@ -131,6 +144,7 @@ namespace NewLife.CMX
                 switch (name)
                 {
                     case __.SourceID : _SourceID = Convert.ToInt32(value); break;
+                    case __.SourceName : _SourceName = Convert.ToString(value); break;
                     case __.SourceUrl : _SourceUrl = Convert.ToString(value); break;
                     case __.Top : _Top = Convert.ToBoolean(value); break;
                     case __.Recommend : _Recommend = Convert.ToBoolean(value); break;
@@ -188,6 +202,9 @@ namespace NewLife.CMX
 
             ///<summary>来源</summary>
             public static readonly Field SourceID = FindByName(__.SourceID);
+
+            ///<summary>来源名称</summary>
+            public static readonly Field SourceName = FindByName(__.SourceName);
 
             ///<summary>来源地址</summary>
             public static readonly Field SourceUrl = FindByName(__.SourceUrl);
@@ -255,6 +272,9 @@ namespace NewLife.CMX
             ///<summary>来源</summary>
             public const String SourceID = "SourceID";
 
+            ///<summary>来源名称</summary>
+            public const String SourceName = "SourceName";
+
             ///<summary>来源地址</summary>
             public const String SourceUrl = "SourceUrl";
 
@@ -283,6 +303,9 @@ namespace NewLife.CMX
         #region 属性
         /// <summary>来源</summary>
         Int32 SourceID { get; set; }
+
+        /// <summary>来源名称</summary>
+        String SourceName { get; set; }
 
         /// <summary>来源地址</summary>
         String SourceUrl { get; set; }

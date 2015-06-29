@@ -375,6 +375,21 @@ WriteLiteral("                    ");
 
             
             #line 61 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+               Write(Html.ForEditor(Article._.SourceName, entity));
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n                </div>\r\n                <div");
+
+WriteLiteral(" class=\"col-md-8\"");
+
+WriteLiteral(">\r\n");
+
+WriteLiteral("                    ");
+
+            
+            #line 64 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                Write(Html.ForEditor(Article._.SourceUrl, entity));
 
             
@@ -396,23 +411,23 @@ WriteLiteral(" class=\"col-md-6\"");
 
 WriteLiteral(">\r\n                    <script");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 2889), Tuple.Create("\"", 2930)
-, Tuple.Create(Tuple.Create("", 2895), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.config.js")
-, 2895), false)
+WriteAttribute("src", Tuple.Create(" src=\"", 3020), Tuple.Create("\"", 3061)
+, Tuple.Create(Tuple.Create("", 3026), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.config.js")
+, 3026), false)
 );
 
 WriteLiteral("></script>\r\n                    <script");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 2970), Tuple.Create("\"", 3012)
-, Tuple.Create(Tuple.Create("", 2976), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.all.min.js")
-, 2976), false)
+WriteAttribute("src", Tuple.Create(" src=\"", 3101), Tuple.Create("\"", 3143)
+, Tuple.Create(Tuple.Create("", 3107), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.all.min.js")
+, 3107), false)
 );
 
 WriteLiteral("></script>\r\n                    <script");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 3052), Tuple.Create("\"", 3095)
-, Tuple.Create(Tuple.Create("", 3058), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/lang/zh-cn/zh-cn.js")
-, 3058), false)
+WriteAttribute("src", Tuple.Create(" src=\"", 3183), Tuple.Create("\"", 3226)
+, Tuple.Create(Tuple.Create("", 3189), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/lang/zh-cn/zh-cn.js")
+, 3189), false)
 );
 
 WriteLiteral("></script>\r\n                    <script");
@@ -430,7 +445,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                        ");
 
             
-            #line 71 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 74 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                    Write(Html.Raw(article.ContentText));
 
             
@@ -466,7 +481,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                    ");
 
             
-            #line 83 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 86 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                Write(Html.TextArea(Article._.Remark, article.Remark, 5, 100, null));
 
             
@@ -481,13 +496,13 @@ WriteLiteral(" class=\"form-group\"");
 WriteLiteral(">\r\n");
 
             
-            #line 87 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 90 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                 
             
             #line default
             #line hidden
             
-            #line 87 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 90 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                    item = Article._.Top;
             
             #line default
@@ -499,7 +514,7 @@ WriteLiteral(" class=\"control-label col-md-2\"");
 WriteLiteral(">");
 
             
-            #line 88 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 91 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                                                  Write(item.DisplayName);
 
             
@@ -514,7 +529,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                    ");
 
             
-            #line 90 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 93 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                Write(Html.ForEditor(item, entity));
 
             
@@ -523,13 +538,13 @@ WriteLiteral("                    ");
 WriteLiteral("\r\n                </div>\r\n");
 
             
-            #line 92 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 95 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                 
             
             #line default
             #line hidden
             
-            #line 92 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 95 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                    item = Article._.Recommend;
             
             #line default
@@ -541,7 +556,7 @@ WriteLiteral(" class=\"control-label col-md-1\"");
 WriteLiteral(">");
 
             
-            #line 93 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 96 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                                                  Write(item.DisplayName);
 
             
@@ -556,7 +571,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                    ");
 
             
-            #line 95 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 98 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                Write(Html.ForEditor(item, entity));
 
             
@@ -565,13 +580,13 @@ WriteLiteral("                    ");
 WriteLiteral("\r\n                </div>\r\n");
 
             
-            #line 97 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 100 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                 
             
             #line default
             #line hidden
             
-            #line 97 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 100 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                    item = Article._.Hot;
             
             #line default
@@ -583,7 +598,7 @@ WriteLiteral(" class=\"control-label col-md-1\"");
 WriteLiteral(">");
 
             
-            #line 98 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 101 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                                                  Write(item.DisplayName);
 
             
@@ -598,7 +613,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                    ");
 
             
-            #line 100 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 103 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                Write(Html.ForEditor(item, entity));
 
             
@@ -607,13 +622,13 @@ WriteLiteral("                    ");
 WriteLiteral("\r\n                </div>\r\n");
 
             
-            #line 102 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 105 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                 
             
             #line default
             #line hidden
             
-            #line 102 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 105 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                    item = Article._.Slide;
             
             #line default
@@ -625,7 +640,7 @@ WriteLiteral(" class=\"control-label col-md-1\"");
 WriteLiteral(">");
 
             
-            #line 103 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 106 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                                                  Write(item.DisplayName);
 
             
@@ -640,7 +655,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                    ");
 
             
-            #line 105 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 108 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                Write(Html.ForEditor(item, entity));
 
             
@@ -665,7 +680,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                    ");
 
             
-            #line 111 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 114 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                Write(Html.ForEditor(Article._.Cover, entity));
 
             
@@ -690,7 +705,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                    ");
 
             
-            #line 117 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 120 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                Write(Html.ForEditor(Article._.PublishTime, entity));
 
             
@@ -699,34 +714,34 @@ WriteLiteral("                    ");
 WriteLiteral("\r\n                </div>\r\n            </div>\r\n");
 
             
-            #line 120 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 123 "..\..\Areas\CMS\Views\Article\Form.cshtml"
             
             
             #line default
             #line hidden
             
-            #line 120 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 123 "..\..\Areas\CMS\Views\Article\Form.cshtml"
        Write(Html.Partial("_UserTime", Model as IEntity));
 
             
             #line default
             #line hidden
             
-            #line 120 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 123 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                                                         
             
             
             #line default
             #line hidden
             
-            #line 121 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 124 "..\..\Areas\CMS\Views\Article\Form.cshtml"
        Write(Html.Partial("_Form_Action", isNew));
 
             
             #line default
             #line hidden
             
-            #line 121 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 124 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                                                 
         }
 

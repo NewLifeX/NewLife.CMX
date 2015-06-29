@@ -125,6 +125,7 @@
   <Table Name="Article" Description="文章" DbType="SqlServer" BaseType="EntityTitle" 实体分类="文章">
     <Columns>
       <Column Name="SourceID" DataType="Int32" Description="来源" />
+      <Column Name="SourceName" DataType="String" Description="来源名称" />
       <Column Name="SourceUrl" DataType="String" Description="来源地址" />
       <Column Name="Top" DataType="Boolean" Description="置顶" />
       <Column Name="Recommend" DataType="Boolean" Description="推荐" />
