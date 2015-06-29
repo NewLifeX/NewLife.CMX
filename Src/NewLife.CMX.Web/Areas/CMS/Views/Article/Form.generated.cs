@@ -369,13 +369,11 @@ WriteLiteral("\r\n                </div>\r\n                <div");
 
 WriteLiteral(" class=\"col-md-8\"");
 
-WriteLiteral(">\r\n");
-
-WriteLiteral("                    ");
+WriteLiteral(">\r\n                    名称：");
 
             
             #line 61 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-               Write(Html.ForEditor(Article._.SourceName, entity));
+                  Write(Html.ForEditor(Article._.SourceName, entity));
 
             
             #line default
@@ -384,13 +382,11 @@ WriteLiteral("\r\n                </div>\r\n                <div");
 
 WriteLiteral(" class=\"col-md-8\"");
 
-WriteLiteral(">\r\n");
-
-WriteLiteral("                    ");
+WriteLiteral(">\r\n                    地址：");
 
             
             #line 64 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-               Write(Html.ForEditor(Article._.SourceUrl, entity));
+                  Write(Html.ForEditor(Article._.SourceUrl, entity));
 
             
             #line default
@@ -411,23 +407,23 @@ WriteLiteral(" class=\"col-md-6\"");
 
 WriteLiteral(">\r\n                    <script");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 3020), Tuple.Create("\"", 3061)
-, Tuple.Create(Tuple.Create("", 3026), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.config.js")
-, 3026), false)
+WriteAttribute("src", Tuple.Create(" src=\"", 3026), Tuple.Create("\"", 3067)
+, Tuple.Create(Tuple.Create("", 3032), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.config.js")
+, 3032), false)
 );
 
 WriteLiteral("></script>\r\n                    <script");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 3101), Tuple.Create("\"", 3143)
-, Tuple.Create(Tuple.Create("", 3107), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.all.min.js")
-, 3107), false)
+WriteAttribute("src", Tuple.Create(" src=\"", 3107), Tuple.Create("\"", 3149)
+, Tuple.Create(Tuple.Create("", 3113), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.all.min.js")
+, 3113), false)
 );
 
 WriteLiteral("></script>\r\n                    <script");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 3183), Tuple.Create("\"", 3226)
-, Tuple.Create(Tuple.Create("", 3189), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/lang/zh-cn/zh-cn.js")
-, 3189), false)
+WriteAttribute("src", Tuple.Create(" src=\"", 3189), Tuple.Create("\"", 3232)
+, Tuple.Create(Tuple.Create("", 3195), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/lang/zh-cn/zh-cn.js")
+, 3195), false)
 );
 
 WriteLiteral("></script>\r\n                    <script");
