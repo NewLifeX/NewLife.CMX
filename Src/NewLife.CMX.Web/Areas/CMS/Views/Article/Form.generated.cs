@@ -367,7 +367,7 @@ WriteLiteral("                    ");
             #line hidden
 WriteLiteral("\r\n                </div>\r\n                <div");
 
-WriteLiteral(" class=\"col-md-8\"");
+WriteLiteral(" class=\"col-md-4\"");
 
 WriteLiteral(">\r\n                    名称：");
 
@@ -380,7 +380,7 @@ WriteLiteral(">\r\n                    名称：");
             #line hidden
 WriteLiteral("\r\n                </div>\r\n                <div");
 
-WriteLiteral(" class=\"col-md-8\"");
+WriteLiteral(" class=\"col-md-4\"");
 
 WriteLiteral(">\r\n                    地址：");
 
@@ -744,7 +744,54 @@ WriteLiteral("\r\n                </div>\r\n            </div>\r\n");
             
             #line default
             #line hidden
-WriteLiteral("    </div>\r\n</div>");
+WriteLiteral("    </div>\r\n</div>\r\n<script");
+
+WriteLiteral(" type=\"text/javascript\"");
+
+WriteLiteral(">\r\n    $(\"#");
+
+            
+            #line 129 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+   Write(Article._.SourceID);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\").change(\r\n           function () {\r\n               var v = $(\"#");
+
+            
+            #line 131 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+                      Write(Article._.SourceID);
+
+            
+            #line default
+            #line hidden
+WriteLiteral(@""").val();
+               $.ajax({
+                   type: ""Post"",//使用get方法访问后台
+                   dataType: ""json"",//返回json格式的数据
+                   url: '/CMS/Article/GetSource/' + v,//要访问的后台地址
+                   success: function (msg) {//msg为返回的数据，在这里做数据绑定
+                       $(""#");
+
+            
+            #line 137 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+                      Write(Article._.SourceName);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\").attr(\"value\", msg.Name);\r\n                       $(\"#");
+
+            
+            #line 138 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+                      Write(Article._.SourceUrl);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\").attr(\"value\", msg.Url);\r\n                   }\r\n               });\r\n           " +
+"});\r\n</script>");
 
         }
     }

@@ -16,6 +16,15 @@ namespace NewLife.CMX.Web.Controllers
             var list = ListFields;
             list.RemoveAll(e => e.Name.EqualIgnoreCase(Article._.Cover));
         }
+
+        [AllowAnonymous]
+        public JsonResult GetSource(Int32? id)
+        {
+            var src = Source.FindByID(id ?? 0);
+            if (src == null) src = new Source();
+
+            return Json(src);
+        }
     }
 
     public class ArticleCategoryController : CategoryController<ArticleCategory> { }

@@ -57,10 +57,10 @@
                 <div class="col-md-1">
                     @Html.ForDropDownList(Article._.SourceID, Source.FindAllVisible(), null, false)
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-4">
                     名称：@Html.ForEditor(Article._.SourceName, entity)
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-4">
                     地址：@Html.ForEditor(Article._.SourceUrl, entity)
                 </div>
             </div>
@@ -125,3 +125,18 @@
         }
     </div>
 </div>
+<script type="text/javascript">
+    $("#@Article._.SourceID").change(
+           function () {
+               var v = $("#@Article._.SourceID").val();
+               $.ajax({
+                   type: "Post",//使用get方法访问后台
+                   dataType: "json",//返回json格式的数据
+                   url: '/CMS/Article/GetSource/' + v,//要访问的后台地址
+                   success: function (msg) {//msg为返回的数据，在这里做数据绑定
+                       $("#@Article._.SourceName").attr("value", msg.Name);
+                       $("#@Article._.SourceUrl").attr("value", msg.Url);
+                   }
+               });
+           });
+</script>
