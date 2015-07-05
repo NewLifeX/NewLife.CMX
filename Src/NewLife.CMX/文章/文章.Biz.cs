@@ -80,6 +80,11 @@ namespace NewLife.CMX
             }
             set { _FirstImagePath = value; }
         }
+
+        public String GetArticleImagePath()
+        {
+            return !String.IsNullOrEmpty(this.Cover) ? this.Cover : this.FirstImagePath;
+        }
         #endregion
 
         #region 扩展查询﻿
