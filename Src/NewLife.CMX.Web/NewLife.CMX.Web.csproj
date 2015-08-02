@@ -182,6 +182,9 @@
     <Compile Include="Common\ViewHelper.cs" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="UEditor.ashx.cs">
+      <DependentUpon>UEditor.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Article\Category.generated.cs">
       <DependentUpon>Category.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -619,6 +622,7 @@
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.eot" />
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.ttf" />
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.woff" />
+    <Content Include="UEditor.ashx" />
     <None Include="Views\Article\Category.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Category.generated.cs</LastGenOutput>
