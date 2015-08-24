@@ -37,6 +37,12 @@ namespace NewLife.CMX.Web
                 defaults: new { controller = "Content", action = "Index" },
                 constraints: new { channelName = new ChannelUrlConstraint() }
             );
+            routes.MapRoute(
+                name: "CMX_Channel2",
+                url: "{channelName}",
+                defaults: new { controller = "Content", action = "Index" },
+                constraints: new { channelName = new ChannelUrlConstraint() }
+            );
 
             routes.MapRoute(
                 name: "CMX_Category",

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Web.Mvc;
 using NewLife.Web;
 
@@ -41,9 +42,16 @@ namespace NewLife.CMX.Web.Controllers
         public ActionResult Index()
         {
             // 选择模版
-            var viewName = Channel.IndexTemplate;
-            if (viewName.IsNullOrEmpty()) viewName = "Channel";
-            viewName = "../{0}/{1}".F(Channel.Name, viewName);
+            var tmp = Channel.IndexTemplate;
+            if (tmp.IsNullOrEmpty()) tmp = "Channel";
+            var viewName = "../{0}/{1}".F(Channel.Name, tmp);
+
+            // 如果频道模版不存在，则采用模型模版
+            if (Channel.Name != Channel.Model.Name)
+            {
+                var vp = "Views".CombinePath(viewName);
+                if (!Directory.Exists(vp.GetFullPath())) viewName = "../{0}/{1}".F(Channel.Model.Name, tmp);
+            }
 
             ViewBag.Channel = Channel;
 
