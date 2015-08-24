@@ -10,7 +10,7 @@
     @foreach (var chn in Channel.FindAllWithCache())
     {
         var cats = chn.AllCategories;
-        if (cats.Count > 0)
+        if (chn.Enable && cats.Count > 0)
         {
             var width = 12 / cats.Count;
             var left = 12 - width * cats.Count;
