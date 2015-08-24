@@ -71,7 +71,7 @@ WriteLiteral("        ");
 
             
             #line 11 "..\..\Views\Article\Title.cshtml"
-   Write(Html.Partial("../Article/_Nav"));
+   Write(Html.Partial("_Nav"));
 
             
             #line default

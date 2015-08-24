@@ -205,15 +205,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Category.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Content\Channel.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Channel.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Content\Title.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Title.cshtml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Content\Index.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Index.cshtml</DependentUpon>
     </Compile>
     <Compile Include="Views\Home\Index.generated.cs">
       <AutoGen>True</AutoGen>
@@ -247,6 +247,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>_Layout.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shared\_Nav.generated.cs">
+      <DependentUpon>_Nav.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Views\Text\Category.generated.cs">
       <AutoGen>True</AutoGen>
@@ -635,18 +640,17 @@
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Title.generated.cs</LastGenOutput>
     </None>
-    <Content Include="Views\Article\_Nav.cshtml" />
     <None Include="Views\Content\Category.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Category.generated.cs</LastGenOutput>
     </None>
+    <None Include="Views\Content\Channel.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Channel.generated.cs</LastGenOutput>
+    </None>
     <None Include="Views\Content\Title.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Title.generated.cs</LastGenOutput>
-    </None>
-    <None Include="Views\Content\Index.cshtml">
-      <Generator>RazorGenerator</Generator>
-      <LastGenOutput>Index.generated.cs</LastGenOutput>
     </None>
     <None Include="Views\Home\Index.cshtml">
       <Generator>RazorGenerator</Generator>
@@ -688,6 +692,10 @@
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>_Header.generated.cs</LastGenOutput>
     </None>
+    <Content Include="Views\Shared\_Nav.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>_Nav.generated.cs</LastGenOutput>
+    </Content>
     <None Include="Views\Text\Category.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Category.generated.cs</LastGenOutput>

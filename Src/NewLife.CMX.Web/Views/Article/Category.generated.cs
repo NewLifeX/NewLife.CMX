@@ -52,12 +52,6 @@ namespace ASP
     var Titles = ViewBag.Titles as IList<IEntityTitle>;
     var Pager = ViewBag.Pager as Pager;
 
-    var root = Model;
-    while (root.Parent != null && root.Parent != root)
-    {
-        root = root.Parent as IEntityCategory;
-    }
-
             
             #line default
             #line hidden
@@ -76,8 +70,8 @@ WriteLiteral(">\r\n");
 WriteLiteral("        ");
 
             
-            #line 15 "..\..\Views\Article\Category.cshtml"
-   Write(Html.Partial("../Article/_Nav"));
+            #line 9 "..\..\Views\Article\Category.cshtml"
+   Write(Html.Partial("_Nav"));
 
             
             #line default
@@ -91,7 +85,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("        ");
 
             
-            #line 18 "..\..\Views\Article\Category.cshtml"
+            #line 12 "..\..\Views\Article\Category.cshtml"
    Write(Model.Name);
 
             
@@ -100,13 +94,13 @@ WriteLiteral("        ");
 WriteLiteral("\r\n    </h2>\r\n");
 
             
-            #line 20 "..\..\Views\Article\Category.cshtml"
+            #line 14 "..\..\Views\Article\Category.cshtml"
     
             
             #line default
             #line hidden
             
-            #line 20 "..\..\Views\Article\Category.cshtml"
+            #line 14 "..\..\Views\Article\Category.cshtml"
       
         var childs = Model.Childs;
         if (childs.Count > 0)
@@ -128,7 +122,7 @@ WriteLiteral(" class=\"tit\"");
 WriteLiteral(">\r\n                        <em>");
 
             
-            #line 28 "..\..\Views\Article\Category.cshtml"
+            #line 22 "..\..\Views\Article\Category.cshtml"
                        Write(cat.Name);
 
             
@@ -140,14 +134,14 @@ WriteLiteral(" style=\"float: right;\"");
 
 WriteLiteral(">\r\n                            <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 882), Tuple.Create("\"", 914)
+WriteAttribute("href", Tuple.Create(" href=\"", 728), Tuple.Create("\"", 760)
             
-            #line 30 "..\..\Views\Article\Category.cshtml"
-, Tuple.Create(Tuple.Create("", 889), Tuple.Create<System.Object, System.Int32>(this.GetCategoryUrl(cat)
+            #line 24 "..\..\Views\Article\Category.cshtml"
+, Tuple.Create(Tuple.Create("", 735), Tuple.Create<System.Object, System.Int32>(this.GetCategoryUrl(cat)
             
             #line default
             #line hidden
-, 889), false)
+, 735), false)
 );
 
 WriteLiteral(">更多 &gt;&gt;</a>\r\n                        </small>\r\n                    </h2>\r\n  " +
@@ -162,13 +156,13 @@ WriteLiteral(" class=\"list_news_dl fixed\"");
 WriteLiteral(">\r\n");
 
             
-            #line 35 "..\..\Views\Article\Category.cshtml"
+            #line 29 "..\..\Views\Article\Category.cshtml"
                             
             
             #line default
             #line hidden
             
-            #line 35 "..\..\Views\Article\Category.cshtml"
+            #line 29 "..\..\Views\Article\Category.cshtml"
                              foreach (var title in cat.GetTitles())
                             {
 
@@ -177,20 +171,20 @@ WriteLiteral(">\r\n");
             #line hidden
 WriteLiteral("                                <li>\r\n                                    <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 1270), Tuple.Create("\"", 1296)
+WriteAttribute("href", Tuple.Create(" href=\"", 1116), Tuple.Create("\"", 1142)
             
-            #line 38 "..\..\Views\Article\Category.cshtml"
-, Tuple.Create(Tuple.Create("", 1277), Tuple.Create<System.Object, System.Int32>(this.GetUrl(title)
+            #line 32 "..\..\Views\Article\Category.cshtml"
+, Tuple.Create(Tuple.Create("", 1123), Tuple.Create<System.Object, System.Int32>(this.GetUrl(title)
             
             #line default
             #line hidden
-, 1277), false)
+, 1123), false)
 );
 
 WriteLiteral(">\r\n                                        <i></i>");
 
             
-            #line 39 "..\..\Views\Article\Category.cshtml"
+            #line 33 "..\..\Views\Article\Category.cshtml"
                                           Write(title.Title);
 
             
@@ -200,7 +194,7 @@ WriteLiteral("\r\n                                    </a>\r\n                  
 "\r\n");
 
             
-            #line 42 "..\..\Views\Article\Category.cshtml"
+            #line 36 "..\..\Views\Article\Category.cshtml"
                             }
 
             
@@ -210,7 +204,7 @@ WriteLiteral("                        </ul>\r\n                    </div>\r\n   
 "\r\n");
 
             
-            #line 46 "..\..\Views\Article\Category.cshtml"
+            #line 40 "..\..\Views\Article\Category.cshtml"
             }
         }
         else
@@ -226,13 +220,13 @@ WriteLiteral(" class=\"list_news_dl fixed\"");
 WriteLiteral(">\r\n");
 
             
-            #line 51 "..\..\Views\Article\Category.cshtml"
+            #line 45 "..\..\Views\Article\Category.cshtml"
                 
             
             #line default
             #line hidden
             
-            #line 51 "..\..\Views\Article\Category.cshtml"
+            #line 45 "..\..\Views\Article\Category.cshtml"
                  foreach (var item in Titles)
                 {
 
@@ -241,20 +235,20 @@ WriteLiteral(">\r\n");
             #line hidden
 WriteLiteral("                    <li>\r\n                        <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 1770), Tuple.Create("\"", 1795)
+WriteAttribute("href", Tuple.Create(" href=\"", 1616), Tuple.Create("\"", 1641)
             
-            #line 54 "..\..\Views\Article\Category.cshtml"
-, Tuple.Create(Tuple.Create("", 1777), Tuple.Create<System.Object, System.Int32>(this.GetUrl(item)
+            #line 48 "..\..\Views\Article\Category.cshtml"
+, Tuple.Create(Tuple.Create("", 1623), Tuple.Create<System.Object, System.Int32>(this.GetUrl(item)
             
             #line default
             #line hidden
-, 1777), false)
+, 1623), false)
 );
 
 WriteLiteral(">\r\n                            <i></i>");
 
             
-            #line 55 "..\..\Views\Article\Category.cshtml"
+            #line 49 "..\..\Views\Article\Category.cshtml"
                               Write(item.Title);
 
             
@@ -263,7 +257,7 @@ WriteLiteral(">\r\n                            <i></i>");
 WriteLiteral("\r\n                        </a>\r\n                    </li>\r\n");
 
             
-            #line 58 "..\..\Views\Article\Category.cshtml"
+            #line 52 "..\..\Views\Article\Category.cshtml"
                 }
 
             
@@ -272,7 +266,7 @@ WriteLiteral("\r\n                        </a>\r\n                    </li>\r\n"
 WriteLiteral("            </ul>\r\n");
 
             
-            #line 60 "..\..\Views\Article\Category.cshtml"
+            #line 54 "..\..\Views\Article\Category.cshtml"
             if (Pager.PageCount > 1)
             {
 
@@ -290,7 +284,7 @@ WriteLiteral(" class=\"cor01\"");
 WriteLiteral(">页数：");
 
             
-            #line 63 "..\..\Views\Article\Category.cshtml"
+            #line 57 "..\..\Views\Article\Category.cshtml"
                                       Write(Pager.PageIndex);
 
             
@@ -299,7 +293,7 @@ WriteLiteral(">页数：");
 WriteLiteral("/");
 
             
-            #line 63 "..\..\Views\Article\Category.cshtml"
+            #line 57 "..\..\Views\Article\Category.cshtml"
                                                        Write(Pager.PageCount);
 
             
@@ -309,14 +303,14 @@ WriteLiteral("</span>\r\n                    <a");
 
 WriteLiteral(" class=\"first\"");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 2152), Tuple.Create("\"", 2188)
+WriteAttribute("href", Tuple.Create(" href=\"", 1998), Tuple.Create("\"", 2034)
             
-            #line 64 "..\..\Views\Article\Category.cshtml"
-, Tuple.Create(Tuple.Create("", 2159), Tuple.Create<System.Object, System.Int32>(this.GetCategoryUrl(Model)
+            #line 58 "..\..\Views\Article\Category.cshtml"
+, Tuple.Create(Tuple.Create("", 2005), Tuple.Create<System.Object, System.Int32>(this.GetCategoryUrl(Model)
             
             #line default
             #line hidden
-, 2159), false)
+, 2005), false)
 );
 
 WriteLiteral(" title=\"首页\"");
@@ -324,13 +318,13 @@ WriteLiteral(" title=\"首页\"");
 WriteLiteral(">首页</a>\r\n");
 
             
-            #line 65 "..\..\Views\Article\Category.cshtml"
+            #line 59 "..\..\Views\Article\Category.cshtml"
                     
             
             #line default
             #line hidden
             
-            #line 65 "..\..\Views\Article\Category.cshtml"
+            #line 59 "..\..\Views\Article\Category.cshtml"
                      if (Pager.PageIndex > 1)
                     {
 
@@ -343,20 +337,20 @@ WriteLiteral(" class=\"prev\"");
 
 WriteLiteral(" title=\"上一页\"");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 2330), Tuple.Create("\"", 2387)
+WriteAttribute("href", Tuple.Create(" href=\"", 2176), Tuple.Create("\"", 2233)
             
-            #line 67 "..\..\Views\Article\Category.cshtml"
-, Tuple.Create(Tuple.Create("", 2337), Tuple.Create<System.Object, System.Int32>(this.GetCategoryUrl(Model, Pager.PageIndex - 1)
+            #line 61 "..\..\Views\Article\Category.cshtml"
+, Tuple.Create(Tuple.Create("", 2183), Tuple.Create<System.Object, System.Int32>(this.GetCategoryUrl(Model, Pager.PageIndex - 1)
             
             #line default
             #line hidden
-, 2337), false)
+, 2183), false)
 );
 
 WriteLiteral(">&lt;</a>\r\n");
 
             
-            #line 68 "..\..\Views\Article\Category.cshtml"
+            #line 62 "..\..\Views\Article\Category.cshtml"
                     }
 
             
@@ -365,7 +359,7 @@ WriteLiteral(">&lt;</a>\r\n");
 WriteLiteral("                    ");
 
             
-            #line 69 "..\..\Views\Article\Category.cshtml"
+            #line 63 "..\..\Views\Article\Category.cshtml"
                      for (int i = 1; i <= Pager.PageCount; i++)
                     {
                         if (i == Pager.PageIndex)
@@ -381,7 +375,7 @@ WriteLiteral(" class=\"on\"");
 WriteLiteral(">");
 
             
-            #line 73 "..\..\Views\Article\Category.cshtml"
+            #line 67 "..\..\Views\Article\Category.cshtml"
                                      Write(i);
 
             
@@ -390,7 +384,7 @@ WriteLiteral(">");
 WriteLiteral("</a>\r\n");
 
             
-            #line 74 "..\..\Views\Article\Category.cshtml"
+            #line 68 "..\..\Views\Article\Category.cshtml"
                         }
                         else
                         {
@@ -400,20 +394,20 @@ WriteLiteral("</a>\r\n");
             #line hidden
 WriteLiteral("                            <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 2752), Tuple.Create("\"", 2791)
+WriteAttribute("href", Tuple.Create(" href=\"", 2598), Tuple.Create("\"", 2637)
             
-            #line 77 "..\..\Views\Article\Category.cshtml"
-, Tuple.Create(Tuple.Create("", 2759), Tuple.Create<System.Object, System.Int32>(this.GetCategoryUrl(Model, i)
+            #line 71 "..\..\Views\Article\Category.cshtml"
+, Tuple.Create(Tuple.Create("", 2605), Tuple.Create<System.Object, System.Int32>(this.GetCategoryUrl(Model, i)
             
             #line default
             #line hidden
-, 2759), false)
+, 2605), false)
 );
 
 WriteLiteral(">");
 
             
-            #line 77 "..\..\Views\Article\Category.cshtml"
+            #line 71 "..\..\Views\Article\Category.cshtml"
                                                                   Write(i);
 
             
@@ -422,7 +416,7 @@ WriteLiteral(">");
 WriteLiteral("</a>\r\n");
 
             
-            #line 78 "..\..\Views\Article\Category.cshtml"
+            #line 72 "..\..\Views\Article\Category.cshtml"
                         }
                     }
 
@@ -432,7 +426,7 @@ WriteLiteral("</a>\r\n");
 WriteLiteral("                    ");
 
             
-            #line 80 "..\..\Views\Article\Category.cshtml"
+            #line 74 "..\..\Views\Article\Category.cshtml"
                      if (Pager.PageIndex < Pager.PageCount)
                     {
 
@@ -445,20 +439,20 @@ WriteLiteral(" class=\"next\"");
 
 WriteLiteral(" title=\"下一页\"");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 2986), Tuple.Create("\"", 3043)
+WriteAttribute("href", Tuple.Create(" href=\"", 2832), Tuple.Create("\"", 2889)
             
-            #line 82 "..\..\Views\Article\Category.cshtml"
-, Tuple.Create(Tuple.Create("", 2993), Tuple.Create<System.Object, System.Int32>(this.GetCategoryUrl(Model, Pager.PageIndex + 1)
+            #line 76 "..\..\Views\Article\Category.cshtml"
+, Tuple.Create(Tuple.Create("", 2839), Tuple.Create<System.Object, System.Int32>(this.GetCategoryUrl(Model, Pager.PageIndex + 1)
             
             #line default
             #line hidden
-, 2993), false)
+, 2839), false)
 );
 
 WriteLiteral(">&gt;</a>\r\n");
 
             
-            #line 83 "..\..\Views\Article\Category.cshtml"
+            #line 77 "..\..\Views\Article\Category.cshtml"
                     }
 
             
@@ -470,20 +464,20 @@ WriteLiteral(" class=\"first\"");
 
 WriteLiteral(" title=\"末页\"");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 3125), Tuple.Create("\"", 3178)
+WriteAttribute("href", Tuple.Create(" href=\"", 2971), Tuple.Create("\"", 3024)
             
-            #line 84 "..\..\Views\Article\Category.cshtml"
-, Tuple.Create(Tuple.Create("", 3132), Tuple.Create<System.Object, System.Int32>(this.GetCategoryUrl(Model, Pager.PageCount)
+            #line 78 "..\..\Views\Article\Category.cshtml"
+, Tuple.Create(Tuple.Create("", 2978), Tuple.Create<System.Object, System.Int32>(this.GetCategoryUrl(Model, Pager.PageCount)
             
             #line default
             #line hidden
-, 3132), false)
+, 2978), false)
 );
 
 WriteLiteral(">末页</a>\r\n                </div>\r\n");
 
             
-            #line 86 "..\..\Views\Article\Category.cshtml"
+            #line 80 "..\..\Views\Article\Category.cshtml"
             }
         }
     

@@ -3,16 +3,10 @@
     var Channel = ViewBag.Channel as Channel;
     var Titles = ViewBag.Titles as IList<IEntityTitle>;
     var Pager = ViewBag.Pager as Pager;
-
-    var root = Model;
-    while (root.Parent != null && root.Parent != root)
-    {
-        root = root.Parent as IEntityCategory;
-    }
 }
 <div class="container" style="min-height: 600px;">
     <div class="row">
-        @Html.Partial("../Article/_Nav")
+        @Html.Partial("_Nav")
     </div>
     <h2 class="tith2">
         @Model.Name

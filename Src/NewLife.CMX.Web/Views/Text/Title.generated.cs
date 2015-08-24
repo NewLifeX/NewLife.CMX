@@ -54,15 +54,6 @@ namespace ASP
     this.PushTitle(Model.Category.Name);
     this.PushTitle(Model.Title);
 
-    var paths = new List<String>();
-    var templateCategory = Category;
-    do
-    {
-        paths.Add(templateCategory.Name);
-        templateCategory = templateCategory.Parent as IEntityCategory;
-    } while (templateCategory != null);
-    paths.Reverse();
-
             
             #line default
             #line hidden
@@ -74,45 +65,18 @@ WriteLiteral(">\r\n    <div");
 
 WriteLiteral(" class=\"row\"");
 
-WriteLiteral(">\r\n        <em>所在位置：</em> <span>\r\n            <a");
+WriteLiteral(">\r\n");
 
-WriteLiteral(" href=\"/\"");
-
-WriteLiteral(">首页</a>\r\n            &nbsp;\r\n");
+WriteLiteral("        ");
 
             
-            #line 23 "..\..\Views\Text\Title.cshtml"
-            
-            
-            #line default
-            #line hidden
-            
-            #line 23 "..\..\Views\Text\Title.cshtml"
-             foreach (var title in paths)
-            {
+            #line 11 "..\..\Views\Text\Title.cshtml"
+   Write(Html.Partial("_Nav"));
 
             
             #line default
             #line hidden
-WriteLiteral("                <span>&gt;");
-
-            
-            #line 25 "..\..\Views\Text\Title.cshtml"
-                     Write(title);
-
-            
-            #line default
-            #line hidden
-WriteLiteral("</span>\r\n");
-
-            
-            #line 26 "..\..\Views\Text\Title.cshtml"
-            }
-
-            
-            #line default
-            #line hidden
-WriteLiteral("        </span>\r\n    </div>\r\n\r\n    <div");
+WriteLiteral("\r\n    </div>\r\n    <div");
 
 WriteLiteral(" class=\"row\"");
 
@@ -125,7 +89,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("            ");
 
             
-            #line 32 "..\..\Views\Text\Title.cshtml"
+            #line 15 "..\..\Views\Text\Title.cshtml"
        Write(Model.Title);
 
             
@@ -140,7 +104,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("            ");
 
             
-            #line 35 "..\..\Views\Text\Title.cshtml"
+            #line 18 "..\..\Views\Text\Title.cshtml"
        Write(Html.Raw(Model.ContentText));
 
             

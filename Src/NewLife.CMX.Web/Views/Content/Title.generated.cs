@@ -57,16 +57,130 @@ namespace ASP
             
             #line default
             #line hidden
-WriteLiteral("\r\n请设置【");
+WriteLiteral("\r\n<div");
+
+WriteLiteral(" class=\"container\"");
+
+WriteLiteral(">\r\n    <div");
+
+WriteLiteral(" class=\"row\"");
+
+WriteLiteral(">\r\n");
+
+WriteLiteral("        ");
 
             
-            #line 9 "..\..\Views\Content\Title.cshtml"
-Write(Model.Category);
+            #line 11 "..\..\Views\Content\Title.cshtml"
+   Write(Html.Partial("_Nav"));
 
             
             #line default
             #line hidden
-WriteLiteral("】的标题模版。");
+WriteLiteral("\r\n    </div>\r\n    <div");
+
+WriteLiteral(" class=\"row\"");
+
+WriteLiteral(">\r\n        <h2");
+
+WriteLiteral(" class=\"text-center\"");
+
+WriteLiteral(">\r\n");
+
+WriteLiteral("            ");
+
+            
+            #line 15 "..\..\Views\Content\Title.cshtml"
+       Write(Model.Title);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n        </h2>\r\n        <h3");
+
+WriteLiteral(" class=\"text-center\"");
+
+WriteLiteral(">\r\n            <em");
+
+WriteLiteral(" class=\"e e1\"");
+
+WriteLiteral(">来源：");
+
+            
+            #line 18 "..\..\Views\Content\Title.cshtml"
+                            Write(Model as IUserInfo);
+
+            
+            #line default
+            #line hidden
+WriteLiteral(".CreateUserName</em>\r\n            <em");
+
+WriteLiteral(" class=\"e e2\"");
+
+WriteLiteral(">发布时间：");
+
+            
+            #line 19 "..\..\Views\Content\Title.cshtml"
+                             Write(Model.CreateTime.ToFullString());
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</em>\r\n            <em");
+
+WriteLiteral(" class=\"e e3\"");
+
+WriteLiteral(">浏览：");
+
+            
+            #line 20 "..\..\Views\Content\Title.cshtml"
+                           Write(Model.Views.ToString("n0"));
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</em>\r\n        </h3>\r\n        <div");
+
+WriteLiteral(" class=\"content\"");
+
+WriteLiteral(">\r\n            <style");
+
+WriteLiteral(" type=\"text/css\"");
+
+WriteLiteral(">\r\n                .TRS_Editor P {\r\n                    margin-top: 0;\r\n         " +
+"           margin-bottom: 1em;\r\n                    line-height: 2;\r\n           " +
+"     }\r\n\r\n                .TRS_Editor DIV {\r\n                    margin-top: 0;\r" +
+"\n                    margin-bottom: 1em;\r\n                    line-height: 2;\r\n " +
+"               }\r\n\r\n                .TRS_Editor TD {\r\n                    margin" +
+"-top: 0;\r\n                    margin-bottom: 1em;\r\n                    line-heig" +
+"ht: 2;\r\n                }\r\n\r\n                .TRS_Editor TH {\r\n                 " +
+"   margin-top: 0;\r\n                    margin-bottom: 1em;\r\n                    " +
+"line-height: 2;\r\n                }\r\n\r\n                .TRS_Editor SPAN {\r\n      " +
+"              margin-top: 0;\r\n                    margin-bottom: 1em;\r\n         " +
+"           line-height: 2;\r\n                }\r\n\r\n                .TRS_Editor FON" +
+"T {\r\n                    margin-top: 0;\r\n                    margin-bottom: 1em;" +
+"\r\n                    line-height: 2;\r\n                }\r\n\r\n                .TRS" +
+"_Editor UL {\r\n                    margin-top: 0;\r\n                    margin-bot" +
+"tom: 1em;\r\n                    line-height: 2;\r\n                }\r\n\r\n           " +
+"     .TRS_Editor LI {\r\n                    margin-top: 0;\r\n                    m" +
+"argin-bottom: 1em;\r\n                    line-height: 2;\r\n                }\r\n\r\n  " +
+"              .TRS_Editor A {\r\n                    margin-top: 0;\r\n             " +
+"       margin-bottom: 1em;\r\n                    line-height: 2;\r\n               " +
+" }\r\n            </style>\r\n            <div");
+
+WriteLiteral(" class=\"TRS_Editor\"");
+
+WriteLiteral(">\r\n");
+
+WriteLiteral("                ");
+
+            
+            #line 79 "..\..\Views\Content\Title.cshtml"
+           Write(Html.Raw(Model.ContentText));
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>");
 
         }
     }
