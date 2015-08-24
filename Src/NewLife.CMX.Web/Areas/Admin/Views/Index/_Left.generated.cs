@@ -242,7 +242,7 @@ WriteLiteral("\r\n");
      foreach (var chn in Channel.FindAllWithCache().ToList().Where(e => e.Enable))
     {
         // 判断是否有权访问该频道
-        var res = "CMS\\" + chn.Name;
+        var res = "CMS\\" + chn.Model.Name;
         if (!user.Has(res) && !user.Has(res + "Category")) { continue; }
         var provider = chn.Model.Provider;
         var cats = (provider.CategoryFactory.Default as IEntityTree).Childs;
@@ -258,16 +258,16 @@ WriteLiteral(" class=\"dropdown-toggle\"");
 
 WriteLiteral(">\r\n                <i");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 1971), Tuple.Create("\"", 2005)
-, Tuple.Create(Tuple.Create("", 1979), Tuple.Create("menu-icon", 1979), true)
-, Tuple.Create(Tuple.Create(" ", 1988), Tuple.Create("fa", 1989), true)
+WriteAttribute("class", Tuple.Create(" class=\"", 1977), Tuple.Create("\"", 2011)
+, Tuple.Create(Tuple.Create("", 1985), Tuple.Create("menu-icon", 1985), true)
+, Tuple.Create(Tuple.Create(" ", 1994), Tuple.Create("fa", 1995), true)
             
             #line 55 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-, Tuple.Create(Tuple.Create(" ", 1991), Tuple.Create<System.Object, System.Int32>(icos[_idx++]
+, Tuple.Create(Tuple.Create(" ", 1997), Tuple.Create<System.Object, System.Int32>(icos[_idx++]
             
             #line default
             #line hidden
-, 1992), false)
+, 1998), false)
 );
 
 WriteLiteral("></i>\r\n                <span");
@@ -313,24 +313,24 @@ WriteLiteral(">\r\n");
             #line hidden
 WriteLiteral("                    <li>\r\n                        <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 2348), Tuple.Create("\"", 2394)
-, Tuple.Create(Tuple.Create("", 2355), Tuple.Create<System.Object, System.Int32>(Href("~/CMS/")
-, 2355), false)
-            
-            #line 67 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-, Tuple.Create(Tuple.Create("", 2361), Tuple.Create<System.Object, System.Int32>(chn.Model.Name
-            
-            #line default
-            #line hidden
+WriteAttribute("href", Tuple.Create(" href=\"", 2354), Tuple.Create("\"", 2400)
+, Tuple.Create(Tuple.Create("", 2361), Tuple.Create<System.Object, System.Int32>(Href("~/CMS/")
 , 2361), false)
-, Tuple.Create(Tuple.Create("", 2378), Tuple.Create("Category/", 2378), true)
             
             #line 67 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-, Tuple.Create(Tuple.Create("", 2387), Tuple.Create<System.Object, System.Int32>(chn.ID
+, Tuple.Create(Tuple.Create("", 2367), Tuple.Create<System.Object, System.Int32>(chn.Model.Name
             
             #line default
             #line hidden
-, 2387), false)
+, 2367), false)
+, Tuple.Create(Tuple.Create("", 2384), Tuple.Create("Category/", 2384), true)
+            
+            #line 67 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
+, Tuple.Create(Tuple.Create("", 2393), Tuple.Create<System.Object, System.Int32>(chn.ID
+            
+            #line default
+            #line hidden
+, 2393), false)
 );
 
 WriteLiteral(" target=\"main\"");

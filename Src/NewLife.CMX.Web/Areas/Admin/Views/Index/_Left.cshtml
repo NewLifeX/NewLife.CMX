@@ -46,7 +46,7 @@
     @foreach (var chn in Channel.FindAllWithCache().ToList().Where(e => e.Enable))
     {
         // 判断是否有权访问该频道
-        var res = "CMS\\" + chn.Name;
+        var res = "CMS\\" + chn.Model.Name;
         if (!user.Has(res) && !user.Has(res + "Category")) { continue; }
         var provider = chn.Model.Provider;
         var cats = (provider.CategoryFactory.Default as IEntityTree).Childs;
