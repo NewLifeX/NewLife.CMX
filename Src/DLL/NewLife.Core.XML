@@ -1026,6 +1026,9 @@
         <member name="M:NewLife.Xml.XmlConfig`1.Save">
             <summary>保存到配置文件中去</summary>
         </member>
+        <member name="M:NewLife.Xml.XmlConfig`1.OnNew">
+            <summary>新创建配置文件时执行</summary>
+        </member>
         <member name="P:NewLife.Xml.XmlConfig`1.Current">
             <summary>当前实例。通过置空可以使其重新加载。</summary>
         </member>
@@ -2584,6 +2587,18 @@
             <param name="path">文件或目录</param>
             <returns></returns>
         </member>
+        <member name="M:System.IO.PathHelper.GetBasePath(System.String)">
+            <summary>获取文件或目录基于应用程序域基目录的全路径，过滤相对目录</summary>
+            <remarks>不确保目录后面一定有分隔符，是否有分隔符由原始路径末尾决定</remarks>
+            <param name="path">文件或目录</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.IO.PathHelper.GetCurrentPath(System.String)">
+            <summary>获取文件或目录基于当前目录的全路径，过滤相对目录</summary>
+            <remarks>不确保目录后面一定有分隔符，是否有分隔符由原始路径末尾决定</remarks>
+            <param name="path">文件或目录</param>
+            <returns></returns>
+        </member>
         <member name="M:System.IO.PathHelper.EnsureDirectory(System.String,System.Boolean)">
             <summary>确保目录存在，若不存在则创建</summary>
             <remarks>
@@ -2777,6 +2792,9 @@
             <param name="format">格式化字符串</param>
             <param name="args">格式化参数</param>
         </member>
+        <member name="P:NewLife.Log.ILog.Enable">
+            <summary>是否启用日志</summary>
+        </member>
         <member name="P:NewLife.Log.ILog.Level">
             <summary>日志等级，只输出大于等于该级别的日志，默认Info，打开NewLife.Debug时默认为最低的Debug</summary>
         </member>
@@ -2826,6 +2844,9 @@
         <member name="M:NewLife.Log.Logger.GetHead">
             <summary>输出日志头，包含所有环境信息</summary>
         </member>
+        <member name="P:NewLife.Log.Logger.Enable">
+            <summary>是否启用日志。默认true</summary>
+        </member>
         <member name="P:NewLife.Log.Logger.Level">
             <summary>日志等级，只输出大于等于该级别的日志，默认Info，打开NewLife.Debug时默认为最低的Debug</summary>
         </member>
@@ -2841,6 +2862,10 @@
             <param name="level"></param>
             <param name="format"></param>
             <param name="args"></param>
+        </member>
+        <member name="M:NewLife.Log.ActionLog.ToString">
+            <summary>已重载</summary>
+            <returns></returns>
         </member>
         <member name="P:NewLife.Log.ActionLog.Method">
             <summary>方法</summary>
@@ -2862,6 +2887,11 @@
         </member>
         <member name="M:NewLife.Log.CompositeLog.Add(NewLife.Log.ILog)">
             <summary>添加一个日志提供者</summary>
+            <param name="log"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Log.CompositeLog.Remove(NewLife.Log.ILog)">
+            <summary>删除日志提供者</summary>
             <param name="log"></param>
             <returns></returns>
         </member>
@@ -2906,10 +2936,10 @@
             <summary>打开所有日志记录</summary>
         </member>
         <member name="F:NewLife.Log.LogLevel.Debug">
-            <summary>调试。细粒度信息事件对调试应用程序非常有帮助</summary>
+            <summary>最低调试。细粒度信息事件对调试应用程序非常有帮助</summary>
         </member>
         <member name="F:NewLife.Log.LogLevel.Info">
-            <summary>消息。在粗粒度级别上突出强调应用程序的运行过程</summary>
+            <summary>普通消息。在粗粒度级别上突出强调应用程序的运行过程</summary>
         </member>
         <member name="F:NewLife.Log.LogLevel.Warn">
             <summary>警告</summary>
@@ -3463,9 +3493,28 @@
             <summary>把消息写入到数据流中</summary>
             <param name="stream"></param>
         </member>
+        <member name="M:NewLife.Messaging.MessageBase.ToArray">
+            <summary>消息转为字节数组</summary>
+            <returns></returns>
+        </member>
         <member name="M:NewLife.Messaging.MessageBase.GetFormatter(System.Boolean)">
             <summary>获取序列化器</summary>
             <param name="isRead"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Messaging.MessageBase.ToString">
+            <summary>输出消息实体</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Messaging.MessageBase.GetMember(System.Reflection.PropertyInfo,System.Int32,System.Text.StringBuilder)">
+            <summary>获取成员输出</summary>
+            <param name="pi"></param>
+            <param name="len"></param>
+            <param name="sb"></param>
+        </member>
+        <member name="M:NewLife.Messaging.MessageBase.GetMemberValue(System.Reflection.PropertyInfo)">
+            <summary>获取用于输出的成员值</summary>
+            <param name="pi"></param>
             <returns></returns>
         </member>
         <member name="T:NewLife.Messaging.MessageKind">
@@ -4138,11 +4187,27 @@
             <param name="addr"></param>
             <returns></returns>
         </member>
+        <member name="M:System.NetHelper.IPToAddress(System.String)">
+            <summary>根据字符串形式IP地址转为物理地址</summary>
+            <param name="addr"></param>
+            <returns></returns>
+        </member>
         <member name="M:System.NetHelper.SetTcpMax">
             <summary>设置最大Tcp连接数</summary>
         </member>
         <member name="M:System.NetHelper.ShowTcpParameters">
             <summary>显示Tcp参数</summary>
+        </member>
+        <member name="M:System.NetHelper.Write(System.IO.Stream,System.Net.IPEndPoint)">
+            <summary>把网络节点写入数据流</summary>
+            <param name="stream"></param>
+            <param name="ep"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.NetHelper.ReadEndPoint(System.IO.Stream)">
+            <summary>从数据流读取网络节点</summary>
+            <param name="stream"></param>
+            <returns></returns>
         </member>
         <member name="P:System.NetHelper.Debug">
             <summary>是否调试</summary>
@@ -4682,8 +4747,17 @@
         <member name="E:NewLife.Net.SessionBase.Error">
             <summary>错误发生/断开连接时</summary>
         </member>
+        <member name="P:NewLife.Net.SessionBase.LogPrefix">
+            <summary>日志前缀</summary>
+        </member>
         <member name="P:NewLife.Net.SessionBase.Log">
-            <summary>日志对象</summary>
+            <summary>日志对象。禁止设为空对象</summary>
+        </member>
+        <member name="P:NewLife.Net.SessionBase.LogSend">
+            <summary>是否输出发送日志。默认false</summary>
+        </member>
+        <member name="P:NewLife.Net.SessionBase.LogReceive">
+            <summary>是否输出接收日志。默认false</summary>
         </member>
         <member name="T:NewLife.Net.ISocketSession">
             <summary>用于与对方进行通讯的Socket会话，仅具有收发功能，也专用于上层应用收发数据</summary>
@@ -4759,6 +4833,9 @@
             <summary>已重载。</summary>
             <returns></returns>
         </member>
+        <member name="P:NewLife.Net.TcpSession.ID">
+            <summary>会话编号</summary>
+        </member>
         <member name="P:NewLife.Net.TcpSession.Client">
             <summary>客户端</summary>
         </member>
@@ -4779,6 +4856,9 @@
         </member>
         <member name="P:NewLife.Net.TcpSession.PacketSize">
             <summary>所期望的报文大小</summary>
+        </member>
+        <member name="P:NewLife.Net.TcpSession.LogPrefix">
+            <summary>日志前缀</summary>
         </member>
         <member name="T:NewLife.Net.TcpServer">
             <summary>TCP服务器</summary>
@@ -4880,6 +4960,9 @@
         <member name="E:NewLife.Net.TcpServer.Error">
             <summary>错误发生/断开连接时</summary>
         </member>
+        <member name="P:NewLife.Net.TcpServer.LogPrefix">
+            <summary>日志前缀</summary>
+        </member>
         <member name="P:NewLife.Net.TcpServer.Log">
             <summary>日志对象</summary>
         </member>
@@ -4892,6 +4975,7 @@
         <member name="M:NewLife.Net.SessionCollection.Add(NewLife.Net.ISocketSession)">
             <summary>添加新会话，并设置会话编号</summary>
             <param name="session"></param>
+            <returns>返回添加新会话是否成功</returns>
         </member>
         <member name="M:NewLife.Net.SessionCollection.Get(System.String)">
             <summary>获取会话，加锁</summary>
@@ -4979,9 +5063,11 @@
             <summary>客户端</summary>
         </member>
         <member name="P:NewLife.Net.UdpServer.MaxNotActive">
-            <summary>最大不活动时间。
+            <summary>最大不活动时间。默认30秒。</summary>
+            <remarks>
             对于每一个会话连接，如果超过该时间仍然没有收到任何数据，则断开会话连接。
-            单位秒，默认30秒。时间不是太准确，建议15秒的倍数。为0表示不检查。</summary>
+            时间不是太准确，建议15秒的倍数。为0表示不检查。
+            </remarks>
         </member>
         <member name="P:NewLife.Net.UdpServer.LastRemote">
             <summary>最后一次同步接收数据得到的远程地址</summary>
@@ -5103,11 +5189,14 @@
         <member name="P:NewLife.Net.UdpSession.LastTime">
             <summary>最后一次通信时间，主要表示活跃时间，包括收发</summary>
         </member>
+        <member name="E:NewLife.Net.UdpSession.Error">
+            <summary>错误发生/断开连接时</summary>
+        </member>
         <member name="P:NewLife.Net.UdpSession.Log">
             <summary>日志提供者</summary>
         </member>
-        <member name="E:NewLife.Net.UdpSession.Error">
-            <summary>错误发生/断开连接时</summary>
+        <member name="P:NewLife.Net.UdpSession.LogPrefix">
+            <summary>日志前缀</summary>
         </member>
         <member name="T:NewLife.Net.Upgrade">
             <summary>升级</summary>
@@ -5385,11 +5474,17 @@
             <summary>调用语音引擎说出指定话</summary>
             <param name="value"></param>
         </member>
-        <member name="M:System.StringHelper.Run(System.String,System.String,System.Int32)">
+        <member name="M:System.StringHelper.SpeakAsync(System.String)">
+            <summary>调用语音引擎说出指定话</summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:System.StringHelper.Run(System.String,System.String,System.Int32,System.Action{System.String})">
             <summary>以隐藏窗口执行命令行</summary>
             <param name="cmd">文件名</param>
             <param name="arguments">命令参数</param>
             <param name="msWait">等待毫秒数</param>
+            <param name="output">进程输出内容。默认为空时输出到日志</param>
+            <returns>进程退出代码</returns>
         </member>
         <member name="T:NewLife.Configuration.Config">
             <summary>通用配置辅助类</summary>
@@ -6077,13 +6172,6 @@
             <param name="data">字节数组</param>
             <param name="separate">分隔符</param>
             <param name="groupSize">分组大小，为0时对每个字节应用分隔符，否则对每个分组使用</param>
-            <returns></returns>
-        </member>
-        <member name="M:System.IOHelper.FromHex(System.String,System.Int32,System.Int32)">
-            <summary>把十六进制字符串解码字节数组</summary>
-            <param name="data">字节数组</param>
-            <param name="startIndex">起始位置</param>
-            <param name="length">长度</param>
             <returns></returns>
         </member>
         <member name="M:System.IOHelper.ToHex(System.String,System.Int32,System.Int32)">
@@ -12302,6 +12390,33 @@
         <member name="P:NewLife.Serialization.XSerializationException.Value">
             <summary>对象值</summary>
         </member>
+        <member name="T:NewLife.Setting">
+            <summary>核心设置</summary>
+        </member>
+        <member name="M:NewLife.Setting.OnNew">
+            <summary>新建时调用</summary>
+        </member>
+        <member name="P:NewLife.Setting.Debug">
+            <summary>是否启用全局调试。默认为不启用</summary>
+        </member>
+        <member name="P:NewLife.Setting.LogLevel">
+            <summary>日志等级，只输出大于等于该级别的日志</summary>
+        </member>
+        <member name="P:NewLife.Setting.LogPath">
+            <summary>文本日志目录</summary>
+        </member>
+        <member name="P:NewLife.Setting.TempPath">
+            <summary>临时目录</summary>
+        </member>
+        <member name="P:NewLife.Setting.NetDebug">
+            <summary>网络调试</summary>
+        </member>
+        <member name="P:NewLife.Setting.ThreadDebug">
+            <summary>多线程调试</summary>
+        </member>
+        <member name="P:NewLife.Setting.WebCompressFiles">
+            <summary>网页压缩文件</summary>
+        </member>
         <member name="T:NewLife.Threading.ReadWriteLock">
             <summary>原子读写锁</summary>
             <remark>
@@ -13931,12 +14046,9 @@
             <param name="exception">异常</param>
             <param name="isNewLine">是否换行</param>
         </member>
-        <member name="M:NewLife.Log.WriteLogEventArgs.Set(NewLife.Log.LogLevel,System.String,System.Exception,System.Boolean)">
+        <member name="M:NewLife.Log.WriteLogEventArgs.Set(NewLife.Log.LogLevel)">
             <summary>初始化为新日志</summary>
             <param name="level">日志等级</param>
-            <param name="message">日志</param>
-            <param name="exception">异常</param>
-            <param name="isNewLine">是否换行</param>
             <returns>返回自身，链式写法</returns>
         </member>
         <member name="M:NewLife.Log.WriteLogEventArgs.Set(System.String,System.Exception,System.Boolean)">
@@ -14001,6 +14113,11 @@
         </member>
         <member name="M:NewLife.Log.XTrace.WriteLine(System.String,System.Object[])">
             <summary>写日志</summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:NewLife.Log.XTrace.WriteLineAsync(System.String,System.Object[])">
+            <summary>异步写日志</summary>
             <param name="format"></param>
             <param name="args"></param>
         </member>
@@ -14544,7 +14661,7 @@
             <returns></returns>
         </member>
         <member name="P:NewLife.Web.WebHelper.UserHost">
-            <summary>用户主机</summary>
+            <summary>用户主机。支持非Web</summary>
         </member>
         <member name="P:NewLife.Web.WebHelper.PageName">
             <summary>页面文件名</summary>

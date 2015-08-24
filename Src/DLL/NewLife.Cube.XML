@@ -126,6 +126,17 @@
             <summary>导出Excel</summary>
             <returns></returns>
         </member>
+        <member name="M:NewLife.Cube.EntityController`1.OnExportExcel(System.IO.Stream,System.Collections.Generic.List{XCode.Configuration.FieldItem})">
+            <summary>导出Excel，可重载修改要输出的结果集</summary>
+            <param name="ms"></param>
+            <param name="fs"></param>
+        </member>
+        <member name="M:NewLife.Cube.EntityController`1.OnExportExcel(System.IO.Stream,System.Collections.Generic.List{XCode.Configuration.FieldItem},System.Collections.Generic.List{`0})">
+            <summary>导出Excel，可重载修改要输出的列</summary>
+            <param name="ms"></param>
+            <param name="fs"></param>
+            <param name="list"></param>
+        </member>
         <member name="M:NewLife.Cube.EntityController`1.Clear">
             <summary>清空全表数据</summary>
             <returns></returns>
@@ -978,6 +989,18 @@
             <param name="httpContext"></param>
             <param name="key"></param>
             <param name="virtualPath"></param>
+        </member>
+        <member name="T:NewLife.Cube.Setting">
+            <summary>魔方设置</summary>
+        </member>
+        <member name="M:NewLife.Cube.Setting.OnNew">
+            <summary>新建时调用</summary>
+        </member>
+        <member name="P:NewLife.Cube.Setting.Debug">
+            <summary>是否启用调试。默认为不启用</summary>
+        </member>
+        <member name="P:NewLife.Cube.Setting.ShowRunTime">
+            <summary>显示运行时间</summary>
         </member>
     </members>
 </doc>

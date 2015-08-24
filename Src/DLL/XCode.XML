@@ -708,6 +708,10 @@
             <param name="relationtable"></param>
             <param name="relationcolumn"></param>
         </member>
+        <member name="M:XCode.BindRelationAttribute.#ctor(System.String)">
+            <summary>指定一个表内关联关系</summary>
+            <param name="relationcolumn"></param>
+        </member>
         <member name="M:XCode.BindRelationAttribute.Fill(XCode.DataAccessLayer.IDataRelation)">
             <summary>填充关系</summary>
             <param name="relation"></param>
@@ -730,7 +734,10 @@
         <member name="P:XCode.Cache.CacheSetting.Debug">
             <summary>是否调试缓存模块</summary>
         </member>
-        <member name="P:XCode.Cache.CacheSetting.CacheExpiration">
+        <member name="P:XCode.Cache.CacheSetting.Alone">
+            <summary>是否独占数据库，独占时将大大加大缓存权重，默认true（Debug时为false）</summary>
+        </member>
+        <member name="P:XCode.Cache.CacheSetting.Expiration">
             <summary>缓存相对有效期。
             -2	关闭缓存
             -1	非独占数据库，有外部系统操作数据库，使用请求级缓存；
@@ -740,9 +747,6 @@
         </member>
         <member name="P:XCode.Cache.CacheSetting.CheckPeriod">
             <summary>缓存维护定时器的检查周期，默认5秒</summary>
-        </member>
-        <member name="P:XCode.Cache.CacheSetting.Alone">
-            <summary>是否独占数据库，独占时将大大加大缓存权重，默认true（Debug时为false）</summary>
         </member>
         <member name="P:XCode.Cache.CacheSetting.EntityCacheExpire">
             <summary>实体缓存过期时间，默认60秒</summary>
@@ -1302,6 +1306,10 @@
             <param name="ps">命令参数</param>
             <returns>新增行的自动编号</returns>
         </member>
+        <member name="M:XCode.EntitySession`1.Truncate">
+            <summary>清空数据表，标识归零</summary>
+            <returns></returns>
+        </member>
         <member name="F:XCode.EntitySession`1._TransCount">
             <summary>事务计数</summary>
         </member>
@@ -1418,6 +1426,53 @@
         <member name="T:XCode.DirtiedEntitySession">
             <summary>脏实体会话，嵌套事务回滚时使用</summary>
             <remarks>http://www.newlifex.com/showtopic-1216.aspx</remarks>
+        </member>
+        <member name="T:XCode.IEntityModule">
+            <summary>实体处理模块</summary>
+        </member>
+        <member name="M:XCode.IEntityModule.Init(System.Type)">
+            <summary>为指定实体类初始化模块，返回是否支持</summary>
+            <param name="entityType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.IEntityModule.Create(XCode.IEntity,System.Boolean)">
+            <summary>创建实体对象</summary>
+            <param name="entity"></param>
+            <param name="forEdit"></param>
+        </member>
+        <member name="M:XCode.IEntityModule.Valid(XCode.IEntity,System.Boolean)">
+            <summary>验证实体对象</summary>
+            <param name="entity"></param>
+            <param name="isNew"></param>
+            <returns></returns>
+        </member>
+        <member name="T:XCode.EntityModules">
+            <summary>实体模块集合</summary>
+        </member>
+        <member name="P:XCode.EntityModules.EntityType">
+            <summary>实体类型</summary>
+        </member>
+        <member name="P:XCode.EntityModules.Modules">
+            <summary>模块集合</summary>
+        </member>
+        <member name="T:XCode.EntityModule">
+            <summary>实体模块基类</summary>
+        </member>
+        <member name="M:XCode.EntityModule.Init(System.Type)">
+            <summary>为指定实体类初始化模块，返回是否支持</summary>
+            <param name="entityType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.EntityModule.Create(XCode.IEntity,System.Boolean)">
+            <summary>创建实体对象</summary>
+            <param name="entity"></param>
+            <param name="forEdit"></param>
+        </member>
+        <member name="M:XCode.EntityModule.Valid(XCode.IEntity,System.Boolean)">
+            <summary>验证实体对象</summary>
+            <param name="entity"></param>
+            <param name="isNew"></param>
+            <returns></returns>
         </member>
         <member name="T:XCode.SelectModes">
             <summary>查询模式</summary>
@@ -2295,6 +2350,9 @@
         </member>
         <member name="P:XCode.Entity`1.Meta.LongCount">
             <summary>总记录数，小于1000时是精确的，大于1000时缓存10分钟</summary>
+        </member>
+        <member name="P:XCode.Entity`1.Meta.Modules">
+            <summary>实体模块集合</summary>
         </member>
         <member name="P:XCode.Entity`1.Meta.SplitPackge.ConnName">
             <summary>连接名</summary>
@@ -3188,15 +3246,81 @@
         <member name="T:XCode.Membership.DefaultLogProvider">
             <summary>默认日志提供者，使用实体类<seealso cref="T:XCode.Membership.Log"/></summary>
         </member>
+        <member name="T:XCode.Membership.UserModule">
+            <summary>用户模型</summary>
+        </member>
+        <member name="M:XCode.Membership.UserModule.Init(System.Type)">
+            <summary>初始化。检查是否匹配</summary>
+            <param name="entityType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.UserModule.Valid(XCode.IEntity,System.Boolean)">
+            <summary>验证数据，自动加上创建和更新的信息</summary>
+            <param name="entity"></param>
+            <param name="isNew"></param>
+        </member>
+        <member name="T:XCode.Membership.UserModule.__">
+            <summary>字段名</summary>
+        </member>
+        <member name="F:XCode.Membership.UserModule.__.CreateUserID">
+            <summary>创建人</summary>
+        </member>
+        <member name="F:XCode.Membership.UserModule.__.UpdateUserID">
+            <summary>更新人</summary>
+        </member>
+        <member name="T:XCode.Membership.TimeModule">
+            <summary>时间模型</summary>
+        </member>
+        <member name="M:XCode.Membership.TimeModule.Init(System.Type)">
+            <summary>初始化。检查是否匹配</summary>
+            <param name="entityType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.TimeModule.Valid(XCode.IEntity,System.Boolean)">
+            <summary>验证数据，自动加上创建和更新的信息</summary>
+            <param name="entity"></param>
+            <param name="isNew"></param>
+        </member>
+        <member name="T:XCode.Membership.TimeModule.__">
+            <summary>字段名</summary>
+        </member>
+        <member name="F:XCode.Membership.TimeModule.__.CreateTime">
+            <summary>创建时间</summary>
+        </member>
+        <member name="F:XCode.Membership.TimeModule.__.UpdateTime">
+            <summary>更新时间</summary>
+        </member>
+        <member name="T:XCode.Membership.IPModule">
+            <summary>IP地址模型</summary>
+        </member>
+        <member name="M:XCode.Membership.IPModule.Init(System.Type)">
+            <summary>初始化。检查是否匹配</summary>
+            <param name="entityType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XCode.Membership.IPModule.Valid(XCode.IEntity,System.Boolean)">
+            <summary>验证数据，自动加上创建和更新的信息</summary>
+            <param name="entity"></param>
+            <param name="isNew"></param>
+        </member>
+        <member name="T:XCode.Membership.IPModule.__">
+            <summary>字段名</summary>
+        </member>
+        <member name="F:XCode.Membership.IPModule.__.CreateIP">
+            <summary>创建人</summary>
+        </member>
+        <member name="F:XCode.Membership.IPModule.__.UpdateIP">
+            <summary>更新人</summary>
+        </member>
         <member name="T:XCode.Membership.UserTimeEntity`1">
             <summary>用户时间实体基类</summary>
             <typeparam name="TEntity"></typeparam>
         </member>
-        <member name="T:XCode.Membership.IUserInfo">
+        <member name="T:XCode.Membership.IUserInfo2">
             <summary>用户信息接口。包含创建用户和更新用户</summary>
         </member>
-        <member name="P:XCode.Membership.IUserInfo.CreateUserID">
-            <summary>创建用户ID</summary>
+        <member name="T:XCode.Membership.IUserInfo">
+            <summary>用户信息接口。包含创建用户和更新用户</summary>
         </member>
         <member name="P:XCode.Membership.IUserInfo.CreateUser">
             <summary>创建用户</summary>
@@ -3204,14 +3328,17 @@
         <member name="P:XCode.Membership.IUserInfo.CreateUserName">
             <summary>创建用户名</summary>
         </member>
-        <member name="P:XCode.Membership.IUserInfo.UpdateUserID">
-            <summary>更新用户ID</summary>
-        </member>
         <member name="P:XCode.Membership.IUserInfo.UpdateUser">
             <summary>更新用户</summary>
         </member>
         <member name="P:XCode.Membership.IUserInfo.UpdateUserName">
             <summary>更新用户名</summary>
+        </member>
+        <member name="P:XCode.Membership.IUserInfo2.CreateUserID">
+            <summary>创建用户ID</summary>
+        </member>
+        <member name="P:XCode.Membership.IUserInfo2.UpdateUserID">
+            <summary>更新用户ID</summary>
         </member>
         <member name="T:XCode.Membership.ITimeInfo">
             <summary>时间信息接口。包含创建时间和更新时间</summary>
@@ -3618,6 +3745,16 @@
             <param name="end"></param>
             <returns></returns>
         </member>
+        <member name="M:XCode.Membership.Log`1.Search(System.String,System.Int32,System.String,System.DateTime,System.DateTime,NewLife.Web.Pager)">
+            <summary>查询</summary>
+            <param name="key"></param>
+            <param name="adminid"></param>
+            <param name="category"></param>
+            <param name="start"></param>
+            <param name="end"></param>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
         <member name="M:XCode.Membership.Log`1.FindAllCategory">
             <summary>查找所有类别名</summary>
             <returns></returns>
@@ -3792,6 +3929,9 @@
         <member name="P:XCode.Membership.IUser.DisplayName">
             <summary>显示名。昵称、中文名等</summary>
         </member>
+        <member name="P:XCode.Membership.IUser.Sex">
+            <summary>性别。未知、男、女</summary>
+        </member>
         <member name="P:XCode.Membership.IUser.Mail">
             <summary>邮件</summary>
         </member>
@@ -3804,6 +3944,18 @@
         <member name="P:XCode.Membership.IUser.RoleID">
             <summary>角色</summary>
         </member>
+        <member name="P:XCode.Membership.IUser.Enable">
+            <summary>是否启用</summary>
+        </member>
+        <member name="P:XCode.Membership.IUser.StartTime">
+            <summary>开始时间</summary>
+        </member>
+        <member name="P:XCode.Membership.IUser.EndTime">
+            <summary>结束时间</summary>
+        </member>
+        <member name="P:XCode.Membership.IUser.RegisterTime">
+            <summary>注册时间</summary>
+        </member>
         <member name="P:XCode.Membership.IUser.Logins">
             <summary>登录次数</summary>
         </member>
@@ -3813,8 +3965,11 @@
         <member name="P:XCode.Membership.IUser.LastLoginIP">
             <summary>最后登录IP</summary>
         </member>
-        <member name="P:XCode.Membership.IUser.Enable">
-            <summary>是否启用</summary>
+        <member name="P:XCode.Membership.IUser.Quertion">
+            <summary>问题</summary>
+        </member>
+        <member name="P:XCode.Membership.IUser.Answer">
+            <summary>答案</summary>
         </member>
         <member name="P:XCode.Membership.IUser.Profile">
             <summary>配置信息</summary>
@@ -3830,6 +3985,10 @@
         <member name="M:XCode.Membership.User`1.Valid(System.Boolean)">
             <summary>验证</summary>
             <param name="isNew"></param>
+        </member>
+        <member name="M:XCode.Membership.User`1.OnDelete">
+            <summary>删除用户</summary>
+            <returns></returns>
         </member>
         <member name="M:XCode.Membership.User`1.FindByID(System.Int32)">
             <summary>根据编号查找</summary>
@@ -3972,6 +4131,9 @@
         <member name="P:XCode.Membership.User`1.DisplayName">
             <summary>显示名。昵称、中文名等</summary>
         </member>
+        <member name="P:XCode.Membership.User`1.Sex">
+            <summary>性别。未知、男、女</summary>
+        </member>
         <member name="P:XCode.Membership.User`1.Mail">
             <summary>邮件</summary>
         </member>
@@ -3984,6 +4146,18 @@
         <member name="P:XCode.Membership.User`1.RoleID">
             <summary>角色</summary>
         </member>
+        <member name="P:XCode.Membership.User`1.Enable">
+            <summary>是否启用</summary>
+        </member>
+        <member name="P:XCode.Membership.User`1.StartTime">
+            <summary>开始时间</summary>
+        </member>
+        <member name="P:XCode.Membership.User`1.EndTime">
+            <summary>结束时间</summary>
+        </member>
+        <member name="P:XCode.Membership.User`1.RegisterTime">
+            <summary>注册时间</summary>
+        </member>
         <member name="P:XCode.Membership.User`1.Logins">
             <summary>登录次数</summary>
         </member>
@@ -3993,8 +4167,11 @@
         <member name="P:XCode.Membership.User`1.LastLoginIP">
             <summary>最后登录IP</summary>
         </member>
-        <member name="P:XCode.Membership.User`1.Enable">
-            <summary>是否启用</summary>
+        <member name="P:XCode.Membership.User`1.Quertion">
+            <summary>问题</summary>
+        </member>
+        <member name="P:XCode.Membership.User`1.Answer">
+            <summary>答案</summary>
         </member>
         <member name="P:XCode.Membership.User`1.Profile">
             <summary>配置信息</summary>
@@ -4023,6 +4200,9 @@
         <member name="F:XCode.Membership.User`1._.DisplayName">
             <summary>显示名。昵称、中文名等</summary>
         </member>
+        <member name="F:XCode.Membership.User`1._.Sex">
+            <summary>性别。未知、男、女</summary>
+        </member>
         <member name="F:XCode.Membership.User`1._.Mail">
             <summary>邮件</summary>
         </member>
@@ -4035,6 +4215,18 @@
         <member name="F:XCode.Membership.User`1._.RoleID">
             <summary>角色</summary>
         </member>
+        <member name="F:XCode.Membership.User`1._.Enable">
+            <summary>是否启用</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1._.StartTime">
+            <summary>开始时间</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1._.EndTime">
+            <summary>结束时间</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1._.RegisterTime">
+            <summary>注册时间</summary>
+        </member>
         <member name="F:XCode.Membership.User`1._.Logins">
             <summary>登录次数</summary>
         </member>
@@ -4044,8 +4236,11 @@
         <member name="F:XCode.Membership.User`1._.LastLoginIP">
             <summary>最后登录IP</summary>
         </member>
-        <member name="F:XCode.Membership.User`1._.Enable">
-            <summary>是否启用</summary>
+        <member name="F:XCode.Membership.User`1._.Quertion">
+            <summary>问题</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1._.Answer">
+            <summary>答案</summary>
         </member>
         <member name="F:XCode.Membership.User`1._.Profile">
             <summary>配置信息</summary>
@@ -4065,6 +4260,9 @@
         <member name="F:XCode.Membership.User`1.__.DisplayName">
             <summary>显示名。昵称、中文名等</summary>
         </member>
+        <member name="F:XCode.Membership.User`1.__.Sex">
+            <summary>性别。未知、男、女</summary>
+        </member>
         <member name="F:XCode.Membership.User`1.__.Mail">
             <summary>邮件</summary>
         </member>
@@ -4077,6 +4275,18 @@
         <member name="F:XCode.Membership.User`1.__.RoleID">
             <summary>角色</summary>
         </member>
+        <member name="F:XCode.Membership.User`1.__.Enable">
+            <summary>是否启用</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1.__.StartTime">
+            <summary>开始时间</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1.__.EndTime">
+            <summary>结束时间</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1.__.RegisterTime">
+            <summary>注册时间</summary>
+        </member>
         <member name="F:XCode.Membership.User`1.__.Logins">
             <summary>登录次数</summary>
         </member>
@@ -4086,8 +4296,11 @@
         <member name="F:XCode.Membership.User`1.__.LastLoginIP">
             <summary>最后登录IP</summary>
         </member>
-        <member name="F:XCode.Membership.User`1.__.Enable">
-            <summary>是否启用</summary>
+        <member name="F:XCode.Membership.User`1.__.Quertion">
+            <summary>问题</summary>
+        </member>
+        <member name="F:XCode.Membership.User`1.__.Answer">
+            <summary>答案</summary>
         </member>
         <member name="F:XCode.Membership.User`1.__.Profile">
             <summary>配置信息</summary>
@@ -4876,6 +5089,81 @@
         <member name="P:XCode.FieldExpression.Value">
             <summary>值</summary>
         </member>
+        <member name="T:XCode.Setting">
+            <summary>树神设置</summary>
+        </member>
+        <member name="M:XCode.Setting.OnNew">
+            <summary>新建时调用</summary>
+        </member>
+        <member name="P:XCode.Setting.Debug">
+            <summary>是否启用调试。默认为不启用</summary>
+        </member>
+        <member name="P:XCode.Setting.ShowSQL">
+            <summary>是否输出SQL语句，默认为调试开关Debug</summary>
+        </member>
+        <member name="P:XCode.Setting.SQLPath">
+            <summary>设置SQL输出的单独目录，默认为空，SQL输出到当前日志中。生产环境建议输出到站点外单独的SqlLog目录</summary>
+        </member>
+        <member name="P:XCode.Setting.TraceSQLTime">
+            <summary>跟踪SQL执行时间，大于该阀值将输出日志，默认0毫秒不跟踪</summary>
+        </member>
+        <member name="P:XCode.Setting.ConnMaps">
+            <summary>连接名映射#，表名映射@，把实体类中的Test2和Test3连接名映射到Test去</summary>
+        </member>
+        <member name="P:XCode.Setting.CodeDebug">
+            <summary>是否启用动态代码调试，把动态生成的实体类代码和程序集输出到临时目录，默认不启用</summary>
+        </member>
+        <member name="P:XCode.Setting.ServiceAddress">
+            <summary>下载数据库驱动的地址，文件名用{0}替代。默认http://j.NewLifeX.com/?id=3&amp;f={0}</summary>
+        </member>
+        <member name="P:XCode.Setting.CacheZip">
+            <summary>是否缓存数据库驱动Zip包到系统盘。默认缓存</summary>
+        </member>
+        <member name="P:XCode.Setting.InitData">
+            <summary>实体类首次访问数据库时，是否执行数据初始化，默认true执行，导数据时建议关闭</summary>
+        </member>
+        <member name="P:XCode.Setting.Cache">
+            <summary>缓存</summary>
+        </member>
+        <member name="P:XCode.Setting.Negative">
+            <summary>反向工程</summary>
+        </member>
+        <member name="P:XCode.Setting.Model">
+            <summary>模型</summary>
+        </member>
+        <member name="P:XCode.Setting.Oracle">
+            <summary>Oracle设置</summary>
+        </member>
+        <member name="T:XCode.ModelSetting">
+            <summary>模型设置</summary>
+        </member>
+        <member name="P:XCode.ModelSetting.UseID">
+            <summary>是否ID作为id的格式化，否则使用原名。默认使用ID</summary>
+        </member>
+        <member name="P:XCode.ModelSetting.AutoCutPrefix">
+            <summary>是否自动去除前缀，第一个_之前。默认启用</summary>
+        </member>
+        <member name="P:XCode.ModelSetting.AutoCutTableName">
+            <summary>是否自动去除字段前面的表名。默认启用</summary>
+        </member>
+        <member name="P:XCode.ModelSetting.AutoFixWord">
+            <summary>是否自动纠正大小写。默认启用</summary>
+        </member>
+        <member name="P:XCode.ModelSetting.FilterPrefixs">
+            <summary>格式化表名字段名时，要过滤的前缀。默认tbl,table</summary>
+        </member>
+        <member name="T:XCode.OracleSetting">
+            <summary>Oracle设置</summary>
+        </member>
+        <member name="P:XCode.OracleSetting.UseOwner">
+            <summary>是否限制只能访问拥有者的信息，默认false</summary>
+        </member>
+        <member name="P:XCode.OracleSetting.IgnoreCase">
+            <summary>是否忽略大小写，如果不忽略则在表名字段名外面加上双引号，默认true</summary>
+        </member>
+        <member name="P:XCode.OracleSetting.DLLPath">
+            <summary>属性说明</summary>
+        </member>
         <member name="T:XCode.Sync.ISyncMaster">
             <summary>同步架构主方接口</summary>
             <remarks>
@@ -5293,9 +5581,10 @@
             <summary>移除指定项</summary>
             <param name="entity"></param>
         </member>
-        <member name="M:XCode.Cache.ISingleEntityCache.RemoveKey(System.Object)">
+        <member name="M:XCode.Cache.ISingleEntityCache.RemoveKey(System.Object,System.Boolean)">
             <summary>移除指定项</summary>
-            <param name="key"></param>
+            <param name="key">键值</param>
+            <param name="save">是否自动保存实体对象</param>
         </member>
         <member name="M:XCode.Cache.ISingleEntityCache.Clear(System.String)">
             <summary>清除所有数据</summary>
@@ -6059,6 +6348,11 @@
             <param name="ps">命令参数</param>
             <returns></returns>
         </member>
+        <member name="M:XCode.DataAccessLayer.IDbSession.Truncate(System.String)">
+            <summary>清空数据表，标识归零</summary>
+            <param name="tableName"></param>
+            <returns></returns>
+        </member>
         <member name="M:XCode.DataAccessLayer.IDbSession.GetSchema(System.String,System.String[])">
             <summary>返回数据源的架构信息</summary>
             <param name="collectionName">指定要返回的架构的名称。</param>
@@ -6230,6 +6524,11 @@
             <param name="ps">命令参数</param>
             <returns></returns>
         </member>
+        <member name="M:XCode.DataAccessLayer.DbSession.Truncate(System.String)">
+            <summary>清空数据表，标识归零</summary>
+            <param name="tableName"></param>
+            <returns></returns>
+        </member>
         <member name="M:XCode.DataAccessLayer.DbSession.GetSchema(System.String,System.String[])">
             <summary>返回数据源的架构信息。缓存10分钟</summary>
             <param name="collectionName">指定要返回的架构的名称。</param>
@@ -6294,6 +6593,11 @@
         </member>
         <member name="M:XCode.DataAccessLayer.FileDbSession.Open">
             <summary>已重载。打开数据库连接前创建数据库</summary>
+        </member>
+        <member name="M:XCode.DataAccessLayer.FileDbSession.Truncate(System.String)">
+            <summary>清空数据表，标识归零</summary>
+            <param name="tableName"></param>
+            <returns></returns>
         </member>
         <member name="P:XCode.DataAccessLayer.FileDbSession.FileName">
             <summary>文件</summary>
@@ -6844,20 +7148,8 @@
         <member name="P:XCode.DataAccessLayer.DAL.SQLPath">
             <summary>设置SQL输出的单独目录，默认为空，SQL输出到当前日志中</summary>
         </member>
-        <member name="P:XCode.DataAccessLayer.DAL.NegativeEnable">
-            <summary>是否启用数据架构</summary>
-        </member>
-        <member name="P:XCode.DataAccessLayer.DAL.NegativeCheckOnly">
-            <summary>是否只检查不操作，默认不启用</summary>
-        </member>
-        <member name="P:XCode.DataAccessLayer.DAL.NegativeNoDelete">
-            <summary>是否启用不删除字段</summary>
-        </member>
         <member name="P:XCode.DataAccessLayer.DAL.NegativeExclude">
             <summary>要排除的链接名</summary>
-        </member>
-        <member name="P:XCode.DataAccessLayer.DAL.TraceSQLTime">
-            <summary>跟踪SQL执行时间，大于该阀值将输出日志，默认0毫秒不跟踪。</summary>
         </member>
         <member name="P:XCode.DataAccessLayer.DAL.ConnStrs">
             <summary>链接字符串集合</summary>
@@ -7291,11 +7583,17 @@
         <member name="T:XCode.DataAccessLayer.NegativeSetting">
             <summary>反向工程设置</summary>
         </member>
+        <member name="P:XCode.DataAccessLayer.NegativeSetting.Enable">
+            <summary>是否启用反向工程，默认不启用。反向工程可以实现通过实体类反向更新数据库结构</summary>
+        </member>
         <member name="P:XCode.DataAccessLayer.NegativeSetting.CheckOnly">
-            <summary>是否只检查。生成日志，但不执行操作</summary>
+            <summary>是否只检查不操作，默认不启用。启用时，仅把更新SQL写入日志</summary>
         </member>
         <member name="P:XCode.DataAccessLayer.NegativeSetting.NoDelete">
-            <summary>是否不删除。在执行反向操作的时候，所有涉及删除表和删除字段的操作均不进行。</summary>
+            <summary>是否启用不删除字段，默认不启用。删除字段的操作过于危险，这里可以通过设为true关闭</summary>
+        </member>
+        <member name="P:XCode.DataAccessLayer.NegativeSetting.Exclude">
+            <summary>要排除的链接名和表名，多个用逗号分隔，默认空</summary>
         </member>
         <member name="T:XCode.DataAccessLayer.IModelResolver">
             <summary>模型解析器接口。解决名称大小写、去前缀、关键字等多个问题</summary>
@@ -8743,6 +9041,7 @@
         </member>
         <member name="P:XCode.Configuration.FieldItem.ReadOnly">
             <summary>是否只读</summary>
+            <remarks>set { _ReadOnly = value; } 放出只读属性的设置，比如在编辑页面的时候，有的字段不能修改 如修改用户时  不能修改用户名</remarks>
         </member>
         <member name="P:XCode.Configuration.FieldItem.Table">
             <summary>表</summary>
@@ -8755,6 +9054,17 @@
         </member>
         <member name="P:XCode.Configuration.FieldItem.FormatedName">
             <summary>已格式化的字段名，可字节用于SQL中。主要用于处理关键字，比如MSSQL里面的[User]</summary>
+        </member>
+        <member name="P:XCode.Configuration.FieldItem.OriField">
+            <summary>跟当前字段有关系的原始字段</summary>
+        </member>
+        <member name="P:XCode.Configuration.FieldItem.Width">
+            <summary>宽度</summary>
+            <remarks>主要用于界面上的控件宽度</remarks>
+        </member>
+        <member name="P:XCode.Configuration.FieldItem.Sort">
+            <summary>排序</summary>
+            <remarks>主要用于界面上的控件显示排序</remarks>
         </member>
         <member name="T:XCode.Configuration.Field">
             <summary>继承FieldItem，仅仅为了重载==和!=运算符</summary>
@@ -9265,6 +9575,11 @@
             <param name="type">命令类型，默认SQL文本</param>
             <param name="ps">命令参数</param>
             <returns>新增行的自动编号</returns>
+        </member>
+        <member name="M:XCode.DataAccessLayer.SQLiteSession.Truncate(System.String)">
+            <summary>清空数据表，标识归零</summary>
+            <param name="tableName"></param>
+            <returns></returns>
         </member>
         <member name="T:XCode.DataAccessLayer.SQLiteMetaData">
             <summary>SQLite元数据</summary>
@@ -10406,13 +10721,15 @@
             <param name="entity">数值</param>
             <returns></returns>
         </member>
-        <member name="M:XCode.Cache.SingleEntityCache`2.RemoveKey(`0)">
+        <member name="M:XCode.Cache.SingleEntityCache`2.RemoveKey(`0,System.Boolean)">
             <summary>移除指定项</summary>
-            <param name="key"></param>
+            <param name="key">键值</param>
+            <param name="save">是否自动保存实体对象</param>
         </member>
-        <member name="M:XCode.Cache.SingleEntityCache`2.Remove(`1)">
+        <member name="M:XCode.Cache.SingleEntityCache`2.Remove(`1,System.Boolean)">
             <summary>根据主键移除指定项</summary>
             <param name="entity"></param>
+            <param name="save">是否自动保存实体对象</param>
         </member>
         <member name="M:XCode.Cache.SingleEntityCache`2.Clear(System.String)">
             <summary>清除所有数据</summary>
@@ -10428,9 +10745,10 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:XCode.Cache.SingleEntityCache`2.XCode#Cache#ISingleEntityCache#RemoveKey(System.Object)">
+        <member name="M:XCode.Cache.SingleEntityCache`2.XCode#Cache#ISingleEntityCache#RemoveKey(System.Object,System.Boolean)">
             <summary>移除指定项</summary>
-            <param name="key"></param>
+            <param name="key">键值</param>
+            <param name="save">是否自动保存实体对象</param>
         </member>
         <member name="M:XCode.Cache.SingleEntityCache`2.XCode#Cache#ISingleEntityCache#Remove(XCode.IEntity)">
             <summary>移除指定项</summary>
@@ -10743,7 +11061,7 @@
             <summary>保存按钮，查找名为btnSave或UpdateButton（兼容旧版本）的按钮</summary>
         </member>
         <member name="P:XCode.Web.EntityForm.CopyButton">
-            <summary>保存按钮，查找名为btnCopy的按钮</summary>
+            <summary>复制按钮，查找名为btnCopy的按钮</summary>
         </member>
         <member name="P:XCode.Web.EntityForm.IsNew">
             <summary>是否空主键</summary>
