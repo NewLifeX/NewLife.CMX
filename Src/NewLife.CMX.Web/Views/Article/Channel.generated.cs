@@ -52,17 +52,114 @@ namespace ASP
             
             #line default
             #line hidden
-WriteLiteral("\r\n请配置频道【");
+WriteLiteral("\r\n<h2");
+
+WriteLiteral(" class=\"tith2\"");
+
+WriteLiteral(">\r\n");
+
+WriteLiteral("    ");
 
             
-            #line 4 "..\..\Views\Article\Channel.cshtml"
- Write(Model);
+            #line 5 "..\..\Views\Article\Channel.cshtml"
+Write(Model.Name);
 
             
             #line default
             #line hidden
-WriteLiteral("】的Index模板。");
+WriteLiteral("\r\n</h2>\r\n");
 
+            
+            #line 7 "..\..\Views\Article\Channel.cshtml"
+ foreach (var category in Model.Categories)
+{
+
+            
+            #line default
+            #line hidden
+WriteLiteral("    <div");
+
+WriteLiteral(" class=\"widget2 fixed\"");
+
+WriteLiteral(">\r\n        <h2");
+
+WriteLiteral(" class=\"tit\"");
+
+WriteLiteral(">\r\n            <em>");
+
+            
+            #line 11 "..\..\Views\Article\Channel.cshtml"
+           Write(category.Name);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</em>\r\n            <small");
+
+WriteLiteral(" style=\"float: right;\"");
+
+WriteLiteral(">更多 &gt;&gt;</small>\r\n        </h2>\r\n        <div");
+
+WriteLiteral(" class=\"content\"");
+
+WriteLiteral(">\r\n            <ul");
+
+WriteLiteral(" class=\"list_news_dl fixed\"");
+
+WriteLiteral(">\r\n");
+
+            
+            #line 16 "..\..\Views\Article\Channel.cshtml"
+                
+            
+            #line default
+            #line hidden
+            
+            #line 16 "..\..\Views\Article\Channel.cshtml"
+                 foreach (var item in category.GetTitles())
+                {
+
+            
+            #line default
+            #line hidden
+WriteLiteral("                    <li>\r\n                        <a");
+
+WriteAttribute("href", Tuple.Create(" href=\"", 508), Tuple.Create("\"", 533)
+            
+            #line 19 "..\..\Views\Article\Channel.cshtml"
+, Tuple.Create(Tuple.Create("", 515), Tuple.Create<System.Object, System.Int32>(this.GetUrl(item)
+            
+            #line default
+            #line hidden
+, 515), false)
+);
+
+WriteLiteral(">\r\n                            <i></i>");
+
+            
+            #line 20 "..\..\Views\Article\Channel.cshtml"
+                              Write(item.Title);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n                        </a>\r\n                    </li>\r\n");
+
+            
+            #line 23 "..\..\Views\Article\Channel.cshtml"
+                }
+
+            
+            #line default
+            #line hidden
+WriteLiteral("            </ul>\r\n        </div>\r\n    </div>\r\n");
+
+            
+            #line 27 "..\..\Views\Article\Channel.cshtml"
+}
+            
+            #line default
+            #line hidden
         }
     }
 }

@@ -65,6 +65,21 @@ WriteLiteral(">\r\n    <div");
 
 WriteLiteral(" class=\"row\"");
 
+WriteLiteral(">\r\n");
+
+WriteLiteral("        ");
+
+            
+            #line 11 "..\..\Views\Article\Title.cshtml"
+   Write(Html.Partial("../Article/_Nav"));
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n    </div>\r\n    <div");
+
+WriteLiteral(" class=\"row\"");
+
 WriteLiteral(">\r\n        <h2");
 
 WriteLiteral(" class=\"text-center\"");
@@ -74,7 +89,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("            ");
 
             
-            #line 12 "..\..\Views\Article\Title.cshtml"
+            #line 15 "..\..\Views\Article\Title.cshtml"
        Write(Model.Title);
 
             
@@ -91,7 +106,7 @@ WriteLiteral(" class=\"e e1\"");
 WriteLiteral(">来源：");
 
             
-            #line 15 "..\..\Views\Article\Title.cshtml"
+            #line 18 "..\..\Views\Article\Title.cshtml"
                             Write(Model as IUserInfo);
 
             
@@ -104,7 +119,7 @@ WriteLiteral(" class=\"e e2\"");
 WriteLiteral(">发布时间：");
 
             
-            #line 16 "..\..\Views\Article\Title.cshtml"
+            #line 19 "..\..\Views\Article\Title.cshtml"
                              Write(Model.CreateTime.ToFullString());
 
             
@@ -117,7 +132,7 @@ WriteLiteral(" class=\"e e3\"");
 WriteLiteral(">浏览：");
 
             
-            #line 17 "..\..\Views\Article\Title.cshtml"
+            #line 20 "..\..\Views\Article\Title.cshtml"
                            Write(Model.Views.ToString("n0"));
 
             
@@ -159,7 +174,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                ");
 
             
-            #line 76 "..\..\Views\Article\Title.cshtml"
+            #line 79 "..\..\Views\Article\Title.cshtml"
            Write(Html.Raw(Model.ContentText));
 
             

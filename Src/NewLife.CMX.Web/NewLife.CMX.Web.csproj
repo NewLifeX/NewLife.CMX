@@ -635,6 +635,7 @@
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Title.generated.cs</LastGenOutput>
     </None>
+    <Content Include="Views\Article\_Nav.cshtml" />
     <None Include="Views\Content\Category.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Category.generated.cs</LastGenOutput>

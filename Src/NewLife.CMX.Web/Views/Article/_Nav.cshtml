@@ -1,0 +1,18 @@
+﻿@{
+    var category = Model as IEntityCategory;
+    if (category == null)
+    {
+        category = (Model as IEntityTitle).Category;
+    }
+}
+<ol class="breadcrumb">
+    @foreach (IEntityCategory cat in category.AllParents)
+    {
+        <li>
+            <a href="@this.GetCategoryUrl(cat)">@cat.Name</a>
+        </li>
+    }
+    <li class="active">
+        @category.Name
+    </li>
+</ol>

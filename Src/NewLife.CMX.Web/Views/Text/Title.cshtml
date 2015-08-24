@@ -5,8 +5,28 @@
 
     this.PushTitle(Model.Category.Name);
     this.PushTitle(Model.Title);
+
+    var paths = new List<String>();
+    var templateCategory = Category;
+    do
+    {
+        paths.Add(templateCategory.Name);
+        templateCategory = templateCategory.Parent as IEntityCategory;
+    } while (templateCategory != null);
+    paths.Reverse();
 }
 <div class="container">
+    <div class="row">
+        <em>所在位置：</em> <span>
+            <a href="/">首页</a>
+            &nbsp;
+            @foreach (var title in paths)
+            {
+                <span>&gt;@title</span>
+            }
+        </span>
+    </div>
+
     <div class="row">
         <h2 class="text-center">
             @Model.Title
