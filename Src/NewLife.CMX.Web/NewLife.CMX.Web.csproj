@@ -185,6 +185,21 @@
     <Compile Include="UEditor.ashx.cs">
       <DependentUpon>UEditor.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Product\Category.generated.cs">
+      <DependentUpon>Category.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Views\Product\Channel.generated.cs">
+      <DependentUpon>Channel.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Views\Product\Title.generated.cs">
+      <DependentUpon>Title.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Views\Article\Category.generated.cs">
       <DependentUpon>Category.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -628,6 +643,18 @@
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.ttf" />
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.woff" />
     <Content Include="UEditor.ashx" />
+    <Content Include="Views\Product\Category.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Category.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Views\Product\Channel.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Channel.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Views\Product\Title.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Title.generated.cs</LastGenOutput>
+    </Content>
     <None Include="Views\Article\Category.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Category.generated.cs</LastGenOutput>
