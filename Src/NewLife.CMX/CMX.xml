@@ -48,6 +48,7 @@
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Master="True" Nullable="False" Description="名称" />
+      <Column Name="Code" DataType="String" Description="编码。全局唯一的分类识别名，一般英文名" />
       <Column Name="ParentID" DataType="Int32" Description="父类" />
       <Column Name="ChannelID" DataType="Int32" Nullable="False" Description="频道" />
       <Column Name="Sort" DataType="Int32" Description="排序" />

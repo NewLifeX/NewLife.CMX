@@ -20,6 +20,12 @@ namespace NewLife.CMX.Web.Controllers
                 var name = filterContext.RouteData.Values["channelName"] + "";
                 SetChannel(name);
             }
+            if (_channel == null && filterContext.RouteData.Values.ContainsKey("categoryCode"))
+            {
+                var code = filterContext.RouteData.Values["categoryCode"] + "";
+                var cat = Channel.FindCategoryByCode(code);
+                if (cat != null) _channel = cat.Channel;
+            }
             if (_channel == null)
             {
                 filterContext.Result = new HttpNotFoundResult();
@@ -90,6 +96,30 @@ namespace NewLife.CMX.Web.Controllers
             ViewBag.Category = cat;
 
             return View(viewName, title);
+        }
+
+        public ActionResult List2(String categoryCode, Int32? pageindex)
+        {
+            var cat = Channel.FindCategoryByCode(categoryCode);
+            if (cat == null) return HttpNotFound();
+
+            // 选择模版
+            var viewName = cat.GetCategoryTemplate();
+            if (viewName.IsNullOrEmpty()) viewName = "Category";
+            viewName = "../{0}/{1}".F(Channel.Name, viewName);
+
+            ViewBag.Channel = Channel;
+            ViewBag.Category = cat;
+            //ViewBag.PageIndex = pageindex ?? 1;
+            //ViewBag.PageSize = PageSize;
+
+            var pager = new Pager { PageIndex = pageindex ?? 1, PageSize = PageSize };
+            var list = cat.GetTitles(pager);
+
+            ViewBag.Titles = list;
+            ViewBag.Pager = pager;
+
+            return View(viewName, cat);
         }
     }
 }

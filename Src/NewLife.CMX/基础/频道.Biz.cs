@@ -323,6 +323,21 @@ namespace NewLife.CMX
             return cat;
         }
 
+        /// <summary>根据编码查找分类</summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public static IEntityCategory FindCategoryByCode(String code)
+        {
+            foreach (var chn in FindAllWithCache())
+            {
+                var fact = chn.Model.Provider.CategoryFactory;
+                var cat = fact.FindByCode(code);
+                if (cat != null) return cat;
+            }
+
+            return null;
+        }
+
         /// <summary>查找主题</summary>
         /// <param name="id"></param>
         /// <returns></returns>

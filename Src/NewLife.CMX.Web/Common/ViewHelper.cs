@@ -23,9 +23,13 @@ namespace NewLife.CMX.Web
 
             var values = page.Url.RequestContext.RouteData.Values;
             values["channelName"] = cat.Channel.Name;
+            values["categoryCode"] = cat.Code;
             values["id"] = entity.ID;
 
-            return page.Url.GenerateUrl("CMX_Title");
+            if (cat.Code.IsNullOrEmpty())
+                return page.Url.GenerateUrl("CMX_Title");
+            else
+                return page.Url.GenerateUrl("CMX_Title2");
         }
 
         /// <summary>获取到分类页面的链接</summary>
@@ -39,14 +43,25 @@ namespace NewLife.CMX.Web
 
             var values = page.Url.RequestContext.RouteData.Values;
             values["channelName"] = cat.Channel.Name;
+            values["categoryCode"] = cat.Code;
             values["categoryid"] = cat.ID;
             values["pageIndex"] = pageIndex;
 
             var url = page.Url;
-            if (pageIndex <= 1)
-                return page.Url.GenerateUrl("CMX_Category");
+            if (cat.Code.IsNullOrEmpty())
+            {
+                if (pageIndex <= 1)
+                    return page.Url.GenerateUrl("CMX_Category");
+                else
+                    return page.Url.GenerateUrl("CMX_Category_Page");
+            }
             else
-                return page.Url.GenerateUrl("CMX_Category_Page");
+            {
+                if (pageIndex <= 1)
+                    return page.Url.GenerateUrl("CMX_Category2");
+                else
+                    return page.Url.GenerateUrl("CMX_Category_Page2");
+            }
         }
 
         /// <summary>获取分类的Url</summary>

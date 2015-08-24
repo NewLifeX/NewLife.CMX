@@ -44,12 +44,24 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.Name, value)) { _Name = value; OnPropertyChanged(__.Name); } }
         }
 
+        private String _Code;
+        /// <summary>编码。全局唯一的分类识别名，一般英文名</summary>
+        [DisplayName("编码")]
+        [Description("编码。全局唯一的分类识别名，一般英文名")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn(3, "Code", "编码。全局唯一的分类识别名，一般英文名", null, "nvarchar(50)", 0, 0, true)]
+        public virtual String Code
+        {
+            get { return _Code; }
+            set { if (OnPropertyChanging(__.Code, value)) { _Code = value; OnPropertyChanged(__.Code); } }
+        }
+
         private Int32 _ParentID;
         /// <summary>父类</summary>
         [DisplayName("父类")]
         [Description("父类")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(3, "ParentID", "父类", null, "int", 10, 0, false)]
+        [BindColumn(4, "ParentID", "父类", null, "int", 10, 0, false)]
         public virtual Int32 ParentID
         {
             get { return _ParentID; }
@@ -61,7 +73,7 @@ namespace NewLife.CMX
         [DisplayName("频道")]
         [Description("频道")]
         [DataObjectField(false, false, false, 10)]
-        [BindColumn(4, "ChannelID", "频道", null, "int", 10, 0, false)]
+        [BindColumn(5, "ChannelID", "频道", null, "int", 10, 0, false)]
         public virtual Int32 ChannelID
         {
             get { return _ChannelID; }
@@ -73,7 +85,7 @@ namespace NewLife.CMX
         [DisplayName("排序")]
         [Description("排序")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(5, "Sort", "排序", null, "int", 10, 0, false)]
+        [BindColumn(6, "Sort", "排序", null, "int", 10, 0, false)]
         public virtual Int32 Sort
         {
             get { return _Sort; }
@@ -85,7 +97,7 @@ namespace NewLife.CMX
         [DisplayName("数量")]
         [Description("数量")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(6, "Num", "数量", null, "int", 10, 0, false)]
+        [BindColumn(7, "Num", "数量", null, "int", 10, 0, false)]
         public virtual Int32 Num
         {
             get { return _Num; }
@@ -97,7 +109,7 @@ namespace NewLife.CMX
         [DisplayName("分类页模版")]
         [Description("分类页模版。本分类专属列表页")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(7, "CategoryTemplate", "分类页模版。本分类专属列表页", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(8, "CategoryTemplate", "分类页模版。本分类专属列表页", null, "nvarchar(200)", 0, 0, true)]
         public virtual String CategoryTemplate
         {
             get { return _CategoryTemplate; }
@@ -109,7 +121,7 @@ namespace NewLife.CMX
         [DisplayName("标题页模版")]
         [Description("标题页模版。本分类专属内容页")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(8, "TitleTemplate", "标题页模版。本分类专属内容页", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(9, "TitleTemplate", "标题页模版。本分类专属内容页", null, "nvarchar(200)", 0, 0, true)]
         public virtual String TitleTemplate
         {
             get { return _TitleTemplate; }
@@ -121,7 +133,7 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(9, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(10, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Remark
         {
             get { return _Remark; }
@@ -145,6 +157,7 @@ namespace NewLife.CMX
                 {
                     case __.ID : return _ID;
                     case __.Name : return _Name;
+                    case __.Code : return _Code;
                     case __.ParentID : return _ParentID;
                     case __.ChannelID : return _ChannelID;
                     case __.Sort : return _Sort;
@@ -161,6 +174,7 @@ namespace NewLife.CMX
                 {
                     case __.ID : _ID = Convert.ToInt32(value); break;
                     case __.Name : _Name = Convert.ToString(value); break;
+                    case __.Code : _Code = Convert.ToString(value); break;
                     case __.ParentID : _ParentID = Convert.ToInt32(value); break;
                     case __.ChannelID : _ChannelID = Convert.ToInt32(value); break;
                     case __.Sort : _Sort = Convert.ToInt32(value); break;
@@ -183,6 +197,9 @@ namespace NewLife.CMX
 
             ///<summary>名称</summary>
             public static readonly Field Name = FindByName(__.Name);
+
+            ///<summary>编码。全局唯一的分类识别名，一般英文名</summary>
+            public static readonly Field Code = FindByName(__.Code);
 
             ///<summary>父类</summary>
             public static readonly Field ParentID = FindByName(__.ParentID);
@@ -216,6 +233,9 @@ namespace NewLife.CMX
 
             ///<summary>名称</summary>
             public const String Name = "Name";
+
+            ///<summary>编码。全局唯一的分类识别名，一般英文名</summary>
+            public const String Code = "Code";
 
             ///<summary>父类</summary>
             public const String ParentID = "ParentID";
@@ -251,6 +271,9 @@ namespace NewLife.CMX
 
         /// <summary>名称</summary>
         String Name { get; set; }
+
+        /// <summary>编码。全局唯一的分类识别名，一般英文名</summary>
+        String Code { get; set; }
 
         /// <summary>父类</summary>
         Int32 ParentID { get; set; }

@@ -14,6 +14,8 @@ namespace NewLife.CMX
 
         IEntityCategory FindByName(String name);
 
+        IEntityCategory FindByCode(String code);
+
         IEntityCategory FindByPath(String path);
 
         ///// <summary>查询子类以及子类的ID如果子类不是最终类，返回的时候ID会被改为负数</summary>
@@ -33,6 +35,8 @@ namespace NewLife.CMX
         }
 
         public IEntityCategory FindByName(String name) { return EntityCategory<TEntity>.FindAllByName(name).ToList().FirstOrDefault(); }
+
+        public IEntityCategory FindByCode(String code) { return EntityCategory<TEntity>.FindByCode(code); }
 
         public IEntityCategory FindByPath(String path)
         {

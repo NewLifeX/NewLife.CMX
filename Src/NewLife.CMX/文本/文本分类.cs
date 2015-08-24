@@ -25,6 +25,9 @@ namespace NewLife.CMX
             ///<summary>名称</summary>
             public static readonly Field Name = FindByName(__.Name);
 
+            ///<summary>编码。全局唯一的分类识别名，一般英文名</summary>
+            public static readonly Field Code = FindByName(__.Code);
+
             ///<summary>父类</summary>
             public static readonly Field ParentID = FindByName(__.ParentID);
 
@@ -57,6 +60,9 @@ namespace NewLife.CMX
 
             ///<summary>名称</summary>
             public const String Name = "Name";
+
+            ///<summary>编码。全局唯一的分类识别名，一般英文名</summary>
+            public const String Code = "Code";
 
             ///<summary>父类</summary>
             public const String ParentID = "ParentID";
