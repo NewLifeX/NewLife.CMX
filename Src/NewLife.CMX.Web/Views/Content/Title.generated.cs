@@ -142,39 +142,12 @@ WriteLiteral("</em>\r\n        </h3>\r\n        <div");
 
 WriteLiteral(" class=\"content\"");
 
-WriteLiteral(">\r\n            <style");
-
-WriteLiteral(" type=\"text/css\"");
-
-WriteLiteral(">\r\n                .TRS_Editor P {\r\n                    margin-top: 0;\r\n         " +
-"           margin-bottom: 1em;\r\n                    line-height: 2;\r\n           " +
-"     }\r\n\r\n                .TRS_Editor DIV {\r\n                    margin-top: 0;\r" +
-"\n                    margin-bottom: 1em;\r\n                    line-height: 2;\r\n " +
-"               }\r\n\r\n                .TRS_Editor TD {\r\n                    margin" +
-"-top: 0;\r\n                    margin-bottom: 1em;\r\n                    line-heig" +
-"ht: 2;\r\n                }\r\n\r\n                .TRS_Editor TH {\r\n                 " +
-"   margin-top: 0;\r\n                    margin-bottom: 1em;\r\n                    " +
-"line-height: 2;\r\n                }\r\n\r\n                .TRS_Editor SPAN {\r\n      " +
-"              margin-top: 0;\r\n                    margin-bottom: 1em;\r\n         " +
-"           line-height: 2;\r\n                }\r\n\r\n                .TRS_Editor FON" +
-"T {\r\n                    margin-top: 0;\r\n                    margin-bottom: 1em;" +
-"\r\n                    line-height: 2;\r\n                }\r\n\r\n                .TRS" +
-"_Editor UL {\r\n                    margin-top: 0;\r\n                    margin-bot" +
-"tom: 1em;\r\n                    line-height: 2;\r\n                }\r\n\r\n           " +
-"     .TRS_Editor LI {\r\n                    margin-top: 0;\r\n                    m" +
-"argin-bottom: 1em;\r\n                    line-height: 2;\r\n                }\r\n\r\n  " +
-"              .TRS_Editor A {\r\n                    margin-top: 0;\r\n             " +
-"       margin-bottom: 1em;\r\n                    line-height: 2;\r\n               " +
-" }\r\n            </style>\r\n            <div");
-
-WriteLiteral(" class=\"TRS_Editor\"");
-
-WriteLiteral(">\r\n");
+WriteLiteral(">\r\n            <div>\r\n");
 
 WriteLiteral("                ");
 
             
-            #line 79 "..\..\Views\Content\Title.cshtml"
+            #line 24 "..\..\Views\Content\Title.cshtml"
            Write(Html.Raw(Model.ContentText));
 
             

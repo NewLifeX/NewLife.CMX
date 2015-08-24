@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Web.Mvc;
+using NewLife.Collections;
 using NewLife.Web;
 
 namespace NewLife.CMX.Web.Controllers
@@ -39,19 +41,40 @@ namespace NewLife.CMX.Web.Controllers
             _channel = Channel.FindByName(name);
         }
 
+        static DictionaryCache<String, String> _cache = new DictionaryCache<String, String>(StringComparer.OrdinalIgnoreCase);
+        String GetView(String name)
+        {
+            var viewName = "../{0}/{1}".F(Channel.Name, name);
+
+            // 如果频道模版不存在，则采用模型模版
+            return _cache.GetItem(viewName, name, (k, kn) =>
+            {
+                var v = k;
+                var vp = "Views/{0}/{1}.cshtml".F(Channel.Name, kn);
+                if (System.IO.File.Exists(vp.GetFullPath())) return v;
+
+                v = "../{0}/{1}".F(Channel.Model.Name, kn);
+                vp = "Views/{0}/{1}.cshtml".F(Channel.Model.Name, kn);
+                if (System.IO.File.Exists(vp.GetFullPath())) return v;
+
+                v = "../{0}/{1}".F("Content", kn);
+                vp = "Views/{0}/{1}.cshtml".F("Content", kn);
+                if (System.IO.File.Exists(vp.GetFullPath())) return v;
+
+                v = "../{0}/{1}".F("Shared", kn);
+                vp = "Views/{0}/{1}.cshtml".F("Shared", kn);
+                if (System.IO.File.Exists(vp.GetFullPath())) return v;
+
+                return null;
+            });
+        }
+
         public ActionResult Index()
         {
             // 选择模版
             var tmp = Channel.IndexTemplate;
             if (tmp.IsNullOrEmpty()) tmp = "Channel";
-            var viewName = "../{0}/{1}".F(Channel.Name, tmp);
-
-            // 如果频道模版不存在，则采用模型模版
-            if (Channel.Name != Channel.Model.Name)
-            {
-                var vp = "Views".CombinePath(viewName);
-                if (!Directory.Exists(vp.GetFullPath())) viewName = "../{0}/{1}".F(Channel.Model.Name, tmp);
-            }
+            var viewName = GetView(tmp);
 
             ViewBag.Channel = Channel;
 
@@ -64,9 +87,9 @@ namespace NewLife.CMX.Web.Controllers
             if (cat == null) return HttpNotFound();
 
             // 选择模版
-            var viewName = cat.GetCategoryTemplate();
-            if (viewName.IsNullOrEmpty()) viewName = "Category";
-            viewName = "../{0}/{1}".F(Channel.Name, viewName);
+            var tmp = cat.GetCategoryTemplate();
+            if (tmp.IsNullOrEmpty()) tmp = "Category";
+            var viewName = GetView(tmp);
 
             ViewBag.Channel = Channel;
             ViewBag.Category = cat;
@@ -92,9 +115,9 @@ namespace NewLife.CMX.Web.Controllers
             var cat = title.Category;
 
             // 选择模版
-            var viewName = cat.GetTitleTemplate();
-            if (viewName.IsNullOrEmpty()) viewName = "Title";
-            viewName = "../{0}/{1}".F(Channel.Name, viewName);
+            var tmp = cat.GetTitleTemplate();
+            if (tmp.IsNullOrEmpty()) tmp = "Title";
+            var viewName = GetView(tmp);
 
             // 增加浏览数
             title.Views++;
@@ -112,9 +135,9 @@ namespace NewLife.CMX.Web.Controllers
             if (cat == null) return HttpNotFound();
 
             // 选择模版
-            var viewName = cat.GetCategoryTemplate();
-            if (viewName.IsNullOrEmpty()) viewName = "Category";
-            viewName = "../{0}/{1}".F(Channel.Name, viewName);
+            var tmp = cat.GetCategoryTemplate();
+            if (tmp.IsNullOrEmpty()) tmp = "Category";
+            var viewName = GetView(tmp);
 
             ViewBag.Channel = Channel;
             ViewBag.Category = cat;
