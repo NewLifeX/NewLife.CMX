@@ -72,6 +72,12 @@ namespace NewLife.CMX
             if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Nav).Name, Meta.Table.DataTable.DisplayName);
 
             var fn = "../InitData/{0}.json".F(Meta.TableName).GetFullPath();
+
+            if (!Directory.Exists(fn))
+            {
+                Directory.CreateDirectory(fn);
+            }
+
             if (File.Exists(fn))
             {
                 if (XTrace.Debug) XTrace.WriteLine("使用数据初始化文件【{0}】初始化{1}[{2}]数据……", fn, typeof(Nav).Name, Meta.Table.DataTable.DisplayName);
