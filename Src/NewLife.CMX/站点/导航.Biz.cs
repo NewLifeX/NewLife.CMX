@@ -131,28 +131,28 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
-        private Channel _Channel;
-        /// <summary>频道</summary>
+        private Model _Model;
+        /// <summary>模型</summary>
         [XmlIgnore]
-        [BindRelation("ChannelID", false, "Channel", "ID")]
-        public Channel Channel
+        [BindRelation("ModelID", false, "Model", "ID")]
+        public Model Model
         {
             get
             {
-                if (_Channel == null && ChannelID > 0 && !Dirtys.ContainsKey("Channel"))
+                if (_Model == null && ModelID > 0 && !Dirtys.ContainsKey("Model"))
                 {
-                    _Channel = Channel.FindByID(ChannelID);
-                    Dirtys["Channel"] = true;
+                    _Model = Model.FindByID(ModelID);
+                    Dirtys["Model"] = true;
                 }
-                return _Channel;
+                return _Model;
             }
-            set { _Channel = value; }
+            set { _Model = value; }
         }
 
-        /// <summary>频道名称</summary>
+        /// <summary>模型名称</summary>
         [XmlIgnore]
-        [DisplayName("频道名称")]
-        public String ChannelName { get { return Channel + ""; } }
+        [DisplayName("模型名称")]
+        public String ModelName { get { return Model + ""; } }
         #endregion
 
         #region 扩展查询﻿

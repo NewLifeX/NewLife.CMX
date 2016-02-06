@@ -9,6 +9,7 @@ using System.ComponentModel;
 using NewLife.Common;
 using NewLife.Log;
 using XCode.Membership;
+using NewLife.Reflection;
 
 namespace NewLife.CMX
 {
@@ -48,19 +49,19 @@ namespace NewLife.CMX
 
         protected override int OnDelete()
         {
-            var count = Channel.FindCountByModel(ID);
-            if (count > 0) throw new XException("该模型下有{0}个频道，禁止删除！", count);
+            //var count = Channel.FindCountByModel(ID);
+            //if (count > 0) throw new XException("该模型下有{0}个频道，禁止删除！", count);
 
             return base.OnDelete();
         }
         #endregion
 
         #region 扩展属性﻿
-        /// <summary>标题页面</summary>
-        public String TitleUrl { get { return String.Format("CMX/{0}/{0}.aspx", Provider.TitleType.Name); } }
+        ///// <summary>标题页面</summary>
+        //public String TitleUrl { get { return String.Format("CMX/{0}/{0}.aspx", Provider.TitleType.Name); } }
 
-        /// <summary>分类页面</summary>
-        public String CategoryUrl { get { return String.Format("CMX/{0}/{1}.aspx", Provider.TitleType.Name, Provider.CategoryType.Name); } }
+        ///// <summary>分类页面</summary>
+        //public String CategoryUrl { get { return String.Format("CMX/{0}/{1}.aspx", Provider.TitleType.Name, Provider.CategoryType.Name); } }
         #endregion
 
         #region 扩展查询﻿
@@ -112,20 +113,17 @@ namespace NewLife.CMX
         {
             var count = 0;
 
-            foreach (var item in ModelProvider.Providers)
+            foreach (var item in typeof(IInfoExtend).GetAllSubclasses(true))
             {
-                var provider = item.Value;
-
-                var entity = FindByName(provider.Name);
-                if (entity == null) FindByName(provider.GetType().Name.TrimEnd("Provider"));
+                var entity = FindByName(item.Name);
                 if (entity == null) entity = new Model();
 
-                entity.Name = provider.Name;
-                entity.DisplayName = provider.DisplayName;
-                entity.ProviderName = item.Key;
+                entity.Name = item.Name;
+                entity.DisplayName = item.GetDisplayName();
+                entity.ProviderName = item.FullName;
 
-                //entity.TitleTemplate = String.Format("CMX/{0}/{0}.aspx", model.TitleType.Name);
-                //entity.CategoryTemplate = String.Format("CMX/{0}/{1}.aspx", model.TitleType.Name, model.CategoryType.Name);
+                entity.TitleTemplate = String.Format("CMX/{0}.aspx", entity.Name);
+                //entity.CategoryTemplate = String.Format("CMX/{0}/{1}.aspx", entity.Name, entity.Name);
                 entity.Enable = true;
                 entity.Save();
 
@@ -137,19 +135,19 @@ namespace NewLife.CMX
         #endregion
 
         #region 模型提供者
-        private IModelProvider _Provider;
-        /// <summary>模型提供者</summary>
-        public IModelProvider Provider
-        {
-            get
-            {
-                if (_Provider == null)
-                {
-                    if (!ModelProvider.Providers.TryGetValue(ProviderName, out _Provider)) throw new XException("找不到模型提供者{0}", ProviderName);
-                }
-                return _Provider;
-            }
-        }
+        //private IModelProvider _Provider;
+        ///// <summary>模型提供者</summary>
+        //public IModelProvider Provider
+        //{
+        //    get
+        //    {
+        //        if (_Provider == null)
+        //        {
+        //            if (!ModelProvider.Providers.TryGetValue(ProviderName, out _Provider)) throw new XException("找不到模型提供者{0}", ProviderName);
+        //        }
+        //        return _Provider;
+        //    }
+        //}
         #endregion
     }
 }

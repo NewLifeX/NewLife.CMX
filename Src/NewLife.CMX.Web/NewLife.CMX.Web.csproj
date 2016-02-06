@@ -125,10 +125,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>_Left_Category.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="Areas\CMS\Controllers\CategoryController.cs" />
     <Compile Include="Areas\CMS\Controllers\SourceController.cs" />
     <Compile Include="Areas\CMS\Controllers\NavController.cs" />
     <Compile Include="Areas\CMS\Controllers\AttachController.cs" />
     <Compile Include="Areas\CMS\Controllers\SiteController.cs" />
+    <Compile Include="Areas\CMS\Controllers\InfoController.cs" />
     <Compile Include="Areas\CMS\Views\Nav\List.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -227,13 +229,7 @@
     </Compile>
     <Compile Include="Areas\CMS\CMSAreaRegistration.cs" />
     <Compile Include="Areas\CMS\Common\EntityControllerBase.cs" />
-    <Compile Include="Areas\CMS\Common\TitleController.cs" />
-    <Compile Include="Areas\CMS\Common\CategoryController.cs" />
-    <Compile Include="Areas\CMS\Controllers\ChannelController.cs" />
     <Compile Include="Areas\CMS\Controllers\ModelController.cs" />
-    <Compile Include="Areas\CMS\Controllers\ArticleController.cs" />
-    <Compile Include="Areas\CMS\Controllers\ProductController.cs" />
-    <Compile Include="Areas\CMS\Controllers\TextController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

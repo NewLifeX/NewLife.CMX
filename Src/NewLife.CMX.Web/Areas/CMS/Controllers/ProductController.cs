@@ -9,7 +9,7 @@ namespace NewLife.CMX.Web.Controllers
 {
     public class ProductController : TitleController<Product> { }
 
-    public class ProductCategoryController : CategoryController<ProductCategory> { }
+    //public class ProductCategoryController : CategoryController<ProductCategory> { }
 
     //public class ProductContentController : ContentController<ProductContent> { }
 

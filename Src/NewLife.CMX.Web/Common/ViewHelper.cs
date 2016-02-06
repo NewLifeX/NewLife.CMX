@@ -16,13 +16,13 @@ namespace NewLife.CMX.Web
         /// <param name="page"></param>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public static String GetUrl(this WebViewPage page, IEntityTitle entity)
+        public static String GetUrl(this WebViewPage page, IInfo entity)
         {
             var cat = entity.Category;
             if (cat == null) return null;
 
             var values = page.Url.RequestContext.RouteData.Values;
-            values["channelName"] = cat.Channel.Name;
+            values["modelName"] = cat.Channel.Name;
             values["categoryCode"] = cat.Code;
             values["id"] = entity.ID;
 
@@ -37,12 +37,12 @@ namespace NewLife.CMX.Web
         /// <param name="cat"></param>
         /// <param name="pageIndex"></param>
         /// <returns></returns>
-        public static String GetCategoryUrl(this WebViewPage page, IEntityCategory cat, Int32 pageIndex = 1)
+        public static String GetCategoryUrl(this WebViewPage page, ICategory cat, Int32 pageIndex = 1)
         {
             if (cat == null || cat.Channel == null) return null;
 
             var values = page.Url.RequestContext.RouteData.Values;
-            values["channelName"] = cat.Channel.Name;
+            values["modelName"] = cat.Channel.Name;
             values["categoryCode"] = cat.Code;
             values["categoryid"] = cat.ID;
             values["pageIndex"] = pageIndex;
@@ -66,15 +66,15 @@ namespace NewLife.CMX.Web
 
         /// <summary>获取分类的Url</summary>
         /// <param name="page"></param>
-        /// <param name="channelName"></param>
+        /// <param name="modelName"></param>
         /// <param name="categoryName"></param>
         /// <param name="pageIndex"></param>
         /// <returns></returns>
-        public static String GetCategoryUrl(this WebViewPage page, String channelName, String categoryName, Int32 pageIndex = 1)
+        public static String GetCategoryUrl(this WebViewPage page, String modelName, String categoryName, Int32 pageIndex = 1)
         {
-            if (channelName.IsNullOrEmpty()) channelName = "Article";
+            if (modelName.IsNullOrEmpty()) modelName = "Article";
 
-            var chn = Channel.FindByName(channelName);
+            var chn = Channel.FindByName(modelName);
             if (chn == null) return null;
             var cat = chn.FindCategory(categoryName);
             if (cat == null) return null;

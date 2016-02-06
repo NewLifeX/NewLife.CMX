@@ -27,7 +27,7 @@ namespace NewLife.CMX.Web.Controllers
         }
     }
 
-    public class ArticleCategoryController : CategoryController<ArticleCategory> { }
+    //public class ArticleCategoryController : CategoryController<ArticleCategory> { }
 
     //public class ArticleContentController : ContentController<ArticleContent> { }
 

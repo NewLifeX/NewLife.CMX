@@ -78,12 +78,48 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.Enable, value)) { _Enable = value; OnPropertyChanged(__.Enable); } }
         }
 
+        private String _IndexTemplate;
+        /// <summary>索引页模版。本频道专属首页</summary>
+        [DisplayName("索引页模版")]
+        [Description("索引页模版。本频道专属首页")]
+        [DataObjectField(false, false, true, 200)]
+        [BindColumn(6, "IndexTemplate", "索引页模版。本频道专属首页", null, "nvarchar(200)", 0, 0, true)]
+        public virtual String IndexTemplate
+        {
+            get { return _IndexTemplate; }
+            set { if (OnPropertyChanging(__.IndexTemplate, value)) { _IndexTemplate = value; OnPropertyChanged(__.IndexTemplate); } }
+        }
+
+        private String _CategoryTemplate;
+        /// <summary>分类页模版。本频道专属列表页</summary>
+        [DisplayName("分类页模版")]
+        [Description("分类页模版。本频道专属列表页")]
+        [DataObjectField(false, false, true, 200)]
+        [BindColumn(7, "CategoryTemplate", "分类页模版。本频道专属列表页", null, "nvarchar(200)", 0, 0, true)]
+        public virtual String CategoryTemplate
+        {
+            get { return _CategoryTemplate; }
+            set { if (OnPropertyChanging(__.CategoryTemplate, value)) { _CategoryTemplate = value; OnPropertyChanged(__.CategoryTemplate); } }
+        }
+
+        private String _TitleTemplate;
+        /// <summary>标题页模版。本频道专属内容页</summary>
+        [DisplayName("标题页模版")]
+        [Description("标题页模版。本频道专属内容页")]
+        [DataObjectField(false, false, true, 200)]
+        [BindColumn(8, "TitleTemplate", "标题页模版。本频道专属内容页", null, "nvarchar(200)", 0, 0, true)]
+        public virtual String TitleTemplate
+        {
+            get { return _TitleTemplate; }
+            set { if (OnPropertyChanging(__.TitleTemplate, value)) { _TitleTemplate = value; OnPropertyChanged(__.TitleTemplate); } }
+        }
+
         private Int32 _CreateUserID;
         /// <summary>创建人</summary>
         [DisplayName("创建人")]
         [Description("创建人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(6, "CreateUserID", "创建人", null, "int", 10, 0, false)]
+        [BindColumn(9, "CreateUserID", "创建人", null, "int", 10, 0, false)]
         public virtual Int32 CreateUserID
         {
             get { return _CreateUserID; }
@@ -95,11 +131,23 @@ namespace NewLife.CMX
         [DisplayName("创建时间")]
         [Description("创建时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(7, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
+        [BindColumn(10, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
         public virtual DateTime CreateTime
         {
             get { return _CreateTime; }
             set { if (OnPropertyChanging(__.CreateTime, value)) { _CreateTime = value; OnPropertyChanged(__.CreateTime); } }
+        }
+
+        private String _CreateIP;
+        /// <summary>创建地址</summary>
+        [DisplayName("创建地址")]
+        [Description("创建地址")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn(11, "CreateIP", "创建地址", null, "nvarchar(50)", 0, 0, true)]
+        public virtual String CreateIP
+        {
+            get { return _CreateIP; }
+            set { if (OnPropertyChanging(__.CreateIP, value)) { _CreateIP = value; OnPropertyChanged(__.CreateIP); } }
         }
 
         private Int32 _UpdateUserID;
@@ -107,7 +155,7 @@ namespace NewLife.CMX
         [DisplayName("更新人")]
         [Description("更新人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(8, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
+        [BindColumn(12, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
         public virtual Int32 UpdateUserID
         {
             get { return _UpdateUserID; }
@@ -119,11 +167,23 @@ namespace NewLife.CMX
         [DisplayName("更新时间")]
         [Description("更新时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(9, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
+        [BindColumn(13, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
         public virtual DateTime UpdateTime
         {
             get { return _UpdateTime; }
             set { if (OnPropertyChanging(__.UpdateTime, value)) { _UpdateTime = value; OnPropertyChanged(__.UpdateTime); } }
+        }
+
+        private String _UpdateIP;
+        /// <summary>更新地址</summary>
+        [DisplayName("更新地址")]
+        [Description("更新地址")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn(14, "UpdateIP", "更新地址", null, "nvarchar(50)", 0, 0, true)]
+        public virtual String UpdateIP
+        {
+            get { return _UpdateIP; }
+            set { if (OnPropertyChanging(__.UpdateIP, value)) { _UpdateIP = value; OnPropertyChanged(__.UpdateIP); } }
         }
 
         private String _Remark;
@@ -131,7 +191,7 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(10, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(15, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Remark
         {
             get { return _Remark; }
@@ -158,10 +218,15 @@ namespace NewLife.CMX
                     case __.DisplayName : return _DisplayName;
                     case __.ProviderName : return _ProviderName;
                     case __.Enable : return _Enable;
+                    case __.IndexTemplate : return _IndexTemplate;
+                    case __.CategoryTemplate : return _CategoryTemplate;
+                    case __.TitleTemplate : return _TitleTemplate;
                     case __.CreateUserID : return _CreateUserID;
                     case __.CreateTime : return _CreateTime;
+                    case __.CreateIP : return _CreateIP;
                     case __.UpdateUserID : return _UpdateUserID;
                     case __.UpdateTime : return _UpdateTime;
+                    case __.UpdateIP : return _UpdateIP;
                     case __.Remark : return _Remark;
                     default: return base[name];
                 }
@@ -175,10 +240,15 @@ namespace NewLife.CMX
                     case __.DisplayName : _DisplayName = Convert.ToString(value); break;
                     case __.ProviderName : _ProviderName = Convert.ToString(value); break;
                     case __.Enable : _Enable = Convert.ToBoolean(value); break;
+                    case __.IndexTemplate : _IndexTemplate = Convert.ToString(value); break;
+                    case __.CategoryTemplate : _CategoryTemplate = Convert.ToString(value); break;
+                    case __.TitleTemplate : _TitleTemplate = Convert.ToString(value); break;
                     case __.CreateUserID : _CreateUserID = Convert.ToInt32(value); break;
                     case __.CreateTime : _CreateTime = Convert.ToDateTime(value); break;
+                    case __.CreateIP : _CreateIP = Convert.ToString(value); break;
                     case __.UpdateUserID : _UpdateUserID = Convert.ToInt32(value); break;
                     case __.UpdateTime : _UpdateTime = Convert.ToDateTime(value); break;
+                    case __.UpdateIP : _UpdateIP = Convert.ToString(value); break;
                     case __.Remark : _Remark = Convert.ToString(value); break;
                     default: base[name] = value; break;
                 }
@@ -205,17 +275,32 @@ namespace NewLife.CMX
             ///<summary>启用</summary>
             public static readonly Field Enable = FindByName(__.Enable);
 
+            ///<summary>索引页模版。本频道专属首页</summary>
+            public static readonly Field IndexTemplate = FindByName(__.IndexTemplate);
+
+            ///<summary>分类页模版。本频道专属列表页</summary>
+            public static readonly Field CategoryTemplate = FindByName(__.CategoryTemplate);
+
+            ///<summary>标题页模版。本频道专属内容页</summary>
+            public static readonly Field TitleTemplate = FindByName(__.TitleTemplate);
+
             ///<summary>创建人</summary>
             public static readonly Field CreateUserID = FindByName(__.CreateUserID);
 
             ///<summary>创建时间</summary>
             public static readonly Field CreateTime = FindByName(__.CreateTime);
 
+            ///<summary>创建地址</summary>
+            public static readonly Field CreateIP = FindByName(__.CreateIP);
+
             ///<summary>更新人</summary>
             public static readonly Field UpdateUserID = FindByName(__.UpdateUserID);
 
             ///<summary>更新时间</summary>
             public static readonly Field UpdateTime = FindByName(__.UpdateTime);
+
+            ///<summary>更新地址</summary>
+            public static readonly Field UpdateIP = FindByName(__.UpdateIP);
 
             ///<summary>备注</summary>
             public static readonly Field Remark = FindByName(__.Remark);
@@ -241,17 +326,32 @@ namespace NewLife.CMX
             ///<summary>启用</summary>
             public const String Enable = "Enable";
 
+            ///<summary>索引页模版。本频道专属首页</summary>
+            public const String IndexTemplate = "IndexTemplate";
+
+            ///<summary>分类页模版。本频道专属列表页</summary>
+            public const String CategoryTemplate = "CategoryTemplate";
+
+            ///<summary>标题页模版。本频道专属内容页</summary>
+            public const String TitleTemplate = "TitleTemplate";
+
             ///<summary>创建人</summary>
             public const String CreateUserID = "CreateUserID";
 
             ///<summary>创建时间</summary>
             public const String CreateTime = "CreateTime";
 
+            ///<summary>创建地址</summary>
+            public const String CreateIP = "CreateIP";
+
             ///<summary>更新人</summary>
             public const String UpdateUserID = "UpdateUserID";
 
             ///<summary>更新时间</summary>
             public const String UpdateTime = "UpdateTime";
+
+            ///<summary>更新地址</summary>
+            public const String UpdateIP = "UpdateIP";
 
             ///<summary>备注</summary>
             public const String Remark = "Remark";
@@ -280,17 +380,32 @@ namespace NewLife.CMX
         /// <summary>启用</summary>
         Boolean Enable { get; set; }
 
+        /// <summary>索引页模版。本频道专属首页</summary>
+        String IndexTemplate { get; set; }
+
+        /// <summary>分类页模版。本频道专属列表页</summary>
+        String CategoryTemplate { get; set; }
+
+        /// <summary>标题页模版。本频道专属内容页</summary>
+        String TitleTemplate { get; set; }
+
         /// <summary>创建人</summary>
         Int32 CreateUserID { get; set; }
 
         /// <summary>创建时间</summary>
         DateTime CreateTime { get; set; }
 
+        /// <summary>创建地址</summary>
+        String CreateIP { get; set; }
+
         /// <summary>更新人</summary>
         Int32 UpdateUserID { get; set; }
 
         /// <summary>更新时间</summary>
         DateTime UpdateTime { get; set; }
+
+        /// <summary>更新地址</summary>
+        String UpdateIP { get; set; }
 
         /// <summary>备注</summary>
         String Remark { get; set; }

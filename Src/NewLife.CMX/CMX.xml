@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Tables Version="8.20.5714.30380">
+<Tables Version="8.21.5879.6458">
   <Table Name="Model" Description="模型。默认有文章、文本、产品三种模型，可以扩展增加" DbType="SqlServer" 实体分类="基础">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
@@ -7,50 +7,28 @@
       <Column Name="DisplayName" DataType="String" Master="True" Nullable="False" Description="显示名" />
       <Column Name="ProviderName" DataType="String" Description="提供者" />
       <Column Name="Enable" DataType="Boolean" Description="启用" />
-      <Column Name="CreateUserID" DataType="Int32" Description="创建人" />
-      <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
-      <Column Name="UpdateUserID" DataType="Int32" Description="更新人" />
-      <Column Name="UpdateTime" DataType="DateTime" Description="更新时间" />
-      <Column Name="Remark" DataType="String" Length="200" Description="备注" />
-    </Columns>
-    <Indexes>
-      <Index Columns="Name" Unique="True" />
-    </Indexes>
-  </Table>
-  <Table Name="Channel" Description="频道" DbType="SqlServer" 实体分类="基础">
-    <Columns>
-      <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
-      <Column Name="Name" DataType="String" Nullable="False" Description="名称" />
-      <Column Name="DisplayName" DataType="String" Master="True" Nullable="False" Description="显示名" />
-      <Column Name="ModelID" DataType="Int32" Nullable="False" Description="模型" />
-      <Column Name="Suffix" DataType="String" Description="后缀。默认频道后缀为空，扩展频道必须有不同的表后缀" />
-      <Column Name="Enable" DataType="Boolean" Description="启用" />
-      <Column Name="Roles" DataType="String" Description="角色列表" />
       <Column Name="IndexTemplate" DataType="String" Length="200" Description="索引页模版。本频道专属首页" />
       <Column Name="CategoryTemplate" DataType="String" Length="200" Description="分类页模版。本频道专属列表页" />
       <Column Name="TitleTemplate" DataType="String" Length="200" Description="标题页模版。本频道专属内容页" />
       <Column Name="CreateUserID" DataType="Int32" Description="创建人" />
       <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
+      <Column Name="CreateIP" DataType="String" Description="创建地址" />
       <Column Name="UpdateUserID" DataType="Int32" Description="更新人" />
       <Column Name="UpdateTime" DataType="DateTime" Description="更新时间" />
+      <Column Name="UpdateIP" DataType="String" Description="更新地址" />
       <Column Name="Remark" DataType="String" Length="200" Description="备注" />
     </Columns>
     <Indexes>
       <Index Columns="Name" Unique="True" />
-      <Index Columns="ModelID,Suffix" Unique="True" />
-      <Index Columns="ModelID" />
     </Indexes>
-    <Relations>
-      <Relation Column="ModelID" RelationTable="Model" RelationColumn="ID" />
-    </Relations>
   </Table>
-  <Table Name="EntityCategory" Description="实体分类" BaseType="EntityTree" 实体分类="基类" RenderGenEntity="true">
+  <Table Name="Category" Description="分类" BaseType="EntityTree" 实体分类="基础" RenderGenEntity="true">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Master="True" Nullable="False" Description="名称" />
-      <Column Name="Code" DataType="String" Description="编码。全局唯一的分类识别名，一般英文名" />
+      <Column Name="Code" DataType="String" Nullable="False" Description="编码。全局唯一的分类识别名，一般英文名" />
       <Column Name="ParentID" DataType="Int32" Description="父类" />
-      <Column Name="ChannelID" DataType="Int32" Nullable="False" Description="频道" />
+      <Column Name="ModelID" DataType="Int32" Nullable="False" Description="模型" />
       <Column Name="Sort" DataType="Int32" Description="排序" />
       <Column Name="Num" DataType="Int32" Description="数量" />
       <Column Name="CategoryTemplate" DataType="String" Length="200" Description="分类页模版。本分类专属列表页" />
@@ -58,52 +36,62 @@
       <Column Name="Remark" DataType="String" Length="200" Description="备注" />
     </Columns>
     <Indexes>
-      <Index Columns="Name" />
+      <Index Columns="Name" Unique="True" />
+      <Index Columns="Code" Unique="True" />
       <Index Columns="ParentID" />
-      <Index Columns="ParentID,Name" Unique="True" />
     </Indexes>
     <Relations>
-      <Relation Column="ChannelID" RelationTable="Channel" RelationColumn="ID" />
+      <Relation Column="ModelID" RelationTable="Model" RelationColumn="ID" />
     </Relations>
   </Table>
-  <Table Name="EntityTitle" Description="实体标题" 实体分类="基类" RenderGenEntity="true">
+  <Table Name="Info" Description="信息" 实体分类="基础" RenderGenEntity="true">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
+      <Column Name="ModelID" DataType="Int32" Nullable="False" Description="模型" />
       <Column Name="CategoryID" DataType="Int32" Description="分类" />
       <Column Name="CategoryName" DataType="String" Description="分类名称" />
       <Column Name="Title" DataType="String" Master="True" Length="200" Nullable="False" Description="标题" />
+      <Column Name="ExtendID" DataType="Int32" Description="扩展" />
       <Column Name="Version" DataType="Int32" Description="最新版本" />
       <Column Name="StatisticsID" DataType="Int32" Description="访问统计" />
       <Column Name="Views" DataType="Int32" Description="访问量。由统计表同步过来" />
+      <Column Name="Summary" DataType="String" Length="200" Description="摘要" />
       <Column Name="PublishTime" DataType="DateTime" Description="发布时间" />
+      <Column Name="Publisher" DataType="String" Description="发布人" />
       <Column Name="CreateUserID" DataType="Int32" Description="创建人" />
       <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
+      <Column Name="CreateIP" DataType="String" Description="创建地址" />
       <Column Name="UpdateUserID" DataType="Int32" Description="更新人" />
       <Column Name="UpdateTime" DataType="DateTime" Description="更新时间" />
-      <Column Name="Remark" DataType="String" Length="200" Description="备注" />
+      <Column Name="UpdateIP" DataType="String" Description="更新地址" />
     </Columns>
     <Indexes>
+      <Index Columns="ModelID" />
+      <Index Columns="ExtendID" />
       <Index Columns="CategoryID" />
       <Index Columns="PublishTime" />
     </Indexes>
   </Table>
-  <Table Name="EntityContent" Description="实体内容" 实体分类="基类" RenderGenEntity="true">
+  <Table Name="Content" Description="内容" 实体分类="基础" RenderGenEntity="true">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
-      <Column Name="ParentID" DataType="Int32" Description="主题" />
+      <Column Name="ModelID" DataType="Int32" Nullable="False" Description="模型" />
+      <Column Name="InfoID" DataType="Int32" Description="主题" />
       <Column Name="Title" DataType="String" Master="True" Length="200" Nullable="False" Description="标题" />
       <Column Name="Version" DataType="Int32" Description="版本" />
       <Column Name="CreateUserID" DataType="Int32" Description="创建人" />
       <Column Name="CreateUserName" DataType="String" Description="创建人" />
       <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
-      <Column Name="Content" DataType="String" Length="-1" Description="内容" />
+      <Column Name="CreateIP" DataType="String" Description="创建地址" />
+      <Column Name="Html" DataType="String" Length="-1" Description="内容" />
     </Columns>
     <Indexes>
-      <Index Columns="ParentID" />
-      <Index Columns="ParentID,Version" Unique="True" />
+      <Index Columns="ModelID" />
+      <Index Columns="InfoID" />
+      <Index Columns="InfoID,Version" Unique="True" />
     </Indexes>
   </Table>
-  <Table Name="Statistics" Description="统计" 实体分类="基类" RenderGenEntity="true">
+  <Table Name="Statistics" Description="统计" 实体分类="基础" RenderGenEntity="true">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Total" DataType="Int32" Description="总数" />
@@ -120,9 +108,19 @@
       <Column Name="Remark" DataType="String" Length="200" Description="备注" />
     </Columns>
   </Table>
-  <Table Name="ArticleCategory" Description="文章分类" DbType="SqlServer" BaseType="EntityCategory" 实体分类="文章" />
-  <Table Name="Article" Description="文章" DbType="SqlServer" BaseType="EntityTitle" 实体分类="文章">
+  <Table Name="Text" Description="文本" DbType="SqlServer" 实体分类="扩展">
     <Columns>
+      <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
+      <Column Name="InfoID" DataType="Int32" Description="标题" />
+    </Columns>
+    <Indexes>
+      <Index Columns="InfoID" />
+    </Indexes>
+  </Table>
+  <Table Name="Article" Description="文章" DbType="SqlServer" 实体分类="扩展">
+    <Columns>
+      <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
+      <Column Name="InfoID" DataType="Int32" Description="标题" />
       <Column Name="SourceID" DataType="Int32" Description="来源" />
       <Column Name="SourceName" DataType="String" Description="来源名称" />
       <Column Name="SourceUrl" DataType="String" Description="来源地址" />
@@ -132,51 +130,79 @@
       <Column Name="Slide" DataType="Boolean" Description="幻灯片" />
       <Column Name="Cover" DataType="String" Length="200" Description="封面" />
     </Columns>
+    <Indexes>
+      <Index Columns="InfoID" />
+    </Indexes>
     <Relations>
       <Relation Column="SourceID" RelationTable="Source" RelationColumn="ID" />
     </Relations>
   </Table>
-  <Table Name="ArticleContent" Description="文章内容" DbType="SqlServer" BaseType="EntityContent" 实体分类="文章" />
-  <Table Name="ArticleStatistics" Description="文章统计" DbType="SqlServer" BaseType="Statistics" 实体分类="文章" />
-  <Table Name="TextCategory" Description="文本分类" DbType="SqlServer" BaseType="EntityCategory" 实体分类="文本" />
-  <Table Name="Text" Description="文本" DbType="SqlServer" BaseType="EntityTitle" 实体分类="文本" />
-  <Table Name="TextContent" Description="文本内容" DbType="SqlServer" BaseType="EntityContent" 实体分类="文本" />
-  <Table Name="TextStatistics" Description="文本统计" DbType="SqlServer" BaseType="Statistics" 实体分类="文本" />
-  <Table Name="ProductCategory" Description="产品分类" DbType="SqlServer" BaseType="EntityCategory" 实体分类="产品" />
-  <Table Name="Product" Description="产品" DbType="SqlServer" BaseType="EntityTitle" 实体分类="产品">
+  <Table Name="Product" Description="产品" DbType="SqlServer" 实体分类="扩展">
     <Columns>
+      <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
+      <Column Name="InfoID" DataType="Int32" Description="标题" />
       <Column Name="Price" DataType="Decimal" Description="价格" />
       <Column Name="PhotoPath" DataType="String" Length="200" Description="图片路径" />
-    </Columns>
-  </Table>
-  <Table Name="ProductContent" Description="产品内容" DbType="SqlServer" BaseType="EntityContent" 实体分类="产品">
-    <Columns>
       <Column Name="Specification" DataType="String" Length="-1" Description="规格参数" />
       <Column Name="Feature" DataType="String" Length="-1" Description="功能特点" />
       <Column Name="App" DataType="String" Length="-1" Description="推荐应用" />
       <Column Name="Fitting" DataType="String" Length="-1" Description="相关配件" />
       <Column Name="Video" DataType="String" Length="-1" Description="产品视频" />
     </Columns>
+    <Indexes>
+      <Index Columns="InfoID" />
+    </Indexes>
   </Table>
-  <Table Name="ProductStatistics" Description="产品统计" DbType="SqlServer" BaseType="Statistics" 实体分类="产品" />
+  <Table Name="Photo" Description="图册" DbType="SqlServer" 实体分类="扩展">
+    <Columns>
+      <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
+      <Column Name="InfoID" DataType="Int32" Description="标题" />
+    </Columns>
+    <Indexes>
+      <Index Columns="InfoID" />
+    </Indexes>
+  </Table>
+  <Table Name="Video" Description="视频" DbType="SqlServer" 实体分类="扩展">
+    <Columns>
+      <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
+      <Column Name="InfoID" DataType="Int32" Description="标题" />
+    </Columns>
+    <Indexes>
+      <Index Columns="InfoID" />
+    </Indexes>
+  </Table>
+  <Table Name="Down" Description="下载" DbType="SqlServer" 实体分类="扩展">
+    <Columns>
+      <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
+      <Column Name="InfoID" DataType="Int32" Description="标题" />
+    </Columns>
+    <Indexes>
+      <Index Columns="InfoID" />
+    </Indexes>
+  </Table>
   <Table Name="Nav" Description="导航" DbType="SqlServer" BaseType="EntityTree" 实体分类="站点">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Master="True" Description="名称" />
       <Column Name="ParentID" DataType="Int32" Description="父类" />
-      <Column Name="ChannelID" DataType="Int32" Description="频道" />
+      <Column Name="ModelID" DataType="Int32" Description="模型" />
       <Column Name="Url" DataType="String" Description="地址" />
       <Column Name="NewWindow" DataType="Boolean" Description="新窗口打开" />
       <Column Name="Sort" DataType="Int32" Description="排序" />
       <Column Name="Enable" DataType="Boolean" Description="启用" />
       <Column Name="CreateUserID" DataType="Int32" Description="创建人" />
       <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
+      <Column Name="CreateIP" DataType="String" Description="创建地址" />
       <Column Name="UpdateUserID" DataType="Int32" Description="更新人" />
       <Column Name="UpdateTime" DataType="DateTime" Description="更新时间" />
+      <Column Name="UpdateIP" DataType="String" Description="更新地址" />
       <Column Name="Remark" DataType="String" Length="200" Description="备注" />
     </Columns>
+    <Indexes>
+      <Index Columns="ModelID" />
+    </Indexes>
     <Relations>
-      <Relation Column="ChannelID" RelationTable="Channel" RelationColumn="ID" />
+      <Relation Column="ModelID" RelationTable="Model" RelationColumn="ID" />
     </Relations>
   </Table>
   <Table Name="Source" Description="来源" DbType="SqlServer" 实体分类="站点">

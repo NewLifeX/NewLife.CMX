@@ -12,7 +12,8 @@ namespace NewLife.CMX
     [Serializable]
     [DataObject]
     [Description("导航")]
-    [BindRelation("ChannelID", false, "Channel", "ID")]
+    [BindIndex("IX_Nav_ModelID", false, "ModelID")]
+    [BindRelation("ModelID", false, "Model", "ID")]
     [BindTable("Nav", Description = "导航", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class Nav : INav
     {
@@ -53,16 +54,16 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.ParentID, value)) { _ParentID = value; OnPropertyChanged(__.ParentID); } }
         }
 
-        private Int32 _ChannelID;
-        /// <summary>频道</summary>
-        [DisplayName("频道")]
-        [Description("频道")]
+        private Int32 _ModelID;
+        /// <summary>模型</summary>
+        [DisplayName("模型")]
+        [Description("模型")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(4, "ChannelID", "频道", null, "int", 10, 0, false)]
-        public virtual Int32 ChannelID
+        [BindColumn(4, "ModelID", "模型", null, "int", 10, 0, false)]
+        public virtual Int32 ModelID
         {
-            get { return _ChannelID; }
-            set { if (OnPropertyChanging(__.ChannelID, value)) { _ChannelID = value; OnPropertyChanged(__.ChannelID); } }
+            get { return _ModelID; }
+            set { if (OnPropertyChanging(__.ModelID, value)) { _ModelID = value; OnPropertyChanged(__.ModelID); } }
         }
 
         private String _Url;
@@ -137,12 +138,24 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.CreateTime, value)) { _CreateTime = value; OnPropertyChanged(__.CreateTime); } }
         }
 
+        private String _CreateIP;
+        /// <summary>创建地址</summary>
+        [DisplayName("创建地址")]
+        [Description("创建地址")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn(11, "CreateIP", "创建地址", null, "nvarchar(50)", 0, 0, true)]
+        public virtual String CreateIP
+        {
+            get { return _CreateIP; }
+            set { if (OnPropertyChanging(__.CreateIP, value)) { _CreateIP = value; OnPropertyChanged(__.CreateIP); } }
+        }
+
         private Int32 _UpdateUserID;
         /// <summary>更新人</summary>
         [DisplayName("更新人")]
         [Description("更新人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(11, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
+        [BindColumn(12, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
         public virtual Int32 UpdateUserID
         {
             get { return _UpdateUserID; }
@@ -154,11 +167,23 @@ namespace NewLife.CMX
         [DisplayName("更新时间")]
         [Description("更新时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(12, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
+        [BindColumn(13, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
         public virtual DateTime UpdateTime
         {
             get { return _UpdateTime; }
             set { if (OnPropertyChanging(__.UpdateTime, value)) { _UpdateTime = value; OnPropertyChanged(__.UpdateTime); } }
+        }
+
+        private String _UpdateIP;
+        /// <summary>更新地址</summary>
+        [DisplayName("更新地址")]
+        [Description("更新地址")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn(14, "UpdateIP", "更新地址", null, "nvarchar(50)", 0, 0, true)]
+        public virtual String UpdateIP
+        {
+            get { return _UpdateIP; }
+            set { if (OnPropertyChanging(__.UpdateIP, value)) { _UpdateIP = value; OnPropertyChanged(__.UpdateIP); } }
         }
 
         private String _Remark;
@@ -166,7 +191,7 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(13, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(15, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Remark
         {
             get { return _Remark; }
@@ -191,15 +216,17 @@ namespace NewLife.CMX
                     case __.ID : return _ID;
                     case __.Name : return _Name;
                     case __.ParentID : return _ParentID;
-                    case __.ChannelID : return _ChannelID;
+                    case __.ModelID : return _ModelID;
                     case __.Url : return _Url;
                     case __.NewWindow : return _NewWindow;
                     case __.Sort : return _Sort;
                     case __.Enable : return _Enable;
                     case __.CreateUserID : return _CreateUserID;
                     case __.CreateTime : return _CreateTime;
+                    case __.CreateIP : return _CreateIP;
                     case __.UpdateUserID : return _UpdateUserID;
                     case __.UpdateTime : return _UpdateTime;
+                    case __.UpdateIP : return _UpdateIP;
                     case __.Remark : return _Remark;
                     default: return base[name];
                 }
@@ -211,15 +238,17 @@ namespace NewLife.CMX
                     case __.ID : _ID = Convert.ToInt32(value); break;
                     case __.Name : _Name = Convert.ToString(value); break;
                     case __.ParentID : _ParentID = Convert.ToInt32(value); break;
-                    case __.ChannelID : _ChannelID = Convert.ToInt32(value); break;
+                    case __.ModelID : _ModelID = Convert.ToInt32(value); break;
                     case __.Url : _Url = Convert.ToString(value); break;
                     case __.NewWindow : _NewWindow = Convert.ToBoolean(value); break;
                     case __.Sort : _Sort = Convert.ToInt32(value); break;
                     case __.Enable : _Enable = Convert.ToBoolean(value); break;
                     case __.CreateUserID : _CreateUserID = Convert.ToInt32(value); break;
                     case __.CreateTime : _CreateTime = Convert.ToDateTime(value); break;
+                    case __.CreateIP : _CreateIP = Convert.ToString(value); break;
                     case __.UpdateUserID : _UpdateUserID = Convert.ToInt32(value); break;
                     case __.UpdateTime : _UpdateTime = Convert.ToDateTime(value); break;
+                    case __.UpdateIP : _UpdateIP = Convert.ToString(value); break;
                     case __.Remark : _Remark = Convert.ToString(value); break;
                     default: base[name] = value; break;
                 }
@@ -240,8 +269,8 @@ namespace NewLife.CMX
             ///<summary>父类</summary>
             public static readonly Field ParentID = FindByName(__.ParentID);
 
-            ///<summary>频道</summary>
-            public static readonly Field ChannelID = FindByName(__.ChannelID);
+            ///<summary>模型</summary>
+            public static readonly Field ModelID = FindByName(__.ModelID);
 
             ///<summary>地址</summary>
             public static readonly Field Url = FindByName(__.Url);
@@ -261,11 +290,17 @@ namespace NewLife.CMX
             ///<summary>创建时间</summary>
             public static readonly Field CreateTime = FindByName(__.CreateTime);
 
+            ///<summary>创建地址</summary>
+            public static readonly Field CreateIP = FindByName(__.CreateIP);
+
             ///<summary>更新人</summary>
             public static readonly Field UpdateUserID = FindByName(__.UpdateUserID);
 
             ///<summary>更新时间</summary>
             public static readonly Field UpdateTime = FindByName(__.UpdateTime);
+
+            ///<summary>更新地址</summary>
+            public static readonly Field UpdateIP = FindByName(__.UpdateIP);
 
             ///<summary>备注</summary>
             public static readonly Field Remark = FindByName(__.Remark);
@@ -285,8 +320,8 @@ namespace NewLife.CMX
             ///<summary>父类</summary>
             public const String ParentID = "ParentID";
 
-            ///<summary>频道</summary>
-            public const String ChannelID = "ChannelID";
+            ///<summary>模型</summary>
+            public const String ModelID = "ModelID";
 
             ///<summary>地址</summary>
             public const String Url = "Url";
@@ -306,11 +341,17 @@ namespace NewLife.CMX
             ///<summary>创建时间</summary>
             public const String CreateTime = "CreateTime";
 
+            ///<summary>创建地址</summary>
+            public const String CreateIP = "CreateIP";
+
             ///<summary>更新人</summary>
             public const String UpdateUserID = "UpdateUserID";
 
             ///<summary>更新时间</summary>
             public const String UpdateTime = "UpdateTime";
+
+            ///<summary>更新地址</summary>
+            public const String UpdateIP = "UpdateIP";
 
             ///<summary>备注</summary>
             public const String Remark = "Remark";
@@ -332,8 +373,8 @@ namespace NewLife.CMX
         /// <summary>父类</summary>
         Int32 ParentID { get; set; }
 
-        /// <summary>频道</summary>
-        Int32 ChannelID { get; set; }
+        /// <summary>模型</summary>
+        Int32 ModelID { get; set; }
 
         /// <summary>地址</summary>
         String Url { get; set; }
@@ -353,11 +394,17 @@ namespace NewLife.CMX
         /// <summary>创建时间</summary>
         DateTime CreateTime { get; set; }
 
+        /// <summary>创建地址</summary>
+        String CreateIP { get; set; }
+
         /// <summary>更新人</summary>
         Int32 UpdateUserID { get; set; }
 
         /// <summary>更新时间</summary>
         DateTime UpdateTime { get; set; }
+
+        /// <summary>更新地址</summary>
+        String UpdateIP { get; set; }
 
         /// <summary>备注</summary>
         String Remark { get; set; }

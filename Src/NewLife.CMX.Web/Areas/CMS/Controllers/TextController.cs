@@ -9,7 +9,7 @@ namespace NewLife.CMX.Web.Controllers
 {
     public class TextController : TitleController<Text> { }
 
-    public class TextCategoryController : CategoryController<TextCategory> { }
+    //public class TextCategoryController : CategoryController<TextCategory> { }
 
     //public class TextContentController : ContentController<TextContent> { }
 

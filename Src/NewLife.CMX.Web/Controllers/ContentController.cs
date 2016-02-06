@@ -10,51 +10,51 @@ namespace NewLife.CMX.Web.Controllers
     [AllowAnonymous]
     public class ContentController : Controller
     {
-        private Channel _channel;
-        public Channel Channel { get { return _channel; } }
+        private Model _model;
+        public Model Model { get { return _model; } }
 
         protected virtual Int32 PageSize { get { return 10; } }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             //拦截频道名称
-            if (filterContext.RouteData.Values.ContainsKey("channelName"))
+            if (filterContext.RouteData.Values.ContainsKey("modelName"))
             {
-                var name = filterContext.RouteData.Values["channelName"] + "";
-                SetChannel(name);
+                var name = filterContext.RouteData.Values["modelName"] + "";
+                SetModel(name);
             }
-            if (_channel == null && filterContext.RouteData.Values.ContainsKey("categoryCode"))
+            if (_model == null && filterContext.RouteData.Values.ContainsKey("categoryCode"))
             {
                 var code = filterContext.RouteData.Values["categoryCode"] + "";
-                var cat = Channel.FindCategoryByCode(code);
-                if (cat != null) _channel = cat.Channel;
+                var cat = Model.FindCategoryByCode(code);
+                if (cat != null) _model = cat.Model;
             }
-            if (_channel == null)
+            if (_model == null)
             {
                 filterContext.Result = new HttpNotFoundResult();
             }
             base.OnActionExecuting(filterContext);
         }
 
-        protected void SetChannel(String name)
+        protected void SetModel(String name)
         {
-            _channel = Channel.FindByName(name);
+            _model = Model.FindByName(name);
         }
 
         static DictionaryCache<String, String> _cache = new DictionaryCache<String, String>(StringComparer.OrdinalIgnoreCase);
         String GetView(String name)
         {
-            var viewName = "../{0}/{1}".F(Channel.Name, name);
+            var viewName = "../{0}/{1}".F(Model.Name, name);
 
             // 如果频道模版不存在，则采用模型模版
             return _cache.GetItem(viewName, name, (k, kn) =>
             {
                 var v = k;
-                var vp = "Views/{0}/{1}.cshtml".F(Channel.Name, kn);
+                var vp = "Views/{0}/{1}.cshtml".F(Model.Name, kn);
                 if (System.IO.File.Exists(vp.GetFullPath())) return v;
 
-                v = "../{0}/{1}".F(Channel.Model.Name, kn);
-                vp = "Views/{0}/{1}.cshtml".F(Channel.Model.Name, kn);
+                v = "../{0}/{1}".F(Model.Name, kn);
+                vp = "Views/{0}/{1}.cshtml".F(Model.Name, kn);
                 if (System.IO.File.Exists(vp.GetFullPath())) return v;
 
                 v = "../{0}/{1}".F("Content", kn);
@@ -72,18 +72,18 @@ namespace NewLife.CMX.Web.Controllers
         public ActionResult Index()
         {
             // 选择模版
-            var tmp = Channel.IndexTemplate;
-            if (tmp.IsNullOrEmpty()) tmp = "Channel";
+            var tmp = Model.IndexTemplate;
+            if (tmp.IsNullOrEmpty()) tmp = "Model";
             var viewName = GetView(tmp);
 
-            ViewBag.Channel = Channel;
+            ViewBag.Model = Model;
 
-            return View(viewName, Channel);
+            return View(viewName, Model);
         }
 
         public ActionResult List(Int32 categoryid, Int32? pageindex)
         {
-            var cat = Channel.FindCategory(categoryid);
+            var cat = Model.FindCategory(categoryid);
             if (cat == null) return HttpNotFound();
 
             // 选择模版
@@ -91,7 +91,7 @@ namespace NewLife.CMX.Web.Controllers
             if (tmp.IsNullOrEmpty()) tmp = "Category";
             var viewName = GetView(tmp);
 
-            ViewBag.Channel = Channel;
+            ViewBag.Model = Model;
             ViewBag.Category = cat;
             //ViewBag.PageIndex = pageindex ?? 1;
             //ViewBag.PageSize = PageSize;
@@ -110,7 +110,7 @@ namespace NewLife.CMX.Web.Controllers
         /// <returns></returns>
         public ActionResult Detail(Int32 id)
         {
-            var title = Channel.FindTitle(id);
+            var title = Model.FindTitle(id);
             if (title == null) return HttpNotFound();
             var cat = title.Category;
 
@@ -123,7 +123,7 @@ namespace NewLife.CMX.Web.Controllers
             title.Views++;
             title.Statistics.Increment(null);
 
-            ViewBag.Channel = Channel;
+            ViewBag.Model = Model;
             ViewBag.Category = cat;
 
             return View(viewName, title);
@@ -131,7 +131,7 @@ namespace NewLife.CMX.Web.Controllers
 
         public ActionResult List2(String categoryCode, Int32? pageindex)
         {
-            var cat = Channel.FindCategoryByCode(categoryCode);
+            var cat = Model.FindCategoryByCode(categoryCode);
             if (cat == null) return HttpNotFound();
 
             // 选择模版
@@ -139,7 +139,7 @@ namespace NewLife.CMX.Web.Controllers
             if (tmp.IsNullOrEmpty()) tmp = "Category";
             var viewName = GetView(tmp);
 
-            ViewBag.Channel = Channel;
+            ViewBag.Model = Model;
             ViewBag.Category = cat;
             //ViewBag.PageIndex = pageindex ?? 1;
             //ViewBag.PageSize = PageSize;
