@@ -133,7 +133,7 @@ namespace NewLife.CMX
         [XmlIgnore]
         [DisplayName("模型名")]
         public String ModelName { get { return Model != null ? Model.Name : String.Empty; } }
-        
+
         private ICategory _Category;
         /// <summary>分类</summary>
         public ICategory Category
@@ -328,6 +328,23 @@ namespace NewLife.CMX
 
             return FindAll(exp, param);
         }
+
+        public static EntityList<TEntity> Search(Int32 modelid, Int32 categoryid, String key, PageParameter param)
+        {
+            var exp = new WhereExpression();
+
+            if (categoryid > 0)
+            {
+                var cat = NewLife.CMX.Category.FindByID(categoryid);
+                if (cat != null) exp &= (_.CategoryID == categoryid | _.CategoryID.In(cat.AllChildKeys));
+            }
+            else if (modelid > 0)
+                exp &= _.ModelID == modelid;
+
+            exp &= SearchWhereByKeys(key, null, null);
+
+            return FindAll(exp, param);
+        }
         #endregion
 
         #region 扩展操作
@@ -340,7 +357,7 @@ namespace NewLife.CMX
     partial interface IInfo : IUserInfo
     {
         IModel Model { get; }
-        
+
         /// <summary>当前主题的分类</summary>
         ICategory Category { get; }
 

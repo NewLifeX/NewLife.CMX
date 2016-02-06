@@ -61,7 +61,7 @@ namespace NewLife.CMX.Web
 
             routes.MapRoute(
                 name: "CMX_Info",
-                url: "info-{id}.html",
+                url: "info-{id}",
                 defaults: new { controller = "Content", action = "Detail" },
                 constraints: new { id = "[\\d]+" }
             );
@@ -69,20 +69,27 @@ namespace NewLife.CMX.Web
             routes.MapRoute(
                 name: "CMX_Info2",
                 url: "{infoCode}",
-                defaults: new { controller = "Content", action = "Detail" },
+                defaults: new { controller = "Content", action = "Detail2" },
                 constraints: new { infoCode = new InfoUrlConstraint(), id = "[\\d]+" }
             );
 
             routes.MapRoute(
                 name: "CMX_Search",
-                url: "Search",
+                url: "Search/{key}/{pageIndex}",
                 defaults: new { controller = "Content", action = "Search" },
                 constraints: null
             );
 
             routes.MapRoute(
                 name: "CMX_Search2",
-                url: "{categoryCode}/Search",
+                url: "{modelName}/Search/{key}/{pageIndex}",
+                defaults: new { controller = "Content", action = "Search" },
+                constraints: new { modelName = new ModelUrlConstraint() }
+            );
+
+            routes.MapRoute(
+                name: "CMX_Search3",
+                url: "{categoryCode}/Search/{key}/{pageIndex}",
                 defaults: new { controller = "Content", action = "Search" },
                 constraints: new { categoryCode = new CategoryUrlConstraint() }
             );

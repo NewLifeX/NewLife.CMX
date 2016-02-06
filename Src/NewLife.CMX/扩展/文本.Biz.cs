@@ -19,7 +19,7 @@ using XCode.Membership;
 namespace NewLife.CMX
 {
     /// <summary>文本</summary>
-    public partial class Text : Entity<Text>
+    public partial class Text : InfoExtend<Text>
     {
         #region 对象操作
             ﻿

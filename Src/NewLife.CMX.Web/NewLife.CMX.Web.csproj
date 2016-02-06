@@ -192,11 +192,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Views\Article\Channel.generated.cs">
-      <DependentUpon>Channel.cshtml</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Views\Article\Title.generated.cs">
       <DependentUpon>Title.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -622,10 +617,6 @@
     <None Include="Views\Article\Category.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Category.generated.cs</LastGenOutput>
-    </None>
-    <None Include="Views\Article\Channel.cshtml">
-      <Generator>RazorGenerator</Generator>
-      <LastGenOutput>Channel.generated.cs</LastGenOutput>
     </None>
     <None Include="Views\Article\Title.cshtml">
       <Generator>RazorGenerator</Generator>

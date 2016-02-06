@@ -19,7 +19,7 @@ namespace NewLife.CMX.Web
         {
             // 过滤掉一些字段
             var list = ListFields;
-            list.RemoveAll(e => e.Name.EqualIgnoreCase("CategoryID", "Version", "SourceID", "SourceUrl", "StatisticsID", "Remark"));
+            list.RemoveAll(e => e.Name.EqualIgnoreCase("ModelID", "CategoryID", "Version", "SourceID", "SourceUrl", "StatisticsID", "Remark"));
 
             list = FormFields;
             list.RemoveAll(e => e.Name.EqualIgnoreCase("CategoryName", "StatisticsID"));
@@ -34,22 +34,23 @@ namespace NewLife.CMX.Web
             return base.ScanActionMenu(menu);
         }
 
-        private void LoadChannel()
-        {
-            if (RouteData.Values.ContainsKey("channel"))
-            {
-                var chn = Channel.FindByID(RouteData.Values["channel"].ToInt());
+        //private void LoadChannel()
+        //{
+        //    if (RouteData.Values.ContainsKey("channel"))
+        //    {
+        //        var chn = Channel.FindByID(RouteData.Values["channel"].ToInt());
 
-                // 设置当前频道，改变分类表、主题表、内容表等扩展表的链接定向
-                chn.Model.Provider.CurrentChannel = chn.ID;
+        //        // 设置当前频道，改变分类表、主题表、内容表等扩展表的链接定向
+        //        chn.Model.Provider.CurrentChannel = chn.ID;
 
-                ViewBag.Channel = chn;
+        //        ViewBag.Channel = chn;
 
-                var catid = RouteData.Values["category"].ToInt();
-                var cat = chn.FindCategory(catid);
-                ViewBag.Category = cat;
-            }
-        }
+        //        var catid = RouteData.Values["category"].ToInt();
+        //        var cat = Category.FindByID(catid);
+        //        ViewBag.Category = cat;
+        //    }
+        //}
+
         /// <summary>列表页视图。子控制器可重载，以传递更多信息给视图，比如修改要显示的列</summary>
         /// <param name="p"></param>
         /// <returns></returns>
@@ -57,15 +58,20 @@ namespace NewLife.CMX.Web
         {
             p.Sort = "CreateTime";
             p.Desc = true;
-            LoadChannel();
-            var cat = ViewBag.Category as ICategory;
-            var list = EntityTitle<TEntity>.Search(cat.ID, p);
+
+            //LoadChannel();
+
+            var catid = RouteData.Values["category"].ToInt();
+            var list = Info<TEntity>.Search(0, catid, null, p);
+
             return View("List", list);
         }
+
         public override ActionResult Add()
         {
-            // 加载频道和分类
-            LoadChannel();
+            //// 加载频道和分类
+            //LoadChannel();
+
             var entity = Factory.Create() as TEntity;
             entity.CategoryID = RouteData.Values["category"].ToInt();
 
@@ -80,8 +86,8 @@ namespace NewLife.CMX.Web
         /// <returns></returns>
         protected override ActionResult FormView(TEntity entity)
         {
-            // 加载频道和分类
-            LoadChannel();
+            //// 加载频道和分类
+            //LoadChannel();
 
             return base.FormView(entity);
         }

@@ -8,6 +8,7 @@
     var isNew = (Model as IEntity).IsNullKey;
     var entity = Model as IEntity;
     var product = Model as IProduct;
+    var inf = (Model as IInfoExtend).Info;
 }
 <div class="panel panel-default">
     <div class="form-horizontal">
@@ -25,23 +26,23 @@
             <div class="form-group">
                 <label class="control-label col-md-2">标题</label>
                 <div class="col-md-6">
-                    @Html.ForEditor(Product._.Title, entity)
+                    @Html.ForEditor(Info._.Title, inf)
                 </div>
             </div>
             <div class="form-group">
-                @{var item = Product._.CategoryID;}
+                @{var item = Info._.CategoryID;}
                 <label class="control-label col-md-2">@item.DisplayName</label>
                 <div class="col-md-2">
-                    @Html.DropDownList(item.Name, ProductCategory.FindAllWithCache().ToList().Select(r => new SelectListItem { Text = r.Name, Value = r.ID + "" }))
+                    @Html.DropDownList(item.Name, Category.FindAllWithCache().ToList().Select(r => new SelectListItem { Text = r.Name, Value = r.ID + "" }))
                 </div>
-                @{ item = Product._.Views;}
+                @{ item = Info._.Views;}
                 <label class="control-label col-md-1">@item.DisplayName</label>
                 <div class="col-md-2">
-                    @Html.ForEditor(item, entity)
+                    @Html.ForEditor(item, inf)
                 </div>
                 <label class="control-label col-md-1">版本</label>
                 <div class="col-md-2">
-                    <span>@product.Version</span>
+                    <span>@inf.Version</span>
                 </div>
             </div>
             <div class="form-group">
@@ -61,7 +62,7 @@
                     <script src="~/Content/ueditor/ueditor.all.min.js"></script>
                     <script src="~/Content/ueditor/lang/zh-cn/zh-cn.js"></script>
                     <script id="ContentText" name="ContentText" type="text/plain" style="width:500px;height:500px;">
-                        @Html.Raw(product.ContentText)                    
+                        @Html.Raw(inf.ContentText)                    
                     </script>
                     <script type="text/javascript">
                             //实例化编辑器

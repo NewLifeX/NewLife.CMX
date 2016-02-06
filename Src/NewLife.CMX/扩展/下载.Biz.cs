@@ -19,7 +19,7 @@ using XCode.Membership;
 namespace NewLife.CMX
 {
     /// <summary>下载</summary>
-    public partial class Down : Entity<Down>
+    public partial class Down : InfoExtend<Down>
     {
         #region 对象操作
             ﻿

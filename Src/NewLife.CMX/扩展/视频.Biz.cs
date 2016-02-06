@@ -19,7 +19,7 @@ using XCode.Membership;
 namespace NewLife.CMX
 {
     /// <summary>视频</summary>
-    public partial class Video : Entity<Video>
+    public partial class Video : InfoExtend<Video>
     {
         #region 对象操作
             ﻿

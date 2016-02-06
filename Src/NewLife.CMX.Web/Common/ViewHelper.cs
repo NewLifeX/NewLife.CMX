@@ -14,22 +14,23 @@ namespace NewLife.CMX.Web
 
         /// <summary>获取IInfo的Url</summary>
         /// <param name="page"></param>
-        /// <param name="entity"></param>
+        /// <param name="inf"></param>
         /// <returns></returns>
-        public static String GetUrl(this WebViewPage page, IInfo entity)
+        public static String GetUrl(this WebViewPage page, IInfo inf)
         {
-            var cat = entity.Category;
-            if (cat == null) return null;
+            //var cat = inf.Category;
+            //if (cat == null) return null;
 
             var values = page.Url.RequestContext.RouteData.Values;
-            values["modelName"] = cat.Channel.Name;
-            values["categoryCode"] = cat.Code;
-            values["id"] = entity.ID;
+            //values["modelName"] = cat.Model.Name;
+            //values["categoryCode"] = cat.Code;
+            values["id"] = inf.ID;
+            values["infoCode"] = inf.Code;
 
-            if (cat.Code.IsNullOrEmpty())
-                return page.Url.GenerateUrl("CMX_Title");
+            if (inf.Code.IsNullOrEmpty())
+                return page.Url.GenerateUrl("CMX_Info");
             else
-                return page.Url.GenerateUrl("CMX_Title2");
+                return page.Url.GenerateUrl("CMX_Info2");
         }
 
         /// <summary>获取到分类页面的链接</summary>
@@ -39,10 +40,10 @@ namespace NewLife.CMX.Web
         /// <returns></returns>
         public static String GetCategoryUrl(this WebViewPage page, ICategory cat, Int32 pageIndex = 1)
         {
-            if (cat == null || cat.Channel == null) return null;
+            if (cat == null || cat.Model == null) return null;
 
             var values = page.Url.RequestContext.RouteData.Values;
-            values["modelName"] = cat.Channel.Name;
+            //values["modelName"] = cat.Model.Name;
             values["categoryCode"] = cat.Code;
             values["categoryid"] = cat.ID;
             values["pageIndex"] = pageIndex;
@@ -66,17 +67,12 @@ namespace NewLife.CMX.Web
 
         /// <summary>获取分类的Url</summary>
         /// <param name="page"></param>
-        /// <param name="modelName"></param>
         /// <param name="categoryName"></param>
         /// <param name="pageIndex"></param>
         /// <returns></returns>
-        public static String GetCategoryUrl(this WebViewPage page, String modelName, String categoryName, Int32 pageIndex = 1)
+        public static String GetCategoryUrl(this WebViewPage page, String categoryName, Int32 pageIndex = 1)
         {
-            if (modelName.IsNullOrEmpty()) modelName = "Article";
-
-            var chn = Channel.FindByName(modelName);
-            if (chn == null) return null;
-            var cat = chn.FindCategory(categoryName);
+            var cat = Category.FindByName(categoryName);
             if (cat == null) return null;
 
             return page.GetCategoryUrl(cat, pageIndex);

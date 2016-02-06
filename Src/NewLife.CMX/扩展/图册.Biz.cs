@@ -19,7 +19,7 @@ using XCode.Membership;
 namespace NewLife.CMX
 {
     /// <summary>图册</summary>
-    public partial class Photo : Entity<Photo>
+    public partial class Photo : InfoExtend<Photo>
     {
         #region 对象操作
             ﻿

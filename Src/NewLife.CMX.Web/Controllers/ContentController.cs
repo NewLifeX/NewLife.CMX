@@ -151,5 +151,19 @@ namespace NewLife.CMX.Web.Controllers
 
             return View(viewName, inf);
         }
+
+        public ActionResult Search(String key, Int32? pageIndex)
+        {
+            var name = RouteData.Values["modelName"] + "";
+            var model = Model.FindByName(name);
+
+            var code = RouteData.Values["categoryCode"] + "";
+            var cat = Category.FindByCode(code);
+
+            var pager = new Pager { PageIndex = pageIndex ?? 1, PageSize = PageSize };
+            var list = Info.Search(model != null ? model.ID : 0, cat != null ? cat.ID : 0, key, pager);
+
+            return View(list);
+        }
     }
 }
