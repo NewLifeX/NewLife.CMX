@@ -97,7 +97,7 @@ namespace NewLife.CMX
                 {
                     var entity = new TEntity
                     {
-                        Name = "默认" + item,
+                        Name = item.DisplayName ?? item.Name,
                         ModelID = item.ID
                     };
                     entity.Insert();
@@ -105,7 +105,7 @@ namespace NewLife.CMX
                     entity = new TEntity
                     {
                         ParentID = entity.ID,
-                        Name = "二级" + item,
+                        Name = "二级" + item.DisplayName ?? item.Name,
                         ModelID = item.ID
                     };
                     entity.Insert();

@@ -119,7 +119,7 @@ namespace NewLife.CMX
                 if (entity == null) entity = new Model();
 
                 entity.Name = item.Name;
-                entity.DisplayName = item.GetDisplayName();
+                entity.DisplayName = item.GetDisplayName() ?? item.GetDescription();
                 entity.ProviderName = item.FullName;
 
                 //entity.InfoTemplate = String.Format("CMX/{0}.aspx", entity.Name);
