@@ -79,11 +79,11 @@ namespace NewLife.CMX
         }
 
         private String _IndexTemplate;
-        /// <summary>索引页模版。本频道专属首页</summary>
+        /// <summary>索引页模版。本模型专属首页</summary>
         [DisplayName("索引页模版")]
-        [Description("索引页模版。本频道专属首页")]
+        [Description("索引页模版。本模型专属首页")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(6, "IndexTemplate", "索引页模版。本频道专属首页", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(6, "IndexTemplate", "索引页模版。本模型专属首页", null, "nvarchar(200)", 0, 0, true)]
         public virtual String IndexTemplate
         {
             get { return _IndexTemplate; }
@@ -91,27 +91,27 @@ namespace NewLife.CMX
         }
 
         private String _CategoryTemplate;
-        /// <summary>分类页模版。本频道专属列表页</summary>
+        /// <summary>分类页模版。本模型专属列表页</summary>
         [DisplayName("分类页模版")]
-        [Description("分类页模版。本频道专属列表页")]
+        [Description("分类页模版。本模型专属列表页")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(7, "CategoryTemplate", "分类页模版。本频道专属列表页", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(7, "CategoryTemplate", "分类页模版。本模型专属列表页", null, "nvarchar(200)", 0, 0, true)]
         public virtual String CategoryTemplate
         {
             get { return _CategoryTemplate; }
             set { if (OnPropertyChanging(__.CategoryTemplate, value)) { _CategoryTemplate = value; OnPropertyChanged(__.CategoryTemplate); } }
         }
 
-        private String _TitleTemplate;
-        /// <summary>标题页模版。本频道专属内容页</summary>
-        [DisplayName("标题页模版")]
-        [Description("标题页模版。本频道专属内容页")]
+        private String _InfoTemplate;
+        /// <summary>信息页模版。本模型专属内容页</summary>
+        [DisplayName("信息页模版")]
+        [Description("信息页模版。本模型专属内容页")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(8, "TitleTemplate", "标题页模版。本频道专属内容页", null, "nvarchar(200)", 0, 0, true)]
-        public virtual String TitleTemplate
+        [BindColumn(8, "InfoTemplate", "信息页模版。本模型专属内容页", null, "nvarchar(200)", 0, 0, true)]
+        public virtual String InfoTemplate
         {
-            get { return _TitleTemplate; }
-            set { if (OnPropertyChanging(__.TitleTemplate, value)) { _TitleTemplate = value; OnPropertyChanged(__.TitleTemplate); } }
+            get { return _InfoTemplate; }
+            set { if (OnPropertyChanging(__.InfoTemplate, value)) { _InfoTemplate = value; OnPropertyChanged(__.InfoTemplate); } }
         }
 
         private Int32 _CreateUserID;
@@ -220,7 +220,7 @@ namespace NewLife.CMX
                     case __.Enable : return _Enable;
                     case __.IndexTemplate : return _IndexTemplate;
                     case __.CategoryTemplate : return _CategoryTemplate;
-                    case __.TitleTemplate : return _TitleTemplate;
+                    case __.InfoTemplate : return _InfoTemplate;
                     case __.CreateUserID : return _CreateUserID;
                     case __.CreateTime : return _CreateTime;
                     case __.CreateIP : return _CreateIP;
@@ -242,7 +242,7 @@ namespace NewLife.CMX
                     case __.Enable : _Enable = Convert.ToBoolean(value); break;
                     case __.IndexTemplate : _IndexTemplate = Convert.ToString(value); break;
                     case __.CategoryTemplate : _CategoryTemplate = Convert.ToString(value); break;
-                    case __.TitleTemplate : _TitleTemplate = Convert.ToString(value); break;
+                    case __.InfoTemplate : _InfoTemplate = Convert.ToString(value); break;
                     case __.CreateUserID : _CreateUserID = Convert.ToInt32(value); break;
                     case __.CreateTime : _CreateTime = Convert.ToDateTime(value); break;
                     case __.CreateIP : _CreateIP = Convert.ToString(value); break;
@@ -275,14 +275,14 @@ namespace NewLife.CMX
             ///<summary>启用</summary>
             public static readonly Field Enable = FindByName(__.Enable);
 
-            ///<summary>索引页模版。本频道专属首页</summary>
+            ///<summary>索引页模版。本模型专属首页</summary>
             public static readonly Field IndexTemplate = FindByName(__.IndexTemplate);
 
-            ///<summary>分类页模版。本频道专属列表页</summary>
+            ///<summary>分类页模版。本模型专属列表页</summary>
             public static readonly Field CategoryTemplate = FindByName(__.CategoryTemplate);
 
-            ///<summary>标题页模版。本频道专属内容页</summary>
-            public static readonly Field TitleTemplate = FindByName(__.TitleTemplate);
+            ///<summary>信息页模版。本模型专属内容页</summary>
+            public static readonly Field InfoTemplate = FindByName(__.InfoTemplate);
 
             ///<summary>创建人</summary>
             public static readonly Field CreateUserID = FindByName(__.CreateUserID);
@@ -326,14 +326,14 @@ namespace NewLife.CMX
             ///<summary>启用</summary>
             public const String Enable = "Enable";
 
-            ///<summary>索引页模版。本频道专属首页</summary>
+            ///<summary>索引页模版。本模型专属首页</summary>
             public const String IndexTemplate = "IndexTemplate";
 
-            ///<summary>分类页模版。本频道专属列表页</summary>
+            ///<summary>分类页模版。本模型专属列表页</summary>
             public const String CategoryTemplate = "CategoryTemplate";
 
-            ///<summary>标题页模版。本频道专属内容页</summary>
-            public const String TitleTemplate = "TitleTemplate";
+            ///<summary>信息页模版。本模型专属内容页</summary>
+            public const String InfoTemplate = "InfoTemplate";
 
             ///<summary>创建人</summary>
             public const String CreateUserID = "CreateUserID";
@@ -380,14 +380,14 @@ namespace NewLife.CMX
         /// <summary>启用</summary>
         Boolean Enable { get; set; }
 
-        /// <summary>索引页模版。本频道专属首页</summary>
+        /// <summary>索引页模版。本模型专属首页</summary>
         String IndexTemplate { get; set; }
 
-        /// <summary>分类页模版。本频道专属列表页</summary>
+        /// <summary>分类页模版。本模型专属列表页</summary>
         String CategoryTemplate { get; set; }
 
-        /// <summary>标题页模版。本频道专属内容页</summary>
-        String TitleTemplate { get; set; }
+        /// <summary>信息页模版。本模型专属内容页</summary>
+        String InfoTemplate { get; set; }
 
         /// <summary>创建人</summary>
         Int32 CreateUserID { get; set; }

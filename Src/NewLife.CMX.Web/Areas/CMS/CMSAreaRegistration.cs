@@ -15,30 +15,17 @@ namespace NewLife.CMX.Web
         {
             // 用于左边菜单的两条路由
             context.MapRoute(
-               "CMS_category",
-               "CMS/{controller}/{model}_{category}/{action}/{id}",
+               "CMS",
+               "CMS/{controller}/{action}/{id}",
                new { action = "Index", id = UrlParameter.Optional },
-               new { model = "[\\d]+", category = "[\\d]+" }
+               null
                );
-
-            context.MapRoute(
-                 "CMS_model",
-                 "CMS/{controller}/{model}/{action}/{id}",
-                 new { action = "Index", id = UrlParameter.Optional },
-                 new { model = "[\\d]+" }
-                 );
 
             base.RegisterArea(context);
 
             var routes = context.Routes;
             routes.MapRoute(
                 name: "CMX_Model",
-                url: "{modelName}.html",
-                defaults: new { controller = "Content", action = "Index" },
-                constraints: new { modelName = new ModelUrlConstraint() }
-            );
-            routes.MapRoute(
-                name: "CMX_Model2",
                 url: "{modelName}",
                 defaults: new { controller = "Content", action = "Index" },
                 constraints: new { modelName = new ModelUrlConstraint() }
@@ -46,30 +33,16 @@ namespace NewLife.CMX.Web
 
             routes.MapRoute(
                 name: "CMX_Category",
-                url: "{modelName}/{categoryid}.html",
+                url: "cat-{categoryid}",
                 defaults: new { controller = "Content", action = "List" },
-                constraints: new { modelName = new ModelUrlConstraint(), categoryid = "[\\d]+" }
+                constraints: new { categoryid = "[\\d]+" }
             );
 
             routes.MapRoute(
                 name: "CMX_Category_Page",
-                url: "{modelName}/{categoryid}-{pageIndex}.html",
+                url: "cat-{categoryid}-{pageIndex}",
                 defaults: new { controller = "Content", action = "List", pageIndex = UrlParameter.Optional },
-                constraints: new { modelName = new ModelUrlConstraint(), categoryid = "[\\d]+", pageIndex = "[\\d]+" }
-            );
-
-            routes.MapRoute(
-                name: "CMX_Title",
-                url: "{modelName}/show-{id}.html",
-                defaults: new { controller = "Content", action = "Detail" },
-                constraints: new { modelName = new ModelUrlConstraint(), id = "[\\d]+" }
-            );
-
-            routes.MapRoute(
-                name: "CMX_Search",
-                url: "{modelName}/Search.html",
-                defaults: new { controller = "Content", action = "Search" },
-                constraints: new { modelName = new ModelUrlConstraint() }
+                constraints: new { categoryid = "[\\d]+", pageIndex = "[\\d]+" }
             );
 
             routes.MapRoute(
@@ -81,21 +54,35 @@ namespace NewLife.CMX.Web
 
             routes.MapRoute(
                 name: "CMX_Category_Page2",
-                url: "{categoryCode}-{pageIndex}.html",
+                url: "{categoryCode}-{pageIndex}",
                 defaults: new { controller = "Content", action = "List2", pageIndex = UrlParameter.Optional },
-                constraints: new { categoryCode = new CategoryUrlConstraint(), categoryid = "[\\d]+", pageIndex = "[\\d]+" }
+                constraints: new { categoryCode = new CategoryUrlConstraint(), pageIndex = "[\\d]+" }
             );
 
             routes.MapRoute(
-                name: "CMX_Title2",
-                url: "{categoryCode}/show-{id}.html",
+                name: "CMX_Info",
+                url: "info-{id}.html",
                 defaults: new { controller = "Content", action = "Detail" },
-                constraints: new { categoryCode = new CategoryUrlConstraint(), id = "[\\d]+" }
+                constraints: new { id = "[\\d]+" }
+            );
+
+            routes.MapRoute(
+                name: "CMX_Info2",
+                url: "{infoCode}",
+                defaults: new { controller = "Content", action = "Detail" },
+                constraints: new { infoCode = new InfoUrlConstraint(), id = "[\\d]+" }
+            );
+
+            routes.MapRoute(
+                name: "CMX_Search",
+                url: "Search",
+                defaults: new { controller = "Content", action = "Search" },
+                constraints: null
             );
 
             routes.MapRoute(
                 name: "CMX_Search2",
-                url: "{categoryCode}/Search.html",
+                url: "{categoryCode}/Search",
                 defaults: new { controller = "Content", action = "Search" },
                 constraints: new { categoryCode = new CategoryUrlConstraint() }
             );
@@ -108,33 +95,42 @@ namespace NewLife.CMX.Web
         }
     }
 
-    public class ModelUrlConstraint : IRouteConstraint
+    class ModelUrlConstraint : IRouteConstraint
     {
         public bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
         {
-            if (values[parameterName] != null)
-            {
-                var modelName = values[parameterName].ToString();
-                if (modelName.IsNullOrEmpty()) return false;
-                return Model.FindByName(modelName) != null;
-            }
+            var name = values[parameterName] + "";
+            if (name.IsNullOrEmpty()) return false;
+
+            if (Model.FindByName(name) != null) return true;
+
             return false;
         }
     }
 
-    public class CategoryUrlConstraint : IRouteConstraint
+    class CategoryUrlConstraint : IRouteConstraint
     {
         public bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
         {
-            if (values[parameterName] != null)
-            {
-                var catCode = values[parameterName].ToString();
-                if (catCode.IsNullOrEmpty()) return false;
+            var name = values[parameterName] + "";
+            if (name.IsNullOrEmpty()) return false;
 
-                // 从所有频道里面找到这个
-                var cat = Model.FindCategoryByCode(catCode);
-                if (cat != null) return true;
-            }
+            if (Category.FindByCode(name) != null) return true;
+
+            return false;
+        }
+    }
+
+    /// <summary>信息路径适配</summary>
+    class InfoUrlConstraint : IRouteConstraint
+    {
+        public bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
+        {
+            var name = values[parameterName] + "";
+            if (name.IsNullOrEmpty()) return false;
+
+            if (Info.FindByCode(name) != null) return true;
+
             return false;
         }
     }

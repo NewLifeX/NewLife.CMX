@@ -13,7 +13,7 @@ namespace NewLife.CMX
     [DataObject]
     [Description("分类")]
     [BindIndex("IU_Category_Name", true, "Name")]
-    [BindIndex("IU_Category_Code", true, "Code")]
+    [BindIndex("IX_Category_Code", false, "Code")]
     [BindIndex("IX_Category_ParentID", false, "ParentID")]
     [BindRelation("ModelID", false, "Model", "ID")]
     [BindTable("Category", Description = "分类", ConnName = "CMX", DbType = DatabaseType.None)]
@@ -45,11 +45,11 @@ namespace NewLife.CMX
         }
 
         private String _Code;
-        /// <summary>编码。全局唯一的分类识别名，一般英文名</summary>
+        /// <summary>编码。全局唯一的路由识别名，英文名</summary>
         [DisplayName("编码")]
-        [Description("编码。全局唯一的分类识别名，一般英文名")]
-        [DataObjectField(false, false, false, 50)]
-        [BindColumn(3, "Code", "编码。全局唯一的分类识别名，一般英文名", null, "nvarchar(50)", 0, 0, true)]
+        [Description("编码。全局唯一的路由识别名，英文名")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn(3, "Code", "编码。全局唯一的路由识别名，英文名", null, "nvarchar(50)", 0, 0, true)]
         public virtual String Code
         {
             get { return _Code; }
@@ -116,16 +116,16 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.CategoryTemplate, value)) { _CategoryTemplate = value; OnPropertyChanged(__.CategoryTemplate); } }
         }
 
-        private String _TitleTemplate;
-        /// <summary>标题页模版。本分类专属内容页</summary>
-        [DisplayName("标题页模版")]
-        [Description("标题页模版。本分类专属内容页")]
+        private String _InfoTemplate;
+        /// <summary>信息页模版。本分类专属内容页</summary>
+        [DisplayName("信息页模版")]
+        [Description("信息页模版。本分类专属内容页")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(9, "TitleTemplate", "标题页模版。本分类专属内容页", null, "nvarchar(200)", 0, 0, true)]
-        public virtual String TitleTemplate
+        [BindColumn(9, "InfoTemplate", "信息页模版。本分类专属内容页", null, "nvarchar(200)", 0, 0, true)]
+        public virtual String InfoTemplate
         {
-            get { return _TitleTemplate; }
-            set { if (OnPropertyChanging(__.TitleTemplate, value)) { _TitleTemplate = value; OnPropertyChanged(__.TitleTemplate); } }
+            get { return _InfoTemplate; }
+            set { if (OnPropertyChanging(__.InfoTemplate, value)) { _InfoTemplate = value; OnPropertyChanged(__.InfoTemplate); } }
         }
 
         private String _Remark;
@@ -163,7 +163,7 @@ namespace NewLife.CMX
                     case __.Sort : return _Sort;
                     case __.Num : return _Num;
                     case __.CategoryTemplate : return _CategoryTemplate;
-                    case __.TitleTemplate : return _TitleTemplate;
+                    case __.InfoTemplate : return _InfoTemplate;
                     case __.Remark : return _Remark;
                     default: return base[name];
                 }
@@ -180,7 +180,7 @@ namespace NewLife.CMX
                     case __.Sort : _Sort = Convert.ToInt32(value); break;
                     case __.Num : _Num = Convert.ToInt32(value); break;
                     case __.CategoryTemplate : _CategoryTemplate = Convert.ToString(value); break;
-                    case __.TitleTemplate : _TitleTemplate = Convert.ToString(value); break;
+                    case __.InfoTemplate : _InfoTemplate = Convert.ToString(value); break;
                     case __.Remark : _Remark = Convert.ToString(value); break;
                     default: base[name] = value; break;
                 }
@@ -198,7 +198,7 @@ namespace NewLife.CMX
             ///<summary>名称</summary>
             public static readonly Field Name = FindByName(__.Name);
 
-            ///<summary>编码。全局唯一的分类识别名，一般英文名</summary>
+            ///<summary>编码。全局唯一的路由识别名，英文名</summary>
             public static readonly Field Code = FindByName(__.Code);
 
             ///<summary>父类</summary>
@@ -216,8 +216,8 @@ namespace NewLife.CMX
             ///<summary>分类页模版。本分类专属列表页</summary>
             public static readonly Field CategoryTemplate = FindByName(__.CategoryTemplate);
 
-            ///<summary>标题页模版。本分类专属内容页</summary>
-            public static readonly Field TitleTemplate = FindByName(__.TitleTemplate);
+            ///<summary>信息页模版。本分类专属内容页</summary>
+            public static readonly Field InfoTemplate = FindByName(__.InfoTemplate);
 
             ///<summary>备注</summary>
             public static readonly Field Remark = FindByName(__.Remark);
@@ -234,7 +234,7 @@ namespace NewLife.CMX
             ///<summary>名称</summary>
             public const String Name = "Name";
 
-            ///<summary>编码。全局唯一的分类识别名，一般英文名</summary>
+            ///<summary>编码。全局唯一的路由识别名，英文名</summary>
             public const String Code = "Code";
 
             ///<summary>父类</summary>
@@ -252,8 +252,8 @@ namespace NewLife.CMX
             ///<summary>分类页模版。本分类专属列表页</summary>
             public const String CategoryTemplate = "CategoryTemplate";
 
-            ///<summary>标题页模版。本分类专属内容页</summary>
-            public const String TitleTemplate = "TitleTemplate";
+            ///<summary>信息页模版。本分类专属内容页</summary>
+            public const String InfoTemplate = "InfoTemplate";
 
             ///<summary>备注</summary>
             public const String Remark = "Remark";
@@ -272,7 +272,7 @@ namespace NewLife.CMX
         /// <summary>名称</summary>
         String Name { get; set; }
 
-        /// <summary>编码。全局唯一的分类识别名，一般英文名</summary>
+        /// <summary>编码。全局唯一的路由识别名，英文名</summary>
         String Code { get; set; }
 
         /// <summary>父类</summary>
@@ -290,8 +290,8 @@ namespace NewLife.CMX
         /// <summary>分类页模版。本分类专属列表页</summary>
         String CategoryTemplate { get; set; }
 
-        /// <summary>标题页模版。本分类专属内容页</summary>
-        String TitleTemplate { get; set; }
+        /// <summary>信息页模版。本分类专属内容页</summary>
+        String InfoTemplate { get; set; }
 
         /// <summary>备注</summary>
         String Remark { get; set; }

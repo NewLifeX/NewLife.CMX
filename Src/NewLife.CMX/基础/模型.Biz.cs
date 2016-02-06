@@ -122,7 +122,7 @@ namespace NewLife.CMX
                 entity.DisplayName = item.GetDisplayName();
                 entity.ProviderName = item.FullName;
 
-                entity.TitleTemplate = String.Format("CMX/{0}.aspx", entity.Name);
+                //entity.InfoTemplate = String.Format("CMX/{0}.aspx", entity.Name);
                 //entity.CategoryTemplate = String.Format("CMX/{0}/{1}.aspx", entity.Name, entity.Name);
                 entity.Enable = true;
                 entity.Save();

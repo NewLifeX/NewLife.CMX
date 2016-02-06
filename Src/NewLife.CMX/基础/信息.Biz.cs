@@ -11,6 +11,7 @@ using NewLife.Log;
 using XCode;
 using XCode.Membership;
 using NewLife.Reflection;
+using System.Xml.Serialization;
 
 namespace NewLife.CMX
 {
@@ -109,6 +110,30 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性
+        [NonSerialized]
+        private IModel _Model;
+        /// <summary>该分类所对应的模型</summary>
+        [XmlIgnore]
+        [BindRelation("ModelID", false, "Model", "ID")]
+        public IModel Model
+        {
+            get
+            {
+                if (_Model == null && ModelID > 0 && !Dirtys.ContainsKey("Model"))
+                {
+                    _Model = NewLife.CMX.Model.FindByID(ModelID);
+                    Dirtys["Model"] = true;
+                }
+                return _Model;
+            }
+            set { _Model = value; }
+        }
+
+        /// <summary>该分类所对应的模型名称</summary>
+        [XmlIgnore]
+        [DisplayName("模型名")]
+        public String ModelName { get { return Model != null ? Model.Name : String.Empty; } }
+        
         private ICategory _Category;
         /// <summary>分类</summary>
         public ICategory Category
@@ -206,6 +231,29 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展查询
+        /// <summary>根据ID查询</summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static TEntity FindByID(Int32 id)
+        {
+            if (Meta.Count >= 1000)
+                return Meta.SingleCache[id];
+            else
+                return Meta.Cache.Entities.Find(__.ID, id);
+        }
+
+        /// <summary>根据代码查找</summary>
+        /// <param name="code">代码</param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static TEntity FindByCode(String code)
+        {
+            if (Meta.Count >= 1000)
+                return Find(__.Code, code);
+            else // 实体缓存
+                return Meta.Cache.Entities.Find(__.Code, code);
+        }
 
         /// <summary>根据模型查找</summary>
         /// <param name="modelid">模型</param>
@@ -291,6 +339,8 @@ namespace NewLife.CMX
 
     partial interface IInfo : IUserInfo
     {
+        IModel Model { get; }
+        
         /// <summary>当前主题的分类</summary>
         ICategory Category { get; }
 

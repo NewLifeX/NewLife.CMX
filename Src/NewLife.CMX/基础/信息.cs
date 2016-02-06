@@ -15,6 +15,7 @@ namespace NewLife.CMX
     [BindIndex("IX_Info_ModelID", false, "ModelID")]
     [BindIndex("IX_Info_ExtendID", false, "ExtendID")]
     [BindIndex("IX_Info_CategoryID", false, "CategoryID")]
+    [BindIndex("IX_Info_Code", false, "Code")]
     [BindIndex("IX_Info_PublishTime", false, "PublishTime")]
     [BindTable("Info", Description = "信息", ConnName = "CMX", DbType = DatabaseType.None)]
     public abstract partial class Info<TEntity> : IInfo
@@ -80,12 +81,24 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.Title, value)) { _Title = value; OnPropertyChanged(__.Title); } }
         }
 
+        private String _Code;
+        /// <summary>编码。全局唯一的路由识别名，英文名</summary>
+        [DisplayName("编码")]
+        [Description("编码。全局唯一的路由识别名，英文名")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn(6, "Code", "编码。全局唯一的路由识别名，英文名", null, "nvarchar(50)", 0, 0, true)]
+        public virtual String Code
+        {
+            get { return _Code; }
+            set { if (OnPropertyChanging(__.Code, value)) { _Code = value; OnPropertyChanged(__.Code); } }
+        }
+
         private Int32 _ExtendID;
         /// <summary>扩展</summary>
         [DisplayName("扩展")]
         [Description("扩展")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(6, "ExtendID", "扩展", null, "int", 10, 0, false)]
+        [BindColumn(7, "ExtendID", "扩展", null, "int", 10, 0, false)]
         public virtual Int32 ExtendID
         {
             get { return _ExtendID; }
@@ -97,7 +110,7 @@ namespace NewLife.CMX
         [DisplayName("最新版本")]
         [Description("最新版本")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(7, "Version", "最新版本", null, "int", 10, 0, false)]
+        [BindColumn(8, "Version", "最新版本", null, "int", 10, 0, false)]
         public virtual Int32 Version
         {
             get { return _Version; }
@@ -109,7 +122,7 @@ namespace NewLife.CMX
         [DisplayName("访问统计")]
         [Description("访问统计")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(8, "StatisticsID", "访问统计", null, "int", 10, 0, false)]
+        [BindColumn(9, "StatisticsID", "访问统计", null, "int", 10, 0, false)]
         public virtual Int32 StatisticsID
         {
             get { return _StatisticsID; }
@@ -121,7 +134,7 @@ namespace NewLife.CMX
         [DisplayName("访问量")]
         [Description("访问量。由统计表同步过来")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(9, "Views", "访问量。由统计表同步过来", null, "int", 10, 0, false)]
+        [BindColumn(10, "Views", "访问量。由统计表同步过来", null, "int", 10, 0, false)]
         public virtual Int32 Views
         {
             get { return _Views; }
@@ -133,7 +146,7 @@ namespace NewLife.CMX
         [DisplayName("摘要")]
         [Description("摘要")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(10, "Summary", "摘要", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(11, "Summary", "摘要", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Summary
         {
             get { return _Summary; }
@@ -145,7 +158,7 @@ namespace NewLife.CMX
         [DisplayName("发布时间")]
         [Description("发布时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(11, "PublishTime", "发布时间", null, "datetime", 3, 0, false)]
+        [BindColumn(12, "PublishTime", "发布时间", null, "datetime", 3, 0, false)]
         public virtual DateTime PublishTime
         {
             get { return _PublishTime; }
@@ -157,7 +170,7 @@ namespace NewLife.CMX
         [DisplayName("发布人")]
         [Description("发布人")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(12, "Publisher", "发布人", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(13, "Publisher", "发布人", null, "nvarchar(50)", 0, 0, true)]
         public virtual String Publisher
         {
             get { return _Publisher; }
@@ -169,7 +182,7 @@ namespace NewLife.CMX
         [DisplayName("创建人")]
         [Description("创建人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(13, "CreateUserID", "创建人", null, "int", 10, 0, false)]
+        [BindColumn(14, "CreateUserID", "创建人", null, "int", 10, 0, false)]
         public virtual Int32 CreateUserID
         {
             get { return _CreateUserID; }
@@ -181,7 +194,7 @@ namespace NewLife.CMX
         [DisplayName("创建时间")]
         [Description("创建时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(14, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
+        [BindColumn(15, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
         public virtual DateTime CreateTime
         {
             get { return _CreateTime; }
@@ -193,7 +206,7 @@ namespace NewLife.CMX
         [DisplayName("创建地址")]
         [Description("创建地址")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(15, "CreateIP", "创建地址", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(16, "CreateIP", "创建地址", null, "nvarchar(50)", 0, 0, true)]
         public virtual String CreateIP
         {
             get { return _CreateIP; }
@@ -205,7 +218,7 @@ namespace NewLife.CMX
         [DisplayName("更新人")]
         [Description("更新人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(16, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
+        [BindColumn(17, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
         public virtual Int32 UpdateUserID
         {
             get { return _UpdateUserID; }
@@ -217,7 +230,7 @@ namespace NewLife.CMX
         [DisplayName("更新时间")]
         [Description("更新时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(17, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
+        [BindColumn(18, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
         public virtual DateTime UpdateTime
         {
             get { return _UpdateTime; }
@@ -229,7 +242,7 @@ namespace NewLife.CMX
         [DisplayName("更新地址")]
         [Description("更新地址")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(18, "UpdateIP", "更新地址", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(19, "UpdateIP", "更新地址", null, "nvarchar(50)", 0, 0, true)]
         public virtual String UpdateIP
         {
             get { return _UpdateIP; }
@@ -256,6 +269,7 @@ namespace NewLife.CMX
                     case __.CategoryID : return _CategoryID;
                     case __.CategoryName : return _CategoryName;
                     case __.Title : return _Title;
+                    case __.Code : return _Code;
                     case __.ExtendID : return _ExtendID;
                     case __.Version : return _Version;
                     case __.StatisticsID : return _StatisticsID;
@@ -281,6 +295,7 @@ namespace NewLife.CMX
                     case __.CategoryID : _CategoryID = Convert.ToInt32(value); break;
                     case __.CategoryName : _CategoryName = Convert.ToString(value); break;
                     case __.Title : _Title = Convert.ToString(value); break;
+                    case __.Code : _Code = Convert.ToString(value); break;
                     case __.ExtendID : _ExtendID = Convert.ToInt32(value); break;
                     case __.Version : _Version = Convert.ToInt32(value); break;
                     case __.StatisticsID : _StatisticsID = Convert.ToInt32(value); break;
@@ -318,6 +333,9 @@ namespace NewLife.CMX
 
             ///<summary>标题</summary>
             public static readonly Field Title = FindByName(__.Title);
+
+            ///<summary>编码。全局唯一的路由识别名，英文名</summary>
+            public static readonly Field Code = FindByName(__.Code);
 
             ///<summary>扩展</summary>
             public static readonly Field ExtendID = FindByName(__.ExtendID);
@@ -378,6 +396,9 @@ namespace NewLife.CMX
 
             ///<summary>标题</summary>
             public const String Title = "Title";
+
+            ///<summary>编码。全局唯一的路由识别名，英文名</summary>
+            public const String Code = "Code";
 
             ///<summary>扩展</summary>
             public const String ExtendID = "ExtendID";
@@ -440,6 +461,9 @@ namespace NewLife.CMX
 
         /// <summary>标题</summary>
         String Title { get; set; }
+
+        /// <summary>编码。全局唯一的路由识别名，英文名</summary>
+        String Code { get; set; }
 
         /// <summary>扩展</summary>
         Int32 ExtendID { get; set; }

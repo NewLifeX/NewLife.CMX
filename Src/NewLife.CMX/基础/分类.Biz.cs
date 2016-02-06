@@ -90,9 +90,9 @@ namespace NewLife.CMX
             else
             {
                 // 遍历模型
-                Model.Meta.Session.WaitForInitData();
+                NewLife.CMX.Model.Meta.Session.WaitForInitData();
 
-                foreach (var item in Model.FindAllWithCache())
+                foreach (var item in NewLife.CMX.Model.FindAllWithCache())
                 {
                     var entity = new TEntity
                     {
@@ -130,19 +130,18 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性
-
         [NonSerialized]
-        private Model _Model;
+        private IModel _Model;
         /// <summary>该分类所对应的模型</summary>
         [XmlIgnore]
         [BindRelation("ModelID", false, "Model", "ID")]
-        public Model Model
+        public IModel Model
         {
             get
             {
                 if (_Model == null && ModelID > 0 && !Dirtys.ContainsKey("Model"))
                 {
-                    _Model = Model.FindByID(ModelID);
+                    _Model = NewLife.CMX.Model.FindByID(ModelID);
                     Dirtys["Model"] = true;
                 }
                 return _Model;
@@ -175,7 +174,7 @@ namespace NewLife.CMX
         /// <param name="name">名称</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static TEntity FindName(String name)
+        public static TEntity FindByName(String name)
         {
             if (Meta.Count >= 1000)
                 return Find(__.Name, name);
@@ -187,7 +186,7 @@ namespace NewLife.CMX
         /// <param name="code">代码</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static TEntity FindCode(String code)
+        public static TEntity FindByCode(String code)
         {
             if (Meta.Count >= 1000)
                 return Find(__.Code, code);
@@ -264,7 +263,7 @@ namespace NewLife.CMX
                     tmp = CategoryTemplate;
                     break;
                 case "title":
-                    tmp = TitleTemplate;
+                    tmp = InfoTemplate;
                     break;
                 default:
                     break;
@@ -283,7 +282,7 @@ namespace NewLife.CMX
                         tmp = Model.CategoryTemplate;
                         break;
                     case "title":
-                        tmp = Model.TitleTemplate;
+                        tmp = Model.InfoTemplate;
                         break;
                     default:
                         break;
@@ -306,7 +305,7 @@ namespace NewLife.CMX
 
     partial interface ICategory
     {
-        Model Model { get; }
+        IModel Model { get; }
 
         IList<IInfo> GetTitles(Int32 pageIndex = 1, Int32 pageCount = 10);
         //Int32 GetTitleCount();
