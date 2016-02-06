@@ -15,7 +15,7 @@ namespace NewLife.CMX.Web
         {
             // 用于左边菜单的两条路由
             context.MapRoute(
-               "CMS",
+               "CMS_Manage",
                "CMS/{controller}/{action}/{id}",
                new { action = "Index", id = UrlParameter.Optional },
                null

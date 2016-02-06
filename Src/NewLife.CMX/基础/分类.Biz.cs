@@ -16,6 +16,7 @@ using XCode;
 using XCode.Configuration;
 using XCode.Membership;
 using System.IO;
+using System.Linq;
 
 namespace NewLife.CMX
 {
@@ -213,6 +214,7 @@ namespace NewLife.CMX
             //var provider = ModelProvider.Get(this.GetType());
             //return provider.TitleFactory.GetTitles(ID, pageIndex, pageSize);
             var pager = new PageParameter { PageIndex = pageIndex, PageSize = pageSize };
+
             return GetTitles(pager);
         }
 
@@ -229,7 +231,7 @@ namespace NewLife.CMX
 
             //todo GetTitles(PageParameter pager)
 
-            return null;
+            return Info.Search(0, ID, null, pager).ToList().Cast<IInfo>().ToList();
         }
 
         //public IEntityTitle FindTitle(int id)

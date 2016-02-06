@@ -2,6 +2,7 @@
 @using XCode
 @using XCode.Configuration
 @using NewLife.CMX;
+@using NewLife.CMX.Web;
 @{
     var fact = EntityFactory.CreateOperate(ViewData.ModelMetadata.ModelType);
     var fields = ViewBag.Fields as List<FieldItem>;
@@ -26,22 +27,28 @@
             <div class="form-group">
                 <label class="control-label col-md-2">标题</label>
                 <div class="col-md-6">
-                    @Html.ForEditor(Info._.Title, inf)
+                    @Html.ForEditor("Title", inf)
+                    &nbsp;
+                    @if (!isNew)
+                    {
+                        <a href="@this.GetUrl(inf)" target="_blank">
+                            预览
+                        </a>
+                    }
                 </div>
             </div>
             <div class="form-group">
-                @{var item = Info._.CategoryID;}
-                <label class="control-label col-md-2">@item.DisplayName</label>
+                <label class="control-label col-md-2">分类</label>
                 <div class="col-md-2">
-                    @Html.DropDownList(item.Name, Category.FindAllWithCache().ToList().Select(r => new SelectListItem { Text = r.Name, Value = r.ID + "" }))
+                    @{
+            var data = new SelectList(Category.Root.AllChilds, "ID", "TreeNodeText", inf.CategoryID);
+                    }
+                    @Html.DropDownList("CategoryID", data, new { @class = "multiselect" })
                 </div>
-                @{ item = Info._.Views;}
-                <label class="control-label col-md-1">@item.DisplayName</label>
-                <div class="col-md-2">
-                    @Html.ForEditor(item, inf)
-                </div>
-                <label class="control-label col-md-1">版本</label>
-                <div class="col-md-2">
+                <div class="col-md-3">
+                    <label class="control-label">访问量</label>
+                    <span>@inf.Views</span>
+                    <label class="control-label">版本</label>
                     <span>@inf.Version</span>
                 </div>
             </div>
@@ -71,7 +78,7 @@
                     </script>
                 </div>
             </div>
-            @Html.Partial("_UserTime", Model as IEntity)
+            @Html.Partial("_UserTime", this.Model as IEntity)
             @Html.Partial("_Form_Action", isNew)
         }
     </div>

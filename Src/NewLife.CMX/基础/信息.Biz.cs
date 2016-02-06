@@ -341,7 +341,7 @@ namespace NewLife.CMX
             else if (modelid > 0)
                 exp &= _.ModelID == modelid;
 
-            exp &= SearchWhereByKeys(key, null, null);
+            if (!key.IsNullOrEmpty()) exp &= SearchWhereByKeys(key, null, null);
 
             return FindAll(exp, param);
         }

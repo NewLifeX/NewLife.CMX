@@ -1,7 +1,6 @@
 ﻿@model NewLife.CMX.ICategory
 @{
-    var Channel = ViewBag.Channel as Channel;
-    var Titles = ViewBag.Titles as IList<IInfo>;
+    var Titles = Model as IList<IInfo>;
     var Pager = ViewBag.Pager as Pager;
 }
 <div class="container" style="min-height: 600px;">

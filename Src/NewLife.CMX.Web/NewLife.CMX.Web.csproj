@@ -171,11 +171,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Areas\CMS\Views\Article\Form.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Form.cshtml</DependentUpon>
-    </Compile>
     <Compile Include="Areas\CMS\Views\_ViewStart.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -186,31 +181,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="UEditor.ashx.cs">
       <DependentUpon>UEditor.ashx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Article\Category.generated.cs">
-      <DependentUpon>Category.cshtml</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Views\Article\Title.generated.cs">
-      <DependentUpon>Title.cshtml</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Views\Content\Category.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Category.cshtml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Content\Model.generated.cs">
-      <DependentUpon>Model.cshtml</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Views\Content\Title.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Title.cshtml</DependentUpon>
     </Compile>
     <Compile Include="Views\Home\Index.generated.cs">
       <AutoGen>True</AutoGen>
@@ -243,16 +213,6 @@
       <DependentUpon>_Nav.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Views\Text\Category.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Category.cshtml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Text\Title.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Title.cshtml</DependentUpon>
     </Compile>
     <Compile Include="Views\_ViewStart.generated.cs">
       <AutoGen>True</AutoGen>
@@ -567,10 +527,6 @@
       <LastGenOutput>_Left.generated.cs</LastGenOutput>
     </None>
     <Content Include="Areas\Admin\Views\Web.config" />
-    <Content Include="Areas\CMS\Views\Article\Form.cshtml">
-      <Generator>RazorGenerator</Generator>
-      <LastGenOutput>Form.generated.cs</LastGenOutput>
-    </Content>
     <Content Include="Areas\CMS\Views\Text\Form.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Form.generated.cs</LastGenOutput>
@@ -614,26 +570,6 @@
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.ttf" />
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.woff" />
     <Content Include="UEditor.ashx" />
-    <None Include="Views\Article\Category.cshtml">
-      <Generator>RazorGenerator</Generator>
-      <LastGenOutput>Category.generated.cs</LastGenOutput>
-    </None>
-    <None Include="Views\Article\Title.cshtml">
-      <Generator>RazorGenerator</Generator>
-      <LastGenOutput>Title.generated.cs</LastGenOutput>
-    </None>
-    <None Include="Views\Content\Category.cshtml">
-      <Generator>RazorGenerator</Generator>
-      <LastGenOutput>Category.generated.cs</LastGenOutput>
-    </None>
-    <Content Include="Views\Content\Model.cshtml">
-      <Generator>RazorGenerator</Generator>
-      <LastGenOutput>Model.generated.cs</LastGenOutput>
-    </Content>
-    <None Include="Views\Content\Title.cshtml">
-      <Generator>RazorGenerator</Generator>
-      <LastGenOutput>Title.generated.cs</LastGenOutput>
-    </None>
     <None Include="Views\Home\Index.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Index.generated.cs</LastGenOutput>
@@ -678,14 +614,6 @@
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>_Nav.generated.cs</LastGenOutput>
     </Content>
-    <None Include="Views\Text\Category.cshtml">
-      <Generator>RazorGenerator</Generator>
-      <LastGenOutput>Category.generated.cs</LastGenOutput>
-    </None>
-    <None Include="Views\Text\Title.cshtml">
-      <Generator>RazorGenerator</Generator>
-      <LastGenOutput>Title.generated.cs</LastGenOutput>
-    </None>
     <None Include="Views\_ViewStart.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>_ViewStart.generated.cs</LastGenOutput>

@@ -9,6 +9,7 @@
     var isNew = (Model as IEntity).IsNullKey;
     var entity = Model as IEntity;
     var article = Model as IArticle;
+    var inf = (Model as IInfoExtend).Info;
 }
 <div class="panel panel-default">
     <div class="form-horizontal">
@@ -26,30 +27,29 @@
             <div class="form-group">
                 <label class="control-label col-md-2">标题</label>
                 <div class="col-md-10">
-                    @Html.ForEditor(Article._.Title, entity)
+                    @Html.ForEditor("Title", inf)
                     &nbsp;
                     @if (!isNew)
                     {
-                        <a href="@this.GetUrl(article)" target="_blank">
+                        <a href="@this.GetUrl(inf)" target="_blank">
                             预览
                         </a>
                     }
                 </div>
             </div>
             <div class="form-group">
-                @{var item = Article._.CategoryID;}
-                <label class="control-label col-md-2">@item.DisplayName</label>
+                <label class="control-label col-md-2">分类</label>
                 <div class="col-md-2">
                     @{
-            var data = new SelectList(ArticleCategory.Root.AllChilds, "ID", "TreeNodeText", article.CategoryID);
+            var data = new SelectList(Category.Root.AllChilds, "ID", "TreeNodeText", inf.CategoryID);
                     }
-                    @Html.DropDownList(item.Name, data, new { @class = "multiselect" })
+                    @Html.DropDownList("CategoryID", data, new { @class = "multiselect" })
                 </div>
                 <div class="col-md-3">
                     <label class="control-label">访问量</label>
-                    <span>@article.Views</span>
+                    <span>@inf.Views</span>
                     <label class="control-label">版本</label>
-                    <span>@article.Version</span>
+                    <span>@inf.Version</span>
                 </div>
             </div>
             <div class="form-group">
@@ -77,7 +77,7 @@
                     <script src="~/Content/ueditor/ueditor.all.min.js"></script>
                     <script src="~/Content/ueditor/lang/zh-cn/zh-cn.js"></script>
                     <script id="ContentText" name="ContentText" type="text/plain" style="width:800px;height:400px;">
-                        @Html.Raw(article.ContentText)
+                        @Html.Raw(inf.ContentText)
                     </script>
                     <script type="text/javascript">
                         //实例化编辑器
@@ -89,7 +89,7 @@
             <div class="form-group">
                 <label class="control-label col-md-2">摘要</label>
                 <div class="col-md-6">
-                    @Html.TextArea(Article._.Remark, article.Remark, 5, 100, null)
+                    @Html.TextArea("Summary", inf.Summary, 5, 100, null)
                 </div>
             </div>
             <div class="form-group">
@@ -123,7 +123,7 @@
             <div class="form-group">
                 <label class="control-label col-md-2">发布时间</label>
                 <div class="col-md-2 input-group">
-                    @Html.ForEditor(Article._.PublishTime, entity)
+                    @Html.ForEditor("PublishTime", inf)
                 </div>
             </div>
             @Html.Partial("_UserTime", Model as IEntity)

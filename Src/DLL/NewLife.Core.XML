@@ -140,10 +140,10 @@
             <summary>过期清理时间，缓存项过期后达到这个时间时，将被移除缓存。单位是秒，默认0秒，表示不清理过期项</summary>
         </member>
         <member name="P:NewLife.Collections.DictionaryCache`2.Asynchronous">
-            <summary>异步更新</summary>
+            <summary>异步更新。默认false</summary>
         </member>
         <member name="P:NewLife.Collections.DictionaryCache`2.AutoDispose">
-            <summary>移除过期缓存项时，自动调用其Dispose</summary>
+            <summary>移除过期缓存项时，自动调用其Dispose。默认false</summary>
         </member>
         <member name="P:NewLife.Collections.DictionaryCache`2.CacheDefault">
             <summary>是否缓存默认值，有时候委托返回默认值不希望被缓存，而是下一次尽快进行再次计算。默认true</summary>
@@ -1595,10 +1595,6 @@
         <member name="M:NewLife.Compression.ZipFile.#ctor">
             <summary>实例化一个Zip文件对象</summary>
         </member>
-        <member name="M:NewLife.Compression.ZipFile.#ctor(System.String)">
-            <summary>实例化一个Zip文件对象。延迟到第一次使用<see cref="P:NewLife.Compression.ZipFile.Entries"/>时读取</summary>
-            <param name="fileName"></param>
-        </member>
         <member name="M:NewLife.Compression.ZipFile.#ctor(System.String,System.Text.Encoding)">
             <summary>实例化一个Zip文件对象。延迟到第一次使用<see cref="P:NewLife.Compression.ZipFile.Entries"/>时读取</summary>
             <param name="fileName">文件名</param>
@@ -2144,7 +2140,7 @@
             <param name="second">Second sequence, concatenated to the result in case the first sequence completes exceptionally.</param>
             <returns>The first sequence, followed by the second sequence in case an error is produced.</returns>
         </member>
-        <member name="M:System.Linq.EnumerableEx.Finally``1(System.Collections.Generic.IEnumerable{``0},NewLife.Reflection.Func)">
+        <member name="M:System.Linq.EnumerableEx.Finally``1(System.Collections.Generic.IEnumerable{``0},System.Func)">
             <summary>
             Creates a sequence whose termination or disposal of an enumerator causes a finally action to be executed.
             </summary>
@@ -2323,7 +2319,7 @@
             <param name="onNext">Action to invoke for each element.</param>
             <returns>Sequence exhibiting the specified side-effects upon enumeration.</returns>
         </member>
-        <member name="M:System.Linq.EnumerableEx.Do``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0},NewLife.Reflection.Func)">
+        <member name="M:System.Linq.EnumerableEx.Do``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0},System.Func)">
             <summary>
             Lazily invokes an action for each value in the sequence, and executes an action for successful termination.
             </summary>
@@ -2343,7 +2339,7 @@
             <param name="onError">Action to invoke on exceptional termination of the sequence.</param>
             <returns>Sequence exhibiting the specified side-effects upon enumeration.</returns>
         </member>
-        <member name="M:System.Linq.EnumerableEx.Do``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0},System.Action{System.Exception},NewLife.Reflection.Func)">
+        <member name="M:System.Linq.EnumerableEx.Do``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0},System.Action{System.Exception},System.Func)">
             <summary>
             Lazily invokes an action for each value in the sequence, and executes an action upon successful or exceptional termination.
             </summary>
@@ -2993,459 +2989,6 @@
         <member name="P:NewLife.Log.TextControlLog.MaxLines">
             <summary>最大行数，超过该行数讲清空文本控件。默认1000行</summary>
         </member>
-        <member name="T:NewLife.Messaging.ChannelMessage">
-            <summary>通道消息。封装带有通道编号的消息</summary>
-        </member>
-        <member name="T:NewLife.Messaging.Message">
-            <summary>消息实体基类</summary>
-            <remarks>
-            用消息实体来表达行为和数据，更加直观。
-            同时，指定一套序列化和反序列化机制，实现消息实体与传输形式（二进制数据、XML、Json）的互相转换。
-            如果消息较为简单，建议重载<see cref="M:NewLife.Messaging.Message.OnWrite(System.IO.Stream,NewLife.Serialization.RWKinds)"/>和<see cref="M:NewLife.Messaging.Message.OnRead(System.IO.Stream,NewLife.Serialization.RWKinds)"/>以得到更好的性能。
-            
-            消息实体仿照Windows消息来设计，拥有一部分系统内置消息，同时允许用户自定义消息。
-            </remarks>
-        </member>
-        <member name="M:NewLife.Messaging.Message.Init">
-            <summary>初始化</summary>
-        </member>
-        <member name="M:NewLife.Messaging.Message.Write(System.IO.Stream,NewLife.Serialization.RWKinds)">
-            <summary>序列化当前消息到流中</summary>
-            <param name="stream">数据流</param>
-            <param name="rwkind">序列化类型</param>
-        </member>
-        <member name="M:NewLife.Messaging.Message.OnWrite(System.IO.Stream,NewLife.Serialization.RWKinds)">
-            <summary>把消息写入流中，默认调用序列化框架</summary>
-            <param name="stream">数据流</param>
-            <param name="rwkind">序列化类型</param>
-        </member>
-        <member name="M:NewLife.Messaging.Message.GetStream(NewLife.Serialization.RWKinds)">
-            <summary>序列化为数据流</summary>
-            <param name="rwkind"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Messaging.Message.Read(System.IO.Stream,NewLife.Serialization.RWKinds,System.Boolean)">
-            <summary>从流中读取消息</summary>
-            <param name="stream">数据流</param>
-            <param name="rwkind"></param>
-            <param name="ignoreException">忽略异常。如果忽略异常，读取失败时将返回空，并还原数据流位置</param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Messaging.Message.OnRead(System.IO.Stream,NewLife.Serialization.RWKinds)">
-            <summary>从流中读取消息内容，默认调用序列化框架</summary>
-            <param name="stream"></param>
-            <param name="rwkind"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Messaging.Message.Read``1(System.IO.Stream)">
-            <summary>从流中读取消息</summary>
-            <typeparam name="TMessage"></typeparam>
-            <param name="stream"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Messaging.Message.OnReadWriteSet(NewLife.Serialization.IReaderWriter)">
-            <summary>读写前设置。每个消息可根据自己需要进行调整</summary>
-            <param name="rw"></param>
-        </member>
-        <member name="M:NewLife.Messaging.Message.PeekKind(System.IO.Stream)">
-            <summary>探测消息类型，不移动流指针</summary>
-            <param name="stream"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Messaging.Message.PeekType(System.IO.Stream)">
-            <summary>探测消息类型，不移动流指针</summary>
-            <param name="stream"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Messaging.Message.CopyFrom(NewLife.Messaging.Message)">
-            <summary>从源消息克隆设置和可序列化成员数据</summary>
-            <param name="msg"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Messaging.Message.ResolveAll">
-            <summary>返回所有已注册消息</summary>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Messaging.Message.ToString">
-            <summary>已重载。</summary>
-            <returns></returns>
-        </member>
-        <member name="P:NewLife.Messaging.Message.Kind">
-            <summary>消息类型</summary>
-            <remarks>第一个字节的第一位决定是否存在消息头。</remarks>
-        </member>
-        <member name="P:NewLife.Messaging.Message.UserState">
-            <summary>在消息处理过程中附带的用户对象。不参与序列化</summary>
-        </member>
-        <member name="P:NewLife.Messaging.Message.Debug">
-            <summary>是否调试，输出序列化过程</summary>
-        </member>
-        <member name="P:NewLife.Messaging.Message.DumpStreamWhenError">
-            <summary>出错时Dump数据流到文件中</summary>
-        </member>
-        <member name="T:NewLife.Serialization.IAccessor">
-            <summary>序列化访问器。接口实现者可以在这里完全自定义行为（返回true），也可以通过设置事件来影响行为（返回false）</summary>
-            <example>
-            显式实现接口默认代码：
-            <code>
-            Boolean IAccessor.Read(IReader reader) { return false; }
-            
-            Boolean IAccessor.ReadComplete(IReader reader, Boolean success) { return success; }
-            
-            Boolean IAccessor.Write(IWriter writer) { return false; }
-            
-            Boolean IAccessor.WriteComplete(IWriter writer, Boolean success) { return success; }
-            </code>
-            </example>
-        </member>
-        <member name="M:NewLife.Serialization.IAccessor.Read(NewLife.Serialization.IReader)">
-            <summary>从读取器中读取数据到对象。接口实现者可以在这里完全自定义行为（返回true），也可以通过设置事件来影响行为（返回false）</summary>
-            <param name="reader">读取器</param>
-            <returns>是否读取成功，若返回成功读取器将不再读取该对象</returns>
-        </member>
-        <member name="M:NewLife.Serialization.IAccessor.ReadComplete(NewLife.Serialization.IReader,System.Boolean)">
-            <summary>从读取器中读取数据到对象后执行。接口实现者可以在这里取消Read阶段设置的事件</summary>
-            <param name="reader">读取器</param>
-            <param name="success">是否读取成功</param>
-            <returns>是否读取成功</returns>
-        </member>
-        <member name="M:NewLife.Serialization.IAccessor.Write(NewLife.Serialization.IWriter)">
-            <summary>把对象数据写入到写入器。接口实现者可以在这里完全自定义行为（返回true），也可以通过设置事件来影响行为（返回false）</summary>
-            <param name="writer">写入器</param>
-            <returns>是否写入成功，若返回成功写入器将不再读写入对象</returns>
-        </member>
-        <member name="M:NewLife.Serialization.IAccessor.WriteComplete(NewLife.Serialization.IWriter,System.Boolean)">
-            <summary>把对象数据写入到写入器后执行。接口实现者可以在这里取消Write阶段设置的事件</summary>
-            <param name="writer">写入器</param>
-            <param name="success">是否写入成功</param>
-            <returns>是否写入成功</returns>
-        </member>
-        <member name="M:NewLife.Messaging.ChannelMessage.ToString">
-            <summary>已重载。</summary>
-            <returns></returns>
-        </member>
-        <member name="P:NewLife.Messaging.ChannelMessage.Kind">
-            <summary>消息类型</summary>
-        </member>
-        <member name="P:NewLife.Messaging.ChannelMessage.Channel">
-            <summary>消息通道</summary>
-        </member>
-        <member name="P:NewLife.Messaging.ChannelMessage.SessionID">
-            <summary>会话编号</summary>
-        </member>
-        <member name="P:NewLife.Messaging.ChannelMessage.Message">
-            <summary>内部消息对象</summary>
-        </member>
-        <member name="T:NewLife.Messaging.CompressionMessage">
-            <summary>经过压缩的消息</summary>
-            <remarks>因为写入一个字节的对象引用，所以<see cref="P:NewLife.Messaging.CompressionMessage.Message"/>为空时后面不怕有其它包</remarks>
-        </member>
-        <member name="M:NewLife.Messaging.CompressionMessage.OnWrite(System.IO.Stream,NewLife.Serialization.RWKinds)">
-            <summary>已重载。</summary>
-            <param name="stream">数据流</param>
-            <param name="rwkind">序列化类型</param>
-        </member>
-        <member name="M:NewLife.Messaging.CompressionMessage.OnRead(System.IO.Stream,NewLife.Serialization.RWKinds)">
-            <summary>已重载。</summary>
-            <param name="stream">数据流</param>
-            <param name="rwkind">序列化类型</param>
-        </member>
-        <member name="M:NewLife.Messaging.CompressionMessage.ToString">
-            <summary>已重载。</summary>
-            <returns></returns>
-        </member>
-        <member name="P:NewLife.Messaging.CompressionMessage.Kind">
-            <summary>消息类型</summary>
-        </member>
-        <member name="P:NewLife.Messaging.CompressionMessage.Message">
-            <summary>内部消息对象</summary>
-        </member>
-        <member name="T:NewLife.Messaging.DataMessage">
-            <summary>指定长度的字节数据消息</summary>
-            <remarks>
-            一般用于对数据进行二次包装，理论上，这是一个万能消息。
-            数据长度由<see cref="P:NewLife.Messaging.DataMessage.Data"/>决定，以编码整数来存储。
-            </remarks>
-        </member>
-        <member name="M:NewLife.Messaging.DataMessage.OnWrite(System.IO.Stream,NewLife.Serialization.RWKinds)">
-            <summary>已重载。</summary>
-            <param name="stream">数据流</param>
-            <param name="rwkind">序列化类型</param>
-        </member>
-        <member name="M:NewLife.Messaging.DataMessage.OnReadWriteSet(NewLife.Serialization.IReaderWriter)">
-            <summary>读写前设置。不使用对象引用</summary>
-            <param name="rw"></param>
-        </member>
-        <member name="M:NewLife.Messaging.DataMessage.ToString">
-            <summary>已重载。</summary>
-            <returns></returns>
-        </member>
-        <member name="P:NewLife.Messaging.DataMessage.Kind">
-            <summary>消息类型</summary>
-        </member>
-        <member name="P:NewLife.Messaging.DataMessage.Data">
-            <summary>数据</summary>
-        </member>
-        <member name="T:NewLife.Messaging.EntitiesMessage">
-            <summary>指定类型的实体对象数组消息</summary>
-            <remarks>
-            有些列表对象不适合直接序列化，并且不方便每次都进行转换，（如XCode的EntityList），此时适合用实体数组消息。
-            实体对象个数由<see cref="P:NewLife.Messaging.EntitiesMessage.Values"/>决定，以编码整数来存储。
-            不写长度，所以<see cref="T:NewLife.Messaging.Message"/>为空时后面不能有其它包
-            </remarks>
-        </member>
-        <member name="M:NewLife.Messaging.EntitiesMessage.ToString">
-            <summary>已重载。</summary>
-            <returns></returns>
-        </member>
-        <member name="P:NewLife.Messaging.EntitiesMessage.Kind">
-            <summary>消息类型</summary>
-        </member>
-        <member name="P:NewLife.Messaging.EntitiesMessage.Type">
-            <summary>实体类型。可以是接口或抽象类型（要求对象容器能识别）</summary>
-        </member>
-        <member name="P:NewLife.Messaging.EntitiesMessage.Values">
-            <summary>实体列表</summary>
-        </member>
-        <member name="T:NewLife.Messaging.HttpClientMessageProvider">
-            <summary>Http客户端消息提供者</summary>
-        </member>
-        <member name="T:NewLife.Messaging.MessageProvider">
-            <summary>消息提供者基类</summary>
-        </member>
-        <member name="T:NewLife.Messaging.IMessageProvider">
-            <summary>消息提供者接口</summary>
-            <remarks>
-            同步结构使用<see cref="M:NewLife.Messaging.IMessageProvider.SendAndReceive(NewLife.Messaging.Message,System.Int32)"/>；
-            异步结构使用<see cref="M:NewLife.Messaging.IMessageProvider.Send(NewLife.Messaging.Message)"/>和<see cref="E:NewLife.Messaging.IMessageProvider.OnReceived"/>；
-            异步结构中也可以使用<see cref="M:NewLife.Messaging.IMessageProvider.SendAndReceive(NewLife.Messaging.Message,System.Int32)"/>，但是因为通过事件量完成，会极为不稳定。
-            
-            如果只需要操作某个通道的消息，可通过<see cref="M:IMessageConsumer Register(Byte channel)"/>实现。
-            
-            <see cref="M:NewLife.Messaging.IMessageProvider.SendAndReceive(NewLife.Messaging.Message,System.Int32)"/>适合客户端的大多数情况，比如同步Http、同步Tcp。
-            如果内部实现是异步模型，则等待指定时间获取异步返回的第一条消息，该消息不再触发消息到达事件<see cref="E:NewLife.Messaging.IMessageProvider.OnReceived"/>。
-            </remarks>
-        </member>
-        <member name="M:NewLife.Messaging.IMessageProvider.SendAndReceive(NewLife.Messaging.Message,System.Int32)">
-            <summary>发送并接收消息。主要用于应答式的请求和响应。该方法的实现不是线程安全的，使用时一定要注意。</summary>
-            <remarks>如果内部实现是异步模型，则等待指定时间获取异步返回的第一条消息，该消息不再触发消息到达事件<see cref="E:NewLife.Messaging.IMessageProvider.OnReceived"/>。</remarks>
-            <param name="message"></param>
-            <param name="millisecondsTimeout">等待的毫秒数，或为 <see cref="F:System.Threading.Timeout.Infinite"/> (-1)，表示无限期等待。默认0表示不等待</param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Messaging.IMessageProvider.Send(NewLife.Messaging.Message)">
-            <summary>发送消息。如果有响应，可在消息到达事件<see cref="E:NewLife.Messaging.IMessageProvider.OnReceived"/>中获得。</summary>
-            <param name="message"></param>
-        </member>
-        <member name="M:NewLife.Messaging.IMessageProvider.Register(NewLife.Messaging.MessageKind,NewLife.Messaging.MessageKind)">
-            <summary>注册消息消费者，仅消费指定范围的消息</summary>
-            <param name="start">消息范围的起始</param>
-            <param name="end">消息范围的结束</param>
-            <returns>消息消费者</returns>
-        </member>
-        <member name="M:NewLife.Messaging.IMessageProvider.Register(NewLife.Messaging.MessageKind[])">
-            <summary>注册消息消费者，仅消费指定范围的消息</summary>
-            <param name="kinds">消息类型的集合</param>
-            <returns>消息消费者</returns>
-        </member>
-        <member name="M:NewLife.Messaging.IMessageProvider.Register(System.Byte)">
-            <summary>注册消息消费者，仅消费指定通道的消息</summary>
-            <param name="channel">通道</param>
-            <returns>消息消费者</returns>
-        </member>
-        <member name="P:NewLife.Messaging.IMessageProvider.MaxMessageSize">
-            <summary>最大消息大小，超过该大小将分包发送。0表示不限制。</summary>
-        </member>
-        <member name="P:NewLife.Messaging.IMessageProvider.AutoJoinGroup">
-            <summary>是否自动组合<see cref="T:NewLife.Messaging.GroupMessage"/>消息。</summary>
-        </member>
-        <member name="P:NewLife.Messaging.IMessageProvider.JoinGroupTimeout">
-            <summary>组合组消息超时时间，毫秒。对于<see cref="T:NewLife.Messaging.GroupMessage"/>，如果后续包不能在当前时间之内到达，则认为超时，放弃该组。</summary>
-        </member>
-        <member name="E:NewLife.Messaging.IMessageProvider.OnReceived">
-            <summary>消息到达时触发</summary>
-        </member>
-        <member name="M:NewLife.Messaging.IMessageProvider2.Process(NewLife.Messaging.Message,System.Object)">
-            <summary>收到消息时调用该方法</summary>
-            <param name="message">消息</param>
-            <param name="remoteIdentity">远程标识</param>
-        </member>
-        <member name="M:NewLife.Messaging.MessageProvider.Send(NewLife.Messaging.Message)">
-            <summary>发送消息。如果有响应，可在消息到达事件<see cref="E:NewLife.Messaging.MessageProvider.OnReceived"/>中获得。这里会实现大消息分包。</summary>
-            <param name="message"></param>
-        </member>
-        <member name="M:NewLife.Messaging.MessageProvider.OnSend(System.IO.Stream)">
-            <summary>发送数据流。</summary>
-            <param name="stream"></param>
-        </member>
-        <member name="M:NewLife.Messaging.MessageProvider.Process(System.IO.Stream,System.Object,System.Object)">
-            <summary>收到消息时调用该方法</summary>
-            <param name="stream">数据流</param>
-            <param name="state">用户状态</param>
-            <param name="remoteIdentity">远程标识</param>
-        </member>
-        <member name="M:NewLife.Messaging.MessageProvider.Process(NewLife.Messaging.Message,System.Object)">
-            <summary>收到消息时调用该方法</summary>
-            <param name="message">消息</param>
-            <param name="remoteIdentity">远程标识</param>
-        </member>
-        <member name="M:NewLife.Messaging.MessageProvider.JoinGroup(NewLife.Messaging.GroupMessage,System.Object)">
-            <summary>组合组消息</summary>
-            <param name="message">消息</param>
-            <param name="remoteIdentity">远程标识</param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Messaging.MessageProvider.SendAndReceive(NewLife.Messaging.Message,System.Int32)">
-            <summary>发送并接收消息。主要用于应答式的请求和响应。</summary>
-            <remarks>如果内部实现是异步模型，则等待指定时间获取异步返回的第一条消息，该消息不再触发消息到达事件<see cref="E:NewLife.Messaging.MessageProvider.OnReceived"/>。</remarks>
-            <param name="message"></param>
-            <param name="millisecondsTimeout">等待的毫秒数，或为 <see cref="F:System.Threading.Timeout.Infinite"/> (-1)，表示无限期等待。默认0表示不等待</param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Messaging.MessageProvider.Register(System.Byte)">
-            <summary>注册消息消费者，仅消费指定通道的消息</summary>
-            <param name="channel">通道</param>
-            <returns>消息消费者</returns>
-        </member>
-        <member name="M:NewLife.Messaging.MessageProvider.Register(NewLife.Messaging.MessageKind,NewLife.Messaging.MessageKind)">
-            <summary>注册消息消费者，仅消费指定范围的消息</summary>
-            <param name="start">消息范围的起始</param>
-            <param name="end">消息范围的结束</param>
-            <returns>消息消费者</returns>
-        </member>
-        <member name="M:NewLife.Messaging.MessageProvider.Register(NewLife.Messaging.MessageKind[])">
-            <summary>注册消息消费者，仅消费指定范围的消息</summary>
-            <param name="kinds">消息类型的集合</param>
-            <returns>消息消费者</returns>
-        </member>
-        <member name="P:NewLife.Messaging.MessageProvider.MaxMessageSize">
-            <summary>最大消息大小，超过该大小将分包发送。0表示不限制。</summary>
-        </member>
-        <member name="P:NewLife.Messaging.MessageProvider.AutoJoinGroup">
-            <summary>是否自动组合<see cref="T:NewLife.Messaging.GroupMessage"/>消息。</summary>
-        </member>
-        <member name="P:NewLife.Messaging.MessageProvider.JoinGroupTimeout">
-            <summary>组合组消息超时时间，毫秒。对于<see cref="T:NewLife.Messaging.GroupMessage"/>，如果后续包不能在当前时间之内到达，则认为超时，放弃该组。</summary>
-        </member>
-        <member name="P:NewLife.Messaging.MessageProvider.Parent">
-            <summary>消息提供者</summary>
-        </member>
-        <member name="P:NewLife.Messaging.MessageProvider.Kinds">
-            <summary>响应的消息类型集合</summary>
-        </member>
-        <member name="E:NewLife.Messaging.MessageProvider.OnReceived">
-            <summary>消息到达时触发。这里将得到所有消息</summary>
-        </member>
-        <member name="P:NewLife.Messaging.MessageProvider.Consumers2">
-            <summary>消费者集合</summary>
-        </member>
-        <member name="P:NewLife.Messaging.MessageProvider.Consumers">
-            <summary>消费者集合</summary>
-        </member>
-        <member name="T:NewLife.Messaging.IMessageConsumer">
-            <summary>消息消费接口</summary>
-        </member>
-        <member name="M:NewLife.Messaging.IMessageConsumer.SendAndReceive(NewLife.Messaging.Message,System.Int32)">
-            <summary>发送并接收消息。主要用于应答式的请求和响应。该方法的实现不是线程安全的，使用时一定要注意。</summary>
-            <remarks>如果内部实现是异步模型，则等待指定时间获取异步返回的第一条消息，该消息不再触发消息到达事件<see cref="E:NewLife.Messaging.IMessageConsumer.OnReceived"/>。</remarks>
-            <param name="message"></param>
-            <param name="millisecondsTimeout">等待的毫秒数，或为 <see cref="F:System.Threading.Timeout.Infinite"/> (-1)，表示无限期等待。默认0表示不等待</param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Messaging.IMessageConsumer.Send(NewLife.Messaging.Message)">
-            <summary>发送消息。如果有响应，可在消息到达事件<see cref="E:NewLife.Messaging.IMessageConsumer.OnReceived"/>中获得。</summary>
-            <param name="message"></param>
-        </member>
-        <member name="E:NewLife.Messaging.IMessageConsumer.OnReceived">
-            <summary>消息到达时触发</summary>
-        </member>
-        <member name="P:NewLife.Messaging.IMessageConsumer.Channel">
-            <summary>通道</summary>
-        </member>
-        <member name="P:NewLife.Messaging.IMessageConsumer.Provider">
-            <summary>消息提供者</summary>
-        </member>
-        <member name="M:NewLife.Messaging.MessageProvider.MessageConsumer2.Send(NewLife.Messaging.Message)">
-            <summary>发送消息</summary>
-            <param name="message"></param>
-        </member>
-        <member name="M:NewLife.Messaging.MessageProvider.MessageConsumer2.SendAndReceive(NewLife.Messaging.Message,System.Int32)">
-            <summary>发送并接收消息。主要用于应答式的请求和响应。</summary>
-            <remarks>如果内部实现是异步模型，则等待指定时间获取异步返回的第一条消息，该消息不再触发消息到达事件<see cref="E:NewLife.Messaging.MessageProvider.MessageConsumer2.OnReceived"/>。</remarks>
-            <param name="message"></param>
-            <param name="millisecondsTimeout">等待的毫秒数，或为 <see cref="F:System.Threading.Timeout.Infinite"/> (-1)，表示无限期等待。默认0表示不等待</param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Messaging.MessageProvider.MessageConsumer2.Process(NewLife.Messaging.Message)">
-            <summary>收到消息时调用该方法</summary>
-            <param name="message"></param>
-        </member>
-        <member name="P:NewLife.Messaging.MessageProvider.MessageConsumer2.Channel">
-            <summary>通道</summary>
-        </member>
-        <member name="P:NewLife.Messaging.MessageProvider.MessageConsumer2.Provider">
-            <summary>消息提供者</summary>
-        </member>
-        <member name="E:NewLife.Messaging.MessageProvider.MessageConsumer2.OnReceived">
-            <summary>消息到达时触发。这里将得到所有消息</summary>
-        </member>
-        <member name="M:NewLife.Messaging.MessageProvider.MessageConsumer.Send(NewLife.Messaging.Message)">
-            <summary>发送消息</summary>
-            <param name="message"></param>
-        </member>
-        <member name="M:NewLife.Messaging.MessageProvider.MessageConsumer.OnSend(System.IO.Stream)">
-            <summary>发送数据流。</summary>
-            <param name="stream"></param>
-        </member>
-        <member name="M:NewLife.Messaging.HttpClientMessageProvider.SendAndReceive(NewLife.Messaging.Message,System.Int32)">
-            <summary>发送并接收消息。主要用于应答式的请求和响应。</summary>
-            <param name="message"></param>
-            <param name="millisecondsTimeout">等待的毫秒数，或为 <see cref="F:System.Threading.Timeout.Infinite" /> (-1)，表示无限期等待。默认0表示不等待</param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Messaging.HttpClientMessageProvider.OnSend(System.IO.Stream)">
-            <summary>发送数据流。</summary>
-            <param name="stream"></param>
-        </member>
-        <member name="P:NewLife.Messaging.HttpClientMessageProvider.Uri">
-            <summary>地址</summary>
-        </member>
-        <member name="P:NewLife.Messaging.HttpClientMessageProvider.Client">
-            <summary>客户端</summary>
-        </member>
-        <member name="T:NewLife.Messaging.HttpMessageProviderHandler">
-            <summary>Http消息提供者处理器。为消息提供者提供承载，核心是调用<see cref="M:HttpServerMessageProvider.Instance.Process"/></summary>
-        </member>
-        <member name="M:NewLife.Messaging.HttpMessageProviderHandler.ProcessRequest(System.Web.HttpContext)">
-            <summary>处理。</summary>
-            <param name="context"></param>
-        </member>
-        <member name="P:NewLife.Messaging.HttpMessageProviderHandler.IsReusable">
-            <summary>是否可重用。</summary>
-        </member>
-        <member name="T:NewLife.Messaging.HttpServerMessageProvider">
-            <summary>Http服务器消息提供者。单例模式，通过静态属性<see cref="P:NewLife.Messaging.HttpServerMessageProvider.Instance"/>访问单一实例。</summary>
-            <remarks>不支持<see cref="M:SendAnReceive"/>方法</remarks>
-        </member>
-        <member name="M:NewLife.Messaging.HttpServerMessageProvider.OnSend(System.IO.Stream)">
-            <summary>发送数据流。</summary>
-            <param name="stream"></param>
-        </member>
-        <member name="M:NewLife.Messaging.HttpServerMessageProvider.SendAndReceive(NewLife.Messaging.Message,System.Int32)">
-            <summary>已重载。不支持。</summary>
-            <param name="message"></param>
-            <param name="millisecondsTimeout"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Messaging.HttpServerMessageProvider.Process">
-            <summary>处理。</summary>
-        </member>
-        <member name="P:NewLife.Messaging.HttpServerMessageProvider.Context">
-            <summary>上下文</summary>
-        </member>
-        <member name="P:NewLife.Messaging.HttpServerMessageProvider.Instance">
-            <summary>静态实例</summary>
-        </member>
         <member name="T:NewLife.Messaging.IMessage">
             <summary>消息接口</summary>
         </member>
@@ -3470,16 +3013,6 @@
             <summary>获取消息的字节数组表示。</summary>
             <param name="msg"></param>
             <returns></returns>
-        </member>
-        <member name="T:NewLife.Messaging.MessageEventArgs">
-            <summary>消息事件参数</summary>
-        </member>
-        <member name="M:NewLife.Messaging.MessageEventArgs.#ctor(NewLife.Messaging.Message)">
-            <summary>实例化</summary>
-            <param name="message"></param>
-        </member>
-        <member name="P:NewLife.Messaging.MessageEventArgs.Message">
-            <summary>消息</summary>
         </member>
         <member name="T:NewLife.Messaging.MessageBase">
             <summary>消息基类</summary>
@@ -3516,184 +3049,6 @@
             <summary>获取用于输出的成员值</summary>
             <param name="pi"></param>
             <returns></returns>
-        </member>
-        <member name="T:NewLife.Messaging.MessageKind">
-            <summary>消息类型</summary>
-            <remarks>定义一些常用的消息类型，其它用户自定义类型用数字代替</remarks>
-        </member>
-        <member name="F:NewLife.Messaging.MessageKind.Null">
-            <summary>空消息</summary>
-        </member>
-        <member name="F:NewLife.Messaging.MessageKind.Data">
-            <summary>指定长度的字节数据消息</summary>
-        </member>
-        <member name="F:NewLife.Messaging.MessageKind.String">
-            <summary>字符串</summary>
-        </member>
-        <member name="F:NewLife.Messaging.MessageKind.Entity">
-            <summary>指定类型的实体对象消息</summary>
-        </member>
-        <member name="F:NewLife.Messaging.MessageKind.Entities">
-            <summary>指定类型的实体对象数组消息</summary>
-        </member>
-        <member name="F:NewLife.Messaging.MessageKind.Exception">
-            <summary>异常消息</summary>
-        </member>
-        <member name="F:NewLife.Messaging.MessageKind.Compression">
-            <summary>经过压缩的消息</summary>
-        </member>
-        <member name="F:NewLife.Messaging.MessageKind.Method">
-            <summary>远程方法调用消息</summary>
-        </member>
-        <member name="F:NewLife.Messaging.MessageKind.Group">
-            <summary>组消息</summary>
-        </member>
-        <member name="F:NewLife.Messaging.MessageKind.Channel">
-            <summary>通道消息</summary>
-        </member>
-        <member name="F:NewLife.Messaging.MessageKind.UserDefine">
-            <summary>用户自定义消息在此基础上增加</summary>
-        </member>
-        <member name="T:NewLife.Messaging.EntityMessage">
-            <summary>指定类型的对象消息</summary>
-            <remarks>
-            一般用于打包单个对象，理论上，这是一个万能消息。
-            需要注意的是：本消息的设计，允许通讯双方使用不同的类，只要这两个类继承相同的接口或者抽象类。
-            不写长度，所以<see cref="T:NewLife.Messaging.Message"/>为空时后面不能有其它包
-            </remarks>
-        </member>
-        <member name="M:NewLife.Messaging.EntityMessage.ToString">
-            <summary>已重载。</summary>
-            <returns></returns>
-        </member>
-        <member name="P:NewLife.Messaging.EntityMessage.Kind">
-            <summary>消息类型</summary>
-        </member>
-        <member name="P:NewLife.Messaging.EntityMessage.Type">
-            <summary>实体类型。可以是接口或抽象类型（要求对象容器能识别）</summary>
-        </member>
-        <member name="P:NewLife.Messaging.EntityMessage.Value">
-            <summary>对象值</summary>
-        </member>
-        <member name="T:NewLife.Messaging.MethodMessage">
-            <summary>远程方法调用消息</summary>
-            <remarks>
-            根据方法名<see cref="P:NewLife.Messaging.MethodMessage.Name"/>在类型<see cref="P:NewLife.Messaging.MethodMessage.Type"/>中找到方法，如果有多个签名，还得根据参数数组<see cref="P:NewLife.Messaging.MethodMessage.Parameters"/>来选择。
-            仅支持无返回或单一返回，不支持out/ref等参数。
-            
-            在服务端，通过调用消息的<see cref="M:NewLife.Messaging.MethodMessage.Invoke"/>方法执行调用。
-            如有异常，返回异常消息；
-            如返回空，返回空消息；
-            否则返回实体消息<see cref="T:NewLife.Messaging.EntityMessage"/>
-            </remarks>
-        </member>
-        <member name="M:NewLife.Messaging.MethodMessage.Create(System.String,System.Object[])">
-            <summary>根据包括类型和方法名的完整方法名，以及参数，创建方法消息</summary>
-            <param name="fullMethodName">完整方法名</param>
-            <param name="ps"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Messaging.MethodMessage.Invoke">
-            <summary>处理消息</summary>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Messaging.MethodMessage.ToString">
-            <summary>已重载。</summary>
-            <returns></returns>
-        </member>
-        <member name="P:NewLife.Messaging.MethodMessage.Kind">
-            <summary>消息类型</summary>
-        </member>
-        <member name="P:NewLife.Messaging.MethodMessage.Type">
-            <summary>实体类型。可以是接口或抽象类型（要求对象容器能识别）</summary>
-        </member>
-        <member name="P:NewLife.Messaging.MethodMessage.TypeName">
-            <summary>实体类型名。可以是接口或抽象类型（要求对象容器能识别）</summary>
-        </member>
-        <member name="P:NewLife.Messaging.MethodMessage.Name">
-            <summary>方法名</summary>
-        </member>
-        <member name="P:NewLife.Messaging.MethodMessage.Parameters">
-            <summary>参数数组</summary>
-        </member>
-        <member name="P:NewLife.Messaging.MethodMessage.Method">
-            <summary>方法对象</summary>
-        </member>
-        <member name="T:NewLife.Messaging.StringMessage">
-            <summary>字符串消息。封装一个字符串，UTF8编码。</summary>
-        </member>
-        <member name="M:NewLife.Messaging.StringMessage.ToString">
-            <summary>已重载。</summary>
-            <returns></returns>
-        </member>
-        <member name="P:NewLife.Messaging.StringMessage.Kind">
-            <summary>消息类型</summary>
-        </member>
-        <member name="P:NewLife.Messaging.StringMessage.Value">
-            <summary>字符串</summary>
-        </member>
-        <member name="T:NewLife.Messaging.GroupMessage">
-            <summary>组消息</summary>
-            <remarks>
-            对于超长消息，可拆分为多个组消息进行传输，然后在目的地重组。
-            </remarks>
-        </member>
-        <member name="M:NewLife.Messaging.GroupMessage.ToString">
-            <summary>已重载。</summary>
-            <returns></returns>
-        </member>
-        <member name="P:NewLife.Messaging.GroupMessage.Kind">
-            <summary>消息类型</summary>
-        </member>
-        <member name="P:NewLife.Messaging.GroupMessage.Identity">
-            <summary>唯一标识</summary>
-        </member>
-        <member name="P:NewLife.Messaging.GroupMessage.Index">
-            <summary>在组中的索引位置</summary>
-        </member>
-        <member name="P:NewLife.Messaging.GroupMessage.Count">
-            <summary>分组数</summary>
-        </member>
-        <member name="P:NewLife.Messaging.GroupMessage.Data">
-            <summary>数据</summary>
-        </member>
-        <member name="T:NewLife.Messaging.MessageGroup">
-            <summary>消息组。</summary>
-            <remarks>
-            20120421，连续两天半，完成消息分片组装算法，尽可能的让分片占用最大大小。
-            </remarks>
-        </member>
-        <member name="M:NewLife.Messaging.MessageGroup.Add(NewLife.Messaging.GroupMessage)">
-            <summary>添加组消息，返回是否已收到所有组消息。</summary>
-            <param name="message"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Messaging.MessageGroup.GetStream">
-            <summary>获取整个数据流</summary>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Messaging.MessageGroup.GetMessage">
-            <summary>获取整个消息</summary>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Messaging.MessageGroup.ToString">
-            <summary>已重载。</summary>
-            <returns></returns>
-        </member>
-        <member name="P:NewLife.Messaging.MessageGroup.Identity">
-            <summary>唯一标识</summary>
-        </member>
-        <member name="P:NewLife.Messaging.MessageGroup.Items">
-            <summary>消息集合</summary>
-        </member>
-        <member name="P:NewLife.Messaging.MessageGroup.First">
-            <summary>第一个组消息，上面有总记录数</summary>
-        </member>
-        <member name="P:NewLife.Messaging.MessageGroup.Total">
-            <summary>总的组消息数</summary>
-        </member>
-        <member name="P:NewLife.Messaging.MessageGroup.Count">
-            <summary>组消息个数</summary>
         </member>
         <member name="T:NewLife.Model.IPlugin">
             <summary>通用插件接口</summary>
@@ -3855,11 +3210,20 @@
         <member name="P:NewLife.Net.ISocket.ThrowException">
             <summary>是否抛出异常，默认false不抛出。Send/Receive时可能发生异常，该设置决定是直接抛出异常还是通过<see cref="E:NewLife.Net.ISocket.Error"/>事件</summary>
         </member>
-        <member name="P:NewLife.Net.ISocket.Statistics">
-            <summary>接收数据包统计信息，默认关闭，通过<see cref="P:NewLife.Net.IStatistics.Enable"/>打开。</summary>
+        <member name="P:NewLife.Net.ISocket.StatSend">
+            <summary>发送统计</summary>
+        </member>
+        <member name="P:NewLife.Net.ISocket.StatReceive">
+            <summary>接收统计</summary>
         </member>
         <member name="P:NewLife.Net.ISocket.Log">
             <summary>日志提供者</summary>
+        </member>
+        <member name="P:NewLife.Net.ISocket.LogSend">
+            <summary>是否输出发送日志。默认false</summary>
+        </member>
+        <member name="P:NewLife.Net.ISocket.LogReceive">
+            <summary>是否输出接收日志。默认false</summary>
         </member>
         <member name="E:NewLife.Net.ISocket.Error">
             <summary>错误发生/断开连接时</summary>
@@ -3876,6 +3240,18 @@
             <param name="offset">偏移</param>
             <param name="count">数量</param>
             <returns>是否成功</returns>
+        </member>
+        <member name="M:NewLife.Net.ISocketRemote.SendAsync(System.Byte[])">
+            <summary>异步发送数据</summary>
+            <param name="buffer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.ISocketRemote.SendAsync(System.Byte[],System.Int32,System.Int32)">
+            <summary>异步多次发送数据</summary>
+            <param name="buffer"></param>
+            <param name="times"></param>
+            <param name="msInterval"></param>
+            <returns></returns>
         </member>
         <member name="M:NewLife.Net.ISocketRemote.Receive">
             <summary>接收数据</summary>
@@ -3947,6 +3323,9 @@
             对于每一个会话连接，如果超过该时间仍然没有收到任何数据，则断开会话连接。
             单位秒，默认30秒。时间不是太准确，建议15秒的倍数。为0表示不检查。</summary>
         </member>
+        <member name="P:NewLife.Net.ISocketServer.StatSession">
+            <summary>会话统计</summary>
+        </member>
         <member name="P:NewLife.Net.ISocketServer.Sessions">
             <summary>会话集合。用地址端口作为标识，业务应用自己维持地址端口与业务主键的对应关系。</summary>
         </member>
@@ -3966,6 +3345,9 @@
         <member name="M:NewLife.Net.ISocketClient.Close(System.String)">
             <summary>关闭</summary>
             <returns>是否成功</returns>
+        </member>
+        <member name="P:NewLife.Net.ISocketClient.Timeout">
+            <summary>超时时间</summary>
         </member>
         <member name="P:NewLife.Net.ISocketClient.Active">
             <summary>是否活动</summary>
@@ -3998,6 +3380,9 @@
         <member name="P:NewLife.Net.IStatistics.Enable">
             <summary>是否启用统计。</summary>
         </member>
+        <member name="P:NewLife.Net.IStatistics.Period">
+            <summary>统计周期，单位秒</summary>
+        </member>
         <member name="P:NewLife.Net.IStatistics.First">
             <summary>首次统计时间</summary>
         </member>
@@ -4005,22 +3390,19 @@
             <summary>最后统计时间</summary>
         </member>
         <member name="P:NewLife.Net.IStatistics.Total">
-            <summary>每分钟最大值</summary>
+            <summary>总数</summary>
         </member>
-        <member name="P:NewLife.Net.IStatistics.TotalPerMinute">
-            <summary>每分钟总操作</summary>
+        <member name="P:NewLife.Net.IStatistics.Times">
+            <summary>次数</summary>
         </member>
-        <member name="P:NewLife.Net.IStatistics.TotalPerHour">
-            <summary>每小时总操作</summary>
+        <member name="P:NewLife.Net.IStatistics.Speed">
+            <summary>周期速度</summary>
         </member>
-        <member name="P:NewLife.Net.IStatistics.MaxPerMinute">
-            <summary>每分钟最大值</summary>
+        <member name="P:NewLife.Net.IStatistics.Max">
+            <summary>周期最大值</summary>
         </member>
-        <member name="P:NewLife.Net.IStatistics.AveragePerSecond">
-            <summary>每秒平均</summary>
-        </member>
-        <member name="P:NewLife.Net.IStatistics.AveragePerMinute">
-            <summary>每分钟平均</summary>
+        <member name="P:NewLife.Net.IStatistics.Parent">
+            <summary>父级统计</summary>
         </member>
         <member name="T:NewLife.Net.NetException">
             <summary>网络异常</summary>
@@ -4209,6 +3591,16 @@
             <param name="stream"></param>
             <returns></returns>
         </member>
+        <member name="M:System.NetHelper.CreateClient(NewLife.Net.NetUri)">
+            <summary>根据本地网络标识创建客户端</summary>
+            <param name="local"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.NetHelper.CreateRemote(NewLife.Net.NetUri)">
+            <summary>根据远程网络标识创建客户端</summary>
+            <param name="remote"></param>
+            <returns></returns>
+        </member>
         <member name="P:System.NetHelper.Debug">
             <summary>是否调试</summary>
         </member>
@@ -4331,9 +3723,11 @@
             <param name="encoding">字符串编码，默认URF-8</param>
             <returns></returns>
         </member>
-        <member name="M:NewLife.Net.ReceivedEventArgs.ToHex(System.Int32)">
+        <member name="M:NewLife.Net.ReceivedEventArgs.ToHex(System.Int32,System.String,System.Int32)">
             <summary>以十六进制编码表示</summary>
-            <param name="maxLength">最大显示多少个字节</param>
+            <param name="maxLength">最大显示多少个字节。默认-1显示全部</param>
+            <param name="separate">分隔符</param>
+            <param name="groupSize">分组大小，为0时对每个字节应用分隔符，否则对每个分组使用</param>
             <returns></returns>
         </member>
         <member name="P:NewLife.Net.ReceivedEventArgs.Data">
@@ -4405,6 +3799,12 @@
             <param name="address"></param>
             <param name="port"></param>
         </member>
+        <member name="M:NewLife.Net.NetUri.#ctor(System.Net.Sockets.ProtocolType,System.String,System.Int32)">
+            <summary>实例化</summary>
+            <param name="protocol"></param>
+            <param name="host"></param>
+            <param name="port"></param>
+        </member>
         <member name="M:NewLife.Net.NetUri.Parse(System.String)">
             <summary>分析</summary>
             <param name="uri"></param>
@@ -4435,6 +3835,11 @@
         <member name="M:NewLife.Net.NetUri.op_Implicit(System.String)~NewLife.Net.NetUri">
             <summary>重载类型转换，字符串直接转为NetUri对象</summary>
             <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.NetUri.Equals(NewLife.Net.NetUri)">
+            <summary>是否相等的地址</summary>
+            <param name="uri"></param>
             <returns></returns>
         </member>
         <member name="P:NewLife.Net.NetUri.ProtocolType">
@@ -4539,6 +3944,15 @@
             <summary>获取带有描述的串口名，没有时返回空数组</summary>
             <returns></returns>
         </member>
+        <member name="M:NewLife.Net.SerialTransport.GetNames">
+            <summary>获取串口列表，名称和描述</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.SerialTransport.Choose(System.String)">
+            <summary>从串口列表选择串口，支持自动选择关键字</summary>
+            <param name="keyWord">串口名称或者描述符的关键字</param>
+            <returns></returns>
+        </member>
         <member name="M:NewLife.Net.SerialTransport.WriteLog(System.String,System.Object[])">
             <summary>输出日志</summary>
             <param name="format"></param>
@@ -4566,9 +3980,8 @@
         <member name="P:NewLife.Net.SerialTransport.StopBits">
             <summary>停止位。默认One</summary>
         </member>
-        <member name="P:NewLife.Net.SerialTransport.FrameSize">
-            <summary>读取的期望帧长度，小于该长度为未满一帧，读取不做返回</summary>
-            <remarks>如果读取超时，也有可能返回</remarks>
+        <member name="P:NewLife.Net.SerialTransport.Timeout">
+            <summary>超时时间。超过该大小未收到数据，说明是另一帧。默认10ms</summary>
         </member>
         <member name="P:NewLife.Net.SerialTransport.Description">
             <summary>描述信息</summary>
@@ -4585,12 +3998,22 @@
         <member name="T:NewLife.Net.Statistics">
             <summary>统计</summary>
         </member>
+        <member name="M:NewLife.Net.Statistics.#ctor">
+            <summary>实例化一个统计对象</summary>
+        </member>
         <member name="M:NewLife.Net.Statistics.Increment(System.Int32)">
             <summary>增加计数</summary>
             <param name="n"></param>
         </member>
+        <member name="M:NewLife.Net.Statistics.ToString">
+            <summary>已重载。输出统计信息</summary>
+            <returns></returns>
+        </member>
         <member name="P:NewLife.Net.Statistics.Enable">
             <summary>是否启用统计</summary>
+        </member>
+        <member name="P:NewLife.Net.Statistics.Period">
+            <summary>统计周期，单位秒</summary>
         </member>
         <member name="P:NewLife.Net.Statistics.First">
             <summary>首次统计时间</summary>
@@ -4599,22 +4022,19 @@
             <summary>最后统计时间</summary>
         </member>
         <member name="P:NewLife.Net.Statistics.Total">
-            <summary>每分钟最大值</summary>
+            <summary>总数</summary>
         </member>
-        <member name="P:NewLife.Net.Statistics.TotalPerMinute">
-            <summary>每分钟总操作</summary>
+        <member name="P:NewLife.Net.Statistics.Times">
+            <summary>次数</summary>
         </member>
-        <member name="P:NewLife.Net.Statistics.TotalPerHour">
-            <summary>每小时总操作</summary>
+        <member name="P:NewLife.Net.Statistics.Max">
+            <summary>周期最大值</summary>
         </member>
-        <member name="P:NewLife.Net.Statistics.MaxPerMinute">
-            <summary>每分钟最大值</summary>
+        <member name="P:NewLife.Net.Statistics.Speed">
+            <summary>周期速度</summary>
         </member>
-        <member name="P:NewLife.Net.Statistics.AveragePerSecond">
-            <summary>每秒平均</summary>
-        </member>
-        <member name="P:NewLife.Net.Statistics.AveragePerMinute">
-            <summary>每分钟平均</summary>
+        <member name="P:NewLife.Net.Statistics.Parent">
+            <summary>父级统计</summary>
         </member>
         <member name="T:NewLife.Net.TcpSession">
             <summary>增强TCP客户端</summary>
@@ -4673,6 +4093,18 @@
             <param name="count">数量</param>
             <returns></returns>
         </member>
+        <member name="M:NewLife.Net.SessionBase.SendAsync(System.Byte[])">
+            <summary>异步发送数据</summary>
+            <param name="buffer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.SessionBase.SendAsync(System.Byte[],System.Int32,System.Int32)">
+            <summary>异步多次发送数据</summary>
+            <param name="buffer"></param>
+            <param name="times"></param>
+            <param name="msInterval"></param>
+            <returns></returns>
+        </member>
         <member name="M:NewLife.Net.SessionBase.ReceiveAsync">
             <summary>开始异步接收</summary>
             <returns>是否成功</returns>
@@ -4720,8 +4152,11 @@
         <member name="P:NewLife.Net.SessionBase.ThrowException">
             <summary>是否抛出异常，默认false不抛出。Send/Receive时可能发生异常，该设置决定是直接抛出异常还是通过<see cref="E:NewLife.Net.SessionBase.Error"/>事件</summary>
         </member>
-        <member name="P:NewLife.Net.SessionBase.Statistics">
-            <summary>统计信息</summary>
+        <member name="P:NewLife.Net.SessionBase.StatSend">
+            <summary>发送数据包统计信息，默认关闭，通过<see cref="P:NewLife.Net.IStatistics.Enable"/>打开。</summary>
+        </member>
+        <member name="P:NewLife.Net.SessionBase.StatReceive">
+            <summary>接收数据包统计信息，默认关闭，通过<see cref="P:NewLife.Net.IStatistics.Enable"/>打开。</summary>
         </member>
         <member name="P:NewLife.Net.SessionBase.StartTime">
             <summary>通信开始时间</summary>
@@ -4780,7 +4215,7 @@
             <returns></returns>
         </member>
         <member name="M:NewLife.Net.TcpSession.#ctor">
-            <summary>实例化增强UDP</summary>
+            <summary>实例化增强TCP</summary>
         </member>
         <member name="M:NewLife.Net.TcpSession.#ctor(System.Int32)">
             <summary>使用监听口初始化</summary>
@@ -4815,6 +4250,13 @@
             <param name="buffer">缓冲区</param>
             <param name="offset">偏移</param>
             <param name="count">数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.TcpSession.SendAsync(System.Byte[],System.Int32,System.Int32)">
+            <summary>异步多次发送数据</summary>
+            <param name="buffer"></param>
+            <param name="times"></param>
+            <param name="msInterval"></param>
             <returns></returns>
         </member>
         <member name="M:NewLife.Net.TcpSession.ReceiveAsync">
@@ -4948,8 +4390,14 @@
         <member name="P:NewLife.Net.TcpServer.ThrowException">
             <summary>是否抛出异常，默认false不抛出。Send/Receive时可能发生异常，该设置决定是直接抛出异常还是通过<see cref="E:NewLife.Net.TcpServer.Error"/>事件</summary>
         </member>
-        <member name="P:NewLife.Net.TcpServer.Statistics">
-            <summary>统计信息</summary>
+        <member name="P:NewLife.Net.TcpServer.StatSession">
+            <summary>会话统计</summary>
+        </member>
+        <member name="P:NewLife.Net.TcpServer.StatSend">
+            <summary>发送统计</summary>
+        </member>
+        <member name="P:NewLife.Net.TcpServer.StatReceive">
+            <summary>接收统计</summary>
         </member>
         <member name="E:NewLife.Net.TcpServer.NewSession">
             <summary>新会话时触发</summary>
@@ -4965,6 +4413,12 @@
         </member>
         <member name="P:NewLife.Net.TcpServer.Log">
             <summary>日志对象</summary>
+        </member>
+        <member name="P:NewLife.Net.TcpServer.LogSend">
+            <summary>是否输出发送日志。默认false</summary>
+        </member>
+        <member name="P:NewLife.Net.TcpServer.LogReceive">
+            <summary>是否输出接收日志。默认false</summary>
         </member>
         <member name="T:NewLife.Net.SessionCollection">
             <summary>会话集合。带有自动清理不活动会话的功能</summary>
@@ -5041,6 +4495,13 @@
             <param name="count">数量</param>
             <returns></returns>
         </member>
+        <member name="M:NewLife.Net.UdpServer.SendAsync(System.Byte[],System.Int32,System.Int32)">
+            <summary>异步多次发送数据</summary>
+            <param name="buffer"></param>
+            <param name="times"></param>
+            <param name="msInterval"></param>
+            <returns></returns>
+        </member>
         <member name="M:NewLife.Net.UdpServer.ReceiveAsync">
             <summary>开始监听</summary>
             <returns>是否成功</returns>
@@ -5077,6 +4538,9 @@
         </member>
         <member name="P:NewLife.Net.UdpServer.Loopback">
             <summary>是否接收来自自己广播的环回数据。默认false</summary>
+        </member>
+        <member name="P:NewLife.Net.UdpServer.StatSession">
+            <summary>会话统计</summary>
         </member>
         <member name="E:NewLife.Net.UdpServer.NewSession">
             <summary>新会话时触发</summary>
@@ -5133,6 +4597,18 @@
         <member name="T:NewLife.Net.UdpSession">
             <summary>Udp会话。仅用于服务端与某一固定远程地址通信</summary>
         </member>
+        <member name="M:NewLife.Net.UdpSession.SendAsync(System.Byte[])">
+            <summary>异步发送数据</summary>
+            <param name="buffer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Net.UdpSession.SendAsync(System.Byte[],System.Int32,System.Int32)">
+            <summary>异步多次发送数据</summary>
+            <param name="buffer"></param>
+            <param name="times"></param>
+            <param name="msInterval"></param>
+            <returns></returns>
+        </member>
         <member name="M:NewLife.Net.UdpSession.ReceiveAsync">
             <summary>开始异步接收数据</summary>
         </member>
@@ -5146,6 +4622,11 @@
             <returns></returns>
         </member>
         <member name="M:NewLife.Net.UdpSession.WriteLog(System.String,System.Object[])">
+            <summary>输出日志</summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:NewLife.Net.UdpSession.WriteDebugLog(System.String,System.Object[])">
             <summary>输出日志</summary>
             <param name="format"></param>
             <param name="args"></param>
@@ -5180,8 +4661,11 @@
         <member name="P:NewLife.Net.UdpSession.ThrowException">
             <summary>是否抛出异常，默认false不抛出。Send/Receive时可能发生异常，该设置决定是直接抛出异常还是通过<see cref="E:NewLife.Net.UdpSession.Error"/>事件</summary>
         </member>
-        <member name="P:NewLife.Net.UdpSession.Statistics">
-            <summary>统计信息</summary>
+        <member name="P:NewLife.Net.UdpSession.StatSend">
+            <summary>发送数据包统计信息，默认关闭，通过<see cref="P:NewLife.Net.IStatistics.Enable"/>打开。</summary>
+        </member>
+        <member name="P:NewLife.Net.UdpSession.StatReceive">
+            <summary>接收数据包统计信息，默认关闭，通过<see cref="P:NewLife.Net.IStatistics.Enable"/>打开。</summary>
         </member>
         <member name="P:NewLife.Net.UdpSession.StartTime">
             <summary>通信开始时间</summary>
@@ -5194,6 +4678,12 @@
         </member>
         <member name="P:NewLife.Net.UdpSession.Log">
             <summary>日志提供者</summary>
+        </member>
+        <member name="P:NewLife.Net.UdpSession.LogSend">
+            <summary>是否输出发送日志。默认false</summary>
+        </member>
+        <member name="P:NewLife.Net.UdpSession.LogReceive">
+            <summary>是否输出接收日志。默认false</summary>
         </member>
         <member name="P:NewLife.Net.UdpSession.LogPrefix">
             <summary>日志前缀</summary>
@@ -5478,12 +4968,13 @@
             <summary>调用语音引擎说出指定话</summary>
             <param name="value"></param>
         </member>
-        <member name="M:System.StringHelper.Run(System.String,System.String,System.Int32,System.Action{System.String})">
+        <member name="M:System.StringHelper.Run(System.String,System.String,System.Int32,System.Action{System.String},System.Action{System.Diagnostics.Process})">
             <summary>以隐藏窗口执行命令行</summary>
             <param name="cmd">文件名</param>
             <param name="arguments">命令参数</param>
             <param name="msWait">等待毫秒数</param>
             <param name="output">进程输出内容。默认为空时输出到日志</param>
+            <param name="onExit">进程退出时执行</param>
             <returns>进程退出代码</returns>
         </member>
         <member name="T:NewLife.Configuration.Config">
@@ -5753,90 +5244,6 @@
             <param name="filename"></param>
             <returns></returns>
         </member>
-        <member name="T:NewLife.IO.StreamHttpHandler">
-            <summary>数据流Http处理器。可以在web.config中配置一个处理器指向该类。</summary>
-        </member>
-        <member name="M:NewLife.IO.StreamHttpHandler.ProcessRequest(System.Web.HttpContext)">
-            <summary>处理请求</summary>
-            <param name="context"></param>
-        </member>
-        <member name="M:NewLife.IO.StreamHttpHandler.OnProcess(System.Web.HttpContext)">
-            <summary>处理请求</summary>
-            <param name="context"></param>
-        </member>
-        <member name="M:NewLife.IO.StreamHttpHandler.GetName(System.Web.HttpContext)">
-            <summary>从Http上下文获取数据流总线名称</summary>
-            <param name="context"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.IO.StreamHttpHandler.GetStream(System.Web.HttpContext)">
-            <summary>从Http上下文获取数据流</summary>
-            <param name="context"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.IO.StreamHttpHandler.ToHex(System.Byte[])">
-            <summary>加密</summary>
-            <param name="data"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.IO.StreamHttpHandler.FromHex(System.String)">
-            <summary>解密</summary>
-            <param name="data"></param>
-            <returns></returns>
-        </member>
-        <member name="P:NewLife.IO.StreamHttpHandler.IsReusable">
-            <summary>是否可以重用</summary>
-        </member>
-        <member name="T:NewLife.IO.IStreamHandler">
-            <summary>数据流处理器接口</summary>
-        </member>
-        <member name="M:NewLife.IO.IStreamHandler.Process(System.IO.Stream)">
-            <summary>处理数据流</summary>
-            <param name="stream">待处理数据流</param>
-            <returns>转发给下一个处理器的数据流，如果不想让后续处理器处理，返回空</returns>
-        </member>
-        <member name="P:NewLife.IO.IStreamHandler.IsReusable">
-            <summary>是否可以重用。</summary>
-        </member>
-        <member name="T:NewLife.IO.StreamHandler">
-            <summary>数据流处理器</summary>
-        </member>
-        <member name="M:NewLife.IO.StreamHandler.Process(System.IO.Stream)">
-            <summary>处理数据流</summary>
-            <param name="stream"></param>
-            <returns>转发给下一个处理器的数据流，如果不想让后续处理器处理，返回空</returns>
-        </member>
-        <member name="M:NewLife.IO.StreamHandler.Register(System.String,NewLife.IO.IStreamHandler,System.Boolean)">
-            <summary>
-            注册数据流处理器。
-            数据流到达时将进入指定通道的每一个处理器。
-            不同通道名称的处理器互不干扰。
-            不提供注册到指定位置的功能，如果需要，再以多态方式实现。
-            </summary>
-            <param name="name">通道名称，用于区分数据流总线</param>
-            <param name="handler">数据流处理器</param>
-            <param name="cover">是否覆盖原有同类型处理器</param>
-        </member>
-        <member name="M:NewLife.IO.StreamHandler.QueryRegister(System.String)">
-            <summary>查询注册，返回指定通道的处理器数组。</summary>
-            <param name="name">名称</param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.IO.StreamHandler.GetHandler">
-            <summary>获取配置文件指定的处理器</summary>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.IO.StreamHandler.LoadConfig">
-            <summary>从配置文件中加载工厂</summary>
-        </member>
-        <member name="M:NewLife.IO.StreamHandler.Process(System.String,System.IO.Stream)">
-            <summary>处理数据流。Http、Tcp、Udp等所有数据流都将到达这里，多种传输方式汇聚于此，由数据流总线统一处理！</summary>
-            <param name="name">名称</param>
-            <param name="stream"></param>
-        </member>
-        <member name="P:NewLife.IO.StreamHandler.IsReusable">
-            <summary>是否可以重用</summary>
-        </member>
         <member name="T:System.IOHelper">
             <summary>IO工具类</summary>
         </member>
@@ -6068,13 +5475,18 @@
             <param name="stream">数据流</param>
             <returns></returns>
         </member>
+        <member name="M:System.IOHelper.ReadEncodedInt64(System.IO.Stream)">
+            <summary>以压缩格式读取32位整数</summary>
+            <param name="stream">数据流</param>
+            <returns></returns>
+        </member>
         <member name="M:System.IOHelper.TryReadEncodedInt(System.IO.Stream,System.Int32@)">
             <summary>尝试读取压缩编码整数</summary>
             <param name="stream"></param>
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:System.IOHelper.WriteEncodedInt(System.IO.Stream,System.Int32)">
+        <member name="M:System.IOHelper.WriteEncodedInt(System.IO.Stream,System.Int64)">
             <summary>
             以7位压缩格式写入32位整数，小于7位用1个字节，小于14位用2个字节。
             由每次写入的一个字节的第一位标记后面的字节是否还是当前数据，所以每个字节实际可利用存储空间只有后7位。
@@ -6167,11 +5579,12 @@
             <param name="count">数量。超过实际数量时，使用实际数量</param>
             <returns></returns>
         </member>
-        <member name="M:System.IOHelper.ToHex(System.Byte[],System.String,System.Int32)">
+        <member name="M:System.IOHelper.ToHex(System.Byte[],System.String,System.Int32,System.Int32)">
             <summary>把字节数组编码为十六进制字符串，带有分隔符和分组功能</summary>
             <param name="data">字节数组</param>
             <param name="separate">分隔符</param>
             <param name="groupSize">分组大小，为0时对每个字节应用分隔符，否则对每个分组使用</param>
+            <param name="maxLength">最大显示多少个字节。默认-1显示全部</param>
             <returns></returns>
         </member>
         <member name="M:System.IOHelper.ToHex(System.String,System.Int32,System.Int32)">
@@ -10565,6 +9978,43 @@
         <member name="P:NewLife.Serialization.NameValueReader.Stream">
             <summary>数据流。更改数据流后，重置Reader为空，以使用新的数据流</summary>
         </member>
+        <member name="T:NewLife.Serialization.IAccessor">
+            <summary>序列化访问器。接口实现者可以在这里完全自定义行为（返回true），也可以通过设置事件来影响行为（返回false）</summary>
+            <example>
+            显式实现接口默认代码：
+            <code>
+            Boolean IAccessor.Read(IReader reader) { return false; }
+            
+            Boolean IAccessor.ReadComplete(IReader reader, Boolean success) { return success; }
+            
+            Boolean IAccessor.Write(IWriter writer) { return false; }
+            
+            Boolean IAccessor.WriteComplete(IWriter writer, Boolean success) { return success; }
+            </code>
+            </example>
+        </member>
+        <member name="M:NewLife.Serialization.IAccessor.Read(NewLife.Serialization.IReader)">
+            <summary>从读取器中读取数据到对象。接口实现者可以在这里完全自定义行为（返回true），也可以通过设置事件来影响行为（返回false）</summary>
+            <param name="reader">读取器</param>
+            <returns>是否读取成功，若返回成功读取器将不再读取该对象</returns>
+        </member>
+        <member name="M:NewLife.Serialization.IAccessor.ReadComplete(NewLife.Serialization.IReader,System.Boolean)">
+            <summary>从读取器中读取数据到对象后执行。接口实现者可以在这里取消Read阶段设置的事件</summary>
+            <param name="reader">读取器</param>
+            <param name="success">是否读取成功</param>
+            <returns>是否读取成功</returns>
+        </member>
+        <member name="M:NewLife.Serialization.IAccessor.Write(NewLife.Serialization.IWriter)">
+            <summary>把对象数据写入到写入器。接口实现者可以在这里完全自定义行为（返回true），也可以通过设置事件来影响行为（返回false）</summary>
+            <param name="writer">写入器</param>
+            <returns>是否写入成功，若返回成功写入器将不再读写入对象</returns>
+        </member>
+        <member name="M:NewLife.Serialization.IAccessor.WriteComplete(NewLife.Serialization.IWriter,System.Boolean)">
+            <summary>把对象数据写入到写入器后执行。接口实现者可以在这里取消Write阶段设置的事件</summary>
+            <param name="writer">写入器</param>
+            <param name="success">是否写入成功</param>
+            <returns>是否写入成功</returns>
+        </member>
         <member name="T:NewLife.Serialization.IObjectMemberInfo">
             <summary>对象成员信息</summary>
         </member>
@@ -11447,78 +10897,6 @@
         <member name="P:NewLife.IO.ReadWriteStream.Position">
             <summary>输入流位置</summary>
         </member>
-        <member name="T:NewLife.IO.StreamClient">
-            <summary>数据流客户端，用于与服务端的数据流处理器通讯</summary>
-        </member>
-        <member name="M:NewLife.IO.StreamClient.#ctor">
-            <summary>实例化</summary>
-        </member>
-        <member name="M:NewLife.IO.StreamClient.#ctor(System.Uri)">
-            <summary>实例化</summary>
-            <param name="uri"></param>
-        </member>
-        <member name="M:NewLife.IO.StreamClient.#ctor(System.String)">
-            <summary>实例化</summary>
-            <param name="url"></param>
-        </member>
-        <member name="M:NewLife.IO.StreamClient.Send(System.Byte[])">
-            <summary>同步发送数据</summary>
-            <param name="data">待发送数据</param>
-            <returns>服务端响应数据</returns>
-        </member>
-        <member name="M:NewLife.IO.StreamClient.SendAsync(System.Byte[])">
-            <summary>异步发送数据，服务端响应数据将由数据流总线处理</summary>
-            <param name="data">待发送数据</param>
-        </member>
-        <member name="M:NewLife.IO.StreamClient.Process(System.IO.Stream)">
-            <summary>处理数据流</summary>
-            <param name="stream"></param>
-        </member>
-        <member name="F:NewLife.IO.StreamClient._Stream">
-            <summary>内部数据流</summary>
-        </member>
-        <member name="M:NewLife.IO.StreamClient.GetStream">
-            <summary>获取用于收发数据的数据流</summary>
-            <returns></returns>
-        </member>
-        <member name="P:NewLife.IO.StreamClient.Uri">
-            <summary>服务端地址</summary>
-        </member>
-        <member name="P:NewLife.IO.StreamClient.StreamHandlerName">
-            <summary>数据流总线名称</summary>
-        </member>
-        <member name="T:NewLife.IO.StreamClient.InternalStream">
-            <summary>内部数据流。重写输入行为，然后使用一个内存流作为输出。</summary>
-        </member>
-        <member name="P:NewLife.IO.StreamClient.InternalStream.Client">
-            <summary>数据流客户端</summary>
-        </member>
-        <member name="T:NewLife.IO.HttpStreamClient">
-            <summary>基于Http协议的数据流客户端</summary>
-        </member>
-        <member name="M:NewLife.IO.HttpStreamClient.#ctor">
-            <summary>实例化</summary>
-        </member>
-        <member name="M:NewLife.IO.HttpStreamClient.#ctor(System.Uri)">
-            <summary>实例化</summary>
-            <param name="uri"></param>
-        </member>
-        <member name="M:NewLife.IO.HttpStreamClient.#ctor(System.String)">
-            <summary>实例化</summary>
-            <param name="url"></param>
-        </member>
-        <member name="M:NewLife.IO.HttpStreamClient.Send(System.Byte[])">
-            <summary>同步发送数据</summary>
-            <param name="data">待发送数据</param>
-            <returns>服务端响应数据</returns>
-        </member>
-        <member name="M:NewLife.IO.HttpStreamClient.SendAsync(System.Byte[])">
-            <summary>异步发送数据，服务端响应数据将由数据流总线处理</summary>
-            <param name="data">待发送数据</param>
-        </member>
-        <member name="P:NewLife.IO.HttpStreamClient.Client">
-            <summary>客户端</summary>
-        </member>
         <member name="T:NewLife.Serialization.ReflectMemberInfo">
             <summary>反射成员信息</summary>
         </member>
@@ -11763,35 +11141,6 @@
         </member>
         <member name="P:NewLife.Log.CodeTimer.Elapsed">
             <summary>执行时间</summary>
-        </member>
-        <member name="T:NewLife.Messaging.ExceptionMessage">
-            <summary>异常消息</summary>
-        </member>
-        <member name="M:NewLife.Messaging.ExceptionMessage.ToString">
-            <summary>已重载。</summary>
-            <returns></returns>
-        </member>
-        <member name="P:NewLife.Messaging.ExceptionMessage.Kind">
-            <summary>消息类型</summary>
-        </member>
-        <member name="P:NewLife.Messaging.ExceptionMessage.Value">
-            <summary>异常对象</summary>
-        </member>
-        <member name="T:NewLife.Messaging.NullMessage">
-            <summary>空消息。最短消息，只占一个字节</summary>
-        </member>
-        <member name="M:NewLife.Messaging.NullMessage.OnWrite(System.IO.Stream,NewLife.Serialization.RWKinds)">
-            <summary>已重载。</summary>
-            <param name="stream">数据流</param>
-            <param name="rwkind">序列化类型</param>
-        </member>
-        <member name="M:NewLife.Messaging.NullMessage.OnRead(System.IO.Stream,NewLife.Serialization.RWKinds)">
-            <summary>已重载。</summary>
-            <param name="stream">数据流</param>
-            <param name="rwkind">序列化类型</param>
-        </member>
-        <member name="P:NewLife.Messaging.NullMessage.Kind">
-            <summary>消息类型</summary>
         </member>
         <member name="T:NewLife.Reflection.AssemblyX">
             <summary>程序集辅助类。使用Create创建，保证每个程序集只有一个辅助类</summary>
@@ -12396,6 +11745,13 @@
         <member name="M:NewLife.Setting.OnNew">
             <summary>新建时调用</summary>
         </member>
+        <member name="M:NewLife.Setting.OnLoaded">
+            <summary>加载完成后</summary>
+        </member>
+        <member name="M:NewLife.Setting.GetPluginPath">
+            <summary>获取插件目录</summary>
+            <returns></returns>
+        </member>
         <member name="P:NewLife.Setting.Debug">
             <summary>是否启用全局调试。默认为不启用</summary>
         </member>
@@ -12407,6 +11763,12 @@
         </member>
         <member name="P:NewLife.Setting.TempPath">
             <summary>临时目录</summary>
+        </member>
+        <member name="P:NewLife.Setting.PluginPath">
+            <summary>扩展插件存放目录</summary>
+        </member>
+        <member name="P:NewLife.Setting.DownloadCache">
+            <summary>下载扩展插件的缓存目录。默认位于系统盘的X\Cache</summary>
         </member>
         <member name="P:NewLife.Setting.NetDebug">
             <summary>网络调试</summary>
@@ -12959,7 +12321,7 @@
         <member name="P:NewLife.Reflection.FieldInfoX.SetHandler">
             <summary>快速调用委托，延迟到首次使用才创建</summary>
         </member>
-        <member name="T:NewLife.Reflection.Func">
+        <member name="T:System.Func">
             <summary>没有参数和返回值的委托</summary>
         </member>
         <member name="T:NewLife.Reflection.MethodInfoX">
@@ -13234,7 +12596,7 @@
             <param name="count"></param>
             <returns></returns>
         </member>
-        <member name="M:NewLife.Security.Crc32.Compute(System.IO.Stream,System.Int64,System.Int32)">
+        <member name="M:NewLife.Security.Crc32.ComputeRange(System.IO.Stream,System.Int64,System.Int32)">
             <summary>计算数据流校验码，指定起始位置和字节数偏移量</summary>
             <remarks>
             一般用于计算数据包校验码，需要回过头去开始校验，并且可能需要跳过最后的校验码长度。
@@ -13542,11 +12904,11 @@
             <param name="state"></param>
             <param name="errCallback">发生异常时调用的方法</param>
         </member>
-        <member name="M:NewLife.Threading.ThreadPoolX.QueueUserWorkItem(NewLife.Reflection.Func)">
+        <member name="M:NewLife.Threading.ThreadPoolX.QueueUserWorkItem(System.Func)">
             <summary>带异常处理的线程池任务调度</summary>
             <param name="callback"></param>
         </member>
-        <member name="M:NewLife.Threading.ThreadPoolX.QueueUserWorkItem(NewLife.Reflection.Func,System.Action{System.Exception})">
+        <member name="M:NewLife.Threading.ThreadPoolX.QueueUserWorkItem(System.Func,System.Action{System.Exception})">
             <summary>带异常处理的线程池任务调度，即使不指定异常处理方法，也不允许异常抛出，以免造成应用程序退出</summary>
             <param name="callback"></param>
             <param name="errCallback">发生异常时调用的方法</param>
@@ -13569,6 +12931,9 @@
         </member>
         <member name="P:NewLife.Threading.ThreadPoolX.Name">
             <summary>线程池名称</summary>
+        </member>
+        <member name="P:NewLife.Threading.ThreadPoolX.Interval">
+            <summary>线程创建间隔。默认10毫秒</summary>
         </member>
         <member name="P:NewLife.Threading.ThreadPoolX.LastError">
             <summary>最后的异常</summary>
@@ -13629,6 +12994,9 @@
         <member name="T:NewLife.Threading.ThreadX">
             <summary>线程扩展</summary>
         </member>
+        <member name="F:NewLife.Threading.ThreadX._Thread">
+            <summary>线程</summary>
+        </member>
         <member name="F:NewLife.Threading.ThreadX.internalEvent">
             <summary>内部控制事件</summary>
         </member>
@@ -13673,9 +13041,6 @@
         </member>
         <member name="P:NewLife.Threading.ThreadX.CanRelease">
             <summary>是否能够释放</summary>
-        </member>
-        <member name="P:NewLife.Threading.ThreadX.Thread">
-            <summary>线程</summary>
         </member>
         <member name="P:NewLife.Threading.ThreadX.StartTime">
             <summary>开始时间</summary>
@@ -14116,11 +13481,6 @@
             <param name="format"></param>
             <param name="args"></param>
         </member>
-        <member name="M:NewLife.Log.XTrace.WriteLineAsync(System.String,System.Object[])">
-            <summary>异步写日志</summary>
-            <param name="format"></param>
-            <param name="args"></param>
-        </member>
         <member name="M:NewLife.Log.XTrace.WriteException(System.Exception)">
             <summary>输出异常日志</summary>
             <param name="ex">异常信息</param>
@@ -14144,13 +13504,6 @@
             <remarks>不是常用功能，为了避免干扰常用功能，保持UseWinForm开头</remarks>
             <param name="control">要绑定日志输出的WinForm控件</param>
             <param name="useFileLog">是否同时使用文件日志，默认使用</param>
-            <param name="maxLines">最大行数</param>
-        </member>
-        <member name="M:NewLife.Log.XTrace.UseWinFormWriteLog(System.Windows.Forms.Control,System.String,System.Int32)">
-            <summary>在WinForm控件上输出日志，主要考虑非UI线程操作</summary>
-            <remarks>不是常用功能，为了避免干扰常用功能，保持UseWinForm开头</remarks>
-            <param name="control">要绑定日志输出的WinForm控件</param>
-            <param name="msg">日志</param>
             <param name="maxLines">最大行数</param>
         </member>
         <member name="M:NewLife.Log.XTrace.WriteMiniDump(System.String)">
@@ -14179,15 +13532,15 @@
             <param name="split">分割符号，默认左箭头加上换行</param>
             <returns></returns>
         </member>
+        <member name="M:NewLife.Log.XTrace.WriteVersion">
+            <summary>输出核心库和启动程序的版本号</summary>
+        </member>
         <member name="M:NewLife.Log.XTrace.WriteVersion(System.Reflection.Assembly)">
             <summary>输出程序集版本</summary>
             <param name="asm"></param>
         </member>
         <member name="P:NewLife.Log.XTrace.Log">
             <summary>日志提供者，默认使用文本文件日志</summary>
-        </member>
-        <member name="E:NewLife.Log.XTrace.OnWriteLog">
-            <summary>写日志事件。</summary>
         </member>
         <member name="P:NewLife.Log.XTrace.Debug">
             <summary>是否调试。如果代码指定了值，则只会使用代码指定的值，否则每次都读取配置。</summary>
@@ -14397,6 +13750,18 @@
         </member>
         <member name="F:NewLife.Web.Pager.__.PageSize">
             <summary>页面大小</summary>
+        </member>
+        <member name="T:NewLife.Web.PluginHelper">
+            <summary>插件助手</summary>
+        </member>
+        <member name="M:NewLife.Web.PluginHelper.LoadPlugin(System.String,System.String,System.String,System.String,System.String)">
+            <summary>加载插件</summary>
+            <param name="typeName"></param>
+            <param name="disname"></param>
+            <param name="dll"></param>
+            <param name="linkName"></param>
+            <param name="url"></param>
+            <returns></returns>
         </member>
         <member name="T:NewLife.Web.WebClientX">
             <summary>扩展的Web客户端</summary>
@@ -14717,7 +14082,7 @@
         <member name="T:System.Windows.Forms.ControlHelper">
             <summary>控件助手</summary>
         </member>
-        <member name="M:System.Windows.Forms.ControlHelper.Invoke(System.Windows.Forms.Control,NewLife.Reflection.Func)">
+        <member name="M:System.Windows.Forms.ControlHelper.Invoke(System.Windows.Forms.Control,System.Func)">
             <summary>执行无参委托</summary>
             <param name="control"></param>
             <param name="method"></param>
