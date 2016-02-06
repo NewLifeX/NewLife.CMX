@@ -38,7 +38,7 @@ namespace ASP
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorGenerator", "2.0.0.0")]
     [System.Web.WebPages.PageVirtualPathAttribute("~/Views/Article/Category.cshtml")]
-    public partial class _Views_Article_Category_cshtml : System.Web.Mvc.WebViewPage<NewLife.CMX.IEntityCategory>
+    public partial class _Views_Article_Category_cshtml : System.Web.Mvc.WebViewPage<NewLife.CMX.ICategory>
     {
         public _Views_Article_Category_cshtml()
         {
@@ -49,7 +49,7 @@ namespace ASP
             #line 2 "..\..\Views\Article\Category.cshtml"
   
     var Channel = ViewBag.Channel as Channel;
-    var Titles = ViewBag.Titles as IList<IEntityTitle>;
+    var Titles = ViewBag.Titles as IList<IInfo>;
     var Pager = ViewBag.Pager as Pager;
 
             
@@ -105,7 +105,7 @@ WriteLiteral("\r\n    </h2>\r\n");
         var childs = Model.Childs;
         if (childs.Count > 0)
         {
-            foreach (IEntityCategory cat in childs)
+            foreach (ICategory cat in childs)
             {
 
             

@@ -1,13 +1,13 @@
 ﻿@using NewLife.Model;
 @using NewLife.CMX;
 @{
-    var cat = Model as IEntityCategory;
-    var chn = cat.Channel;
+    var cat = Model as ICategory;
+    var model = cat.Model;
 }
 <li>
     @if (cat.Childs.Count == 0)
     {
-        <a href="~/CMS/@(chn.Model.Name)/@(chn.ID)_@cat.ID" target="main">
+        <a href="~/CMS/@(model.Name)/@(model.ID)_@cat.ID" target="main">
             <i class="menu-icon fa fa-caret-right"></i>
             @cat.Name
         </a>
@@ -20,7 +20,7 @@
         </a>
         <b class="arrow"></b>
         <ul class="submenu">
-            @foreach (IEntityCategory cat2 in cat.Childs)
+            @foreach (ICategory cat2 in cat.Childs)
             {
                 @Html.Partial("_Left_Category", cat2);
             }

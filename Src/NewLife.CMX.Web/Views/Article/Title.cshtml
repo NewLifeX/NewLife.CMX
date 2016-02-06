@@ -1,7 +1,7 @@
-﻿@model NewLife.CMX.IEntityTitle
+﻿@model NewLife.CMX.IInfo
 @{
     var Channel = ViewBag.Channel as Channel;
-    var Category = ViewBag.Category as IEntityCategory;
+    var Category = ViewBag.Category as ICategory;
 
     this.PushTitle(Model.Category.Name);
     this.PushTitle(Model.Title);

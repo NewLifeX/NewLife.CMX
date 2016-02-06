@@ -38,7 +38,7 @@ namespace ASP
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorGenerator", "2.0.0.0")]
     [System.Web.WebPages.PageVirtualPathAttribute("~/Views/Content/Title.cshtml")]
-    public partial class _Views_Content_Title_cshtml : System.Web.Mvc.WebViewPage<NewLife.CMX.IEntityTitle>
+    public partial class _Views_Content_Title_cshtml : System.Web.Mvc.WebViewPage<NewLife.CMX.IInfo>
     {
         public _Views_Content_Title_cshtml()
         {
@@ -49,7 +49,7 @@ namespace ASP
             #line 2 "..\..\Views\Content\Title.cshtml"
   
     var Channel = ViewBag.Channel as Channel;
-    var Category = ViewBag.Category as IEntityCategory;
+    var Category = ViewBag.Category as ICategory;
 
     this.PushTitle(Model.Category.Name);
     this.PushTitle(Model.Title);

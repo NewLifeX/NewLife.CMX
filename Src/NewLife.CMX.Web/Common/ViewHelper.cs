@@ -12,7 +12,7 @@ namespace NewLife.CMX.Web
             return UrlHelper.GenerateUrl(routeName, null, null, null, url.RouteCollection, url.RequestContext, false);
         }
 
-        /// <summary>获取IEntityTitle的Url</summary>
+        /// <summary>获取IInfo的Url</summary>
         /// <param name="page"></param>
         /// <param name="entity"></param>
         /// <returns></returns>

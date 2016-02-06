@@ -58,7 +58,7 @@ namespace NewLife.CMX.Web
             p.Sort = "CreateTime";
             p.Desc = true;
             LoadChannel();
-            var cat = ViewBag.Category as IEntityCategory;
+            var cat = ViewBag.Category as ICategory;
             var list = EntityTitle<TEntity>.Search(cat.ID, p);
             return View("List", list);
         }

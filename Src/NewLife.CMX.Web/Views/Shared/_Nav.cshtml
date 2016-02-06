@@ -1,13 +1,13 @@
 ﻿@{
-    var category = Model as IEntityCategory;
+    var category = Model as ICategory;
     if (category == null)
     {
-        category = (Model as IEntityTitle).Category;
+        category = (Model as IInfo).Category;
     }
 }
 <ol class="breadcrumb">
     <li><a href="~/">首页</a></li>
-    @foreach (IEntityCategory cat in category.AllParents)
+    @foreach (ICategory cat in category.AllParents)
     {
         <li>
             <a href="@this.GetCategoryUrl(cat)">@cat.Name</a>

@@ -207,10 +207,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Category.cshtml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Content\Channel.generated.cs">
+    <Compile Include="Views\Content\Model.generated.cs">
+      <DependentUpon>Model.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Channel.cshtml</DependentUpon>
     </Compile>
     <Compile Include="Views\Content\Title.generated.cs">
       <AutoGen>True</AutoGen>
@@ -635,10 +635,10 @@
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Category.generated.cs</LastGenOutput>
     </None>
-    <None Include="Views\Content\Channel.cshtml">
+    <Content Include="Views\Content\Model.cshtml">
       <Generator>RazorGenerator</Generator>
-      <LastGenOutput>Channel.generated.cs</LastGenOutput>
-    </None>
+      <LastGenOutput>Model.generated.cs</LastGenOutput>
+    </Content>
     <None Include="Views\Content\Title.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Title.generated.cs</LastGenOutput>

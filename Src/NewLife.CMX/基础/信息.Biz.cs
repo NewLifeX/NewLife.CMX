@@ -5,28 +5,24 @@
  * 版权：版权所有 (C) 新生命开发团队 2002~2016
 */
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
-using System.Xml.Serialization;
+using NewLife.Data;
 using NewLife.Log;
-using NewLife.Web;
-﻿using NewLife.Data;
 using XCode;
-using XCode.Configuration;
 using XCode.Membership;
+using NewLife.Reflection;
 
 namespace NewLife.CMX
 {
     /// <summary>信息</summary>
     [ModelCheckMode(ModelCheckModes.CheckTableWhenFirstUse)]
     public class Info : Info<Info> { }
-    
+
     /// <summary>信息</summary>
-    public partial class Info<TEntity> : Entity<TEntity> where TEntity : Info<TEntity>, new()
+    public partial class Info<TEntity> : UserTimeEntity<TEntity> where TEntity : Info<TEntity>, new()
     {
         #region 对象操作
-            ﻿
+
         static Info()
         {
             // 用于引发基类的静态构造函数，所有层次的泛型实体类都应该有一个
@@ -37,8 +33,8 @@ namespace NewLife.CMX
         /// <param name="isNew"></param>
         public override void Valid(Boolean isNew)
         {
-			// 如果没有脏数据，则不需要进行任何处理
-			if (!HasDirty) return;
+            // 如果没有脏数据，则不需要进行任何处理
+            if (!HasDirty) return;
 
             // 这里验证参数范围，建议抛出参数异常，指定参数名，前端用户界面可以捕获参数异常并聚焦到对应的参数输入框
             //if (String.IsNullOrEmpty(Name)) throw new ArgumentNullException(_.Name, _.Name.DisplayName + "无效！");
@@ -47,51 +43,55 @@ namespace NewLife.CMX
             // 建议先调用基类方法，基类方法会对唯一索引的数据进行验证
             base.Valid(isNew);
 
-            // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
-            //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
-            
-            if (isNew && !Dirtys[__.CreateTime]) CreateTime = DateTime.Now;
-            if (!Dirtys[__.CreateIP]) CreateIP = WebHelper.UserHost;
-            if (!Dirtys[__.UpdateTime]) UpdateTime = DateTime.Now;
-            if (!Dirtys[__.UpdateIP]) UpdateIP = WebHelper.UserHost;
+            // 自动保存分类名称
+            if (Meta.FieldNames.Contains("CategoryName"))
+            {
+                if (!Dirtys["CategoryName"] && Category != null) SetItem("CategoryName", Category.Name);
+            }
+
+            // 发布时间为创建时间
+            //if (!Dirtys[__.PublishTime]) PublishTime = DateTime.Now;
+            if (Meta.FieldNames.Contains("PublishTime"))
+            {
+                var dt = (DateTime)this["PublishTime"];
+                if ((isNew || dt.Year < 2000) && !Dirtys["PublishTime"]) SetItem("PublishTime", CreateTime);
+            }
+
+            //if (isNew && !Dirtys[__.CreateTime]) CreateTime = DateTime.Now;
+            //if (!Dirtys[__.CreateIP]) CreateIP = WebHelper.UserHost;
+            //if (!Dirtys[__.UpdateTime]) UpdateTime = DateTime.Now;
+            //if (!Dirtys[__.UpdateIP]) UpdateIP = WebHelper.UserHost;
         }
 
-        ///// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //protected override void InitData()
-        //{
-        //    base.InitData();
+        /// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void InitData()
+        {
+            base.InitData();
 
-        //    // InitData一般用于当数据表没有数据时添加一些默认数据，该实体类的任何第一次数据库操作都会触发该方法，默认异步调用
-        //    // Meta.Count是快速取得表记录数
-        //    if (Meta.Count > 0) return;
+            // InitData一般用于当数据表没有数据时添加一些默认数据，该实体类的任何第一次数据库操作都会触发该方法，默认异步调用
+            // Meta.Count是快速取得表记录数
+            if (Meta.Count > 0) return;
 
-        //    // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
-        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
+            // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
+            if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
 
-        //    var entity = new Info();
-        //    entity.ModelID = 0;
-        //    entity.CategoryID = 0;
-        //    entity.CategoryName = "abc";
-        //    entity.Title = "abc";
-        //    entity.ExtendID = 0;
-        //    entity.Version = 0;
-        //    entity.StatisticsID = 0;
-        //    entity.Views = 0;
-        //    entity.Summary = "abc";
-        //    entity.PublishTime = DateTime.Now;
-        //    entity.Publisher = "abc";
-        //    entity.CreateUserID = 0;
-        //    entity.CreateTime = DateTime.Now;
-        //    entity.CreateIP = "abc";
-        //    entity.UpdateUserID = 0;
-        //    entity.UpdateTime = DateTime.Now;
-        //    entity.UpdateIP = "abc";
-        //    entity.Insert();
+            // 遍历分类
+            NewLife.CMX.Category.Meta.Session.WaitForInitData();
 
-        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
-        //}
+            foreach (var item in NewLife.CMX.Category.FindAllWithCache())
+            {
+                var entity = new TEntity();
+                entity.ModelID = item.ModelID;
+                entity.CategoryID = item.ID;
+                entity.CategoryName = item.Name;
+                entity.Title = "{0}信息".F(item.Name);
+                entity.ExtendID = 0;
+                entity.Insert();
+            }
 
+            if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
+        }
 
         ///// <summary>已重载。基类先调用Valid(true)验证数据，然后在事务保护内调用OnInsert</summary>
         ///// <returns></returns>
@@ -106,16 +106,107 @@ namespace NewLife.CMX
         //{
         //    return base.OnInsert();
         //}
-
         #endregion
 
         #region 扩展属性
-            ﻿
+        private ICategory _Category;
+        /// <summary>分类</summary>
+        public ICategory Category
+        {
+            get
+            {
+                if (_Category == null && CategoryID > 0 && !Dirtys.ContainsKey("Category"))
+                {
+                    _Category = NewLife.CMX.Category.FindByID(CategoryID);
+                    Dirtys["Category"] = true;
+                }
+                return _Category;
+            }
+            //set { _Category = value; }
+        }
 
+        private IContent _Content;
+        /// <summary>内容</summary>
+        public IContent Content
+        {
+            get
+            {
+                if (_Content == null)
+                {
+                    _Content = NewLife.CMX.Content.FindLastByParentID(ID);
+                    if (_Content == null) _Content = new Content { InfoID = ID };
+                }
+                return _Content;
+            }
+            //set { _Content = value; }
+        }
+
+        /// <summary>内容文本</summary>
+        public String ContentText { get { return Content != null ? Content.Html : ""; } set { Content.Html = value; } }
+
+        private IInfoExtend _Ext;
+        /// <summary>扩展</summary>
+        public IInfoExtend Ext
+        {
+            get
+            {
+                if (_Ext == null && ExtendID > 0 && !Dirtys.ContainsKey("Ext"))
+                {
+                    // 根据分类找到模型，再找到对应实体类
+                    if (Category != null && Category.Model != null)
+                    {
+                        var type = Category.Model.ProviderName.GetTypeEx();
+                        if (type != null)
+                        {
+                            // 反射调用FindByID方法
+                            var entity = type.Invoke("FindByID", ExtendID);
+                            _Ext = entity as IInfoExtend;
+                        }
+                    }
+
+                    Dirtys["Ext"] = true;
+                }
+                return _Ext;
+            }
+            //set { _Content = value; }
+        }
+
+        private IStatistics _Statistics;
+        /// <summary>统计</summary>
+        public IStatistics Statistics
+        {
+            get
+            {
+                if (_Statistics == null && !Dirtys.ContainsKey("Statistics"))
+                {
+                    _Statistics = NewLife.CMX.Statistics.FindByID(StatisticsID);
+                    if (_Statistics == null) _Statistics = new Statistics();
+                    Dirtys["Statistics"] = true;
+                }
+                return _Statistics;
+            }
+            //set { _Statistics = value; }
+        }
+
+        private String _StatisticsText;
+        /// <summary>统计文本</summary>
+        [DisplayName("访问统计")]
+        public String StatisticsText
+        {
+            get
+            {
+                if (_StatisticsText == null && !Dirtys.ContainsKey("StatisticsText"))
+                {
+                    _StatisticsText = Statistics != null ? Statistics.Text : null;
+                    Dirtys["StatisticsText"] = true;
+                }
+                return _StatisticsText;
+            }
+        }
         #endregion
 
         #region 扩展查询
-            ﻿
+
         /// <summary>根据模型查找</summary>
         /// <param name="modelid">模型</param>
         /// <returns></returns>
@@ -196,5 +287,18 @@ namespace NewLife.CMX
 
         #region 业务
         #endregion
+    }
+
+    partial interface IInfo : IUserInfo
+    {
+        /// <summary>当前主题的分类</summary>
+        ICategory Category { get; }
+
+        IInfoExtend Ext { get; }
+
+        /// <summary>主要内容</summary>
+        String ContentText { get; set; }
+
+        IStatistics Statistics { get; }
     }
 }

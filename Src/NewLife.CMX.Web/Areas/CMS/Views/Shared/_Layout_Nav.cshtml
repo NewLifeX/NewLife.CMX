@@ -1,7 +1,7 @@
 ﻿@using NewLife.CMX;
 @{
     var chn = ViewBag.Channel as Channel;
-    var cat = ViewBag.Category as IEntityCategory;
+    var cat = ViewBag.Category as ICategory;
 }
 @if (chn != null && cat != null)
 {
@@ -9,7 +9,7 @@
     <a href="@Url.Action("Index", new { channel = chn.ID, category = cat.ID })" class="h4"><strong>@chn.Name</strong></a>
     if (cat != null)
     {
-        foreach (IEntityCategory item in cat.AllParents)
+        foreach (ICategory item in cat.AllParents)
         {
             if (item.ID != 0)
             {

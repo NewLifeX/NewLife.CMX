@@ -1,7 +1,7 @@
-﻿@model NewLife.CMX.IEntityCategory
+﻿@model NewLife.CMX.ICategory
 @{
     var Channel = ViewBag.Channel as Channel;
-    var Titles = ViewBag.Titles as IList<IEntityTitle>;
+    var Titles = ViewBag.Titles as IList<IInfo>;
     var Pager = ViewBag.Pager as Pager;
 }
 <div class="container" style="min-height: 600px;">
@@ -15,7 +15,7 @@
         var childs = Model.Childs;
         if (childs.Count > 0)
         {
-            foreach (IEntityCategory cat in childs)
+            foreach (ICategory cat in childs)
             {
                 <div class="widget2 fixed">
                     <h2 class="tit">

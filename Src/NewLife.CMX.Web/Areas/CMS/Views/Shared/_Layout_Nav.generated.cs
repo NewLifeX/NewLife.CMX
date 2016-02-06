@@ -53,7 +53,7 @@ namespace ASP
             #line 2 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
   
     var chn = ViewBag.Channel as Channel;
-    var cat = ViewBag.Category as IEntityCategory;
+    var cat = ViewBag.Category as ICategory;
 
             
             #line default
@@ -103,7 +103,7 @@ WriteLiteral("</strong></a>\r\n");
             #line 10 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
     if (cat != null)
     {
-        foreach (IEntityCategory item in cat.AllParents)
+        foreach (ICategory item in cat.AllParents)
         {
             if (item.ID != 0)
             {

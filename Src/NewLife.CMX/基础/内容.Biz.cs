@@ -15,6 +15,8 @@ using NewLife.Web;
 using XCode;
 using XCode.Configuration;
 using XCode.Membership;
+using XCode.Cache;
+using System.Linq;
 
 namespace NewLife.CMX
 {
@@ -23,14 +25,25 @@ namespace NewLife.CMX
     public class Content : Content<Content> { }
     
     /// <summary>内容</summary>
-    public partial class Content<TEntity> : Entity<TEntity> where TEntity : Content<TEntity>, new()
+    public partial class Content<TEntity> : UserTimeEntity<TEntity> where TEntity : Content<TEntity>, new()
     {
         #region 对象操作
-            ﻿
+        /// <summary>根据ParentID缓存最后版本</summary>
+        static SingleEntityCache<Int32, TEntity> _cache;
+     ﻿
         static Content()
         {
             // 用于引发基类的静态构造函数，所有层次的泛型实体类都应该有一个
             TEntity entity = new TEntity();
+
+            _cache = new SingleEntityCache<int, TEntity>();
+            _cache.AllowNull = true;
+            _cache.AutoSave = false;
+            _cache.FindKeyMethod = id =>
+            {
+                var list = FindAllByName(__.InfoID, id, _.Version.Desc(), 0, 1);
+                return list.Count > 0 ? list[0] : null;
+            };
         }
 
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
@@ -50,8 +63,20 @@ namespace NewLife.CMX
             // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
             //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
             
-            if (isNew && !Dirtys[__.CreateTime]) CreateTime = DateTime.Now;
-            if (!Dirtys[__.CreateIP]) CreateIP = WebHelper.UserHost;
+            //if (isNew && !Dirtys[__.CreateTime]) CreateTime = DateTime.Now;
+            //if (!Dirtys[__.CreateIP]) CreateIP = WebHelper.UserHost;
+
+            //var mp = ManageProvider.Provider;
+            //// 创建者信息
+            //if (isNew && !Dirtys[__.CreateTime])
+            //{
+            //    CreateTime = DateTime.Now;
+            //    if (mp.Current != null)
+            //    {
+            //        CreateUserID = mp.Current.ID;
+            //        CreateUserName = mp.Current.ToString();
+            //    }
+            //}
         }
 
         ///// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
@@ -81,21 +106,23 @@ namespace NewLife.CMX
         //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
         //}
 
+        /// <summary>不允许修改</summary>
+        /// <returns></returns>
+        public override int Update()
+        {
+            // 重载非OnXXX版本是为了让实体类内部可以直接调用OnXXX越过这里的检查
+            throw new XException(Meta.Table.DataTable.DisplayName + "不允许修改！");
+            //return base.Update();
+        }
 
-        ///// <summary>已重载。基类先调用Valid(true)验证数据，然后在事务保护内调用OnInsert</summary>
-        ///// <returns></returns>
-        //public override Int32 Insert()
-        //{
-        //    return base.Insert();
-        //}
-
-        ///// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
-        ///// <returns></returns>
-        //protected override Int32 OnInsert()
-        //{
-        //    return base.OnInsert();
-        //}
-
+        /// <summary>不允许修改</summary>
+        /// <returns></returns>
+        public override int Delete()
+        {
+            // 重载非OnXXX版本是为了让实体类内部可以直接调用OnXXX越过这里的检查
+            throw new XException(Meta.Table.DataTable.DisplayName + "不允许删除！");
+            //return base.Delete();
+        }
         #endregion
 
         #region 扩展属性
@@ -104,7 +131,18 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展查询
-            ﻿
+        /// <summary>根据ID查询</summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static TEntity FindByID(Int32 id)
+        {
+            if (Meta.Count >= 1000)
+                return Meta.SingleCache[id];
+            else
+                return Meta.Cache.Entities.Find(__.ID, id);
+        }
+    ﻿
         /// <summary>根据主题查找</summary>
         /// <param name="parentid">主题</param>
         /// <returns></returns>
@@ -130,6 +168,17 @@ namespace NewLife.CMX
                 return Meta.Cache.Entities.Find(e => e.InfoID == parentid && e.Version == version);
         }
 
+        /// <summary>根据ParentID查询最后版本</summary>
+        /// <param name="parentid"></param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static TEntity FindLastByParentID(Int32 parentid)
+        {
+            if (Meta.Count >= 1000)
+                return _cache[parentid];
+            else
+                return Meta.Cache.Entities.FindAll(__.InfoID, parentid).Sort(__.Version, true).ToList().FirstOrDefault();
+        }
         #endregion
 
         #region 高级查询
@@ -158,6 +207,19 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展操作
+        /// <summary>根据父级编号删除对应内容</summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static Int32 DeleteByParentID(Int32 id)
+        {
+            var rs = 0;
+            var list = FindAllByParentID(id);
+            foreach (var item in list)
+            {
+                rs += item.OnDelete();
+            }
+            return rs;
+        }
         #endregion
 
         #region 业务

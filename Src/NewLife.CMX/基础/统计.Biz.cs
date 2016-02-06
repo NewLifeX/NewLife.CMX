@@ -14,6 +14,10 @@ using System.Text;
 namespace NewLife.CMX
 {
     /// <summary>统计</summary>
+    [ModelCheckMode(ModelCheckModes.CheckTableWhenFirstUse)]
+    public class Statistics : Statistics<Statistics> { }
+
+    /// <summary>统计</summary>
     public partial class Statistics<TEntity> : Entity<TEntity> where TEntity : Statistics<TEntity>, new()
     {
         #region 对象操作﻿
@@ -200,6 +204,8 @@ namespace NewLife.CMX
 
     partial interface IStatistics
     {
+        String Text { get; }
+
         /// <summary>增加计数</summary>
         /// <param name="remark">备注</param>
         void Increment(String remark);
