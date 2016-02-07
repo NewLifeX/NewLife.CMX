@@ -7,27 +7,33 @@
     </p>
 </div>
 <div class="benefits container">
-    @foreach (var cat in Category.FindAllWithCache())
-    {
-        var cats = cat.AllChilds;
-        if (cats.Count > 0)
+    @{
+        var cats = Category.Root.Childs;
+        var cell = 3;
+        var width = 12 / cell;
+        var left = 12 - width * cell;
+        var right = left / 2;
+        left -= right;
+        for (int i = 0; i < cats.Count; )
         {
-            var width = 12 / cats.Count;
-            var left = 12 - width * cats.Count;
-            var right = left / 2;
-            left -= right;
-            <div class="row" channel="@cat.Name">
+            <div class="row">
                 @if (left > 0)
                 {
                     <div class="col-md-@left"></div>
                 }
-                @foreach (var cat2 in cats)
+                @for (int j = 0; j < cell && i < cats.Count; j++, i++)
                 {
+                    var cat = cats[i];
                     <div class="col-md-@width">
-                        <h2>@cat.Name</h2>
-                        <div class="widget_list lz_con fixed tab_list show">
+                        <div class="col-md-8">
+                            <h2>@cat.Name</h2>
+                        </div>
+                        <div class="col-md-4" style="vertical-align:text-bottom">
+                            <a href="~/Views/Home/Index.cshtml">更多</a>
+                        </div>
+                        <div class="col-md-12 widget_list lz_con fixed tab_list show">
                             <ul>
-                                @foreach (var item in cat2.GetTitles(1, 5))
+                                @foreach (var item in cat.GetTitles(1, 5))
                                 {
                                     <li>
                                         [<a href="@this.GetCategoryUrl(item.Category)" target="_blank">
