@@ -7,9 +7,11 @@
 ﻿using System;
 using System.ComponentModel;
 using NewLife.Common;
+using System.Linq;
 using NewLife.Log;
 using XCode.Membership;
 using NewLife.Reflection;
+using System.Collections.Generic;
 
 namespace NewLife.CMX
 {
@@ -113,7 +115,15 @@ namespace NewLife.CMX
         {
             var count = 0;
 
-            foreach (var item in typeof(IInfoExtend).GetAllSubclasses(true))
+            // 预设顺序
+            var ms = "Text,Article,Photo,Video,Product,Down".Split(",");
+            //var dic = new Dictionary<String, Int32>(StringComparer.OrdinalIgnoreCase);
+            //for (int i = 0; i < ms.Length; i++)
+            //{
+            //    dic[ms[i]] = ms.Length - i;
+            //}
+
+            foreach (var item in typeof(IInfoExtend).GetAllSubclasses(true).OrderBy(e => Array.IndexOf(ms, e.Name)))
             {
                 var entity = FindByName(item.Name);
                 if (entity == null) entity = new Model();

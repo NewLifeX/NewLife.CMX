@@ -17,6 +17,7 @@ using XCode.Configuration;
 using XCode.Membership;
 using System.IO;
 using System.Linq;
+using NewLife.Common;
 
 namespace NewLife.CMX
 {
@@ -43,8 +44,8 @@ namespace NewLife.CMX
             if (!HasDirty) return;
 
             // 这里验证参数范围，建议抛出参数异常，指定参数名，前端用户界面可以捕获参数异常并聚焦到对应的参数输入框
+            if (String.IsNullOrEmpty(Name)) throw new ArgumentNullException(_.Name, _.Name.DisplayName + "无效！");
             if (Model == null) throw new ArgumentNullException(__.ModelID, _.ModelID.DisplayName + "无效！");
-            //if (String.IsNullOrEmpty(Name)) throw new ArgumentNullException(_.Name, _.Name.DisplayName + "无效！");
             //if (!isNew && ID < 1) throw new ArgumentOutOfRangeException(_.ID, _.ID.DisplayName + "必须大于0！");
 
             // 建议先调用基类方法，基类方法会对唯一索引的数据进行验证
@@ -53,6 +54,23 @@ namespace NewLife.CMX
             // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
             //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
 
+            if (Dirtys[__.Code])
+            {
+                // 已设置代码，检查是否唯一
+                if (!Code.IsNullOrEmpty()) CheckExist(__.Code);
+            }
+            else if (isNew)
+            {
+                // 未设置代码，自动生成
+                var code = PinYin.GetFirst(Name);
+                Code = code;
+                for (int i = 2; i < 100; i++)
+                {
+                    if (!Exist(__.Code)) break;
+
+                    Code = code + i;
+                }
+            }
         }
 
         /// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
@@ -93,13 +111,26 @@ namespace NewLife.CMX
                 // 遍历模型
                 NewLife.CMX.Model.Meta.Session.WaitForInitData();
 
+                // 预设顺序
+                //var ms = "Text,Article,Photo,Video,Product,Down".Split(",");
+                //var dic = new Dictionary<String, Int32>(StringComparer.OrdinalIgnoreCase);
+                //for (int i = 0; i < ms.Length; i++)
+                //{
+                //    dic[ms[i]] = ms.Length - i;
+                //}
+
+                var sort = 100;
                 foreach (var item in NewLife.CMX.Model.FindAllWithCache())
                 {
+                    XTrace.WriteLine("Init {0}", item.Name);
                     var entity = new TEntity
                     {
                         Name = item.DisplayName ?? item.Name,
+                        Code = item.Name,
                         ModelID = item.ID
                     };
+                    //if (dic.ContainsKey(item.Name)) entity.Sort = dic[item.Name];
+                    entity.Sort = sort--;
                     entity.Insert();
 
                     entity = new TEntity
