@@ -9,7 +9,7 @@ using NewLife.Web;
 using XCode;
 using XCode.Membership;
 
-namespace NewLife.CMX.Web
+namespace NewLife.CMX.Web.Controllers
 {
     public class InfoController : InfoController<Info> { }
 

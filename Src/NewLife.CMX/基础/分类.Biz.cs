@@ -113,8 +113,8 @@ namespace NewLife.CMX
                     XTrace.WriteLine("Init {0}", item.Name);
                     var entity = new TEntity
                     {
-                        Name = item.DisplayName ?? item.Name,
-                        Code = "默认" + item.Name,
+                        Name = "默认" + (item.DisplayName ?? item.Name),
+                        Code = item.Name,
                         ModelID = item.ID
                     };
                     entity.Sort = sort--;

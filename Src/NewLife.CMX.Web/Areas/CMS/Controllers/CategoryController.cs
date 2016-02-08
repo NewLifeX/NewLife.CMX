@@ -7,7 +7,7 @@ using NewLife.Cube;
 using XCode;
 using XCode.Membership;
 
-namespace NewLife.CMX.Web
+namespace NewLife.CMX.Web.Controllers
 {
     public class CategoryController : EntityTreeController<Category> { }
 }
