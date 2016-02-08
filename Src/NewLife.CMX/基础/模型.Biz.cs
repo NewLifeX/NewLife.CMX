@@ -5,17 +5,23 @@
  * 版权：版权所有 (C) 新生命开发团队 2002~2013
 */
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using NewLife.Log;
 using NewLife.Reflection;
+using XCode;
 using XCode.Membership;
 
 namespace NewLife.CMX
 {
+    /// <summary>内容</summary>
+    [ModelCheckMode(ModelCheckModes.CheckTableWhenFirstUse)]
+    public class ModelX : Model<ModelX> { }
+
     /// <summary>模型</summary>
     /// <remarks>模型。默认有文章、文本、产品三种模型，可以扩展增加。</remarks>
-    public partial class Model : UserTimeEntity<Model>
+    public partial class Model<TEntity> : UserTimeEntity<TEntity> where TEntity : Model<TEntity>, new()
     {
         #region 对象操作﻿
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
@@ -42,9 +48,9 @@ namespace NewLife.CMX
             if (Meta.Count > 0) return;
 
             // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
-            if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Model).Name, Meta.Table.DataTable.DisplayName);
+            if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", Meta.ThisType.Name, Meta.Table.DataTable.DisplayName);
             Scan();
-            if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Model).Name, Meta.Table.DataTable.DisplayName);
+            if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", Meta.ThisType.Name, Meta.Table.DataTable.DisplayName);
         }
 
         /// <summary>检查是否允许删除</summary>
@@ -71,7 +77,7 @@ namespace NewLife.CMX
         /// <param name="id"></param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static Model FindByID(Int32 id)
+        public static TEntity FindByID(Int32 id)
         {
             if (Meta.Count >= 1000)
                 return Find(__.ID, id);
@@ -83,7 +89,7 @@ namespace NewLife.CMX
         /// <param name="name">名称</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static Model FindByName(String name)
+        public static TEntity FindByName(String name)
         {
             // 实体缓存
             var entity = Meta.Cache.Entities.Find(__.Name, name);
@@ -93,18 +99,42 @@ namespace NewLife.CMX
         #endregion
 
         #region 高级查询
+        /// <summary>获取所有有效模型</summary>
+        /// <returns></returns>
+        public static EntityList<TEntity> GetAll()
+        {
+            return FindAllWithCache(__.Enable, true).Sort(__.ID, false);
+        }
+
+        /// <summary>获取当前模型的顶级分类</summary>
+        /// <returns></returns>
+        public IList<ICategory> GetTopCategories()
+        {
+            // 过滤得到该模型的所有分类，然后按照深度排序
+            var list = Category.FindAllWithCache().ToList().Where(e => e.ModelID == ID).ToList();
+            return list.MinBy(e => e.Deepth).Cast<ICategory>().ToList();
+        }
         #endregion
 
         #region 扩展操作
+        /// <summary>显示友好名称</summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            if (!DisplayName.IsNullOrEmpty())
+                return DisplayName;
+            else
+                return Name;
+        }
         #endregion
 
         #region 业务
         /// <summary>添加模型</summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static Model Add(String name)
+        public static TEntity Add(String name)
         {
-            var entity = new Model();
+            var entity = new TEntity();
             entity.Name = name;
             entity.Enable = true;
             entity.Save();
@@ -124,7 +154,7 @@ namespace NewLife.CMX
             foreach (var item in typeof(IInfoExtend).GetAllSubclasses(true).OrderBy(e => Array.IndexOf(ms, e.Name)))
             {
                 var entity = FindByName(item.Name);
-                if (entity == null) entity = new Model();
+                if (entity == null) entity = new TEntity();
 
                 entity.Name = item.Name;
                 entity.DisplayName = item.GetDisplayName() ?? item.GetDescription();

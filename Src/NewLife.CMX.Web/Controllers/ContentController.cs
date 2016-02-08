@@ -76,7 +76,7 @@ namespace NewLife.CMX.Web.Controllers
         public ActionResult Index()
         {
             var name = RouteData.Values["modelName"] + "";
-            var model = Model.FindByName(name);
+            var model = ModelX.FindByName(name);
 
             // 选择模版
             var tmp = model.IndexTemplate;
@@ -155,7 +155,7 @@ namespace NewLife.CMX.Web.Controllers
         public ActionResult Search(String key, Int32? pageIndex)
         {
             var name = RouteData.Values["modelName"] + "";
-            var model = Model.FindByName(name);
+            var model = ModelX.FindByName(name);
 
             var code = RouteData.Values["categoryCode"] + "";
             var cat = Category.FindByCode(code);

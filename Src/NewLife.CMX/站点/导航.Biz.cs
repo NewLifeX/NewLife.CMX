@@ -131,17 +131,17 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
-        private Model _Model;
+        private IModel _Model;
         /// <summary>模型</summary>
         [XmlIgnore]
         [BindRelation("ModelID", false, "Model", "ID")]
-        public Model Model
+        public IModel Model
         {
             get
             {
                 if (_Model == null && ModelID > 0 && !Dirtys.ContainsKey("Model"))
                 {
-                    _Model = Model.FindByID(ModelID);
+                    _Model = ModelX.FindByID(ModelID);
                     Dirtys["Model"] = true;
                 }
                 return _Model;

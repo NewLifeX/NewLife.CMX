@@ -105,16 +105,16 @@ namespace NewLife.CMX
             else
             {
                 // 遍历模型
-                NewLife.CMX.Model.Meta.Session.WaitForInitData();
+                ModelX.Meta.Session.WaitForInitData();
 
                 var sort = 100;
-                foreach (var item in NewLife.CMX.Model.FindAllWithCache())
+                foreach (var item in ModelX.FindAllWithCache())
                 {
                     XTrace.WriteLine("Init {0}", item.Name);
                     var entity = new TEntity
                     {
                         Name = item.DisplayName ?? item.Name,
-                        Code = item.Name,
+                        Code = "默认" + item.Name,
                         ModelID = item.ID
                     };
                     entity.Sort = sort--;
@@ -145,7 +145,7 @@ namespace NewLife.CMX
             {
                 if (_Model == null && ModelID > 0 && !Dirtys.ContainsKey("Model"))
                 {
-                    _Model = NewLife.CMX.Model.FindByID(ModelID);
+                    _Model = ModelX.FindByID(ModelID);
                     Dirtys["Model"] = true;
                 }
                 return _Model;

@@ -9,7 +9,7 @@ using XCode.Configuration;
 
 namespace NewLife.CMX.Web.Controllers
 {
-    public class ModelController : EntityControllerBase<Model>
+    public class ModelController : EntityControllerBase<ModelX>
     {  
         /// <summary>列表页视图。子控制器可重载，以传递更多信息给视图，比如修改要显示的列</summary>
         /// <param name="p"></param>

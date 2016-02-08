@@ -43,15 +43,17 @@
         </li>
     }
     @*遍历产生内容管理菜单*@
-    @foreach (var cat in Category.FindAllWithCache())
+    @foreach (var mod in ModelX.GetAll())
     {
         // 判断是否有权访问该频道
-        var res = "CMS\\" + cat.Code;
-        if (!user.Has(res) && !user.Has(res + "Category")) { continue; }
+        var res = "CMS\\" + mod.Name;
+        //if (!user.Has(res) && !user.Has(res + "Category")) { continue; }
+        //if (!user.Has(res)) { continue; }
+        if (_idx >= icos.Length) { _idx = 0; }
         <li>
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa @icos[_idx++]"></i>
-                <span class="menu-text">@cat.Name</span>
+                <span class="menu-text">@mod.ToString()</span>
 
                 <b class="arrow fa fa-angle-down"></b>
             </a>
@@ -59,21 +61,15 @@
             <b class="arrow"></b>
 
             <ul class="submenu">
-                @if (user.Has(res + "Category"))
+                <li>
+                    <a href="~/CMS/@mod.Name" target="main">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        @mod 管理
+                    </a>
+                </li>
+                @foreach (ICategory cat2 in mod.GetTopCategories())
                 {
-                    <li>
-                        <a href="~/CMS/Category/@cat.ID" target="main">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            分类管理
-                        </a>
-                    </li>
-                }
-                @if (user.Has(res))
-                {
-                    foreach (ICategory cat2 in cat.Childs)
-                    {
-                        @Html.Partial("_Left_Category", cat2);
-                    }
+                    @Html.Partial("_Left_Category", cat2);
                 }
             </ul>
         </li>
