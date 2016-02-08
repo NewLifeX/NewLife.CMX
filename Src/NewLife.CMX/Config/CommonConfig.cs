@@ -4,8 +4,8 @@ using NewLife.Xml;
 
 namespace NewLife.CMX.Config
 {
-    [XmlConfigFile("config/Common.config", 15000)]
     /// <summary>通用设置</summary>
+    [XmlConfigFile("config/Common.config", 15000)]
     [Description("通用设置")]
     [Serializable]
     public class CommonConfig : XmlConfig<CommonConfig>

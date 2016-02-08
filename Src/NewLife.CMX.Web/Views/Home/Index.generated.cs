@@ -175,7 +175,7 @@ WriteLiteral(">\r\n                        <ul>\r\n");
             #line hidden
             
             #line 31 "..\..\Views\Home\Index.cshtml"
-                             foreach (var item in cat.GetTitles(1, 5))
+                             foreach (var item in cat.GetInfos(1, 5))
                             {
 
             

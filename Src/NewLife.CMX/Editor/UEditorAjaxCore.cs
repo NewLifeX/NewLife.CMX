@@ -14,6 +14,8 @@ namespace NewLife.CMX.Editor
     /// <summary>UEditor 配置信息</summary>
     public class UEditorAjaxCore : IHttpHandler
     {
+        /// <summary>处理请求</summary>
+        /// <param name="context"></param>
         public void ProcessRequest(HttpContext context)
         {
 
@@ -464,7 +466,7 @@ namespace NewLife.CMX.Editor
             }
         }
 
-
+        /// <summary>工具栏</summary>
         public String ToolBars
         {
             get
@@ -487,6 +489,7 @@ namespace NewLife.CMX.Editor
         }
         #endregion
 
+        /// <summary>是否可重用</summary>
         public bool IsReusable { get { return false; } }
     }
 }

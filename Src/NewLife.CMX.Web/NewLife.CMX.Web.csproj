@@ -572,7 +572,7 @@
     <Content Include="UEditor.ashx" />
     <None Include="Views\Home\Index.cshtml">
       <Generator>RazorGenerator</Generator>
-      <LastGenOutput>Index1.generated.cs</LastGenOutput>
+      <LastGenOutput>Index.generated.cs</LastGenOutput>
     </None>
     <Content Include="Areas\CMS\Views\Shared\Form.cshtml">
       <Generator>RazorGenerator</Generator>

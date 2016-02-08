@@ -20,6 +20,8 @@ namespace NewLife.CMX
     public partial class Nav : UserTimeEntityTree<Nav>, IUserInfo, ITimeInfo
     {
         #region 验证数据
+        /// <summary>验证导航数据</summary>
+        /// <param name="isNew"></param>
         public override void Valid(bool isNew)
         {
             if (!isNew && !HasDirty) return;
@@ -73,11 +75,6 @@ namespace NewLife.CMX
 
             var fn = "../InitData/{0}.json".F(Meta.TableName).GetFullPath();
 
-            if (!Directory.Exists(fn))
-            {
-                Directory.CreateDirectory(fn);
-            }
-
             if (File.Exists(fn))
             {
                 if (XTrace.Debug) XTrace.WriteLine("使用数据初始化文件【{0}】初始化{1}[{2}]数据……", fn, typeof(Nav).Name, Meta.Table.DataTable.DisplayName);
@@ -90,9 +87,11 @@ namespace NewLife.CMX
                 {
                     var item = queue.Dequeue();
                     item.Insert();
-                    if (item.Childrens != null && item.Childrens.Count > 0)
+
+                    var childs = item.Childrens;
+                    if (childs != null && childs.Count > 0)
                     {
-                        foreach (var child in item.Childrens)
+                        foreach (var child in childs)
                         {
                             child.ParentID = item.ID;
                             queue.Enqueue(child);
@@ -120,13 +119,14 @@ namespace NewLife.CMX
                     var list = new EntityList<Nav>();
                     list.Add(header);
                     list.Add(footer);
-                    File.WriteAllText(fn, list.ToJson());
+                    File.WriteAllText(fn.EnsureDirectory(), list.ToJson());
                 }
             }
 
             if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Nav).Name, Meta.Table.DataTable.DisplayName);
         }
 
+        /// <summary>子孙节点</summary>
         public EntityList<Nav> Childrens { get; set; }
         #endregion
 

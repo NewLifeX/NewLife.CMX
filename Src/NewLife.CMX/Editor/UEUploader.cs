@@ -7,6 +7,7 @@ using System.Collections;
 
 namespace NewLife.CMX.Editor
 {
+    /// <summary>UEditor上传</summary>
     public class UEUploader
     {
         string state = "SUCCESS";

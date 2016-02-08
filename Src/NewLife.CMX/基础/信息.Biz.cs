@@ -329,6 +329,12 @@ namespace NewLife.CMX
             return FindAll(exp, param);
         }
 
+        /// <summary>根据关键字搜索指定模型和分类下的信息</summary>
+        /// <param name="modelid"></param>
+        /// <param name="categoryid"></param>
+        /// <param name="key"></param>
+        /// <param name="param"></param>
+        /// <returns></returns>
         public static EntityList<TEntity> Search(Int32 modelid, Int32 categoryid, String key, PageParameter param)
         {
             var exp = new WhereExpression();
@@ -356,16 +362,19 @@ namespace NewLife.CMX
 
     partial interface IInfo : IUserInfo
     {
+        /// <summary>模型</summary>
         IModel Model { get; }
 
         /// <summary>当前主题的分类</summary>
         ICategory Category { get; }
 
+        /// <summary>扩展信息</summary>
         IInfoExtend Ext { get; }
 
         /// <summary>主要内容</summary>
         String ContentText { get; set; }
 
+        /// <summary>统计</summary>
         IStatistics Statistics { get; }
     }
 }

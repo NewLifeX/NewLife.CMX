@@ -4,8 +4,8 @@ using NewLife.Xml;
 
 namespace NewLife.CMX.Config
 {
-    [XmlConfigFile("config/WebSetting.config", 15000)]
     /// <summary>网站配置</summary>
+    [XmlConfigFile("Config/WebSetting.config", 15000)]
     [Description("网站配置")]
     [Serializable]
     public class WebSettingConfig : XmlConfig<WebSettingConfig>

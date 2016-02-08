@@ -7,17 +7,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
-using System.Xml.Serialization;
-using NewLife.Log;
-using NewLife.Web;
-﻿using NewLife.Data;
-using XCode;
-using XCode.Configuration;
-using XCode.Membership;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Xml.Serialization;
 using NewLife.Common;
+using NewLife.Data;
+using NewLife.Log;
+using XCode;
 
 namespace NewLife.CMX
 {
@@ -29,7 +26,6 @@ namespace NewLife.CMX
     public partial class Category<TEntity> : EntityTree<TEntity>, ICategory where TEntity : Category<TEntity>, new()
     {
         #region 对象操作
-
         static Category()
         {
             // 用于引发基类的静态构造函数，所有层次的泛型实体类都应该有一个
@@ -111,14 +107,6 @@ namespace NewLife.CMX
                 // 遍历模型
                 NewLife.CMX.Model.Meta.Session.WaitForInitData();
 
-                // 预设顺序
-                //var ms = "Text,Article,Photo,Video,Product,Down".Split(",");
-                //var dic = new Dictionary<String, Int32>(StringComparer.OrdinalIgnoreCase);
-                //for (int i = 0; i < ms.Length; i++)
-                //{
-                //    dic[ms[i]] = ms.Length - i;
-                //}
-
                 var sort = 100;
                 foreach (var item in NewLife.CMX.Model.FindAllWithCache())
                 {
@@ -129,7 +117,6 @@ namespace NewLife.CMX
                         Code = item.Name,
                         ModelID = item.ID
                     };
-                    //if (dic.ContainsKey(item.Name)) entity.Sort = dic[item.Name];
                     entity.Sort = sort--;
                     entity.Insert();
 
@@ -144,21 +131,6 @@ namespace NewLife.CMX
             }
             if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
         }
-
-        ///// <summary>已重载。基类先调用Valid(true)验证数据，然后在事务保护内调用OnInsert</summary>
-        ///// <returns></returns>
-        //public override Int32 Insert()
-        //{
-        //    return base.Insert();
-        //}
-
-        ///// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
-        ///// <returns></returns>
-        //protected override Int32 OnInsert()
-        //{
-        //    return base.OnInsert();
-        //}
-
         #endregion
 
         #region 扩展属性
@@ -186,6 +158,7 @@ namespace NewLife.CMX
         [DisplayName("模型名")]
         public String ModelName { get { return Model != null ? Model.Name : String.Empty; } }
 
+        /// <summary>子节点</summary>
         public EntityList<TEntity> Childrens { get; set; }
         #endregion
 
@@ -240,13 +213,17 @@ namespace NewLife.CMX
         #endregion
 
         #region 高级查询
-        public IList<IInfo> GetTitles(Int32 pageIndex = 1, Int32 pageSize = 10)
+        /// <summary>获取该分类以及子孙分类的所有有效信息</summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public IList<IInfo> GetInfos(Int32 pageIndex = 1, Int32 pageSize = 10)
         {
             //var provider = ModelProvider.Get(this.GetType());
-            //return provider.TitleFactory.GetTitles(ID, pageIndex, pageSize);
+            //return provider.TitleFactory.GetInfos(ID, pageIndex, pageSize);
             var pager = new PageParameter { PageIndex = pageIndex, PageSize = pageSize };
 
-            return GetTitles(pager);
+            return GetInfos(pager);
         }
 
         //public int GetTitleCount()
@@ -255,12 +232,15 @@ namespace NewLife.CMX
         //    return provider.TitleFactory.GetTitleCount(this.ID);
         //}
 
-        public IList<IInfo> GetTitles(PageParameter pager)
+        /// <summary>获取该分类以及子孙分类的所有有效信息</summary>
+        /// <param name="pager"></param>
+        /// <returns></returns>
+        public IList<IInfo> GetInfos(PageParameter pager)
         {
             //var provider = ModelProvider.Get(this.GetType());
-            //return provider.TitleFactory.GetTitles(ID, pager);
+            //return provider.TitleFactory.GetInfos(ID, pager);
 
-            //todo GetTitles(PageParameter pager)
+            //todo GetInfos(PageParameter pager)
 
             return Info.Search(0, ID, null, pager).ToList().Cast<IInfo>().ToList();
         }
@@ -295,7 +275,7 @@ namespace NewLife.CMX
                 case "category":
                     tmp = CategoryTemplate;
                     break;
-                case "title":
+                case "info":
                     tmp = InfoTemplate;
                     break;
                 default:
@@ -314,7 +294,7 @@ namespace NewLife.CMX
                     case "category":
                         tmp = Model.CategoryTemplate;
                         break;
-                    case "title":
+                    case "info":
                         tmp = Model.InfoTemplate;
                         break;
                     default:
@@ -332,18 +312,26 @@ namespace NewLife.CMX
 
         /// <summary>获取标题模版</summary>
         /// <returns></returns>
-        public String GetTitleTemplate() { return GetTemplate("title"); }
+        public String GetInfoTemplate() { return GetTemplate("info"); }
         #endregion
     }
 
     partial interface ICategory
     {
+        /// <summary>模型</summary>
         IModel Model { get; }
 
-        IList<IInfo> GetTitles(Int32 pageIndex = 1, Int32 pageCount = 10);
+        /// <summary>获取该分类以及子孙分类的所有有效信息</summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageCount"></param>
+        /// <returns></returns>
+        IList<IInfo> GetInfos(Int32 pageIndex = 1, Int32 pageCount = 10);
         //Int32 GetTitleCount();
 
-        IList<IInfo> GetTitles(PageParameter pager);
+        /// <summary>获取该分类以及子孙分类的所有有效信息</summary>
+        /// <param name="pager"></param>
+        /// <returns></returns>
+        IList<IInfo> GetInfos(PageParameter pager);
 
         //IInfo FindTitle(Int32 id);
 
@@ -351,8 +339,8 @@ namespace NewLife.CMX
         /// <returns></returns>
         String GetCategoryTemplate();
 
-        /// <summary>获取标题模版</summary>
+        /// <summary>获取信息模版</summary>
         /// <returns></returns>
-        String GetTitleTemplate();
+        String GetInfoTemplate();
     }
 }

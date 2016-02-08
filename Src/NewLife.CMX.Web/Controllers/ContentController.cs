@@ -80,7 +80,7 @@ namespace NewLife.CMX.Web.Controllers
 
             // 选择模版
             var tmp = model.IndexTemplate;
-            if (tmp.IsNullOrEmpty()) tmp = "Model";
+            if (tmp.IsNullOrEmpty()) tmp = "Index";
             var viewName = GetView(tmp, model);
 
             return View(viewName, model);
@@ -110,7 +110,7 @@ namespace NewLife.CMX.Web.Controllers
             var viewName = GetView(tmp, cat.Model);
 
             var pager = new Pager { PageIndex = pageIndex, PageSize = PageSize };
-            var list = cat.GetTitles(pager);
+            var list = cat.GetInfos(pager);
 
             ViewBag.Pager = pager;
 
@@ -141,8 +141,8 @@ namespace NewLife.CMX.Web.Controllers
             var cat = inf.Category;
 
             // 选择模版
-            var tmp = cat.GetTitleTemplate();
-            if (tmp.IsNullOrEmpty()) tmp = "Title";
+            var tmp = cat.GetInfoTemplate();
+            if (tmp.IsNullOrEmpty()) tmp = "Info";
             var viewName = GetView(tmp, inf.Model);
 
             // 增加浏览数

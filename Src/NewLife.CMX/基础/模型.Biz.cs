@@ -6,12 +6,10 @@
 */
 ﻿using System;
 using System.ComponentModel;
-using NewLife.Common;
 using System.Linq;
 using NewLife.Log;
-using XCode.Membership;
 using NewLife.Reflection;
-using System.Collections.Generic;
+using XCode.Membership;
 
 namespace NewLife.CMX
 {
@@ -49,10 +47,12 @@ namespace NewLife.CMX
             if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Model).Name, Meta.Table.DataTable.DisplayName);
         }
 
+        /// <summary>检查是否允许删除</summary>
+        /// <returns></returns>
         protected override int OnDelete()
         {
-            //var count = Channel.FindCountByModel(ID);
-            //if (count > 0) throw new XException("该模型下有{0}个频道，禁止删除！", count);
+            var count = Category.FindAllWithCache().ToList().Count(e => e.ModelID == ID);
+            if (count > 0) throw new XException("该模型下有{0}个分类，禁止删除！", count);
 
             return base.OnDelete();
         }
@@ -99,6 +99,9 @@ namespace NewLife.CMX
         #endregion
 
         #region 业务
+        /// <summary>添加模型</summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static Model Add(String name)
         {
             var entity = new Model();
@@ -117,11 +120,6 @@ namespace NewLife.CMX
 
             // 预设顺序
             var ms = "Text,Article,Photo,Video,Product,Down".Split(",");
-            //var dic = new Dictionary<String, Int32>(StringComparer.OrdinalIgnoreCase);
-            //for (int i = 0; i < ms.Length; i++)
-            //{
-            //    dic[ms[i]] = ms.Length - i;
-            //}
 
             foreach (var item in typeof(IInfoExtend).GetAllSubclasses(true).OrderBy(e => Array.IndexOf(ms, e.Name)))
             {
@@ -132,8 +130,11 @@ namespace NewLife.CMX
                 entity.DisplayName = item.GetDisplayName() ?? item.GetDescription();
                 entity.ProviderName = item.FullName;
 
-                //entity.InfoTemplate = String.Format("CMX/{0}.aspx", entity.Name);
-                //entity.CategoryTemplate = String.Format("CMX/{0}/{1}.aspx", entity.Name, entity.Name);
+                // 默认初始化路径
+                entity.IndexTemplate = "Views/{0}/Index.cshtml".F(entity.Name);
+                entity.CategoryTemplate = "Views/{0}/Category.cshtml".F(entity.Name);
+                entity.InfoTemplate = "Views/{0}/Info.cshtml".F(entity.Name);
+
                 entity.Enable = true;
                 entity.Save();
 
