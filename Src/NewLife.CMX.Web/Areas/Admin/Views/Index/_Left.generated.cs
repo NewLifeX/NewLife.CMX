@@ -297,16 +297,16 @@ WriteLiteral(" class=\"submenu\"");
 
 WriteLiteral(">\r\n                <li>\r\n                    <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 2202), Tuple.Create("\"", 2224)
-, Tuple.Create(Tuple.Create("", 2209), Tuple.Create<System.Object, System.Int32>(Href("~/CMS/")
+WriteAttribute("href", Tuple.Create(" href=\"", 2202), Tuple.Create("\"", 2231)
+, Tuple.Create(Tuple.Create("", 2209), Tuple.Create<System.Object, System.Int32>(Href("~/CMS/Info/Mod/")
 , 2209), false)
             
             #line 65 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-, Tuple.Create(Tuple.Create("", 2215), Tuple.Create<System.Object, System.Int32>(mod.Name
+, Tuple.Create(Tuple.Create("", 2224), Tuple.Create<System.Object, System.Int32>(mod.ID
             
             #line default
             #line hidden
-, 2215), false)
+, 2224), false)
 );
 
 WriteLiteral(" target=\"main\"");

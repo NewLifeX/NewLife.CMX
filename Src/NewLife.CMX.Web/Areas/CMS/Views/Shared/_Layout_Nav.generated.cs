@@ -53,7 +53,7 @@ namespace ASP
             #line 2 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
   
     var cat = ViewBag.Category as ICategory;
-    var mod = cat.Model;
+    var mod = cat != null ? cat.Model : null;
 
             
             #line default
@@ -76,14 +76,14 @@ WriteLiteral("></i>\r\n");
 
 WriteLiteral("    <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 194), Tuple.Create("\"", 264)
+WriteAttribute("href", Tuple.Create(" href=\"", 215), Tuple.Create("\"", 285)
             
             #line 9 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
-, Tuple.Create(Tuple.Create("", 201), Tuple.Create<System.Object, System.Int32>(Url.Action("Index", new { model = mod.ID, category = cat.ID })
+, Tuple.Create(Tuple.Create("", 222), Tuple.Create<System.Object, System.Int32>(Url.Action("Index", new { model = mod.ID, category = cat.ID })
             
             #line default
             #line hidden
-, 201), false)
+, 222), false)
 );
 
 WriteLiteral(" class=\"h4\"");
@@ -119,14 +119,14 @@ WriteLiteral("\r\n");
 
 WriteLiteral("                <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 509), Tuple.Create("\"", 580)
+WriteAttribute("href", Tuple.Create(" href=\"", 530), Tuple.Create("\"", 601)
             
             #line 17 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
-, Tuple.Create(Tuple.Create("", 516), Tuple.Create<System.Object, System.Int32>(Url.Action("Index", new { model = mod.ID, category = item.ID })
+, Tuple.Create(Tuple.Create("", 537), Tuple.Create<System.Object, System.Int32>(Url.Action("Index", new { model = mod.ID, category = item.ID })
             
             #line default
             #line hidden
-, 516), false)
+, 537), false)
 );
 
 WriteLiteral(" class=\"h4\"");
@@ -159,14 +159,14 @@ WriteLiteral("\r\n");
 
 WriteLiteral("    <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 680), Tuple.Create("\"", 750)
+WriteAttribute("href", Tuple.Create(" href=\"", 701), Tuple.Create("\"", 771)
             
             #line 22 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
-, Tuple.Create(Tuple.Create("", 687), Tuple.Create<System.Object, System.Int32>(Url.Action("Index", new { model = mod.ID, category = cat.ID })
+, Tuple.Create(Tuple.Create("", 708), Tuple.Create<System.Object, System.Int32>(Url.Action("Index", new { model = mod.ID, category = cat.ID })
             
             #line default
             #line hidden
-, 687), false)
+, 708), false)
 );
 
 WriteLiteral(" class=\"h4\"");
@@ -212,14 +212,14 @@ WriteLiteral("></i>\r\n");
             #line hidden
 WriteLiteral("                <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 1057), Tuple.Create("\"", 1108)
+WriteAttribute("href", Tuple.Create(" href=\"", 1078), Tuple.Create("\"", 1129)
             
             #line 34 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
-, Tuple.Create(Tuple.Create("", 1064), Tuple.Create<System.Object, System.Int32>(item.Url!=null? Url.Content(item.Url):"#"
+, Tuple.Create(Tuple.Create("", 1085), Tuple.Create<System.Object, System.Int32>(item.Url!=null? Url.Content(item.Url):"#"
             
             #line default
             #line hidden
-, 1064), false)
+, 1085), false)
 );
 
 WriteLiteral(" class=\"h4\"");
@@ -252,14 +252,14 @@ WriteLiteral("\r\n");
             #line hidden
 WriteLiteral("    <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 1227), Tuple.Create("\"", 1254)
+WriteAttribute("href", Tuple.Create(" href=\"", 1248), Tuple.Create("\"", 1275)
             
             #line 39 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
-, Tuple.Create(Tuple.Create("", 1234), Tuple.Create<System.Object, System.Int32>(Url.Action("Index")
+, Tuple.Create(Tuple.Create("", 1255), Tuple.Create<System.Object, System.Int32>(Url.Action("Index")
             
             #line default
             #line hidden
-, 1234), false)
+, 1255), false)
 );
 
 WriteLiteral(" class=\"h4\"");

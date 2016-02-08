@@ -1,7 +1,7 @@
 ﻿@using NewLife.CMX;
 @{
     var cat = ViewBag.Category as ICategory;
-    var mod = cat.Model;
+    var mod = cat != null ? cat.Model : null;
 }
 @if (mod != null && cat != null)
 {

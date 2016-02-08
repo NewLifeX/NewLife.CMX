@@ -19,7 +19,7 @@ namespace NewLife.CMX.Web
         {
             // 过滤掉一些字段
             var list = ListFields;
-            list.RemoveAll(e => e.Name.EqualIgnoreCase("ModelID", "CategoryID", "Version", "SourceID", "SourceUrl", "StatisticsID", "Remark"));
+            list.RemoveAll(e => e.Name.EqualIgnoreCase("ModelID", "CategoryID", "ExtendID", "Version", "Code", "SourceID", "SourceUrl", "StatisticsID", "Summary"));
 
             list = FormFields;
             list.RemoveAll(e => e.Name.EqualIgnoreCase("CategoryName", "StatisticsID"));
@@ -90,6 +90,42 @@ namespace NewLife.CMX.Web
             //LoadChannel();
 
             return base.FormView(entity);
+        }
+
+        public ActionResult Mod(Int32 id, Pager p = null)
+        {
+            if (p == null) p = new Pager();
+
+            ViewBag.Page = p;
+
+            // 用于显示的列
+            var fields = GetFields(false);
+            ViewBag.Fields = fields;
+
+            p.Sort = "CreateTime";
+            p.Desc = true;
+
+            var list = Info<TEntity>.Search(id, 0, null, p);
+
+            return View("List", list);
+        }
+
+        public ActionResult Cat(Int32 id, Pager p = null)
+        {
+            if (p == null) p = new Pager();
+
+            ViewBag.Page = p;
+
+            // 用于显示的列
+            var fields = GetFields(false);
+            ViewBag.Fields = fields;
+
+            p.Sort = "CreateTime";
+            p.Desc = true;
+
+            var list = Info<TEntity>.Search(0, id, null, p);
+
+            return View("List", list);
         }
     }
 }
