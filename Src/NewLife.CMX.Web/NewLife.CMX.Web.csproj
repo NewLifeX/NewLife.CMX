@@ -131,6 +131,11 @@
     <Compile Include="Areas\CMS\Controllers\AttachController.cs" />
     <Compile Include="Areas\CMS\Controllers\SiteController.cs" />
     <Compile Include="Areas\CMS\Controllers\InfoController.cs" />
+    <Compile Include="Areas\CMS\Views\Article\Form.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Form.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="Areas\CMS\Views\Nav\List.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -577,6 +582,10 @@
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>_Left_Category.generated.cs</LastGenOutput>
     </None>
+    <Content Include="Areas\CMS\Views\Article\Form.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Form.generated.cs</LastGenOutput>
+    </Content>
     <None Include="Areas\CMS\Views\Shared\_UserTime.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>_UserTime.generated.cs</LastGenOutput>

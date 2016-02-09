@@ -497,7 +497,7 @@ WriteLiteral(">\r\n");
             #line hidden
             
             #line 96 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-                   item = Article._.Top;
+                   var item = Article._.Top;
             
             #line default
             #line hidden
