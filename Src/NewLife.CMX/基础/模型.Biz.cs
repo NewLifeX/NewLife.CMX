@@ -161,9 +161,9 @@ namespace NewLife.CMX
                 entity.ProviderName = item.FullName;
 
                 // 默认初始化路径
-                entity.IndexTemplate = "Views/{0}/Index.cshtml".F(entity.Name);
-                entity.CategoryTemplate = "Views/{0}/Category.cshtml".F(entity.Name);
-                entity.InfoTemplate = "Views/{0}/Info.cshtml".F(entity.Name);
+                entity.IndexTemplate = "~/Views/{0}/Index.cshtml".F(entity.Name);
+                entity.CategoryTemplate = "~/Views/{0}/Category.cshtml".F(entity.Name);
+                entity.InfoTemplate = "~/Views/{0}/Info.cshtml".F(entity.Name);
 
                 entity.Enable = true;
                 entity.Save();

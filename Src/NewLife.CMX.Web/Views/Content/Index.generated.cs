@@ -62,12 +62,12 @@ WriteLiteral("    ");
 
             
             #line 5 "..\..\Views\Content\Index.cshtml"
-Write(Model.Name);
+Write(Model);
 
             
             #line default
             #line hidden
-WriteLiteral("\r\n</h2>\r\n");
+WriteLiteral(" 模型首页\r\n</h2>\r\n");
 
             
             #line 7 "..\..\Views\Content\Index.cshtml"

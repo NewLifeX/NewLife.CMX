@@ -46,6 +46,11 @@ namespace NewLife.CMX.Web.Controllers
         //    _model = Model.FindByName(name);
         //}
 
+        static Boolean ViewExists(String vpath)
+        {
+            return System.IO.File.Exists(vpath.GetFullPath());
+        }
+
         static DictionaryCache<String, String> _cache = new DictionaryCache<String, String>(StringComparer.OrdinalIgnoreCase);
         String GetView(String name, IModel model)
         {
@@ -57,17 +62,17 @@ namespace NewLife.CMX.Web.Controllers
                 // 模型目录的模版
                 var view = kview;
                 var vpath = "Views/{0}/{1}.cshtml".F(kmodel.Name, kname);
-                if (System.IO.File.Exists(vpath.GetFullPath())) return view;
+                if (ViewExists(vpath)) return view;
 
                 // 内容目录的模板
                 view = "../{0}/{1}".F("Content", kname);
                 vpath = "Views/{0}/{1}.cshtml".F("Content", kname);
-                if (System.IO.File.Exists(vpath.GetFullPath())) return view;
+                if (ViewExists(vpath)) return view;
 
                 // 共享目录的模板
                 view = "../{0}/{1}".F("Shared", kname);
                 vpath = "Views/{0}/{1}.cshtml".F("Shared", kname);
-                if (System.IO.File.Exists(vpath.GetFullPath())) return view;
+                if (ViewExists(vpath)) return view;
 
                 return null;
             });
@@ -80,10 +85,9 @@ namespace NewLife.CMX.Web.Controllers
 
             // 选择模版
             var tmp = model.IndexTemplate;
-            if (tmp.IsNullOrEmpty()) tmp = "Index";
-            var viewName = GetView(tmp, model);
+            if (tmp.IsNullOrEmpty() || !ViewExists(tmp)) tmp = GetView("Index", model);
 
-            return View(viewName, model);
+            return View(tmp, model);
         }
 
         public ActionResult List(Int32 categoryid, Int32? pageIndex)
@@ -106,15 +110,16 @@ namespace NewLife.CMX.Web.Controllers
         {
             // 选择模版
             var tmp = cat.GetCategoryTemplate();
-            if (tmp.IsNullOrEmpty()) tmp = "Category";
-            var viewName = GetView(tmp, cat.Model);
+            if (tmp.IsNullOrEmpty() || !ViewExists(tmp)) tmp = GetView("Category", cat.Model);
 
             var pager = new Pager { PageIndex = pageIndex, PageSize = PageSize };
             var list = cat.GetInfos(pager);
 
+            ViewBag.Category = cat;
             ViewBag.Pager = pager;
+            ViewBag.Infos = list;
 
-            return View(viewName, list);
+            return View(tmp, cat);
         }
 
         /// <summary>信息详细页</summary>
@@ -128,7 +133,7 @@ namespace NewLife.CMX.Web.Controllers
             return Detail(inf);
         }
 
-        public ActionResult Detail(String code)
+        public ActionResult Detail2(String code)
         {
             var inf = Info.FindByCode(code);
             if (inf == null) return HttpNotFound();
@@ -142,14 +147,15 @@ namespace NewLife.CMX.Web.Controllers
 
             // 选择模版
             var tmp = cat.GetInfoTemplate();
-            if (tmp.IsNullOrEmpty()) tmp = "Info";
-            var viewName = GetView(tmp, inf.Model);
+            if (tmp.IsNullOrEmpty() || !ViewExists(tmp)) tmp = GetView("Info", inf.Model);
 
             // 增加浏览数
             inf.Views++;
             inf.Statistics.Increment(null);
 
-            return View(viewName, inf);
+            ViewBag.Category = cat;
+
+            return View(tmp, inf);
         }
 
         public ActionResult Search(String key, Int32? pageIndex)

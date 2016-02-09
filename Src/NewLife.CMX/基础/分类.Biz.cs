@@ -110,11 +110,11 @@ namespace NewLife.CMX
                 var sort = 100;
                 foreach (var item in ModelX.FindAllWithCache())
                 {
-                    XTrace.WriteLine("Init {0}", item.Name);
                     var entity = new TEntity
                     {
-                        Name = "默认" + (item.DisplayName ?? item.Name),
-                        Code = item.Name,
+                        //Name = "默认" + (item.DisplayName ?? item.Name),
+                        Name = (item.DisplayName ?? item.Name),
+                        //Code = item.Name,
                         ModelID = item.ID
                     };
                     entity.Sort = sort--;
