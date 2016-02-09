@@ -191,4 +191,11 @@ namespace NewLife.CMX
         //}
         #endregion
     }
+
+    partial interface IModel
+    {
+        /// <summary>获取当前模型的顶级分类</summary>
+        /// <returns></returns>
+        IList<ICategory> GetTopCategories();
+    }
 }

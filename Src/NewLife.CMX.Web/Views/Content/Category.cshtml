@@ -1,6 +1,5 @@
 ﻿@model NewLife.CMX.ICategory
 @{
-    var Channel = ViewBag.Channel as Channel;
     var Titles = ViewBag.Titles as IList<IInfo>;
     var Pager = ViewBag.Pager as Pager;
 }
@@ -26,7 +25,7 @@
                     </h2>
                     <div class="content">
                         <ul class="list_news_dl fixed">
-                            @foreach (var title in cat.GetTitles())
+                            @foreach (var title in cat.GetInfos())
                             {
                                 <li>
                                     <a href="@this.GetUrl(title)">

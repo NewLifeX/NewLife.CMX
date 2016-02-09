@@ -182,6 +182,21 @@
     <Compile Include="UEditor.ashx.cs">
       <DependentUpon>UEditor.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Content\Category.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Category.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Content\Index.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Index.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Content\Info.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Info.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Home\Index.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -570,6 +585,20 @@
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.ttf" />
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.woff" />
     <Content Include="UEditor.ashx" />
+    <Content Include="Views\Content\Category.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Category.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Views\Content\Info.cshtml">
+      <SubType>Code</SubType>
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Info.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Views\Content\Index.cshtml">
+      <SubType>Code</SubType>
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Index.generated.cs</LastGenOutput>
+    </Content>
     <None Include="Views\Home\Index.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Index.generated.cs</LastGenOutput>
