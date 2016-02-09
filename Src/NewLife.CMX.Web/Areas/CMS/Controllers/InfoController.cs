@@ -86,10 +86,15 @@ namespace NewLife.CMX.Web.Controllers
         /// <returns></returns>
         protected override ActionResult FormView(TEntity entity)
         {
-            //// 加载频道和分类
-            //LoadChannel();
+            // 用于显示的列
+            if (ViewBag.Fields == null) ViewBag.Fields = GetFields(true);
 
-            return base.FormView(entity);
+            // 根据模型加载专属表单页
+            var tmp = "../{0}/Form".F(entity.ModelName);
+
+            //todo 魔方里面的Html.ForEditor("Title", inf)时有死递归的BUG
+
+            return View(tmp, entity);
         }
 
         public ActionResult Mod(Int32 id, Pager p = null)
