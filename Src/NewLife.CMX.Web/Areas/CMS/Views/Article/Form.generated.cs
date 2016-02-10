@@ -700,7 +700,7 @@ WriteLiteral("                    ");
 
             
             #line 127 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-               Write(Html.ForEditor("PublishTime", inf));
+               Write(Html.ForEditor("PublishTime", inf.PublishTime));
 
             
             #line default

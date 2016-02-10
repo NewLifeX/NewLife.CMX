@@ -124,7 +124,7 @@
             <div class="form-group">
                 <label class="control-label col-md-2">发布时间</label>
                 <div class="col-md-2 input-group">
-                    @Html.ForEditor("PublishTime", inf)
+                    @Html.ForEditor("PublishTime", inf.PublishTime)
                 </div>
             </div>
             @Html.Partial("_UserTime", Model as IEntity)
