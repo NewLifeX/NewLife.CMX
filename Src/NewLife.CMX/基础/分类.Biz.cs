@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
+using NewLife.Collections;
 using NewLife.Common;
 using NewLife.Data;
 using NewLife.Log;
@@ -219,30 +220,25 @@ namespace NewLife.CMX
         /// <returns></returns>
         public IList<IInfo> GetInfos(Int32 pageIndex = 1, Int32 pageSize = 10)
         {
-            //var provider = ModelProvider.Get(this.GetType());
-            //return provider.TitleFactory.GetInfos(ID, pageIndex, pageSize);
             var pager = new PageParameter { PageIndex = pageIndex, PageSize = pageSize };
 
             return GetInfos(pager);
         }
 
-        //public int GetTitleCount()
-        //{
-        //    var provider = ModelProvider.Get(this.GetType());
-        //    return provider.TitleFactory.GetTitleCount(this.ID);
-        //}
-
-        /// <summary>获取该分类以及子孙分类的所有有效信息</summary>
+        DictionaryCache<String, IList<IInfo>> _cache = new DictionaryCache<string, IList<IInfo>>()
+        {
+            Expriod = 60,
+            Asynchronous = true
+        };
+        /// <summary>获取该分类以及子孙分类的所有有效信息。带60秒异步缓存</summary>
         /// <param name="pager"></param>
         /// <returns></returns>
         public IList<IInfo> GetInfos(PageParameter pager)
         {
-            //var provider = ModelProvider.Get(this.GetType());
-            //return provider.TitleFactory.GetInfos(ID, pager);
+            var key = "{0}-{1}".F(ID, pager.GetKey());
+            return _cache.GetItem(key, pager, (k, p) => Info.Search(0, ID, null, p).ToList().Cast<IInfo>().ToList());
 
-            //todo GetInfos(PageParameter pager)
-
-            return Info.Search(0, ID, null, pager).ToList().Cast<IInfo>().ToList();
+            //return Info.Search(0, ID, null, pager).ToList().Cast<IInfo>().ToList();
         }
 
         //public IEntityTitle FindTitle(int id)

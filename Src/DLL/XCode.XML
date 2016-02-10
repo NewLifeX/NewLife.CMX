@@ -3558,6 +3558,9 @@
         <member name="P:XCode.EntityTree`2.AllChilds">
             <summary>子孙节点</summary>
         </member>
+        <member name="P:XCode.EntityTree`2.MyAllChilds">
+            <summary>子孙节点，包含自己</summary>
+        </member>
         <member name="P:XCode.EntityTree`2.AllParents">
             <summary>父节点集合</summary>
         </member>
@@ -3596,6 +3599,9 @@
         </member>
         <member name="P:XCode.EntityTree`2.AllChildKeys">
             <summary>子孙键值集合</summary>
+        </member>
+        <member name="P:XCode.EntityTree`2.MyAllChildKeys">
+            <summary>我的子孙键值集合，包含自己</summary>
         </member>
         <member name="P:XCode.EntityTree`2.AllChildKeyString">
             <summary>逗号分隔的子孙键值字符串，一般可用于SQL语句中</summary>

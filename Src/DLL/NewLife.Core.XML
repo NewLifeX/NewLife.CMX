@@ -13665,6 +13665,10 @@
             <param name="pm"></param>
             <returns></returns>
         </member>
+        <member name="M:NewLife.Data.PageParameter.GetKey">
+            <summary>获取表示分页参数唯一性的键值，可用作缓存键</summary>
+            <returns></returns>
+        </member>
         <member name="P:NewLife.Data.PageParameter.Sort">
             <summary>排序字段</summary>
         </member>
@@ -13684,7 +13688,7 @@
             <summary>页数</summary>
         </member>
         <member name="P:NewLife.Data.PageParameter.OrderBy">
-            <summary>排序字句</summary>
+            <summary>组合起来的排序字句</summary>
         </member>
         <member name="T:NewLife.Web.Pager">
             <summary>分页器。包含分页排序参数，支持构造Url的功能</summary>

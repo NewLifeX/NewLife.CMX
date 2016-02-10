@@ -342,7 +342,7 @@ namespace NewLife.CMX
             if (categoryid > 0)
             {
                 var cat = NewLife.CMX.Category.FindByID(categoryid);
-                if (cat != null) exp &= (_.CategoryID == categoryid | _.CategoryID.In(cat.AllChildKeys));
+                if (cat != null) exp &= _.CategoryID.In(cat.MyAllChildKeys);
             }
             else if (modelid > 0)
                 exp &= _.ModelID == modelid;
