@@ -199,18 +199,6 @@ namespace NewLife.CMX
             else // 实体缓存
                 return Meta.Cache.Entities.Find(__.Code, code);
         }
-
-        ///// <summary>根据父类查找</summary>
-        ///// <param name="parentid">父类</param>
-        ///// <returns></returns>
-        //[DataObjectMethod(DataObjectMethodType.Select, false)]
-        //public static EntityList<TEntity> FindAllByParentID(Int32 parentid)
-        //{
-        //    if (Meta.Count >= 1000)
-        //        return FindAll(__.ParentID, parentid);
-        //    else // 实体缓存
-        //        return Meta.Cache.Entities.FindAll(__.ParentID, parentid);
-        //}
         #endregion
 
         #region 高级查询
@@ -240,13 +228,6 @@ namespace NewLife.CMX
 
             //return Info.Search(0, ID, null, pager).ToList().Cast<IInfo>().ToList();
         }
-
-        //public IEntityTitle FindTitle(int id)
-        //{
-        //    var provider = ModelProvider.Get(this.GetType());
-        //    return provider.TitleFactory.FindByID(id);
-        //}
-
         #endregion
 
         #region 扩展操作
