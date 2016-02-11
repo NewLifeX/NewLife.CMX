@@ -1,15 +1,16 @@
-﻿@using System.Reflection
+﻿@model NewLife.CMX.IInfo
+@using System.Reflection
 @using XCode
 @using XCode.Configuration
 @using NewLife.CMX;
 @using NewLife.CMX.Web;
 @{
     var fact = EntityFactory.CreateOperate(ViewData.ModelMetadata.ModelType);
-    var fields = ViewBag.Fields as List<FieldItem>;
-    var isNew = (Model as IEntity).IsNullKey;
+
     var entity = Model as IEntity;
-    var text = Model as IText;
-    var inf = (Model as IInfoExtend).Info;
+    var isNew = entity.IsNullKey;
+    var inf = Model as IInfo;
+    var product = inf.Ext as IProduct;
 }
 <div class="panel panel-default">
     <div class="form-horizontal">

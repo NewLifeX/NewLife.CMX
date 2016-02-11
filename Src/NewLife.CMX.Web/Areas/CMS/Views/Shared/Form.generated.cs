@@ -78,8 +78,8 @@ namespace ASP
 
     // 创建更新等信息统一放在尾部
     var names = new String[] {
-        "CreateUserID", "CreateUserName", "CreateTime",
-        "UpdateUserID", "UpdateUserName", "UpdateTime",
+        "CreateUserID", "CreateUserName", "CreateTime", "CreateIP",
+        "UpdateUserID", "UpdateUserName", "UpdateTime", "UpdateIP",
         "Remark" };
     fields = fields.Where(e => !e.Name.EqualIgnoreCase(names)).ToList();
 
@@ -194,27 +194,27 @@ WriteLiteral("        ");
             #line hidden
 WriteLiteral("                        <script");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 1503), Tuple.Create("\"", 1544)
-, Tuple.Create(Tuple.Create("", 1509), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.config.js")
-, 1509), false)
+WriteAttribute("src", Tuple.Create(" src=\"", 1527), Tuple.Create("\"", 1568)
+, Tuple.Create(Tuple.Create("", 1533), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.config.js")
+, 1533), false)
 );
 
 WriteLiteral("></script>\r\n");
 
 WriteLiteral("                        <script");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 1588), Tuple.Create("\"", 1630)
-, Tuple.Create(Tuple.Create("", 1594), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.all.min.js")
-, 1594), false)
+WriteAttribute("src", Tuple.Create(" src=\"", 1612), Tuple.Create("\"", 1654)
+, Tuple.Create(Tuple.Create("", 1618), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.all.min.js")
+, 1618), false)
 );
 
 WriteLiteral("></script>\r\n");
 
 WriteLiteral("                        <script");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 1674), Tuple.Create("\"", 1717)
-, Tuple.Create(Tuple.Create("", 1680), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/lang/zh-cn/zh-cn.js")
-, 1680), false)
+WriteAttribute("src", Tuple.Create(" src=\"", 1698), Tuple.Create("\"", 1741)
+, Tuple.Create(Tuple.Create("", 1704), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/lang/zh-cn/zh-cn.js")
+, 1704), false)
 );
 
 WriteLiteral("></script>\r\n");

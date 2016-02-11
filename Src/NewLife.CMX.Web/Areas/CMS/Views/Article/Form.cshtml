@@ -6,7 +6,7 @@
 @using NewLife.CMX.Web;
 @{
     var fact = EntityFactory.CreateOperate(ViewData.ModelMetadata.ModelType);
-    var fields = ViewBag.Fields as List<FieldItem>;
+    
     var entity = Model as IEntity;
     var isNew = entity.IsNullKey;
     var inf = Model as IInfo;

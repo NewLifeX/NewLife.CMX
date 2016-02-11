@@ -76,7 +76,6 @@ namespace ASP
             #line 7 "..\..\Areas\CMS\Views\Product\Form.cshtml"
   
     var fact = EntityFactory.CreateOperate(ViewData.ModelMetadata.ModelType);
-    var fields = ViewBag.Fields as List<FieldItem>;
 
     var entity = Model as IEntity;
     var isNew = entity.IsNullKey;
@@ -97,13 +96,13 @@ WriteLiteral(" class=\"form-horizontal\"");
 WriteLiteral(">\r\n");
 
             
-            #line 18 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 17 "..\..\Areas\CMS\Views\Product\Form.cshtml"
         
             
             #line default
             #line hidden
             
-            #line 18 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 17 "..\..\Areas\CMS\Views\Product\Form.cshtml"
          if (ViewBag.StatusMessage != null)
         {
 
@@ -133,7 +132,7 @@ WriteLiteral(" aria-hidden=\"true\"");
 WriteLiteral(">&times;</span></button>\r\n                <strong>");
 
             
-            #line 22 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 21 "..\..\Areas\CMS\Views\Product\Form.cshtml"
                    Write(ViewBag.StatusMessage);
 
             
@@ -142,7 +141,7 @@ WriteLiteral(">&times;</span></button>\r\n                <strong>");
 WriteLiteral("</strong>\r\n            </div>\r\n");
 
             
-            #line 24 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 23 "..\..\Areas\CMS\Views\Product\Form.cshtml"
         }
 
             
@@ -151,7 +150,7 @@ WriteLiteral("</strong>\r\n            </div>\r\n");
 WriteLiteral("        ");
 
             
-            #line 25 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 24 "..\..\Areas\CMS\Views\Product\Form.cshtml"
          using (Html.BeginForm((isNew ? "Add" : "Edit"), null, new { id = Model[fact.Unique.Name] }))
         {
             
@@ -159,28 +158,28 @@ WriteLiteral("        ");
             #line default
             #line hidden
             
-            #line 27 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 26 "..\..\Areas\CMS\Views\Product\Form.cshtml"
        Write(Html.AntiForgeryToken());
 
             
             #line default
             #line hidden
             
-            #line 27 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 26 "..\..\Areas\CMS\Views\Product\Form.cshtml"
                                     
             
             
             #line default
             #line hidden
             
-            #line 28 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 27 "..\..\Areas\CMS\Views\Product\Form.cshtml"
        Write(Html.ValidationSummary());
 
             
             #line default
             #line hidden
             
-            #line 28 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 27 "..\..\Areas\CMS\Views\Product\Form.cshtml"
                                      
 
             
@@ -203,7 +202,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                    ");
 
             
-            #line 32 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 31 "..\..\Areas\CMS\Views\Product\Form.cshtml"
                Write(Html.ForEditor("Title", inf));
 
             
@@ -212,13 +211,13 @@ WriteLiteral("                    ");
 WriteLiteral("\r\n                    &nbsp;\r\n");
 
             
-            #line 34 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 33 "..\..\Areas\CMS\Views\Product\Form.cshtml"
                     
             
             #line default
             #line hidden
             
-            #line 34 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 33 "..\..\Areas\CMS\Views\Product\Form.cshtml"
                      if (!isNew)
                     {
 
@@ -227,14 +226,14 @@ WriteLiteral("\r\n                    &nbsp;\r\n");
             #line hidden
 WriteLiteral("                        <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 1366), Tuple.Create("\"", 1390)
+WriteAttribute("href", Tuple.Create(" href=\"", 1313), Tuple.Create("\"", 1337)
             
-            #line 36 "..\..\Areas\CMS\Views\Product\Form.cshtml"
-, Tuple.Create(Tuple.Create("", 1373), Tuple.Create<System.Object, System.Int32>(this.GetUrl(inf)
+            #line 35 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+, Tuple.Create(Tuple.Create("", 1320), Tuple.Create<System.Object, System.Int32>(this.GetUrl(inf)
             
             #line default
             #line hidden
-, 1373), false)
+, 1320), false)
 );
 
 WriteLiteral(" target=\"_blank\"");
@@ -242,7 +241,7 @@ WriteLiteral(" target=\"_blank\"");
 WriteLiteral(">\r\n                            预览\r\n                        </a>\r\n");
 
             
-            #line 39 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 38 "..\..\Areas\CMS\Views\Product\Form.cshtml"
                     }
 
             
@@ -265,13 +264,13 @@ WriteLiteral(" class=\"col-md-2\"");
 WriteLiteral(">\r\n");
 
             
-            #line 45 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 44 "..\..\Areas\CMS\Views\Product\Form.cshtml"
                     
             
             #line default
             #line hidden
             
-            #line 45 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 44 "..\..\Areas\CMS\Views\Product\Form.cshtml"
                       
             var data = new SelectList(Category.Root.AllChilds, "ID", "TreeNodeText", inf.CategoryID);
                     
@@ -283,7 +282,7 @@ WriteLiteral("\r\n");
 WriteLiteral("                    ");
 
             
-            #line 48 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 47 "..\..\Areas\CMS\Views\Product\Form.cshtml"
                Write(Html.DropDownList("CategoryID", data, new { @class = "multiselect" }));
 
             
@@ -300,7 +299,7 @@ WriteLiteral(" class=\"control-label\"");
 WriteLiteral(">访问量</label>\r\n                    <span>");
 
             
-            #line 52 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 51 "..\..\Areas\CMS\Views\Product\Form.cshtml"
                      Write(inf.Views);
 
             
@@ -313,7 +312,7 @@ WriteLiteral(" class=\"control-label\"");
 WriteLiteral(">版本</label>\r\n                    <span>");
 
             
-            #line 54 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 53 "..\..\Areas\CMS\Views\Product\Form.cshtml"
                      Write(inf.Version);
 
             
@@ -338,7 +337,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                    ");
 
             
-            #line 60 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 59 "..\..\Areas\CMS\Views\Product\Form.cshtml"
                Write(Html.ForEditor(Product._.Price, entity));
 
             
@@ -357,7 +356,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                    ");
 
             
-            #line 64 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 63 "..\..\Areas\CMS\Views\Product\Form.cshtml"
                Write(Html.ForEditor(Product._.PhotoPath, entity));
 
             
@@ -379,23 +378,23 @@ WriteLiteral(" class=\"col-md-6\"");
 
 WriteLiteral(">\r\n                    <script");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 2865), Tuple.Create("\"", 2906)
-, Tuple.Create(Tuple.Create("", 2871), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.config.js")
-, 2871), false)
+WriteAttribute("src", Tuple.Create(" src=\"", 2812), Tuple.Create("\"", 2853)
+, Tuple.Create(Tuple.Create("", 2818), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.config.js")
+, 2818), false)
 );
 
 WriteLiteral("></script>\r\n                    <script");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 2946), Tuple.Create("\"", 2988)
-, Tuple.Create(Tuple.Create("", 2952), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.all.min.js")
-, 2952), false)
+WriteAttribute("src", Tuple.Create(" src=\"", 2893), Tuple.Create("\"", 2935)
+, Tuple.Create(Tuple.Create("", 2899), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.all.min.js")
+, 2899), false)
 );
 
 WriteLiteral("></script>\r\n                    <script");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 3028), Tuple.Create("\"", 3071)
-, Tuple.Create(Tuple.Create("", 3034), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/lang/zh-cn/zh-cn.js")
-, 3034), false)
+WriteAttribute("src", Tuple.Create(" src=\"", 2975), Tuple.Create("\"", 3018)
+, Tuple.Create(Tuple.Create("", 2981), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/lang/zh-cn/zh-cn.js")
+, 2981), false)
 );
 
 WriteLiteral("></script>\r\n                    <script");
@@ -413,7 +412,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                        ");
 
             
-            #line 74 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 73 "..\..\Areas\CMS\Views\Product\Form.cshtml"
                    Write(Html.Raw(inf.ContentText));
 
             
@@ -433,34 +432,34 @@ WriteLiteral(@">
 ");
 
             
-            #line 83 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 82 "..\..\Areas\CMS\Views\Product\Form.cshtml"
             
             
             #line default
             #line hidden
             
-            #line 83 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 82 "..\..\Areas\CMS\Views\Product\Form.cshtml"
        Write(Html.Partial("_UserTime", this.Model as IEntity));
 
             
             #line default
             #line hidden
             
-            #line 83 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 82 "..\..\Areas\CMS\Views\Product\Form.cshtml"
                                                              
             
             
             #line default
             #line hidden
             
-            #line 84 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 83 "..\..\Areas\CMS\Views\Product\Form.cshtml"
        Write(Html.Partial("_Form_Action", isNew));
 
             
             #line default
             #line hidden
             
-            #line 84 "..\..\Areas\CMS\Views\Product\Form.cshtml"
+            #line 83 "..\..\Areas\CMS\Views\Product\Form.cshtml"
                                                 
         }
 
