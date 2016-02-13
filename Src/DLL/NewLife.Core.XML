@@ -7436,6 +7436,49 @@
             <param name="paramTypes"></param>
             <returns></returns>
         </member>
+        <member name="T:NewLife.Serialization.IJson">
+            <summary>Json序列化接口</summary>
+        </member>
+        <member name="M:NewLife.Serialization.IJson.Write(System.Object,System.Boolean)">
+            <summary>写入对象，得到Json字符串</summary>
+            <param name="value"></param>
+            <param name="indented">是否缩进</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.IJson.Read(System.String,System.Type)">
+            <summary>从Json字符串中读取对象</summary>
+            <param name="json"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Serialization.JsonHelper">
+            <summary>Json助手</summary>
+        </member>
+        <member name="M:NewLife.Serialization.JsonHelper.ToJson(System.Object,System.Boolean)">
+            <summary>写入对象，得到Json字符串</summary>
+            <param name="value"></param>
+            <param name="indented">是否缩进</param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.JsonHelper.ToJsonEntity(System.String,System.Type)">
+            <summary>从Json字符串中读取对象</summary>
+            <param name="json"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Serialization.JsonHelper.ToJsonEntity``1(System.String)">
+            <summary>从Json字符串中读取对象</summary>
+            <typeparam name="T"></typeparam>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="P:NewLife.Serialization.JsonHelper.Default">
+            <summary>默认实现</summary>
+        </member>
+        <member name="M:NewLife.Serialization.JsonNet.Support">
+            <summary>是否支持</summary>
+            <returns></returns>
+        </member>
         <member name="T:NewLife.Serialization.Protocol`1">
             <summary>协议基类</summary>
             <typeparam name="T"></typeparam>
