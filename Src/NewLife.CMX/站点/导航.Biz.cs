@@ -73,33 +73,33 @@ namespace NewLife.CMX
             // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
             if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Nav).Name, Meta.Table.DataTable.DisplayName);
 
-            var fn = "../InitData/{0}.json".F(Meta.TableName).GetFullPath();
+            //var fn = "../InitData/{0}.json".F(Meta.TableName).GetFullPath();
 
-            if (File.Exists(fn))
-            {
-                if (XTrace.Debug) XTrace.WriteLine("使用数据初始化文件【{0}】初始化{1}[{2}]数据……", fn, typeof(Nav).Name, Meta.Table.DataTable.DisplayName);
+            //if (File.Exists(fn))
+            //{
+            //    if (XTrace.Debug) XTrace.WriteLine("使用数据初始化文件【{0}】初始化{1}[{2}]数据……", fn, typeof(Nav).Name, Meta.Table.DataTable.DisplayName);
 
-                var list = EntityList<Nav>.FromJson(File.ReadAllText(fn));
-                //var list = new EntityList<Nav>();
-                //list.FromXml(File.ReadAllText(fn));
-                var queue = new Queue<Nav>(list);
-                while (queue.Count > 0)
-                {
-                    var item = queue.Dequeue();
-                    item.Insert();
+            //    var list = EntityList<Nav>.FromJson(File.ReadAllText(fn));
+            //    //var list = new EntityList<Nav>();
+            //    //list.FromXml(File.ReadAllText(fn));
+            //    var queue = new Queue<Nav>(list);
+            //    while (queue.Count > 0)
+            //    {
+            //        var item = queue.Dequeue();
+            //        item.Insert();
 
-                    var childs = item.Childrens;
-                    if (childs != null && childs.Count > 0)
-                    {
-                        foreach (var child in childs)
-                        {
-                            child.ParentID = item.ID;
-                            queue.Enqueue(child);
-                        }
-                    }
-                }
-            }
-            else
+            //        var childs = item.Childrens;
+            //        if (childs != null && childs.Count > 0)
+            //        {
+            //            foreach (var child in childs)
+            //            {
+            //                child.ParentID = item.ID;
+            //                queue.Enqueue(child);
+            //            }
+            //        }
+            //    }
+            //}
+            //else
             {
                 var header = Root.Add("头部");
                 header.Add("首页", "/");
@@ -119,7 +119,7 @@ namespace NewLife.CMX
                     var list = new EntityList<Nav>();
                     list.Add(header);
                     list.Add(footer);
-                    File.WriteAllText(fn.EnsureDirectory(), list.ToJson());
+                    //File.WriteAllText(fn.EnsureDirectory(), list.ToJson());
                 }
             }
 
