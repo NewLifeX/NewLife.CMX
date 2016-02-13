@@ -917,21 +917,6 @@
             <param name="isNew"></param>
             <returns></returns>
         </member>
-        <member name="T:XCode.SelectModes">
-            <summary>查询模式</summary>
-        </member>
-        <member name="F:XCode.SelectModes.None">
-            <summary>空，不返回任何数据</summary>
-        </member>
-        <member name="F:XCode.SelectModes.List">
-            <summary>返回列表数据</summary>
-        </member>
-        <member name="F:XCode.SelectModes.TotalCount">
-            <summary>返回总记录数</summary>
-        </member>
-        <member name="F:XCode.SelectModes.Both">
-            <summary>同时返回列表数据和总记录数</summary>
-        </member>
         <member name="T:XCode.EntityException">
             <summary>实体异常</summary>
         </member>
@@ -1353,17 +1338,6 @@
             <param name="maximumRows">最大返回行数，0表示所有行</param>
             <returns>实体数组</returns>
         </member>
-        <member name="M:XCode.Entity`1.FindAll(System.String,System.String,System.String,System.Int32,System.Int32,System.Int32@,XCode.SelectModes)">
-            <summary>同时查询满足条件的记录集和记录总数。没有数据时返回空集合而不是null</summary>
-            <param name="whereClause">条件，不带Where</param>
-            <param name="orderClause">排序，不带Order By</param>
-            <param name="selects">查询列</param>
-            <param name="startRowIndex">开始行，0表示第一行</param>
-            <param name="maximumRows">最大返回行数，0表示所有行</param>
-            <param name="count">记录总数</param>
-            <param name="mode">查询模式，分为记录集和记录总数两种，默认Both表示同时查询两者</param>
-            <returns>实体集</returns>
-        </member>
         <member name="M:XCode.Entity`1.FindAll(System.String,NewLife.Data.PageParameter)">
             <summary>同时查询满足条件的记录集和记录总数。没有数据时返回空集合而不是null</summary>
             <param name="whereClause">条件，不带Where</param>
@@ -1449,16 +1423,6 @@
             <param name="startRowIndex">开始行，0表示第一行</param>
             <param name="maximumRows">最大返回行数，0表示所有行</param>
             <returns>记录数</returns>
-        </member>
-        <member name="M:XCode.Entity`1.Search(System.String,System.String,System.Int32,System.Int32,System.Int32@,XCode.SelectModes)">
-            <summary>同时查询满足条件的记录集和记录总数。没有数据时返回空集合而不是null</summary>
-            <param name="key"></param>
-            <param name="orderClause"></param>
-            <param name="startRowIndex"></param>
-            <param name="maximumRows"></param>
-            <param name="count"></param>
-            <param name="mode"></param>
-            <returns></returns>
         </member>
         <member name="M:XCode.Entity`1.Search(System.String,NewLife.Data.PageParameter)">
             <summary>同时查询满足条件的记录集和记录总数。没有数据时返回空集合而不是null</summary>
@@ -1626,60 +1590,11 @@
             <param name="name">字段名</param>
             <returns></returns>
         </member>
-        <member name="P:XCode.Entity`1.AdditionalFields">
-            <summary>默认累加字段</summary>
-        </member>
         <member name="P:XCode.Entity`1.HasDirty">
             <summary>是否有脏数据。决定是否可以Update</summary>
         </member>
         <member name="T:XCode.Entity`1.Meta">
             <summary>实体元数据</summary>
-        </member>
-        <member name="M:XCode.Entity`1.Meta.Query(XCode.DataAccessLayer.SelectBuilder,System.Int32,System.Int32)">
-            <summary>执行SQL查询，返回记录集</summary>
-            <param name="builder">SQL语句</param>
-            <param name="startRowIndex">开始行，0表示第一行</param>
-            <param name="maximumRows">最大返回行数，0表示所有行</param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Entity`1.Meta.Query(System.String)">
-            <summary>执行SQL查询，返回记录集</summary>
-            <param name="sql">SQL语句</param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Entity`1.Meta.QueryCount(XCode.DataAccessLayer.SelectBuilder)">
-            <summary>查询记录数</summary>
-            <param name="sb">查询生成器</param>
-            <returns>记录数</returns>
-        </member>
-        <member name="M:XCode.Entity`1.Meta.Execute(System.String)">
-            <summary>执行</summary>
-            <param name="sql">SQL语句</param>
-            <returns>影响的结果</returns>
-        </member>
-        <member name="M:XCode.Entity`1.Meta.InsertAndGetIdentity(System.String)">
-            <summary>执行插入语句并返回新增行的自动编号</summary>
-            <param name="sql">SQL语句</param>
-            <returns>新增行的自动编号</returns>
-        </member>
-        <member name="M:XCode.Entity`1.Meta.Execute(System.String,System.Data.CommandType,System.Data.Common.DbParameter[])">
-            <summary>执行</summary>
-            <param name="sql">SQL语句</param>
-            <param name="type">命令类型，默认SQL文本</param>
-            <param name="ps">命令参数</param>
-            <returns>影响的结果</returns>
-        </member>
-        <member name="M:XCode.Entity`1.Meta.InsertAndGetIdentity(System.String,System.Data.CommandType,System.Data.Common.DbParameter[])">
-            <summary>执行插入语句并返回新增行的自动编号</summary>
-            <param name="sql">SQL语句</param>
-            <param name="type">命令类型，默认SQL文本</param>
-            <param name="ps">命令参数</param>
-            <returns>新增行的自动编号</returns>
-        </member>
-        <member name="M:XCode.Entity`1.Meta.WaitForInitData(System.Int32)">
-            <summary>检查并初始化数据。参数等待时间为0表示不等待</summary>
-            <param name="ms">等待时间，-1表示不限，0表示不等待</param>
-            <returns>如果等待，返回是否收到信号</returns>
         </member>
         <member name="M:XCode.Entity`1.Meta.BeginTrans">
             <summary>开始事务</summary>
@@ -1695,15 +1610,6 @@
         </member>
         <member name="M:XCode.Entity`1.Meta.CreateTrans">
             <summary>创建事务</summary>
-        </member>
-        <member name="M:XCode.Entity`1.Meta.CreateParameter">
-            <summary>创建参数</summary>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Entity`1.Meta.FormatParameterName(System.String)">
-            <summary>格式化参数名</summary>
-            <param name="name">名称</param>
-            <returns></returns>
         </member>
         <member name="M:XCode.Entity`1.Meta.FormatName(System.String)">
             <summary>格式化关键字</summary>
@@ -1773,12 +1679,6 @@
         <member name="P:XCode.Entity`1.Meta.Master">
             <summary>主字段。主字段作为业务主要字段，代表当前数据行意义</summary>
         </member>
-        <member name="P:XCode.Entity`1.Meta.DBO">
-            <summary>数据操作对象。</summary>
-        </member>
-        <member name="E:XCode.Entity`1.Meta.OnDataChange">
-            <summary>数据改变后触发。参数指定触发该事件的实体类</summary>
-        </member>
         <member name="P:XCode.Entity`1.Meta.Cache">
             <summary>实体缓存</summary>
             <returns></returns>
@@ -1789,9 +1689,6 @@
             </summary>
         </member>
         <member name="P:XCode.Entity`1.Meta.Count">
-            <summary>总记录数，小于1000时是精确的，大于1000时缓存10分钟</summary>
-        </member>
-        <member name="P:XCode.Entity`1.Meta.LongCount">
             <summary>总记录数，小于1000时是精确的，大于1000时缓存10分钟</summary>
         </member>
         <member name="P:XCode.Entity`1.Meta.Modules">
@@ -1967,40 +1864,6 @@
             <param name="json"></param>
             <returns></returns>
         </member>
-        <member name="M:XCode.IEntityOperate.Query(System.String)">
-            <summary>查询</summary>
-            <param name="sql">SQL语句</param>
-            <returns>结果记录集</returns>
-        </member>
-        <member name="M:XCode.IEntityOperate.QueryCount(System.String)">
-            <summary>查询记录数</summary>
-            <param name="sql">SQL语句</param>
-            <returns>记录数</returns>
-        </member>
-        <member name="M:XCode.IEntityOperate.Execute(System.String)">
-            <summary>执行</summary>
-            <param name="sql">SQL语句</param>
-            <returns>影响的结果</returns>
-        </member>
-        <member name="M:XCode.IEntityOperate.InsertAndGetIdentity(System.String)">
-            <summary>执行插入语句并返回新增行的自动编号</summary>
-            <param name="sql">SQL语句</param>
-            <returns>新增行的自动编号</returns>
-        </member>
-        <member name="M:XCode.IEntityOperate.Execute(System.String,System.Data.CommandType,System.Data.Common.DbParameter[])">
-            <summary>执行</summary>
-            <param name="sql">SQL语句</param>
-            <param name="type">命令类型，默认SQL文本</param>
-            <param name="ps">命令参数</param>
-            <returns>影响的结果</returns>
-        </member>
-        <member name="M:XCode.IEntityOperate.InsertAndGetIdentity(System.String,System.Data.CommandType,System.Data.Common.DbParameter[])">
-            <summary>执行插入语句并返回新增行的自动编号</summary>
-            <param name="sql">SQL语句</param>
-            <param name="type">命令类型，默认SQL文本</param>
-            <param name="ps">命令参数</param>
-            <returns>新增行的自动编号</returns>
-        </member>
         <member name="M:XCode.IEntityOperate.BeginTransaction">
             <summary>开始事务</summary>
             <returns></returns>
@@ -2015,15 +1878,6 @@
         </member>
         <member name="M:XCode.IEntityOperate.CreateTrans">
             <summary>创建事务</summary>
-        </member>
-        <member name="M:XCode.IEntityOperate.CreateParameter">
-            <summary>创建参数</summary>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.IEntityOperate.FormatParameterName(System.String)">
-            <summary>格式化参数名</summary>
-            <param name="name">名称</param>
-            <returns></returns>
         </member>
         <member name="M:XCode.IEntityOperate.FormatName(System.String)">
             <summary>格式化关键字</summary>
@@ -2280,40 +2134,6 @@
             <param name="json"></param>
             <returns></returns>
         </member>
-        <member name="M:XCode.Entity`1.EntityOperate.Query(System.String)">
-            <summary>查询</summary>
-            <param name="sql">SQL语句</param>
-            <returns>结果记录集</returns>
-        </member>
-        <member name="M:XCode.Entity`1.EntityOperate.QueryCount(System.String)">
-            <summary>查询记录数</summary>
-            <param name="sql">SQL语句</param>
-            <returns>记录数</returns>
-        </member>
-        <member name="M:XCode.Entity`1.EntityOperate.Execute(System.String)">
-            <summary>执行</summary>
-            <param name="sql">SQL语句</param>
-            <returns>影响的结果</returns>
-        </member>
-        <member name="M:XCode.Entity`1.EntityOperate.InsertAndGetIdentity(System.String)">
-            <summary>执行插入语句并返回新增行的自动编号</summary>
-            <param name="sql">SQL语句</param>
-            <returns>新增行的自动编号</returns>
-        </member>
-        <member name="M:XCode.Entity`1.EntityOperate.Execute(System.String,System.Data.CommandType,System.Data.Common.DbParameter[])">
-            <summary>执行</summary>
-            <param name="sql">SQL语句</param>
-            <param name="type">命令类型，默认SQL文本</param>
-            <param name="ps">命令参数</param>
-            <returns>影响的结果</returns>
-        </member>
-        <member name="M:XCode.Entity`1.EntityOperate.InsertAndGetIdentity(System.String,System.Data.CommandType,System.Data.Common.DbParameter[])">
-            <summary>执行插入语句并返回新增行的自动编号</summary>
-            <param name="sql">SQL语句</param>
-            <param name="type">命令类型，默认SQL文本</param>
-            <param name="ps">命令参数</param>
-            <returns>新增行的自动编号</returns>
-        </member>
         <member name="M:XCode.Entity`1.EntityOperate.BeginTransaction">
             <summary>开始事务</summary>
             <returns></returns>
@@ -2328,15 +2148,6 @@
         </member>
         <member name="M:XCode.Entity`1.EntityOperate.CreateTrans">
             <summary>创建事务</summary>
-        </member>
-        <member name="M:XCode.Entity`1.EntityOperate.CreateParameter">
-            <summary>创建参数</summary>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Entity`1.EntityOperate.FormatParameterName(System.String)">
-            <summary>格式化参数名</summary>
-            <param name="name"></param>
-            <returns></returns>
         </member>
         <member name="M:XCode.Entity`1.EntityOperate.FormatName(System.String)">
             <summary>格式化关键字</summary>
@@ -4479,12 +4290,6 @@
             <param name="value">数值</param>
             <returns></returns>
         </member>
-        <member name="M:XCode.ConcatExpression.op_Addition(XCode.WhereExpression,XCode.ConcatExpression)">
-            <summary>重载运算符实现And操作</summary>
-            <param name="exp"></param>
-            <param name="value">数值</param>
-            <returns></returns>
-        </member>
         <member name="M:XCode.ConcatExpression.op_BitwiseAnd(XCode.ConcatExpression,System.String)">
             <summary>重载运算符实现And操作，同时通过布尔型支持AndIf</summary>
             <param name="exp"></param>
@@ -6055,10 +5860,6 @@
             <summary>取得表模型，正向工程</summary>
             <returns></returns>
         </member>
-        <member name="M:XCode.DataAccessLayer.IMetaData.SetTables(XCode.DataAccessLayer.IDataTable[])">
-            <summary>设置表模型，检查数据表是否匹配表模型，反向工程</summary>
-            <param name="tables"></param>
-        </member>
         <member name="M:XCode.DataAccessLayer.IMetaData.SetTables(XCode.DataAccessLayer.NegativeSetting,XCode.DataAccessLayer.IDataTable[])">
             <summary>设置表模型，检查数据表是否匹配表模型，反向工程</summary>
             <param name="setting">设置</param>
@@ -6084,10 +5885,6 @@
         </member>
         <member name="P:XCode.DataAccessLayer.IMetaData.ReservedWords">
             <summary>保留关键字</summary>
-        </member>
-        <member name="M:XCode.DataAccessLayer.DbMetaData.SetTables(XCode.DataAccessLayer.IDataTable[])">
-            <summary>设置表模型，检查数据表是否匹配表模型，反向工程</summary>
-            <param name="tables"></param>
         </member>
         <member name="M:XCode.DataAccessLayer.DbMetaData.SetTables(XCode.DataAccessLayer.NegativeSetting,XCode.DataAccessLayer.IDataTable[])">
             <summary>设置表模型，检查数据表是否匹配表模型，反向工程</summary>
@@ -6345,18 +6142,6 @@
             每一个数据库操作都必须指定表名以用于管理缓存，空表名或*将匹配所有缓存
             </remarks>
         </member>
-        <member name="M:XCode.DataAccessLayer.DAL.PageSplit(System.String,System.Int32,System.Int32,System.String)">
-            <summary>根据条件把普通查询SQL格式化为分页SQL。</summary>
-            <remarks>
-            因为需要继承重写的原因，在数据类中并不方便缓存分页SQL。
-            所以在这里做缓存。
-            </remarks>
-            <param name="sql">SQL语句</param>
-            <param name="startRowIndex">开始行，0表示第一行</param>
-            <param name="maximumRows">最大返回行数，0表示所有行</param>
-            <param name="keyColumn">唯一键。用于not in分页</param>
-            <returns>分页SQL</returns>
-        </member>
         <member name="M:XCode.DataAccessLayer.DAL.PageSplit(XCode.DataAccessLayer.SelectBuilder,System.Int32,System.Int32)">
             <summary>根据条件把普通查询SQL格式化为分页SQL。</summary>
             <remarks>
@@ -6379,12 +6164,6 @@
             <param name="builder">SQL语句</param>
             <param name="startRowIndex">开始行，0表示第一行</param>
             <param name="maximumRows">最大返回行数，0表示所有行</param>
-            <param name="tableNames">所依赖的表的表名</param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.DataAccessLayer.DAL.SelectCount(System.String,System.String[])">
-            <summary>执行SQL查询，返回总记录数</summary>
-            <param name="sql">SQL语句</param>
             <param name="tableNames">所依赖的表的表名</param>
             <returns></returns>
         </member>
@@ -6550,10 +6329,6 @@
         </member>
         <member name="M:XCode.DataAccessLayer.DAL.CheckTables">
             <summary>检查数据表架构，不受反向工程启用开关限制，仅检查未经过常规检查的表</summary>
-        </member>
-        <member name="M:XCode.DataAccessLayer.DAL.SetTables(XCode.DataAccessLayer.IDataTable[])">
-            <summary>在当前连接上检查指定数据表的架构</summary>
-            <param name="tables"></param>
         </member>
         <member name="M:XCode.DataAccessLayer.DAL.SetTables(XCode.DataAccessLayer.NegativeSetting,XCode.DataAccessLayer.IDataTable[])">
             <summary>在当前连接上检查指定数据表的架构</summary>
@@ -8353,22 +8128,10 @@
             <param name="value">数值</param>
             <returns></returns>
         </member>
-        <member name="M:XCode.Configuration.FieldItem.In(System.String)">
-            <summary>In操作。直接使用字符串可能有注入风险</summary>
-            <remarks>空参数不参与表达式操作，不生成该部分SQL拼接</remarks>
-            <param name="value">逗号分割的数据。可能有注入风险</param>
-            <returns></returns>
-        </member>
         <member name="M:XCode.Configuration.FieldItem.In(System.Collections.IEnumerable)">
             <summary>In操作</summary>
             <remarks>空参数不参与表达式操作，不生成该部分SQL拼接。只有一项时转为等于</remarks>
             <param name="value">枚举数据，会转化为字符串</param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Configuration.FieldItem.NotIn(System.String)">
-            <summary>NotIn操作。直接使用字符串可能有注入风险</summary>
-            <remarks>空参数不参与表达式操作，不生成该部分SQL拼接</remarks>
-            <param name="value">数值</param>
             <returns></returns>
         </member>
         <member name="M:XCode.Configuration.FieldItem.NotIn(System.Collections.IEnumerable)">
@@ -10063,9 +9826,6 @@
             <remarks>其实直接new一个新的列表就好了，但是做克隆方法更方便链式写法</remarks>
             <returns></returns>
         </member>
-        <member name="P:XCode.EntityList`1.Empty">
-            <summary>空集合</summary>
-        </member>
         <member name="P:XCode.EntityList`1.EntityType">
             <summary>真正的实体类型。有些场合为了需要会使用IEntity。</summary>
         </member>
@@ -10302,14 +10062,6 @@
         <member name="M:XCode.OrderExpression.And(System.String)">
             <summary>增加</summary>
             <param name="exp"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.OrderExpression.Asc(System.String)">
-            <summary>升序</summary>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.OrderExpression.Desc(System.String)">
-            <summary>降序</summary>
             <returns></returns>
         </member>
         <member name="M:XCode.OrderExpression.ToString">
