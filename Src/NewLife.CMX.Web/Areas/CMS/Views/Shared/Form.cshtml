@@ -1,5 +1,4 @@
-﻿@model NewLife.CMX.IInfo
-@using System.Reflection
+﻿@using System.Reflection
 @using XCode
 @using XCode.Configuration
 @using NewLife.CMX
@@ -9,7 +8,6 @@
     var fields = ViewBag.Fields as List<FieldItem>;
     var entity = Model as IEntity;
     var isNew = entity.IsNullKey;
-    var inf = Model as IInfo;
 
     // 创建更新等信息统一放在尾部
     var names = new String[] {
@@ -72,7 +70,7 @@
                     </div>
                 </div>
             }
-            @Html.Partial("_Form_Action", isNew)
+            @Html.Partial("_Form_Action", entity)
         }
     </div>
 </div>

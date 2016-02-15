@@ -110,12 +110,25 @@
             <summary>导出Xml</summary>
             <returns></returns>
         </member>
+        <member name="M:NewLife.Cube.EntityController`1.OnExportXml">
+            <summary>要导出Xml的对象</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Cube.EntityController`1.SetAttachment(System.String,System.String)">
+            <summary>设置附件响应方式</summary>
+            <param name="name"></param>
+            <param name="ext"></param>
+        </member>
         <member name="M:NewLife.Cube.EntityController`1.ImportXml">
             <summary>导入Xml</summary>
             <returns></returns>
         </member>
         <member name="M:NewLife.Cube.EntityController`1.ExportJson">
             <summary>导出Json</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Cube.EntityController`1.OnExportJson">
+            <summary>要导出Json的对象</summary>
             <returns></returns>
         </member>
         <member name="M:NewLife.Cube.EntityController`1.ImportJson">
@@ -240,6 +253,14 @@
         <member name="M:NewLife.Cube.EntityTreeController`1.IndexView(NewLife.Web.Pager)">
             <summary>列表页视图。子控制器可重载，以传递更多信息给视图，比如修改要显示的列</summary>
             <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Cube.EntityTreeController`1.OnExportXml">
+            <summary>要导出Xml的对象</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Cube.EntityTreeController`1.OnExportJson">
+            <summary>要导出Json的对象</summary>
             <returns></returns>
         </member>
         <member name="M:NewLife.Cube.EntityTreeController`1.Up(System.Int32)">

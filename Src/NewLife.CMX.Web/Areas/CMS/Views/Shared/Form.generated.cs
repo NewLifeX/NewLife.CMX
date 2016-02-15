@@ -17,7 +17,7 @@ namespace ASP
     using System.Linq;
     using System.Net;
     
-    #line 2 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+    #line 1 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
     using System.Reflection;
     
     #line default
@@ -35,7 +35,7 @@ namespace ASP
     using System.Web.WebPages;
     using NewLife;
     
-    #line 5 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+    #line 4 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
     using NewLife.CMX;
     
     #line default
@@ -44,13 +44,13 @@ namespace ASP
     using NewLife.Reflection;
     using NewLife.Web;
     
-    #line 3 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+    #line 2 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
     using XCode;
     
     #line default
     #line hidden
     
-    #line 4 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+    #line 3 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
     using XCode.Configuration;
     
     #line default
@@ -59,7 +59,7 @@ namespace ASP
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorGenerator", "2.0.0.0")]
     [System.Web.WebPages.PageVirtualPathAttribute("~/Areas/CMS/Views/Shared/Form.cshtml")]
-    public partial class _Areas_CMS_Views_Shared_Form_cshtml : System.Web.Mvc.WebViewPage<NewLife.CMX.IInfo>
+    public partial class _Areas_CMS_Views_Shared_Form_cshtml : System.Web.Mvc.WebViewPage<dynamic>
     {
         public _Areas_CMS_Views_Shared_Form_cshtml()
         {
@@ -67,14 +67,13 @@ namespace ASP
         public override void Execute()
         {
             
-            #line 6 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 5 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
   
     Layout = "~/Views/Shared/_Ace_Layout.cshtml";
     var fact = ViewBag.Factory as IEntityOperate;
     var fields = ViewBag.Fields as List<FieldItem>;
     var entity = Model as IEntity;
     var isNew = entity.IsNullKey;
-    var inf = Model as IInfo;
 
     // 创建更新等信息统一放在尾部
     var names = new String[] {
@@ -97,13 +96,13 @@ WriteLiteral(" class=\"form-horizontal\"");
 WriteLiteral(">\r\n");
 
             
-            #line 23 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 21 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
         
             
             #line default
             #line hidden
             
-            #line 23 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 21 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
          if (ViewBag.StatusMessage != null)
         {
 
@@ -133,7 +132,7 @@ WriteLiteral(" aria-hidden=\"true\"");
 WriteLiteral(">&times;</span></button>\r\n                <strong>");
 
             
-            #line 27 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 25 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
                    Write(ViewBag.StatusMessage);
 
             
@@ -142,7 +141,7 @@ WriteLiteral(">&times;</span></button>\r\n                <strong>");
 WriteLiteral("</strong>\r\n            </div>\r\n");
 
             
-            #line 29 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 27 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
         }
 
             
@@ -151,7 +150,7 @@ WriteLiteral("</strong>\r\n            </div>\r\n");
 WriteLiteral("        ");
 
             
-            #line 30 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 28 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
          using (Html.BeginForm((isNew ? "Add" : "Edit"), null, new { id = entity[fact.Unique.Name] }))
         {
             
@@ -159,28 +158,28 @@ WriteLiteral("        ");
             #line default
             #line hidden
             
-            #line 32 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 30 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
        Write(Html.AntiForgeryToken());
 
             
             #line default
             #line hidden
             
-            #line 32 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 30 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
                                     
             
             
             #line default
             #line hidden
             
-            #line 33 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 31 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
        Write(Html.ValidationSummary());
 
             
             #line default
             #line hidden
             
-            #line 33 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 31 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
                                      
             foreach (var item in fields)
             {
@@ -194,27 +193,27 @@ WriteLiteral("        ");
             #line hidden
 WriteLiteral("                        <script");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 1527), Tuple.Create("\"", 1568)
-, Tuple.Create(Tuple.Create("", 1533), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.config.js")
-, 1533), false)
+WriteAttribute("src", Tuple.Create(" src=\"", 1470), Tuple.Create("\"", 1511)
+, Tuple.Create(Tuple.Create("", 1476), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.config.js")
+, 1476), false)
 );
 
 WriteLiteral("></script>\r\n");
 
 WriteLiteral("                        <script");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 1612), Tuple.Create("\"", 1654)
-, Tuple.Create(Tuple.Create("", 1618), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.all.min.js")
-, 1618), false)
+WriteAttribute("src", Tuple.Create(" src=\"", 1555), Tuple.Create("\"", 1597)
+, Tuple.Create(Tuple.Create("", 1561), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.all.min.js")
+, 1561), false)
 );
 
 WriteLiteral("></script>\r\n");
 
 WriteLiteral("                        <script");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 1698), Tuple.Create("\"", 1741)
-, Tuple.Create(Tuple.Create("", 1704), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/lang/zh-cn/zh-cn.js")
-, 1704), false)
+WriteAttribute("src", Tuple.Create(" src=\"", 1641), Tuple.Create("\"", 1684)
+, Tuple.Create(Tuple.Create("", 1647), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/lang/zh-cn/zh-cn.js")
+, 1647), false)
 );
 
 WriteLiteral("></script>\r\n");
@@ -241,7 +240,7 @@ WriteLiteral(">\r\n                            //实例化编辑器\r\n         
 " </script>\r\n");
 
             
-            #line 50 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 48 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
                     }
                     else
                     {
@@ -258,7 +257,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                            ");
 
             
-            #line 54 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 52 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
                        Write(Html.Partial("_Form_Item", new Pair(entity, item)));
 
             
@@ -267,7 +266,7 @@ WriteLiteral("                            ");
 WriteLiteral("\r\n                        </div>\r\n");
 
             
-            #line 56 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 54 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
                     }
 
                 }
@@ -279,14 +278,14 @@ WriteLiteral("\r\n                        </div>\r\n");
             #line default
             #line hidden
             
-            #line 62 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 60 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
            Write(Html.Partial("_UserTime", entity as IEntity));
 
             
             #line default
             #line hidden
             
-            #line 62 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 60 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
                                                              
             }
             var remark = fact.Table.FindByName("Remark") as FieldItem;
@@ -307,7 +306,7 @@ WriteLiteral(" class=\"control-label col-md-2\"");
 WriteLiteral(">");
 
             
-            #line 68 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 66 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
                                                      Write(remark.DisplayName);
 
             
@@ -322,7 +321,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                        ");
 
             
-            #line 70 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 68 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
                    Write(Html.ForString(remark.Name, (String)entity[remark.Name], -1));
 
             
@@ -333,7 +332,7 @@ WriteLiteral("\r\n");
 WriteLiteral("                        ");
 
             
-            #line 71 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 69 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
                    Write(Html.ForDescription(remark));
 
             
@@ -342,22 +341,22 @@ WriteLiteral("                        ");
 WriteLiteral("\r\n                    </div>\r\n                </div>\r\n");
 
             
-            #line 74 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+            #line 72 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
             }
             
             
             #line default
             #line hidden
             
-            #line 75 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
-       Write(Html.Partial("_Form_Action", isNew));
+            #line 73 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+       Write(Html.Partial("_Form_Action", entity));
 
             
             #line default
             #line hidden
             
-            #line 75 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
-                                                
+            #line 73 "..\..\Areas\CMS\Views\Shared\Form.cshtml"
+                                                 
         }
 
             

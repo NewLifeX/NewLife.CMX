@@ -5188,6 +5188,50 @@
         <member name="P:NewLife.Model.ObjectContainer.Map.Instance">
             <summary>实例</summary>
         </member>
+        <member name="T:NewLife.Reflection.ApiHook">
+            <summary>API钩子</summary>
+            <remarks>
+            实现上，是两个方法的非托管指针互换，为了方便后面换回来。
+            但是很奇怪，UnHook换回来后，执行的代码还是更换后的，也就是无法复原。
+            
+            一定要注意，在vs中调试会导致Hook失败，尽管换了指针，也无法变更代码执行流程。
+            </remarks>
+        </member>
+        <member name="M:NewLife.Reflection.ApiHook.OnDispose(System.Boolean)">
+            <summary>子类重载实现资源释放逻辑时必须首先调用基类方法</summary>
+            <param name="disposing">从Dispose调用（释放所有资源）还是析构函数调用（释放非托管资源）。
+            因为该方法只会被调用一次，所以该参数的意义不太大。</param>
+        </member>
+        <member name="M:NewLife.Reflection.ApiHook.Hook">
+            <summary>挂钩</summary>
+        </member>
+        <member name="M:NewLife.Reflection.ApiHook.UnHook">
+            <summary>取消挂钩</summary>
+        </member>
+        <member name="M:NewLife.Reflection.ApiHook.GetMethodAddress(System.Reflection.MethodBase)">
+            <summary>获取方法在JIT编译后的地址(JIT Stubs)</summary>
+            <remarks>
+            MethodBase.DeclaringType.TypeHandle.Value: 指向该类型方法表(编译后)在 JIT Stubs 的起始位置。
+            Method.MethodHandle.Value: 表示该方法的索引序号。
+            CLR 2.0 SP2 (2.0.50727.3053) 及其后续版本中，该地址的内存布局发生了变化。直接用 "Method.MethodHandle.Value + 2" 即可得到编译后的地址。
+            </remarks>
+            <param name="method"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Reflection.ApiHook.ReplaceMethod(System.Reflection.MethodBase,System.Reflection.MethodBase)">
+            <summary>替换方法</summary>
+            <remarks>
+            Method Address 处所存储的 Native Code Address 是可以修改的，也就意味着我们完全可以用另外一个具有相同签名的方法来替代它，从而达到偷梁换柱(Injection)的目的。
+            </remarks>
+            <param name="src"></param>
+            <param name="des"></param>
+        </member>
+        <member name="P:NewLife.Reflection.ApiHook.OriMethod">
+            <summary>原始方法</summary>
+        </member>
+        <member name="P:NewLife.Reflection.ApiHook.NewMethod">
+            <summary>新方法</summary>
+        </member>
         <member name="T:NewLife.Reflection.EmitReflect">
             <summary>快速Emit反射</summary>
         </member>
@@ -7150,6 +7194,12 @@
         <member name="M:NewLife.Reflection.AssemblyX.ReflectionOnlyLoad(System.String)">
             <summary>只反射加载指定路径的所有程序集</summary>
             <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Reflection.AssemblyX.ReflectionOnlyLoadFrom(System.String,System.Version)">
+            <summary>只反射加载指定路径的所有程序集</summary>
+            <param name="file"></param>
+            <param name="ver"></param>
             <returns></returns>
         </member>
         <member name="M:NewLife.Reflection.AssemblyX.GetMyAssemblies">

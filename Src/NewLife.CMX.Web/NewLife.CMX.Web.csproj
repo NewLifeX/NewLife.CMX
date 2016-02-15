@@ -156,11 +156,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>_Layout_Nav.cshtml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\CMS\Views\Shared\_UserTime.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>_UserTime.cshtml</DependentUpon>
-    </Compile>
     <Compile Include="Areas\CMS\Views\Sys\AttachConfig.generated.cs">
       <DependentUpon>AttachConfig.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -587,10 +582,6 @@
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Form.generated.cs</LastGenOutput>
     </Content>
-    <None Include="Areas\CMS\Views\Shared\_UserTime.cshtml">
-      <Generator>RazorGenerator</Generator>
-      <LastGenOutput>_UserTime.generated.cs</LastGenOutput>
-    </None>
     <Content Include="Areas\CMS\Views\Sys\SiteConfig.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>SiteConfig.generated.cs</LastGenOutput>
