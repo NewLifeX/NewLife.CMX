@@ -136,6 +136,7 @@ namespace NewLife.CMX
 
         private ICategory _Category;
         /// <summary>分类</summary>
+        [BindRelation("CategoryID", false, "Category", "ID")]
         public ICategory Category
         {
             get
@@ -198,6 +199,7 @@ namespace NewLife.CMX
 
         private IStatistics _Statistics;
         /// <summary>统计</summary>
+        [BindRelation("StatisticsID", false, "Statistics", "ID")]
         public IStatistics Statistics
         {
             get
