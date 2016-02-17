@@ -75,12 +75,11 @@ namespace ASP
             
             #line 7 "..\..\Areas\CMS\Views\Text\Form.cshtml"
   
-    var fact = EntityFactory.CreateOperate(ViewData.ModelMetadata.ModelType);
-
+    var fact = ViewBag.Factory as IEntityOperate;
     var entity = Model as IEntity;
     var isNew = entity.IsNullKey;
     var inf = Model as IInfo;
-    var product = inf.Ext as IProduct;
+    var text = inf.Ext as IText;
 
             
             #line default
@@ -98,7 +97,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("        ");
 
             
-            #line 17 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+            #line 16 "..\..\Areas\CMS\Views\Text\Form.cshtml"
    Write(Html.Partial("_Form_Header", entity));
 
             
@@ -107,13 +106,13 @@ WriteLiteral("        ");
 WriteLiteral("\r\n");
 
             
-            #line 18 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+            #line 17 "..\..\Areas\CMS\Views\Text\Form.cshtml"
         
             
             #line default
             #line hidden
             
-            #line 18 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+            #line 17 "..\..\Areas\CMS\Views\Text\Form.cshtml"
          using (Html.BeginForm((isNew ? "Add" : "Edit"), null, new { id = Model[fact.Unique.Name] }))
         {
             
@@ -121,42 +120,42 @@ WriteLiteral("\r\n");
             #line default
             #line hidden
             
-            #line 20 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+            #line 19 "..\..\Areas\CMS\Views\Text\Form.cshtml"
        Write(Html.AntiForgeryToken());
 
             
             #line default
             #line hidden
             
-            #line 20 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+            #line 19 "..\..\Areas\CMS\Views\Text\Form.cshtml"
                                     
             
             
             #line default
             #line hidden
             
-            #line 21 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+            #line 20 "..\..\Areas\CMS\Views\Text\Form.cshtml"
        Write(Html.ValidationSummary());
 
             
             #line default
             #line hidden
             
-            #line 21 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+            #line 20 "..\..\Areas\CMS\Views\Text\Form.cshtml"
                                      
             
             
             #line default
             #line hidden
             
-            #line 22 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+            #line 21 "..\..\Areas\CMS\Views\Text\Form.cshtml"
        Write(Html.Partial("../Info/_Form_Title", entity));
 
             
             #line default
             #line hidden
             
-            #line 22 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+            #line 21 "..\..\Areas\CMS\Views\Text\Form.cshtml"
                                                         
 
             
@@ -179,7 +178,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                    ");
 
             
-            #line 26 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+            #line 25 "..\..\Areas\CMS\Views\Text\Form.cshtml"
                Write(Html.Partial("../Info/_Form_Content", entity));
 
             
@@ -188,34 +187,34 @@ WriteLiteral("                    ");
 WriteLiteral("\r\n                </div>\r\n            </div>\r\n");
 
             
-            #line 29 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+            #line 28 "..\..\Areas\CMS\Views\Text\Form.cshtml"
             
             
             #line default
             #line hidden
             
-            #line 29 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+            #line 28 "..\..\Areas\CMS\Views\Text\Form.cshtml"
        Write(Html.Partial("_Form_Footer", entity));
 
             
             #line default
             #line hidden
             
-            #line 29 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+            #line 28 "..\..\Areas\CMS\Views\Text\Form.cshtml"
                                                  
             
             
             #line default
             #line hidden
             
-            #line 30 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+            #line 29 "..\..\Areas\CMS\Views\Text\Form.cshtml"
        Write(Html.Partial("_Form_Action", entity));
 
             
             #line default
             #line hidden
             
-            #line 30 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+            #line 29 "..\..\Areas\CMS\Views\Text\Form.cshtml"
                                                  
         }
 

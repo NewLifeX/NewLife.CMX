@@ -5,8 +5,7 @@
 @using NewLife.CMX;
 @using NewLife.CMX.Web;
 @{
-    var fact = EntityFactory.CreateOperate(ViewData.ModelMetadata.ModelType);
-
+    var fact = ViewBag.Factory as IEntityOperate;
     var entity = Model as IEntity;
     var isNew = entity.IsNullKey;
     var inf = Model as IInfo;
@@ -21,19 +20,19 @@
             @Html.ValidationSummary()
             @Html.Partial("../Info/_Form_Title", entity)
             <div class="form-group">
-                <label class="control-label col-md-2">来源</label>
-                <div class="col-md-2">
+                <label class="control-label col-sm-2">来源</label>
+                <div class="col-sm-2">
                     @Html.ForDropDownList(Article._.SourceID, Source.FindAllVisible(), null, false)
                 </div>
-                <div class="col-md-3">
-                    <label class="control-label col-md-2">名称</label>
-                    <div class="col-md-10">
+                <div class="col-sm-3">
+                    <label class="control-label col-md-4">名称</label>
+                    <div class="col-md-8">
                         @Html.ForEditor(Article._.SourceName, entity)
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <label class="control-label col-md-2">地址</label>
-                    <div class="col-md-10">
+                <div class="col-sm-3">
+                    <label class="control-label col-md-4">地址</label>
+                    <div class="col-md-8">
                         @Html.ForEditor(Article._.SourceUrl, entity)
                     </div>
                 </div>

@@ -136,6 +136,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Form.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="Areas\CMS\Views\Info\_Form_Content.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_Form_Content.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CMS\Views\Info\_Form_Title.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_Form_Title.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="Areas\CMS\Views\Nav\List.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -146,7 +156,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Areas\CMS\Views\Shared\Form.generated.cs">
+    <Compile Include="Areas\CMS\Views\Info\Form.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Form.cshtml</DependentUpon>
@@ -590,6 +600,14 @@
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>AttachConfig.generated.cs</LastGenOutput>
     </Content>
+    <Content Include="Areas\CMS\Views\Info\_Form_Content.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>_Form_Content.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\CMS\Views\Info\_Form_Title.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>_Form_Title.generated.cs</LastGenOutput>
+    </Content>
     <None Include="Areas\CMS\Views\_ViewStart.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>_ViewStart.generated.cs</LastGenOutput>
@@ -628,7 +646,7 @@
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Index.generated.cs</LastGenOutput>
     </None>
-    <Content Include="Areas\CMS\Views\Shared\Form.cshtml">
+    <Content Include="Areas\CMS\Views\Info\Form.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Form.generated.cs</LastGenOutput>
     </Content>

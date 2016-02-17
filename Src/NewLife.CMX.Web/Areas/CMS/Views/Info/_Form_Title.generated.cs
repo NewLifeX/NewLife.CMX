@@ -81,15 +81,15 @@ namespace ASP
             #line hidden
 WriteLiteral("\r\n<div");
 
-WriteLiteral(" class=\"form-group\"");
+WriteLiteral(" class=\"form-group col-xs-12\"");
 
 WriteLiteral(">\r\n    <label");
 
-WriteLiteral(" class=\"control-label col-md-2\"");
+WriteLiteral(" class=\"control-label col-xs-2 col-md-2\"");
 
 WriteLiteral(">标题</label>\r\n    <div");
 
-WriteLiteral(" class=\"input-group col-xs-12 col-sm-8 col-md-6 col-lg-4\"");
+WriteLiteral(" class=\"col-xs-10 col-sm-8 col-md-9 col-lg-6\"");
 
 WriteLiteral(">\r\n");
 
@@ -102,67 +102,71 @@ WriteLiteral("        ");
             
             #line default
             #line hidden
-WriteLiteral("\r\n        &nbsp;\r\n");
+WriteLiteral("\r\n    </div>\r\n    &nbsp;\r\n");
 
             
-            #line 19 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
-        
+            #line 20 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
+    
             
             #line default
             #line hidden
             
-            #line 19 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
-         if (!isNew)
-        {
+            #line 20 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
+     if (!isNew)
+    {
 
             
             #line default
             #line hidden
-WriteLiteral("            <a");
+WriteLiteral("        <div");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 599), Tuple.Create("\"", 623)
+WriteLiteral(" class=\"col-md-1\"");
+
+WriteLiteral(">\r\n            <a");
+
+WriteAttribute("href", Tuple.Create(" href=\"", 638), Tuple.Create("\"", 662)
             
-            #line 21 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
-, Tuple.Create(Tuple.Create("", 606), Tuple.Create<System.Object, System.Int32>(this.GetUrl(inf)
+            #line 23 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
+, Tuple.Create(Tuple.Create("", 645), Tuple.Create<System.Object, System.Int32>(this.GetUrl(inf)
             
             #line default
             #line hidden
-, 606), false)
+, 645), false)
 );
 
 WriteLiteral(" target=\"_blank\"");
 
-WriteLiteral(">\r\n                预览\r\n            </a>\r\n");
+WriteLiteral(">\r\n                预览\r\n            </a>\r\n        </div>\r\n");
 
             
-            #line 24 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
-        }
+            #line 27 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
+    }
 
             
             #line default
             #line hidden
-WriteLiteral("    </div>\r\n</div>\r\n<div");
+WriteLiteral("</div>\r\n<div");
 
-WriteLiteral(" class=\"form-group\"");
+WriteLiteral(" class=\"form-group col-sm-12 col-md-6\"");
 
 WriteLiteral(">\r\n    <label");
 
-WriteLiteral(" class=\"control-label col-md-2\"");
+WriteLiteral(" class=\"control-label col-sm-2 col-md-4\"");
 
 WriteLiteral(">分类</label>\r\n    <div");
 
-WriteLiteral(" class=\"col-md-2\"");
+WriteLiteral(" class=\"col-sm-4 col-md-4\"");
 
 WriteLiteral(">\r\n");
 
             
-            #line 30 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
+            #line 32 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
         
             
             #line default
             #line hidden
             
-            #line 30 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
+            #line 32 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
           
             var data = new SelectList(Category.Root.AllChilds, "ID", "TreeNodeText", inf.CategoryID);
         
@@ -174,7 +178,7 @@ WriteLiteral("\r\n");
 WriteLiteral("        ");
 
             
-            #line 33 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
+            #line 35 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
    Write(Html.DropDownList("CategoryID", data, new { @class = "multiselect" }));
 
             
@@ -182,30 +186,7 @@ WriteLiteral("        ");
             #line hidden
 WriteLiteral("\r\n    </div>\r\n    <div");
 
-WriteLiteral(" class=\"col-md-3\"");
-
-WriteLiteral(">\r\n        <label");
-
-WriteLiteral(" class=\"control-label col-md-4\"");
-
-WriteLiteral(">编码</label>\r\n        <div");
-
-WriteLiteral(" class=\"col-md-8\"");
-
-WriteLiteral(">\r\n");
-
-WriteLiteral("            ");
-
-            
-            #line 38 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
-       Write(Html.ForEditor("Code", inf.Code, typeof(String)));
-
-            
-            #line default
-            #line hidden
-WriteLiteral("\r\n        </div>\r\n    </div>\r\n    <div");
-
-WriteLiteral(" class=\"col-md-3\"");
+WriteLiteral(" class=\"col-sm-4 col-md-4\"");
 
 WriteLiteral(">\r\n        <label");
 
@@ -214,7 +195,7 @@ WriteLiteral(" class=\"control-label\"");
 WriteLiteral(">访问量</label>\r\n        <span>");
 
             
-            #line 43 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
+            #line 39 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
          Write(inf.Views);
 
             
@@ -227,13 +208,36 @@ WriteLiteral(" class=\"control-label\"");
 WriteLiteral(">版本</label>\r\n        <span>");
 
             
-            #line 45 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
+            #line 41 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
          Write(inf.Version);
 
             
             #line default
             #line hidden
-WriteLiteral("</span>\r\n    </div>\r\n</div>");
+WriteLiteral("</span>\r\n    </div>\r\n</div>\r\n<div");
+
+WriteLiteral(" class=\"form-group col-sm-12 col-md-6\"");
+
+WriteLiteral(">\r\n    <label");
+
+WriteLiteral(" class=\"control-label col-xs-2 col-md-2\"");
+
+WriteLiteral(">编码</label>\r\n    <div");
+
+WriteLiteral(" class=\"col-xs-7 col-md-4\"");
+
+WriteLiteral(">\r\n");
+
+WriteLiteral("        ");
+
+            
+            #line 47 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
+   Write(Html.ForEditor("Code", inf.Code, typeof(String)));
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n    </div>\r\n</div>\r\n");
 
         }
     }

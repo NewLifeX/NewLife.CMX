@@ -17,7 +17,7 @@ namespace ASP
     using System.Linq;
     using System.Net;
     
-    #line 1 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+    #line 2 "..\..\Areas\CMS\Views\Info\Form.cshtml"
     using System.Reflection;
     
     #line default
@@ -35,7 +35,7 @@ namespace ASP
     using System.Web.WebPages;
     using NewLife;
     
-    #line 4 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+    #line 5 "..\..\Areas\CMS\Views\Info\Form.cshtml"
     using NewLife.CMX;
     
     #line default
@@ -44,13 +44,13 @@ namespace ASP
     using NewLife.Reflection;
     using NewLife.Web;
     
-    #line 2 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+    #line 3 "..\..\Areas\CMS\Views\Info\Form.cshtml"
     using XCode;
     
     #line default
     #line hidden
     
-    #line 3 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+    #line 4 "..\..\Areas\CMS\Views\Info\Form.cshtml"
     using XCode.Configuration;
     
     #line default
@@ -59,7 +59,7 @@ namespace ASP
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorGenerator", "2.0.0.0")]
     [System.Web.WebPages.PageVirtualPathAttribute("~/Areas/CMS/Views/Info/Form.cshtml")]
-    public partial class _Areas_CMS_Views_Info_Form_cshtml : System.Web.Mvc.WebViewPage<dynamic>
+    public partial class _Areas_CMS_Views_Info_Form_cshtml : System.Web.Mvc.WebViewPage<NewLife.CMX.IInfo>
     {
         public _Areas_CMS_Views_Info_Form_cshtml()
         {
@@ -67,20 +67,12 @@ namespace ASP
         public override void Execute()
         {
             
-            #line 5 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+            #line 6 "..\..\Areas\CMS\Views\Info\Form.cshtml"
   
-    Layout = "~/Views/Shared/_Ace_Layout.cshtml";
     var fact = ViewBag.Factory as IEntityOperate;
     var fields = ViewBag.Fields as List<FieldItem>;
     var entity = Model as IEntity;
     var isNew = entity.IsNullKey;
-
-    //// 创建更新等信息统一放在尾部
-    //var names = new String[] {
-    //    "CreateUserID", "CreateUserName", "CreateTime", "CreateIP",
-    //    "UpdateUserID", "UpdateUserName", "UpdateTime", "UpdateIP",
-    //    "Remark" };
-    //fields = fields.Where(e => !e.Name.EqualIgnoreCase(names)).ToList();
 
             
             #line default
@@ -98,7 +90,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("        ");
 
             
-            #line 21 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+            #line 14 "..\..\Areas\CMS\Views\Info\Form.cshtml"
    Write(Html.Partial("_Form_Header", entity));
 
             
@@ -107,13 +99,13 @@ WriteLiteral("        ");
 WriteLiteral("\r\n");
 
             
-            #line 22 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+            #line 15 "..\..\Areas\CMS\Views\Info\Form.cshtml"
         
             
             #line default
             #line hidden
             
-            #line 22 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+            #line 15 "..\..\Areas\CMS\Views\Info\Form.cshtml"
          using (Html.BeginForm((isNew ? "Add" : "Edit"), null, new { id = entity[fact.Unique.Name] }))
         {
             
@@ -121,42 +113,42 @@ WriteLiteral("\r\n");
             #line default
             #line hidden
             
-            #line 24 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+            #line 17 "..\..\Areas\CMS\Views\Info\Form.cshtml"
        Write(Html.AntiForgeryToken());
 
             
             #line default
             #line hidden
             
-            #line 24 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+            #line 17 "..\..\Areas\CMS\Views\Info\Form.cshtml"
                                     
             
             
             #line default
             #line hidden
             
-            #line 25 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+            #line 18 "..\..\Areas\CMS\Views\Info\Form.cshtml"
        Write(Html.ValidationSummary());
 
             
             #line default
             #line hidden
             
-            #line 25 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+            #line 18 "..\..\Areas\CMS\Views\Info\Form.cshtml"
                                      
             
             
             #line default
             #line hidden
             
-            #line 26 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+            #line 19 "..\..\Areas\CMS\Views\Info\Form.cshtml"
        Write(Html.Partial("../Info/_Form_Title", entity));
 
             
             #line default
             #line hidden
             
-            #line 26 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+            #line 19 "..\..\Areas\CMS\Views\Info\Form.cshtml"
                                                         
             foreach (var item in fields)
             {
@@ -174,18 +166,18 @@ WriteLiteral(" class=\"form-group\"");
 
 WriteLiteral(">\r\n                            <label");
 
-WriteLiteral(" class=\"control-label col-md-2\"");
+WriteLiteral(" class=\"control-label col-sm-2\"");
 
 WriteLiteral(">内容</label>\r\n                            <div");
 
-WriteLiteral(" class=\"col-md-6\"");
+WriteLiteral(" class=\"col-sm-6\"");
 
 WriteLiteral(">\r\n");
 
 WriteLiteral("                                ");
 
             
-            #line 36 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+            #line 29 "..\..\Areas\CMS\Views\Info\Form.cshtml"
                            Write(Html.Partial("../Info/_Form_Content", entity));
 
             
@@ -194,7 +186,7 @@ WriteLiteral("                                ");
 WriteLiteral("\r\n                            </div>\r\n                        </div>\r\n");
 
             
-            #line 39 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+            #line 32 "..\..\Areas\CMS\Views\Info\Form.cshtml"
                     }
                     else
                     {
@@ -211,7 +203,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                            ");
 
             
-            #line 43 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+            #line 36 "..\..\Areas\CMS\Views\Info\Form.cshtml"
                        Write(Html.Partial("_Form_Item", new Pair(entity, item)));
 
             
@@ -220,7 +212,7 @@ WriteLiteral("                            ");
 WriteLiteral("\r\n                        </div>\r\n");
 
             
-            #line 45 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+            #line 38 "..\..\Areas\CMS\Views\Info\Form.cshtml"
                     }
 
                 }
@@ -230,28 +222,28 @@ WriteLiteral("\r\n                        </div>\r\n");
             #line default
             #line hidden
             
-            #line 49 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+            #line 42 "..\..\Areas\CMS\Views\Info\Form.cshtml"
        Write(Html.Partial("_Form_Footer", entity));
 
             
             #line default
             #line hidden
             
-            #line 49 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+            #line 42 "..\..\Areas\CMS\Views\Info\Form.cshtml"
                                                  
             
             
             #line default
             #line hidden
             
-            #line 50 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+            #line 43 "..\..\Areas\CMS\Views\Info\Form.cshtml"
        Write(Html.Partial("_Form_Action", entity));
 
             
             #line default
             #line hidden
             
-            #line 50 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+            #line 43 "..\..\Areas\CMS\Views\Info\Form.cshtml"
                                                  
         }
 
