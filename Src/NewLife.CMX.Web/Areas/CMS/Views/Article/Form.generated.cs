@@ -238,11 +238,11 @@ WriteLiteral(" class=\"form-group\"");
 
 WriteLiteral(">\r\n                <label");
 
-WriteLiteral(" class=\"control-label col-md-2\"");
+WriteLiteral(" class=\"control-label col-sm-2 col-md-2\"");
 
 WriteLiteral(">内容</label>\r\n                <div");
 
-WriteLiteral(" class=\"col-md-6\"");
+WriteLiteral(" class=\"col-sm-10 col-md-6\"");
 
 WriteLiteral(">\r\n");
 
@@ -466,7 +466,7 @@ WriteLiteral(" class=\"control-label col-md-2\"");
 
 WriteLiteral(">封面</label>\r\n                <div");
 
-WriteLiteral(" class=\"col-md-10\"");
+WriteLiteral(" class=\"col-md-6\"");
 
 WriteLiteral(">\r\n");
 
@@ -491,52 +491,56 @@ WriteLiteral(" class=\"control-label col-md-2\"");
 
 WriteLiteral(">发布时间</label>\r\n                <div");
 
-WriteLiteral(" class=\"col-md-2 input-group\"");
+WriteLiteral(" class=\"col-md-2\"");
+
+WriteLiteral(">\r\n                    <div");
+
+WriteLiteral(" class=\"input-group\"");
 
 WriteLiteral(">\r\n");
 
-WriteLiteral("                    ");
+WriteLiteral("                        ");
 
             
-            #line 83 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-               Write(Html.ForEditor("PublishTime", inf.PublishTime));
+            #line 84 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+                   Write(Html.ForEditor("PublishTime", inf.PublishTime));
 
             
             #line default
             #line hidden
-WriteLiteral("\r\n                </div>\r\n            </div>\r\n");
+WriteLiteral("\r\n                    </div>\r\n                </div>\r\n            </div>\r\n");
 
             
-            #line 86 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 88 "..\..\Areas\CMS\Views\Article\Form.cshtml"
             
             
             #line default
             #line hidden
             
-            #line 86 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 88 "..\..\Areas\CMS\Views\Article\Form.cshtml"
        Write(Html.Partial("_Form_Footer", entity));
 
             
             #line default
             #line hidden
             
-            #line 86 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 88 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                                                  
-            
+                    
             
             #line default
             #line hidden
             
-            #line 87 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-       Write(Html.Partial("_Form_Action", entity));
+            #line 89 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+               Write(Html.Partial("_Form_Action", entity));
 
             
             #line default
             #line hidden
             
-            #line 87 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-                                                 
-        }
+            #line 89 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+                                                         
+                    }
 
             
             #line default
@@ -548,7 +552,7 @@ WriteLiteral(" type=\"text/javascript\"");
 WriteLiteral(">\r\n    $(\"#");
 
             
-            #line 92 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 94 "..\..\Areas\CMS\Views\Article\Form.cshtml"
    Write(Article._.SourceID);
 
             
@@ -557,7 +561,7 @@ WriteLiteral(">\r\n    $(\"#");
 WriteLiteral("\").change(\r\n           function () {\r\n               var v = $(\"#");
 
             
-            #line 94 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 96 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                       Write(Article._.SourceID);
 
             
@@ -572,7 +576,7 @@ WriteLiteral(@""").val();
                        $(""#");
 
             
-            #line 100 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 102 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                       Write(Article._.SourceName);
 
             
@@ -581,7 +585,7 @@ WriteLiteral(@""").val();
 WriteLiteral("\").attr(\"value\", msg.Name);\r\n                       $(\"#");
 
             
-            #line 101 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 103 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                       Write(Article._.SourceUrl);
 
             

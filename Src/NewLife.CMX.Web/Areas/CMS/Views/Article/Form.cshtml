@@ -38,8 +38,8 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-md-2">内容</label>
-                <div class="col-md-6">
+                <label class="control-label col-sm-2 col-md-2">内容</label>
+                <div class="col-sm-10 col-md-6">
                     @Html.Partial("../Info/_Form_Content", entity)
                 </div>
             </div>
@@ -73,19 +73,21 @@
             </div>
             <div class="form-group">
                 <label class="control-label col-md-2">封面</label>
-                <div class="col-md-10">
+                <div class="col-md-6">
                     @Html.ForEditor(Article._.Cover, entity)
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-md-2">发布时间</label>
-                <div class="col-md-2 input-group">
-                    @Html.ForEditor("PublishTime", inf.PublishTime)
+                <div class="col-md-2">
+                    <div class="input-group">
+                        @Html.ForEditor("PublishTime", inf.PublishTime)
+                    </div>
                 </div>
             </div>
             @Html.Partial("_Form_Footer", entity)
-            @Html.Partial("_Form_Action", entity)
-        }
+                    @Html.Partial("_Form_Action", entity)
+                    }
     </div>
 </div>
 <script type="text/javascript">
