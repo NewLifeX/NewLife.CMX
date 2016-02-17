@@ -6,7 +6,7 @@
 @using NewLife.CMX.Web;
 @{
     var fact = EntityFactory.CreateOperate(ViewData.ModelMetadata.ModelType);
-    
+
     var entity = Model as IEntity;
     var isNew = entity.IsNullKey;
     var inf = Model as IInfo;
@@ -14,45 +14,12 @@
 }
 <div class="panel panel-default">
     <div class="form-horizontal">
-        @if (ViewBag.StatusMessage != null)
-        {
-            <div class="alert alert-success alert-dismissible text-center" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <strong>@ViewBag.StatusMessage</strong>
-            </div>
-        }
+        @Html.Partial("_Form_Header", entity)
         @using (Html.BeginForm((isNew ? "Add" : "Edit"), null, new { id = Model[fact.Unique.Name] }))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary()
-            <div class="form-group">
-                <label class="control-label col-md-2">标题</label>
-                <div class="col-md-10">
-                    @Html.ForEditor("Title", inf.Title)
-                    &nbsp;
-                    @if (!isNew)
-                    {
-                        <a href="@this.GetUrl(inf)" target="_blank">
-                            预览
-                        </a>
-                    }
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-md-2">分类</label>
-                <div class="col-md-2">
-                    @{
-            var data = new SelectList(Category.Root.AllChilds, "ID", "TreeNodeText", inf.CategoryID);
-                    }
-                    @Html.DropDownList("CategoryID", data, new { @class = "multiselect" })
-                </div>
-                <div class="col-md-3">
-                    <label class="control-label">访问量</label>
-                    <span>@inf.Views</span>
-                    <label class="control-label">版本</label>
-                    <span>@inf.Version</span>
-                </div>
-            </div>
+            @Html.Partial("../Info/_Form_Title", entity)
             <div class="form-group">
                 <label class="control-label col-md-2">来源</label>
                 <div class="col-md-2">
@@ -74,17 +41,7 @@
             <div class="form-group">
                 <label class="control-label col-md-2">内容</label>
                 <div class="col-md-6">
-                    <script src="~/Content/ueditor/ueditor.config.js"></script>
-                    <script src="~/Content/ueditor/ueditor.all.min.js"></script>
-                    <script src="~/Content/ueditor/lang/zh-cn/zh-cn.js"></script>
-                    <script id="ContentText" name="ContentText" type="text/plain" style="width:800px;height:400px;">
-                        @Html.Raw(inf.ContentText)
-                    </script>
-                    <script type="text/javascript">
-                        //实例化编辑器
-                        //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-                        var ue = UE.getEditor('ContentText');
-                    </script>
+                    @Html.Partial("../Info/_Form_Content", entity)
                 </div>
             </div>
             <div class="form-group">
@@ -127,8 +84,8 @@
                     @Html.ForEditor("PublishTime", inf.PublishTime)
                 </div>
             </div>
-            @Html.Partial("_UserTime", Model as IEntity)
-            @Html.Partial("_Form_Action", isNew)
+            @Html.Partial("_Form_Footer", entity)
+            @Html.Partial("_Form_Action", entity)
         }
     </div>
 </div>

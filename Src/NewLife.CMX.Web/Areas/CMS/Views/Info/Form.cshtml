@@ -1,0 +1,53 @@
+﻿@using System.Reflection
+@using XCode
+@using XCode.Configuration
+@using NewLife.CMX
+@{
+    Layout = "~/Views/Shared/_Ace_Layout.cshtml";
+    var fact = ViewBag.Factory as IEntityOperate;
+    var fields = ViewBag.Fields as List<FieldItem>;
+    var entity = Model as IEntity;
+    var isNew = entity.IsNullKey;
+
+    //// 创建更新等信息统一放在尾部
+    //var names = new String[] {
+    //    "CreateUserID", "CreateUserName", "CreateTime", "CreateIP",
+    //    "UpdateUserID", "UpdateUserName", "UpdateTime", "UpdateIP",
+    //    "Remark" };
+    //fields = fields.Where(e => !e.Name.EqualIgnoreCase(names)).ToList();
+}
+<div class="panel panel-default">
+    <div class="form-horizontal">
+        @Html.Partial("_Form_Header", entity)
+        @using (Html.BeginForm((isNew ? "Add" : "Edit"), null, new { id = entity[fact.Unique.Name] }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary()
+            @Html.Partial("../Info/_Form_Title", entity)
+            foreach (var item in fields)
+            {
+                if (!item.PrimaryKey)
+                {
+                    if (item.Name == "ContentText")
+                    {
+                        <div class="form-group">
+                            <label class="control-label col-md-2">内容</label>
+                            <div class="col-md-6">
+                                @Html.Partial("../Info/_Form_Content", entity)
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group">
+                            @Html.Partial("_Form_Item", new Pair(entity, item))
+                        </div>
+                    }
+
+                }
+            }
+            @Html.Partial("_Form_Footer", entity)
+            @Html.Partial("_Form_Action", entity)
+        }
+    </div>
+</div>

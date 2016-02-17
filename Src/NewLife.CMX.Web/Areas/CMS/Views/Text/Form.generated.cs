@@ -95,62 +95,25 @@ WriteLiteral(" class=\"form-horizontal\"");
 
 WriteLiteral(">\r\n");
 
+WriteLiteral("        ");
+
             
             #line 17 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+   Write(Html.Partial("_Form_Header", entity));
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n");
+
+            
+            #line 18 "..\..\Areas\CMS\Views\Text\Form.cshtml"
         
             
             #line default
             #line hidden
             
-            #line 17 "..\..\Areas\CMS\Views\Text\Form.cshtml"
-         if (ViewBag.StatusMessage != null)
-        {
-
-            
-            #line default
-            #line hidden
-WriteLiteral("            <div");
-
-WriteLiteral(" class=\"alert alert-success alert-dismissible text-center\"");
-
-WriteLiteral(" role=\"alert\"");
-
-WriteLiteral(">\r\n                <button");
-
-WriteLiteral(" type=\"button\"");
-
-WriteLiteral(" class=\"close\"");
-
-WriteLiteral(" data-dismiss=\"alert\"");
-
-WriteLiteral(" aria-label=\"Close\"");
-
-WriteLiteral("><span");
-
-WriteLiteral(" aria-hidden=\"true\"");
-
-WriteLiteral(">&times;</span></button>\r\n                <strong>");
-
-            
-            #line 21 "..\..\Areas\CMS\Views\Text\Form.cshtml"
-                   Write(ViewBag.StatusMessage);
-
-            
-            #line default
-            #line hidden
-WriteLiteral("</strong>\r\n            </div>\r\n");
-
-            
-            #line 23 "..\..\Areas\CMS\Views\Text\Form.cshtml"
-        }
-
-            
-            #line default
-            #line hidden
-WriteLiteral("        ");
-
-            
-            #line 24 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+            #line 18 "..\..\Areas\CMS\Views\Text\Form.cshtml"
          using (Html.BeginForm((isNew ? "Add" : "Edit"), null, new { id = Model[fact.Unique.Name] }))
         {
             
@@ -158,168 +121,47 @@ WriteLiteral("        ");
             #line default
             #line hidden
             
-            #line 26 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+            #line 20 "..\..\Areas\CMS\Views\Text\Form.cshtml"
        Write(Html.AntiForgeryToken());
 
             
             #line default
             #line hidden
             
-            #line 26 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+            #line 20 "..\..\Areas\CMS\Views\Text\Form.cshtml"
                                     
             
             
             #line default
             #line hidden
             
-            #line 27 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+            #line 21 "..\..\Areas\CMS\Views\Text\Form.cshtml"
        Write(Html.ValidationSummary());
 
             
             #line default
             #line hidden
             
-            #line 27 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+            #line 21 "..\..\Areas\CMS\Views\Text\Form.cshtml"
                                      
-
             
-            #line default
-            #line hidden
-WriteLiteral("            <div");
-
-WriteLiteral(" class=\"form-group\"");
-
-WriteLiteral(">\r\n                <label");
-
-WriteLiteral(" class=\"control-label col-md-2\"");
-
-WriteLiteral(">标题</label>\r\n                <div");
-
-WriteLiteral(" class=\"col-md-6\"");
-
-WriteLiteral(">\r\n");
-
-WriteLiteral("                    ");
-
-            
-            #line 31 "..\..\Areas\CMS\Views\Text\Form.cshtml"
-               Write(Html.ForEditor("Title", inf));
-
-            
-            #line default
-            #line hidden
-WriteLiteral("\r\n                    &nbsp;\r\n");
-
-            
-            #line 33 "..\..\Areas\CMS\Views\Text\Form.cshtml"
-                    
             
             #line default
             #line hidden
             
-            #line 33 "..\..\Areas\CMS\Views\Text\Form.cshtml"
-                     if (!isNew)
-                    {
+            #line 22 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+       Write(Html.Partial("../Info/_Form_Title", entity));
 
             
             #line default
             #line hidden
-WriteLiteral("                        <a");
-
-WriteAttribute("href", Tuple.Create(" href=\"", 1313), Tuple.Create("\"", 1337)
             
-            #line 35 "..\..\Areas\CMS\Views\Text\Form.cshtml"
-, Tuple.Create(Tuple.Create("", 1320), Tuple.Create<System.Object, System.Int32>(this.GetUrl(inf)
-            
-            #line default
-            #line hidden
-, 1320), false)
-);
-
-WriteLiteral(" target=\"_blank\"");
-
-WriteLiteral(">\r\n                            预览\r\n                        </a>\r\n");
-
-            
-            #line 38 "..\..\Areas\CMS\Views\Text\Form.cshtml"
-                    }
+            #line 22 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+                                                        
 
             
             #line default
             #line hidden
-WriteLiteral("                </div>\r\n            </div>\r\n");
-
-WriteLiteral("            <div");
-
-WriteLiteral(" class=\"form-group\"");
-
-WriteLiteral(">\r\n                <label");
-
-WriteLiteral(" class=\"control-label col-md-2\"");
-
-WriteLiteral(">分类</label>\r\n                <div");
-
-WriteLiteral(" class=\"col-md-2\"");
-
-WriteLiteral(">\r\n");
-
-            
-            #line 44 "..\..\Areas\CMS\Views\Text\Form.cshtml"
-                    
-            
-            #line default
-            #line hidden
-            
-            #line 44 "..\..\Areas\CMS\Views\Text\Form.cshtml"
-                      
-            var data = new SelectList(Category.Root.AllChilds, "ID", "TreeNodeText", inf.CategoryID);
-                    
-            
-            #line default
-            #line hidden
-WriteLiteral("\r\n");
-
-WriteLiteral("                    ");
-
-            
-            #line 47 "..\..\Areas\CMS\Views\Text\Form.cshtml"
-               Write(Html.DropDownList("CategoryID", data, new { @class = "multiselect" }));
-
-            
-            #line default
-            #line hidden
-WriteLiteral("\r\n                </div>\r\n                <div");
-
-WriteLiteral(" class=\"col-md-3\"");
-
-WriteLiteral(">\r\n                    <label");
-
-WriteLiteral(" class=\"control-label\"");
-
-WriteLiteral(">访问量</label>\r\n                    <span>");
-
-            
-            #line 51 "..\..\Areas\CMS\Views\Text\Form.cshtml"
-                     Write(inf.Views);
-
-            
-            #line default
-            #line hidden
-WriteLiteral("</span>\r\n                    <label");
-
-WriteLiteral(" class=\"control-label\"");
-
-WriteLiteral(">版本</label>\r\n                    <span>");
-
-            
-            #line 53 "..\..\Areas\CMS\Views\Text\Form.cshtml"
-                     Write(inf.Version);
-
-            
-            #line default
-            #line hidden
-WriteLiteral("</span>\r\n                </div>\r\n            </div>\r\n");
-
 WriteLiteral("            <div");
 
 WriteLiteral(" class=\"form-group\"");
@@ -332,91 +174,49 @@ WriteLiteral(">内容</label>\r\n                <div");
 
 WriteLiteral(" class=\"col-md-6\"");
 
-WriteLiteral(">\r\n                    <script");
-
-WriteAttribute("src", Tuple.Create(" src=\"", 2366), Tuple.Create("\"", 2407)
-, Tuple.Create(Tuple.Create("", 2372), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.config.js")
-, 2372), false)
-);
-
-WriteLiteral("></script>\r\n                    <script");
-
-WriteAttribute("src", Tuple.Create(" src=\"", 2447), Tuple.Create("\"", 2489)
-, Tuple.Create(Tuple.Create("", 2453), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/ueditor.all.min.js")
-, 2453), false)
-);
-
-WriteLiteral("></script>\r\n                    <script");
-
-WriteAttribute("src", Tuple.Create(" src=\"", 2529), Tuple.Create("\"", 2572)
-, Tuple.Create(Tuple.Create("", 2535), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ueditor/lang/zh-cn/zh-cn.js")
-, 2535), false)
-);
-
-WriteLiteral("></script>\r\n                    <script");
-
-WriteLiteral(" id=\"ContentText\"");
-
-WriteLiteral(" name=\"ContentText\"");
-
-WriteLiteral(" type=\"text/plain\"");
-
-WriteLiteral(" style=\"width:800px;height:400px;\"");
-
 WriteLiteral(">\r\n");
 
-WriteLiteral("                        ");
+WriteLiteral("                    ");
 
             
-            #line 63 "..\..\Areas\CMS\Views\Text\Form.cshtml"
-                   Write(Html.Raw(inf.ContentText));
+            #line 26 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+               Write(Html.Partial("../Info/_Form_Content", entity));
 
             
             #line default
             #line hidden
-WriteLiteral("\r\n                    </script>\r\n                    <script");
-
-WriteLiteral(" type=\"text/javascript\"");
-
-WriteLiteral(@">
-                            //实例化编辑器
-                            //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-                            var ue = UE.getEditor('ContentText');
-                    </script>
-                </div>
-            </div>
-");
+WriteLiteral("\r\n                </div>\r\n            </div>\r\n");
 
             
-            #line 72 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+            #line 29 "..\..\Areas\CMS\Views\Text\Form.cshtml"
             
             
             #line default
             #line hidden
             
-            #line 72 "..\..\Areas\CMS\Views\Text\Form.cshtml"
-       Write(Html.Partial("_UserTime", Model as IEntity));
+            #line 29 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+       Write(Html.Partial("_Form_Footer", entity));
 
             
             #line default
             #line hidden
             
-            #line 72 "..\..\Areas\CMS\Views\Text\Form.cshtml"
-                                                        
+            #line 29 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+                                                 
             
             
             #line default
             #line hidden
             
-            #line 73 "..\..\Areas\CMS\Views\Text\Form.cshtml"
-       Write(Html.Partial("_Form_Action", isNew));
+            #line 30 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+       Write(Html.Partial("_Form_Action", entity));
 
             
             #line default
             #line hidden
             
-            #line 73 "..\..\Areas\CMS\Views\Text\Form.cshtml"
-                                                
+            #line 30 "..\..\Areas\CMS\Views\Text\Form.cshtml"
+                                                 
         }
 
             

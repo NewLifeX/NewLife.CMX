@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
-using NewLife.Cube;
+using NewLife.Log;
 using NewLife.Web;
 using XCode;
 using XCode.Membership;
@@ -22,7 +22,7 @@ namespace NewLife.CMX.Web.Controllers
             list.RemoveAll(e => e.Name.EqualIgnoreCase("ModelID", "CategoryID", "ExtendID", "Version", "Code", "SourceID", "SourceUrl", "StatisticsID", "Summary"));
 
             list = FormFields;
-            list.RemoveAll(e => e.Name.EqualIgnoreCase("CategoryName", "StatisticsID"));
+            list.RemoveAll(e => e.Name.EqualIgnoreCase("ModelID", "CategoryID", "CategoryName", "StatisticsID", "Title", "Code", "Version", "Views"));
             var fi = Entity<TEntity>.Meta.AllFields.FirstOrDefault(e => e.Name == "StatisticsText");
             if (fi != null) list.Add(fi);
         }
@@ -91,8 +91,8 @@ namespace NewLife.CMX.Web.Controllers
 
             // 根据模型加载专属表单页
             var tmp = "../{0}/Form".F(entity.ModelName);
-
-            //todo 魔方里面的Html.ForEditor("Title", inf)时有死递归的BUG
+            var tf = "~/Areas/CMS/Views/{0}/Form.cshtml".F(entity.ModelName);
+            if (!System.IO.File.Exists(tf.GetFullPath())) tmp = "../Info/Form";
 
             return View(tmp, entity);
         }
