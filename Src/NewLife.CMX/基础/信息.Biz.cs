@@ -4,7 +4,7 @@
  * 时间：2016-02-06 19:22:33
  * 版权：版权所有 (C) 新生命开发团队 2002~2016
 */
-﻿using System;
+using System;
 using System.ComponentModel;
 using NewLife.Data;
 using NewLife.Log;
@@ -94,19 +94,70 @@ namespace NewLife.CMX
             if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
         }
 
-        ///// <summary>已重载。基类先调用Valid(true)验证数据，然后在事务保护内调用OnInsert</summary>
-        ///// <returns></returns>
-        //public override Int32 Insert()
-        //{
-        //    return base.Insert();
-        //}
+        /// <summary>同步插入统计信息和内容信息</summary>
+        /// <returns></returns>
+        protected override Int32 OnInsert()
+        {
+            if (!Dirtys["Version"]) Version = 1;
 
-        ///// <summary>已重载。在事务保护范围内处理业务，位于Valid之后</summary>
-        ///// <returns></returns>
-        //protected override Int32 OnInsert()
-        //{
-        //    return base.OnInsert();
-        //}
+            var num = 0;
+            // 保存统计
+            var stat = Statistics;
+            if (stat != null) (stat as IEntity).Insert();
+
+            this.StatisticsID = stat.ID;
+
+            num += base.OnInsert();
+
+            // 保存内容
+            //HelperTool.SaveModelContent(typeof(TContent), Version, ChannelSuffix, this, null);
+            var entity = Content;
+            entity.InfoID = ID;
+            entity.Title = Title;
+            entity.Version = Version;
+            num += (entity as IEntity).Insert();
+
+            return num;
+        }
+
+        /// <summary>同步更新内容，但不同步更新统计</summary>
+        protected override int OnUpdate()
+        {
+            var rs = 0;
+            // 如果内容数据有修改，插入新内容
+            //if ((Content as IEntity).Dirtys.Any(e => e.Value))
+            if ((Content as IEntity).Dirtys.Count > 0)
+            {
+                //由于原先的添加方法存在BUG无法给ParentID赋值，给字段赋引用类型值时无法触发脏数据更新标记
+                //故创建新的对象
+                var entity = (Content as IEntity).CloneEntity(true) as IContent;
+                entity.ID = 0;
+                entity.InfoID = ID;
+                entity.Version++;
+                entity.Title = Title;
+                rs += (entity as IEntity).Insert();
+
+                this.Version = entity.Version;
+            }
+
+            // 同步访问量
+            if (HasDirty) Views = Statistics.Total;
+
+            return rs + base.OnUpdate();
+        }
+
+        /// <summary>已重载。关联删除内容和统计</summary>
+        /// <returns></returns>
+        protected override int OnDelete()
+        {
+            // 删内容
+            NewLife.CMX.Content.DeleteByParentID(ID);
+
+            // 删统计
+            (Statistics as IEntity).Delete();
+
+            return base.OnDelete();
+        }
         #endregion
 
         #region 扩展属性
