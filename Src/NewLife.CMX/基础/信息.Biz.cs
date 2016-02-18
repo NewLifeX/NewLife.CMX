@@ -12,6 +12,7 @@ using XCode;
 using XCode.Membership;
 using NewLife.Reflection;
 using System.Xml.Serialization;
+using System.Text;
 
 namespace NewLife.CMX
 {
@@ -80,6 +81,13 @@ namespace NewLife.CMX
             // 遍历分类
             NewLife.CMX.Category.Meta.Session.WaitForInitData();
 
+            var sb = new StringBuilder();
+            for (int i = 0; i < 20; i++)
+            {
+                sb.AppendLine("新生命开发团队，学无先后达者为师<br>");
+            }
+            var txt = sb.ToString();
+
             foreach (var item in NewLife.CMX.Category.FindAllWithCache())
             {
                 var entity = new TEntity();
@@ -87,6 +95,7 @@ namespace NewLife.CMX
                 entity.CategoryID = item.ID;
                 entity.CategoryName = item.Name;
                 entity.Title = "{0}信息".F(item.Name);
+                entity.ContentText = txt;
                 entity.ExtendID = 0;
                 entity.Insert();
             }
@@ -182,8 +191,8 @@ namespace NewLife.CMX
 
         /// <summary>该分类所对应的模型名称</summary>
         [XmlIgnore]
-        [DisplayName("模型名")]
-        public String ModelName { get { return Model != null ? Model.Name : String.Empty; } }
+        [DisplayName("模型")]
+        public String ModelName { get { return Model + ""; } }
 
         private ICategory _Category;
         /// <summary>分类</summary>

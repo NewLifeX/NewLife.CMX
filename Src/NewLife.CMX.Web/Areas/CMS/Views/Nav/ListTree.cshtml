@@ -1,8 +1,8 @@
-﻿@using NewLife.Web;
+﻿@model EntityList<Nav>
+@using NewLife.Web;
 @using XCode;
 @using XCode.Membership;
 @using NewLife.CMX;
-@model EntityList<Nav>
 @{
     var fact = ViewBag.Factory as IEntityOperate;
     var page = ViewBag.Page as Pager;
@@ -37,7 +37,7 @@
                     <tr>
                         <td>@entity.ID</td>
                         <td>@entity.TreeNodeName</td>
-                        <td>@entity.ModelName</td>
+                        <td>@entity.CategoryName</td>
                         <td>@entity.Url</td>
                         <td>@entity.Sort</td>
                         @Html.Partial("_List_Data_Item", new Pair(entity, fact.Table.FindByName("Enable")))

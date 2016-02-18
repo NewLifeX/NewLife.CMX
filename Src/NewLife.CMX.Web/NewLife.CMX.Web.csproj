@@ -35,6 +35,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -146,10 +148,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>_Form_Title.cshtml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\CMS\Views\Nav\List.generated.cs">
+    <Compile Include="Areas\CMS\Views\Nav\ListTree.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>List.cshtml</DependentUpon>
+      <DependentUpon>ListTree.cshtml</DependentUpon>
     </Compile>
     <Compile Include="Areas\CMS\Views\Product\Form.generated.cs">
       <DependentUpon>Form.cshtml</DependentUpon>
@@ -576,9 +578,9 @@
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Form.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Areas\CMS\Views\Nav\List.cshtml">
+    <Content Include="Areas\CMS\Views\Nav\ListTree.cshtml">
       <Generator>RazorGenerator</Generator>
-      <LastGenOutput>List.generated.cs</LastGenOutput>
+      <LastGenOutput>ListTree.generated.cs</LastGenOutput>
     </Content>
     <Content Include="Areas\CMS\Views\Shared\_Layout_Nav.cshtml">
       <Generator>RazorGenerator</Generator>

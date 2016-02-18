@@ -19,7 +19,7 @@ namespace NewLife.CMX.Web.Controllers
         {
             // 过滤掉一些字段
             var list = ListFields;
-            list.RemoveAll(e => e.Name.EqualIgnoreCase("ModelID", "CategoryID", "ExtendID", "Version", "Code", "SourceID", "SourceUrl", "StatisticsID", "Summary"));
+            list.RemoveAll(e => e.Name.EqualIgnoreCase("ModelID", "ModelName", "CategoryID", "ExtendID", "Version", "Code", "SourceID", "SourceUrl", "StatisticsID", "Summary"));
 
             list = FormFields;
             list.RemoveAll(e => e.Name.EqualIgnoreCase("ModelID", "CategoryID", "CategoryName", "StatisticsID", "Title", "Code", "Version", "Views"));

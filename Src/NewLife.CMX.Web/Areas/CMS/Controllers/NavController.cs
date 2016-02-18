@@ -13,11 +13,14 @@ namespace NewLife.CMX.Web.Controllers
         static NavController()
         {
             // 过滤掉一些字段
-            var list = ListFields;
-            list.RemoveAll(e => e.Name.EqualIgnoreCase("ModelID", "CategoryID", "ExtendID", "Version", "Code", "SourceID", "SourceUrl", "StatisticsID", "Summary"));
+            //var list = ListFields;
+            //list.RemoveCreateField()
+            //    .RemoveUpdateField()
+            //    .RemoveRemarkField();
+            //list.RemoveAll(e => e.Name.EqualIgnoreCase("ModelID", "CategoryID", "ExtendID", "Version", "Code", "SourceID", "SourceUrl", "StatisticsID", "Summary"));
 
-            list = FormFields;
-            list.RemoveAll(e => e.Name.EqualIgnoreCase("CategoryName", "StatisticsID"));
+            //list = FormFields;
+            //list.RemoveAll(e => e.Name.EqualIgnoreCase("CategoryName", "StatisticsID"));
             //var fi = Entity<TEntity>.Meta.AllFields.FirstOrDefault(e => e.Name == "StatisticsText");
             //if (fi != null) list.Add(fi);
         }

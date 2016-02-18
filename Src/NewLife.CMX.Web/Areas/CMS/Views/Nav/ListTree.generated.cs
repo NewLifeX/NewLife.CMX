@@ -29,7 +29,7 @@ namespace ASP
     using System.Web.WebPages;
     using NewLife;
     
-    #line 4 "..\..\Areas\CMS\Views\Nav\List.cshtml"
+    #line 5 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
     using NewLife.CMX;
     
     #line default
@@ -37,35 +37,35 @@ namespace ASP
     using NewLife.Cube;
     using NewLife.Reflection;
     
-    #line 1 "..\..\Areas\CMS\Views\Nav\List.cshtml"
+    #line 2 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
     using NewLife.Web;
     
     #line default
     #line hidden
     
-    #line 2 "..\..\Areas\CMS\Views\Nav\List.cshtml"
+    #line 3 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
     using XCode;
     
     #line default
     #line hidden
     
-    #line 3 "..\..\Areas\CMS\Views\Nav\List.cshtml"
+    #line 4 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
     using XCode.Membership;
     
     #line default
     #line hidden
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorGenerator", "2.0.0.0")]
-    [System.Web.WebPages.PageVirtualPathAttribute("~/Areas/CMS/Views/Nav/List.cshtml")]
-    public partial class _Areas_CMS_Views_Nav_List_cshtml : System.Web.Mvc.WebViewPage<EntityList<Nav>>
+    [System.Web.WebPages.PageVirtualPathAttribute("~/Areas/CMS/Views/Nav/ListTree.cshtml")]
+    public partial class _Areas_CMS_Views_Nav_ListTree_cshtml : System.Web.Mvc.WebViewPage<EntityList<Nav>>
     {
-        public _Areas_CMS_Views_Nav_List_cshtml()
+        public _Areas_CMS_Views_Nav_ListTree_cshtml()
         {
         }
         public override void Execute()
         {
             
-            #line 6 "..\..\Areas\CMS\Views\Nav\List.cshtml"
+            #line 6 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
   
     var fact = ViewBag.Factory as IEntityOperate;
     var page = ViewBag.Page as Pager;
@@ -86,7 +86,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("        ");
 
             
-            #line 12 "..\..\Areas\CMS\Views\Nav\List.cshtml"
+            #line 12 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
    Write(Html.Partial("_List_Toolbar"));
 
             
@@ -118,13 +118,13 @@ WriteLiteral(@">
 ");
 
             
-            #line 30 "..\..\Areas\CMS\Views\Nav\List.cshtml"
+            #line 30 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
                 
             
             #line default
             #line hidden
             
-            #line 30 "..\..\Areas\CMS\Views\Nav\List.cshtml"
+            #line 30 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
                  foreach (var entity in Nav.Root.AllChilds)
                 {
                     var p = entity.Parent;
@@ -139,7 +139,7 @@ WriteLiteral(@">
 WriteLiteral("                    <tr>\r\n                        <td>");
 
             
-            #line 38 "..\..\Areas\CMS\Views\Nav\List.cshtml"
+            #line 38 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
                        Write(entity.ID);
 
             
@@ -148,7 +148,7 @@ WriteLiteral("                    <tr>\r\n                        <td>");
 WriteLiteral("</td>\r\n                        <td>");
 
             
-            #line 39 "..\..\Areas\CMS\Views\Nav\List.cshtml"
+            #line 39 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
                        Write(entity.TreeNodeName);
 
             
@@ -157,8 +157,8 @@ WriteLiteral("</td>\r\n                        <td>");
 WriteLiteral("</td>\r\n                        <td>");
 
             
-            #line 40 "..\..\Areas\CMS\Views\Nav\List.cshtml"
-                       Write(entity.ModelName);
+            #line 40 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
+                       Write(entity.CategoryName);
 
             
             #line default
@@ -166,7 +166,7 @@ WriteLiteral("</td>\r\n                        <td>");
 WriteLiteral("</td>\r\n                        <td>");
 
             
-            #line 41 "..\..\Areas\CMS\Views\Nav\List.cshtml"
+            #line 41 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
                        Write(entity.Url);
 
             
@@ -175,7 +175,7 @@ WriteLiteral("</td>\r\n                        <td>");
 WriteLiteral("</td>\r\n                        <td>");
 
             
-            #line 42 "..\..\Areas\CMS\Views\Nav\List.cshtml"
+            #line 42 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
                        Write(entity.Sort);
 
             
@@ -186,7 +186,7 @@ WriteLiteral("</td>\r\n");
 WriteLiteral("                        ");
 
             
-            #line 43 "..\..\Areas\CMS\Views\Nav\List.cshtml"
+            #line 43 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
                    Write(Html.Partial("_List_Data_Item", new Pair(entity, fact.Table.FindByName("Enable"))));
 
             
@@ -195,13 +195,13 @@ WriteLiteral("                        ");
 WriteLiteral("\r\n                        <td>\r\n");
 
             
-            #line 45 "..\..\Areas\CMS\Views\Nav\List.cshtml"
+            #line 45 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
                             
             
             #line default
             #line hidden
             
-            #line 45 "..\..\Areas\CMS\Views\Nav\List.cshtml"
+            #line 45 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
                              if (p != null && entity != p.Childs[0])
                             {
 
@@ -210,14 +210,14 @@ WriteLiteral("\r\n                        <td>\r\n");
             #line hidden
 WriteLiteral("                                <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 1639), Tuple.Create("\"", 1687)
+WriteAttribute("href", Tuple.Create(" href=\"", 1642), Tuple.Create("\"", 1690)
             
-            #line 47 "..\..\Areas\CMS\Views\Nav\List.cshtml"
-, Tuple.Create(Tuple.Create("", 1646), Tuple.Create<System.Object, System.Int32>(Url.Action("Up", new { id = entity.ID })
+            #line 47 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
+, Tuple.Create(Tuple.Create("", 1649), Tuple.Create<System.Object, System.Int32>(Url.Action("Up", new { id = entity.ID })
             
             #line default
             #line hidden
-, 1646), false)
+, 1649), false)
 );
 
 WriteLiteral("><span");
@@ -229,7 +229,7 @@ WriteLiteral(" style=\"color: green;\"");
 WriteLiteral("></span></a>\r\n");
 
             
-            #line 48 "..\..\Areas\CMS\Views\Nav\List.cshtml"
+            #line 48 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
                             }
 
             
@@ -238,13 +238,13 @@ WriteLiteral("></span></a>\r\n");
 WriteLiteral("                        </td>\r\n                        <td>\r\n");
 
             
-            #line 51 "..\..\Areas\CMS\Views\Nav\List.cshtml"
+            #line 51 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
                             
             
             #line default
             #line hidden
             
-            #line 51 "..\..\Areas\CMS\Views\Nav\List.cshtml"
+            #line 51 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
                              if (p != null && entity != p.Childs[p.Childs.Count - 1])
                             {
 
@@ -253,14 +253,14 @@ WriteLiteral("                        </td>\r\n                        <td>\r\n"
             #line hidden
 WriteLiteral("                                <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 2011), Tuple.Create("\"", 2061)
+WriteAttribute("href", Tuple.Create(" href=\"", 2014), Tuple.Create("\"", 2064)
             
-            #line 53 "..\..\Areas\CMS\Views\Nav\List.cshtml"
-, Tuple.Create(Tuple.Create("", 2018), Tuple.Create<System.Object, System.Int32>(Url.Action("Down", new { id = entity.ID })
+            #line 53 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
+, Tuple.Create(Tuple.Create("", 2021), Tuple.Create<System.Object, System.Int32>(Url.Action("Down", new { id = entity.ID })
             
             #line default
             #line hidden
-, 2018), false)
+, 2021), false)
 );
 
 WriteLiteral("><span");
@@ -272,7 +272,7 @@ WriteLiteral(" style=\"color: red;\"");
 WriteLiteral("></span></a>\r\n");
 
             
-            #line 54 "..\..\Areas\CMS\Views\Nav\List.cshtml"
+            #line 54 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
                             }
 
             
@@ -283,7 +283,7 @@ WriteLiteral("                        </td>\r\n                        <td>\r\n"
 WriteLiteral("                            ");
 
             
-            #line 57 "..\..\Areas\CMS\Views\Nav\List.cshtml"
+            #line 57 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
                        Write(Html.Partial("_List_Data_Action", entity));
 
             
@@ -292,7 +292,7 @@ WriteLiteral("                            ");
 WriteLiteral("\r\n                        </td>\r\n                    </tr>\r\n");
 
             
-            #line 60 "..\..\Areas\CMS\Views\Nav\List.cshtml"
+            #line 60 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
                 }
 
             
@@ -307,7 +307,7 @@ WriteLiteral(">\r\n        <p>\r\n");
 WriteLiteral("            ");
 
             
-            #line 66 "..\..\Areas\CMS\Views\Nav\List.cshtml"
+            #line 66 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
        Write(Html.Partial("_List_Pager"));
 
             

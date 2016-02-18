@@ -132,28 +132,27 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
-        private IModel _Model;
-        /// <summary>模型</summary>
-        [XmlIgnore]
-        [BindRelation("ModelID", false, "Model", "ID")]
-        public IModel Model
+        private ICategory _Category;
+        /// <summary>分类</summary>
+        [BindRelation("CategoryID", false, "Category", "ID")]
+        public ICategory Category
         {
             get
             {
-                if (_Model == null && ModelID > 0 && !Dirtys.ContainsKey("Model"))
+                if (_Category == null && CategoryID > 0 && !Dirtys.ContainsKey("Category"))
                 {
-                    _Model = ModelX.FindByID(ModelID);
-                    Dirtys["Model"] = true;
+                    _Category = NewLife.CMX.Category.FindByID(CategoryID);
+                    Dirtys["Category"] = true;
                 }
-                return _Model;
+                return _Category;
             }
-            set { _Model = value; }
+            //set { _Category = value; }
         }
 
-        /// <summary>模型名称</summary>
+        /// <summary>分类</summary>
         [XmlIgnore]
-        [DisplayName("模型名称")]
-        public String ModelName { get { return Model + ""; } }
+        [DisplayName("分类")]
+        public String CategoryName { get { return Category + ""; } }
         #endregion
 
         #region 扩展查询﻿

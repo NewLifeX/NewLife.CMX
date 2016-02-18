@@ -4,7 +4,7 @@
  * 时间：2016-02-06 17:22:55
  * 版权：版权所有 (C) 新生命开发团队 2002~2016
 */
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -156,8 +156,9 @@ namespace NewLife.CMX
 
         /// <summary>该分类所对应的模型名称</summary>
         [XmlIgnore]
-        [DisplayName("模型名")]
-        public String ModelName { get { return Model != null ? Model.Name : String.Empty; } }
+        [DisplayName("模型")]
+        //[BindRelation(__.ModelID)]
+        public String ModelName { get { return Model + ""; } }
 
         /// <summary>子节点</summary>
         public EntityList<TEntity> Childrens { get; set; }
@@ -175,7 +176,7 @@ namespace NewLife.CMX
             else
                 return Meta.Cache.Entities.Find(__.ID, id);
         }
-      ﻿
+
         /// <summary>根据名称查找</summary>
         /// <param name="name">名称</param>
         /// <returns></returns>
@@ -187,7 +188,7 @@ namespace NewLife.CMX
             else // 实体缓存
                 return Meta.Cache.Entities.Find(__.Name, name);
         }
-      ﻿
+
         /// <summary>根据代码查找</summary>
         /// <param name="code">代码</param>
         /// <returns></returns>

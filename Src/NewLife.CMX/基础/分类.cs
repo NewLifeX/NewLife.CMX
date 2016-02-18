@@ -105,11 +105,11 @@ namespace NewLife.CMX
         }
 
         private String _Image;
-        /// <summary>图片</summary>
-        [DisplayName("图片")]
-        [Description("图片")]
+        /// <summary>图标</summary>
+        [DisplayName("图标")]
+        [Description("图标")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(8, "Image", "图片", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(8, "Image", "图标", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Image
         {
             get { return _Image; }
@@ -227,7 +227,7 @@ namespace NewLife.CMX
             ///<summary>数量</summary>
             public static readonly Field Num = FindByName(__.Num);
 
-            ///<summary>图片</summary>
+            ///<summary>图标</summary>
             public static readonly Field Image = FindByName(__.Image);
 
             ///<summary>分类页模版。本分类专属列表页</summary>
@@ -266,7 +266,7 @@ namespace NewLife.CMX
             ///<summary>数量</summary>
             public const String Num = "Num";
 
-            ///<summary>图片</summary>
+            ///<summary>图标</summary>
             public const String Image = "Image";
 
             ///<summary>分类页模版。本分类专属列表页</summary>
@@ -307,7 +307,7 @@ namespace NewLife.CMX
         /// <summary>数量</summary>
         Int32 Num { get; set; }
 
-        /// <summary>图片</summary>
+        /// <summary>图标</summary>
         String Image { get; set; }
 
         /// <summary>分类页模版。本分类专属列表页</summary>

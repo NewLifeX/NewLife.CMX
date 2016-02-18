@@ -54,16 +54,16 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.ParentID, value)) { _ParentID = value; OnPropertyChanged(__.ParentID); } }
         }
 
-        private Int32 _ModelID;
-        /// <summary>模型</summary>
-        [DisplayName("模型")]
-        [Description("模型")]
+        private Int32 _CategoryID;
+        /// <summary>分类</summary>
+        [DisplayName("分类")]
+        [Description("分类")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(4, "ModelID", "模型", null, "int", 10, 0, false)]
-        public virtual Int32 ModelID
+        [BindColumn(4, "CategoryID", "分类", null, "int", 10, 0, false)]
+        public virtual Int32 CategoryID
         {
-            get { return _ModelID; }
-            set { if (OnPropertyChanging(__.ModelID, value)) { _ModelID = value; OnPropertyChanged(__.ModelID); } }
+            get { return _CategoryID; }
+            set { if (OnPropertyChanging(__.CategoryID, value)) { _CategoryID = value; OnPropertyChanged(__.CategoryID); } }
         }
 
         private String _Url;
@@ -216,7 +216,7 @@ namespace NewLife.CMX
                     case __.ID : return _ID;
                     case __.Name : return _Name;
                     case __.ParentID : return _ParentID;
-                    case __.ModelID : return _ModelID;
+                    case __.CategoryID : return _CategoryID;
                     case __.Url : return _Url;
                     case __.NewWindow : return _NewWindow;
                     case __.Sort : return _Sort;
@@ -238,7 +238,7 @@ namespace NewLife.CMX
                     case __.ID : _ID = Convert.ToInt32(value); break;
                     case __.Name : _Name = Convert.ToString(value); break;
                     case __.ParentID : _ParentID = Convert.ToInt32(value); break;
-                    case __.ModelID : _ModelID = Convert.ToInt32(value); break;
+                    case __.CategoryID : _CategoryID = Convert.ToInt32(value); break;
                     case __.Url : _Url = Convert.ToString(value); break;
                     case __.NewWindow : _NewWindow = Convert.ToBoolean(value); break;
                     case __.Sort : _Sort = Convert.ToInt32(value); break;
@@ -269,8 +269,8 @@ namespace NewLife.CMX
             ///<summary>父类</summary>
             public static readonly Field ParentID = FindByName(__.ParentID);
 
-            ///<summary>模型</summary>
-            public static readonly Field ModelID = FindByName(__.ModelID);
+            ///<summary>分类</summary>
+            public static readonly Field CategoryID = FindByName(__.CategoryID);
 
             ///<summary>地址</summary>
             public static readonly Field Url = FindByName(__.Url);
@@ -320,8 +320,8 @@ namespace NewLife.CMX
             ///<summary>父类</summary>
             public const String ParentID = "ParentID";
 
-            ///<summary>模型</summary>
-            public const String ModelID = "ModelID";
+            ///<summary>分类</summary>
+            public const String CategoryID = "CategoryID";
 
             ///<summary>地址</summary>
             public const String Url = "Url";
@@ -373,8 +373,8 @@ namespace NewLife.CMX
         /// <summary>父类</summary>
         Int32 ParentID { get; set; }
 
-        /// <summary>模型</summary>
-        Int32 ModelID { get; set; }
+        /// <summary>分类</summary>
+        Int32 CategoryID { get; set; }
 
         /// <summary>地址</summary>
         String Url { get; set; }

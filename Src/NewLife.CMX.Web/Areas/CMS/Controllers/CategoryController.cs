@@ -13,6 +13,10 @@ namespace NewLife.CMX.Web.Controllers
     {
         static CategoryController()
         {
+            // 过滤掉一些字段
+            var list = ListFields;
+            list.RemoveAll(e => e.Name.EqualIgnoreCase("ModelID", "ModelName"));
+
             FormFields.RemoveField("Remark");
         }
     }
