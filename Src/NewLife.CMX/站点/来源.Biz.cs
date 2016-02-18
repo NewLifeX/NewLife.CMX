@@ -4,18 +4,19 @@
  * 时间：2015-06-23 21:53:36
  * 版权：版权所有 (C) 新生命开发团队 2002~2015
 */
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using NewLife.Data;
 using NewLife.Log;
 using XCode;
+using XCode.Membership;
 
 namespace NewLife.CMX
 {
     /// <summary>来源</summary>
-    public partial class Source : Entity<Source>
+    public partial class Source : UserTimeEntity<Source>
     {
         #region 对象操作
 

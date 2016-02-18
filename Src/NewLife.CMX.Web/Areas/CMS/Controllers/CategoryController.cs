@@ -9,5 +9,11 @@ using XCode.Membership;
 
 namespace NewLife.CMX.Web.Controllers
 {
-    public class CategoryController : EntityTreeController<Category> { }
+    public class CategoryController : EntityTreeController<Category>
+    {
+        static CategoryController()
+        {
+            FormFields.RemoveField("Remark");
+        }
+    }
 }

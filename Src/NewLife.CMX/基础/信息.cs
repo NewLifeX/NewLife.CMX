@@ -141,12 +141,36 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.Views, value)) { _Views = value; OnPropertyChanged(__.Views); } }
         }
 
+        private Int32 _Sort;
+        /// <summary>排序。较大值在前</summary>
+        [DisplayName("排序")]
+        [Description("排序。较大值在前")]
+        [DataObjectField(false, false, true, 10)]
+        [BindColumn(11, "Sort", "排序。较大值在前", null, "int", 10, 0, false)]
+        public virtual Int32 Sort
+        {
+            get { return _Sort; }
+            set { if (OnPropertyChanging(__.Sort, value)) { _Sort = value; OnPropertyChanged(__.Sort); } }
+        }
+
+        private String _Image;
+        /// <summary>图片</summary>
+        [DisplayName("图片")]
+        [Description("图片")]
+        [DataObjectField(false, false, true, 200)]
+        [BindColumn(12, "Image", "图片", null, "nvarchar(200)", 0, 0, true)]
+        public virtual String Image
+        {
+            get { return _Image; }
+            set { if (OnPropertyChanging(__.Image, value)) { _Image = value; OnPropertyChanged(__.Image); } }
+        }
+
         private String _Summary;
         /// <summary>摘要</summary>
         [DisplayName("摘要")]
         [Description("摘要")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(11, "Summary", "摘要", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(13, "Summary", "摘要", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Summary
         {
             get { return _Summary; }
@@ -158,7 +182,7 @@ namespace NewLife.CMX
         [DisplayName("发布时间")]
         [Description("发布时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(12, "PublishTime", "发布时间", null, "datetime", 3, 0, false)]
+        [BindColumn(14, "PublishTime", "发布时间", null, "datetime", 3, 0, false)]
         public virtual DateTime PublishTime
         {
             get { return _PublishTime; }
@@ -170,7 +194,7 @@ namespace NewLife.CMX
         [DisplayName("发布人")]
         [Description("发布人")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(13, "Publisher", "发布人", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(15, "Publisher", "发布人", null, "nvarchar(50)", 0, 0, true)]
         public virtual String Publisher
         {
             get { return _Publisher; }
@@ -182,7 +206,7 @@ namespace NewLife.CMX
         [DisplayName("创建人")]
         [Description("创建人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(14, "CreateUserID", "创建人", null, "int", 10, 0, false)]
+        [BindColumn(16, "CreateUserID", "创建人", null, "int", 10, 0, false)]
         public virtual Int32 CreateUserID
         {
             get { return _CreateUserID; }
@@ -194,7 +218,7 @@ namespace NewLife.CMX
         [DisplayName("创建时间")]
         [Description("创建时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(15, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
+        [BindColumn(17, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
         public virtual DateTime CreateTime
         {
             get { return _CreateTime; }
@@ -206,7 +230,7 @@ namespace NewLife.CMX
         [DisplayName("创建地址")]
         [Description("创建地址")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(16, "CreateIP", "创建地址", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(18, "CreateIP", "创建地址", null, "nvarchar(50)", 0, 0, true)]
         public virtual String CreateIP
         {
             get { return _CreateIP; }
@@ -218,7 +242,7 @@ namespace NewLife.CMX
         [DisplayName("更新人")]
         [Description("更新人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(17, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
+        [BindColumn(19, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
         public virtual Int32 UpdateUserID
         {
             get { return _UpdateUserID; }
@@ -230,7 +254,7 @@ namespace NewLife.CMX
         [DisplayName("更新时间")]
         [Description("更新时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(18, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
+        [BindColumn(20, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
         public virtual DateTime UpdateTime
         {
             get { return _UpdateTime; }
@@ -242,7 +266,7 @@ namespace NewLife.CMX
         [DisplayName("更新地址")]
         [Description("更新地址")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(19, "UpdateIP", "更新地址", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(21, "UpdateIP", "更新地址", null, "nvarchar(50)", 0, 0, true)]
         public virtual String UpdateIP
         {
             get { return _UpdateIP; }
@@ -274,6 +298,8 @@ namespace NewLife.CMX
                     case __.Version : return _Version;
                     case __.StatisticsID : return _StatisticsID;
                     case __.Views : return _Views;
+                    case __.Sort : return _Sort;
+                    case __.Image : return _Image;
                     case __.Summary : return _Summary;
                     case __.PublishTime : return _PublishTime;
                     case __.Publisher : return _Publisher;
@@ -300,6 +326,8 @@ namespace NewLife.CMX
                     case __.Version : _Version = Convert.ToInt32(value); break;
                     case __.StatisticsID : _StatisticsID = Convert.ToInt32(value); break;
                     case __.Views : _Views = Convert.ToInt32(value); break;
+                    case __.Sort : _Sort = Convert.ToInt32(value); break;
+                    case __.Image : _Image = Convert.ToString(value); break;
                     case __.Summary : _Summary = Convert.ToString(value); break;
                     case __.PublishTime : _PublishTime = Convert.ToDateTime(value); break;
                     case __.Publisher : _Publisher = Convert.ToString(value); break;
@@ -348,6 +376,12 @@ namespace NewLife.CMX
 
             ///<summary>访问量。由统计表同步过来</summary>
             public static readonly Field Views = FindByName(__.Views);
+
+            ///<summary>排序。较大值在前</summary>
+            public static readonly Field Sort = FindByName(__.Sort);
+
+            ///<summary>图片</summary>
+            public static readonly Field Image = FindByName(__.Image);
 
             ///<summary>摘要</summary>
             public static readonly Field Summary = FindByName(__.Summary);
@@ -411,6 +445,12 @@ namespace NewLife.CMX
 
             ///<summary>访问量。由统计表同步过来</summary>
             public const String Views = "Views";
+
+            ///<summary>排序。较大值在前</summary>
+            public const String Sort = "Sort";
+
+            ///<summary>图片</summary>
+            public const String Image = "Image";
 
             ///<summary>摘要</summary>
             public const String Summary = "Summary";
@@ -476,6 +516,12 @@ namespace NewLife.CMX
 
         /// <summary>访问量。由统计表同步过来</summary>
         Int32 Views { get; set; }
+
+        /// <summary>排序。较大值在前</summary>
+        Int32 Sort { get; set; }
+
+        /// <summary>图片</summary>
+        String Image { get; set; }
 
         /// <summary>摘要</summary>
         String Summary { get; set; }

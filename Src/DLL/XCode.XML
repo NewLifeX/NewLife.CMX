@@ -2021,15 +2021,6 @@
         <member name="F:XCode.Membership.UserTimeEntity`1.__Name.UpdateTime">
             <summary>更新时间</summary>
         </member>
-        <member name="M:XCode.Membership.UserTimeEntity`1.Valid(System.Boolean)">
-            <summary>验证数据，自动加上创建和更新的信息</summary>
-            <param name="isNew"></param>
-        </member>
-        <member name="M:XCode.Membership.UserTimeEntity`1.SetDirtyItem(System.String,System.Object)">
-            <summary>设置脏数据项。如果某个键存在并且数据没有脏，则设置</summary>
-            <param name="name"></param>
-            <param name="value"></param>
-        </member>
         <member name="P:XCode.Membership.UserTimeEntity`1.CreateUser">
             <summary>创建人</summary>
         </member>
@@ -2066,15 +2057,6 @@
         </member>
         <member name="F:XCode.Membership.UserTimeEntityTree`1.__Name.UpdateTime">
             <summary>更新时间</summary>
-        </member>
-        <member name="M:XCode.Membership.UserTimeEntityTree`1.Valid(System.Boolean)">
-            <summary>验证数据，自动加上创建和更新的信息</summary>
-            <param name="isNew"></param>
-        </member>
-        <member name="M:XCode.Membership.UserTimeEntityTree`1.SetDirtyItem(System.String,System.Object)">
-            <summary>设置脏数据项。如果某个键存在并且数据没有脏，则设置</summary>
-            <param name="name"></param>
-            <param name="value"></param>
         </member>
         <member name="P:XCode.Membership.UserTimeEntityTree`1.CreateUser">
             <summary>创建人</summary>
@@ -2360,6 +2342,18 @@
         <member name="T:XCode.Membership.Log">
             <summary>日志</summary>
         </member>
+        <member name="T:XCode.Membership.SexKinds">
+            <summary>性别</summary>
+        </member>
+        <member name="F:XCode.Membership.SexKinds.未知">
+            <summary>未知</summary>
+        </member>
+        <member name="F:XCode.Membership.SexKinds.男">
+            <summary>男</summary>
+        </member>
+        <member name="F:XCode.Membership.SexKinds.女">
+            <summary>女</summary>
+        </member>
         <member name="T:XCode.Membership.UserX">
             <summary>管理员</summary>
         </member>
@@ -2387,6 +2381,9 @@
         </member>
         <member name="P:XCode.Membership.User`1.FriendName">
             <summary>友好名字</summary>
+        </member>
+        <member name="P:XCode.Membership.User`1.SexKind">
+            <summary>性别</summary>
         </member>
         <member name="M:XCode.Membership.User`1.FindByID(System.Int32)">
             <summary>根据编号查找</summary>
@@ -7694,6 +7691,12 @@
             <param name="value">值</param>
             <returns>返回是否成功设置了数据</returns>
         </member>
+        <member name="M:XCode.EntityBase.SetNoDirtyItem(System.String,System.Object)">
+            <summary>设置脏数据项。如果某个键存在并且数据没有脏，则设置</summary>
+            <param name="name"></param>
+            <param name="value"></param>
+            <returns>返回是否成功设置了数据</returns>
+        </member>
         <member name="M:XCode.EntityBase.ToXml">
             <summary>导出XML</summary>
             <returns></returns>
@@ -9533,6 +9536,12 @@
             <summary>设置字段值</summary>
             <param name="name">字段名</param>
             <param name="value">值</param>
+            <returns>返回是否成功设置了数据</returns>
+        </member>
+        <member name="M:XCode.IEntity.SetNoDirtyItem(System.String,System.Object)">
+            <summary>设置脏数据项。如果某个键存在并且数据没有脏，则设置</summary>
+            <param name="name"></param>
+            <param name="value"></param>
             <returns>返回是否成功设置了数据</returns>
         </member>
         <member name="M:XCode.IEntity.CloneEntity(System.Boolean)">

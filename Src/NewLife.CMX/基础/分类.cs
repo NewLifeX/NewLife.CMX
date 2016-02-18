@@ -104,12 +104,24 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.Num, value)) { _Num = value; OnPropertyChanged(__.Num); } }
         }
 
+        private String _Image;
+        /// <summary>图片</summary>
+        [DisplayName("图片")]
+        [Description("图片")]
+        [DataObjectField(false, false, true, 200)]
+        [BindColumn(8, "Image", "图片", null, "nvarchar(200)", 0, 0, true)]
+        public virtual String Image
+        {
+            get { return _Image; }
+            set { if (OnPropertyChanging(__.Image, value)) { _Image = value; OnPropertyChanged(__.Image); } }
+        }
+
         private String _CategoryTemplate;
         /// <summary>分类页模版。本分类专属列表页</summary>
         [DisplayName("分类页模版")]
         [Description("分类页模版。本分类专属列表页")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(8, "CategoryTemplate", "分类页模版。本分类专属列表页", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(9, "CategoryTemplate", "分类页模版。本分类专属列表页", null, "nvarchar(200)", 0, 0, true)]
         public virtual String CategoryTemplate
         {
             get { return _CategoryTemplate; }
@@ -121,7 +133,7 @@ namespace NewLife.CMX
         [DisplayName("信息页模版")]
         [Description("信息页模版。本分类专属内容页")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(9, "InfoTemplate", "信息页模版。本分类专属内容页", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(10, "InfoTemplate", "信息页模版。本分类专属内容页", null, "nvarchar(200)", 0, 0, true)]
         public virtual String InfoTemplate
         {
             get { return _InfoTemplate; }
@@ -133,7 +145,7 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(10, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(11, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Remark
         {
             get { return _Remark; }
@@ -162,6 +174,7 @@ namespace NewLife.CMX
                     case __.ModelID : return _ModelID;
                     case __.Sort : return _Sort;
                     case __.Num : return _Num;
+                    case __.Image : return _Image;
                     case __.CategoryTemplate : return _CategoryTemplate;
                     case __.InfoTemplate : return _InfoTemplate;
                     case __.Remark : return _Remark;
@@ -179,6 +192,7 @@ namespace NewLife.CMX
                     case __.ModelID : _ModelID = Convert.ToInt32(value); break;
                     case __.Sort : _Sort = Convert.ToInt32(value); break;
                     case __.Num : _Num = Convert.ToInt32(value); break;
+                    case __.Image : _Image = Convert.ToString(value); break;
                     case __.CategoryTemplate : _CategoryTemplate = Convert.ToString(value); break;
                     case __.InfoTemplate : _InfoTemplate = Convert.ToString(value); break;
                     case __.Remark : _Remark = Convert.ToString(value); break;
@@ -212,6 +226,9 @@ namespace NewLife.CMX
 
             ///<summary>数量</summary>
             public static readonly Field Num = FindByName(__.Num);
+
+            ///<summary>图片</summary>
+            public static readonly Field Image = FindByName(__.Image);
 
             ///<summary>分类页模版。本分类专属列表页</summary>
             public static readonly Field CategoryTemplate = FindByName(__.CategoryTemplate);
@@ -248,6 +265,9 @@ namespace NewLife.CMX
 
             ///<summary>数量</summary>
             public const String Num = "Num";
+
+            ///<summary>图片</summary>
+            public const String Image = "Image";
 
             ///<summary>分类页模版。本分类专属列表页</summary>
             public const String CategoryTemplate = "CategoryTemplate";
@@ -286,6 +306,9 @@ namespace NewLife.CMX
 
         /// <summary>数量</summary>
         Int32 Num { get; set; }
+
+        /// <summary>图片</summary>
+        String Image { get; set; }
 
         /// <summary>分类页模版。本分类专属列表页</summary>
         String CategoryTemplate { get; set; }

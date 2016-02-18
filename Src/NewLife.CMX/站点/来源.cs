@@ -100,12 +100,24 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.CreateTime, value)) { _CreateTime = value; OnPropertyChanged(__.CreateTime); } }
         }
 
+        private String _CreateIP;
+        /// <summary>创建地址</summary>
+        [DisplayName("创建地址")]
+        [Description("创建地址")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn(8, "CreateIP", "创建地址", null, "nvarchar(50)", 0, 0, true)]
+        public virtual String CreateIP
+        {
+            get { return _CreateIP; }
+            set { if (OnPropertyChanging(__.CreateIP, value)) { _CreateIP = value; OnPropertyChanged(__.CreateIP); } }
+        }
+
         private Int32 _UpdateUserID;
         /// <summary>更新人</summary>
         [DisplayName("更新人")]
         [Description("更新人")]
         [DataObjectField(false, false, true, 10)]
-        [BindColumn(8, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
+        [BindColumn(9, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
         public virtual Int32 UpdateUserID
         {
             get { return _UpdateUserID; }
@@ -117,11 +129,23 @@ namespace NewLife.CMX
         [DisplayName("更新时间")]
         [Description("更新时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(9, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
+        [BindColumn(10, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
         public virtual DateTime UpdateTime
         {
             get { return _UpdateTime; }
             set { if (OnPropertyChanging(__.UpdateTime, value)) { _UpdateTime = value; OnPropertyChanged(__.UpdateTime); } }
+        }
+
+        private String _UpdateIP;
+        /// <summary>更新地址</summary>
+        [DisplayName("更新地址")]
+        [Description("更新地址")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn(11, "UpdateIP", "更新地址", null, "nvarchar(50)", 0, 0, true)]
+        public virtual String UpdateIP
+        {
+            get { return _UpdateIP; }
+            set { if (OnPropertyChanging(__.UpdateIP, value)) { _UpdateIP = value; OnPropertyChanged(__.UpdateIP); } }
         }
 
         private String _Remark;
@@ -129,7 +153,7 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(10, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn(12, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
         public virtual String Remark
         {
             get { return _Remark; }
@@ -158,8 +182,10 @@ namespace NewLife.CMX
                     case __.Enable : return _Enable;
                     case __.CreateUserID : return _CreateUserID;
                     case __.CreateTime : return _CreateTime;
+                    case __.CreateIP : return _CreateIP;
                     case __.UpdateUserID : return _UpdateUserID;
                     case __.UpdateTime : return _UpdateTime;
+                    case __.UpdateIP : return _UpdateIP;
                     case __.Remark : return _Remark;
                     default: return base[name];
                 }
@@ -175,8 +201,10 @@ namespace NewLife.CMX
                     case __.Enable : _Enable = Convert.ToBoolean(value); break;
                     case __.CreateUserID : _CreateUserID = Convert.ToInt32(value); break;
                     case __.CreateTime : _CreateTime = Convert.ToDateTime(value); break;
+                    case __.CreateIP : _CreateIP = Convert.ToString(value); break;
                     case __.UpdateUserID : _UpdateUserID = Convert.ToInt32(value); break;
                     case __.UpdateTime : _UpdateTime = Convert.ToDateTime(value); break;
+                    case __.UpdateIP : _UpdateIP = Convert.ToString(value); break;
                     case __.Remark : _Remark = Convert.ToString(value); break;
                     default: base[name] = value; break;
                 }
@@ -209,11 +237,17 @@ namespace NewLife.CMX
             ///<summary>创建时间</summary>
             public static readonly Field CreateTime = FindByName(__.CreateTime);
 
+            ///<summary>创建地址</summary>
+            public static readonly Field CreateIP = FindByName(__.CreateIP);
+
             ///<summary>更新人</summary>
             public static readonly Field UpdateUserID = FindByName(__.UpdateUserID);
 
             ///<summary>更新时间</summary>
             public static readonly Field UpdateTime = FindByName(__.UpdateTime);
+
+            ///<summary>更新地址</summary>
+            public static readonly Field UpdateIP = FindByName(__.UpdateIP);
 
             ///<summary>备注</summary>
             public static readonly Field Remark = FindByName(__.Remark);
@@ -245,11 +279,17 @@ namespace NewLife.CMX
             ///<summary>创建时间</summary>
             public const String CreateTime = "CreateTime";
 
+            ///<summary>创建地址</summary>
+            public const String CreateIP = "CreateIP";
+
             ///<summary>更新人</summary>
             public const String UpdateUserID = "UpdateUserID";
 
             ///<summary>更新时间</summary>
             public const String UpdateTime = "UpdateTime";
+
+            ///<summary>更新地址</summary>
+            public const String UpdateIP = "UpdateIP";
 
             ///<summary>备注</summary>
             public const String Remark = "Remark";
@@ -283,11 +323,17 @@ namespace NewLife.CMX
         /// <summary>创建时间</summary>
         DateTime CreateTime { get; set; }
 
+        /// <summary>创建地址</summary>
+        String CreateIP { get; set; }
+
         /// <summary>更新人</summary>
         Int32 UpdateUserID { get; set; }
 
         /// <summary>更新时间</summary>
         DateTime UpdateTime { get; set; }
+
+        /// <summary>更新地址</summary>
+        String UpdateIP { get; set; }
 
         /// <summary>备注</summary>
         String Remark { get; set; }

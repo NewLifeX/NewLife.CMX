@@ -91,24 +91,12 @@ namespace NewLife.CMX
             set { if (OnPropertyChanging(__.CreateUserID, value)) { _CreateUserID = value; OnPropertyChanged(__.CreateUserID); } }
         }
 
-        private String _CreateUserName;
-        /// <summary>创建人</summary>
-        [DisplayName("创建人")]
-        [Description("创建人")]
-        [DataObjectField(false, false, true, 50)]
-        [BindColumn(7, "CreateUserName", "创建人", null, "nvarchar(50)", 0, 0, true)]
-        public virtual String CreateUserName
-        {
-            get { return _CreateUserName; }
-            set { if (OnPropertyChanging(__.CreateUserName, value)) { _CreateUserName = value; OnPropertyChanged(__.CreateUserName); } }
-        }
-
         private DateTime _CreateTime;
         /// <summary>创建时间</summary>
         [DisplayName("创建时间")]
         [Description("创建时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(8, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
+        [BindColumn(7, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
         public virtual DateTime CreateTime
         {
             get { return _CreateTime; }
@@ -120,7 +108,7 @@ namespace NewLife.CMX
         [DisplayName("创建地址")]
         [Description("创建地址")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(9, "CreateIP", "创建地址", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn(8, "CreateIP", "创建地址", null, "nvarchar(50)", 0, 0, true)]
         public virtual String CreateIP
         {
             get { return _CreateIP; }
@@ -132,7 +120,7 @@ namespace NewLife.CMX
         [DisplayName("内容")]
         [Description("内容")]
         [DataObjectField(false, false, true, -1)]
-        [BindColumn(10, "Html", "内容", null, "ntext", 0, 0, true)]
+        [BindColumn(9, "Html", "内容", null, "ntext", 0, 0, true)]
         public virtual String Html
         {
             get { return _Html; }
@@ -160,7 +148,6 @@ namespace NewLife.CMX
                     case __.Title : return _Title;
                     case __.Version : return _Version;
                     case __.CreateUserID : return _CreateUserID;
-                    case __.CreateUserName : return _CreateUserName;
                     case __.CreateTime : return _CreateTime;
                     case __.CreateIP : return _CreateIP;
                     case __.Html : return _Html;
@@ -177,7 +164,6 @@ namespace NewLife.CMX
                     case __.Title : _Title = Convert.ToString(value); break;
                     case __.Version : _Version = Convert.ToInt32(value); break;
                     case __.CreateUserID : _CreateUserID = Convert.ToInt32(value); break;
-                    case __.CreateUserName : _CreateUserName = Convert.ToString(value); break;
                     case __.CreateTime : _CreateTime = Convert.ToDateTime(value); break;
                     case __.CreateIP : _CreateIP = Convert.ToString(value); break;
                     case __.Html : _Html = Convert.ToString(value); break;
@@ -208,9 +194,6 @@ namespace NewLife.CMX
 
             ///<summary>创建人</summary>
             public static readonly Field CreateUserID = FindByName(__.CreateUserID);
-
-            ///<summary>创建人</summary>
-            public static readonly Field CreateUserName = FindByName(__.CreateUserName);
 
             ///<summary>创建时间</summary>
             public static readonly Field CreateTime = FindByName(__.CreateTime);
@@ -244,9 +227,6 @@ namespace NewLife.CMX
 
             ///<summary>创建人</summary>
             public const String CreateUserID = "CreateUserID";
-
-            ///<summary>创建人</summary>
-            public const String CreateUserName = "CreateUserName";
 
             ///<summary>创建时间</summary>
             public const String CreateTime = "CreateTime";
@@ -282,9 +262,6 @@ namespace NewLife.CMX
 
         /// <summary>创建人</summary>
         Int32 CreateUserID { get; set; }
-
-        /// <summary>创建人</summary>
-        String CreateUserName { get; set; }
 
         /// <summary>创建时间</summary>
         DateTime CreateTime { get; set; }
