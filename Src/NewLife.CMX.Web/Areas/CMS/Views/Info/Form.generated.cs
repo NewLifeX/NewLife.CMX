@@ -150,100 +150,90 @@ WriteLiteral("\r\n");
             
             #line 19 "..\..\Areas\CMS\Views\Info\Form.cshtml"
                                                         
-            foreach (var item in fields)
-            {
-                if (!item.PrimaryKey)
-                {
-                    if (item.Name == "ContentText")
-                    {
 
             
             #line default
             #line hidden
-WriteLiteral("                        <div");
+WriteLiteral("            <div");
 
 WriteLiteral(" class=\"form-group\"");
 
-WriteLiteral(">\r\n                            <label");
+WriteLiteral(">\r\n                <label");
 
-WriteLiteral(" class=\"control-label col-sm-2\"");
+WriteLiteral(" class=\"control-label col-sm-2 col-md-2\"");
 
-WriteLiteral(">内容</label>\r\n                            <div");
+WriteLiteral(">内容</label>\r\n                <div");
 
-WriteLiteral(" class=\"col-sm-6\"");
+WriteLiteral(" class=\"col-sm-10 col-md-6\"");
 
 WriteLiteral(">\r\n");
 
-WriteLiteral("                                ");
+WriteLiteral("                    ");
+
+            
+            #line 23 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+               Write(Html.Partial("../Info/_Form_Content", entity));
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n                </div>\r\n            </div>\r\n");
+
+            
+            #line 26 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+            foreach (var item in fields)
+            {
+
+            
+            #line default
+            #line hidden
+WriteLiteral("                <div");
+
+WriteLiteral(" class=\"form-group\"");
+
+WriteLiteral(">\r\n");
+
+WriteLiteral("                    ");
 
             
             #line 29 "..\..\Areas\CMS\Views\Info\Form.cshtml"
-                           Write(Html.Partial("../Info/_Form_Content", entity));
+               Write(Html.Partial("_Form_Item", new Pair(entity, item)));
 
             
             #line default
             #line hidden
-WriteLiteral("\r\n                            </div>\r\n                        </div>\r\n");
+WriteLiteral("\r\n                </div>\r\n");
 
             
-            #line 32 "..\..\Areas\CMS\Views\Info\Form.cshtml"
-                    }
-                    else
-                    {
-
-            
-            #line default
-            #line hidden
-WriteLiteral("                        <div");
-
-WriteLiteral(" class=\"form-group\"");
-
-WriteLiteral(">\r\n");
-
-WriteLiteral("                            ");
-
-            
-            #line 36 "..\..\Areas\CMS\Views\Info\Form.cshtml"
-                       Write(Html.Partial("_Form_Item", new Pair(entity, item)));
-
-            
-            #line default
-            #line hidden
-WriteLiteral("\r\n                        </div>\r\n");
-
-            
-            #line 38 "..\..\Areas\CMS\Views\Info\Form.cshtml"
-                    }
-
-                }
+            #line 31 "..\..\Areas\CMS\Views\Info\Form.cshtml"
             }
             
             
             #line default
             #line hidden
             
-            #line 42 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+            #line 32 "..\..\Areas\CMS\Views\Info\Form.cshtml"
        Write(Html.Partial("_Form_Footer", entity));
 
             
             #line default
             #line hidden
             
-            #line 42 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+            #line 32 "..\..\Areas\CMS\Views\Info\Form.cshtml"
                                                  
             
             
             #line default
             #line hidden
             
-            #line 43 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+            #line 33 "..\..\Areas\CMS\Views\Info\Form.cshtml"
        Write(Html.Partial("_Form_Action", entity));
 
             
             #line default
             #line hidden
             
-            #line 43 "..\..\Areas\CMS\Views\Info\Form.cshtml"
+            #line 33 "..\..\Areas\CMS\Views\Info\Form.cshtml"
                                                  
         }
 

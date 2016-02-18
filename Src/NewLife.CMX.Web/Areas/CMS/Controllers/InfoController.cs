@@ -34,23 +34,6 @@ namespace NewLife.CMX.Web.Controllers
             return base.ScanActionMenu(menu);
         }
 
-        //private void LoadChannel()
-        //{
-        //    if (RouteData.Values.ContainsKey("channel"))
-        //    {
-        //        var chn = Channel.FindByID(RouteData.Values["channel"].ToInt());
-
-        //        // 设置当前频道，改变分类表、主题表、内容表等扩展表的链接定向
-        //        chn.Model.Provider.CurrentChannel = chn.ID;
-
-        //        ViewBag.Channel = chn;
-
-        //        var catid = RouteData.Values["category"].ToInt();
-        //        var cat = Category.FindByID(catid);
-        //        ViewBag.Category = cat;
-        //    }
-        //}
-
         /// <summary>列表页视图。子控制器可重载，以传递更多信息给视图，比如修改要显示的列</summary>
         /// <param name="p"></param>
         /// <returns></returns>
@@ -69,9 +52,6 @@ namespace NewLife.CMX.Web.Controllers
 
         public override ActionResult Add()
         {
-            //// 加载频道和分类
-            //LoadChannel();
-
             var entity = Factory.Create() as TEntity;
             entity.CategoryID = RouteData.Values["category"].ToInt();
 
@@ -89,9 +69,12 @@ namespace NewLife.CMX.Web.Controllers
             // 用于显示的列
             if (ViewBag.Fields == null) ViewBag.Fields = GetFields(true);
 
+            var mod = entity.Model;
+            if (mod == null && entity.Category != null) mod = entity.Category.Model;
+
             // 根据模型加载专属表单页
-            var tmp = "../{0}/Form".F(entity.ModelName);
-            var tf = "~/Areas/CMS/Views/{0}/Form.cshtml".F(entity.ModelName);
+            var tmp = "../{0}/Form".F(mod.Name);
+            var tf = "~/Areas/CMS/Views/{0}/Form.cshtml".F(mod.Name);
             if (!System.IO.File.Exists(tf.GetFullPath())) tmp = "../Info/Form";
 
             return View(tmp, entity);
