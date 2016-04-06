@@ -9,41 +9,43 @@
     var entity = Model as IEntity;
     var isNew = entity.IsNullKey;
 
+
     var inf = Model as IInfo;
 }
-<div class="form-group col-xs-12">
-    <label class="control-label col-xs-2 col-md-2">标题</label>
-    <div class="col-xs-10 col-sm-8 col-md-9 col-lg-6">
+<div class="form-group">
+    <label class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2">标题</label>
+    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
         @Html.ForEditor("Title", inf.Title, typeof(String))
     </div>
-    &nbsp;
-    @if (!isNew)
+    @if (!isNew && Model.Category != null)
     {
-        <div class="col-md-1">
-            <a href="@this.GetUrl(inf)" target="_blank">
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+            <a href="@this.GetUrl(inf)" class="btn btn-info btn-sm" target="_blank">
+                <i class="glyphicon glyphicon-search"></i>
                 预览
             </a>
         </div>
     }
 </div>
-<div class="form-group col-sm-12 col-md-6">
-    <label class="control-label col-sm-2 col-md-4">分类</label>
-    <div class="col-sm-4 col-md-4">
+<div class="form-group">
+    <label class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2">分类</label>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         @{
             var data = new SelectList(Category.Root.AllChilds, "ID", "TreeNodeText", inf.CategoryID);
         }
         @Html.DropDownList("CategoryID", data, new { @class = "multiselect" })
     </div>
-    <div class="col-sm-4 col-md-4">
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
         <label class="control-label">访问量</label>
         <span>@inf.Views</span>
         <label class="control-label">版本</label>
         <span>@inf.Version</span>
     </div>
 </div>
-<div class="form-group col-sm-12 col-md-6">
+<div class="form-group">
     <label class="control-label col-xs-2 col-md-2">编码</label>
-    <div class="col-xs-7 col-md-4">
+    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
         @Html.ForEditor("Code", inf.Code, typeof(String))
     </div>
 </div>

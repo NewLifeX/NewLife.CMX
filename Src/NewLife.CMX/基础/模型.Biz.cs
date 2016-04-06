@@ -112,8 +112,12 @@ namespace NewLife.CMX
         {
             // 过滤得到该模型的所有分类，然后按照深度排序
             var list = Category.FindAllWithCache().ToList().Where(e => e.ModelID == ID);
-            var min = list.Min(e => e.Deepth);
-            return list.Where(e => e.Deepth == min).Cast<ICategory>().ToList();
+            if (list.Any())
+            {
+                var min = list.Min(e => e.Deepth);
+                return list.Where(e => e.Deepth == min).Cast<ICategory>().ToList();
+            }
+            return new List<ICategory>();
         }
         #endregion
 

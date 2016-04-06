@@ -216,7 +216,7 @@ namespace NewLife.CMX
 
         DictionaryCache<String, IList<IInfo>> _cache = new DictionaryCache<string, IList<IInfo>>()
         {
-            Expriod = 60,
+            //Expriod = 60,
             Asynchronous = true
         };
         /// <summary>获取该分类以及子孙分类的所有有效信息。带60秒异步缓存</summary>

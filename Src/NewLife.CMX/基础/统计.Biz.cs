@@ -37,7 +37,7 @@ namespace NewLife.CMX
             // 自动保存时间60秒
             var sc = Meta.Session.SingleCache;
             sc.AutoSave = true;
-            sc.Expriod = 60;
+            //sc.Expriod = 60;
         }
 
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>

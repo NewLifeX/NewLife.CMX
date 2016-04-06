@@ -1443,10 +1443,10 @@
             <typeparam name="TKey">键类型</typeparam>
             <typeparam name="TValue">值类型</typeparam>
         </member>
-        <member name="P:NewLife.Collections.DictionaryCache`2.Expriod">
+        <member name="P:NewLife.Collections.DictionaryCache`2.Expire">
             <summary>过期时间。单位是秒，默认0秒，表示永不过期</summary>
         </member>
-        <member name="P:NewLife.Collections.DictionaryCache`2.ClearExpriod">
+        <member name="P:NewLife.Collections.DictionaryCache`2.ClearPeriod">
             <summary>过期清理时间，缓存项过期后达到这个时间时，将被移除缓存。单位是秒，默认0秒，表示不清理过期项</summary>
         </member>
         <member name="P:NewLife.Collections.DictionaryCache`2.Asynchronous">
@@ -9042,7 +9042,7 @@
             为了避免系统的Timer可重入的问题，差别在于本地调用完成后才开始计算时间间隔。这实际上也是经常用到的。
             
             因为挂载在静态列表上，必须从外部主动调用<see cref="M:System.IDisposable.Dispose"/>才能销毁定时器。
-            上一行不对，因为<see cref="P:NewLife.Threading.TimerX.Callback"/>采用弱引用，当回调函数所在对象被销毁时，对应的定时器可以自动销毁。
+            因为<see cref="P:NewLife.Threading.TimerX.Callback"/>采用弱引用，当回调函数所在对象被销毁时，对应的定时器可以自动销毁。
             
             该定时器不能放入太多任务，否则适得其反！
             
@@ -9064,9 +9064,6 @@
         <member name="P:NewLife.Threading.TimerX.Period">
             <summary>间隔周期。毫秒，设为0则只调用一次</summary>
         </member>
-        <member name="P:NewLife.Threading.TimerX.UseThreadPool">
-            <summary>是否使用线程池。对于耗时短小且比较频繁的操作，不好使用线程池，减少线程切换。</summary>
-        </member>
         <member name="P:NewLife.Threading.TimerX.Calling">
             <summary>调用中</summary>
         </member>
@@ -9074,16 +9071,8 @@
             <summary>实例化一个不可重入的定时器</summary>
             <param name="callback">委托</param>
             <param name="state">用户数据</param>
-            <param name="dueTime">多久之后开始</param>
-            <param name="period">间隔周期</param>
-        </member>
-        <member name="M:NewLife.Threading.TimerX.#ctor(System.Threading.WaitCallback,System.Object,System.Int32,System.Int32,System.Boolean)">
-            <summary>实例化一个不可重入的定时器</summary>
-            <param name="callback">委托</param>
-            <param name="state">用户数据</param>
-            <param name="dueTime">多久之后开始</param>
-            <param name="period">间隔周期</param>
-            <param name="usethreadpool">是否使用线程池。对于耗时短小且比较频繁的操作，不好使用线程池，减少线程切换。</param>
+            <param name="dueTime">多久之后开始。毫秒</param>
+            <param name="period">间隔周期。毫秒</param>
         </member>
         <member name="M:NewLife.Threading.TimerX.Dispose">
             <summary>销毁定时器</summary>
@@ -9109,8 +9098,13 @@
             <summary>调度主程序</summary>
             <param name="state"></param>
         </member>
-        <member name="M:NewLife.Threading.TimerX.TimerXHelper.Prepare">
+        <member name="M:NewLife.Threading.TimerX.TimerXHelper.GetTimers">
             <summary>准备好定时器列表</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Threading.TimerX.TimerXHelper.CheckTime(NewLife.Threading.TimerX)">
+            <summary>检查定时器是否到期</summary>
+            <param name="timer"></param>
             <returns></returns>
         </member>
         <member name="M:NewLife.Threading.TimerX.TimerXHelper.ProcessItem(NewLife.Threading.TimerX)">
@@ -9377,6 +9371,46 @@
         </member>
         <member name="M:NewLife.Web.RunTimeModule.Render">
             <summary>输出</summary>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Web.OAuthClient">
+            <summary>OAuth 2.0</summary>
+        </member>
+        <member name="P:NewLife.Web.OAuthClient.Key">
+            <summary>应用Key</summary>
+        </member>
+        <member name="P:NewLife.Web.OAuthClient.Secret">
+            <summary>安全码</summary>
+        </member>
+        <member name="P:NewLife.Web.OAuthClient.AuthUrl">
+            <summary>验证地址</summary>
+        </member>
+        <member name="P:NewLife.Web.OAuthClient.AccessUrl">
+            <summary>访问令牌地址</summary>
+        </member>
+        <member name="P:NewLife.Web.OAuthClient.Code">
+            <summary>授权码</summary>
+        </member>
+        <member name="P:NewLife.Web.OAuthClient.AccessToken">
+            <summary>访问令牌</summary>
+        </member>
+        <member name="P:NewLife.Web.OAuthClient.RefreshToken">
+            <summary>刷新令牌</summary>
+        </member>
+        <member name="P:NewLife.Web.OAuthClient.Expire">
+            <summary>过期时间</summary>
+        </member>
+        <member name="M:NewLife.Web.OAuthClient.SetQQ">
+            <summary>设置为QQ专属地址</summary>
+        </member>
+        <member name="M:NewLife.Web.OAuthClient.Authorize(System.String,System.String)">
+            <summary>跳转验证</summary>
+            <param name="redirect"></param>
+            <param name="state"></param>
+        </member>
+        <member name="M:NewLife.Web.OAuthClient.GetAccessToken(System.String)">
+            <summary>根据授权码获取访问令牌</summary>
+            <param name="code"></param>
             <returns></returns>
         </member>
         <member name="T:NewLife.Web.Pager">
