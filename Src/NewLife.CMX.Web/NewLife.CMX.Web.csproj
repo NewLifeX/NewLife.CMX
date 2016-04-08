@@ -138,6 +138,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Form.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="Areas\CMS\Views\Down\Form.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Form.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="Areas\CMS\Views\Info\_Form_Content.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -152,6 +157,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ListTree.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CMS\Views\Photo\Form.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Form.cshtml</DependentUpon>
     </Compile>
     <Compile Include="Areas\CMS\Views\Product\Form.generated.cs">
       <DependentUpon>Form.cshtml</DependentUpon>
@@ -182,6 +192,11 @@
       <DependentUpon>Form.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Areas\CMS\Views\Video\Form.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Form.cshtml</DependentUpon>
     </Compile>
     <Compile Include="Areas\CMS\Views\_ViewStart.generated.cs">
       <AutoGen>True</AutoGen>
@@ -609,6 +624,18 @@
     <Content Include="Areas\CMS\Views\Info\_Form_Title.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>_Form_Title.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\CMS\Views\Video\Form.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Form.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\CMS\Views\Photo\Form.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Form.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\CMS\Views\Down\Form.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Form.generated.cs</LastGenOutput>
     </Content>
     <None Include="Areas\CMS\Views\_ViewStart.cshtml">
       <Generator>RazorGenerator</Generator>
