@@ -74,6 +74,7 @@ namespace ASP
     var entity = Model as IEntity;
     var isNew = entity.IsNullKey;
 
+
     var inf = Model as IInfo;
 
             
@@ -81,28 +82,28 @@ namespace ASP
             #line hidden
 WriteLiteral("\r\n<div");
 
-WriteLiteral(" class=\"form-group col-xs-12\"");
+WriteLiteral(" class=\"form-group\"");
 
 WriteLiteral(">\r\n    <label");
 
-WriteLiteral(" class=\"control-label col-xs-2 col-md-2\"");
+WriteLiteral(" class=\"control-label col-xs-2 col-sm-2 col-md-2 col-lg-2\"");
 
 WriteLiteral(">标题</label>\r\n    <div");
 
-WriteLiteral(" class=\"col-xs-10 col-sm-8 col-md-9 col-lg-6\"");
+WriteLiteral(" class=\"col-xs-5 col-sm-5 col-md-5 col-lg-5\"");
 
 WriteLiteral(">\r\n");
 
 WriteLiteral("        ");
 
             
-            #line 17 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
+            #line 18 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
    Write(Html.ForEditor("Title", inf.Title, typeof(String)));
 
             
             #line default
             #line hidden
-WriteLiteral("\r\n    </div>\r\n    &nbsp;\r\n");
+WriteLiteral("\r\n    </div>\r\n");
 
             
             #line 20 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
@@ -112,7 +113,7 @@ WriteLiteral("\r\n    </div>\r\n    &nbsp;\r\n");
             #line hidden
             
             #line 20 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
-     if (!isNew)
+     if (!isNew && Model.Category != null)
     {
 
             
@@ -120,26 +121,38 @@ WriteLiteral("\r\n    </div>\r\n    &nbsp;\r\n");
             #line hidden
 WriteLiteral("        <div");
 
-WriteLiteral(" class=\"col-md-1\"");
+WriteLiteral(" class=\"col-xs-2 col-sm-2 col-md-2 col-lg-2\"");
+
+WriteLiteral("></div>\r\n");
+
+WriteLiteral("        <div");
+
+WriteLiteral(" class=\"col-xs-1 col-sm-1 col-md-1 col-lg-1\"");
 
 WriteLiteral(">\r\n            <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 638), Tuple.Create("\"", 662)
+WriteAttribute("href", Tuple.Create(" href=\"", 753), Tuple.Create("\"", 777)
             
-            #line 23 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
-, Tuple.Create(Tuple.Create("", 645), Tuple.Create<System.Object, System.Int32>(this.GetUrl(inf)
+            #line 24 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
+, Tuple.Create(Tuple.Create("", 760), Tuple.Create<System.Object, System.Int32>(this.GetUrl(inf)
             
             #line default
             #line hidden
-, 645), false)
+, 760), false)
 );
+
+WriteLiteral(" class=\"btn btn-info btn-sm\"");
 
 WriteLiteral(" target=\"_blank\"");
 
-WriteLiteral(">\r\n                预览\r\n            </a>\r\n        </div>\r\n");
+WriteLiteral(">\r\n                <i");
+
+WriteLiteral(" class=\"glyphicon glyphicon-search\"");
+
+WriteLiteral("></i>\r\n                预览\r\n            </a>\r\n        </div>\r\n");
 
             
-            #line 27 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
+            #line 29 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
     }
 
             
@@ -147,26 +160,26 @@ WriteLiteral(">\r\n                预览\r\n            </a>\r\n        </div>\
             #line hidden
 WriteLiteral("</div>\r\n<div");
 
-WriteLiteral(" class=\"form-group col-sm-12 col-md-6\"");
+WriteLiteral(" class=\"form-group\"");
 
 WriteLiteral(">\r\n    <label");
 
-WriteLiteral(" class=\"control-label col-sm-2 col-md-4\"");
+WriteLiteral(" class=\"control-label col-xs-2 col-sm-2 col-md-2 col-lg-2\"");
 
 WriteLiteral(">分类</label>\r\n    <div");
 
-WriteLiteral(" class=\"col-sm-4 col-md-4\"");
+WriteLiteral(" class=\"col-xs-4 col-sm-4 col-md-4 col-lg-4\"");
 
 WriteLiteral(">\r\n");
 
             
-            #line 32 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
+            #line 34 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
         
             
             #line default
             #line hidden
             
-            #line 32 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
+            #line 34 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
           
             var data = new SelectList(Category.Root.AllChilds, "ID", "TreeNodeText", inf.CategoryID);
         
@@ -178,7 +191,7 @@ WriteLiteral("\r\n");
 WriteLiteral("        ");
 
             
-            #line 35 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
+            #line 37 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
    Write(Html.DropDownList("CategoryID", data, new { @class = "multiselect" }));
 
             
@@ -186,7 +199,7 @@ WriteLiteral("        ");
             #line hidden
 WriteLiteral("\r\n    </div>\r\n    <div");
 
-WriteLiteral(" class=\"col-sm-4 col-md-4\"");
+WriteLiteral(" class=\"col-xs-3 col-sm-3 col-md-3 col-lg-3\"");
 
 WriteLiteral(">\r\n        <label");
 
@@ -195,7 +208,7 @@ WriteLiteral(" class=\"control-label\"");
 WriteLiteral(">访问量</label>\r\n        <span>");
 
             
-            #line 39 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
+            #line 41 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
          Write(inf.Views);
 
             
@@ -208,7 +221,7 @@ WriteLiteral(" class=\"control-label\"");
 WriteLiteral(">版本</label>\r\n        <span>");
 
             
-            #line 41 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
+            #line 43 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
          Write(inf.Version);
 
             
@@ -216,7 +229,7 @@ WriteLiteral(">版本</label>\r\n        <span>");
             #line hidden
 WriteLiteral("</span>\r\n    </div>\r\n</div>\r\n<div");
 
-WriteLiteral(" class=\"form-group col-sm-12 col-md-6\"");
+WriteLiteral(" class=\"form-group\"");
 
 WriteLiteral(">\r\n    <label");
 
@@ -224,14 +237,14 @@ WriteLiteral(" class=\"control-label col-xs-2 col-md-2\"");
 
 WriteLiteral(">编码</label>\r\n    <div");
 
-WriteLiteral(" class=\"col-xs-7 col-md-4\"");
+WriteLiteral(" class=\"col-xs-5 col-sm-5 col-md-5 col-lg-5\"");
 
 WriteLiteral(">\r\n");
 
 WriteLiteral("        ");
 
             
-            #line 47 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
+            #line 49 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
    Write(Html.ForEditor("Code", inf.Code, typeof(String)));
 
             

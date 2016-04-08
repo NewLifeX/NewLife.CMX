@@ -142,14 +142,14 @@ WriteLiteral("\r\n");
             #line hidden
             
             #line 19 "..\..\Areas\CMS\Views\Info\Form.cshtml"
-       Write(Html.Partial("../Info/_Form_Title", entity));
+       Write(Html.Partial("_Form_Title", entity));
 
             
             #line default
             #line hidden
             
             #line 19 "..\..\Areas\CMS\Views\Info\Form.cshtml"
-                                                        
+                                                
 
             
             #line default
@@ -160,11 +160,11 @@ WriteLiteral(" class=\"form-group\"");
 
 WriteLiteral(">\r\n                <label");
 
-WriteLiteral(" class=\"control-label col-sm-2 col-md-2\"");
+WriteLiteral(" class=\"control-label col-xs-2 col-sm-2 col-md-2 col-lg-2\"");
 
 WriteLiteral(">内容</label>\r\n                <div");
 
-WriteLiteral(" class=\"col-sm-10 col-md-6\"");
+WriteLiteral(" class=\"col-xs-8 col-sm-8 col-md-8 col-lg-8\"");
 
 WriteLiteral(">\r\n");
 
@@ -172,7 +172,7 @@ WriteLiteral("                    ");
 
             
             #line 23 "..\..\Areas\CMS\Views\Info\Form.cshtml"
-               Write(Html.Partial("../Info/_Form_Content", entity));
+               Write(Html.Partial("_Form_Content", entity));
 
             
             #line default

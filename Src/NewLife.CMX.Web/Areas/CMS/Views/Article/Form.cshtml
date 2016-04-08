@@ -18,7 +18,7 @@
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary()
-            @Html.Partial("../Info/_Form_Title", entity)
+            @Html.Partial("_Form_Title", entity)
             <div class="form-group">
                 <label class="control-label col-sm-2">来源</label>
                 <div class="col-sm-2">
@@ -40,7 +40,7 @@
             <div class="form-group">
                 <label class="control-label col-sm-2 col-md-2">内容</label>
                 <div class="col-sm-10 col-md-6">
-                    @Html.Partial("../Info/_Form_Content", entity)
+                    @Html.Partial("_Form_Content", entity)
                 </div>
             </div>
             <div class="form-group">

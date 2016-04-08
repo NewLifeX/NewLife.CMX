@@ -86,8 +86,6 @@ WriteLiteral(" name=\"ContentText\"");
 
 WriteLiteral(" type=\"text/plain\"");
 
-WriteLiteral(" style=\"width:800px;height:400px;\"");
-
 WriteLiteral(">\r\n");
 
 WriteLiteral("    ");
@@ -103,8 +101,15 @@ WriteLiteral("\r\n</script>\r\n<script");
 
 WriteLiteral(" type=\"text/javascript\"");
 
-WriteLiteral(">\r\n    //实例化编辑器\r\n    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEdito" +
-"r(\'editor\')就能拿到相关的实例\r\n    var ue = UE.getEditor(\'ContentText\');\r\n</script>\r\n");
+WriteLiteral(@">
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    var _width = $(document.body).width() * 0.75;//浏览器当前窗口文档body的高度
+    var ue = UE.getEditor('ContentText', {
+        initialFrameWidth: _width,
+    });
+</script>
+");
 
         }
     }

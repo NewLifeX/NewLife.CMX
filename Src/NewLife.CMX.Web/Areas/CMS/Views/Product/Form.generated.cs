@@ -150,14 +150,14 @@ WriteLiteral("\r\n");
             #line hidden
             
             #line 22 "..\..\Areas\CMS\Views\Product\Form.cshtml"
-       Write(Html.Partial("../Info/_Form_Title", entity));
+       Write(Html.Partial("_Form_Title", entity));
 
             
             #line default
             #line hidden
             
             #line 22 "..\..\Areas\CMS\Views\Product\Form.cshtml"
-                                                        
+                                                
 
             
             #line default
@@ -224,7 +224,7 @@ WriteLiteral("                    ");
 
             
             #line 36 "..\..\Areas\CMS\Views\Product\Form.cshtml"
-               Write(Html.Partial("../Info/_Form_Content", entity));
+               Write(Html.Partial("_Form_Content", entity));
 
             
             #line default

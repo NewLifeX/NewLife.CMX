@@ -73,9 +73,11 @@ namespace NewLife.CMX.Web.Controllers
             if (mod == null && entity.Category != null) mod = entity.Category.Model;
 
             // 根据模型加载专属表单页
-            var tmp = "../{0}/Form".F(mod.Name);
+            var tmp = "~/Areas/CMS/Views/Info/Form.cshtml".F(mod.Name);
             var tf = "~/Areas/CMS/Views/{0}/Form.cshtml".F(mod.Name);
-            if (!System.IO.File.Exists(tf.GetFullPath())) tmp = "../Info/Form";
+            //if (!System.IO.File.Exists(tf.GetFullPath())) tmp = "../Info/Form";
+                
+            if (mod.Name.EqualIgnoreCase("Article", "Info", "Product", "Text")) tmp = tf;
 
             return View(tmp, entity);
         }

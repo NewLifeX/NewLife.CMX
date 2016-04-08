@@ -149,14 +149,14 @@ WriteLiteral("\r\n");
             #line hidden
             
             #line 21 "..\..\Areas\CMS\Views\Text\Form.cshtml"
-       Write(Html.Partial("../Info/_Form_Title", entity));
+       Write(Html.Partial("_Form_Title", entity));
 
             
             #line default
             #line hidden
             
             #line 21 "..\..\Areas\CMS\Views\Text\Form.cshtml"
-                                                        
+                                                
 
             
             #line default
@@ -171,7 +171,7 @@ WriteLiteral(" class=\"control-label col-md-2\"");
 
 WriteLiteral(">内容</label>\r\n                <div");
 
-WriteLiteral(" class=\"col-md-6\"");
+WriteLiteral(" class=\"col-md-10\"");
 
 WriteLiteral(">\r\n");
 
@@ -179,7 +179,7 @@ WriteLiteral("                    ");
 
             
             #line 25 "..\..\Areas\CMS\Views\Text\Form.cshtml"
-               Write(Html.Partial("../Info/_Form_Content", entity));
+               Write(Html.Partial("_Form_Content", entity));
 
             
             #line default

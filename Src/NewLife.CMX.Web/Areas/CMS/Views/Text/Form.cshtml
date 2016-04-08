@@ -18,11 +18,11 @@
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary()
-            @Html.Partial("../Info/_Form_Title", entity)
+            @Html.Partial("_Form_Title", entity)
             <div class="form-group">
                 <label class="control-label col-md-2">内容</label>
                 <div class="col-md-10">
-                    @Html.Partial("../Info/_Form_Content", entity)
+                    @Html.Partial("_Form_Content", entity)
                 </div>
             </div>
             @Html.Partial("_Form_Footer", entity)
