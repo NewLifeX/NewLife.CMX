@@ -68,7 +68,14 @@ namespace NewLife.CMX.Web.Controllers
         {
             // 用于显示的列
             if (ViewBag.Fields == null) ViewBag.Fields = GetFields(true);
-
+            if (Session["cid"] != null)
+            {
+                entity.CategoryID = Session["cid"].ToInt();
+            }
+            if (Session["mid"] != null)
+            {
+                entity.ModelID = Session["mid"].ToInt();
+            }
             var mod = entity.Model;
             var tmp = "~/Areas/CMS/Views/Info/Form.cshtml";
             if (entity.Category != null)
@@ -92,7 +99,7 @@ namespace NewLife.CMX.Web.Controllers
 
             p.Sort = "CreateTime";
             p.Desc = true;
-
+            Session["mid"] = id;
             var list = Info<TEntity>.Search(id, 0, null, p);
 
             return View("List", list);
@@ -107,7 +114,7 @@ namespace NewLife.CMX.Web.Controllers
             // 用于显示的列
             var fields = GetFields(false);
             ViewBag.Fields = fields;
-
+            Session["cid"] = id;
             p.Sort = "CreateTime";
             p.Desc = true;
 
