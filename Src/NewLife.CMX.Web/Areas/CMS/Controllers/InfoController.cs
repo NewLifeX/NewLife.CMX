@@ -70,11 +70,13 @@ namespace NewLife.CMX.Web.Controllers
             if (ViewBag.Fields == null) ViewBag.Fields = GetFields(true);
 
             var mod = entity.Model;
-            if (mod == null && entity.Category != null) mod = entity.Category.Model;
-
-            // 根据模型加载专属表单页
-            var tmp = "~/Areas/CMS/Views/{0}/Form.cshtml".F(mod.Name);
-                
+            var tmp = "~/Areas/CMS/Views/Info/Form.cshtml";
+            if (entity.Category != null)
+            {
+                mod = entity.Category.Model;
+                // 根据模型加载专属表单页
+                tmp = "~/Areas/CMS/Views/{0}/Form.cshtml".F(mod.Name ?? "Info");
+            }
             return View(tmp, entity);
         }
 
