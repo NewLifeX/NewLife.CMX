@@ -34,7 +34,7 @@
             {
                 <b class="arrow"></b>
 
-                <ul class="submenu">
+                <ul @Html.Raw(menu == Menus[0] ? "class=\"submenu nav-show\" style=\"display:block;\"" : "class=\"submenu nav-hide\" style=\"display:none;\"")>
                     @foreach (IMenu menu2 in childs)
                     {
                         @Html.Partial("_Left_Item", menu2);
@@ -61,7 +61,7 @@
 
             <b class="arrow"></b>
 
-            <ul class="submenu">
+            <ul class="submenu nav-hide" style="display:none;">
                 <li>
                     <a href="~/CMS/Info/Mod/@mod.ID" target="main">
                         <i class="menu-icon fa fa-caret-right"></i>
