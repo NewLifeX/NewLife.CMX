@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NewLife.CMX</RootNamespace>
     <AssemblyName>NewLife.CMX</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -23,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\Bin\NewLife.CMX.XML</DocumentationFile>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +33,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\Bin\NewLife.CMX.XML</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NewLife.Core, Version=5.4.5625.37090, Culture=neutral, processorArchitecture=MSIL">
@@ -92,14 +94,9 @@
     <Content Include="CMX数据字典.htm" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="XCoder.log">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>XCoder.tt</DependentUpon>
-    </None>
     <None Include="XCoder.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>XCoder.log</LastGenOutput>
+      <LastGenOutput>XCoder.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

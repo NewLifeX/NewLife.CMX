@@ -31,10 +31,12 @@ using System.Runtime.InteropServices;
 //
 // 可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”:
-[assembly: AssemblyVersion("2.1.*")]
-[assembly: AssemblyFileVersion("2.1.2015.0219")]
+[assembly: AssemblyVersion("3.0.*")]
+[assembly: AssemblyFileVersion("3.0.2016.0921")]
 
 /*
+ * v3.0.2016.0921   升级到.Net 4.5
+ * 
  * v2.1.2015.0219   精简架构
  * 
  * v2.0.2015.0518   升级到Mvc

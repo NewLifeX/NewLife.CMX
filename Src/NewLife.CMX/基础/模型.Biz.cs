@@ -4,10 +4,11 @@
  * 时间：2013-09-01 20:13:59
  * 版权：版权所有 (C) 新生命开发团队 2002~2013
 */
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Xml.Serialization;
 using NewLife.Log;
 using NewLife.Reflection;
 using XCode;
@@ -21,7 +22,7 @@ namespace NewLife.CMX
 
     /// <summary>模型</summary>
     /// <remarks>模型。默认有文章、文本、产品三种模型，可以扩展增加。</remarks>
-    public partial class Model<TEntity> : UserTimeEntity<TEntity> where TEntity : Model<TEntity>, new()
+    public partial class Model<TEntity> : LogEntity<TEntity> where TEntity : Model<TEntity>, new()
     {
         #region 对象操作﻿
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
@@ -65,11 +66,56 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
-        ///// <summary>标题页面</summary>
-        //public String TitleUrl { get { return String.Format("CMX/{0}/{0}.aspx", Provider.TitleType.Name); } }
 
-        ///// <summary>分类页面</summary>
-        //public String CategoryUrl { get { return String.Format("CMX/{0}/{1}.aspx", Provider.TitleType.Name, Provider.CategoryType.Name); } }
+        private IManageUser _CreateUser;
+        /// <summary>创建人</summary>
+        [XmlIgnore]
+        [DisplayName("创建人")]
+        //[BindRelation("CreateUserID", false, "User", "ID")]
+        public IManageUser CreateUser
+        {
+            get
+            {
+                if (_CreateUser == null && CreateUserID > 0 && !Dirtys.ContainsKey("CreateUser"))
+                {
+                    _CreateUser = ManageProvider.Provider.FindByID(CreateUserID);
+                    Dirtys["CreateUser"] = true;
+                }
+                return _CreateUser;
+            }
+            set { _CreateUser = value; }
+        }
+
+        /// <summary>创建人名称</summary>
+        [XmlIgnore]
+        [DisplayName("创建人")]
+        [Map("CreateUserID")]
+        public String CreateUserName { get { return CreateUser + ""; } }
+
+        private IManageUser _UpdateUser;
+        /// <summary>更新人</summary>
+        [XmlIgnore]
+        [DisplayName("更新人")]
+        //[BindRelation("UpdateUserID", false, "User", "ID")]
+        public IManageUser UpdateUser
+        {
+            get
+            {
+                if (_UpdateUser == null && UpdateUserID > 0 && !Dirtys.ContainsKey("UpdateUser"))
+                {
+                    _UpdateUser = ManageProvider.Provider.FindByID(UpdateUserID);
+                    Dirtys["UpdateUser"] = true;
+                }
+                return _UpdateUser;
+            }
+            set { _UpdateUser = value; }
+        }
+
+        /// <summary>更新人名称</summary>
+        [XmlIgnore]
+        [DisplayName("更新人")]
+        [Map("UpdateUserID")]
+        public String UpdateUserName { get { return UpdateUser + ""; } }
         #endregion
 
         #region 扩展查询﻿

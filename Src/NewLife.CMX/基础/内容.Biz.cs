@@ -25,7 +25,7 @@ namespace NewLife.CMX
     public class Content : Content<Content> { }
     
     /// <summary>内容</summary>
-    public partial class Content<TEntity> : UserTimeEntity<TEntity> where TEntity : Content<TEntity>, new()
+    public partial class Content<TEntity> : Entity<TEntity> where TEntity : Content<TEntity>, new()
     {
         #region 对象操作
         /// <summary>根据ParentID缓存最后版本</summary>
@@ -126,8 +126,31 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性
-            ﻿
 
+        private IManageUser _CreateUser;
+        /// <summary>创建人</summary>
+        [XmlIgnore]
+        [DisplayName("创建人")]
+        //[BindRelation("CreateUserID", false, "User", "ID")]
+        public IManageUser CreateUser
+        {
+            get
+            {
+                if (_CreateUser == null && CreateUserID > 0 && !Dirtys.ContainsKey("CreateUser"))
+                {
+                    _CreateUser = ManageProvider.Provider.FindByID(CreateUserID);
+                    Dirtys["CreateUser"] = true;
+                }
+                return _CreateUser;
+            }
+            set { _CreateUser = value; }
+        }
+
+        /// <summary>创建人名称</summary>
+        [XmlIgnore]
+        [DisplayName("创建人")]
+        [Map("CreateUserID")]
+        public String CreateUserName { get { return CreateUser + ""; } }
         #endregion
 
         #region 扩展查询

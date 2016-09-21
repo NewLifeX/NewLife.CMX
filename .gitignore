@@ -1,0 +1,18 @@
+﻿################################################################################
+# 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
+################################################################################
+
+/Bin
+/Src/.vs
+/Src/Data
+/Src/Log
+/Src/InitData
+/Src/NewLife.CMX/obj/Debug
+*.suo
+/Src/UEditor/obj/Debug
+/Src/packages
+*.user
+/Src/NewLife.CMX.Web/Plugins
+/Src/NewLife.CMX.Web/obj/Debug
+/Src/NewLife.CMX.Web/Config
+/Src/NewLife.CMX.Web/bin

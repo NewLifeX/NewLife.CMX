@@ -4,7 +4,7 @@
  * 时间：2014-11-09 00:59:57
  * 版权：版权所有 (C) 新生命开发团队 2002~2014
 */
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -18,7 +18,7 @@ using NewLife.Serialization;
 namespace NewLife.CMX
 {
     /// <summary>导航</summary>
-    public partial class Nav : UserTimeEntityTree<Nav>, IUserInfo, ITimeInfo
+    public partial class Nav : EntityTree<Nav>//, IUserInfo, ITimeInfo
     {
         #region 验证数据
         /// <summary>验证导航数据</summary>
@@ -134,7 +134,7 @@ namespace NewLife.CMX
         #region 扩展属性﻿
         private ICategory _Category;
         /// <summary>分类</summary>
-        [BindRelation("CategoryID", false, "Category", "ID")]
+        [Map("CategoryID", typeof(Category), "ID")]
         public ICategory Category
         {
             get
@@ -153,6 +153,56 @@ namespace NewLife.CMX
         [XmlIgnore]
         [DisplayName("分类")]
         public String CategoryName { get { return Category + ""; } }
+
+        private IManageUser _CreateUser;
+        /// <summary>创建人</summary>
+        [XmlIgnore]
+        [DisplayName("创建人")]
+        //[BindRelation("CreateUserID", false, "User", "ID")]
+        public IManageUser CreateUser
+        {
+            get
+            {
+                if (_CreateUser == null && CreateUserID > 0 && !Dirtys.ContainsKey("CreateUser"))
+                {
+                    _CreateUser = ManageProvider.Provider.FindByID(CreateUserID);
+                    Dirtys["CreateUser"] = true;
+                }
+                return _CreateUser;
+            }
+            set { _CreateUser = value; }
+        }
+
+        /// <summary>创建人名称</summary>
+        [XmlIgnore]
+        [DisplayName("创建人")]
+        [Map("CreateUserID")]
+        public String CreateUserName { get { return CreateUser + ""; } }
+
+        private IManageUser _UpdateUser;
+        /// <summary>更新人</summary>
+        [XmlIgnore]
+        [DisplayName("更新人")]
+        //[BindRelation("UpdateUserID", false, "User", "ID")]
+        public IManageUser UpdateUser
+        {
+            get
+            {
+                if (_UpdateUser == null && UpdateUserID > 0 && !Dirtys.ContainsKey("UpdateUser"))
+                {
+                    _UpdateUser = ManageProvider.Provider.FindByID(UpdateUserID);
+                    Dirtys["UpdateUser"] = true;
+                }
+                return _UpdateUser;
+            }
+            set { _UpdateUser = value; }
+        }
+
+        /// <summary>更新人名称</summary>
+        [XmlIgnore]
+        [DisplayName("更新人")]
+        [Map("UpdateUserID")]
+        public String UpdateUserName { get { return UpdateUser + ""; } }
         #endregion
 
         #region 扩展查询﻿

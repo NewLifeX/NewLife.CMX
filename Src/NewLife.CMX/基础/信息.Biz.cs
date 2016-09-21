@@ -21,7 +21,7 @@ namespace NewLife.CMX
     public class Info : Info<Info> { }
 
     /// <summary>信息</summary>
-    public partial class Info<TEntity> : UserTimeEntity<TEntity> where TEntity : Info<TEntity>, new()
+    public partial class Info<TEntity> : Entity<TEntity> where TEntity : Info<TEntity>, new()
     {
         #region 对象操作
 
@@ -174,7 +174,7 @@ namespace NewLife.CMX
         private IModel _Model;
         /// <summary>该分类所对应的模型</summary>
         [XmlIgnore]
-        [BindRelation("ModelID", false, "Model", "ID")]
+        [Map("ModelID", typeof(ModelX), "ID")]
         public IModel Model
         {
             get
@@ -196,7 +196,7 @@ namespace NewLife.CMX
 
         private ICategory _Category;
         /// <summary>分类</summary>
-        [BindRelation("CategoryID", false, "Category", "ID")]
+        [Map("CategoryID", typeof(Category), "ID")]
         public ICategory Category
         {
             get
@@ -259,7 +259,7 @@ namespace NewLife.CMX
 
         private IStatistics _Statistics;
         /// <summary>统计</summary>
-        [BindRelation("StatisticsID", false, "Statistics", "ID")]
+        [Map("StatisticsID", typeof(Statistics), "ID")]
         public IStatistics Statistics
         {
             get
@@ -290,6 +290,56 @@ namespace NewLife.CMX
                 return _StatisticsText;
             }
         }
+
+        private IManageUser _CreateUser;
+        /// <summary>创建人</summary>
+        [XmlIgnore]
+        [DisplayName("创建人")]
+        //[BindRelation("CreateUserID", false, "User", "ID")]
+        public IManageUser CreateUser
+        {
+            get
+            {
+                if (_CreateUser == null && CreateUserID > 0 && !Dirtys.ContainsKey("CreateUser"))
+                {
+                    _CreateUser = ManageProvider.Provider.FindByID(CreateUserID);
+                    Dirtys["CreateUser"] = true;
+                }
+                return _CreateUser;
+            }
+            set { _CreateUser = value; }
+        }
+
+        /// <summary>创建人名称</summary>
+        [XmlIgnore]
+        [DisplayName("创建人")]
+        [Map("CreateUserID")]
+        public String CreateUserName { get { return CreateUser + ""; } }
+
+        private IManageUser _UpdateUser;
+        /// <summary>更新人</summary>
+        [XmlIgnore]
+        [DisplayName("更新人")]
+        //[BindRelation("UpdateUserID", false, "User", "ID")]
+        public IManageUser UpdateUser
+        {
+            get
+            {
+                if (_UpdateUser == null && UpdateUserID > 0 && !Dirtys.ContainsKey("UpdateUser"))
+                {
+                    _UpdateUser = ManageProvider.Provider.FindByID(UpdateUserID);
+                    Dirtys["UpdateUser"] = true;
+                }
+                return _UpdateUser;
+            }
+            set { _UpdateUser = value; }
+        }
+
+        /// <summary>更新人名称</summary>
+        [XmlIgnore]
+        [DisplayName("更新人")]
+        [Map("UpdateUserID")]
+        public String UpdateUserName { get { return UpdateUser + ""; } }
         #endregion
 
         #region 扩展查询
@@ -422,7 +472,7 @@ namespace NewLife.CMX
         #endregion
     }
 
-    partial interface IInfo : IUserInfo
+    partial interface IInfo //: IUserInfo
     {
         /// <summary>模型</summary>
         IModel Model { get; }
@@ -438,5 +488,8 @@ namespace NewLife.CMX
 
         /// <summary>统计</summary>
         IStatistics Statistics { get; }
+
+        /// <summary>创建者</summary>
+        String CreateUserName { get; }
     }
 }

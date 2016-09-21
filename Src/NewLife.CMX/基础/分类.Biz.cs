@@ -139,7 +139,7 @@ namespace NewLife.CMX
         private IModel _Model;
         /// <summary>该分类所对应的模型</summary>
         [XmlIgnore]
-        [BindRelation("ModelID", false, "Model", "ID")]
+        [Map("ModelID", typeof(ModelX), "ID")]
         public IModel Model
         {
             get

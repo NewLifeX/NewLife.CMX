@@ -11,6 +11,35 @@
             <summary>注册区域</summary>
             <param name="context"></param>
         </member>
+        <member name="T:NewLife.Cube.Admin.Controllers.DbController">
+            <summary>数据库管理</summary>
+        </member>
+        <member name="M:NewLife.Cube.Admin.Controllers.DbController.Index">
+            <summary>数据库列表</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Cube.Admin.Controllers.DbController.SetStatic(System.String)">
+            <summary>持久化连接</summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Cube.Admin.Controllers.DbController.Backup(System.String)">
+            <summary>备份数据库</summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Cube.Admin.Controllers.DbController.Download(System.String)">
+            <summary>下载数据库备份</summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Cube.Admin.Controllers.FileController">
+            <summary>文件管理</summary>
+        </member>
+        <member name="M:NewLife.Cube.Admin.Controllers.FileController.Index">
+            <summary>文件管理主视图</summary>
+            <returns></returns>
+        </member>
         <member name="T:NewLife.Cube.Admin.Controllers.RoleController">
             <summary>角色控制器</summary>
         </member>
@@ -49,11 +78,6 @@
         <member name="M:NewLife.Cube.Admin.Controllers.LogController.DeleteAjax(System.Int32)">
             <summary>不允许删除日志</summary>
             <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Cube.Admin.Controllers.LogController.ScanActionMenu(XCode.Membership.IMenu)">
-            <summary>获取可用于生成权限菜单的Action集合</summary>
-            <param name="menu"></param>
             <returns></returns>
         </member>
         <member name="T:NewLife.Cube.Admin.Controllers.MenuController">
@@ -139,6 +163,59 @@
         <member name="M:NewLife.Cube.Admin.Controllers.IndexController.ScanActionMenu(XCode.Membership.IMenu)">
             <summary>菜单不可见</summary>
             <param name="menu"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NewLife.Cube.Admin.DbItem">
+            <summary>数据项</summary>
+        </member>
+        <member name="P:NewLife.Cube.Admin.DbItem.Name">
+            <summary>连接名</summary>
+        </member>
+        <member name="P:NewLife.Cube.Admin.DbItem.Type">
+            <summary>数据库类型</summary>
+        </member>
+        <member name="P:NewLife.Cube.Admin.DbItem.ConnStr">
+            <summary>连接字符串</summary>
+        </member>
+        <member name="P:NewLife.Cube.Admin.DbItem.Version">
+            <summary>数据驱动版本</summary>
+        </member>
+        <member name="P:NewLife.Cube.Admin.DbItem.Dynamic">
+            <summary>是否动态</summary>
+        </member>
+        <member name="P:NewLife.Cube.Admin.DbItem.Backups">
+            <summary>备份数</summary>
+        </member>
+        <member name="T:NewLife.Cube.EntityTreeController`1">
+            <summary>实体树控制器基类</summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="M:NewLife.Cube.EntityTreeController`1.IndexView(NewLife.Web.Pager)">
+            <summary>列表页视图。子控制器可重载，以传递更多信息给视图，比如修改要显示的列</summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Cube.EntityTreeController`1.OnExportXml">
+            <summary>要导出Xml的对象</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Cube.EntityTreeController`1.OnExportJson">
+            <summary>要导出Json的对象</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Cube.EntityTreeController`1.Up(System.Int32)">
+            <summary>上升</summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Cube.EntityTreeController`1.Down(System.Int32)">
+            <summary>下降</summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Cube.EntityTreeController`1.FindByID(System.Int32)">
+            <summary>根据ID查找节点</summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="T:NewLife.Cube.ObjectController`1">
@@ -450,6 +527,9 @@
         <member name="P:NewLife.Cube.AreaRegistrationBase.PrecompiledEngines">
             <summary>预编译引擎集合。便于外部设置属性</summary>
         </member>
+        <member name="M:NewLife.Cube.AreaRegistrationBase.#ctor">
+            <summary>实例化区域注册</summary>
+        </member>
         <member name="M:NewLife.Cube.AreaRegistrationBase.FindAllArea">
             <summary>遍历所有引用了AreaRegistrationBase的程序集</summary>
             <returns></returns>
@@ -607,6 +687,14 @@
             <summary>清空全表数据</summary>
             <returns></returns>
         </member>
+        <member name="M:NewLife.Cube.EntityController`1.MakeList">
+            <summary>生成列表</summary>
+            <returns></returns>
+        </member>
+        <member name="M:NewLife.Cube.EntityController`1.MakeForm">
+            <summary>生成表单</summary>
+            <returns></returns>
+        </member>
         <member name="M:NewLife.Cube.EntityController`1.OnInsert(`0)">
             <summary>添加实体对象</summary>
             <param name="entity"></param>
@@ -646,38 +734,6 @@
         <member name="M:NewLife.Cube.EntityController`1.OnActionExecuting(System.Web.Mvc.ActionExecutingContext)">
             <summary>动作执行前</summary>
             <param name="filterContext"></param>
-        </member>
-        <member name="T:NewLife.Cube.EntityTreeController`1">
-            <summary>实体树控制器基类</summary>
-            <typeparam name="TEntity"></typeparam>
-        </member>
-        <member name="M:NewLife.Cube.EntityTreeController`1.IndexView(NewLife.Web.Pager)">
-            <summary>列表页视图。子控制器可重载，以传递更多信息给视图，比如修改要显示的列</summary>
-            <param name="p"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Cube.EntityTreeController`1.OnExportXml">
-            <summary>要导出Xml的对象</summary>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Cube.EntityTreeController`1.OnExportJson">
-            <summary>要导出Json的对象</summary>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Cube.EntityTreeController`1.Up(System.Int32)">
-            <summary>上升</summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Cube.EntityTreeController`1.Down(System.Int32)">
-            <summary>下降</summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NewLife.Cube.EntityTreeController`1.FindByID(System.Int32)">
-            <summary>根据ID查找节点</summary>
-            <param name="id"></param>
-            <returns></returns>
         </member>
         <member name="T:NewLife.Cube.ConfigController`1">
             <summary>设置控制器</summary>

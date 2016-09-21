@@ -24,7 +24,7 @@ namespace NewLife.CMX
         private IInfo _Info;
         /// <summary>该扩展所对应的信息</summary>
         [XmlIgnore]
-        [BindRelation("ExtendID", false, "Info", "ID")]
+        [Map("ExtendID", typeof(Info), "ID")]
         public IInfo Info
         {
             get

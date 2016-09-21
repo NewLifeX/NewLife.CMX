@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Xml.Serialization;
 using NewLife.Data;
 using NewLife.Log;
 using XCode;
@@ -16,7 +17,7 @@ using XCode.Membership;
 namespace NewLife.CMX
 {
     /// <summary>来源</summary>
-    public partial class Source : UserTimeEntity<Source>
+    public partial class Source : Entity<Source>
     {
         #region 对象操作
 
@@ -82,7 +83,55 @@ namespace NewLife.CMX
 
         #region 扩展属性
 
+        private IManageUser _CreateUser;
+        /// <summary>创建人</summary>
+        [XmlIgnore]
+        [DisplayName("创建人")]
+        //[BindRelation("CreateUserID", false, "User", "ID")]
+        public IManageUser CreateUser
+        {
+            get
+            {
+                if (_CreateUser == null && CreateUserID > 0 && !Dirtys.ContainsKey("CreateUser"))
+                {
+                    _CreateUser = ManageProvider.Provider.FindByID(CreateUserID);
+                    Dirtys["CreateUser"] = true;
+                }
+                return _CreateUser;
+            }
+            set { _CreateUser = value; }
+        }
 
+        /// <summary>创建人名称</summary>
+        [XmlIgnore]
+        [DisplayName("创建人")]
+        [Map("CreateUserID")]
+        public String CreateUserName { get { return CreateUser + ""; } }
+
+        private IManageUser _UpdateUser;
+        /// <summary>更新人</summary>
+        [XmlIgnore]
+        [DisplayName("更新人")]
+        //[BindRelation("UpdateUserID", false, "User", "ID")]
+        public IManageUser UpdateUser
+        {
+            get
+            {
+                if (_UpdateUser == null && UpdateUserID > 0 && !Dirtys.ContainsKey("UpdateUser"))
+                {
+                    _UpdateUser = ManageProvider.Provider.FindByID(UpdateUserID);
+                    Dirtys["UpdateUser"] = true;
+                }
+                return _UpdateUser;
+            }
+            set { _UpdateUser = value; }
+        }
+
+        /// <summary>更新人名称</summary>
+        [XmlIgnore]
+        [DisplayName("更新人")]
+        [Map("UpdateUserID")]
+        public String UpdateUserName { get { return UpdateUser + ""; } }
         #endregion
 
         #region 扩展查询
