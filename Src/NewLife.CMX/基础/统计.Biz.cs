@@ -4,7 +4,7 @@
  * 时间：2013-12-14 17:00:07
  * 版权：版权所有 (C) 新生命开发团队 2002~2013
 */
-﻿using System;
+using System;
 using System.ComponentModel;
 using NewLife.Web;
 using XCode;
@@ -102,10 +102,10 @@ namespace NewLife.CMX
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public static TEntity FindByID(Int32 id)
         {
-            if (Meta.Count >= 1000)
-                return Meta.SingleCache[id];
-            else
-                return Meta.Cache.Entities.Find(__.ID, id);
+            //if (Meta.Count >= 1000)
+            return Meta.SingleCache[id];
+            //else
+            //    return Meta.Cache.Entities.Find(__.ID, id);
         }
         #endregion
 

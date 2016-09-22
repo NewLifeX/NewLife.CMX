@@ -80,7 +80,8 @@ namespace NewLife.CMX
             {
                 if (XTrace.Debug) XTrace.WriteLine("使用数据初始化文件【{0}】初始化{1}[{2}]数据……", fn, typeof(Nav).Name, Meta.Table.DataTable.DisplayName);
 
-                var list = EntityList<Nav>.FromJson(File.ReadAllText(fn));
+                //var list = EntityList<Nav>.FromJson(File.ReadAllText(fn));
+                var list = File.ReadAllText(fn).ToJsonEntity<List<Nav>>();
                 //var list = new EntityList<Nav>();
                 //list.FromXml(File.ReadAllText(fn));
                 var queue = new Queue<Nav>(list);
