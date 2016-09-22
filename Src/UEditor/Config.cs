@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Web;
-using Newtonsoft.Json.Linq;
+using NewLife.Reflection;
+using NewLife.Serialization;
 
 namespace UEditor
 {
@@ -12,33 +13,36 @@ namespace UEditor
     public static class Config
     {
         private static bool noCache = true;
-        private static JObject BuildItems()
+        private static Object BuildItems()
         {
             var json = File.ReadAllText(HttpContext.Current.Server.MapPath("config.json"));
-            return JObject.Parse(json);
+
+            var jp = new JsonParser(json);
+            return jp.Decode();
         }
 
-        public static JObject Items
+        public static IDictionary<String, Object> Items
         {
             get
             {
                 if (noCache || _Items == null)
                 {
-                    _Items = BuildItems();
+                    _Items = BuildItems() as IDictionary<String, Object>;
                 }
                 return _Items;
             }
         }
-        private static JObject _Items;
+        private static IDictionary<String, Object> _Items;
 
         public static T GetValue<T>(string key)
         {
-            return Items[key].Value<T>();
+            return Items[key].ChangeType<T>();
         }
 
         public static String[] GetStringList(string key)
         {
-            return Items[key].Select(x => x.Value<String>()).ToArray();
+            //return Items[key].Select(x => x.Value<String>()).ToArray();
+            return Items[key] as String[];
         }
 
         public static String GetString(string key)

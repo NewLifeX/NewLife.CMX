@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web;
-using Newtonsoft.Json;
+using NewLife.Serialization;
 
 namespace UEditor
 {
@@ -20,8 +20,8 @@ namespace UEditor
 
         protected void WriteJson(object response)
         {
-            string jsonpCallback = Request["callback"],
-                json = JsonConvert.SerializeObject(response);
+            var jsonpCallback = Request["callback"];
+            var json = response.ToJson();
             if (String.IsNullOrWhiteSpace(jsonpCallback))
             {
                 Response.AddHeader("Content-Type", "text/plain");
