@@ -37,8 +37,8 @@ namespace NewLife.CMX
             TEntity entity = new TEntity();
 
             _cache = new SingleEntityCache<int, TEntity>();
-            _cache.AllowNull = true;
-            _cache.AutoSave = false;
+            //_cache.AllowNull = true;
+            //_cache.AutoSave = false;
             _cache.FindKeyMethod = id =>
             {
                 var list = FindAllByName(__.InfoID, id, _.Version.Desc(), 0, 1);

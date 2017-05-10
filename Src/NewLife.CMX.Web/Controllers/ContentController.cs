@@ -57,21 +57,21 @@ namespace NewLife.CMX.Web.Controllers
             var viewName = "../{0}/{1}".F(model.Name, name);
 
             // 如果频道模版不存在，则采用模型模版
-            return _cache.GetItem(viewName, name, model, (kview, kname, kmodel) =>
+            return _cache.GetItem(viewName, k =>
             {
                 // 模型目录的模版
-                var view = kview;
-                var vpath = "Views/{0}/{1}.cshtml".F(kmodel.Name, kname);
+                var view = k;
+                var vpath = "Views/{0}/{1}.cshtml".F(model.Name, name);
                 if (ViewExists(vpath)) return view;
 
                 // 内容目录的模板
-                view = "../{0}/{1}".F("Content", kname);
-                vpath = "Views/{0}/{1}.cshtml".F("Content", kname);
+                view = "../{0}/{1}".F("Content", name);
+                vpath = "Views/{0}/{1}.cshtml".F("Content", name);
                 if (ViewExists(vpath)) return view;
 
                 // 共享目录的模板
-                view = "../{0}/{1}".F("Shared", kname);
-                vpath = "Views/{0}/{1}.cshtml".F("Shared", kname);
+                view = "../{0}/{1}".F("Shared", name);
+                vpath = "Views/{0}/{1}.cshtml".F("Shared", name);
                 if (ViewExists(vpath)) return view;
 
                 return null;

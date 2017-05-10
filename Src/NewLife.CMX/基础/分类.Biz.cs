@@ -225,7 +225,7 @@ namespace NewLife.CMX
         public IList<IInfo> GetInfos(PageParameter pager)
         {
             var key = "{0}-{1}".F(ID, pager.GetKey());
-            return _cache.GetItem(key, pager, (k, p) => Info.Search(0, ID, null, p).ToList().Cast<IInfo>().ToList());
+            return _cache.GetItem(key, k => Info.Search(0, ID, null, pager).ToList().Cast<IInfo>().ToList());
 
             //return Info.Search(0, ID, null, pager).ToList().Cast<IInfo>().ToList();
         }

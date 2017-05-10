@@ -36,7 +36,7 @@ namespace NewLife.CMX
 
             // 自动保存时间60秒
             var sc = Meta.Session.SingleCache;
-            sc.AutoSave = true;
+            //sc.AutoSave = true;
             //sc.Expriod = 60;
         }
 
