@@ -20,19 +20,19 @@ namespace UEditor
             PathNotFound
         }
 
-        private int Start;
-        private int Size;
-        private int Total;
+        private Int32 Start;
+        private Int32 Size;
+        private Int32 Total;
         private ResultState State;
         private String PathToList;
         private String[] FileList;
         private String[] SearchExtensions;
 
-        public ListFileManager(HttpContext context, string pathToList, string[] searchExtensions)
+        public ListFileManager(HttpContext context, String pathToList, String[] searchExtensions)
             : base(context)
         {
-            this.SearchExtensions = searchExtensions.Select(x => x.ToLower()).ToArray();
-            this.PathToList = pathToList;
+            SearchExtensions = searchExtensions.Select(x => x.ToLower()).ToArray();
+            PathToList = pathToList;
         }
 
         public override void Process()
@@ -88,7 +88,7 @@ namespace UEditor
             });
         }
 
-        private string GetStateString()
+        private String GetStateString()
         {
             switch (State)
             {

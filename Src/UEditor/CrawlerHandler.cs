@@ -9,7 +9,7 @@ namespace UEditor
     /// <summary>抓取处理器</summary>
     public class CrawlerHandler : Handler
     {
-        private string[] Sources;
+        private String[] Sources;
         private Crawler[] Crawlers;
         public CrawlerHandler(HttpContext context) : base(context) { }
 
@@ -40,22 +40,22 @@ namespace UEditor
 
     public class Crawler
     {
-        public string SourceUrl { get; set; }
-        public string ServerUrl { get; set; }
-        public string State { get; set; }
+        public String SourceUrl { get; set; }
+        public String ServerUrl { get; set; }
+        public String State { get; set; }
 
         private HttpServerUtility Server { get; set; }
 
 
-        public Crawler(string sourceUrl, HttpServerUtility server)
+        public Crawler(String sourceUrl, HttpServerUtility server)
         {
-            this.SourceUrl = sourceUrl;
-            this.Server = server;
+            SourceUrl = sourceUrl;
+            Server = server;
         }
 
         public Crawler Fetch()
         {
-            var request = HttpWebRequest.Create(this.SourceUrl) as HttpWebRequest;
+            var request = HttpWebRequest.Create(SourceUrl) as HttpWebRequest;
             using (var response = request.GetResponse() as HttpWebResponse)
             {
                 if (response.StatusCode != HttpStatusCode.OK)
@@ -68,17 +68,17 @@ namespace UEditor
                     State = "Url is not an image";
                     return this;
                 }
-                ServerUrl = PathFormatter.Format(Path.GetFileName(this.SourceUrl), Config.GetString("catcherPathFormat"));
+                ServerUrl = PathFormatter.Format(Path.GetFileName(SourceUrl), Config.GetString("catcherPathFormat"));
                 var savePath = ServerUrl.GetFullPath().EnsureDirectory();
                 try
                 {
                     var stream = response.GetResponseStream();
                     var reader = new BinaryReader(stream);
-                    byte[] bytes;
+                    Byte[] bytes;
                     using (var ms = new MemoryStream())
                     {
-                        byte[] buffer = new byte[4096];
-                        int count;
+                        Byte[] buffer = new Byte[4096];
+                        Int32 count;
                         while ((count = reader.Read(buffer, 0, buffer.Length)) != 0)
                         {
                             ms.Write(buffer, 0, count);

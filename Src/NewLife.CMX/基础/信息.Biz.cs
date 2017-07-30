@@ -70,7 +70,7 @@ namespace NewLife.CMX
             NewLife.CMX.Category.Meta.Session.WaitForInitData();
 
             var sb = new StringBuilder();
-            for (int i = 0; i < 20; i++)
+            for (var i = 0; i < 20; i++)
             {
                 sb.AppendLine("新生命开发团队，学无先后达者为师<br>");
             }
@@ -78,13 +78,15 @@ namespace NewLife.CMX
 
             foreach (var item in NewLife.CMX.Category.FindAllWithCache())
             {
-                var entity = new TEntity();
-                entity.ModelID = item.ModelID;
-                entity.CategoryID = item.ID;
-                entity.CategoryName = item.Name;
-                entity.Title = "{0}信息".F(item.Name);
-                entity.ContentText = txt;
-                entity.ExtendID = 0;
+                var entity = new TEntity()
+                {
+                    ModelID = item.ModelID,
+                    CategoryID = item.ID,
+                    CategoryName = item.Name,
+                    Title = "{0}信息".F(item.Name),
+                    ContentText = txt,
+                    ExtendID = 0
+                };
                 entity.Insert();
             }
 
@@ -102,7 +104,7 @@ namespace NewLife.CMX
             var stat = Statistics;
             if (stat != null) (stat as IEntity).Insert();
 
-            this.StatisticsID = stat.ID;
+            StatisticsID = stat.ID;
 
             num += base.OnInsert();
 
@@ -118,7 +120,7 @@ namespace NewLife.CMX
         }
 
         /// <summary>同步更新内容，但不同步更新统计</summary>
-        protected override int OnUpdate()
+        protected override Int32 OnUpdate()
         {
             var rs = 0;
             // 如果内容数据有修改，插入新内容
@@ -134,7 +136,7 @@ namespace NewLife.CMX
                 entity.Title = Title;
                 rs += (entity as IEntity).Insert();
 
-                this.Version = entity.Version;
+                Version = entity.Version;
             }
 
             // 同步访问量
@@ -145,7 +147,7 @@ namespace NewLife.CMX
 
         /// <summary>已重载。关联删除内容和统计</summary>
         /// <returns></returns>
-        protected override int OnDelete()
+        protected override Int32 OnDelete()
         {
             // 删内容
             NewLife.CMX.Content.DeleteByParentID(ID);

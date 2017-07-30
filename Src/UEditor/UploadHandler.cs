@@ -14,14 +14,14 @@ namespace UEditor
         public UploadHandler(HttpContext context, UploadConfig config)
             : base(context)
         {
-            this.UploadConfig = config;
-            this.Result = new UploadResult() { State = UploadState.Unknown };
+            UploadConfig = config;
+            Result = new UploadResult() { State = UploadState.Unknown };
         }
 
         public override void Process()
         {
-            byte[] uploadFileBytes = null;
-            string uploadFileName = null;
+            Byte[] uploadFileBytes = null;
+            String uploadFileName = null;
 
             if (UploadConfig.Base64)
             {
@@ -46,7 +46,7 @@ namespace UEditor
                     return;
                 }
 
-                uploadFileBytes = new byte[file.ContentLength];
+                uploadFileBytes = new Byte[file.ContentLength];
                 try
                 {
                     file.InputStream.Read(uploadFileBytes, 0, file.ContentLength);
@@ -85,7 +85,7 @@ namespace UEditor
 
         private void WriteResult()
         {
-            this.WriteJson(new
+            WriteJson(new
             {
                 state = GetStateMessage(Result.State),
                 url = Result.Url,
@@ -95,7 +95,7 @@ namespace UEditor
             });
         }
 
-        private string GetStateMessage(UploadState state)
+        private String GetStateMessage(UploadState state)
         {
             switch (state)
             {
@@ -113,13 +113,13 @@ namespace UEditor
             return "未知错误";
         }
 
-        private bool CheckFileType(string filename)
+        private Boolean CheckFileType(String filename)
         {
             var fileExtension = Path.GetExtension(filename).ToLower();
             return UploadConfig.AllowExtensions.Select(x => x.ToLower()).Contains(fileExtension);
         }
 
-        private bool CheckFileSize(int size)
+        private Boolean CheckFileSize(Int32 size)
         {
             return size < UploadConfig.SizeLimit;
         }
@@ -128,31 +128,31 @@ namespace UEditor
     public class UploadConfig
     {
         /// <summary>文件命名规则</summary>
-        public string PathFormat { get; set; }
+        public String PathFormat { get; set; }
 
         /// <summary>上传表单域名称</summary>
-        public string UploadFieldName { get; set; }
+        public String UploadFieldName { get; set; }
 
         /// <summary>上传大小限制</summary>
-        public int SizeLimit { get; set; }
+        public Int32 SizeLimit { get; set; }
 
         /// <summary>上传允许的文件格式</summary>
-        public string[] AllowExtensions { get; set; }
+        public String[] AllowExtensions { get; set; }
 
         /// <summary>文件是否以 Base64 的形式上传</summary>
-        public bool Base64 { get; set; }
+        public Boolean Base64 { get; set; }
 
         /// <summary>Base64 字符串所表示的文件名</summary>
-        public string Base64Filename { get; set; }
+        public String Base64Filename { get; set; }
     }
 
     public class UploadResult
     {
         public UploadState State { get; set; }
-        public string Url { get; set; }
-        public string OriginFileName { get; set; }
+        public String Url { get; set; }
+        public String OriginFileName { get; set; }
 
-        public string ErrorMessage { get; set; }
+        public String ErrorMessage { get; set; }
     }
 
     public enum UploadState

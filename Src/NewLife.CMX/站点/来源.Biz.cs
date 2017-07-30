@@ -53,10 +53,12 @@ namespace NewLife.CMX
             // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
             if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Source).Name, Meta.Table.DataTable.DisplayName);
 
-            var entity = new Source();
-            entity.Name = "本站";
-            entity.Url = "/";
-            entity.Enable = true;
+            var entity = new Source()
+            {
+                Name = "本站",
+                Url = "/",
+                Enable = true
+            };
             entity.Insert();
 
             if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Source).Name, Meta.Table.DataTable.DisplayName);

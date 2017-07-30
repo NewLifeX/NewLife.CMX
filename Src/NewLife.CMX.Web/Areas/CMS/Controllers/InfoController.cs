@@ -27,7 +27,7 @@ namespace NewLife.CMX.Web.Controllers
             if (fi != null) list.Add(fi);
         }
 
-        protected override IDictionary<MethodInfo, int> ScanActionMenu(IMenu menu)
+        protected override IDictionary<MethodInfo, Int32> ScanActionMenu(IMenu menu)
         {
             menu.Visible = false;
 

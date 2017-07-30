@@ -71,10 +71,10 @@ namespace NewLife.CMX.Editor
         /// </summary>
         /// <param name="tmpNames"></param>
         /// <returns></returns>
-        private string converToString(ArrayList tmpNames)
+        private String converToString(ArrayList tmpNames)
         {
             String str = String.Empty;
-            for (int i = 0, len = tmpNames.Count; i < len; i++)
+            for (Int32 i = 0, len = tmpNames.Count; i < len; i++)
             {
                 str += tmpNames[i] + "ue_separate_ue";
                 if (i == tmpNames.Count - 1)
@@ -112,7 +112,7 @@ namespace NewLife.CMX.Editor
             String currentType = String.Empty;
             try
             {
-                for (int i = 0, len = imgUrls.Length; i < len; i++)
+                for (Int32 i = 0, len = imgUrls.Length; i < len; i++)
                 {
                     imgUrl = imgUrls[i];
 
@@ -123,7 +123,7 @@ namespace NewLife.CMX.Editor
                     }
 
                     //格式验证
-                    int temp = imgUrl.LastIndexOf('.');
+                    Int32 temp = imgUrl.LastIndexOf('.');
                     currentType = imgUrl.Substring(temp).ToLower();
                     if (Array.IndexOf(FileType, currentType) == -1)
                     {
@@ -231,8 +231,8 @@ namespace NewLife.CMX.Editor
             var config = UEditorConfig.Current;
             var up = new UEUploader();
             var info = up.upFile(context, config.UploadPath, config.ImgExtensions, config.ImgFileSize);                               //获取上传状态
-            string title = up.getOtherInfo(context, "pictitle");                              //获取图片描述
-            string oriName = up.getOtherInfo(context, "fileName");                //获取原始文件名
+            String title = up.getOtherInfo(context, "pictitle");                              //获取图片描述
+            String oriName = up.getOtherInfo(context, "fileName");                //获取原始文件名
             return "{'url':'" + info["url"] + "','title':'" + title + "','original':'" + oriName + "','state':'" + info["state"] + "'}";
         }
         #endregion
@@ -263,16 +263,16 @@ namespace NewLife.CMX.Editor
             UEditorConfig Entity = UEditorConfig.Current;
             Hashtable info = new Hashtable();
             UEUploader up = new UEUploader();
-            string action = RequestStr("action");
+            String action = RequestStr("action");
             if (action == "tmpImg")
             {
-                string pathbase = Entity.UploadPath + "tmp/";                                                          //保存路径
+                String pathbase = Entity.UploadPath + "tmp/";                                                          //保存路径
                 info = up.upFile(context, pathbase, Entity.ImgExtensions, Entity.ImgFileSize); //获取上传状态
                 return "<script>parent.ue_callback('" + "tmp/" + info["url"] + "','" + info["state"] + "')</script>";
             }
             else
             {
-                string tmpPath = Entity.UploadPath + "tmp/";
+                String tmpPath = Entity.UploadPath + "tmp/";
                 info = up.upScrawl(context, Entity.UploadPath, tmpPath, RequestStr("content")); //获取上传状态
                 return "{'url':'" + info["url"] + "',state:'" + info["state"] + "'}";
             }
@@ -286,9 +286,10 @@ namespace NewLife.CMX.Editor
             var type = context.Server.HtmlEncode(context.Request.Form["videoType"]);
 
             var httpURL = new Uri("http://api.tudou.com/v3/gw?method=item.search&appKey=myKey&format=json&kw=" + key + "&pageNo=1&pageSize=20&channelId=" + type + "&inDays=7&media=v&sort=s");
-            var MyWebClient = new WebClient();
-
-            MyWebClient.Credentials = CredentialCache.DefaultCredentials;           //获取或设置用于向Internet资源的请求进行身份验证的网络凭据
+            var MyWebClient = new WebClient()
+            {
+                Credentials = CredentialCache.DefaultCredentials           //获取或设置用于向Internet资源的请求进行身份验证的网络凭据
+            };
             var pageData = MyWebClient.DownloadData(httpURL);
 
             return Encoding.UTF8.GetString(pageData);
@@ -490,6 +491,6 @@ namespace NewLife.CMX.Editor
         #endregion
 
         /// <summary>是否可重用</summary>
-        public bool IsReusable { get { return false; } }
+        public Boolean IsReusable { get { return false; } }
     }
 }

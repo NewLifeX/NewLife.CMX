@@ -10,15 +10,15 @@ namespace UEditor
     {
         public Handler(HttpContext context)
         {
-            this.Request = context.Request;
-            this.Response = context.Response;
-            this.Context = context;
-            this.Server = context.Server;
+            Request = context.Request;
+            Response = context.Response;
+            Context = context;
+            Server = context.Server;
         }
 
         public abstract void Process();
 
-        protected void WriteJson(object response)
+        protected void WriteJson(Object response)
         {
             var jsonpCallback = Request["callback"];
             var json = response.ToJson();

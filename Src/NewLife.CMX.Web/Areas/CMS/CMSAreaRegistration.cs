@@ -103,7 +103,7 @@ namespace NewLife.CMX.Web
 
     class ModelUrlConstraint : IRouteConstraint
     {
-        public bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
+        public Boolean Match(HttpContextBase httpContext, Route route, String parameterName, RouteValueDictionary values, RouteDirection routeDirection)
         {
             var name = values[parameterName] + "";
             if (name.IsNullOrEmpty()) return false;
@@ -116,7 +116,7 @@ namespace NewLife.CMX.Web
 
     class CategoryUrlConstraint : IRouteConstraint
     {
-        public bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
+        public Boolean Match(HttpContextBase httpContext, Route route, String parameterName, RouteValueDictionary values, RouteDirection routeDirection)
         {
             var name = values[parameterName] + "";
             if (name.IsNullOrEmpty()) return false;
@@ -130,7 +130,7 @@ namespace NewLife.CMX.Web
     /// <summary>信息路径适配</summary>
     class InfoUrlConstraint : IRouteConstraint
     {
-        public bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
+        public Boolean Match(HttpContextBase httpContext, Route route, String parameterName, RouteValueDictionary values, RouteDirection routeDirection)
         {
             var name = values[parameterName] + "";
             if (name.IsNullOrEmpty()) return false;

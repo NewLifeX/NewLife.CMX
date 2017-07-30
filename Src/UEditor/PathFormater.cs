@@ -9,7 +9,7 @@ namespace UEditor
     /// </summary>
     public static class PathFormatter
     {
-        public static string Format(string originFileName, string pathFormat)
+        public static String Format(String originFileName, String pathFormat)
         {
             if (String.IsNullOrWhiteSpace(pathFormat))
             {
@@ -19,8 +19,8 @@ namespace UEditor
             var invalidPattern = new Regex(@"[\\\/\:\*\?\042\<\>\|]");
             originFileName = invalidPattern.Replace(originFileName, "");
 
-            string extension = Path.GetExtension(originFileName);
-            string filename = Path.GetFileNameWithoutExtension(originFileName);
+            String extension = Path.GetExtension(originFileName);
+            String filename = Path.GetFileNameWithoutExtension(originFileName);
 
             pathFormat = pathFormat.Replace("{filename}", filename);
             pathFormat = new Regex(@"\{rand(\:?)(\d+)\}", RegexOptions.Compiled).Replace(pathFormat, new MatchEvaluator(delegate(Match match)
@@ -31,7 +31,7 @@ namespace UEditor
                     digit = Convert.ToInt32(match.Groups[2].Value);
                 }
                 var rand = new Random();
-                return rand.Next((int)Math.Pow(10, digit), (int)Math.Pow(10, digit + 1)).ToString();
+                return rand.Next((Int32)Math.Pow(10, digit), (Int32)Math.Pow(10, digit + 1)).ToString();
             }));
 
             pathFormat = pathFormat.Replace("{time}", DateTime.Now.Ticks.ToString());

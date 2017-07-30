@@ -33,13 +33,14 @@ namespace NewLife.CMX
             // 用于引发基类的静态构造函数，所有层次的泛型实体类都应该有一个
             var entity = new TEntity();
 
-            _cache = new SingleEntityCache<int, TEntity>();
-            _cache.FindKeyMethod = id =>
+            _cache = new SingleEntityCache<Int32, TEntity>()
             {
-                var list = FindAll(_.InfoID == id, _.Version.Desc(), null, 0, 1);
-                return list.Count > 0 ? list[0] : null;
+                FindKeyMethod = id =>
+                {
+                    var list = FindAll(_.InfoID == id, _.Version.Desc(), null, 0, 1);
+                    return list.Count > 0 ? list[0] : null;
+                }
             };
-
             Meta.Modules.Add<UserModule>();
             Meta.Modules.Add<TimeModule>();
             Meta.Modules.Add<IPModule>();
@@ -58,7 +59,7 @@ namespace NewLife.CMX
 
         /// <summary>不允许修改</summary>
         /// <returns></returns>
-        public override int Update()
+        public override Int32 Update()
         {
             // 重载非OnXXX版本是为了让实体类内部可以直接调用OnXXX越过这里的检查
             throw new XException(Meta.Table.DataTable.DisplayName + "不允许修改！");
@@ -67,7 +68,7 @@ namespace NewLife.CMX
 
         /// <summary>不允许修改</summary>
         /// <returns></returns>
-        public override int Delete()
+        public override Int32 Delete()
         {
             // 重载非OnXXX版本是为了让实体类内部可以直接调用OnXXX越过这里的检查
             throw new XException(Meta.Table.DataTable.DisplayName + "不允许删除！");

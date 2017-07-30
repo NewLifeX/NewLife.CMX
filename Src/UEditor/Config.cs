@@ -12,7 +12,7 @@ namespace UEditor
     /// </summary>
     public static class Config
     {
-        private static bool noCache = true;
+        private static Boolean noCache = true;
         private static Object BuildItems()
         {
             var json = File.ReadAllText(HttpContext.Current.Server.MapPath("config.json"));
@@ -34,25 +34,25 @@ namespace UEditor
         }
         private static IDictionary<String, Object> _Items;
 
-        public static T GetValue<T>(string key)
+        public static T GetValue<T>(String key)
         {
             return Items[key].ChangeType<T>();
         }
 
-        public static String[] GetStringList(string key)
+        public static String[] GetStringList(String key)
         {
             //return Items[key].Select(x => x.Value<String>()).ToArray();
             return Items[key] as String[];
         }
 
-        public static String GetString(string key)
+        public static String GetString(String key)
         {
             return GetValue<String>(key);
         }
 
-        public static int GetInt(string key)
+        public static Int32 GetInt(String key)
         {
-            return GetValue<int>(key);
+            return GetValue<Int32>(key);
         }
     }
 }

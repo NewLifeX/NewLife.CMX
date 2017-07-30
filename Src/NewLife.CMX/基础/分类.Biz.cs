@@ -58,7 +58,7 @@ namespace NewLife.CMX
                 // 未设置代码，自动生成
                 var code = PinYin.GetFirst(Name);
                 Code = code;
-                for (int i = 2; i < 100; i++)
+                for (var i = 2; i < 100; i++)
                 {
                     if (!Exist(__.Code)) break;
 
@@ -202,7 +202,7 @@ namespace NewLife.CMX
             return GetInfos(pager);
         }
 
-        DictionaryCache<String, IList<IInfo>> _cache = new DictionaryCache<string, IList<IInfo>>()
+        DictionaryCache<String, IList<IInfo>> _cache = new DictionaryCache<String, IList<IInfo>>()
         {
             //Expriod = 60,
             Asynchronous = true

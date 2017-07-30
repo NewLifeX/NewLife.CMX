@@ -10,13 +10,13 @@ namespace NewLife.CMX.Editor
     /// <summary>UEditor上传</summary>
     public class UEUploader
     {
-        string state = "SUCCESS";
+        String state = "SUCCESS";
 
-        string URL = null;
-        string currentType = null;
-        string uploadpath = null;
-        string filename = null;
-        string originalName = null;
+        String URL = null;
+        String currentType = null;
+        String uploadpath = null;
+        String filename = null;
+        String originalName = null;
         HttpPostedFile uploadFile = null;
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace NewLife.CMX.Editor
         /// <param name="filetype"></param>
         /// <param name="size"></param>
         /// <returns></returns>
-        public Hashtable upFile(HttpContext cxt, string pathbase, string[] filetype, int size)
+        public Hashtable upFile(HttpContext cxt, String pathbase, String[] filetype, Int32 size)
         {
             pathbase = pathbase + DateTime.Now.ToString("yyyy-MM-dd") + "/";
             uploadpath = cxt.Server.MapPath(pathbase);//获取文件上传路径
@@ -73,7 +73,7 @@ namespace NewLife.CMX.Editor
         /// <param name="tmppath"></param>
         /// <param name="base64Data"></param>
         /// <returns></returns>
-        public Hashtable upScrawl(HttpContext cxt, string pathbase, string tmppath, string base64Data)
+        public Hashtable upScrawl(HttpContext cxt, String pathbase, String tmppath, String base64Data)
         {
             pathbase = pathbase + DateTime.Now.ToString("yyyy-MM-dd") + "/";
             uploadpath = cxt.Server.MapPath(pathbase);//获取文件上传路径
@@ -86,7 +86,7 @@ namespace NewLife.CMX.Editor
                 //生成图片
                 filename = System.Guid.NewGuid() + ".png";
                 fs = File.Create(uploadpath + filename);
-                byte[] bytes = Convert.FromBase64String(base64Data);
+                Byte[] bytes = Convert.FromBase64String(base64Data);
                 fs.Write(bytes, 0, bytes.Length);
 
                 URL = pathbase + filename;
@@ -110,9 +110,9 @@ namespace NewLife.CMX.Editor
         /// <param name="cxt"></param>
         /// <param name="field"></param>
         /// <returns></returns>
-        public string getOtherInfo(HttpContext cxt, string field)
+        public String getOtherInfo(HttpContext cxt, String field)
         {
-            string info = null;
+            String info = null;
             if (cxt.Request.Form[field] != null && !String.IsNullOrEmpty(cxt.Request.Form[field]))
             {
                 info = field == "fileName" ? cxt.Request.Form[field].Split(',')[1] : cxt.Request.Form[field];
@@ -142,7 +142,7 @@ namespace NewLife.CMX.Editor
         /// 重命名文件
         /// </summary>
         /// <returns></returns>
-        private string reName()
+        private String reName()
         {
             return System.Guid.NewGuid() + getFileExt();
         }
@@ -151,7 +151,7 @@ namespace NewLife.CMX.Editor
         /// </summary>
         /// <param name="filetype"></param>
         /// <returns></returns>
-        private bool checkType(string[] filetype)
+        private Boolean checkType(String[] filetype)
         {
             currentType = getFileExt();
             return Array.IndexOf(filetype, currentType) == -1;
@@ -161,7 +161,7 @@ namespace NewLife.CMX.Editor
         /// </summary>
         /// <param name="size"></param>
         /// <returns></returns>
-        private bool checkSize(int size)
+        private Boolean checkSize(Int32 size)
         {
             return uploadFile.ContentLength >= (size * 1024);
         }
@@ -170,9 +170,9 @@ namespace NewLife.CMX.Editor
         /// 获取文件扩展名
         /// </summary>
         /// <returns></returns>
-        private string getFileExt()
+        private String getFileExt()
         {
-            string[] temp = uploadFile.FileName.Split('.');
+            String[] temp = uploadFile.FileName.Split('.');
             return "." + temp[temp.Length - 1].ToLower();
         }
 
@@ -191,7 +191,7 @@ namespace NewLife.CMX.Editor
         /// 删除存储文件夹
         /// </summary>
         /// <param name="path"></param>
-        public void deleteFolder(string path)
+        public void deleteFolder(String path)
         {
             //if (Directory.Exists(path))
             //{

@@ -4,9 +4,9 @@ namespace UEditor
 {
     public class Utilities
     {
-        public static string getExtensionForMimeType(string MimeType)
+        public static System.String getExtensionForMimeType(System.String MimeType)
         {
-            string retval = "";
+            System.String retval = "";
             switch (MimeType)
             {
                 case "application/x-7z-compressed": retval = ".7z"; break;
@@ -24,9 +24,9 @@ namespace UEditor
             }
             return retval;
         }
-        public static string MimeType(string fileName)
+        public static System.String MimeType(System.String fileName)
         {
-            string retval = "";
+            System.String retval = "";
             switch (Path.GetExtension(fileName).ToLower())
             {
                 case ".3dm": retval = "x-world/x-3dmf"; break;

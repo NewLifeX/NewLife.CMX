@@ -25,7 +25,7 @@ namespace UEditor
                 case "uploadscrawl":
                     action = new UploadHandler(context, new UploadConfig()
                     {
-                        AllowExtensions = new string[] { ".png" },
+                        AllowExtensions = new System.String[] { ".png" },
                         PathFormat = Config.GetString("scrawlPathFormat"),
                         SizeLimit = Config.GetInt("scrawlMaxSize"),
                         UploadFieldName = Config.GetString("scrawlFieldName"),
@@ -67,6 +67,6 @@ namespace UEditor
             action.Process();
         }
 
-        public bool IsReusable { get { return false; } }
+        public System.Boolean IsReusable { get { return false; } }
     }
 }

@@ -114,7 +114,7 @@ namespace NewLife.CMX
                     now = now.Date;
 
                     // 是否同一天
-                    Int32 diff = (now - last).Days;
+                    var diff = (now - last).Days;
                     if (diff != 0)
                     {
                         Yesterday = diff == 1 ? Today : 0;

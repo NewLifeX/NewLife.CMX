@@ -34,7 +34,7 @@ namespace NewLife.CMX
 
         /// <summary>验证导航数据</summary>
         /// <param name="isNew"></param>
-        public override void Valid(bool isNew)
+        public override void Valid(Boolean isNew)
         {
             if (!isNew && !HasDirty) return;
 
@@ -97,9 +97,11 @@ namespace NewLife.CMX
                 // 开发模式下输出初始化配置
                 if (SysConfig.Current.Develop)
                 {
-                    var list = new EntityList<Nav>();
-                    list.Add(header);
-                    list.Add(footer);
+                    var list = new EntityList<Nav>
+                    {
+                        header,
+                        footer
+                    };
                     File.WriteAllText(fn.EnsureDirectory(), list.ToJson(true));
                 }
             }
@@ -180,15 +182,16 @@ namespace NewLife.CMX
         /// <returns></returns>
         public Nav Add(String name, String url = null)
         {
-            var entity = new Nav();
-            entity.ParentID = ID;
-            entity.Name = name;
-            entity.Url = url;
-            entity.Enable = true;
+            var entity = new Nav()
+            {
+                ParentID = ID,
+                Name = name,
+                Url = url,
+                Enable = true,
 
-            // 排序，新的在后面
-            entity.Sort = this.Childs.Count + 1;
-
+                // 排序，新的在后面
+                Sort = Childs.Count + 1
+            };
             entity.Insert();
 
             return entity;

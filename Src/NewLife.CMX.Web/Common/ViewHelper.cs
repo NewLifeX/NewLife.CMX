@@ -7,7 +7,7 @@ namespace NewLife.CMX.Web
     /// <summary>视图助手</summary>
     public static class ViewHelper
     {
-        public static string GenerateUrl(this UrlHelper url, string routeName)
+        public static String GenerateUrl(this UrlHelper url, String routeName)
         {
             return UrlHelper.GenerateUrl(routeName, null, null, null, url.RouteCollection, url.RequestContext, false);
         }
@@ -80,7 +80,7 @@ namespace NewLife.CMX.Web
 
         public static void PushTitle(this WebViewPage page, String title)
         {
-            var list = page.ViewData["PageTitle"] as List<String> ?? new List<string>();
+            var list = page.ViewData["PageTitle"] as List<String> ?? new List<String>();
 
             list.Add(title);
             page.ViewData["PageTitle"] = list;
@@ -88,7 +88,7 @@ namespace NewLife.CMX.Web
 
         public static String GetPageTitle(this WebViewPage page)
         {
-            var list = page.ViewData["PageTitle"] as List<String> ?? new List<string> { };
+            var list = page.ViewData["PageTitle"] as List<String> ?? new List<String> { };
 
             list.Reverse();
             list.Add(SiteConfig.Current.Title);

@@ -65,7 +65,7 @@ namespace NewLife.CMX
 
         /// <summary>检查是否允许删除</summary>
         /// <returns></returns>
-        protected override int OnDelete()
+        protected override Int32 OnDelete()
         {
             var count = Category.FindAllWithCache().ToList().Count(e => e.ModelID == ID);
             if (count > 0) throw new XException("该模型下有{0}个分类，禁止删除！", count);
@@ -155,7 +155,7 @@ namespace NewLife.CMX
         #region 扩展操作
         /// <summary>显示友好名称</summary>
         /// <returns></returns>
-        public override string ToString()
+        public override String ToString()
         {
             if (!DisplayName.IsNullOrEmpty())
                 return DisplayName;
@@ -170,9 +170,11 @@ namespace NewLife.CMX
         /// <returns></returns>
         public static TEntity Add(String name)
         {
-            var entity = new TEntity();
-            entity.Name = name;
-            entity.Enable = true;
+            var entity = new TEntity()
+            {
+                Name = name,
+                Enable = true
+            };
             entity.Save();
 
             return entity;
