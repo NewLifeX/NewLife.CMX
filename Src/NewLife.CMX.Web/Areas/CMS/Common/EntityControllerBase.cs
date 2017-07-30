@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using NewLife.Cube;
+﻿using NewLife.Cube;
 using XCode;
-using XCode.Configuration;
 
 namespace NewLife.CMX.Web
 {

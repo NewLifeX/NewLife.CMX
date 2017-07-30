@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using NewLife.Cube;
+﻿using NewLife.Cube;
 
 namespace NewLife.CMX.Web.Controllers
 {
-    public class SourceController : EntityController<Source>
-    {
-    }
+    public class SourceController : EntityController<Source> { }
 }

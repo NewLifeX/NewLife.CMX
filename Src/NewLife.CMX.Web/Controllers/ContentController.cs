@@ -9,42 +9,7 @@ namespace NewLife.CMX.Web.Controllers
     [AllowAnonymous]
     public class ContentController : Controller
     {
-        //private Model _model;
-        //public Model Model { get { return _model; } }
-
         protected virtual Int32 PageSize { get { return 10; } }
-
-        //protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        //{
-        //    //拦截频道名称
-        //    if (filterContext.RouteData.Values.ContainsKey("modelName"))
-        //    {
-        //        var name = filterContext.RouteData.Values["modelName"] + "";
-        //        SetModel(name);
-        //    }
-        //    if (_model == null && filterContext.RouteData.Values.ContainsKey("categoryCode"))
-        //    {
-        //        var code = filterContext.RouteData.Values["categoryCode"] + "";
-        //        var cat = Category.FindByCode(code);
-        //        if (cat != null) _model = cat.Model;
-        //    }
-        //    if (_model == null && filterContext.RouteData.Values.ContainsKey("infoCode"))
-        //    {
-        //        var code = filterContext.RouteData.Values["infoCode"] + "";
-        //        var inf = Info.FindByCode(code);
-        //        if (inf != null) _model = inf.Model;
-        //    }
-        //    if (_model == null)
-        //    {
-        //        filterContext.Result = new HttpNotFoundResult();
-        //    }
-        //    base.OnActionExecuting(filterContext);
-        //}
-
-        //protected void SetModel(String name)
-        //{
-        //    _model = Model.FindByName(name);
-        //}
 
         static Boolean ViewExists(String vpath)
         {
