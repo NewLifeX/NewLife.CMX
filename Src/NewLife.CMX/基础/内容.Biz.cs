@@ -95,6 +95,8 @@ namespace NewLife.CMX
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public static TEntity FindByID(Int32 id)
         {
+            if (id <= 0) return null;
+
             if (Meta.Count >= 1000)
                 return Meta.SingleCache[id];
             else

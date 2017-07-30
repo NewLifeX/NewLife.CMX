@@ -171,6 +171,8 @@ namespace NewLife.CMX
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public static TEntity FindByID(Int32 id)
         {
+            if (id <= 0) return null;
+
             if (Meta.Count >= 1000)
                 return Meta.SingleCache[id];
             else
@@ -183,6 +185,8 @@ namespace NewLife.CMX
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public static TEntity FindByName(String name)
         {
+            if (name.IsNullOrEmpty()) return null;
+
             if (Meta.Count >= 1000)
                 return Find(__.Name, name);
             else // 实体缓存
@@ -195,6 +199,8 @@ namespace NewLife.CMX
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public static TEntity FindByCode(String code)
         {
+            if (code.IsNullOrEmpty()) return null;
+
             if (Meta.Count >= 1000)
                 return Find(__.Code, code);
             else // 实体缓存

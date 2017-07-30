@@ -105,6 +105,8 @@ namespace NewLife.CMX
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public static TEntity FindByID(Int32 id)
         {
+            if (id <= 0) return null;
+
             if (Meta.Count >= 1000)
                 return Find(__.ID, id);
             else
@@ -117,6 +119,8 @@ namespace NewLife.CMX
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public static TEntity FindByName(String name)
         {
+            if (name.IsNullOrEmpty()) return null;
+
             // 实体缓存
             var entity = Meta.Cache.Entities.Find(__.Name, name);
             if (entity == null) entity = Meta.Cache.Entities.Find(__.DisplayName, name);
