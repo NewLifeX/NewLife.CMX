@@ -6,14 +6,15 @@
 */
 using System;
 using System.ComponentModel;
+using System.Text;
+using System.Web.Script.Serialization;
+using System.Xml.Serialization;
 using NewLife.Data;
 using NewLife.Log;
+using NewLife.Model;
+using NewLife.Reflection;
 using XCode;
 using XCode.Membership;
-using NewLife.Reflection;
-using System.Xml.Serialization;
-using System.Text;
-using NewLife.Model;
 
 namespace NewLife.CMX
 {
@@ -25,11 +26,14 @@ namespace NewLife.CMX
     public partial class Info<TEntity> : Entity<TEntity> where TEntity : Info<TEntity>, new()
     {
         #region 对象操作
-
         static Info()
         {
             // 用于引发基类的静态构造函数，所有层次的泛型实体类都应该有一个
-            TEntity entity = new TEntity();
+            var entity = new TEntity();
+
+            Meta.Modules.Add<UserModule>();
+            Meta.Modules.Add<TimeModule>();
+            Meta.Modules.Add<IPModule>();
         }
 
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
@@ -38,10 +42,6 @@ namespace NewLife.CMX
         {
             // 如果没有脏数据，则不需要进行任何处理
             if (!HasDirty) return;
-
-            // 这里验证参数范围，建议抛出参数异常，指定参数名，前端用户界面可以捕获参数异常并聚焦到对应的参数输入框
-            //if (String.IsNullOrEmpty(Name)) throw new ArgumentNullException(_.Name, _.Name.DisplayName + "无效！");
-            //if (!isNew && ID < 1) throw new ArgumentOutOfRangeException(_.ID, _.ID.DisplayName + "必须大于0！");
 
             // 建议先调用基类方法，基类方法会对唯一索引的数据进行验证
             base.Valid(isNew);
@@ -59,11 +59,6 @@ namespace NewLife.CMX
                 var dt = (DateTime)this["PublishTime"];
                 if ((isNew || dt.Year < 2000) && !Dirtys["PublishTime"]) SetItem("PublishTime", CreateTime);
             }
-
-            //if (isNew && !Dirtys[__.CreateTime]) CreateTime = DateTime.Now;
-            //if (!Dirtys[__.CreateIP]) CreateIP = WebHelper.UserHost;
-            //if (!Dirtys[__.UpdateTime]) UpdateTime = DateTime.Now;
-            //if (!Dirtys[__.UpdateIP]) UpdateIP = WebHelper.UserHost;
         }
 
         /// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
@@ -292,54 +287,26 @@ namespace NewLife.CMX
             }
         }
 
-        private IManageUser _CreateUser;
         /// <summary>创建人</summary>
-        [XmlIgnore]
+        [XmlIgnore, ScriptIgnore]
         [DisplayName("创建人")]
-        //[BindRelation("CreateUserID", false, "User", "ID")]
-        public IManageUser CreateUser
-        {
-            get
-            {
-                if (_CreateUser == null && CreateUserID > 0 && !Dirtys.ContainsKey("CreateUser"))
-                {
-                    _CreateUser = ManageProvider.Provider.FindByID(CreateUserID);
-                    Dirtys["CreateUser"] = true;
-                }
-                return _CreateUser;
-            }
-            set { _CreateUser = value; }
-        }
+        public IManageUser CreateUser { get { return Extends.Get(nameof(CreateUser), k => ManageProvider.Provider.FindByID(CreateUserID)); } }
 
         /// <summary>创建人名称</summary>
-        [XmlIgnore]
+        [XmlIgnore, ScriptIgnore]
         [DisplayName("创建人")]
-        [Map("CreateUserID")]
+        [Map(__.CreateUserID)]
         public String CreateUserName { get { return CreateUser + ""; } }
 
-        private IManageUser _UpdateUser;
         /// <summary>更新人</summary>
-        [XmlIgnore]
+        [XmlIgnore, ScriptIgnore]
         [DisplayName("更新人")]
-        //[BindRelation("UpdateUserID", false, "User", "ID")]
-        public IManageUser UpdateUser
-        {
-            get
-            {
-                if (_UpdateUser == null && UpdateUserID > 0 && !Dirtys.ContainsKey("UpdateUser"))
-                {
-                    _UpdateUser = ManageProvider.Provider.FindByID(UpdateUserID);
-                    Dirtys["UpdateUser"] = true;
-                }
-                return _UpdateUser;
-            }
-            set { _UpdateUser = value; }
-        }
+        public IManageUser UpdateUser { get { return Extends.Get(nameof(UpdateUser), k => ManageProvider.Provider.FindByID(UpdateUserID)); } }
 
         /// <summary>更新人名称</summary>
-        [XmlIgnore]
+        [XmlIgnore, ScriptIgnore]
         [DisplayName("更新人")]
-        [Map("UpdateUserID")]
+        [Map(__.UpdateUserID)]
         public String UpdateUserName { get { return UpdateUser + ""; } }
         #endregion
 

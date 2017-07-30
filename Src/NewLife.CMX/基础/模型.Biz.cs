@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 using NewLife.Log;
 using NewLife.Model;
@@ -26,6 +27,13 @@ namespace NewLife.CMX
     public partial class Model<TEntity> : LogEntity<TEntity> where TEntity : Model<TEntity>, new()
     {
         #region 对象操作﻿
+        static Model()
+        {
+            Meta.Modules.Add<UserModule>();
+            Meta.Modules.Add<TimeModule>();
+            Meta.Modules.Add<IPModule>();
+        }
+
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
         /// <param name="isNew"></param>
         public override void Valid(Boolean isNew)
@@ -67,55 +75,26 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
-
-        private IManageUser _CreateUser;
         /// <summary>创建人</summary>
-        [XmlIgnore]
+        [XmlIgnore, ScriptIgnore]
         [DisplayName("创建人")]
-        //[BindRelation("CreateUserID", false, "User", "ID")]
-        public IManageUser CreateUser
-        {
-            get
-            {
-                if (_CreateUser == null && CreateUserID > 0 && !Dirtys.ContainsKey("CreateUser"))
-                {
-                    _CreateUser = ManageProvider.Provider.FindByID(CreateUserID);
-                    Dirtys["CreateUser"] = true;
-                }
-                return _CreateUser;
-            }
-            set { _CreateUser = value; }
-        }
+        public IManageUser CreateUser { get { return Extends.Get(nameof(CreateUser), k => ManageProvider.Provider.FindByID(CreateUserID)); } }
 
         /// <summary>创建人名称</summary>
-        [XmlIgnore]
+        [XmlIgnore, ScriptIgnore]
         [DisplayName("创建人")]
-        [Map("CreateUserID")]
+        [Map(__.CreateUserID)]
         public String CreateUserName { get { return CreateUser + ""; } }
 
-        private IManageUser _UpdateUser;
         /// <summary>更新人</summary>
-        [XmlIgnore]
+        [XmlIgnore, ScriptIgnore]
         [DisplayName("更新人")]
-        //[BindRelation("UpdateUserID", false, "User", "ID")]
-        public IManageUser UpdateUser
-        {
-            get
-            {
-                if (_UpdateUser == null && UpdateUserID > 0 && !Dirtys.ContainsKey("UpdateUser"))
-                {
-                    _UpdateUser = ManageProvider.Provider.FindByID(UpdateUserID);
-                    Dirtys["UpdateUser"] = true;
-                }
-                return _UpdateUser;
-            }
-            set { _UpdateUser = value; }
-        }
+        public IManageUser UpdateUser { get { return Extends.Get(nameof(UpdateUser), k => ManageProvider.Provider.FindByID(UpdateUserID)); } }
 
         /// <summary>更新人名称</summary>
-        [XmlIgnore]
+        [XmlIgnore, ScriptIgnore]
         [DisplayName("更新人")]
-        [Map("UpdateUserID")]
+        [Map(__.UpdateUserID)]
         public String UpdateUserName { get { return UpdateUser + ""; } }
         #endregion
 

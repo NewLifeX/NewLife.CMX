@@ -8,20 +8,30 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 using NewLife.Common;
 using NewLife.Log;
+using NewLife.Model;
+using NewLife.Serialization;
 using XCode;
 using XCode.Membership;
-using NewLife.Serialization;
-using NewLife.Model;
 
 namespace NewLife.CMX
 {
     /// <summary>导航</summary>
     public partial class Nav : EntityTree<Nav>//, IUserInfo, ITimeInfo
     {
-        #region 验证数据
+        #region 对象操作﻿
+        static Nav()
+        {
+            if (Setting == null) Setting = new EntityTreeSetting<Nav> { Factory = Meta.Factory };
+
+            Meta.Modules.Add<UserModule>();
+            Meta.Modules.Add<TimeModule>();
+            Meta.Modules.Add<IPModule>();
+        }
+
         /// <summary>验证导航数据</summary>
         /// <param name="isNew"></param>
         public override void Valid(bool isNew)
@@ -29,37 +39,6 @@ namespace NewLife.CMX
             if (!isNew && !HasDirty) return;
 
             base.Valid(isNew);
-
-            var fs = Meta.FieldNames;
-
-            // 当前登录用户
-            var user = ManageProvider.Provider.Current;
-            if (user != null)
-            {
-                if (isNew)
-                {
-                    SetDirtyItem(__.CreateUserID, user.ID);
-                }
-                SetDirtyItem(__.UpdateUserID, user.ID);
-            }
-            if (isNew) SetDirtyItem(__.CreateTime, DateTime.Now);
-            SetDirtyItem(__.UpdateTime, DateTime.Now);
-        }
-
-        /// <summary>设置脏数据项。如果某个键存在并且数据没有脏，则设置</summary>
-        /// <param name="name"></param>
-        /// <param name="value"></param>
-        private void SetDirtyItem(String name, Object value)
-        {
-            if (Meta.FieldNames.Contains(name) && !Dirtys[name]) SetItem(name, value);
-        }
-        #endregion
-
-        #region 对象操作﻿
-        static Nav()
-        {
-            if (Setting == null) Setting = new EntityTreeSetting<Nav> { Factory = Meta.Factory };
-            //Setting.EnableCaching = false;
         }
 
         /// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
@@ -111,7 +90,6 @@ namespace NewLife.CMX
                 var footer = Root.Add("尾部");
                 var link = footer.Add("友情链接");
                 link.Add("新生命团队", "http://www.NewLifeX.com");
-                link.Add("无声物联", "http://www.peacemoon.cn");
 
                 footer.Add("社区").Add("用户社区", "/Communicate");
                 footer.Add("关于").Add("关于我们", "/About");
@@ -134,76 +112,36 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
-        private ICategory _Category;
         /// <summary>分类</summary>
-        [Map("CategoryID", typeof(Category), "ID")]
-        public ICategory Category
-        {
-            get
-            {
-                if (_Category == null && CategoryID > 0 && !Dirtys.ContainsKey("Category"))
-                {
-                    _Category = NewLife.CMX.Category.FindByID(CategoryID);
-                    Dirtys["Category"] = true;
-                }
-                return _Category;
-            }
-            //set { _Category = value; }
-        }
+        [XmlIgnore, ScriptIgnore]
+        [Map(__.CategoryID, typeof(Category), "ID")]
+        public ICategory Category { get { return Extends.Get(nameof(Category), k => NewLife.CMX.Category.FindByID(CategoryID)); } }
 
         /// <summary>分类</summary>
-        [XmlIgnore]
+        [XmlIgnore, ScriptIgnore]
         [DisplayName("分类")]
         public String CategoryName { get { return Category + ""; } }
 
-        private IManageUser _CreateUser;
         /// <summary>创建人</summary>
-        [XmlIgnore]
+        [XmlIgnore, ScriptIgnore]
         [DisplayName("创建人")]
-        //[BindRelation("CreateUserID", false, "User", "ID")]
-        public IManageUser CreateUser
-        {
-            get
-            {
-                if (_CreateUser == null && CreateUserID > 0 && !Dirtys.ContainsKey("CreateUser"))
-                {
-                    _CreateUser = ManageProvider.Provider.FindByID(CreateUserID);
-                    Dirtys["CreateUser"] = true;
-                }
-                return _CreateUser;
-            }
-            set { _CreateUser = value; }
-        }
+        public IManageUser CreateUser { get { return Extends.Get(nameof(CreateUser), k => ManageProvider.Provider.FindByID(CreateUserID)); } }
 
         /// <summary>创建人名称</summary>
-        [XmlIgnore]
+        [XmlIgnore, ScriptIgnore]
         [DisplayName("创建人")]
-        [Map("CreateUserID")]
+        [Map(__.CreateUserID)]
         public String CreateUserName { get { return CreateUser + ""; } }
 
-        private IManageUser _UpdateUser;
         /// <summary>更新人</summary>
-        [XmlIgnore]
+        [XmlIgnore, ScriptIgnore]
         [DisplayName("更新人")]
-        //[BindRelation("UpdateUserID", false, "User", "ID")]
-        public IManageUser UpdateUser
-        {
-            get
-            {
-                if (_UpdateUser == null && UpdateUserID > 0 && !Dirtys.ContainsKey("UpdateUser"))
-                {
-                    _UpdateUser = ManageProvider.Provider.FindByID(UpdateUserID);
-                    Dirtys["UpdateUser"] = true;
-                }
-                return _UpdateUser;
-            }
-            set { _UpdateUser = value; }
-        }
+        public IManageUser UpdateUser { get { return Extends.Get(nameof(UpdateUser), k => ManageProvider.Provider.FindByID(UpdateUserID)); } }
 
         /// <summary>更新人名称</summary>
-        [XmlIgnore]
+        [XmlIgnore, ScriptIgnore]
         [DisplayName("更新人")]
-        [Map("UpdateUserID")]
+        [Map(__.UpdateUserID)]
         public String UpdateUserName { get { return UpdateUser + ""; } }
         #endregion
 
@@ -213,6 +151,8 @@ namespace NewLife.CMX
         /// <returns></returns>
         public static Nav FindByID(Int32 id)
         {
+            if (id <= 0) return null;
+
             return Meta.Cache.Entities.Find(__.ID, id);
         }
 
@@ -221,57 +161,13 @@ namespace NewLife.CMX
         /// <returns></returns>
         public static Nav FindByName(String name)
         {
+            if (name.IsNullOrEmpty()) return null;
+
             return Meta.Cache.Entities.Find(__.Name, name);
         }
         #endregion
 
         #region 高级查询
-        // 以下为自定义高级查询的例子
-
-        ///// <summary>
-        ///// 查询满足条件的记录集，分页、排序
-        ///// </summary>
-        ///// <param name="key">关键字</param>
-        ///// <param name="orderClause">排序，不带Order By</param>
-        ///// <param name="startRowIndex">开始行，0表示第一行</param>
-        ///// <param name="maximumRows">最大返回行数，0表示所有行</param>
-        ///// <returns>实体集</returns>
-        //[DataObjectMethod(DataObjectMethodType.Select, true)]
-        //public static EntityList<Nav> Search(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
-        //{
-        //    return FindAll(SearchWhere(key), orderClause, null, startRowIndex, maximumRows);
-        //}
-
-        ///// <summary>
-        ///// 查询满足条件的记录总数，分页和排序无效，带参数是因为ObjectDataSource要求它跟Search统一
-        ///// </summary>
-        ///// <param name="key">关键字</param>
-        ///// <param name="orderClause">排序，不带Order By</param>
-        ///// <param name="startRowIndex">开始行，0表示第一行</param>
-        ///// <param name="maximumRows">最大返回行数，0表示所有行</param>
-        ///// <returns>记录数</returns>
-        //public static Int32 SearchCount(String key, String orderClause, Int32 startRowIndex, Int32 maximumRows)
-        //{
-        //    return FindCount(SearchWhere(key), null, null, 0, 0);
-        //}
-
-        /// <summary>构造搜索条件</summary>
-        /// <param name="key">关键字</param>
-        /// <returns></returns>
-        private static String SearchWhere(String key)
-        {
-            // WhereExpression重载&和|运算符，作为And和Or的替代
-            // SearchWhereByKeys系列方法用于构建针对字符串字段的模糊搜索
-            var exp = SearchWhereByKeys(key, null);
-
-            // 以下仅为演示，Field（继承自FieldItem）重载了==、!=、>、<、>=、<=等运算符（第4行）
-            //if (userid > 0) exp &= _.OperatorID == userid;
-            //if (isSign != null) exp &= _.IsSign == isSign.Value;
-            //if (start > DateTime.MinValue) exp &= _.OccurTime >= start;
-            //if (end > DateTime.MinValue) exp &= _.OccurTime < end.AddDays(1).Date;
-
-            return exp;
-        }
         #endregion
 
         #region 扩展操作

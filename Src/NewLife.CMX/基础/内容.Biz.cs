@@ -5,19 +5,15 @@
  * 版权：版权所有 (C) 新生命开发团队 2002~2016
 */
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
-using System.Xml.Serialization;
-using NewLife.Log;
-using NewLife.Web;
-using NewLife.Data;
-using XCode;
-using XCode.Configuration;
-using XCode.Membership;
-using XCode.Cache;
 using System.Linq;
+using System.Web.Script.Serialization;
+using System.Xml.Serialization;
+using NewLife.Data;
 using NewLife.Model;
+using XCode;
+using XCode.Cache;
+using XCode.Membership;
 
 namespace NewLife.CMX
 {
@@ -35,16 +31,18 @@ namespace NewLife.CMX
         static Content()
         {
             // 用于引发基类的静态构造函数，所有层次的泛型实体类都应该有一个
-            TEntity entity = new TEntity();
+            var entity = new TEntity();
 
             _cache = new SingleEntityCache<int, TEntity>();
-            //_cache.AllowNull = true;
-            //_cache.AutoSave = false;
             _cache.FindKeyMethod = id =>
             {
                 var list = FindAll(_.InfoID == id, _.Version.Desc(), null, 0, 1);
                 return list.Count > 0 ? list[0] : null;
             };
+
+            Meta.Modules.Add<UserModule>();
+            Meta.Modules.Add<TimeModule>();
+            Meta.Modules.Add<IPModule>();
         }
 
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
@@ -54,58 +52,9 @@ namespace NewLife.CMX
             // 如果没有脏数据，则不需要进行任何处理
             if (!HasDirty) return;
 
-            // 这里验证参数范围，建议抛出参数异常，指定参数名，前端用户界面可以捕获参数异常并聚焦到对应的参数输入框
-            //if (String.IsNullOrEmpty(Name)) throw new ArgumentNullException(_.Name, _.Name.DisplayName + "无效！");
-            //if (!isNew && ID < 1) throw new ArgumentOutOfRangeException(_.ID, _.ID.DisplayName + "必须大于0！");
-
             // 建议先调用基类方法，基类方法会对唯一索引的数据进行验证
             base.Valid(isNew);
-
-            // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
-            //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
-
-            //if (isNew && !Dirtys[__.CreateTime]) CreateTime = DateTime.Now;
-            //if (!Dirtys[__.CreateIP]) CreateIP = WebHelper.UserHost;
-
-            //var mp = ManageProvider.Provider;
-            //// 创建者信息
-            //if (isNew && !Dirtys[__.CreateTime])
-            //{
-            //    CreateTime = DateTime.Now;
-            //    if (mp.Current != null)
-            //    {
-            //        CreateUserID = mp.Current.ID;
-            //        CreateUserName = mp.Current.ToString();
-            //    }
-            //}
         }
-
-        ///// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //protected override void InitData()
-        //{
-        //    base.InitData();
-
-        //    // InitData一般用于当数据表没有数据时添加一些默认数据，该实体类的任何第一次数据库操作都会触发该方法，默认异步调用
-        //    // Meta.Count是快速取得表记录数
-        //    if (Meta.Count > 0) return;
-
-        //    // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
-        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
-
-        //    var entity = new Content();
-        //    entity.ParentID = 0;
-        //    entity.Title = "abc";
-        //    entity.Version = 0;
-        //    entity.CreateUserID = 0;
-        //    entity.CreateUserName = "abc";
-        //    entity.CreateTime = DateTime.Now;
-        //    entity.CreateIP = "abc";
-        //    entity.Content = "abc";
-        //    entity.Insert();
-
-        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
-        //}
 
         /// <summary>不允许修改</summary>
         /// <returns></returns>
@@ -127,30 +76,15 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性
-
-        private IManageUser _CreateUser;
         /// <summary>创建人</summary>
-        [XmlIgnore]
+        [XmlIgnore, ScriptIgnore]
         [DisplayName("创建人")]
-        //[BindRelation("CreateUserID", false, "User", "ID")]
-        public IManageUser CreateUser
-        {
-            get
-            {
-                if (_CreateUser == null && CreateUserID > 0 && !Dirtys.ContainsKey("CreateUser"))
-                {
-                    _CreateUser = ManageProvider.Provider.FindByID(CreateUserID);
-                    Dirtys["CreateUser"] = true;
-                }
-                return _CreateUser;
-            }
-            set { _CreateUser = value; }
-        }
+        public IManageUser CreateUser { get { return Extends.Get(nameof(CreateUser), k => ManageProvider.Provider.FindByID(CreateUserID)); } }
 
         /// <summary>创建人名称</summary>
-        [XmlIgnore]
+        [XmlIgnore, ScriptIgnore]
         [DisplayName("创建人")]
-        [Map("CreateUserID")]
+        [Map(__.CreateUserID)]
         public String CreateUserName { get { return CreateUser + ""; } }
         #endregion
 
