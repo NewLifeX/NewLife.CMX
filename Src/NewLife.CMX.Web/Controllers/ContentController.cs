@@ -3,6 +3,7 @@ using System.IO;
 using System.Web.Mvc;
 using NewLife.Collections;
 using NewLife.Web;
+using XCode;
 
 namespace NewLife.CMX.Web.Controllers
 {
@@ -55,6 +56,7 @@ namespace NewLife.CMX.Web.Controllers
             return View(tmp, model);
         }
 
+        #region 分类列表页
         public ActionResult List(Int32 categoryid, Int32? pageIndex)
         {
             var cat = Category.FindByID(categoryid);
@@ -80,13 +82,16 @@ namespace NewLife.CMX.Web.Controllers
             var pager = new Pager { PageIndex = pageIndex, PageSize = PageSize };
             var list = cat.GetInfos(pager);
 
+            ViewBag.Title = cat.Name;
             ViewBag.Category = cat;
             ViewBag.Pager = pager;
             ViewBag.Infos = list;
 
             return View(tmp, cat);
         }
+        #endregion
 
+        #region 信息详细页
         /// <summary>信息详细页</summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -117,12 +122,16 @@ namespace NewLife.CMX.Web.Controllers
             // 增加浏览数
             inf.Views++;
             inf.Statistics.Increment(null);
+            (inf as IEntity).SaveAsync(15);
 
+            ViewBag.Title = inf.Title;
             ViewBag.Category = cat;
 
             return View(tmp, inf);
         }
+        #endregion
 
+        #region 搜索页
         public ActionResult Search(String key, Int32? pageIndex)
         {
             var name = RouteData.Values["modelName"] + "";
@@ -134,7 +143,10 @@ namespace NewLife.CMX.Web.Controllers
             var pager = new Pager { PageIndex = pageIndex ?? 1, PageSize = PageSize };
             var list = Info.Search(model != null ? model.ID : 0, cat != null ? cat.ID : 0, key, pager);
 
+            ViewBag.Title = "搜索[{0}]".F(key);
+
             return View(list);
         }
+        #endregion
     }
 }

@@ -22,7 +22,6 @@ namespace ASP
     using System.Web.Mvc;
     using System.Web.Mvc.Ajax;
     using System.Web.Mvc.Html;
-    
     using System.Web.Routing;
     using System.Web.Security;
     using System.Web.UI;
@@ -105,7 +104,7 @@ WriteLiteral(@">
                 <tr>
                     <th>编号</th>
                     <th>名称</th>
-                    <th>频道</th>
+                    <th>分类</th>
                     <th>链接</th>
                     <th>排序</th>
                     <th>启用</th>

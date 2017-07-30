@@ -22,7 +22,6 @@ namespace ASP
     using System.Web.Mvc;
     using System.Web.Mvc.Ajax;
     using System.Web.Mvc.Html;
-    
     using System.Web.Routing;
     using System.Web.Security;
     using System.Web.UI;
@@ -55,6 +54,7 @@ namespace ASP
             #line 2 "..\..\Views\Shared\_Layout.cshtml"
   
     var menu = ManageProvider.Menu.Current;
+    HttpContext.Current.Items["Title"] = ViewBag.Title + "";
 
             
             #line default
@@ -82,7 +82,7 @@ WriteLiteral(" content=\"width=device-width, initial-scale=1\"");
 WriteLiteral(" />\r\n\r\n    <title>");
 
             
-            #line 12 "..\..\Views\Shared\_Layout.cshtml"
+            #line 13 "..\..\Views\Shared\_Layout.cshtml"
       Write(ViewBag.Title);
 
             
@@ -91,7 +91,7 @@ WriteLiteral(" />\r\n\r\n    <title>");
 WriteLiteral(" - ");
 
             
-            #line 12 "..\..\Views\Shared\_Layout.cshtml"
+            #line 13 "..\..\Views\Shared\_Layout.cshtml"
                        Write(SysConfig.Current.DisplayName);
 
             
@@ -117,9 +117,9 @@ WriteLiteral(" content=\"新生命开发团队\"");
 
 WriteLiteral(">\r\n    <link");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 505), Tuple.Create("\"", 525)
-, Tuple.Create(Tuple.Create("", 512), Tuple.Create<System.Object, System.Int32>(Href("~/favicon.ico")
-, 512), false)
+WriteAttribute("href", Tuple.Create(" href=\"", 567), Tuple.Create("\"", 587)
+, Tuple.Create(Tuple.Create("", 574), Tuple.Create<System.Object, System.Int32>(Href("~/favicon.ico")
+, 574), false)
 );
 
 WriteLiteral(" rel=\"shortcut icon\"");
@@ -130,27 +130,27 @@ WriteLiteral(" />\r\n\r\n    <!-- 基本样式 -->\r\n    <link");
 
 WriteLiteral(" rel=\"stylesheet\"");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 618), Tuple.Create("\"", 666)
-, Tuple.Create(Tuple.Create("", 625), Tuple.Create<System.Object, System.Int32>(Href("~/Content/bootstrap/css/bootstrap.min.css")
-, 625), false)
+WriteAttribute("href", Tuple.Create(" href=\"", 680), Tuple.Create("\"", 728)
+, Tuple.Create(Tuple.Create("", 687), Tuple.Create<System.Object, System.Int32>(Href("~/Content/bootstrap/css/bootstrap.min.css")
+, 687), false)
 );
 
 WriteLiteral(" />\r\n    <link");
 
 WriteLiteral(" rel=\"stylesheet\"");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 698), Tuple.Create("\"", 749)
-, Tuple.Create(Tuple.Create("", 705), Tuple.Create<System.Object, System.Int32>(Href("~/Content/bootstrap/css/font-awesome.min.css")
-, 705), false)
+WriteAttribute("href", Tuple.Create(" href=\"", 760), Tuple.Create("\"", 811)
+, Tuple.Create(Tuple.Create("", 767), Tuple.Create<System.Object, System.Int32>(Href("~/Content/bootstrap/css/font-awesome.min.css")
+, 767), false)
 );
 
 WriteLiteral(" />\r\n\r\n    <link");
 
 WriteLiteral(" rel=\"stylesheet\"");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 783), Tuple.Create("\"", 837)
-, Tuple.Create(Tuple.Create("", 790), Tuple.Create<System.Object, System.Int32>(Href("~/Content/bootstrap/css/bootstrap-theme.min.css")
-, 790), false)
+WriteAttribute("href", Tuple.Create(" href=\"", 845), Tuple.Create("\"", 899)
+, Tuple.Create(Tuple.Create("", 852), Tuple.Create<System.Object, System.Int32>(Href("~/Content/bootstrap/css/bootstrap-theme.min.css")
+, 852), false)
 );
 
 WriteLiteral(" type=\"text/css\"");
@@ -159,9 +159,9 @@ WriteLiteral(" />\r\n    <link");
 
 WriteLiteral(" rel=\"stylesheet\"");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 885), Tuple.Create("\"", 944)
-, Tuple.Create(Tuple.Create("", 892), Tuple.Create<System.Object, System.Int32>(Href("~/Content/bootstrap/css/bootstrap-responsive.min.css")
-, 892), false)
+WriteAttribute("href", Tuple.Create(" href=\"", 947), Tuple.Create("\"", 1006)
+, Tuple.Create(Tuple.Create("", 954), Tuple.Create<System.Object, System.Int32>(Href("~/Content/bootstrap/css/bootstrap-responsive.min.css")
+, 954), false)
 );
 
 WriteLiteral(" type=\"text/css\"");
@@ -170,9 +170,9 @@ WriteLiteral(" />\r\n\r\n    <!-- 页面内联样式 -->\r\n    <link");
 
 WriteLiteral(" rel=\"stylesheet\"");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 1015), Tuple.Create("\"", 1037)
-, Tuple.Create(Tuple.Create("", 1022), Tuple.Create<System.Object, System.Int32>(Href("~/Content/x.css")
-, 1022), false)
+WriteAttribute("href", Tuple.Create(" href=\"", 1077), Tuple.Create("\"", 1099)
+, Tuple.Create(Tuple.Create("", 1084), Tuple.Create<System.Object, System.Int32>(Href("~/Content/x.css")
+, 1084), false)
 );
 
 WriteLiteral(" />\r\n</head>\r\n<body>\r\n");
@@ -180,7 +180,7 @@ WriteLiteral(" />\r\n</head>\r\n<body>\r\n");
 WriteLiteral("    ");
 
             
-            #line 29 "..\..\Views\Shared\_Layout.cshtml"
+            #line 30 "..\..\Views\Shared\_Layout.cshtml"
 Write(Html.Partial("_Header"));
 
             
@@ -195,7 +195,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("        ");
 
             
-            #line 31 "..\..\Views\Shared\_Layout.cshtml"
+            #line 32 "..\..\Views\Shared\_Layout.cshtml"
    Write(RenderBody());
 
             
@@ -210,7 +210,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("        ");
 
             
-            #line 34 "..\..\Views\Shared\_Layout.cshtml"
+            #line 35 "..\..\Views\Shared\_Layout.cshtml"
    Write(Html.Partial("_Footer"));
 
             
@@ -218,39 +218,31 @@ WriteLiteral("        ");
             #line hidden
 WriteLiteral("\r\n    </footer>\r\n    <!-- JQuery作为一等公民，页面内部随时可能使用 -->\r\n    <script");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 1310), Tuple.Create("\"", 1348)
-, Tuple.Create(Tuple.Create("", 1316), Tuple.Create<System.Object, System.Int32>(Href("~/Content/js/jquery-2.1.3.min.js")
-, 1316), false)
+WriteAttribute("src", Tuple.Create(" src=\"", 1372), Tuple.Create("\"", 1410)
+, Tuple.Create(Tuple.Create("", 1378), Tuple.Create<System.Object, System.Int32>(Href("~/Content/js/jquery-2.1.3.min.js")
+, 1378), false)
 );
 
 WriteLiteral("></script>\r\n    <!-- 最早引入基本脚本 -->\r\n    <script");
 
-WriteAttribute("src", Tuple.Create(" src=\"", 1395), Tuple.Create("\"", 1440)
-, Tuple.Create(Tuple.Create("", 1401), Tuple.Create<System.Object, System.Int32>(Href("~/Content/bootstrap/js/bootstrap.min.js")
-, 1401), false)
+WriteAttribute("src", Tuple.Create(" src=\"", 1457), Tuple.Create("\"", 1502)
+, Tuple.Create(Tuple.Create("", 1463), Tuple.Create<System.Object, System.Int32>(Href("~/Content/bootstrap/js/bootstrap.min.js")
+, 1463), false)
 );
 
-WriteLiteral("></script>\r\n\r\n    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements" +
-" and media queries -->\r\n    <!--[if lte IE 8]>\r\n    <script");
+WriteLiteral(@"></script>
 
-WriteAttribute("src", Tuple.Create(" src=\"", 1581), Tuple.Create("\"", 1616)
-, Tuple.Create(Tuple.Create("", 1587), Tuple.Create<System.Object, System.Int32>(Href("~/Content/js/html5shiv.min.js")
-, 1587), false)
-);
-
-WriteLiteral("></script>\r\n    <script");
-
-WriteAttribute("src", Tuple.Create(" src=\"", 1640), Tuple.Create("\"", 1673)
-, Tuple.Create(Tuple.Create("", 1646), Tuple.Create<System.Object, System.Int32>(Href("~/Content/js/respond.min.js")
-, 1646), false)
-);
-
-WriteLiteral("></script>\r\n    <![endif]-->\r\n");
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+    <!--[if lte IE 8]>
+    <script src=""~/Content/js/html5shiv.min.js""></script>
+    <script src=""~/Content/js/respond.min.js""></script>
+    <![endif]-->
+");
 
 WriteLiteral("    ");
 
             
-            #line 46 "..\..\Views\Shared\_Layout.cshtml"
+            #line 47 "..\..\Views\Shared\_Layout.cshtml"
 Write(RenderSection("scripts", required: false));
 
             

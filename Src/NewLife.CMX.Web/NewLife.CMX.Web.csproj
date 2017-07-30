@@ -122,6 +122,7 @@
       <DependentUpon>_Left_Category.cshtml</DependentUpon>
     </Compile>
     <Compile Include="Areas\CMS\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\CMS\Controllers\StatisticsController.cs" />
     <Compile Include="Areas\CMS\Controllers\SourceController.cs" />
     <Compile Include="Areas\CMS\Controllers\NavController.cs" />
     <Compile Include="Areas\CMS\Controllers\AttachController.cs" />
@@ -232,6 +233,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Index.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shared\_Category_Childs.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_Category_Childs.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shared\_Category_Pager.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_Category_Pager.cshtml</DependentUpon>
     </Compile>
     <Compile Include="Views\Shared\_Footer.generated.cs">
       <AutoGen>True</AutoGen>
@@ -619,8 +630,14 @@
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Form.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Views\Shared\_Category_Pager.cshtml" />
-    <Content Include="Views\Shared\_Category_Childs.cshtml" />
+    <None Include="Views\Shared\_Category_Pager.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>_Category_Pager.generated.cs</LastGenOutput>
+    </None>
+    <None Include="Views\Shared\_Category_Childs.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>_Category_Childs.generated.cs</LastGenOutput>
+    </None>
     <None Include="Views\Shared\_Footer.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>_Footer.generated.cs</LastGenOutput>

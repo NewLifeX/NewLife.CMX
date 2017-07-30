@@ -26,6 +26,6 @@
         {
             <a class="next" title="下一页" href="@(this.GetCategoryUrl(Model, Pager.PageIndex + 1))">&gt;</a>
         }
-        <a class="first" title="末页" href="@(this.GetCategoryUrl(Model, Pager.PageCount))">末页</a>
+        <a class="first" title="末页" href="@(this.GetCategoryUrl(Model, (Int32)Pager.PageCount))">末页</a>
     </div>
 }

@@ -31,6 +31,8 @@ namespace NewLife.CMX
             // 用于引发基类的静态构造函数，所有层次的泛型实体类都应该有一个
             var entity = new TEntity();
 
+            Meta.Factory.AdditionalFields.Add(__.Views);
+
             Meta.Modules.Add<UserModule>();
             Meta.Modules.Add<TimeModule>();
             Meta.Modules.Add<IPModule>();
@@ -201,7 +203,9 @@ namespace NewLife.CMX
                         if (type != null)
                         {
                             // 反射调用FindByID方法
-                            var entity = type.Invoke("FindByID", ExtendID);
+                            //var entity = type.Invoke("FindByID", ExtendID);
+                            var fact = EntityFactory.CreateOperate(type);
+                            var entity = fact.FindByKey(ExtendID);
                             return entity as IInfoExtend;
                         }
                     }
@@ -212,7 +216,24 @@ namespace NewLife.CMX
 
         /// <summary>统计</summary>
         [XmlIgnore, ScriptIgnore]
-        public IStatistics Statistics { get { return Extends.Get(nameof(Statistics), k => NewLife.CMX.Statistics.FindByID(StatisticsID) ?? new Statistics()); } }
+        public IStatistics Statistics
+        {
+            get
+            {
+                return Extends.Get(nameof(Statistics), k =>
+                {
+                    var st = NewLife.CMX.Statistics.FindByID(StatisticsID);
+                    if (st == null)
+                    {
+                        st = new Statistics();
+                        st.Insert();
+
+                        StatisticsID = st.ID;
+                    }
+                    return st;
+                });
+            }
+        }
 
         /// <summary>统计</summary>
         [XmlIgnore, ScriptIgnore]

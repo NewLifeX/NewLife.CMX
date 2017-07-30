@@ -318,6 +318,10 @@
             <summary>动作执行前</summary>
             <param name="filterContext"></param>
         </member>
+        <member name="M:NewLife.Cube.ObjectController`1.OnActionExecuted(System.Web.Mvc.ActionExecutedContext)">
+            <summary>执行后</summary>
+            <param name="filterContext"></param>
+        </member>
         <member name="M:NewLife.Cube.ObjectController`1.Index">
             <summary>显示对象</summary>
             <returns></returns>
@@ -690,6 +694,10 @@
         </member>
         <member name="M:NewLife.Cube.EntityController`1.#ctor">
             <summary>构造函数</summary>
+        </member>
+        <member name="M:NewLife.Cube.EntityController`1.OnActionExecuted(System.Web.Mvc.ActionExecutedContext)">
+            <summary>执行后</summary>
+            <param name="filterContext"></param>
         </member>
         <member name="M:NewLife.Cube.EntityController`1.Search(NewLife.Web.Pager)">
             <summary>搜索数据集</summary>

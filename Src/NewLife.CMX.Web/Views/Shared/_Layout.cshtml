@@ -1,6 +1,7 @@
 ﻿@using NewLife.Common;
 @{
     var menu = ManageProvider.Menu.Current;
+    HttpContext.Current.Items["Title"] = ViewBag.Title + "";
 }
 <!DOCTYPE html>
 <html lang="zh-CN">

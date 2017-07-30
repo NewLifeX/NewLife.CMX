@@ -165,6 +165,8 @@ namespace NewLife.CMX
 
                 LastIP = WebHelper.UserHost;
                 if (!String.IsNullOrEmpty(remark)) Remark = remark;
+
+                SaveAsync(10);
             }
         }
 

@@ -8,7 +8,7 @@
 </div>
 <div class="benefits container">
     @{
-        var cats = Category.Root.Childs.ToList().Where(e => e.Model == null || e.Model.Enable == true).ToList();
+        var cats = Category.Root.Childs.ToList().Where(e => e.Model == null || e.Model.Enable).ToList();
         var cell = 3;
         var width = 12 / cell;
         var left = 12 - width * cell;
