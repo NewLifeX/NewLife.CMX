@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 using XCode;
 
@@ -23,7 +21,7 @@ namespace NewLife.CMX
         [NonSerialized]
         private IInfo _Info;
         /// <summary>该扩展所对应的信息</summary>
-        [XmlIgnore]
+        [XmlIgnore, ScriptIgnore]
         [Map("ExtendID", typeof(Info), "ID")]
         public IInfo Info
         {

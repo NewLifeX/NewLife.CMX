@@ -114,12 +114,12 @@ namespace NewLife.CMX
         #region 扩展属性﻿
         /// <summary>分类</summary>
         [XmlIgnore, ScriptIgnore]
-        [Map(__.CategoryID, typeof(Category), "ID")]
         public ICategory Category { get { return Extends.Get(nameof(Category), k => NewLife.CMX.Category.FindByID(CategoryID)); } }
 
         /// <summary>分类</summary>
         [XmlIgnore, ScriptIgnore]
         [DisplayName("分类")]
+        [Map(__.CategoryID, typeof(Category), "ID")]
         public String CategoryName { get { return Category + ""; } }
 
         /// <summary>创建人</summary>

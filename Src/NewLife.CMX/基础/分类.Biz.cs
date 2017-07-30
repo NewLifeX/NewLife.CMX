@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 using NewLife.Collections;
 using NewLife.Common;
@@ -30,7 +31,7 @@ namespace NewLife.CMX
         static Category()
         {
             // 用于引发基类的静态构造函数，所有层次的泛型实体类都应该有一个
-            TEntity entity = new TEntity();
+            var entity = new TEntity();
         }
 
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
@@ -43,13 +44,9 @@ namespace NewLife.CMX
             // 这里验证参数范围，建议抛出参数异常，指定参数名，前端用户界面可以捕获参数异常并聚焦到对应的参数输入框
             if (String.IsNullOrEmpty(Name)) throw new ArgumentNullException(_.Name, _.Name.DisplayName + "无效！");
             if (Model == null) throw new ArgumentNullException(__.ModelID, _.ModelID.DisplayName + "无效！");
-            //if (!isNew && ID < 1) throw new ArgumentOutOfRangeException(_.ID, _.ID.DisplayName + "必须大于0！");
 
             // 建议先调用基类方法，基类方法会对唯一索引的数据进行验证
             base.Valid(isNew);
-
-            // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
-            //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
 
             if (Dirtys[__.Code])
             {
@@ -135,32 +132,17 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性
-        [NonSerialized]
-        private IModel _Model;
         /// <summary>该分类所对应的模型</summary>
-        [XmlIgnore]
-        [Map("ModelID", typeof(ModelX), "ID")]
-        public IModel Model
-        {
-            get
-            {
-                if (_Model == null && ModelID > 0 && !Dirtys.ContainsKey("Model"))
-                {
-                    _Model = ModelX.FindByID(ModelID);
-                    Dirtys["Model"] = true;
-                }
-                return _Model;
-            }
-            set { _Model = value; }
-        }
+        [XmlIgnore, ScriptIgnore]
+        public IModel Model { get { return Extends.Get(nameof(Model), k => ModelX.FindByID(ModelID)); } }
 
         /// <summary>该分类所对应的模型名称</summary>
-        [XmlIgnore]
+        [XmlIgnore, ScriptIgnore]
         [DisplayName("模型")]
-        //[BindRelation(__.ModelID)]
+        [Map(__.ModelID, typeof(ModelX), "ID")]
         public String ModelName { get { return Model + ""; } }
 
-        /// <summary>子节点</summary>
+        /// <summary>子节点</summary> 
         public EntityList<TEntity> Childrens { get; set; }
         #endregion
 

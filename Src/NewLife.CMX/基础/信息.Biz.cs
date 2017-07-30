@@ -47,18 +47,10 @@ namespace NewLife.CMX
             base.Valid(isNew);
 
             // 自动保存分类名称
-            if (Meta.FieldNames.Contains("CategoryName"))
-            {
-                if (!Dirtys["CategoryName"] && Category != null) SetItem("CategoryName", Category.Name);
-            }
+            if (!Dirtys[__.CategoryName] && Category != null) CategoryName = Category.Name;
 
             // 发布时间为创建时间
-            //if (!Dirtys[__.PublishTime]) PublishTime = DateTime.Now;
-            if (Meta.FieldNames.Contains("PublishTime"))
-            {
-                var dt = (DateTime)this["PublishTime"];
-                if ((isNew || dt.Year < 2000) && !Dirtys["PublishTime"]) SetItem("PublishTime", CreateTime);
-            }
+            if ((isNew || PublishTime.Year < 2000) && !Dirtys[__.PublishTime]) PublishTime = CreateTime;
         }
 
         /// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
@@ -166,126 +158,65 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性
-        [NonSerialized]
-        private IModel _Model;
         /// <summary>该分类所对应的模型</summary>
-        [XmlIgnore]
-        [Map("ModelID", typeof(ModelX), "ID")]
-        public IModel Model
-        {
-            get
-            {
-                if (_Model == null && ModelID > 0 && !Dirtys.ContainsKey("Model"))
-                {
-                    _Model = ModelX.FindByID(ModelID);
-                    Dirtys["Model"] = true;
-                }
-                return _Model;
-            }
-            set { _Model = value; }
-        }
+        [XmlIgnore, ScriptIgnore]
+        public IModel Model { get { return Extends.Get(nameof(Model), k => ModelX.FindByID(ModelID)); } }
 
         /// <summary>该分类所对应的模型名称</summary>
-        [XmlIgnore]
+        [XmlIgnore, ScriptIgnore]
         [DisplayName("模型")]
+        [Map(__.ModelID, typeof(ModelX), "ID")]
         public String ModelName { get { return Model + ""; } }
 
-        private ICategory _Category;
         /// <summary>分类</summary>
-        [Map("CategoryID", typeof(Category), "ID")]
-        public ICategory Category
-        {
-            get
-            {
-                if (_Category == null && CategoryID > 0 && !Dirtys.ContainsKey("Category"))
-                {
-                    _Category = NewLife.CMX.Category.FindByID(CategoryID);
-                    Dirtys["Category"] = true;
-                }
-                return _Category;
-            }
-            //set { _Category = value; }
-        }
+        [XmlIgnore, ScriptIgnore]
+        public ICategory Category { get { return Extends.Get(nameof(Category), k => NewLife.CMX.Category.FindByID(CategoryID)); } }
 
-        private IContent _Content;
+        ///// <summary>分类</summary>
+        //[XmlIgnore, ScriptIgnore]
+        //[DisplayName("分类")]
+        //[Map(__.CategoryID, typeof(Category), "ID")]
+        //public String CategoryName { get { return Category + ""; } }
+
         /// <summary>内容</summary>
-        public IContent Content
-        {
-            get
-            {
-                if (_Content == null)
-                {
-                    _Content = NewLife.CMX.Content.FindLastByParentID(ID);
-                    if (_Content == null) _Content = new Content { InfoID = ID };
-                }
-                return _Content;
-            }
-            //set { _Content = value; }
-        }
+        [XmlIgnore, ScriptIgnore]
+        public IContent Content { get { return Extends.Get(nameof(Content), k => NewLife.CMX.Content.FindLastByParentID(ID) ?? new Content { InfoID = ID }); } }
 
         /// <summary>内容文本</summary>
-        public String ContentText { get { return Content != null ? Content.Html : ""; } set { Content.Html = value; } }
+        public String ContentText { get { return Content?.Html; } set { Content.Html = value; } }
 
-        private IInfoExtend _Ext;
         /// <summary>扩展</summary>
         public IInfoExtend Ext
         {
             get
             {
-                if (_Ext == null && ExtendID > 0 && !Dirtys.ContainsKey("Ext"))
+                return Extends.Get(nameof(Ext), k =>
                 {
                     // 根据分类找到模型，再找到对应实体类
-                    if (Category != null && Category.Model != null)
+                    if (Model != null)
                     {
-                        var type = Category.Model.ProviderName.GetTypeEx();
+                        var type = Model.ProviderName.GetTypeEx();
                         if (type != null)
                         {
                             // 反射调用FindByID方法
                             var entity = type.Invoke("FindByID", ExtendID);
-                            _Ext = entity as IInfoExtend;
+                            return entity as IInfoExtend;
                         }
                     }
-
-                    Dirtys["Ext"] = true;
-                }
-                return _Ext;
+                    return null;
+                });
             }
-            //set { _Content = value; }
         }
 
-        private IStatistics _Statistics;
         /// <summary>统计</summary>
-        [Map("StatisticsID", typeof(Statistics), "ID")]
-        public IStatistics Statistics
-        {
-            get
-            {
-                if (_Statistics == null && !Dirtys.ContainsKey("Statistics"))
-                {
-                    _Statistics = NewLife.CMX.Statistics.FindByID(StatisticsID);
-                    if (_Statistics == null) _Statistics = new Statistics();
-                    Dirtys["Statistics"] = true;
-                }
-                return _Statistics;
-            }
-            //set { _Statistics = value; }
-        }
+        [XmlIgnore, ScriptIgnore]
+        public IStatistics Statistics { get { return Extends.Get(nameof(Statistics), k => NewLife.CMX.Statistics.FindByID(StatisticsID) ?? new Statistics()); } }
 
-        private String _StatisticsText;
-        /// <summary>统计文本</summary>
+        /// <summary>统计</summary>
+        [XmlIgnore, ScriptIgnore]
         [DisplayName("访问统计")]
-        public String StatisticsText
-        {
-            get
-            {
-                if (_StatisticsText == null && !Dirtys.ContainsKey("StatisticsText"))
-                {
-                    _StatisticsText = Statistics != null ? Statistics.Text : null;
-                    Dirtys["StatisticsText"] = true;
-                }
-                return _StatisticsText;
-            }
-        }
+        [Map(__.StatisticsID, typeof(Statistics), "ID")]
+        public String StatisticsText { get { return Statistics?.Text; } }
 
         /// <summary>创建人</summary>
         [XmlIgnore, ScriptIgnore]
@@ -388,29 +319,6 @@ namespace NewLife.CMX
         #endregion
 
         #region 高级查询
-        // 以下为自定义高级查询的例子
-
-        /// <summary>查询满足条件的记录集，分页、排序</summary>
-        /// <param name="userid">用户编号</param>
-        /// <param name="start">开始时间</param>
-        /// <param name="end">结束时间</param>
-        /// <param name="key">关键字</param>
-        /// <param name="param">分页排序参数，同时返回满足条件的总记录数</param>
-        /// <returns>实体集</returns>
-        public static EntityList<TEntity> Search(Int32 userid, DateTime start, DateTime end, String key, PageParameter param)
-        {
-            // WhereExpression重载&和|运算符，作为And和Or的替代
-            // SearchWhereByKeys系列方法用于构建针对字符串字段的模糊搜索，第二个参数可指定要搜索的字段
-            var exp = SearchWhereByKeys(key, null, null);
-
-            // 以下仅为演示，Field（继承自FieldItem）重载了==、!=、>、<、>=、<=等运算符
-            //if (userid > 0) exp &= _.OperatorID == userid;
-            //if (isSign != null) exp &= _.IsSign == isSign.Value;
-            //exp &= _.OccurTime.Between(start, end); // 大于等于start，小于end，当start/end大于MinValue时有效
-
-            return FindAll(exp, param);
-        }
-
         /// <summary>根据关键字搜索指定模型和分类下的信息</summary>
         /// <param name="modelid"></param>
         /// <param name="categoryid"></param>

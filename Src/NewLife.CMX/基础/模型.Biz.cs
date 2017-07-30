@@ -210,22 +210,6 @@ namespace NewLife.CMX
             return count;
         }
         #endregion
-
-        #region 模型提供者
-        //private IModelProvider _Provider;
-        ///// <summary>模型提供者</summary>
-        //public IModelProvider Provider
-        //{
-        //    get
-        //    {
-        //        if (_Provider == null)
-        //        {
-        //            if (!ModelProvider.Providers.TryGetValue(ProviderName, out _Provider)) throw new XException("找不到模型提供者{0}", ProviderName);
-        //        }
-        //        return _Provider;
-        //    }
-        //}
-        #endregion
     }
 
     partial interface IModel

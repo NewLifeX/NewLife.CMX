@@ -6,10 +6,9 @@
 */
 using System;
 using System.ComponentModel;
+using System.Text;
 using NewLife.Web;
 using XCode;
-using System.Web;
-using System.Text;
 
 namespace NewLife.CMX
 {
@@ -89,6 +88,9 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展操作
+        /// <summary>已重载。</summary>
+        /// <returns></returns>
+        public override String ToString() { return Text; }
         #endregion
 
         #region 业务
@@ -161,8 +163,6 @@ namespace NewLife.CMX
                 ThisMonth++;
                 ThisYear++;
 
-                //if (HttpContext.Current != null && HttpContext.Current.Request != null)
-                //    LastIP = HttpContext.Current.Request.UserHostAddress;
                 LastIP = WebHelper.UserHost;
                 if (!String.IsNullOrEmpty(remark)) Remark = remark;
             }
