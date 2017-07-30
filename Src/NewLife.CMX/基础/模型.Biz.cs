@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Xml.Serialization;
 using NewLife.Log;
+using NewLife.Model;
 using NewLife.Reflection;
 using XCode;
 using XCode.Membership;
@@ -147,9 +148,10 @@ namespace NewLife.CMX
         #region 高级查询
         /// <summary>获取所有有效模型</summary>
         /// <returns></returns>
-        public static EntityList<TEntity> GetAll()
+        public static List<TEntity> GetAll()
         {
-            return FindAllWithCache(__.Enable, true).Sort(__.ID, false);
+            //return FindAllWithCache(__.Enable, true).Sort(__.ID, false);
+            return FindAllWithCache().ToList().Where(e => e.Enable).OrderBy(e => e.ID).ToList();
         }
 
         /// <summary>获取当前模型的顶级分类</summary>

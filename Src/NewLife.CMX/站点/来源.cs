@@ -21,7 +21,7 @@ namespace NewLife.CMX
         [DisplayName("编号")]
         [Description("编号")]
         [DataObjectField(true, true, false, 10)]
-        [BindColumn(1, "ID", "编号", null, "int", 10, 0, false)]
+        [BindColumn("ID", "编号", "int", 10, 0)]
         public virtual Int32 ID
         {
             get { return _ID; }
@@ -33,7 +33,7 @@ namespace NewLife.CMX
         [DisplayName("名称")]
         [Description("名称")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(2, "Name", "名称", null, "nvarchar(50)", 0, 0, true, Master=true)]
+        [BindColumn("Name", "名称", "nvarchar(50)", 0, 0, Master=true)]
         public virtual String Name
         {
             get { return _Name; }
@@ -45,7 +45,7 @@ namespace NewLife.CMX
         [DisplayName("地址")]
         [Description("地址")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(3, "Url", "地址", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn("Url", "地址", "nvarchar(50)", 0, 0)]
         public virtual String Url
         {
             get { return _Url; }
@@ -56,8 +56,8 @@ namespace NewLife.CMX
         /// <summary>排序</summary>
         [DisplayName("排序")]
         [Description("排序")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(4, "Sort", "排序", null, "int", 10, 0, false)]
+        [DataObjectField(false, false, false, 10)]
+        [BindColumn("Sort", "排序", "int", 10, 0)]
         public virtual Int32 Sort
         {
             get { return _Sort; }
@@ -68,8 +68,8 @@ namespace NewLife.CMX
         /// <summary>启用</summary>
         [DisplayName("启用")]
         [Description("启用")]
-        [DataObjectField(false, false, true, 1)]
-        [BindColumn(5, "Enable", "启用", null, "bit", 0, 0, false)]
+        [DataObjectField(false, false, false, 1)]
+        [BindColumn("Enable", "启用", "bit", 0, 0)]
         public virtual Boolean Enable
         {
             get { return _Enable; }
@@ -80,8 +80,8 @@ namespace NewLife.CMX
         /// <summary>创建人</summary>
         [DisplayName("创建人")]
         [Description("创建人")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(6, "CreateUserID", "创建人", null, "int", 10, 0, false)]
+        [DataObjectField(false, false, false, 10)]
+        [BindColumn("CreateUserID", "创建人", "int", 10, 0)]
         public virtual Int32 CreateUserID
         {
             get { return _CreateUserID; }
@@ -93,7 +93,7 @@ namespace NewLife.CMX
         [DisplayName("创建时间")]
         [Description("创建时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(7, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
+        [BindColumn("CreateTime", "创建时间", "datetime", 3, 0)]
         public virtual DateTime CreateTime
         {
             get { return _CreateTime; }
@@ -105,7 +105,7 @@ namespace NewLife.CMX
         [DisplayName("创建地址")]
         [Description("创建地址")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(8, "CreateIP", "创建地址", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn("CreateIP", "创建地址", "nvarchar(50)", 0, 0)]
         public virtual String CreateIP
         {
             get { return _CreateIP; }
@@ -116,8 +116,8 @@ namespace NewLife.CMX
         /// <summary>更新人</summary>
         [DisplayName("更新人")]
         [Description("更新人")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(9, "UpdateUserID", "更新人", null, "int", 10, 0, false)]
+        [DataObjectField(false, false, false, 10)]
+        [BindColumn("UpdateUserID", "更新人", "int", 10, 0)]
         public virtual Int32 UpdateUserID
         {
             get { return _UpdateUserID; }
@@ -129,7 +129,7 @@ namespace NewLife.CMX
         [DisplayName("更新时间")]
         [Description("更新时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(10, "UpdateTime", "更新时间", null, "datetime", 3, 0, false)]
+        [BindColumn("UpdateTime", "更新时间", "datetime", 3, 0)]
         public virtual DateTime UpdateTime
         {
             get { return _UpdateTime; }
@@ -141,7 +141,7 @@ namespace NewLife.CMX
         [DisplayName("更新地址")]
         [Description("更新地址")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(11, "UpdateIP", "更新地址", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn("UpdateIP", "更新地址", "nvarchar(50)", 0, 0)]
         public virtual String UpdateIP
         {
             get { return _UpdateIP; }
@@ -153,7 +153,7 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(12, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn("Remark", "备注", "nvarchar(200)", 0, 0)]
         public virtual String Remark
         {
             get { return _Remark; }

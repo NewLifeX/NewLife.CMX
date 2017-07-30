@@ -14,6 +14,7 @@ using NewLife.Log;
 using XCode;
 using XCode.Membership;
 using NewLife.Serialization;
+using NewLife.Model;
 
 namespace NewLife.CMX
 {

@@ -13,6 +13,7 @@ using XCode.Membership;
 using NewLife.Reflection;
 using System.Xml.Serialization;
 using System.Text;
+using NewLife.Model;
 
 namespace NewLife.CMX
 {

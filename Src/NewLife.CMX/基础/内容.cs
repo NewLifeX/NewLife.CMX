@@ -16,7 +16,7 @@ namespace NewLife.CMX
     [BindIndex("IX_Content_InfoID", false, "InfoID")]
     [BindIndex("IU_Content_InfoID_Version", true, "InfoID,Version")]
     [BindTable("Content", Description = "内容", ConnName = "CMX", DbType = DatabaseType.None)]
-    public abstract partial class Content<TEntity> : IContent
+    public partial class Content<TEntity> : IContent
     {
         #region 属性
         private Int32 _ID;
@@ -24,7 +24,7 @@ namespace NewLife.CMX
         [DisplayName("编号")]
         [Description("编号")]
         [DataObjectField(true, true, false, 10)]
-        [BindColumn(1, "ID", "编号", null, "int", 10, 0, false)]
+        [BindColumn("ID", "编号", "", 10, 0)]
         public virtual Int32 ID
         {
             get { return _ID; }
@@ -36,7 +36,7 @@ namespace NewLife.CMX
         [DisplayName("模型")]
         [Description("模型")]
         [DataObjectField(false, false, false, 10)]
-        [BindColumn(2, "ModelID", "模型", null, "int", 10, 0, false)]
+        [BindColumn("ModelID", "模型", "", 10, 0)]
         public virtual Int32 ModelID
         {
             get { return _ModelID; }
@@ -47,8 +47,8 @@ namespace NewLife.CMX
         /// <summary>主题</summary>
         [DisplayName("主题")]
         [Description("主题")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(3, "InfoID", "主题", null, "int", 10, 0, false)]
+        [DataObjectField(false, false, false, 10)]
+        [BindColumn("InfoID", "主题", "", 10, 0)]
         public virtual Int32 InfoID
         {
             get { return _InfoID; }
@@ -60,7 +60,7 @@ namespace NewLife.CMX
         [DisplayName("标题")]
         [Description("标题")]
         [DataObjectField(false, false, false, 200)]
-        [BindColumn(4, "Title", "标题", null, "nvarchar(200)", 0, 0, true, Master=true)]
+        [BindColumn("Title", "标题", "", 0, 0, Master=true)]
         public virtual String Title
         {
             get { return _Title; }
@@ -71,8 +71,8 @@ namespace NewLife.CMX
         /// <summary>版本</summary>
         [DisplayName("版本")]
         [Description("版本")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(5, "Version", "版本", null, "int", 10, 0, false)]
+        [DataObjectField(false, false, false, 10)]
+        [BindColumn("Version", "版本", "", 10, 0)]
         public virtual Int32 Version
         {
             get { return _Version; }
@@ -83,8 +83,8 @@ namespace NewLife.CMX
         /// <summary>创建人</summary>
         [DisplayName("创建人")]
         [Description("创建人")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(6, "CreateUserID", "创建人", null, "int", 10, 0, false)]
+        [DataObjectField(false, false, false, 10)]
+        [BindColumn("CreateUserID", "创建人", "", 10, 0)]
         public virtual Int32 CreateUserID
         {
             get { return _CreateUserID; }
@@ -96,7 +96,7 @@ namespace NewLife.CMX
         [DisplayName("创建时间")]
         [Description("创建时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(7, "CreateTime", "创建时间", null, "datetime", 3, 0, false)]
+        [BindColumn("CreateTime", "创建时间", "", 3, 0)]
         public virtual DateTime CreateTime
         {
             get { return _CreateTime; }
@@ -108,7 +108,7 @@ namespace NewLife.CMX
         [DisplayName("创建地址")]
         [Description("创建地址")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(8, "CreateIP", "创建地址", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn("CreateIP", "创建地址", "", 0, 0)]
         public virtual String CreateIP
         {
             get { return _CreateIP; }
@@ -120,7 +120,7 @@ namespace NewLife.CMX
         [DisplayName("内容")]
         [Description("内容")]
         [DataObjectField(false, false, true, -1)]
-        [BindColumn(9, "Html", "内容", null, "ntext", 0, 0, true)]
+        [BindColumn("Html", "内容", "", 0, 0)]
         public virtual String Html
         {
             get { return _Html; }
@@ -175,7 +175,7 @@ namespace NewLife.CMX
 
         #region 字段名
         /// <summary>取得内容字段信息的快捷方式</summary>
-        partial class _
+        public partial class _
         {
             ///<summary>编号</summary>
             public static readonly Field ID = FindByName(__.ID);

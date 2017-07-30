@@ -13,7 +13,7 @@ namespace NewLife.CMX
     [DataObject]
     [Description("统计")]
     [BindTable("Statistics", Description = "统计", ConnName = "CMX", DbType = DatabaseType.None)]
-    public abstract partial class Statistics<TEntity> : IStatistics
+    public partial class Statistics<TEntity> : IStatistics
     {
         #region 属性
         private Int32 _ID;
@@ -21,7 +21,7 @@ namespace NewLife.CMX
         [DisplayName("编号")]
         [Description("编号")]
         [DataObjectField(true, true, false, 10)]
-        [BindColumn(1, "ID", "编号", null, "int", 10, 0, false)]
+        [BindColumn("ID", "编号", "", 10, 0)]
         public virtual Int32 ID
         {
             get { return _ID; }
@@ -32,8 +32,8 @@ namespace NewLife.CMX
         /// <summary>总数</summary>
         [DisplayName("总数")]
         [Description("总数")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(2, "Total", "总数", null, "int", 10, 0, false)]
+        [DataObjectField(false, false, false, 10)]
+        [BindColumn("Total", "总数", "", 10, 0)]
         public virtual Int32 Total
         {
             get { return _Total; }
@@ -44,8 +44,8 @@ namespace NewLife.CMX
         /// <summary>今天</summary>
         [DisplayName("今天")]
         [Description("今天")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(3, "Today", "今天", null, "int", 10, 0, false)]
+        [DataObjectField(false, false, false, 10)]
+        [BindColumn("Today", "今天", "", 10, 0)]
         public virtual Int32 Today
         {
             get { return _Today; }
@@ -56,8 +56,8 @@ namespace NewLife.CMX
         /// <summary>昨天</summary>
         [DisplayName("昨天")]
         [Description("昨天")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(4, "Yesterday", "昨天", null, "int", 10, 0, false)]
+        [DataObjectField(false, false, false, 10)]
+        [BindColumn("Yesterday", "昨天", "", 10, 0)]
         public virtual Int32 Yesterday
         {
             get { return _Yesterday; }
@@ -68,8 +68,8 @@ namespace NewLife.CMX
         /// <summary>本周</summary>
         [DisplayName("本周")]
         [Description("本周")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(5, "ThisWeek", "本周", null, "int", 10, 0, false)]
+        [DataObjectField(false, false, false, 10)]
+        [BindColumn("ThisWeek", "本周", "", 10, 0)]
         public virtual Int32 ThisWeek
         {
             get { return _ThisWeek; }
@@ -80,8 +80,8 @@ namespace NewLife.CMX
         /// <summary>上周</summary>
         [DisplayName("上周")]
         [Description("上周")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(6, "LastWeek", "上周", null, "int", 10, 0, false)]
+        [DataObjectField(false, false, false, 10)]
+        [BindColumn("LastWeek", "上周", "", 10, 0)]
         public virtual Int32 LastWeek
         {
             get { return _LastWeek; }
@@ -92,8 +92,8 @@ namespace NewLife.CMX
         /// <summary>本月</summary>
         [DisplayName("本月")]
         [Description("本月")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(7, "ThisMonth", "本月", null, "int", 10, 0, false)]
+        [DataObjectField(false, false, false, 10)]
+        [BindColumn("ThisMonth", "本月", "", 10, 0)]
         public virtual Int32 ThisMonth
         {
             get { return _ThisMonth; }
@@ -104,8 +104,8 @@ namespace NewLife.CMX
         /// <summary>上月</summary>
         [DisplayName("上月")]
         [Description("上月")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(8, "LastMonth", "上月", null, "int", 10, 0, false)]
+        [DataObjectField(false, false, false, 10)]
+        [BindColumn("LastMonth", "上月", "", 10, 0)]
         public virtual Int32 LastMonth
         {
             get { return _LastMonth; }
@@ -116,8 +116,8 @@ namespace NewLife.CMX
         /// <summary>本年</summary>
         [DisplayName("本年")]
         [Description("本年")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(9, "ThisYear", "本年", null, "int", 10, 0, false)]
+        [DataObjectField(false, false, false, 10)]
+        [BindColumn("ThisYear", "本年", "", 10, 0)]
         public virtual Int32 ThisYear
         {
             get { return _ThisYear; }
@@ -128,8 +128,8 @@ namespace NewLife.CMX
         /// <summary>去年</summary>
         [DisplayName("去年")]
         [Description("去年")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(10, "LastYear", "去年", null, "int", 10, 0, false)]
+        [DataObjectField(false, false, false, 10)]
+        [BindColumn("LastYear", "去年", "", 10, 0)]
         public virtual Int32 LastYear
         {
             get { return _LastYear; }
@@ -141,7 +141,7 @@ namespace NewLife.CMX
         [DisplayName("最后时间")]
         [Description("最后时间")]
         [DataObjectField(false, false, true, 3)]
-        [BindColumn(11, "LastTime", "最后时间", null, "datetime", 3, 0, false)]
+        [BindColumn("LastTime", "最后时间", "", 3, 0)]
         public virtual DateTime LastTime
         {
             get { return _LastTime; }
@@ -153,7 +153,7 @@ namespace NewLife.CMX
         [DisplayName("最后IP")]
         [Description("最后IP")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(12, "LastIP", "最后IP", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn("LastIP", "最后IP", "", 0, 0)]
         public virtual String LastIP
         {
             get { return _LastIP; }
@@ -165,7 +165,7 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(13, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn("Remark", "备注", "", 0, 0)]
         public virtual String Remark
         {
             get { return _Remark; }
@@ -228,7 +228,7 @@ namespace NewLife.CMX
 
         #region 字段名
         /// <summary>取得统计字段信息的快捷方式</summary>
-        partial class _
+        public partial class _
         {
             ///<summary>编号</summary>
             public static readonly Field ID = FindByName(__.ID);

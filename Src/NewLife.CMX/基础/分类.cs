@@ -15,9 +15,8 @@ namespace NewLife.CMX
     [BindIndex("IU_Category_Name", true, "Name")]
     [BindIndex("IX_Category_Code", false, "Code")]
     [BindIndex("IX_Category_ParentID", false, "ParentID")]
-    [BindRelation("ModelID", false, "Model", "ID")]
     [BindTable("Category", Description = "分类", ConnName = "CMX", DbType = DatabaseType.None)]
-    public abstract partial class Category<TEntity> : ICategory
+    public partial class Category<TEntity> : ICategory
     {
         #region 属性
         private Int32 _ID;
@@ -25,7 +24,7 @@ namespace NewLife.CMX
         [DisplayName("编号")]
         [Description("编号")]
         [DataObjectField(true, true, false, 10)]
-        [BindColumn(1, "ID", "编号", null, "int", 10, 0, false)]
+        [BindColumn("ID", "编号", "", 10, 0)]
         public virtual Int32 ID
         {
             get { return _ID; }
@@ -37,7 +36,7 @@ namespace NewLife.CMX
         [DisplayName("名称")]
         [Description("名称")]
         [DataObjectField(false, false, false, 50)]
-        [BindColumn(2, "Name", "名称", null, "nvarchar(50)", 0, 0, true, Master=true)]
+        [BindColumn("Name", "名称", "", 0, 0, Master=true)]
         public virtual String Name
         {
             get { return _Name; }
@@ -49,7 +48,7 @@ namespace NewLife.CMX
         [DisplayName("编码")]
         [Description("编码。全局唯一的路由识别名，英文名")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(3, "Code", "编码。全局唯一的路由识别名，英文名", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn("Code", "编码。全局唯一的路由识别名，英文名", "", 0, 0)]
         public virtual String Code
         {
             get { return _Code; }
@@ -60,8 +59,8 @@ namespace NewLife.CMX
         /// <summary>父类</summary>
         [DisplayName("父类")]
         [Description("父类")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(4, "ParentID", "父类", null, "int", 10, 0, false)]
+        [DataObjectField(false, false, false, 10)]
+        [BindColumn("ParentID", "父类", "", 10, 0)]
         public virtual Int32 ParentID
         {
             get { return _ParentID; }
@@ -72,8 +71,8 @@ namespace NewLife.CMX
         /// <summary>模型</summary>
         [DisplayName("模型")]
         [Description("模型")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(5, "ModelID", "模型", null, "int", 10, 0, false)]
+        [DataObjectField(false, false, false, 10)]
+        [BindColumn("ModelID", "模型", "", 10, 0)]
         public virtual Int32 ModelID
         {
             get { return _ModelID; }
@@ -84,8 +83,8 @@ namespace NewLife.CMX
         /// <summary>排序</summary>
         [DisplayName("排序")]
         [Description("排序")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(6, "Sort", "排序", null, "int", 10, 0, false)]
+        [DataObjectField(false, false, false, 10)]
+        [BindColumn("Sort", "排序", "", 10, 0)]
         public virtual Int32 Sort
         {
             get { return _Sort; }
@@ -96,8 +95,8 @@ namespace NewLife.CMX
         /// <summary>数量</summary>
         [DisplayName("数量")]
         [Description("数量")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(7, "Num", "数量", null, "int", 10, 0, false)]
+        [DataObjectField(false, false, false, 10)]
+        [BindColumn("Num", "数量", "", 10, 0)]
         public virtual Int32 Num
         {
             get { return _Num; }
@@ -109,7 +108,7 @@ namespace NewLife.CMX
         [DisplayName("图标")]
         [Description("图标")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(8, "Image", "图标", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn("Image", "图标", "", 0, 0)]
         public virtual String Image
         {
             get { return _Image; }
@@ -121,7 +120,7 @@ namespace NewLife.CMX
         [DisplayName("分类页模版")]
         [Description("分类页模版。本分类专属列表页")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(9, "CategoryTemplate", "分类页模版。本分类专属列表页", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn("CategoryTemplate", "分类页模版。本分类专属列表页", "", 0, 0)]
         public virtual String CategoryTemplate
         {
             get { return _CategoryTemplate; }
@@ -133,7 +132,7 @@ namespace NewLife.CMX
         [DisplayName("信息页模版")]
         [Description("信息页模版。本分类专属内容页")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(10, "InfoTemplate", "信息页模版。本分类专属内容页", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn("InfoTemplate", "信息页模版。本分类专属内容页", "", 0, 0)]
         public virtual String InfoTemplate
         {
             get { return _InfoTemplate; }
@@ -145,7 +144,7 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(11, "Remark", "备注", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn("Remark", "备注", "", 0, 0)]
         public virtual String Remark
         {
             get { return _Remark; }
@@ -204,7 +203,7 @@ namespace NewLife.CMX
 
         #region 字段名
         /// <summary>取得分类字段信息的快捷方式</summary>
-        partial class _
+        public partial class _
         {
             ///<summary>编号</summary>
             public static readonly Field ID = FindByName(__.ID);

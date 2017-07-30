@@ -22,7 +22,7 @@ namespace NewLife.CMX
         [DisplayName("编号")]
         [Description("编号")]
         [DataObjectField(true, true, false, 10)]
-        [BindColumn(1, "ID", "编号", null, "int", 10, 0, false)]
+        [BindColumn("ID", "编号", "int", 10, 0)]
         public virtual Int32 ID
         {
             get { return _ID; }
@@ -33,8 +33,8 @@ namespace NewLife.CMX
         /// <summary>标题</summary>
         [DisplayName("标题")]
         [Description("标题")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(2, "InfoID", "标题", null, "int", 10, 0, false)]
+        [DataObjectField(false, false, false, 10)]
+        [BindColumn("InfoID", "标题", "int", 10, 0)]
         public virtual Int32 InfoID
         {
             get { return _InfoID; }

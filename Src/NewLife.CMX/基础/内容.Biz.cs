@@ -4,33 +4,34 @@
  * 时间：2016-02-06 17:22:55
  * 版权：版权所有 (C) 新生命开发团队 2002~2016
 */
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Xml.Serialization;
 using NewLife.Log;
 using NewLife.Web;
-﻿using NewLife.Data;
+using NewLife.Data;
 using XCode;
 using XCode.Configuration;
 using XCode.Membership;
 using XCode.Cache;
 using System.Linq;
+using NewLife.Model;
 
 namespace NewLife.CMX
 {
     /// <summary>内容</summary>
     [ModelCheckMode(ModelCheckModes.CheckTableWhenFirstUse)]
     public class Content : Content<Content> { }
-    
+
     /// <summary>内容</summary>
     public partial class Content<TEntity> : Entity<TEntity> where TEntity : Content<TEntity>, new()
     {
         #region 对象操作
         /// <summary>根据ParentID缓存最后版本</summary>
         static SingleEntityCache<Int32, TEntity> _cache;
-     ﻿
+
         static Content()
         {
             // 用于引发基类的静态构造函数，所有层次的泛型实体类都应该有一个
@@ -41,7 +42,7 @@ namespace NewLife.CMX
             //_cache.AutoSave = false;
             _cache.FindKeyMethod = id =>
             {
-                var list = FindAllByName(__.InfoID, id, _.Version.Desc(), 0, 1);
+                var list = FindAll(_.InfoID == id, _.Version.Desc(), null, 0, 1);
                 return list.Count > 0 ? list[0] : null;
             };
         }
@@ -62,7 +63,7 @@ namespace NewLife.CMX
 
             // 在新插入数据或者修改了指定字段时进行唯一性验证，CheckExist内部抛出参数异常
             //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
-            
+
             //if (isNew && !Dirtys[__.CreateTime]) CreateTime = DateTime.Now;
             //if (!Dirtys[__.CreateIP]) CreateIP = WebHelper.UserHost;
 
@@ -165,7 +166,7 @@ namespace NewLife.CMX
             else
                 return Meta.Cache.Entities.Find(__.ID, id);
         }
-    ﻿
+
         /// <summary>根据主题查找</summary>
         /// <param name="parentid">主题</param>
         /// <returns></returns>

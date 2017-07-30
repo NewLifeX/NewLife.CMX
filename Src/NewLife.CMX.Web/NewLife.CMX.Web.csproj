@@ -587,6 +587,7 @@
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.eot" />
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.ttf" />
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.woff" />
+    <Content Include="index.html" />
     <Content Include="UEditor.ashx" />
     <Content Include="Views\Content\Category.cshtml">
       <Generator>RazorGenerator</Generator>

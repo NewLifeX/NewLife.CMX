@@ -11,6 +11,7 @@ using System.Linq;
 using System.Xml.Serialization;
 using NewLife.Data;
 using NewLife.Log;
+using NewLife.Model;
 using XCode;
 using XCode.Membership;
 

@@ -2,17 +2,32 @@
 # 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
 ################################################################################
 
-/Bin
-/Src/.vs
-/Src/Data
-/Src/Log
-/Src/InitData
-/Src/NewLife.CMX/obj/Debug
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio 2015 cache/options directory
+.vs/
 *.suo
-/Src/UEditor/obj/Debug
-/Src/packages
 *.user
-/Src/NewLife.CMX.Web/Plugins
-/Src/NewLife.CMX.Web/obj/Debug
+
+# MSTest test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# NUNIT
+*.VisualState.xml
+TestResult.xml
+/Src/Data
 /Src/NewLife.CMX.Web/Config
-/Src/NewLife.CMX.Web/bin
+/Src/NewLife.CMX.Web/Content
+/Src/NewLife.CMX.Web/Plugins
+/Src/NewLife.CMX/set.config

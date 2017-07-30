@@ -13,7 +13,6 @@ namespace NewLife.CMX
     [DataObject]
     [Description("文章")]
     [BindIndex("IX_Article_InfoID", false, "InfoID")]
-    [BindRelation("SourceID", false, "Source", "ID")]
     [BindTable("Article", Description = "文章", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class Article : IArticle
     {
@@ -23,7 +22,7 @@ namespace NewLife.CMX
         [DisplayName("编号")]
         [Description("编号")]
         [DataObjectField(true, true, false, 10)]
-        [BindColumn(1, "ID", "编号", null, "int", 10, 0, false)]
+        [BindColumn("ID", "编号", "int", 10, 0)]
         public virtual Int32 ID
         {
             get { return _ID; }
@@ -34,8 +33,8 @@ namespace NewLife.CMX
         /// <summary>标题</summary>
         [DisplayName("标题")]
         [Description("标题")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(2, "InfoID", "标题", null, "int", 10, 0, false)]
+        [DataObjectField(false, false, false, 10)]
+        [BindColumn("InfoID", "标题", "int", 10, 0)]
         public virtual Int32 InfoID
         {
             get { return _InfoID; }
@@ -46,8 +45,8 @@ namespace NewLife.CMX
         /// <summary>来源</summary>
         [DisplayName("来源")]
         [Description("来源")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(3, "SourceID", "来源", null, "int", 10, 0, false)]
+        [DataObjectField(false, false, false, 10)]
+        [BindColumn("SourceID", "来源", "int", 10, 0)]
         public virtual Int32 SourceID
         {
             get { return _SourceID; }
@@ -59,7 +58,7 @@ namespace NewLife.CMX
         [DisplayName("来源名称")]
         [Description("来源名称")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(4, "SourceName", "来源名称", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn("SourceName", "来源名称", "nvarchar(50)", 0, 0)]
         public virtual String SourceName
         {
             get { return _SourceName; }
@@ -71,7 +70,7 @@ namespace NewLife.CMX
         [DisplayName("来源地址")]
         [Description("来源地址")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn(5, "SourceUrl", "来源地址", null, "nvarchar(50)", 0, 0, true)]
+        [BindColumn("SourceUrl", "来源地址", "nvarchar(50)", 0, 0)]
         public virtual String SourceUrl
         {
             get { return _SourceUrl; }
@@ -82,8 +81,8 @@ namespace NewLife.CMX
         /// <summary>置顶</summary>
         [DisplayName("置顶")]
         [Description("置顶")]
-        [DataObjectField(false, false, true, 1)]
-        [BindColumn(6, "Top", "置顶", null, "bit", 0, 0, false)]
+        [DataObjectField(false, false, false, 1)]
+        [BindColumn("Top", "置顶", "bit", 0, 0)]
         public virtual Boolean Top
         {
             get { return _Top; }
@@ -94,8 +93,8 @@ namespace NewLife.CMX
         /// <summary>推荐</summary>
         [DisplayName("推荐")]
         [Description("推荐")]
-        [DataObjectField(false, false, true, 1)]
-        [BindColumn(7, "Recommend", "推荐", null, "bit", 0, 0, false)]
+        [DataObjectField(false, false, false, 1)]
+        [BindColumn("Recommend", "推荐", "bit", 0, 0)]
         public virtual Boolean Recommend
         {
             get { return _Recommend; }
@@ -106,8 +105,8 @@ namespace NewLife.CMX
         /// <summary>热门</summary>
         [DisplayName("热门")]
         [Description("热门")]
-        [DataObjectField(false, false, true, 1)]
-        [BindColumn(8, "Hot", "热门", null, "bit", 0, 0, false)]
+        [DataObjectField(false, false, false, 1)]
+        [BindColumn("Hot", "热门", "bit", 0, 0)]
         public virtual Boolean Hot
         {
             get { return _Hot; }
@@ -118,8 +117,8 @@ namespace NewLife.CMX
         /// <summary>幻灯片</summary>
         [DisplayName("幻灯片")]
         [Description("幻灯片")]
-        [DataObjectField(false, false, true, 1)]
-        [BindColumn(9, "Slide", "幻灯片", null, "bit", 0, 0, false)]
+        [DataObjectField(false, false, false, 1)]
+        [BindColumn("Slide", "幻灯片", "bit", 0, 0)]
         public virtual Boolean Slide
         {
             get { return _Slide; }
@@ -131,7 +130,7 @@ namespace NewLife.CMX
         [DisplayName("封面")]
         [Description("封面")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(10, "Cover", "封面", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn("Cover", "封面", "nvarchar(200)", 0, 0)]
         public virtual String Cover
         {
             get { return _Cover; }

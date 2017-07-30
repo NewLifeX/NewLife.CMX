@@ -22,7 +22,7 @@ namespace NewLife.CMX
         [DisplayName("编号")]
         [Description("编号")]
         [DataObjectField(true, true, false, 10)]
-        [BindColumn(1, "ID", "编号", null, "int", 10, 0, false)]
+        [BindColumn("ID", "编号", "int", 10, 0)]
         public virtual Int32 ID
         {
             get { return _ID; }
@@ -33,8 +33,8 @@ namespace NewLife.CMX
         /// <summary>标题</summary>
         [DisplayName("标题")]
         [Description("标题")]
-        [DataObjectField(false, false, true, 10)]
-        [BindColumn(2, "InfoID", "标题", null, "int", 10, 0, false)]
+        [DataObjectField(false, false, false, 10)]
+        [BindColumn("InfoID", "标题", "int", 10, 0)]
         public virtual Int32 InfoID
         {
             get { return _InfoID; }
@@ -45,8 +45,8 @@ namespace NewLife.CMX
         /// <summary>价格</summary>
         [DisplayName("价格")]
         [Description("价格")]
-        [DataObjectField(false, false, true, 19)]
-        [BindColumn(3, "Price", "价格", null, "money", 0, 0, false)]
+        [DataObjectField(false, false, false, 19)]
+        [BindColumn("Price", "价格", "money", 0, 0)]
         public virtual Decimal Price
         {
             get { return _Price; }
@@ -58,7 +58,7 @@ namespace NewLife.CMX
         [DisplayName("图片路径")]
         [Description("图片路径")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn(4, "PhotoPath", "图片路径", null, "nvarchar(200)", 0, 0, true)]
+        [BindColumn("PhotoPath", "图片路径", "nvarchar(200)", 0, 0)]
         public virtual String PhotoPath
         {
             get { return _PhotoPath; }
@@ -70,7 +70,7 @@ namespace NewLife.CMX
         [DisplayName("规格参数")]
         [Description("规格参数")]
         [DataObjectField(false, false, true, -1)]
-        [BindColumn(5, "Specification", "规格参数", null, "ntext", 0, 0, true)]
+        [BindColumn("Specification", "规格参数", "ntext", 0, 0)]
         public virtual String Specification
         {
             get { return _Specification; }
@@ -82,7 +82,7 @@ namespace NewLife.CMX
         [DisplayName("功能特点")]
         [Description("功能特点")]
         [DataObjectField(false, false, true, -1)]
-        [BindColumn(6, "Feature", "功能特点", null, "ntext", 0, 0, true)]
+        [BindColumn("Feature", "功能特点", "ntext", 0, 0)]
         public virtual String Feature
         {
             get { return _Feature; }
@@ -94,7 +94,7 @@ namespace NewLife.CMX
         [DisplayName("推荐应用")]
         [Description("推荐应用")]
         [DataObjectField(false, false, true, -1)]
-        [BindColumn(7, "App", "推荐应用", null, "ntext", 0, 0, true)]
+        [BindColumn("App", "推荐应用", "ntext", 0, 0)]
         public virtual String App
         {
             get { return _App; }
@@ -106,7 +106,7 @@ namespace NewLife.CMX
         [DisplayName("相关配件")]
         [Description("相关配件")]
         [DataObjectField(false, false, true, -1)]
-        [BindColumn(8, "Fitting", "相关配件", null, "ntext", 0, 0, true)]
+        [BindColumn("Fitting", "相关配件", "ntext", 0, 0)]
         public virtual String Fitting
         {
             get { return _Fitting; }
@@ -118,7 +118,7 @@ namespace NewLife.CMX
         [DisplayName("产品视频")]
         [Description("产品视频")]
         [DataObjectField(false, false, true, -1)]
-        [BindColumn(9, "Video", "产品视频", null, "ntext", 0, 0, true)]
+        [BindColumn("Video", "产品视频", "ntext", 0, 0)]
         public virtual String Video
         {
             get { return _Video; }

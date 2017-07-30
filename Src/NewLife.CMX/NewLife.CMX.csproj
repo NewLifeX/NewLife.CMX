@@ -94,9 +94,14 @@
     <Content Include="CMX数据字典.htm" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="XCoder.log">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>XCoder.tt</DependentUpon>
+    </None>
     <None Include="XCoder.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>XCoder.cs</LastGenOutput>
+      <LastGenOutput>XCoder.log</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
