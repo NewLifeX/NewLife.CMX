@@ -800,7 +800,7 @@
             <summary>导出Excel，可重载修改要输出的结果集</summary>
             <param name="fs"></param>
         </member>
-        <member name="M:NewLife.Cube.EntityController`1.OnExportExcel(System.Collections.Generic.List{XCode.Configuration.FieldItem},System.Collections.Generic.List{`0})">
+        <member name="M:NewLife.Cube.EntityController`1.OnExportExcel(System.Collections.Generic.List{XCode.Configuration.FieldItem},System.Collections.Generic.IEnumerable{`0})">
             <summary>导出Excel，可重载修改要输出的列</summary>
             <param name="fs"></param>
             <param name="list"></param>

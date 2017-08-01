@@ -4324,9 +4324,6 @@
             也因为其简单稳定，大多数需要涉及用户与权限功能的操作，均可以直接使用该接口。
             </remarks>
         </member>
-        <member name="P:XCode.Membership.IManageProvider.UserType">
-            <summary>用户实体类</summary>
-        </member>
         <member name="P:XCode.Membership.IManageProvider.Current">
             <summary>当前登录用户，设为空则注销登录</summary>
         </member>
@@ -4378,12 +4375,6 @@
         <member name="P:XCode.Membership.ManageProvider.Menu">
             <summary>菜单工厂</summary>
         </member>
-        <member name="M:XCode.Membership.ManageProvider.Init">
-            <summary>预热基础数据</summary>
-        </member>
-        <member name="P:XCode.Membership.ManageProvider.UserType">
-            <summary>管理用户类</summary>
-        </member>
         <member name="P:XCode.Membership.ManageProvider.Current">
             <summary>当前用户</summary>
         </member>
@@ -4425,12 +4416,6 @@
             <param name="serviceType"></param>
             <returns></returns>
         </member>
-        <member name="M:XCode.Membership.ManageProvider.GetHttpCache(System.Object,System.Func{System.Object,System.Object})">
-            <summary>获取Http缓存，如果不存在，则调用func去计算</summary>
-            <param name="key"></param>
-            <param name="func"></param>
-            <returns></returns>
-        </member>
         <member name="M:XCode.Membership.ManageProvider.GetFactory``1">
             <summary>根据实体类接口获取实体工厂</summary>
             <typeparam name="TIEntity"></typeparam>
@@ -4439,9 +4424,6 @@
         <member name="T:XCode.Membership.ManageProvider`1">
             <summary>基于User实体类的管理提供者</summary>
             <typeparam name="TUser"></typeparam>
-        </member>
-        <member name="P:XCode.Membership.ManageProvider`1.UserType">
-            <summary>用户类型</summary>
         </member>
         <member name="P:XCode.Membership.ManageProvider`1.Current">
             <summary>当前用户</summary>
@@ -4470,6 +4452,13 @@
             <param name="rolename">角色名称</param>
             <param name="enable">是否启用。某些系统可能需要验证审核</param>
             <returns></returns>
+        </member>
+        <member name="T:XCode.Membership.ManagerProviderHelper">
+            <summary>管理提供者助手</summary>
+        </member>
+        <member name="M:XCode.Membership.ManagerProviderHelper.SetPrincipal(XCode.Membership.IManageProvider)">
+            <summary>设置当前用户</summary>
+            <param name="provider">提供者</param>
         </member>
         <member name="T:XCode.Membership.MenuProvider">
             <summary>菜单提供者。提供菜单相关操作的功能</summary>
@@ -4549,6 +4538,16 @@
         </member>
         <member name="F:XCode.Membership.UserModule.__.UpdateUserID">
             <summary>更新人</summary>
+        </member>
+        <member name="P:XCode.Membership.UserModule.Provider">
+            <summary>当前用户提供者</summary>
+        </member>
+        <member name="M:XCode.Membership.UserModule.#ctor">
+            <summary>实例化</summary>
+        </member>
+        <member name="M:XCode.Membership.UserModule.#ctor(XCode.Membership.IManageProvider)">
+            <summary>实例化</summary>
+            <param name="provider"></param>
         </member>
         <member name="M:XCode.Membership.UserModule.Init(System.Type)">
             <summary>初始化。检查是否匹配</summary>
@@ -5600,9 +5599,6 @@
             <summary>菜单</summary>
             <summary>菜单</summary>
         </member>
-        <member name="M:XCode.Membership.Menu`1.InitData">
-            <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
-        </member>
         <member name="M:XCode.Membership.Menu`1.Valid(System.Boolean)">
             <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
             <param name="isNew">是否新数据</param>
@@ -5670,31 +5666,6 @@
         </member>
         <member name="P:XCode.Membership.Menu`1.Permissions">
             <summary>可选权限子项</summary>
-        </member>
-        <member name="M:XCode.Membership.Menu`1.ScanAndAdd">
-            <summary>扫描配置文件中指定的目录，仅为兼容旧版本，将来不做功能更新</summary>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Membership.Menu`1.ScanAndAdd(System.String,`0,System.Collections.Generic.ICollection{System.String},System.Boolean)">
-            <summary>扫描指定目录并添加文件到顶级菜单之下</summary>
-            <param name="dir">扫描目录</param>
-            <param name="parent">父级</param>
-            <param name="fileFilter">过滤文件名</param>
-            <param name="isFilterChildDir">是否在子目录中过滤</param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Membership.Menu`1.GetPathForScan(System.String)">
-            <summary>获取目录层级</summary>
-            <param name="dir"></param>
-            <returns></returns>
-        </member>
-        <member name="F:XCode.Membership.Menu`1._NotBizDirs">
-            <summary>非业务的目录列表</summary>
-        </member>
-        <member name="M:XCode.Membership.Menu`1.IsBizDir(System.String)">
-            <summary>是否业务目录</summary>
-            <param name="dir"></param>
-            <returns></returns>
         </member>
         <member name="M:XCode.Membership.Menu`1.WriteLog(System.String,System.String)">
             <summary>写日志</summary>
@@ -6092,29 +6063,6 @@
             <param name="name"></param>
             <param name="issys"></param>
             <param name="remark"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Membership.Role`1.RowDataBound(System.Object,System.Web.UI.WebControls.GridViewRowEventArgs,XCode.Membership.IRole,System.Boolean)">
-            <summary>绑定权限项列表时，二次绑定权限子项</summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-            <param name="role"></param>
-            <param name="isfull"></param>
-        </member>
-        <member name="M:XCode.Membership.Role`1.CheckedChanged(System.Object,System.EventArgs,XCode.Membership.IRole,System.String)">
-            <summary>修改单个功能项权限时</summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-            <param name="role"></param>
-            <param name="resname">当前页权限名称</param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.Membership.Role`1.SelectedIndexChanged(System.Object,System.EventArgs,XCode.Membership.IRole,System.String)">
-            <summary>选择改变时</summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-            <param name="role"></param>
-            <param name="resname">当前页权限名称</param>
             <returns></returns>
         </member>
         <member name="P:XCode.Membership.Role`1.ID">
@@ -8699,11 +8647,6 @@
         <member name="M:XCode.EntityFactory.GetTables(System.String)">
             <summary>获取指定连接名下的初始化时检查的所有实体数据表，用于反向工程检查表架构</summary>
             <param name="connName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XCode.EntityFactory.IsCommonEntity(System.Type)">
-            <summary>是否普通实体类</summary>
-            <param name="type">类型</param>
             <returns></returns>
         </member>
         <member name="M:XCode.EntityFactory.EnsureInit(System.Type)">
