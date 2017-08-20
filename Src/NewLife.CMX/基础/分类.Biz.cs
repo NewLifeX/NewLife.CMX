@@ -158,7 +158,7 @@ namespace NewLife.CMX
             if (Meta.Count >= 1000)
                 return Meta.SingleCache[id];
             else
-                return Meta.Cache.Entities.Find(__.ID, id);
+                return Meta.Cache.Entities.FirstOrDefault(e => e.ID == id);
         }
 
         /// <summary>根据名称查找</summary>
@@ -172,7 +172,7 @@ namespace NewLife.CMX
             if (Meta.Count >= 1000)
                 return Find(__.Name, name);
             else // 实体缓存
-                return Meta.Cache.Entities.Find(__.Name, name);
+                return Meta.Cache.Entities.FirstOrDefault(e => e.Name == name);
         }
 
         /// <summary>根据代码查找</summary>
@@ -186,7 +186,7 @@ namespace NewLife.CMX
             if (Meta.Count >= 1000)
                 return Find(__.Code, code);
             else // 实体缓存
-                return Meta.Cache.Entities.Find(__.Code, code);
+                return Meta.Cache.Entities.FirstOrDefault(e => e.Code == code);
         }
         #endregion
 
@@ -282,7 +282,7 @@ namespace NewLife.CMX
         #endregion
     }
 
-    partial interface ICategory
+    partial interface ICategory : IEntityTree
     {
         /// <summary>模型</summary>
         IModel Model { get; }

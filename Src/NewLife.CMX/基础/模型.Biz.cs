@@ -110,7 +110,7 @@ namespace NewLife.CMX
             if (Meta.Count >= 1000)
                 return Find(__.ID, id);
             else
-                return Meta.Cache.Entities.Find(__.ID, id);
+                return Meta.Cache.Entities.FirstOrDefault(e => e.ID == id);
         }
 
         /// <summary>根据名称查找</summary>
@@ -122,8 +122,8 @@ namespace NewLife.CMX
             if (name.IsNullOrEmpty()) return null;
 
             // 实体缓存
-            var entity = Meta.Cache.Entities.Find(__.Name, name);
-            if (entity == null) entity = Meta.Cache.Entities.Find(__.DisplayName, name);
+            var entity = Meta.Cache.Entities.FirstOrDefault(e => e.Name == name);
+            if (entity == null) entity = Meta.Cache.Entities.FirstOrDefault(e => e.DisplayName == name);
             return entity;
         }
         #endregion

@@ -1,7 +1,6 @@
-﻿﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Xml.Serialization;
 using XCode;
 using XCode.Configuration;
 using XCode.DataAccessLayer;
@@ -21,33 +20,21 @@ namespace NewLife.CMX
         /// <summary>编号</summary>
         [DisplayName("编号")]
         [Description("编号")]
-        [DataObjectField(true, true, false, 10)]
-        [BindColumn("ID", "编号", "int", 10, 0)]
-        public virtual Int32 ID
-        {
-            get { return _ID; }
-            set { if (OnPropertyChanging(__.ID, value)) { _ID = value; OnPropertyChanged(__.ID); } }
-        }
+        [DataObjectField(true, true, false, 0)]
+        [BindColumn("ID", "编号", "int")]
+        public Int32 ID { get { return _ID; } set { if (OnPropertyChanging(__.ID, value)) { _ID = value; OnPropertyChanged(__.ID); } } }
 
         private Int32 _InfoID;
         /// <summary>标题</summary>
         [DisplayName("标题")]
         [Description("标题")]
-        [DataObjectField(false, false, false, 10)]
-        [BindColumn("InfoID", "标题", "int", 10, 0)]
-        public virtual Int32 InfoID
-        {
-            get { return _InfoID; }
-            set { if (OnPropertyChanging(__.InfoID, value)) { _InfoID = value; OnPropertyChanged(__.InfoID); } }
-        }
+        [DataObjectField(false, false, false, 0)]
+        [BindColumn("InfoID", "标题", "int")]
+        public Int32 InfoID { get { return _InfoID; } set { if (OnPropertyChanging(__.InfoID, value)) { _InfoID = value; OnPropertyChanged(__.InfoID); } } }
         #endregion
 
         #region 获取/设置 字段值
-        /// <summary>
-        /// 获取/设置 字段值。
-        /// 一个索引，基类使用反射实现。
-        /// 派生实体类可重写该索引，以避免反射带来的性能损耗
-        /// </summary>
+        /// <summary>获取/设置 字段值</summary>
         /// <param name="name">字段名</param>
         /// <returns></returns>
         public override Object this[String name]
@@ -77,24 +64,23 @@ namespace NewLife.CMX
         /// <summary>取得图册字段信息的快捷方式</summary>
         public partial class _
         {
-            ///<summary>编号</summary>
+            /// <summary>编号</summary>
             public static readonly Field ID = FindByName(__.ID);
 
-            ///<summary>标题</summary>
+            /// <summary>标题</summary>
             public static readonly Field InfoID = FindByName(__.InfoID);
 
             static Field FindByName(String name) { return Meta.Table.FindByName(name); }
         }
 
         /// <summary>取得图册字段名称的快捷方式</summary>
-        partial class __
+        public partial class __
         {
-            ///<summary>编号</summary>
+            /// <summary>编号</summary>
             public const String ID = "ID";
 
-            ///<summary>标题</summary>
+            /// <summary>标题</summary>
             public const String InfoID = "InfoID";
-
         }
         #endregion
     }
@@ -111,7 +97,7 @@ namespace NewLife.CMX
         #endregion
 
         #region 获取/设置 字段值
-        /// <summary>获取/设置 字段值。</summary>
+        /// <summary>获取/设置 字段值</summary>
         /// <param name="name">字段名</param>
         /// <returns></returns>
         Object this[String name] { get; set; }

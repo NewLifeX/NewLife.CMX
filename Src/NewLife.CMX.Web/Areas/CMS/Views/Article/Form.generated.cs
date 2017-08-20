@@ -28,7 +28,6 @@ namespace ASP
     using System.Web.Mvc;
     using System.Web.Mvc.Ajax;
     using System.Web.Mvc.Html;
-    
     using System.Web.Routing;
     using System.Web.Security;
     using System.Web.UI;
@@ -179,7 +178,7 @@ WriteLiteral("                    ");
 
             
             #line 25 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-               Write(Html.ForDropDownList(Article._.SourceID, Source.FindAllVisible(), null, false));
+               Write(Html.ForDropDownList(Article._.SourceID, Source.FindAllVisible().Cast<IEntity>().ToList(), null, false));
 
             
             #line default

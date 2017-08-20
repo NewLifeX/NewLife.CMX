@@ -22,7 +22,6 @@ namespace ASP
     using System.Web.Mvc;
     using System.Web.Mvc.Ajax;
     using System.Web.Mvc.Html;
-    
     using System.Web.Routing;
     using System.Web.Security;
     using System.Web.UI;
@@ -202,7 +201,7 @@ WriteLiteral("></i>\r\n");
             #line 28 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
     if (menu != null)
     {
-        foreach (IMenu item in menu.AllParents)
+        foreach (IMenu item in (menu as IEntityTree).AllParents)
         {
             if (item.ID != 0)
             {
@@ -212,14 +211,14 @@ WriteLiteral("></i>\r\n");
             #line hidden
 WriteLiteral("                <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 1078), Tuple.Create("\"", 1129)
+WriteAttribute("href", Tuple.Create(" href=\"", 1095), Tuple.Create("\"", 1146)
             
             #line 34 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
-, Tuple.Create(Tuple.Create("", 1085), Tuple.Create<System.Object, System.Int32>(item.Url!=null? Url.Content(item.Url):"#"
+, Tuple.Create(Tuple.Create("", 1102), Tuple.Create<System.Object, System.Int32>(item.Url!=null? Url.Content(item.Url):"#"
             
             #line default
             #line hidden
-, 1085), false)
+, 1102), false)
 );
 
 WriteLiteral(" class=\"h4\"");
@@ -252,14 +251,14 @@ WriteLiteral("\r\n");
             #line hidden
 WriteLiteral("    <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 1248), Tuple.Create("\"", 1275)
+WriteAttribute("href", Tuple.Create(" href=\"", 1265), Tuple.Create("\"", 1292)
             
             #line 39 "..\..\Areas\CMS\Views\Shared\_Layout_Nav.cshtml"
-, Tuple.Create(Tuple.Create("", 1255), Tuple.Create<System.Object, System.Int32>(Url.Action("Index")
+, Tuple.Create(Tuple.Create("", 1272), Tuple.Create<System.Object, System.Int32>(Url.Action("Index")
             
             #line default
             #line hidden
-, 1255), false)
+, 1272), false)
 );
 
 WriteLiteral(" class=\"h4\"");

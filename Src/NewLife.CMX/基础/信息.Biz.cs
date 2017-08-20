@@ -278,7 +278,7 @@ namespace NewLife.CMX
             if (Meta.Count >= 1000)
                 return Meta.SingleCache[id];
             else
-                return Meta.Cache.Entities.Find(__.ID, id);
+                return Meta.Cache.Entities.FirstOrDefault(e => e.ID == id);
         }
 
         /// <summary>根据代码查找</summary>
@@ -290,7 +290,7 @@ namespace NewLife.CMX
             if (Meta.Count >= 1000)
                 return Find(__.Code, code);
             else // 实体缓存
-                return Meta.Cache.Entities.Find(__.Code, code);
+                return Meta.Cache.Entities.FirstOrDefault(e => e.Code == code);
         }
 
         /// <summary>根据模型查找</summary>
@@ -302,7 +302,7 @@ namespace NewLife.CMX
             if (Meta.Count >= 1000)
                 return FindAll(__.ModelID, modelid);
             else // 实体缓存
-                return Meta.Cache.Entities.FindAll(__.ModelID, modelid);
+                return Meta.Cache.Entities.Where(e => e.ModelID == modelid).ToList();
         }
 
         /// <summary>根据扩展查找</summary>
@@ -314,7 +314,7 @@ namespace NewLife.CMX
             if (Meta.Count >= 1000)
                 return FindAll(__.ExtendID, extendid);
             else // 实体缓存
-                return Meta.Cache.Entities.FindAll(__.ExtendID, extendid);
+                return Meta.Cache.Entities.Where(e => e.ExtendID == extendid).ToList();
         }
 
         /// <summary>根据分类查找</summary>
@@ -326,7 +326,7 @@ namespace NewLife.CMX
             if (Meta.Count >= 1000)
                 return FindAll(__.CategoryID, categoryid);
             else // 实体缓存
-                return Meta.Cache.Entities.FindAll(__.CategoryID, categoryid);
+                return Meta.Cache.Entities.Where(e => e.CategoryID == categoryid).ToList();
         }
 
         /// <summary>根据发布时间查找</summary>
@@ -338,7 +338,7 @@ namespace NewLife.CMX
             if (Meta.Count >= 1000)
                 return FindAll(__.PublishTime, publishtime);
             else // 实体缓存
-                return Meta.Cache.Entities.FindAll(__.PublishTime, publishtime);
+                return Meta.Cache.Entities.Where(e => e.PublishTime == publishtime).ToList();
         }
 
         #endregion

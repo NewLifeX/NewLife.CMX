@@ -7,6 +7,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 using XCode;
@@ -14,7 +15,7 @@ using XCode;
 namespace NewLife.CMX
 {
     /// <summary>文章</summary>
-    public partial class Article : InfoExtend<Article>
+    public partial class Article : InfoExtend<Article>, IInfoExtend
     {
         #region 对象操作
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
@@ -42,17 +43,6 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展查询
-        /// <summary>根据标题查找</summary>
-        /// <param name="infoid">标题</param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static IList<Article> FindAllByInfoID(Int32 infoid)
-        {
-            if (Meta.Count >= 1000)
-                return FindAll(__.InfoID, infoid);
-            else // 实体缓存
-                return Meta.Cache.Entities.FindAll(__.InfoID, infoid);
-        }
         #endregion
 
         #region 高级查询

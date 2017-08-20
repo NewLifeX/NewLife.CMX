@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 using NewLife.Common;
@@ -155,7 +156,7 @@ namespace NewLife.CMX
         {
             if (id <= 0) return null;
 
-            return Meta.Cache.Entities.Find(__.ID, id);
+            return Meta.Cache.Entities.FirstOrDefault(e => e.ID == id);
         }
 
         /// <summary>根据名称查找导航</summary>
@@ -165,7 +166,7 @@ namespace NewLife.CMX
         {
             if (name.IsNullOrEmpty()) return null;
 
-            return Meta.Cache.Entities.Find(__.Name, name);
+            return Meta.Cache.Entities.FirstOrDefault(e => e.Name == name);
         }
         #endregion
 

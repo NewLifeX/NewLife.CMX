@@ -1,7 +1,6 @@
-﻿﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Xml.Serialization;
 using XCode;
 using XCode.Configuration;
 using XCode.DataAccessLayer;
@@ -23,117 +22,77 @@ namespace NewLife.CMX
         /// <summary>编号</summary>
         [DisplayName("编号")]
         [Description("编号")]
-        [DataObjectField(true, true, false, 10)]
-        [BindColumn("ID", "编号", "", 10, 0)]
-        public virtual Int32 ID
-        {
-            get { return _ID; }
-            set { if (OnPropertyChanging(__.ID, value)) { _ID = value; OnPropertyChanged(__.ID); } }
-        }
+        [DataObjectField(true, true, false, 0)]
+        [BindColumn("ID", "编号", "")]
+        public Int32 ID { get { return _ID; } set { if (OnPropertyChanging(__.ID, value)) { _ID = value; OnPropertyChanged(__.ID); } } }
 
         private Int32 _ModelID;
         /// <summary>模型</summary>
         [DisplayName("模型")]
         [Description("模型")]
-        [DataObjectField(false, false, false, 10)]
-        [BindColumn("ModelID", "模型", "", 10, 0)]
-        public virtual Int32 ModelID
-        {
-            get { return _ModelID; }
-            set { if (OnPropertyChanging(__.ModelID, value)) { _ModelID = value; OnPropertyChanged(__.ModelID); } }
-        }
+        [DataObjectField(false, false, false, 0)]
+        [BindColumn("ModelID", "模型", "")]
+        public Int32 ModelID { get { return _ModelID; } set { if (OnPropertyChanging(__.ModelID, value)) { _ModelID = value; OnPropertyChanged(__.ModelID); } } }
 
         private Int32 _InfoID;
         /// <summary>主题</summary>
         [DisplayName("主题")]
         [Description("主题")]
-        [DataObjectField(false, false, false, 10)]
-        [BindColumn("InfoID", "主题", "", 10, 0)]
-        public virtual Int32 InfoID
-        {
-            get { return _InfoID; }
-            set { if (OnPropertyChanging(__.InfoID, value)) { _InfoID = value; OnPropertyChanged(__.InfoID); } }
-        }
+        [DataObjectField(false, false, false, 0)]
+        [BindColumn("InfoID", "主题", "")]
+        public Int32 InfoID { get { return _InfoID; } set { if (OnPropertyChanging(__.InfoID, value)) { _InfoID = value; OnPropertyChanged(__.InfoID); } } }
 
         private String _Title;
         /// <summary>标题</summary>
         [DisplayName("标题")]
         [Description("标题")]
         [DataObjectField(false, false, false, 200)]
-        [BindColumn("Title", "标题", "", 0, 0, Master=true)]
-        public virtual String Title
-        {
-            get { return _Title; }
-            set { if (OnPropertyChanging(__.Title, value)) { _Title = value; OnPropertyChanged(__.Title); } }
-        }
+        [BindColumn("Title", "标题", "", Master = true)]
+        public String Title { get { return _Title; } set { if (OnPropertyChanging(__.Title, value)) { _Title = value; OnPropertyChanged(__.Title); } } }
 
         private Int32 _Version;
         /// <summary>版本</summary>
         [DisplayName("版本")]
         [Description("版本")]
-        [DataObjectField(false, false, false, 10)]
-        [BindColumn("Version", "版本", "", 10, 0)]
-        public virtual Int32 Version
-        {
-            get { return _Version; }
-            set { if (OnPropertyChanging(__.Version, value)) { _Version = value; OnPropertyChanged(__.Version); } }
-        }
+        [DataObjectField(false, false, false, 0)]
+        [BindColumn("Version", "版本", "")]
+        public Int32 Version { get { return _Version; } set { if (OnPropertyChanging(__.Version, value)) { _Version = value; OnPropertyChanged(__.Version); } } }
 
         private Int32 _CreateUserID;
         /// <summary>创建人</summary>
         [DisplayName("创建人")]
         [Description("创建人")]
-        [DataObjectField(false, false, false, 10)]
-        [BindColumn("CreateUserID", "创建人", "", 10, 0)]
-        public virtual Int32 CreateUserID
-        {
-            get { return _CreateUserID; }
-            set { if (OnPropertyChanging(__.CreateUserID, value)) { _CreateUserID = value; OnPropertyChanged(__.CreateUserID); } }
-        }
+        [DataObjectField(false, false, false, 0)]
+        [BindColumn("CreateUserID", "创建人", "")]
+        public Int32 CreateUserID { get { return _CreateUserID; } set { if (OnPropertyChanging(__.CreateUserID, value)) { _CreateUserID = value; OnPropertyChanged(__.CreateUserID); } } }
 
         private DateTime _CreateTime;
         /// <summary>创建时间</summary>
         [DisplayName("创建时间")]
         [Description("创建时间")]
-        [DataObjectField(false, false, true, 3)]
-        [BindColumn("CreateTime", "创建时间", "", 3, 0)]
-        public virtual DateTime CreateTime
-        {
-            get { return _CreateTime; }
-            set { if (OnPropertyChanging(__.CreateTime, value)) { _CreateTime = value; OnPropertyChanged(__.CreateTime); } }
-        }
+        [DataObjectField(false, false, true, 0)]
+        [BindColumn("CreateTime", "创建时间", "")]
+        public DateTime CreateTime { get { return _CreateTime; } set { if (OnPropertyChanging(__.CreateTime, value)) { _CreateTime = value; OnPropertyChanged(__.CreateTime); } } }
 
         private String _CreateIP;
         /// <summary>创建地址</summary>
         [DisplayName("创建地址")]
         [Description("创建地址")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn("CreateIP", "创建地址", "", 0, 0)]
-        public virtual String CreateIP
-        {
-            get { return _CreateIP; }
-            set { if (OnPropertyChanging(__.CreateIP, value)) { _CreateIP = value; OnPropertyChanged(__.CreateIP); } }
-        }
+        [BindColumn("CreateIP", "创建地址", "")]
+        public String CreateIP { get { return _CreateIP; } set { if (OnPropertyChanging(__.CreateIP, value)) { _CreateIP = value; OnPropertyChanged(__.CreateIP); } } }
 
         private String _Html;
         /// <summary>内容</summary>
         [DisplayName("内容")]
         [Description("内容")]
         [DataObjectField(false, false, true, -1)]
-        [BindColumn("Html", "内容", "", 0, 0)]
-        public virtual String Html
-        {
-            get { return _Html; }
-            set { if (OnPropertyChanging(__.Html, value)) { _Html = value; OnPropertyChanged(__.Html); } }
-        }
+        [BindColumn("Html", "内容", "")]
+        public String Html { get { return _Html; } set { if (OnPropertyChanging(__.Html, value)) { _Html = value; OnPropertyChanged(__.Html); } } }
         #endregion
 
         #region 获取/设置 字段值
-        /// <summary>
-        /// 获取/设置 字段值。
-        /// 一个索引，基类使用反射实现。
-        /// 派生实体类可重写该索引，以避免反射带来的性能损耗
-        /// </summary>
+        /// <summary>获取/设置 字段值</summary>
         /// <param name="name">字段名</param>
         /// <returns></returns>
         public override Object this[String name]
@@ -177,66 +136,65 @@ namespace NewLife.CMX
         /// <summary>取得内容字段信息的快捷方式</summary>
         public partial class _
         {
-            ///<summary>编号</summary>
+            /// <summary>编号</summary>
             public static readonly Field ID = FindByName(__.ID);
 
-            ///<summary>模型</summary>
+            /// <summary>模型</summary>
             public static readonly Field ModelID = FindByName(__.ModelID);
 
-            ///<summary>主题</summary>
+            /// <summary>主题</summary>
             public static readonly Field InfoID = FindByName(__.InfoID);
 
-            ///<summary>标题</summary>
+            /// <summary>标题</summary>
             public static readonly Field Title = FindByName(__.Title);
 
-            ///<summary>版本</summary>
+            /// <summary>版本</summary>
             public static readonly Field Version = FindByName(__.Version);
 
-            ///<summary>创建人</summary>
+            /// <summary>创建人</summary>
             public static readonly Field CreateUserID = FindByName(__.CreateUserID);
 
-            ///<summary>创建时间</summary>
+            /// <summary>创建时间</summary>
             public static readonly Field CreateTime = FindByName(__.CreateTime);
 
-            ///<summary>创建地址</summary>
+            /// <summary>创建地址</summary>
             public static readonly Field CreateIP = FindByName(__.CreateIP);
 
-            ///<summary>内容</summary>
+            /// <summary>内容</summary>
             public static readonly Field Html = FindByName(__.Html);
 
             static Field FindByName(String name) { return Meta.Table.FindByName(name); }
         }
 
         /// <summary>取得内容字段名称的快捷方式</summary>
-        partial class __
+        public partial class __
         {
-            ///<summary>编号</summary>
+            /// <summary>编号</summary>
             public const String ID = "ID";
 
-            ///<summary>模型</summary>
+            /// <summary>模型</summary>
             public const String ModelID = "ModelID";
 
-            ///<summary>主题</summary>
+            /// <summary>主题</summary>
             public const String InfoID = "InfoID";
 
-            ///<summary>标题</summary>
+            /// <summary>标题</summary>
             public const String Title = "Title";
 
-            ///<summary>版本</summary>
+            /// <summary>版本</summary>
             public const String Version = "Version";
 
-            ///<summary>创建人</summary>
+            /// <summary>创建人</summary>
             public const String CreateUserID = "CreateUserID";
 
-            ///<summary>创建时间</summary>
+            /// <summary>创建时间</summary>
             public const String CreateTime = "CreateTime";
 
-            ///<summary>创建地址</summary>
+            /// <summary>创建地址</summary>
             public const String CreateIP = "CreateIP";
 
-            ///<summary>内容</summary>
+            /// <summary>内容</summary>
             public const String Html = "Html";
-
         }
         #endregion
     }
@@ -274,7 +232,7 @@ namespace NewLife.CMX
         #endregion
 
         #region 获取/设置 字段值
-        /// <summary>获取/设置 字段值。</summary>
+        /// <summary>获取/设置 字段值</summary>
         /// <param name="name">字段名</param>
         /// <returns></returns>
         Object this[String name] { get; set; }

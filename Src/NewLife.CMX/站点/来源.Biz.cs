@@ -101,7 +101,7 @@ namespace NewLife.CMX
             if (Meta.Count >= 1000)
                 return Meta.SingleCache[id];
             else
-                return Meta.Cache.Entities.Find(__.ID, id);
+                return Meta.Cache.Entities.FirstOrDefault(e => e.ID == id);
         }
         #endregion
 
