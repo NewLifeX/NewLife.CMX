@@ -108,10 +108,10 @@ namespace NewLife.CMX
         #region 高级查询
         /// <summary>查找所有可见</summary>
         /// <returns></returns>
-        public static EntityList<Source> FindAllVisible()
+        public static IList<Source> FindAllVisible()
         {
             var data = Meta.Cache.Entities.ToList().Where(e => e.Enable).OrderBy(e => e.Sort);
-            return new EntityList<Source>(data);
+            return new List<Source>(data);
         }
 
         /// <summary>查询满足条件的记录集，分页、排序</summary>
@@ -121,7 +121,7 @@ namespace NewLife.CMX
         /// <param name="key">关键字</param>
         /// <param name="param">分页排序参数，同时返回满足条件的总记录数</param>
         /// <returns>实体集</returns>
-        public static EntityList<Source> Search(Int32 userid, DateTime start, DateTime end, String key, PageParameter param)
+        public static IList<Source> Search(Int32 userid, DateTime start, DateTime end, String key, PageParameter param)
         {
             // WhereExpression重载&和|运算符，作为And和Or的替代
             // SearchWhereByKeys系列方法用于构建针对字符串字段的模糊搜索，第二个参数可指定要搜索的字段

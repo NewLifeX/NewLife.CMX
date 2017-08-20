@@ -60,9 +60,9 @@ namespace NewLife.CMX
             {
                 if (XTrace.Debug) XTrace.WriteLine("使用数据初始化文件【{0}】初始化{1}[{2}]数据……", fn, typeof(Nav).Name, Meta.Table.DataTable.DisplayName);
 
-                //var list = EntityList<Nav>.FromJson(File.ReadAllText(fn));
+                //var list = IList<Nav>.FromJson(File.ReadAllText(fn));
                 var list = File.ReadAllText(fn).ToJsonEntity<List<Nav>>();
-                //var list = new EntityList<Nav>();
+                //var list = new IList<Nav>();
                 //list.FromXml(File.ReadAllText(fn));
                 var queue = new Queue<Nav>(list);
                 while (queue.Count > 0)
@@ -97,7 +97,7 @@ namespace NewLife.CMX
                 // 开发模式下输出初始化配置
                 if (SysConfig.Current.Develop)
                 {
-                    var list = new EntityList<Nav>
+                    var list = new List<Nav>
                     {
                         header,
                         footer
@@ -110,7 +110,7 @@ namespace NewLife.CMX
         }
 
         /// <summary>子孙节点</summary>
-        public EntityList<Nav> Childrens { get; set; }
+        public IList<Nav> Childrens { get; set; }
         #endregion
 
         #region 扩展属性﻿

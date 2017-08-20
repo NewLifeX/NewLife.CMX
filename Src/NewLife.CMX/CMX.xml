@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Tables Version="9.5.6420.13918">
-  <Table Name="Model" Description="模型" DbType="SqlServer" 实体分类="基础" RenderGenEntity="true">
+<Tables Version="9.6.6441.26197" Output="" NameSpace="NewLife.CMX" ConnName="CMX">
+  <Table Name="Model" Description="模型" DbType="SqlServer" Output="基础" RenderGenEntity="true">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Nullable="False" Description="名称" />
@@ -22,7 +22,7 @@
       <Index Columns="Name" Unique="True" />
     </Indexes>
   </Table>
-  <Table Name="Category" Description="分类" BaseType="EntityTree" 实体分类="基础" RenderGenEntity="true">
+  <Table Name="Category" Description="分类" BaseType="EntityTree" Output="基础" RenderGenEntity="true">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Master="True" Nullable="False" Description="名称" />
@@ -42,7 +42,7 @@
       <Index Columns="ParentID" />
     </Indexes>
   </Table>
-  <Table Name="Info" Description="信息" 实体分类="基础" RenderGenEntity="true">
+  <Table Name="Info" Description="信息" Output="基础" RenderGenEntity="true">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="ModelID" DataType="Int32" Description="模型" />
@@ -74,7 +74,7 @@
       <Index Columns="PublishTime" />
     </Indexes>
   </Table>
-  <Table Name="Content" Description="内容" 实体分类="基础" RenderGenEntity="true">
+  <Table Name="Content" Description="内容" Output="基础" RenderGenEntity="true">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="ModelID" DataType="Int32" Description="模型" />
@@ -92,7 +92,7 @@
       <Index Columns="InfoID,Version" Unique="True" />
     </Indexes>
   </Table>
-  <Table Name="Statistics" Description="统计" 实体分类="基础" RenderGenEntity="true">
+  <Table Name="Statistics" Description="统计" Output="基础" RenderGenEntity="true">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Total" DataType="Int32" Description="总数" />
@@ -109,7 +109,7 @@
       <Column Name="Remark" DataType="String" Length="200" Description="备注" />
     </Columns>
   </Table>
-  <Table Name="Text" Description="文本" DbType="SqlServer" 实体分类="扩展">
+  <Table Name="Text" Description="文本" DbType="SqlServer" Output="扩展">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="InfoID" DataType="Int32" Description="标题" />
@@ -118,7 +118,7 @@
       <Index Columns="InfoID" />
     </Indexes>
   </Table>
-  <Table Name="Article" Description="文章" DbType="SqlServer" 实体分类="扩展">
+  <Table Name="Article" Description="文章" DbType="SqlServer" Output="扩展">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="InfoID" DataType="Int32" Description="标题" />
@@ -135,7 +135,7 @@
       <Index Columns="InfoID" />
     </Indexes>
   </Table>
-  <Table Name="Product" Description="产品" DbType="SqlServer" 实体分类="扩展">
+  <Table Name="Product" Description="产品" DbType="SqlServer" Output="扩展">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="InfoID" DataType="Int32" Description="标题" />
@@ -151,7 +151,7 @@
       <Index Columns="InfoID" />
     </Indexes>
   </Table>
-  <Table Name="Photo" Description="图册" DbType="SqlServer" 实体分类="扩展">
+  <Table Name="Photo" Description="图册" DbType="SqlServer" Output="扩展">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="InfoID" DataType="Int32" Description="标题" />
@@ -160,7 +160,7 @@
       <Index Columns="InfoID" />
     </Indexes>
   </Table>
-  <Table Name="Video" Description="视频" DbType="SqlServer" 实体分类="扩展">
+  <Table Name="Video" Description="视频" DbType="SqlServer" Output="扩展">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="InfoID" DataType="Int32" Description="标题" />
@@ -169,7 +169,7 @@
       <Index Columns="InfoID" />
     </Indexes>
   </Table>
-  <Table Name="Down" Description="下载" DbType="SqlServer" 实体分类="扩展">
+  <Table Name="Down" Description="下载" DbType="SqlServer" Output="扩展">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="InfoID" DataType="Int32" Description="标题" />
@@ -178,7 +178,7 @@
       <Index Columns="InfoID" />
     </Indexes>
   </Table>
-  <Table Name="Nav" Description="导航" DbType="SqlServer" BaseType="EntityTree" 实体分类="站点">
+  <Table Name="Nav" Description="导航" DbType="SqlServer" BaseType="EntityTree" Output="站点">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Master="True" Description="名称" />
@@ -200,7 +200,7 @@
       <Index Columns="ModelID" />
     </Indexes>
   </Table>
-  <Table Name="Source" Description="来源" DbType="SqlServer" 实体分类="站点">
+  <Table Name="Source" Description="来源" DbType="SqlServer" Output="站点">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Master="True" Description="名称" />

@@ -5,7 +5,9 @@
  * 版权：版权所有 (C) 新生命开发团队 2002~2016
 */
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using System.Web.Script.Serialization;
 using System.Xml.Serialization;
@@ -295,7 +297,7 @@ namespace NewLife.CMX
         /// <param name="modelid">模型</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<TEntity> FindAllByModelID(Int32 modelid)
+        public static IList<TEntity> FindAllByModelID(Int32 modelid)
         {
             if (Meta.Count >= 1000)
                 return FindAll(__.ModelID, modelid);
@@ -307,7 +309,7 @@ namespace NewLife.CMX
         /// <param name="extendid">扩展</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<TEntity> FindAllByExtendID(Int32 extendid)
+        public static IList<TEntity> FindAllByExtendID(Int32 extendid)
         {
             if (Meta.Count >= 1000)
                 return FindAll(__.ExtendID, extendid);
@@ -319,7 +321,7 @@ namespace NewLife.CMX
         /// <param name="categoryid">分类</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<TEntity> FindAllByCategoryID(Int32 categoryid)
+        public static IList<TEntity> FindAllByCategoryID(Int32 categoryid)
         {
             if (Meta.Count >= 1000)
                 return FindAll(__.CategoryID, categoryid);
@@ -331,7 +333,7 @@ namespace NewLife.CMX
         /// <param name="publishtime">发布时间</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<TEntity> FindAllByPublishTime(DateTime publishtime)
+        public static IList<TEntity> FindAllByPublishTime(DateTime publishtime)
         {
             if (Meta.Count >= 1000)
                 return FindAll(__.PublishTime, publishtime);
@@ -348,14 +350,14 @@ namespace NewLife.CMX
         /// <param name="key"></param>
         /// <param name="param"></param>
         /// <returns></returns>
-        public static EntityList<TEntity> Search(Int32 modelid, Int32 categoryid, String key, PageParameter param)
+        public static IList<TEntity> Search(Int32 modelid, Int32 categoryid, String key, PageParameter param)
         {
             var exp = new WhereExpression();
 
             if (categoryid > 0)
             {
                 var cat = NewLife.CMX.Category.FindByID(categoryid);
-                if (cat != null) exp &= _.CategoryID.In(cat.MyAllChildKeys);
+                if (cat != null) exp &= _.CategoryID.In(cat.MyAllChilds.Select(e => e.ID));
             }
             else if (modelid > 0)
                 exp &= _.ModelID == modelid;

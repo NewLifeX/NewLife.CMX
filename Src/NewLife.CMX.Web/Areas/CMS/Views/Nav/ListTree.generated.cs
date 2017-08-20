@@ -56,7 +56,7 @@ namespace ASP
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorGenerator", "2.0.0.0")]
     [System.Web.WebPages.PageVirtualPathAttribute("~/Areas/CMS/Views/Nav/ListTree.cshtml")]
-    public partial class _Areas_CMS_Views_Nav_ListTree_cshtml : System.Web.Mvc.WebViewPage<EntityList<Nav>>
+    public partial class _Areas_CMS_Views_Nav_ListTree_cshtml : System.Web.Mvc.WebViewPage<IList<Nav>>
     {
         public _Areas_CMS_Views_Nav_ListTree_cshtml()
         {

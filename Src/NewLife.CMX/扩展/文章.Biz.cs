@@ -5,6 +5,7 @@
  * 版权：版权所有 (C) 新生命开发团队 2002~2016
 */
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Web.Script.Serialization;
 using System.Xml.Serialization;
@@ -45,7 +46,7 @@ namespace NewLife.CMX
         /// <param name="infoid">标题</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<Article> FindAllByInfoID(Int32 infoid)
+        public static IList<Article> FindAllByInfoID(Int32 infoid)
         {
             if (Meta.Count >= 1000)
                 return FindAll(__.InfoID, infoid);

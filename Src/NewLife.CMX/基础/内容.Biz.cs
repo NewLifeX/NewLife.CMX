@@ -5,6 +5,7 @@
  * 版权：版权所有 (C) 新生命开发团队 2002~2016
 */
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Web.Script.Serialization;
@@ -101,19 +102,19 @@ namespace NewLife.CMX
             if (Meta.Count >= 1000)
                 return Meta.SingleCache[id];
             else
-                return Meta.Cache.Entities.Find(__.ID, id);
+                return Meta.Cache.Entities.FirstOrDefault(e => e.ID == id);
         }
 
         /// <summary>根据主题查找</summary>
         /// <param name="parentid">主题</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<TEntity> FindAllByParentID(Int32 parentid)
+        public static IList<TEntity> FindAllByParentID(Int32 parentid)
         {
             if (Meta.Count >= 1000)
                 return FindAll(__.InfoID, parentid);
             else // 实体缓存
-                return Meta.Cache.Entities.FindAll(__.InfoID, parentid);
+                return Meta.Cache.Entities.Where(e => e.InfoID == parentid).ToList();
         }
 
         /// <summary>根据主题、版本查找</summary>
@@ -126,7 +127,7 @@ namespace NewLife.CMX
             if (Meta.Count >= 1000)
                 return Find(new String[] { __.InfoID, __.Version }, new Object[] { parentid, version });
             else // 实体缓存
-                return Meta.Cache.Entities.Find(e => e.InfoID == parentid && e.Version == version);
+                return Meta.Cache.Entities.FirstOrDefault(e => e.InfoID == parentid && e.Version == version);
         }
 
         /// <summary>根据ParentID查询最后版本</summary>
@@ -138,7 +139,7 @@ namespace NewLife.CMX
             if (Meta.Count >= 1000)
                 return _cache[parentid];
             else
-                return Meta.Cache.Entities.FindAll(__.InfoID, parentid).Sort(__.Version, true).ToList().FirstOrDefault();
+                return Meta.Cache.Entities.Where(e => e.InfoID == parentid).OrderByDescending(e => e.Version).FirstOrDefault();
         }
         #endregion
 
