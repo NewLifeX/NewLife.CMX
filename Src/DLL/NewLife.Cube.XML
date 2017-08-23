@@ -695,6 +695,10 @@
         <member name="M:NewLife.Cube.EntityController`1.#ctor">
             <summary>构造函数</summary>
         </member>
+        <member name="M:NewLife.Cube.EntityController`1.OnActionExecuting(System.Web.Mvc.ActionExecutingContext)">
+            <summary>动作执行前</summary>
+            <param name="filterContext"></param>
+        </member>
         <member name="M:NewLife.Cube.EntityController`1.OnActionExecuted(System.Web.Mvc.ActionExecutedContext)">
             <summary>执行后</summary>
             <param name="filterContext"></param>
@@ -852,10 +856,6 @@
             <summary>自动从实体类拿到显示名</summary>
             <param name="menu"></param>
             <returns></returns>
-        </member>
-        <member name="M:NewLife.Cube.EntityController`1.OnActionExecuting(System.Web.Mvc.ActionExecutingContext)">
-            <summary>动作执行前</summary>
-            <param name="filterContext"></param>
         </member>
         <member name="T:NewLife.Cube.ConfigController`1">
             <summary>设置控制器</summary>
@@ -1282,6 +1282,12 @@
         </member>
         <member name="P:NewLife.Cube.Setting.WebBehavior">
             <summary>用户行为。记录用户所有操作</summary>
+        </member>
+        <member name="P:NewLife.Cube.Setting.FormGroupClass">
+            <summary>表单组样式。大中小屏幕分别3/2/1列</summary>
+        </member>
+        <member name="P:NewLife.Cube.Setting.BootstrapSelect">
+            <summary>下拉选择框。使用Bootstrap，美观，但有呈现方面的性能损耗</summary>
         </member>
         <member name="M:NewLife.Cube.Setting.#ctor">
             <summary>实例化</summary>
