@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Tables Version="9.6.6441.26632" Output="" NameSpace="NewLife.CMX" ConnName="CMX">
   <Table Name="Model" Description="模型" DbType="SqlServer" Output="基础" RenderGenEntity="true">
     <Columns>
