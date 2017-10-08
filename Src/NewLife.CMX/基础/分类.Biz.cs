@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 using NewLife.Collections;
@@ -67,68 +66,68 @@ namespace NewLife.CMX
             }
         }
 
-        ///// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //protected override void InitData()
-        //{
-        //    base.InitData();
+        /// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void InitData()
+        {
+            base.InitData();
 
-        //    // InitData一般用于当数据表没有数据时添加一些默认数据，该实体类的任何第一次数据库操作都会触发该方法，默认异步调用
-        //    // Meta.Count是快速取得表记录数
-        //    if (Meta.Count > 0) return;
+            // InitData一般用于当数据表没有数据时添加一些默认数据，该实体类的任何第一次数据库操作都会触发该方法，默认异步调用
+            // Meta.Count是快速取得表记录数
+            if (Meta.Count > 0) return;
 
-        //    // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
-        //    if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
-        //    var fn = "../InitData/{0}.json".F(Meta.TableName).GetFullPath();
-        //    if (File.Exists(fn))
-        //    {
-        //        if (XTrace.Debug) XTrace.WriteLine("使用数据初始化文件【{0}】初始化{1}[{2}]数据……", fn, typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
+            // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
+            if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
+            //var fn = "../InitData/{0}.json".F(Meta.TableName).GetFullPath();
+            //if (File.Exists(fn))
+            //{
+            //    if (XTrace.Debug) XTrace.WriteLine("使用数据初始化文件【{0}】初始化{1}[{2}]数据……", fn, typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
 
-        //        var list = IList<TEntity>.FromJson(File.ReadAllText(fn, Encoding.UTF8));
-        //        var queue = new Queue<TEntity>(list);
-        //        while (queue.Count > 0)
-        //        {
-        //            var item = queue.Dequeue();
-        //            item.Save();
-        //            if (item.Childrens != null && item.Childrens.Count > 0)
-        //            {
-        //                foreach (var child in item.Childrens)
-        //                {
-        //                    child.ParentID = item.ID;
-        //                    queue.Enqueue(child);
-        //                }
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        // 遍历模型
-        //        ModelX.Meta.Session.WaitForInitData();
+            //    var list = IList<TEntity>.FromJson(File.ReadAllText(fn, Encoding.UTF8));
+            //    var queue = new Queue<TEntity>(list);
+            //    while (queue.Count > 0)
+            //    {
+            //        var item = queue.Dequeue();
+            //        item.Save();
+            //        if (item.Childrens != null && item.Childrens.Count > 0)
+            //        {
+            //            foreach (var child in item.Childrens)
+            //            {
+            //                child.ParentID = item.ID;
+            //                queue.Enqueue(child);
+            //            }
+            //        }
+            //    }
+            //}
+            //else
+            {
+                // 遍历模型
+                ModelX.Meta.Session.WaitForInitData();
 
-        //        var sort = 100;
-        //        foreach (var item in ModelX.FindAllWithCache())
-        //        {
-        //            var entity = new TEntity
-        //            {
-        //                //Name = "默认" + (item.DisplayName ?? item.Name),
-        //                Name = (item.DisplayName ?? item.Name),
-        //                //Code = item.Name,
-        //                ModelID = item.ID
-        //            };
-        //            entity.Sort = sort--;
-        //            entity.Insert();
+                var sort = 100;
+                foreach (var item in ModelX.FindAllWithCache())
+                {
+                    var entity = new TEntity
+                    {
+                        //Name = "默认" + (item.DisplayName ?? item.Name),
+                        Name = (item.DisplayName ?? item.Name),
+                        //Code = item.Name,
+                        ModelID = item.ID
+                    };
+                    entity.Sort = sort--;
+                    entity.Insert();
 
-        //            entity = new TEntity
-        //            {
-        //                ParentID = entity.ID,
-        //                Name = "二级" + item.DisplayName ?? item.Name,
-        //                ModelID = item.ID
-        //            };
-        //            entity.Insert();
-        //        }
-        //    }
-        //    if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
-        //}
+                    entity = new TEntity
+                    {
+                        ParentID = entity.ID,
+                        Name = "二级" + item.DisplayName ?? item.Name,
+                        ModelID = item.ID
+                    };
+                    entity.Insert();
+                }
+            }
+            if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
+        }
         #endregion
 
         #region 扩展属性

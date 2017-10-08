@@ -57,32 +57,32 @@ namespace NewLife.CMX
 
             var fn = "../InitData/{0}.json".F(Meta.TableName).GetFullPath();
 
-            if (File.Exists(fn))
-            {
-                if (XTrace.Debug) XTrace.WriteLine("使用数据初始化文件【{0}】初始化{1}[{2}]数据……", fn, typeof(Nav).Name, Meta.Table.DataTable.DisplayName);
+            //if (File.Exists(fn))
+            //{
+            //    if (XTrace.Debug) XTrace.WriteLine("使用数据初始化文件【{0}】初始化{1}[{2}]数据……", fn, typeof(Nav).Name, Meta.Table.DataTable.DisplayName);
 
-                //var list = IList<Nav>.FromJson(File.ReadAllText(fn));
-                var list = File.ReadAllText(fn).ToJsonEntity<List<Nav>>();
-                //var list = new IList<Nav>();
-                //list.FromXml(File.ReadAllText(fn));
-                var queue = new Queue<Nav>(list);
-                while (queue.Count > 0)
-                {
-                    var item = queue.Dequeue();
-                    item.Insert();
+            //    //var list = IList<Nav>.FromJson(File.ReadAllText(fn));
+            //    var list = File.ReadAllText(fn).ToJsonEntity<List<Nav>>();
+            //    //var list = new IList<Nav>();
+            //    //list.FromXml(File.ReadAllText(fn));
+            //    var queue = new Queue<Nav>(list);
+            //    while (queue.Count > 0)
+            //    {
+            //        var item = queue.Dequeue();
+            //        item.Insert();
 
-                    var childs = item.Childrens;
-                    if (childs != null && childs.Count > 0)
-                    {
-                        foreach (var child in childs)
-                        {
-                            child.ParentID = item.ID;
-                            queue.Enqueue(child);
-                        }
-                    }
-                }
-            }
-            else
+            //        var childs = item.Childrens;
+            //        if (childs != null && childs.Count > 0)
+            //        {
+            //            foreach (var child in childs)
+            //            {
+            //                child.ParentID = item.ID;
+            //                queue.Enqueue(child);
+            //            }
+            //        }
+            //    }
+            //}
+            //else
             {
                 var header = Root.Add("头部");
                 header.Add("首页", "/");

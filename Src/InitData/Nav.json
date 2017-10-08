@@ -1,53 +1,10 @@
 [
   {
     "Childs":  [
-      {
-        "Childs":  [
-          
-        ],
-        "Childrens":  null,
-        "Category":  null,
-        "ID":  3,
-        "Name":  "关于我们",
-        "ParentID":  1,
-        "CategoryID":  0,
-        "Url":  "/About",
-        "NewWindow":  false,
-        "Sort":  2,
-        "Enable":  true,
-        "CreateUserID":  0,
-        "CreateTime":  "2017-05-10 20:33:12",
-        "CreateIP":  null,
-        "UpdateUserID":  0,
-        "UpdateTime":  "2017-05-10 20:33:12",
-        "UpdateIP":  null,
-        "Remark":  null
-      },
-      {
-        "Childs":  [
-          
-        ],
-        "Childrens":  null,
-        "Category":  null,
-        "ID":  2,
-        "Name":  "首页",
-        "ParentID":  1,
-        "CategoryID":  0,
-        "Url":  "/",
-        "NewWindow":  false,
-        "Sort":  1,
-        "Enable":  true,
-        "CreateUserID":  0,
-        "CreateTime":  "2017-05-10 20:33:12",
-        "CreateIP":  null,
-        "UpdateUserID":  0,
-        "UpdateTime":  "2017-05-10 20:33:12",
-        "UpdateIP":  null,
-        "Remark":  null
-      }
+      
     ],
+    "TreeNodeName":  "头部",
     "Childrens":  null,
-    "Category":  null,
     "ID":  1,
     "Name":  "头部",
     "ParentID":  0,
@@ -57,182 +14,32 @@
     "Sort":  1,
     "Enable":  true,
     "CreateUserID":  0,
-    "CreateTime":  "2017-05-10 20:33:12",
+    "CreateTime":  "2017-10-09 01:39:05",
     "CreateIP":  null,
     "UpdateUserID":  0,
-    "UpdateTime":  "2017-05-10 20:33:12",
+    "UpdateTime":  "2017-10-09 01:39:05",
     "UpdateIP":  null,
     "Remark":  null
   },
   {
     "Childs":  [
-      {
-        "Childs":  [
-          {
-            "Childs":  [
-              
-            ],
-            "Childrens":  null,
-            "Category":  null,
-            "ID":  11,
-            "Name":  "关于我们",
-            "ParentID":  10,
-            "CategoryID":  0,
-            "Url":  "/About",
-            "NewWindow":  false,
-            "Sort":  1,
-            "Enable":  true,
-            "CreateUserID":  0,
-            "CreateTime":  "2017-05-10 20:33:12",
-            "CreateIP":  null,
-            "UpdateUserID":  0,
-            "UpdateTime":  "2017-05-10 20:33:12",
-            "UpdateIP":  null,
-            "Remark":  null
-          }
-        ],
-        "Childrens":  null,
-        "Category":  null,
-        "ID":  10,
-        "Name":  "关于",
-        "ParentID":  4,
-        "CategoryID":  0,
-        "Url":  null,
-        "NewWindow":  false,
-        "Sort":  3,
-        "Enable":  true,
-        "CreateUserID":  0,
-        "CreateTime":  "2017-05-10 20:33:12",
-        "CreateIP":  null,
-        "UpdateUserID":  0,
-        "UpdateTime":  "2017-05-10 20:33:12",
-        "UpdateIP":  null,
-        "Remark":  null
-      },
-      {
-        "Childs":  [
-          {
-            "Childs":  [
-              
-            ],
-            "Childrens":  null,
-            "Category":  null,
-            "ID":  9,
-            "Name":  "用户社区",
-            "ParentID":  8,
-            "CategoryID":  0,
-            "Url":  "/Communicate",
-            "NewWindow":  false,
-            "Sort":  1,
-            "Enable":  true,
-            "CreateUserID":  0,
-            "CreateTime":  "2017-05-10 20:33:12",
-            "CreateIP":  null,
-            "UpdateUserID":  0,
-            "UpdateTime":  "2017-05-10 20:33:12",
-            "UpdateIP":  null,
-            "Remark":  null
-          }
-        ],
-        "Childrens":  null,
-        "Category":  null,
-        "ID":  8,
-        "Name":  "社区",
-        "ParentID":  4,
-        "CategoryID":  0,
-        "Url":  null,
-        "NewWindow":  false,
-        "Sort":  2,
-        "Enable":  true,
-        "CreateUserID":  0,
-        "CreateTime":  "2017-05-10 20:33:12",
-        "CreateIP":  null,
-        "UpdateUserID":  0,
-        "UpdateTime":  "2017-05-10 20:33:12",
-        "UpdateIP":  null,
-        "Remark":  null
-      },
-      {
-        "Childs":  [
-          {
-            "Childs":  [
-              
-            ],
-            "Childrens":  null,
-            "Category":  null,
-            "ID":  7,
-            "Name":  "无声物联",
-            "ParentID":  5,
-            "CategoryID":  0,
-            "Url":  "http://www.peacemoon.cn",
-            "NewWindow":  false,
-            "Sort":  2,
-            "Enable":  true,
-            "CreateUserID":  0,
-            "CreateTime":  "2017-05-10 20:33:12",
-            "CreateIP":  null,
-            "UpdateUserID":  0,
-            "UpdateTime":  "2017-05-10 20:33:12",
-            "UpdateIP":  null,
-            "Remark":  null
-          },
-          {
-            "Childs":  [
-              
-            ],
-            "Childrens":  null,
-            "Category":  null,
-            "ID":  6,
-            "Name":  "新生命团队",
-            "ParentID":  5,
-            "CategoryID":  0,
-            "Url":  "http://www.NewLifeX.com",
-            "NewWindow":  false,
-            "Sort":  1,
-            "Enable":  true,
-            "CreateUserID":  0,
-            "CreateTime":  "2017-05-10 20:33:12",
-            "CreateIP":  null,
-            "UpdateUserID":  0,
-            "UpdateTime":  "2017-05-10 20:33:12",
-            "UpdateIP":  null,
-            "Remark":  null
-          }
-        ],
-        "Childrens":  null,
-        "Category":  null,
-        "ID":  5,
-        "Name":  "友情链接",
-        "ParentID":  4,
-        "CategoryID":  0,
-        "Url":  null,
-        "NewWindow":  false,
-        "Sort":  1,
-        "Enable":  true,
-        "CreateUserID":  0,
-        "CreateTime":  "2017-05-10 20:33:12",
-        "CreateIP":  null,
-        "UpdateUserID":  0,
-        "UpdateTime":  "2017-05-10 20:33:12",
-        "UpdateIP":  null,
-        "Remark":  null
-      }
+      
     ],
+    "TreeNodeName":  "尾部",
     "Childrens":  null,
-    "Category":  null,
     "ID":  4,
     "Name":  "尾部",
     "ParentID":  0,
     "CategoryID":  0,
     "Url":  null,
     "NewWindow":  false,
-    "Sort":  2,
+    "Sort":  1,
     "Enable":  true,
     "CreateUserID":  0,
-    "CreateTime":  "2017-05-10 20:33:12",
+    "CreateTime":  "2017-10-09 01:39:05",
     "CreateIP":  null,
     "UpdateUserID":  0,
-    "UpdateTime":  "2017-05-10 20:33:12",
+    "UpdateTime":  "2017-10-09 01:39:05",
     "UpdateIP":  null,
     "Remark":  null
   }
