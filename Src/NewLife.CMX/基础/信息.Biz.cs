@@ -21,17 +21,13 @@ using XCode.Membership;
 namespace NewLife.CMX
 {
     /// <summary>信息</summary>
-    [ModelCheckMode(ModelCheckModes.CheckTableWhenFirstUse)]
-    public class Info : Info<Info> { }
-
-    /// <summary>信息</summary>
-    public partial class Info<TEntity> : Entity<TEntity> where TEntity : Info<TEntity>, new()
+    public partial class Info : Entity<Info>
     {
         #region 对象操作
         static Info()
         {
             // 用于引发基类的静态构造函数，所有层次的泛型实体类都应该有一个
-            var entity = new TEntity();
+            var entity = new Info();
 
             Meta.Factory.AdditionalFields.Add(__.Views);
 
@@ -68,7 +64,7 @@ namespace NewLife.CMX
             if (Meta.Count > 0) return;
 
             // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
-            if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
+            if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Info).Name, Meta.Table.DataTable.DisplayName);
 
             // 遍历分类
             NewLife.CMX.Category.Meta.Session.WaitForInitData();
@@ -82,7 +78,7 @@ namespace NewLife.CMX
 
             foreach (var item in NewLife.CMX.Category.FindAllWithCache())
             {
-                var entity = new TEntity()
+                var entity = new Info()
                 {
                     ModelID = item.ModelID,
                     CategoryID = item.ID,
@@ -94,7 +90,7 @@ namespace NewLife.CMX
                 entity.Insert();
             }
 
-            if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
+            if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Info).Name, Meta.Table.DataTable.DisplayName);
         }
 
         /// <summary>同步插入统计信息和内容信息</summary>
@@ -166,12 +162,12 @@ namespace NewLife.CMX
         #region 扩展属性
         /// <summary>该分类所对应的模型</summary>
         [XmlIgnore, ScriptIgnore]
-        public IModel Model { get { return Extends.Get(nameof(Model), k => ModelX.FindByID(ModelID)); } }
+        public IModel Model { get { return Extends.Get(nameof(Model), k => NewLife.CMX.Model.FindByID(ModelID)); } }
 
         /// <summary>该分类所对应的模型名称</summary>
         [XmlIgnore, ScriptIgnore]
         [DisplayName("模型")]
-        [Map(__.ModelID, typeof(ModelX), "ID")]
+        [Map(__.ModelID, typeof(Model), "ID")]
         public String ModelName { get { return Model + ""; } }
 
         /// <summary>分类</summary>
@@ -271,7 +267,7 @@ namespace NewLife.CMX
         /// <param name="id"></param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static TEntity FindByID(Int32 id)
+        public static Info FindByID(Int32 id)
         {
             if (id <= 0) return null;
 
@@ -285,7 +281,7 @@ namespace NewLife.CMX
         /// <param name="code">代码</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static TEntity FindByCode(String code)
+        public static Info FindByCode(String code)
         {
             if (Meta.Count >= 1000)
                 return Find(__.Code, code);
@@ -297,7 +293,7 @@ namespace NewLife.CMX
         /// <param name="modelid">模型</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static IList<TEntity> FindAllByModelID(Int32 modelid)
+        public static IList<Info> FindAllByModelID(Int32 modelid)
         {
             if (Meta.Count >= 1000)
                 return FindAll(__.ModelID, modelid);
@@ -309,7 +305,7 @@ namespace NewLife.CMX
         /// <param name="extendid">扩展</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static IList<TEntity> FindAllByExtendID(Int32 extendid)
+        public static IList<Info> FindAllByExtendID(Int32 extendid)
         {
             if (Meta.Count >= 1000)
                 return FindAll(__.ExtendID, extendid);
@@ -321,7 +317,7 @@ namespace NewLife.CMX
         /// <param name="categoryid">分类</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static IList<TEntity> FindAllByCategoryID(Int32 categoryid)
+        public static IList<Info> FindAllByCategoryID(Int32 categoryid)
         {
             if (Meta.Count >= 1000)
                 return FindAll(__.CategoryID, categoryid);
@@ -333,7 +329,7 @@ namespace NewLife.CMX
         /// <param name="publishtime">发布时间</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static IList<TEntity> FindAllByPublishTime(DateTime publishtime)
+        public static IList<Info> FindAllByPublishTime(DateTime publishtime)
         {
             if (Meta.Count >= 1000)
                 return FindAll(__.PublishTime, publishtime);
@@ -350,7 +346,7 @@ namespace NewLife.CMX
         /// <param name="key"></param>
         /// <param name="param"></param>
         /// <returns></returns>
-        public static IList<TEntity> Search(Int32 modelid, Int32 categoryid, String key, PageParameter param)
+        public static IList<Info> Search(Int32 modelid, Int32 categoryid, String key, PageParameter param)
         {
             var exp = new WhereExpression();
 

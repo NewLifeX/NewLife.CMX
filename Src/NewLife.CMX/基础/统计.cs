@@ -12,7 +12,7 @@ namespace NewLife.CMX
     [DataObject]
     [Description("统计")]
     [BindTable("Statistics", Description = "统计", ConnName = "CMX", DbType = DatabaseType.None)]
-    public partial class Statistics<TEntity> : IStatistics
+    public partial class Statistics : IStatistics
     {
         #region 属性
         private Int32 _ID;

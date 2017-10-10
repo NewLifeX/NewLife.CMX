@@ -17,7 +17,7 @@ namespace NewLife.CMX
     [BindIndex("IX_Info_Code", false, "Code")]
     [BindIndex("IX_Info_PublishTime", false, "PublishTime")]
     [BindTable("Info", Description = "信息", ConnName = "CMX", DbType = DatabaseType.None)]
-    public partial class Info<TEntity> : IInfo
+    public partial class Info : IInfo
     {
         #region 属性
         private Int32 _ID;

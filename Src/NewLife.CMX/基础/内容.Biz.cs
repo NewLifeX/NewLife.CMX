@@ -10,7 +10,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Web.Script.Serialization;
 using System.Xml.Serialization;
-using NewLife.Data;
 using NewLife.Model;
 using XCode;
 using XCode.Cache;
@@ -19,22 +18,18 @@ using XCode.Membership;
 namespace NewLife.CMX
 {
     /// <summary>内容</summary>
-    [ModelCheckMode(ModelCheckModes.CheckTableWhenFirstUse)]
-    public class Content : Content<Content> { }
-
-    /// <summary>内容</summary>
-    public partial class Content<TEntity> : Entity<TEntity> where TEntity : Content<TEntity>, new()
+    public partial class Content : Entity<Content>
     {
         #region 对象操作
         /// <summary>根据ParentID缓存最后版本</summary>
-        static SingleEntityCache<Int32, TEntity> _cache;
+        static SingleEntityCache<Int32, Content> _cache;
 
         static Content()
         {
             // 用于引发基类的静态构造函数，所有层次的泛型实体类都应该有一个
-            var entity = new TEntity();
+            var entity = new Content();
 
-            _cache = new SingleEntityCache<Int32, TEntity>()
+            _cache = new SingleEntityCache<Int32, Content>()
             {
                 FindKeyMethod = id =>
                 {
@@ -95,7 +90,7 @@ namespace NewLife.CMX
         /// <param name="id"></param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static TEntity FindByID(Int32 id)
+        public static Content FindByID(Int32 id)
         {
             if (id <= 0) return null;
 
@@ -109,7 +104,7 @@ namespace NewLife.CMX
         /// <param name="parentid">主题</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static IList<TEntity> FindAllByParentID(Int32 parentid)
+        public static IList<Content> FindAllByParentID(Int32 parentid)
         {
             if (Meta.Count >= 1000)
                 return FindAll(__.InfoID, parentid);
@@ -122,7 +117,7 @@ namespace NewLife.CMX
         /// <param name="version">版本</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static TEntity FindByParentIDAndVersion(Int32 parentid, Int32 version)
+        public static Content FindByParentIDAndVersion(Int32 parentid, Int32 version)
         {
             if (Meta.Count >= 1000)
                 return Find(new String[] { __.InfoID, __.Version }, new Object[] { parentid, version });
@@ -134,7 +129,7 @@ namespace NewLife.CMX
         /// <param name="parentid"></param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static TEntity FindLastByParentID(Int32 parentid)
+        public static Content FindLastByParentID(Int32 parentid)
         {
             if (Meta.Count >= 1000)
                 return _cache[parentid];

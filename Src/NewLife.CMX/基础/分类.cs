@@ -15,7 +15,7 @@ namespace NewLife.CMX
     [BindIndex("IX_Category_Code", false, "Code")]
     [BindIndex("IX_Category_ParentID", false, "ParentID")]
     [BindTable("Category", Description = "分类", ConnName = "CMX", DbType = DatabaseType.None)]
-    public partial class Category<TEntity> : ICategory
+    public partial class Category : ICategory
     {
         #region 属性
         private Int32 _ID;

@@ -13,7 +13,7 @@ namespace NewLife.CMX
     [Description("模型")]
     [BindIndex("IU_Model_Name", true, "Name")]
     [BindTable("Model", Description = "模型", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
-    public partial class Model<TEntity> : IModel
+    public partial class Model : IModel
     {
         #region 属性
         private Int32 _ID;

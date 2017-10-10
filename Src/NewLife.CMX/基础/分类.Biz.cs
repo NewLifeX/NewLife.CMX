@@ -7,7 +7,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Web.Script.Serialization;
 using System.Xml.Serialization;
@@ -20,17 +19,13 @@ using XCode;
 namespace NewLife.CMX
 {
     /// <summary>分类</summary>
-    [ModelCheckMode(ModelCheckModes.CheckTableWhenFirstUse)]
-    public class Category : Category<Category> { }
-
-    /// <summary>分类</summary>
-    public partial class Category<TEntity> : EntityTree<TEntity>, ICategory where TEntity : Category<TEntity>, new()
+    public partial class Category : EntityTree<Category>, ICategory
     {
         #region 对象操作
         static Category()
         {
             // 用于引发基类的静态构造函数，所有层次的泛型实体类都应该有一个
-            var entity = new TEntity();
+            var entity = new Category();
         }
 
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
@@ -77,7 +72,7 @@ namespace NewLife.CMX
             if (Meta.Count > 0) return;
 
             // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
-            if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
+            if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Category).Name, Meta.Table.DataTable.DisplayName);
             //var fn = "../InitData/{0}.json".F(Meta.TableName).GetFullPath();
             //if (File.Exists(fn))
             //{
@@ -102,12 +97,12 @@ namespace NewLife.CMX
             //else
             {
                 // 遍历模型
-                ModelX.Meta.Session.WaitForInitData();
+                CMX.Model.Meta.Session.WaitForInitData();
 
                 var sort = 100;
-                foreach (var item in ModelX.FindAllWithCache())
+                foreach (var item in CMX.Model.FindAllWithCache())
                 {
-                    var entity = new TEntity
+                    var entity = new Category
                     {
                         //Name = "默认" + (item.DisplayName ?? item.Name),
                         Name = (item.DisplayName ?? item.Name),
@@ -117,7 +112,7 @@ namespace NewLife.CMX
                     entity.Sort = sort--;
                     entity.Insert();
 
-                    entity = new TEntity
+                    entity = new Category
                     {
                         ParentID = entity.ID,
                         Name = "二级" + item.DisplayName ?? item.Name,
@@ -126,23 +121,23 @@ namespace NewLife.CMX
                     entity.Insert();
                 }
             }
-            if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
+            if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Category).Name, Meta.Table.DataTable.DisplayName);
         }
         #endregion
 
         #region 扩展属性
         /// <summary>该分类所对应的模型</summary>
         [XmlIgnore, ScriptIgnore]
-        public IModel Model { get { return Extends.Get(nameof(Model), k => ModelX.FindByID(ModelID)); } }
+        public IModel Model { get { return Extends.Get(nameof(Model), k => NewLife.CMX.Model.FindByID(ModelID)); } }
 
         /// <summary>该分类所对应的模型名称</summary>
         [XmlIgnore, ScriptIgnore]
         [DisplayName("模型")]
-        [Map(__.ModelID, typeof(ModelX), "ID")]
+        [Map(__.ModelID, typeof(Model), "ID")]
         public String ModelName { get { return Model + ""; } }
 
         /// <summary>子节点</summary> 
-        public IList<TEntity> Childrens { get; set; }
+        public IList<Category> Childrens { get; set; }
         #endregion
 
         #region 扩展查询
@@ -150,7 +145,7 @@ namespace NewLife.CMX
         /// <param name="id"></param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static TEntity FindByID(Int32 id)
+        public static Category FindByID(Int32 id)
         {
             if (id <= 0) return null;
 
@@ -164,7 +159,7 @@ namespace NewLife.CMX
         /// <param name="name">名称</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static TEntity FindByName(String name)
+        public static Category FindByName(String name)
         {
             if (name.IsNullOrEmpty()) return null;
 
@@ -178,7 +173,7 @@ namespace NewLife.CMX
         /// <param name="code">代码</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static TEntity FindByCode(String code)
+        public static Category FindByCode(String code)
         {
             if (code.IsNullOrEmpty()) return null;
 

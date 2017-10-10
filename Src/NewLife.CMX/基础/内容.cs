@@ -12,10 +12,9 @@ namespace NewLife.CMX
     [DataObject]
     [Description("内容")]
     [BindIndex("IX_Content_ModelID", false, "ModelID")]
-    [BindIndex("IX_Content_InfoID", false, "InfoID")]
     [BindIndex("IU_Content_InfoID_Version", true, "InfoID,Version")]
     [BindTable("Content", Description = "内容", ConnName = "CMX", DbType = DatabaseType.None)]
-    public partial class Content<TEntity> : IContent
+    public partial class Content : IContent
     {
         #region 属性
         private Int32 _ID;

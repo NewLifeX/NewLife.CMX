@@ -44,7 +44,7 @@
         </li>
     }
     @*遍历产生内容管理菜单*@
-    @foreach (var mod in ModelX.GetAll())
+    @foreach (var mod in NewLife.CMX.Model.GetAll())
     {
         // 判断是否有权访问该频道
         var res = "CMS\\" + mod.Name;

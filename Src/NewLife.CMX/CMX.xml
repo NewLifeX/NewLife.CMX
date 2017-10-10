@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Tables Version="9.6.6441.26632" Output="" NameSpace="NewLife.CMX" ConnName="CMX">
-  <Table Name="Model" Description="模型" DbType="SqlServer" Output="基础" RenderGenEntity="true">
+<?xml version="1.0" encoding="utf-8"?>
+<Tables Version="9.6.6492.41327" Output="" NameSpace="NewLife.CMX" ConnName="CMX" BaseClass="Entity">
+  <Table Name="Model" Description="模型" DbType="SqlServer" Output="基础">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Nullable="False" Description="名称" />
@@ -22,7 +22,7 @@
       <Index Columns="Name" Unique="True" />
     </Indexes>
   </Table>
-  <Table Name="Category" Description="分类" BaseType="EntityTree" Output="基础" RenderGenEntity="true">
+  <Table Name="Category" Description="分类" BaseType="EntityTree" Output="基础">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Name" DataType="String" Master="True" Nullable="False" Description="名称" />
@@ -42,7 +42,7 @@
       <Index Columns="ParentID" />
     </Indexes>
   </Table>
-  <Table Name="Info" Description="信息" Output="基础" RenderGenEntity="true">
+  <Table Name="Info" Description="信息" Output="基础">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="ModelID" DataType="Int32" Description="模型" />
@@ -74,7 +74,7 @@
       <Index Columns="PublishTime" />
     </Indexes>
   </Table>
-  <Table Name="Content" Description="内容" Output="基础" RenderGenEntity="true">
+  <Table Name="Content" Description="内容" Output="基础">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="ModelID" DataType="Int32" Description="模型" />
@@ -88,11 +88,10 @@
     </Columns>
     <Indexes>
       <Index Columns="ModelID" />
-      <Index Columns="InfoID" />
       <Index Columns="InfoID,Version" Unique="True" />
     </Indexes>
   </Table>
-  <Table Name="Statistics" Description="统计" Output="基础" RenderGenEntity="true">
+  <Table Name="Statistics" Description="统计" Output="基础">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
       <Column Name="Total" DataType="Int32" Description="总数" />
@@ -196,9 +195,6 @@
       <Column Name="UpdateIP" DataType="String" Description="更新地址" />
       <Column Name="Remark" DataType="String" Length="200" Description="备注" />
     </Columns>
-    <Indexes>
-      <Index Columns="ModelID" />
-    </Indexes>
   </Table>
   <Table Name="Source" Description="来源" DbType="SqlServer" Output="站点">
     <Columns>

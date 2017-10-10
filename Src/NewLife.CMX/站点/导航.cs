@@ -11,7 +11,6 @@ namespace NewLife.CMX
     [Serializable]
     [DataObject]
     [Description("导航")]
-    [BindIndex("IX_Nav_ModelID", false, "ModelID")]
     [BindTable("Nav", Description = "导航", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class Nav : INav
     {

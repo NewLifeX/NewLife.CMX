@@ -108,7 +108,7 @@ namespace NewLife.CMX.Web
             var name = values[parameterName] + "";
             if (name.IsNullOrEmpty()) return false;
 
-            if (ModelX.FindByName(name) != null) return true;
+            if (Model.FindByName(name) != null) return true;
 
             return false;
         }

@@ -13,17 +13,13 @@ using XCode;
 namespace NewLife.CMX
 {
     /// <summary>统计</summary>
-    [ModelCheckMode(ModelCheckModes.CheckTableWhenFirstUse)]
-    public class Statistics : Statistics<Statistics> { }
-
-    /// <summary>统计</summary>
-    public partial class Statistics<TEntity> : Entity<TEntity> where TEntity : Statistics<TEntity>, new()
+    public partial class Statistics : Entity<Statistics>
     {
         #region 对象操作﻿
         static Statistics()
         {
             // 用于引发基类的静态构造函数，所有层次的泛型实体类都应该有一个
-            var entity = new TEntity();
+            var entity = new Statistics();
 
             Meta.Factory.AdditionalFields.Add(__.Total);
             Meta.Factory.AdditionalFields.Add(__.Today);
@@ -73,7 +69,7 @@ namespace NewLife.CMX
         /// <param name="id"></param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static TEntity FindByID(Int32 id)
+        public static Statistics FindByID(Int32 id)
         {
             if (id <= 0) return null;
 

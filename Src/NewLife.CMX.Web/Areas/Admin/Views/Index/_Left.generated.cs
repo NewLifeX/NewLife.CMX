@@ -178,10 +178,15 @@ WriteLiteral("></b>\r\n");
             
             #line default
             #line hidden
-WriteLiteral("                <ul");
+WriteLiteral("                <ul ");
 
-WriteLiteral(" class=\"submenu\"");
+            
+            #line 37 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
+               Write(Html.Raw(menu == Menus[0] ? "class=\"submenu nav-show\" style=\"display:block;\"" : "class=\"submenu nav-hide\" style=\"display:none;\""));
 
+            
+            #line default
+            #line hidden
 WriteLiteral(">\r\n");
 
             
@@ -243,7 +248,7 @@ WriteLiteral("\r\n");
             #line hidden
             
             #line 47 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-     foreach (var mod in ModelX.GetAll())
+     foreach (var mod in NewLife.CMX.Model.GetAll())
     {
         // 判断是否有权访问该频道
         var res = "CMS\\" + mod.Name;
@@ -262,16 +267,16 @@ WriteLiteral(" class=\"dropdown-toggle\"");
 
 WriteLiteral(">\r\n                <i");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 1924), Tuple.Create("\"", 1958)
-, Tuple.Create(Tuple.Create("", 1932), Tuple.Create("menu-icon", 1932), true)
-, Tuple.Create(Tuple.Create(" ", 1941), Tuple.Create("fa", 1942), true)
+WriteAttribute("class", Tuple.Create(" class=\"", 2058), Tuple.Create("\"", 2092)
+, Tuple.Create(Tuple.Create("", 2066), Tuple.Create("menu-icon", 2066), true)
+, Tuple.Create(Tuple.Create(" ", 2075), Tuple.Create("fa", 2076), true)
             
             #line 56 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-, Tuple.Create(Tuple.Create(" ", 1944), Tuple.Create<System.Object, System.Int32>(icos[_idx++]
+, Tuple.Create(Tuple.Create(" ", 2078), Tuple.Create<System.Object, System.Int32>(icos[_idx++]
             
             #line default
             #line hidden
-, 1945), false)
+, 2079), false)
 );
 
 WriteLiteral("></i>\r\n                <span");
@@ -297,20 +302,22 @@ WriteLiteral(" class=\"arrow\"");
 
 WriteLiteral("></b>\r\n\r\n            <ul");
 
-WriteLiteral(" class=\"submenu\"");
+WriteLiteral(" class=\"submenu nav-hide\"");
+
+WriteLiteral(" style=\"display:none;\"");
 
 WriteLiteral(">\r\n                <li>\r\n                    <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 2223), Tuple.Create("\"", 2252)
-, Tuple.Create(Tuple.Create("", 2230), Tuple.Create<System.Object, System.Int32>(Href("~/CMS/Info/Mod/")
-, 2230), false)
+WriteAttribute("href", Tuple.Create(" href=\"", 2388), Tuple.Create("\"", 2417)
+, Tuple.Create(Tuple.Create("", 2395), Tuple.Create<System.Object, System.Int32>(Href("~/CMS/Info/Mod/")
+, 2395), false)
             
             #line 66 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-, Tuple.Create(Tuple.Create("", 2245), Tuple.Create<System.Object, System.Int32>(mod.ID
+, Tuple.Create(Tuple.Create("", 2410), Tuple.Create<System.Object, System.Int32>(mod.ID
             
             #line default
             #line hidden
-, 2245), false)
+, 2410), false)
 );
 
 WriteLiteral(" target=\"main\"");

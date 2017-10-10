@@ -18,13 +18,9 @@ using XCode.Membership;
 
 namespace NewLife.CMX
 {
-    /// <summary>内容</summary>
-    [ModelCheckMode(ModelCheckModes.CheckTableWhenFirstUse)]
-    public class ModelX : Model<ModelX> { }
-
     /// <summary>模型</summary>
     /// <remarks>模型。默认有文章、文本、产品三种模型，可以扩展增加。</remarks>
-    public partial class Model<TEntity> : LogEntity<TEntity> where TEntity : Model<TEntity>, new()
+    public partial class Model : LogEntity<Model> 
     {
         #region 对象操作﻿
         static Model()
@@ -103,7 +99,7 @@ namespace NewLife.CMX
         /// <param name="id"></param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static TEntity FindByID(Int32 id)
+        public static Model FindByID(Int32 id)
         {
             if (id <= 0) return null;
 
@@ -117,7 +113,7 @@ namespace NewLife.CMX
         /// <param name="name">名称</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static TEntity FindByName(String name)
+        public static Model FindByName(String name)
         {
             if (name.IsNullOrEmpty()) return null;
 
@@ -131,7 +127,7 @@ namespace NewLife.CMX
         #region 高级查询
         /// <summary>获取所有有效模型</summary>
         /// <returns></returns>
-        public static List<TEntity> GetAll()
+        public static List<Model> GetAll()
         {
             //return FindAllWithCache(__.Enable, true).Sort(__.ID, false);
             return FindAllWithCache().ToList().Where(e => e.Enable).OrderBy(e => e.ID).ToList();
@@ -168,9 +164,9 @@ namespace NewLife.CMX
         /// <summary>添加模型</summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static TEntity Add(String name)
+        public static Model Add(String name)
         {
-            var entity = new TEntity()
+            var entity = new Model()
             {
                 Name = name,
                 Enable = true
@@ -191,8 +187,9 @@ namespace NewLife.CMX
 
             foreach (var item in typeof(IInfoExtend).GetAllSubclasses(true).OrderBy(e => Array.IndexOf(ms, e.Name)))
             {
-                var entity = FindByName(item.Name);
-                if (entity == null) entity = new TEntity();
+                //var entity = FindByName(item.Name);
+                var entity = Find(__.Name, item.Name);
+                if (entity == null) entity = new Model();
 
                 entity.Name = item.Name;
                 entity.DisplayName = item.GetDisplayName() ?? item.GetDescription();

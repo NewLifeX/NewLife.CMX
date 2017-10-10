@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Web.Mvc;
 using NewLife.Web;
-using XCode;
-using XCode.Membership;
 
 namespace NewLife.CMX.Web.Controllers
 {
-    public class InfoController : InfoController<Info> { }
-
-    public class InfoController<TEntity> : EntityControllerBase<TEntity> where TEntity : Info<TEntity>, new()
+    public class InfoController : EntityControllerBase<Info>
     {
         static InfoController()
         {
@@ -21,7 +15,7 @@ namespace NewLife.CMX.Web.Controllers
 
             list = FormFields;
             list.RemoveAll(e => e.Name.EqualIgnoreCase("ModelID", "CategoryID", "CategoryName", "StatisticsID", "Title", "Code", "Version", "Views"));
-            var fi = Entity<TEntity>.Meta.AllFields.FirstOrDefault(e => e.Name == "StatisticsText");
+            var fi = Info.Meta.AllFields.FirstOrDefault(e => e.Name == "StatisticsText");
             if (fi != null) list.Add(fi);
         }
 
@@ -43,14 +37,14 @@ namespace NewLife.CMX.Web.Controllers
             //LoadChannel();
 
             var catid = RouteData.Values["category"].ToInt();
-            var list = Info<TEntity>.Search(0, catid, null, p);
+            var list = Info.Search(0, catid, null, p);
 
             return View("List", list);
         }
 
         public override ActionResult Add()
         {
-            var entity = Factory.Create() as TEntity;
+            var entity = Factory.Create() as Info;
             entity.CategoryID = RouteData.Values["category"].ToInt();
 
             // 记下添加前的来源页，待会添加成功以后跳转
@@ -62,7 +56,7 @@ namespace NewLife.CMX.Web.Controllers
         /// <summary>表单页视图。子控制器可以重载，以传递更多信息给视图，比如修改要显示的列</summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        protected override ActionResult FormView(TEntity entity)
+        protected override ActionResult FormView(Info entity)
         {
             // 用于显示的列
             if (ViewBag.Fields == null) ViewBag.Fields = GetFields(true);
@@ -98,7 +92,7 @@ namespace NewLife.CMX.Web.Controllers
             p.Sort = "CreateTime";
             p.Desc = true;
             Session["mid"] = id;
-            var list = Info<TEntity>.Search(id, 0, null, p);
+            var list = Info.Search(id, 0, null, p);
 
             return View("List", list);
         }
@@ -116,7 +110,7 @@ namespace NewLife.CMX.Web.Controllers
             p.Sort = "CreateTime";
             p.Desc = true;
 
-            var list = Info<TEntity>.Search(0, id, null, p);
+            var list = Info.Search(0, id, null, p);
 
             return View("List", list);
         }
