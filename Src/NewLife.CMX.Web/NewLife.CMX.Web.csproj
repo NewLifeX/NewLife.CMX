@@ -55,12 +55,11 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="NewLife.Core, Version=5.4.5624.15003, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLL\NewLife.Core.dll</HintPath>
+    <Reference Include="NewLife.Core, Version=6.6.6644.19801, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NewLife.Core.6.6.6644.19801\lib\net45\NewLife.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NewLife.Cube">
-      <HintPath>..\DLL\NewLife.Cube.dll</HintPath>
+    <Reference Include="NewLife.Cube, Version=2.1.6646.40334, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NewLife.Cube.2.1.6646.40334\lib\net45\NewLife.Cube.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -104,9 +103,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLL\UEditor.dll</HintPath>
     </Reference>
-    <Reference Include="XCode, Version=8.18.5624.26027, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLL\XCode.dll</HintPath>
+    <Reference Include="XCode, Version=9.6.6644.19804, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NewLife.XCode.9.6.6644.19804\lib\net45\XCode.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

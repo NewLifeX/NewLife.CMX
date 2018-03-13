@@ -36,9 +36,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NewLife.Core, Version=5.4.5625.37090, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLL\NewLife.Core.dll</HintPath>
+    <Reference Include="NewLife.Core, Version=6.6.6644.19801, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NewLife.Core.6.6.6644.19801\lib\net45\NewLife.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -46,9 +45,8 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
-    <Reference Include="XCode, Version=8.18.5625.37090, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLL\XCode.dll</HintPath>
+    <Reference Include="XCode, Version=9.6.6644.19804, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NewLife.XCode.9.6.6644.19804\lib\net45\XCode.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +91,7 @@
     <Content Include="CMX数据字典.htm" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="XCoder.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
