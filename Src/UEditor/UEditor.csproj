@@ -43,6 +43,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Setting.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="ConfigHandler.cs" />

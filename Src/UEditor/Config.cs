@@ -12,27 +12,29 @@ namespace UEditor
     /// </summary>
     public static class Config
     {
-        private static Boolean noCache = true;
-        private static Object BuildItems()
-        {
-            var json = File.ReadAllText(HttpContext.Current.Server.MapPath("config.json"));
+        //private static Boolean noCache = true;
+        //private static Object BuildItems()
+        //{
+        //    var json = File.ReadAllText(HttpContext.Current.Server.MapPath("config.json"));
 
-            var jp = new JsonParser(json);
-            return jp.Decode();
-        }
+        //    var jp = new JsonParser(json);
+        //    return jp.Decode();
+        //}
 
+        private static IDictionary<String, Object> _Items;
         public static IDictionary<String, Object> Items
         {
             get
             {
-                if (noCache || _Items == null)
+                if (_Items == null)
                 {
-                    _Items = BuildItems() as IDictionary<String, Object>;
+                    //_Items = BuildItems() as IDictionary<String, Object>;
+                    // 一次性加载，会导致修改配置后要重启才能生效
+                    _Items = Setting.Current.ToDictionary();
                 }
                 return _Items;
             }
         }
-        private static IDictionary<String, Object> _Items;
 
         public static T GetValue<T>(String key)
         {
