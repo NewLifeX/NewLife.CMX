@@ -8,10 +8,10 @@ namespace NewLife.CMX.Web
         static EntityControllerBase()
         {
             // 过滤掉一些字段
-            ListFields.Replace("CreateUserID", "CreateUserName")
-                .Replace("UpdateUserID", "UpdateUserName");
-            FormFields.Replace("CreateUserID", "CreateUserName")
-                .Replace("UpdateUserID", "UpdateUserName")
+            ListFields.Replace("CreateUserID", "CreateUser")
+                .Replace("UpdateUserID", "UpdateUser");
+            FormFields.Replace("CreateUserID", "CreateUser")
+                .Replace("UpdateUserID", "UpdateUser")
                 .RemoveField("CreateTime")
                 .RemoveField("UpdateTime");
         }

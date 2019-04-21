@@ -9,9 +9,9 @@ namespace NewLife.CMX.Web.Controllers
         {
             // 过滤掉一些字段
             var list = ListFields;
-            list.RemoveAll(e => e.Name.EqualIgnoreCase("ModelID", "ModelName"));
-
-            FormFields.RemoveField("Remark");
+            list.RemoveCreateField();
+            list.RemoveField("UpdateUserID");
+            list.RemoveField("Remark");
         }
     }
 }
