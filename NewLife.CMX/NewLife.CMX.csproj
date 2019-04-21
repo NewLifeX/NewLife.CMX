@@ -54,9 +54,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Editor\UEditorAjaxCore.cs" />
-    <Compile Include="Editor\UEditorConfig.cs" />
-    <Compile Include="Editor\UEUploader.cs" />
+    <Compile Include="Editor\Crawler.cs" />
+    <Compile Include="Editor\ListFile.cs" />
+    <Compile Include="Editor\Uploader.cs" />
     <Compile Include="Manager\AttachConfig.cs" />
     <Compile Include="Manager\SiteConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

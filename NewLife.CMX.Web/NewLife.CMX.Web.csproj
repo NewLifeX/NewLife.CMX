@@ -97,10 +97,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="UEditor, Version=1.0.5625.37043, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLL\UEditor.dll</HintPath>
-    </Reference>
     <Reference Include="XCode, Version=9.11.7044.42317, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NewLife.XCode.9.11.2019.415\lib\net45\XCode.dll</HintPath>
     </Reference>
