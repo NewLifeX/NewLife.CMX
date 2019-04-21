@@ -1,5 +1,4 @@
 ﻿using System;
-using NewLife.IO;
 using System.Collections;
 using System.IO;
 using System.Net;
@@ -7,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 using NewLife.Log;
-using NewLife.Web;
+using XCode.Membership;
 
 namespace NewLife.CMX.Editor
 {
@@ -19,7 +18,7 @@ namespace NewLife.CMX.Editor
         public void ProcessRequest(HttpContext context)
         {
 
-            String ac = RequestStr("ac");
+            var ac = RequestStr("ac");
             switch (ac)
             {
                 case "remote":
@@ -62,7 +61,7 @@ namespace NewLife.CMX.Editor
         /// <returns></returns>
         public static String RequestStr(String name)
         {
-            String str = HttpContext.Current.Request[name];
+            var str = HttpContext.Current.Request[name];
             return String.IsNullOrEmpty(str) ? "" : str;
         }
 
@@ -73,7 +72,7 @@ namespace NewLife.CMX.Editor
         /// <returns></returns>
         private String converToString(ArrayList tmpNames)
         {
-            String str = String.Empty;
+            var str = String.Empty;
             for (Int32 i = 0, len = tmpNames.Count; i < len; i++)
             {
                 str += tmpNames[i] + "ue_separate_ue";
@@ -94,11 +93,11 @@ namespace NewLife.CMX.Editor
         {
             var config = UEditorConfig.Current;
             //保存文件地址
-            String SavePath = context.Server.MapPath(config.UploadPath);
+            var SavePath = context.Server.MapPath(config.UploadPath);
             //文件允许格式
-            String[] FileType = config.ImgExtensions;
+            var FileType = config.ImgExtensions;
             //文件大小限制，单位kb
-            Int32 FileSize = config.ImgFileSize;
+            var FileSize = config.ImgFileSize;
             var uri = context.Server.HtmlEncode(context.Request["upfile"]);
             uri = uri.Replace("&amp;", "&");
 
@@ -107,9 +106,9 @@ namespace NewLife.CMX.Editor
             var tmpNames = new ArrayList();
             var wc = new WebClient();
             HttpWebResponse res;
-            String tmpName = String.Empty;
-            String imgUrl = String.Empty;
-            String currentType = String.Empty;
+            var tmpName = String.Empty;
+            var imgUrl = String.Empty;
+            var currentType = String.Empty;
             try
             {
                 for (Int32 i = 0, len = imgUrls.Length; i < len; i++)
@@ -123,7 +122,7 @@ namespace NewLife.CMX.Editor
                     }
 
                     //格式验证
-                    Int32 temp = imgUrl.LastIndexOf('.');
+                    var temp = imgUrl.LastIndexOf('.');
                     currentType = imgUrl.Substring(temp).ToLower();
                     if (Array.IndexOf(FileType, currentType) == -1)
                     {
@@ -231,8 +230,8 @@ namespace NewLife.CMX.Editor
             var config = UEditorConfig.Current;
             var up = new UEUploader();
             var info = up.upFile(context, config.UploadPath, config.ImgExtensions, config.ImgFileSize);                               //获取上传状态
-            String title = up.getOtherInfo(context, "pictitle");                              //获取图片描述
-            String oriName = up.getOtherInfo(context, "fileName");                //获取原始文件名
+            var title = up.getOtherInfo(context, "pictitle");                              //获取图片描述
+            var oriName = up.getOtherInfo(context, "fileName");                //获取原始文件名
             return "{'url':'" + info["url"] + "','title':'" + title + "','original':'" + oriName + "','state':'" + info["state"] + "'}";
         }
         #endregion
@@ -260,19 +259,19 @@ namespace NewLife.CMX.Editor
         /// <returns></returns>
         public String ScrawlUp(HttpContext context)
         {
-            UEditorConfig Entity = UEditorConfig.Current;
-            Hashtable info = new Hashtable();
-            UEUploader up = new UEUploader();
-            String action = RequestStr("action");
+            var Entity = UEditorConfig.Current;
+            var info = new Hashtable();
+            var up = new UEUploader();
+            var action = RequestStr("action");
             if (action == "tmpImg")
             {
-                String pathbase = Entity.UploadPath + "tmp/";                                                          //保存路径
+                var pathbase = Entity.UploadPath + "tmp/";                                                          //保存路径
                 info = up.upFile(context, pathbase, Entity.ImgExtensions, Entity.ImgFileSize); //获取上传状态
                 return "<script>parent.ue_callback('" + "tmp/" + info["url"] + "','" + info["state"] + "')</script>";
             }
             else
             {
-                String tmpPath = Entity.UploadPath + "tmp/";
+                var tmpPath = Entity.UploadPath + "tmp/";
                 info = up.upScrawl(context, Entity.UploadPath, tmpPath, RequestStr("content")); //获取上传状态
                 return "{'url':'" + info["url"] + "',state:'" + info["state"] + "'}";
             }
@@ -310,7 +309,7 @@ namespace NewLife.CMX.Editor
             //!!! 安全：必须验证路径，否则会爆任何文件
             if (!file2.StartsWith(up, StringComparison.OrdinalIgnoreCase))
             {
-                XTrace.WriteLine("安全警告！{0}试图请求{1}，原始访问{2}！", WebHelper.UserHost, file2, file);
+                XTrace.WriteLine("安全警告！{0}试图请求{1}，原始访问{2}！", ManageProvider.UserHost, file2, file);
                 return;
             }
 
@@ -446,8 +445,8 @@ namespace NewLife.CMX.Editor
         {
             get
             {
-                UEditorConfig Entity = UEditorConfig.Current;
-                StringBuilder WordImageCfg = new StringBuilder();
+                var Entity = UEditorConfig.Current;
+                var WordImageCfg = new StringBuilder();
                 WordImageCfg.Append("wordImageUrl:\"" + Entity.ImgUpUrl + "\"");
                 WordImageCfg.Append("," + "wordImagePath:\"" + Entity.UploadPath + "\"");
                 return WordImageCfg.ToString();
@@ -460,8 +459,8 @@ namespace NewLife.CMX.Editor
         {
             get
             {
-                UEditorConfig Entity = UEditorConfig.Current;
-                StringBuilder MovieCfg = new StringBuilder();
+                var Entity = UEditorConfig.Current;
+                var MovieCfg = new StringBuilder();
                 MovieCfg.Append("getMovieUrl:\"" + Entity.MovieUrl + "\"");
                 return MovieCfg.ToString();
             }
@@ -491,6 +490,6 @@ namespace NewLife.CMX.Editor
         #endregion
 
         /// <summary>是否可重用</summary>
-        public Boolean IsReusable { get { return false; } }
+        public Boolean IsReusable => false;
     }
 }

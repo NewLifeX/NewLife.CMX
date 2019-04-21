@@ -23,7 +23,8 @@
 }
 else
 {
-    var menu = ManageProvider.Menu.Current;
+    //var menu = ManageProvider.Menu.Current;
+    var menu = ViewBag.Menu as IMenu;
     <i class="ace-icon fa fa-home home-icon"></i>
     if (menu != null)
     {

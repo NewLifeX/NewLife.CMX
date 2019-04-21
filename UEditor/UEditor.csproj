@@ -45,16 +45,12 @@
   <ItemGroup>
     <Compile Include="Setting.cs" />
     <Compile Include="Utilities.cs" />
-    <Compile Include="Config.cs" />
-    <Compile Include="ConfigHandler.cs" />
     <Compile Include="CrawlerHandler.cs" />
     <Compile Include="Handler.cs" />
     <Compile Include="ListFileHandler.cs" />
     <Compile Include="NotSupportedHandler.cs" />
     <Compile Include="PathFormater.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RouteHandler.cs" />
-    <Compile Include="UEditorHandler.cs" />
     <Compile Include="UploadHandler.cs" />
   </ItemGroup>
   <ItemGroup>

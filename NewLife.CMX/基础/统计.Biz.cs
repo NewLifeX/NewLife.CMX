@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Text;
 using NewLife.Web;
 using XCode;
+using XCode.Membership;
 
 namespace NewLife.CMX
 {
@@ -37,7 +38,7 @@ namespace NewLife.CMX
             // 建议先调用基类方法，基类方法会对唯一索引的数据进行验证
             base.Valid(isNew);
 
-            if (!Dirtys[__.LastIP]) LastIP = WebHelper.UserHost;
+            if (!Dirtys[__.LastIP]) LastIP = ManageProvider.UserHost;
         }
         #endregion
 
@@ -159,7 +160,7 @@ namespace NewLife.CMX
                 ThisMonth++;
                 ThisYear++;
 
-                LastIP = WebHelper.UserHost;
+                LastIP = ManageProvider.UserHost;
                 if (!String.IsNullOrEmpty(remark)) Remark = remark;
 
                 SaveAsync(10);

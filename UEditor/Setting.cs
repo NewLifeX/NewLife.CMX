@@ -13,6 +13,26 @@ namespace UEditor
     [XmlConfigFile(@"Config\UEditor.config", 15000)]
     public class Setting : XmlConfig<Setting>
     {
+        #region 上传配置
+        /// <summary>文件命名规则</summary>
+        public String PathFormat { get; set; }
+
+        /// <summary>上传表单域名称</summary>
+        public String UploadFieldName { get; set; }
+
+        /// <summary>上传大小限制</summary>
+        public Int32 SizeLimit { get; set; }
+
+        /// <summary>上传允许的文件格式</summary>
+        public String[] AllowExtensions { get; set; }
+
+        /// <summary>文件是否以 Base64 的形式上传</summary>
+        public Boolean Base64 { get; set; }
+
+        /// <summary>Base64 字符串所表示的文件名</summary>
+        public String Base64Filename { get; set; }
+        #endregion
+
         #region 上传图片配置项
         /// <summary>执行上传图片的action名称</summary>
         [Description("执行上传图片的action名称")]

@@ -28,6 +28,8 @@ namespace UEditor
         private String[] FileList;
         private String[] SearchExtensions;
 
+        public Int32 ListSize { get; set; }
+
         public ListFileManager(HttpContext context, String pathToList, String[] searchExtensions)
             : base(context)
         {
@@ -40,7 +42,7 @@ namespace UEditor
             try
             {
                 Start = String.IsNullOrEmpty(Request["start"]) ? 0 : Convert.ToInt32(Request["start"]);
-                Size = String.IsNullOrEmpty(Request["size"]) ? Config.GetInt("imageManagerListSize") : Convert.ToInt32(Request["size"]);
+                Size = String.IsNullOrEmpty(Request["size"]) ? ListSize : Convert.ToInt32(Request["size"]);
             }
             catch (FormatException)
             {

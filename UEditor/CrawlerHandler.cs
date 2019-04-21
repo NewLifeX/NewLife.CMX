@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -11,6 +12,7 @@ namespace UEditor
     {
         private String[] Sources;
         private Crawler[] Crawlers;
+        public String PathFormat { get; set; }
         public CrawlerHandler(HttpContext context) : base(context) { }
 
         public override void Process()
@@ -24,7 +26,7 @@ namespace UEditor
                 });
                 return;
             }
-            Crawlers = Sources.Select(x => new Crawler(x, Server).Fetch()).ToArray();
+            Crawlers = Sources.Select(x => new Crawler(x, Server) { PathFormat = PathFormat }.Fetch()).ToArray();
             WriteJson(new
             {
                 state = "SUCCESS",
@@ -42,6 +44,7 @@ namespace UEditor
     {
         public String SourceUrl { get; set; }
         public String ServerUrl { get; set; }
+        public String PathFormat { get; set; }
         public String State { get; set; }
 
         private HttpServerUtility Server { get; set; }
@@ -55,6 +58,11 @@ namespace UEditor
 
         public Crawler Fetch()
         {
+            if (!IsExternalIPAddress(SourceUrl))
+            {
+                State = "INVALID_URL";
+                return this;
+            }
             var request = HttpWebRequest.Create(SourceUrl) as HttpWebRequest;
             using (var response = request.GetResponse() as HttpWebResponse)
             {
@@ -68,8 +76,12 @@ namespace UEditor
                     State = "Url is not an image";
                     return this;
                 }
-                ServerUrl = PathFormatter.Format(Path.GetFileName(SourceUrl), Config.GetString("catcherPathFormat"));
-                var savePath = ServerUrl.GetFullPath().EnsureDirectory();
+                ServerUrl = PathFormatter.Format(Path.GetFileName(SourceUrl), PathFormat);
+                var savePath = Server.MapPath(ServerUrl);
+                if (!Directory.Exists(Path.GetDirectoryName(savePath)))
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(savePath));
+                }
                 try
                 {
                     var stream = response.GetResponseStream();
@@ -77,7 +89,7 @@ namespace UEditor
                     Byte[] bytes;
                     using (var ms = new MemoryStream())
                     {
-                        Byte[] buffer = new Byte[4096];
+                        var buffer = new Byte[4096];
                         Int32 count;
                         while ((count = reader.Read(buffer, 0, buffer.Length)) != 0)
                         {
@@ -94,6 +106,62 @@ namespace UEditor
                 }
                 return this;
             }
+        }
+
+        private Boolean IsExternalIPAddress(String url)
+        {
+            var uri = new Uri(url);
+            switch (uri.HostNameType)
+            {
+                case UriHostNameType.Dns:
+                    var ipHostEntry = Dns.GetHostEntry(uri.DnsSafeHost);
+                    foreach (var ipAddress in ipHostEntry.AddressList)
+                    {
+                        var ipBytes = ipAddress.GetAddressBytes();
+                        if (ipAddress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                        {
+                            if (!IsPrivateIP(ipAddress))
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                    break;
+
+                case UriHostNameType.IPv4:
+                    return !IsPrivateIP(IPAddress.Parse(uri.DnsSafeHost));
+            }
+            return false;
+        }
+
+        private Boolean IsPrivateIP(IPAddress myIPAddress)
+        {
+            if (IPAddress.IsLoopback(myIPAddress)) return true;
+            if (myIPAddress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+            {
+                var ipBytes = myIPAddress.GetAddressBytes();
+                // 10.0.0.0/24 
+                if (ipBytes[0] == 10)
+                {
+                    return true;
+                }
+                // 172.16.0.0/16
+                else if (ipBytes[0] == 172 && ipBytes[1] == 16)
+                {
+                    return true;
+                }
+                // 192.168.0.0/16
+                else if (ipBytes[0] == 192 && ipBytes[1] == 168)
+                {
+                    return true;
+                }
+                // 169.254.0.0/16
+                else if (ipBytes[0] == 169 && ipBytes[1] == 254)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
