@@ -1,9 +1,5 @@
 [
   {
-    "Childs":  [
-      
-    ],
-    "TreeNodeName":  "头部",
     "Childrens":  null,
     "ID":  1,
     "Name":  "头部",
@@ -14,18 +10,14 @@
     "Sort":  1,
     "Enable":  true,
     "CreateUserID":  0,
-    "CreateTime":  "2017-10-10 23:07:48",
-    "CreateIP":  null,
+    "CreateTime":  "2019-04-21 15:04:21",
+    "CreateIP":  "::1",
     "UpdateUserID":  0,
-    "UpdateTime":  "2017-10-10 23:07:48",
-    "UpdateIP":  null,
+    "UpdateTime":  "2019-04-21 15:04:21",
+    "UpdateIP":  "::1",
     "Remark":  null
   },
   {
-    "Childs":  [
-      
-    ],
-    "TreeNodeName":  "尾部",
     "Childrens":  null,
     "ID":  4,
     "Name":  "尾部",
@@ -36,11 +28,11 @@
     "Sort":  1,
     "Enable":  true,
     "CreateUserID":  0,
-    "CreateTime":  "2017-10-10 23:07:48",
-    "CreateIP":  null,
+    "CreateTime":  "2019-04-21 15:04:21",
+    "CreateIP":  "::1",
     "UpdateUserID":  0,
-    "UpdateTime":  "2017-10-10 23:07:48",
-    "UpdateIP":  null,
+    "UpdateTime":  "2019-04-21 15:04:21",
+    "UpdateIP":  "::1",
     "Remark":  null
   }
 ]
