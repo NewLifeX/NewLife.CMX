@@ -1,0 +1,75 @@
+﻿@model IList<NewLife.CMX.Info>
+@using NewLife;
+@using NewLife.Web;
+@using XCode;
+@using XCode.Configuration;
+@using XCode.Membership;
+@using NewLife.Cube;
+@using System.Web.Mvc;
+@using System.Web.Mvc.Ajax;
+@using System.Web.Mvc.Html;
+@using System.Web.Routing;
+@{
+    var fact = ViewBag.Factory as IEntityOperate;
+    var page = ViewBag.Page as Pager;
+    var fields = ViewBag.Fields as IList<FieldItem>;
+    var set = ViewBag.PageSetting as PageSetting;
+    //var provider = ManageProvider.Provider;
+}
+<table class="table table-bordered table-hover table-striped table-condensed">
+    <thead>
+        <tr>
+            @if (set.EnableSelect)
+            {
+                <th class="text-center" style="width:10px;"><input type="checkbox" id="chkAll" title="全选" /></th>
+            }
+            <th class="text-center hidden-md hidden-sm hidden-xs"><a href="@Html.Raw(page.GetSortUrl("ID"))">编号</a></th>
+            <th class="text-center"><a href="@Html.Raw(page.GetSortUrl("CategoryID"))">分类</a></th>
+            <th class="text-center"><a href="@Html.Raw(page.GetSortUrl("Title"))">标题</a></th>
+            <th class="text-center" title="访问量。由统计表同步过来"><a href="@Html.Raw(page.GetSortUrl("Views"))">访问量</a></th>
+            <th class="text-center" title="排序。较大值在前"><a href="@Html.Raw(page.GetSortUrl("Sort"))">排序</a></th>
+            <th class="text-center"><a href="@Html.Raw(page.GetSortUrl("Publisher"))">发布人</a></th>
+            <th class="text-center" style="min-width:134px;"><a href="@Html.Raw(page.GetSortUrl("PublishTime"))">发布时间</a></th>
+            <th class="text-center"><a href="@Html.Raw(page.GetSortUrl("CreateUser"))">创建人</a></th>
+            <th class="text-center" style="min-width:134px;"><a href="@Html.Raw(page.GetSortUrl("CreateTime"))">创建时间</a></th>
+            <th class="text-center"><a href="@Html.Raw(page.GetSortUrl("CreateIP"))">创建地址</a></th>
+            <th class="text-center"><a href="@Html.Raw(page.GetSortUrl("UpdateUser"))">更新人</a></th>
+            <th class="text-center" style="min-width:134px;"><a href="@Html.Raw(page.GetSortUrl("UpdateTime"))">更新时间</a></th>
+            <th class="text-center"><a href="@Html.Raw(page.GetSortUrl("UpdateIP"))">更新地址</a></th>
+            @if (this.Has(PermissionFlags.Detail, PermissionFlags.Update, PermissionFlags.Delete))
+            {
+                <th class="text-center" style="min-width:100px;">操作</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var entity in Model)
+        {
+            <tr>
+                @if (set.EnableSelect)
+                {
+                    <td class="text-center"><input type="checkbox" name="keys" value="@entity.ID" /></td>
+                }
+                <td class="text-center hidden-md hidden-sm hidden-xs">@entity.ID</td>
+                <td>@entity.CategoryName</td>
+                <td><a href="/Info-@entity.ID" target="_blank">@entity.Title</a></td>
+                <td class="text-right">@entity.Views.ToString("n0")</td>
+                <td class="text-right">@entity.Sort.ToString("n0")</td>
+                <td>@entity.Publisher</td>
+                <td>@entity.PublishTime.ToFullString("")</td>
+                <td>@entity.CreateUser</td>
+                <td>@entity.CreateTime.ToFullString("")</td>
+                <td title="@entity.CreateIP.IPToAddress()">@entity.CreateIP</td>
+                <td>@entity.UpdateUser</td>
+                <td>@entity.UpdateTime.ToFullString("")</td>
+                <td title="@entity.UpdateIP.IPToAddress()">@entity.UpdateIP</td>
+                @if (this.Has(PermissionFlags.Detail, PermissionFlags.Update, PermissionFlags.Delete))
+                {
+                    <td class="text-center">
+                        @Html.Partial("_List_Data_Action", (Object)entity)
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

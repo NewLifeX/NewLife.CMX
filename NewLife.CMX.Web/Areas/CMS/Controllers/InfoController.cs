@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using NewLife.Web;
@@ -15,31 +16,18 @@ namespace NewLife.CMX.Web.Controllers
 
             list = FormFields;
             list.RemoveAll(e => e.Name.EqualIgnoreCase("ModelID", "CategoryID", "CategoryName", "StatisticsID", "Title", "Code", "Version", "Views"));
-            var fi = Info.Meta.AllFields.FirstOrDefault(e => e.Name == "StatisticsText");
-            if (fi != null) list.Add(fi);
+            //var fi = Info.Meta.AllFields.FirstOrDefault(e => e.Name == "StatisticsText");
+            //if (fi != null) list.Add(fi);
         }
 
-        //protected override IDictionary<MethodInfo, Int32> ScanActionMenu(IMenu menu)
-        //{
-        //    menu.Visible = false;
-
-        //    return base.ScanActionMenu(menu);
-        //}
-
-        /// <summary>列表页视图。子控制器可重载，以传递更多信息给视图，比如修改要显示的列</summary>
-        /// <param name="p"></param>
-        /// <returns></returns>
-        protected override ActionResult IndexView(Pager p)
+        protected override IEnumerable<Info> Search(Pager p)
         {
-            p.Sort = "CreateTime";
-            p.Desc = true;
-
-            //LoadChannel();
-
+            var modelid = RouteData.Values["model"].ToInt();
             var catid = RouteData.Values["category"].ToInt();
-            var list = Info.Search(0, catid, null, p);
 
-            return View("List", list);
+            var key = p["q"];
+
+            return Info.Search(modelid, catid, key, p);
         }
 
         public override ActionResult Add()
@@ -70,12 +58,14 @@ namespace NewLife.CMX.Web.Controllers
             }
             var mod = entity.Model;
             var tmp = "~/Areas/CMS/Views/Info/Form.cshtml";
-            if (entity.Category != null)
+            if (mod == null && entity.Category != null)
             {
                 mod = entity.Category.Model;
-                // 根据模型加载专属表单页
-                tmp = "~/Areas/CMS/Views/{0}/Form.cshtml".F(mod.Name ?? "Info");
             }
+
+            // 根据模型加载专属表单页
+            if (mod != null) tmp = "~/Areas/CMS/Views/{0}/Form.cshtml".F(mod.Name ?? "Info");
+
             return View(tmp, entity);
         }
 
@@ -86,12 +76,8 @@ namespace NewLife.CMX.Web.Controllers
             ViewBag.Page = p;
 
             // 用于显示的列
-            var fields = GetFields(false);
-            ViewBag.Fields = fields;
+            ViewBag.Fields = base.GetFields(false);
 
-            p.Sort = "CreateTime";
-            p.Desc = true;
-            Session["mid"] = id;
             var list = Info.Search(id, 0, null, p);
 
             return View("List", list);
@@ -99,16 +85,10 @@ namespace NewLife.CMX.Web.Controllers
 
         public ActionResult Cat(Int32 id, Pager p = null)
         {
-            if (p == null) p = new Pager();
-
-            ViewBag.Page = p;
+            ViewBag.Page = p ?? new Pager();
 
             // 用于显示的列
-            var fields = GetFields(false);
-            ViewBag.Fields = fields;
-            Session["cid"] = id;
-            p.Sort = "CreateTime";
-            p.Desc = true;
+            ViewBag.Fields = base.GetFields(false);
 
             var list = Info.Search(0, id, null, p);
 

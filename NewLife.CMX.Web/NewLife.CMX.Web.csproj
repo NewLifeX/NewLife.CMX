@@ -138,6 +138,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>_Form_Title.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="Areas\CMS\Views\Info\_List_Data.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_List_Data.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="Areas\CMS\Views\Nav\ListTree.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -592,6 +597,10 @@
     <Content Include="Areas\CMS\Views\Down\Form.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Form.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\CMS\Views\Info\_List_Data.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>_List_Data.generated.cs</LastGenOutput>
     </Content>
     <None Include="Areas\CMS\Views\_ViewStart.cshtml">
       <Generator>RazorGenerator</Generator>
