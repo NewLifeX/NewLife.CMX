@@ -88,7 +88,7 @@ namespace NewLife.CMX
             if (Meta.Count >= 1000)
                 return Meta.SingleCache[id];
             else
-                return Meta.Cache.Entities.FirstOrDefault(e => e.ID == id);
+                return Meta.Cache.Find(e => e.ID == id);
         }
 
         /// <summary>根据主题查找</summary>
@@ -113,7 +113,7 @@ namespace NewLife.CMX
             if (Meta.Count >= 1000)
                 return Find(new String[] { __.InfoID, __.Version }, new Object[] { parentid, version });
             else // 实体缓存
-                return Meta.Cache.Entities.FirstOrDefault(e => e.InfoID == parentid && e.Version == version);
+                return Meta.Cache.Find(e => e.InfoID == parentid && e.Version == version);
         }
 
         /// <summary>根据ParentID查询最后版本</summary>

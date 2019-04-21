@@ -38,7 +38,7 @@ namespace NewLife.CMX
             if (!HasDirty) return;
 
             // 这里验证参数范围，建议抛出参数异常，指定参数名，前端用户界面可以捕获参数异常并聚焦到对应的参数输入框
-            if (String.IsNullOrEmpty(Name)) throw new ArgumentNullException(_.Name, _.Name.DisplayName + "无效！");
+            if (Name.IsNullOrEmpty()) throw new ArgumentNullException(_.Name, _.Name.DisplayName + "无效！");
             if (Model == null) throw new ArgumentNullException(__.ModelID, _.ModelID.DisplayName + "无效！");
 
             // 建议先调用基类方法，基类方法会对唯一索引的数据进行验证
@@ -75,54 +75,31 @@ namespace NewLife.CMX
 
             // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
             if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Category).Name, Meta.Table.DataTable.DisplayName);
-            //var fn = "../InitData/{0}.json".F(Meta.TableName).GetFullPath();
-            //if (File.Exists(fn))
-            //{
-            //    if (XTrace.Debug) XTrace.WriteLine("使用数据初始化文件【{0}】初始化{1}[{2}]数据……", fn, typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
 
-            //    var list = IList<TEntity>.FromJson(File.ReadAllText(fn, Encoding.UTF8));
-            //    var queue = new Queue<TEntity>(list);
-            //    while (queue.Count > 0)
-            //    {
-            //        var item = queue.Dequeue();
-            //        item.Save();
-            //        if (item.Childrens != null && item.Childrens.Count > 0)
-            //        {
-            //            foreach (var child in item.Childrens)
-            //            {
-            //                child.ParentID = item.ID;
-            //                queue.Enqueue(child);
-            //            }
-            //        }
-            //    }
-            //}
-            //else
+            // 遍历模型
+            CMX.Model.Meta.Session.WaitForInitData();
+
+            var sort = 100;
+            foreach (var item in CMX.Model.FindAllWithCache())
             {
-                // 遍历模型
-                CMX.Model.Meta.Session.WaitForInitData();
-
-                var sort = 100;
-                foreach (var item in CMX.Model.FindAllWithCache())
+                var entity = new Category
                 {
-                    var entity = new Category
-                    {
-                        //Name = "默认" + (item.DisplayName ?? item.Name),
-                        Name = (item.DisplayName ?? item.Name),
-                        //Code = item.Name,
-                        ModelID = item.ID
-                    };
-                    entity.Sort = sort--;
-                    entity.Insert();
+                    Name = (item.DisplayName ?? item.Name),
+                    ModelID = item.ID
+                };
+                entity.Sort = sort--;
+                entity.Insert();
 
-                    entity = new Category
-                    {
-                        ParentID = entity.ID,
-                        Name = "二级" + item.DisplayName ?? item.Name,
-                        ModelID = item.ID
-                    };
-                    entity.Insert();
-                }
+                entity = new Category
+                {
+                    ParentID = entity.ID,
+                    Name = "二级" + item.DisplayName ?? item.Name,
+                    ModelID = item.ID,
+                    Code = entity.Code + "2",
+                };
+                entity.Insert();
             }
+
             if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Category).Name, Meta.Table.DataTable.DisplayName);
         }
         #endregion
@@ -130,16 +107,13 @@ namespace NewLife.CMX
         #region 扩展属性
         /// <summary>该分类所对应的模型</summary>
         [XmlIgnore, ScriptIgnore]
-        public IModel Model { get { return Extends.Get(nameof(Model), k => NewLife.CMX.Model.FindByID(ModelID)); } }
+        public IModel Model => Extends.Get(nameof(Model), k => NewLife.CMX.Model.FindByID(ModelID));
 
         /// <summary>该分类所对应的模型名称</summary>
         [XmlIgnore, ScriptIgnore]
         [DisplayName("模型")]
         [Map(__.ModelID, typeof(Model), "ID")]
-        public String ModelName { get { return Model + ""; } }
-
-        /// <summary>子节点</summary> 
-        public IList<Category> Childrens { get; set; }
+        public String ModelName => Model + "";
         #endregion
 
         #region 扩展查询
@@ -154,7 +128,7 @@ namespace NewLife.CMX
             if (Meta.Count >= 1000)
                 return Meta.SingleCache[id];
             else
-                return Meta.Cache.Entities.FirstOrDefault(e => e.ID == id);
+                return Meta.Cache.Find(e => e.ID == id);
         }
 
         /// <summary>根据名称查找</summary>
@@ -168,7 +142,7 @@ namespace NewLife.CMX
             if (Meta.Count >= 1000)
                 return Find(__.Name, name);
             else // 实体缓存
-                return Meta.Cache.Entities.FirstOrDefault(e => e.Name == name);
+                return Meta.Cache.Find(e => e.Name == name);
         }
 
         /// <summary>根据代码查找</summary>
@@ -182,7 +156,7 @@ namespace NewLife.CMX
             if (Meta.Count >= 1000)
                 return Find(__.Code, code);
             else // 实体缓存
-                return Meta.Cache.Entities.FirstOrDefault(e => e.Code == code);
+                return Meta.Cache.Find(e => e.Code == code);
         }
         #endregion
 
@@ -200,8 +174,7 @@ namespace NewLife.CMX
 
         DictionaryCache<String, IList<IInfo>> _cache = new DictionaryCache<String, IList<IInfo>>()
         {
-            //Expriod = 60,
-            //Asynchronous = true
+            Period = 60,
         };
         /// <summary>获取该分类以及子孙分类的所有有效信息。带60秒异步缓存</summary>
         /// <param name="pager"></param>
@@ -209,9 +182,7 @@ namespace NewLife.CMX
         public IList<IInfo> GetInfos(PageParameter pager)
         {
             var key = "{0}-{1}".F(ID, pager.GetKey());
-            return _cache.GetItem(key, k => Info.Search(0, ID, null, pager).ToList().Cast<IInfo>().ToList());
-
-            //return Info.Search(0, ID, null, pager).ToList().Cast<IInfo>().ToList();
+            return _cache.GetItem(key, k => Info.Search(0, ID, null, pager).Cast<IInfo>().ToList());
         }
         #endregion
 
@@ -227,7 +198,7 @@ namespace NewLife.CMX
         /// <returns></returns>
         public String GetTemplate(String kind)
         {
-            if (String.IsNullOrEmpty(kind)) kind = "category";
+            if (kind.IsNullOrEmpty()) kind = "category";
 
             kind = (kind + "").Trim().ToLower();
 
@@ -270,11 +241,11 @@ namespace NewLife.CMX
 
         /// <summary>获取分类模版</summary>
         /// <returns></returns>
-        public String GetCategoryTemplate() { return GetTemplate("category"); }
+        public String GetCategoryTemplate() => GetTemplate("category");
 
         /// <summary>获取标题模版</summary>
         /// <returns></returns>
-        public String GetInfoTemplate() { return GetTemplate("info"); }
+        public String GetInfoTemplate() => GetTemplate("info");
         #endregion
     }
 
@@ -288,14 +259,11 @@ namespace NewLife.CMX
         /// <param name="pageCount"></param>
         /// <returns></returns>
         IList<IInfo> GetInfos(Int32 pageIndex = 1, Int32 pageCount = 10);
-        //Int32 GetTitleCount();
 
         /// <summary>获取该分类以及子孙分类的所有有效信息</summary>
         /// <param name="pager"></param>
         /// <returns></returns>
         IList<IInfo> GetInfos(PageParameter pager);
-
-        //IInfo FindTitle(Int32 id);
 
         /// <summary>获取分类模版</summary>
         /// <returns></returns>

@@ -133,7 +133,7 @@ namespace NewLife.CMX
         {
             if (id <= 0) return null;
 
-            return Meta.Cache.Entities.FirstOrDefault(e => e.ID == id);
+            return Meta.Cache.Find(e => e.ID == id);
         }
 
         /// <summary>根据名称查找导航</summary>
@@ -143,7 +143,7 @@ namespace NewLife.CMX
         {
             if (name.IsNullOrEmpty()) return null;
 
-            return Meta.Cache.Entities.FirstOrDefault(e => e.Name == name);
+            return Meta.Cache.Find(e => e.Name == name);
         }
         #endregion
 

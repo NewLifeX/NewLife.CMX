@@ -248,7 +248,7 @@ namespace NewLife.CMX
             if (Meta.Count >= 1000)
                 return Meta.SingleCache[id];
             else
-                return Meta.Cache.Entities.FirstOrDefault(e => e.ID == id);
+                return Meta.Cache.Find(e => e.ID == id);
         }
 
         /// <summary>根据代码查找</summary>
@@ -260,7 +260,7 @@ namespace NewLife.CMX
             if (Meta.Count >= 1000)
                 return Find(__.Code, code);
             else // 实体缓存
-                return Meta.Cache.Entities.FirstOrDefault(e => e.Code == code);
+                return Meta.Cache.Find(e => e.Code == code);
         }
 
         /// <summary>根据模型查找</summary>
