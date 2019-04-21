@@ -18,12 +18,7 @@ namespace NewLife.CMX.Web
         /// <returns></returns>
         public static String GetUrl(this WebViewPage page, IInfo inf)
         {
-            //var cat = inf.Category;
-            //if (cat == null) return null;
-
             var values = page.Url.RequestContext.RouteData.Values;
-            //values["modelName"] = cat.Model.Name;
-            //values["categoryCode"] = cat.Code;
             values["id"] = inf.ID;
             values["infoCode"] = inf.Code;
 

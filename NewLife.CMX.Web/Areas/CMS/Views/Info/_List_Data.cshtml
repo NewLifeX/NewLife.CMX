@@ -9,6 +9,7 @@
 @using System.Web.Mvc.Ajax;
 @using System.Web.Mvc.Html;
 @using System.Web.Routing;
+@using NewLife.CMX.Web;
 @{
     var fact = ViewBag.Factory as IEntityOperate;
     var page = ViewBag.Page as Pager;
@@ -52,7 +53,7 @@
                 }
                 <td class="text-center hidden-md hidden-sm hidden-xs">@entity.ID</td>
                 <td>@entity.CategoryName</td>
-                <td><a href="/Info-@entity.ID" target="_blank">@entity.Title</a></td>
+                <td><a href="@this.GetUrl(entity)" target="_blank">@entity.Title</a></td>
                 <td class="text-right">@entity.Views.ToString("n0")</td>
                 <td class="text-right">@entity.Sort.ToString("n0")</td>
                 <td>@entity.Publisher</td>
