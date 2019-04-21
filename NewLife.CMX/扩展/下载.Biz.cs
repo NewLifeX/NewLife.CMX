@@ -5,10 +5,6 @@
  * 版权：版权所有 (C) 新生命开发团队 2002~2016
 */
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using XCode;
 
 namespace NewLife.CMX
 {
