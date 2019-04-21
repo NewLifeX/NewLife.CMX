@@ -19,13 +19,23 @@ namespace NewLife.CMX.Editor
             PathNotFound
         }
 
+        /// <summary>开始</summary>
         public Int32 Start { get; set; }
+
+        /// <summary>大小</summary>
         public Int32 Size { get; set; }
 
+        /// <summary>列表目录</summary>
         public String PathToList { get; set; }
+
+        /// <summary>搜索扩展</summary>
         public String[] SearchExtensions { get; set; }
+
+        /// <summary>列表大小</summary>
         public Int32 ListSize { get; set; }
 
+        /// <summary>处理</summary>
+        /// <returns></returns>
         public virtual Object Process()
         {
             var state = ResultState.Success;
@@ -36,7 +46,7 @@ namespace NewLife.CMX.Editor
             var list = new List<String>();
             try
             {
-                var localPath = PathToList.GetFullPath();
+                var localPath = PathToList.TrimStart("/", "\\").GetFullPath();
                 list.AddRange(Directory.GetFiles(localPath, "*", SearchOption.AllDirectories)
                     .Where(x => SearchExtensions.Contains(Path.GetExtension(x).ToLower()))
                     .Select(x => PathToList + x.Substring(localPath.Length).Replace("\\", "/")));

@@ -61,7 +61,12 @@ namespace NewLife.CMX.Web.Controllers
             }
         }
 
-        public ActionResult Config() => Json(_config, JsonRequestBehavior.AllowGet);
+        public ActionResult Config()
+        {
+            var dic = _config.Where(e => !e.Key.EndsWithIgnoreCase("PathFormat", "ListPath")).ToDictionary(e => e.Key, e => e.Value);
+
+            return Json(dic, JsonRequestBehavior.AllowGet);
+        }
 
         public ActionResult UploadImage()
         {
