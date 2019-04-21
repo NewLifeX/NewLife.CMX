@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Web.Mvc;
 using NewLife.CMX.Editor;
 using NewLife.Collections;
+using NewLife.Log;
 using NewLife.Serialization;
 
 namespace NewLife.CMX.Web.Controllers
@@ -39,95 +41,24 @@ namespace NewLife.CMX.Web.Controllers
 
         private Int32 GetInt(String key) => _config[key].ToInt();
         private String GetString(String key) => (String)_config[key];
-        private String[] GetStringList(String key) => (String[])_config[key];
+        private String[] GetStringList(String key) => (_config[key] as IList<Object>)?.Cast<String>().ToArray();
 
-        // GET: UEditor
         public ActionResult Index()
         {
-            Object rs = null;
             var act = (Request["action"] + "").ToLower();
             switch (act)
             {
-                case "uploadimage":
-                    var u1 = new Uploader
-                    {
-                        File = Request.Files["imageFieldName"],
-                        AllowExtensions = GetStringList("imageAllowFiles"),
-                        PathFormat = GetString("imagePathFormat"),
-                        SizeLimit = GetInt("imageMaxSize"),
-                        //UploadFieldName = GetString("imageFieldName")
-                    };
-                    break;
-                case "uploadscrawl":
-                    var u2 = new Uploader
-                    {
-                        FileBytes = Request["scrawlFieldName"].ToBase64(),
-                        AllowExtensions = new String[] { ".png" },
-                        PathFormat = GetString("scrawlPathFormat"),
-                        SizeLimit = GetInt("scrawlMaxSize"),
-                        //UploadFieldName = GetString("scrawlFieldName"),
-                        //Base64 = true,
-                        Base64Filename = "scrawl.png"
-                    };
-                    break;
-                case "uploadvideo":
-                    var u3 = new Uploader
-                    {
-                        File = Request.Files["videoFieldName"],
-                        AllowExtensions = GetStringList("videoAllowFiles"),
-                        PathFormat = GetString("videoPathFormat"),
-                        SizeLimit = GetInt("videoMaxSize"),
-                        //UploadFieldName = GetString("videoFieldName")
-                    };
-                    break;
-                case "uploadfile":
-                    var u4 = new Uploader
-                    {
-                        File = Request.Files["fileFieldName"],
-                        AllowExtensions = GetStringList("fileAllowFiles"),
-                        PathFormat = GetString("filePathFormat"),
-                        SizeLimit = GetInt("fileMaxSize"),
-                        //UploadFieldName = GetString("fileFieldName")
-                    };
-                    break;
-                case "listimage":
-                    var ff = new ListFile
-                    {
-                        PathToList = GetString("imageManagerListPath"),
-                        SearchExtensions = GetStringList("imageManagerAllowFiles"),
-                        ListSize = GetInt("imageManagerListSize"),
-
-                        Start = Request["start"].ToInt(),
-                        Size = Request["size"].ToInt(),
-                    };
-                    rs = ff.Process();
-                    break;
-                case "listfile":
-                    var f2 = new ListFile
-                    {
-                        PathToList = GetString("fileManagerListPath"),
-                        SearchExtensions = GetStringList("fileManagerAllowFiles"),
-                        ListSize = GetInt("fileManagerListSize"),
-
-                        Start = Request["start"].ToInt(),
-                        Size = Request["size"].ToInt(),
-                    };
-                    rs = f2.Process();
-                    break;
-                case "catchimage":
-                    var cr = new Crawler
-                    {
-                        Sources = Request.Form.GetValues("source[]"),
-                        PathFormat = GetString("catcherPathFormat"),
-                    };
-                    rs = cr.Process();
-                    break;
+                case "uploadimage": return UploadImage();
+                case "uploadscrawl": return UploadScrawl();
+                case "uploadvideo": return UploadVideo();
+                case "uploadfile": return UploadFile();
+                case "listimage": return ListImage();
+                case "listfile": return ListFile();
+                case "catchimage": return CatchImage();
                 case "config":
                 default:
-                    rs = _config; break;
+                    return Config();
             }
-
-            return Json(rs, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Config() => Json(_config, JsonRequestBehavior.AllowGet);
@@ -136,11 +67,10 @@ namespace NewLife.CMX.Web.Controllers
         {
             var ur = new Uploader
             {
-                File = Request.Files["imageFieldName"],
+                File = Request.Files[GetString("imageFieldName")],
                 AllowExtensions = GetStringList("imageAllowFiles"),
                 PathFormat = GetString("imagePathFormat"),
-                SizeLimit = GetInt("imageMaxSize"),
-                //UploadFieldName = GetString("imageFieldName")
+                MaxSize = GetInt("imageMaxSize"),
             };
             var rs = ur.Process();
             return Json(rs, JsonRequestBehavior.AllowGet);
@@ -150,10 +80,10 @@ namespace NewLife.CMX.Web.Controllers
         {
             var ur = new Uploader
             {
-                FileBytes = Request["scrawlFieldName"].ToBase64(),
+                FileBytes = Request[GetString("scrawlFieldName")].ToBase64(),
                 AllowExtensions = new String[] { ".png" },
                 PathFormat = GetString("scrawlPathFormat"),
-                SizeLimit = GetInt("scrawlMaxSize"),
+                MaxSize = GetInt("scrawlMaxSize"),
                 //UploadFieldName = GetString("scrawlFieldName"),
                 //Base64 = true,
                 Base64Filename = "scrawl.png"
@@ -166,10 +96,10 @@ namespace NewLife.CMX.Web.Controllers
         {
             var ur = new Uploader
             {
-                File = Request.Files["videoFieldName"],
+                File = Request.Files[GetString("videoFieldName")],
                 AllowExtensions = GetStringList("videoAllowFiles"),
                 PathFormat = GetString("videoPathFormat"),
-                SizeLimit = GetInt("videoMaxSize"),
+                MaxSize = GetInt("videoMaxSize"),
                 //UploadFieldName = GetString("videoFieldName")
             };
             var rs = ur.Process();
@@ -180,13 +110,54 @@ namespace NewLife.CMX.Web.Controllers
         {
             var ur = new Uploader
             {
-                File = Request.Files["fileFieldName"],
+                File = Request.Files[GetString("fileFieldName")],
                 AllowExtensions = GetStringList("fileAllowFiles"),
                 PathFormat = GetString("filePathFormat"),
-                SizeLimit = GetInt("fileMaxSize"),
+                MaxSize = GetInt("fileMaxSize"),
                 //UploadFieldName = GetString("fileFieldName")
             };
             var rs = ur.Process();
+            return Json(rs, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ListImage()
+        {
+            var ff = new ListFile
+            {
+                PathToList = GetString("imageManagerListPath"),
+                SearchExtensions = GetStringList("imageManagerAllowFiles"),
+                ListSize = GetInt("imageManagerListSize"),
+
+                Start = Request["start"].ToInt(),
+                Size = Request["size"].ToInt(),
+            };
+            var rs = ff.Process();
+            return Json(rs, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ListFile()
+        {
+            var ff = new ListFile
+            {
+                PathToList = GetString("fileManagerListPath"),
+                SearchExtensions = GetStringList("fileManagerAllowFiles"),
+                ListSize = GetInt("fileManagerListSize"),
+
+                Start = Request["start"].ToInt(),
+                Size = Request["size"].ToInt(),
+            };
+            var rs = ff.Process();
+            return Json(rs, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult CatchImage()
+        {
+            var cr = new Crawler
+            {
+                Sources = Request.Form.GetValues("source[]"),
+                PathFormat = GetString("catcherPathFormat"),
+            };
+            var rs = cr.Process();
             return Json(rs, JsonRequestBehavior.AllowGet);
         }
     }

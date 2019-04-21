@@ -3,22 +3,24 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
+using NewLife.Log;
 
 namespace NewLife.CMX.Editor
 {
-    /// <summary>UploadHandler 的摘要说明</summary>
+    /// <summary>文件上传处理器</summary>
     public class Uploader
     {
-        public UploadResult Result { get; private set; } = new UploadResult() { State = UploadState.Unknown };
-
+        /// <summary>上传文件</summary>
         public HttpPostedFileBase File { get; set; }
+
+        /// <summary>上传文件内容</summary>
         public Byte[] FileBytes { get; set; }
 
         /// <summary>文件命名规则</summary>
         public String PathFormat { get; set; }
 
         /// <summary>上传大小限制</summary>
-        public Int32 SizeLimit { get; set; }
+        public Int32 MaxSize { get; set; }
 
         /// <summary>上传允许的文件格式</summary>
         public String[] AllowExtensions { get; set; }
@@ -26,10 +28,13 @@ namespace NewLife.CMX.Editor
         /// <summary>Base64 字符串所表示的文件名</summary>
         public String Base64Filename { get; set; }
 
+        /// <summary>处理</summary>
+        /// <returns></returns>
         public virtual Object Process()
         {
             Byte[] uploadFileBytes = null;
             String uploadFileName = null;
+            var rs = new UploadResult() { State = UploadState.Unknown };
 
             var file = File;
             if (file == null)
@@ -39,18 +44,17 @@ namespace NewLife.CMX.Editor
             }
             else
             {
-                //var file = Request.Files[Config.UploadFieldName];
                 uploadFileName = file.FileName;
 
                 if (!CheckFileType(uploadFileName))
                 {
-                    Result.State = UploadState.TypeNotAllow;
-                    return GetResult();
+                    rs.State = UploadState.TypeNotAllow;
+                    return GetResult(rs);
                 }
-                if (file.ContentLength > SizeLimit)
+                if (file.ContentLength > MaxSize)
                 {
-                    Result.State = UploadState.SizeLimitExceed;
-                    return GetResult();
+                    rs.State = UploadState.SizeLimitExceed;
+                    return GetResult(rs);
                 }
 
                 uploadFileBytes = new Byte[file.ContentLength];
@@ -60,44 +64,40 @@ namespace NewLife.CMX.Editor
                 }
                 catch (Exception)
                 {
-                    Result.State = UploadState.NetworkError;
-                    GetResult();
+                    rs.State = UploadState.NetworkError;
+                    return GetResult(rs);
                 }
             }
 
-            Result.OriginFileName = uploadFileName;
+            rs.OriginFileName = uploadFileName;
 
             var savePath = Format(uploadFileName, PathFormat);
-            var localPath = savePath.GetFullPath();
+            var localPath = savePath.TrimStart("/", "\\").GetFullPath();
             try
             {
-                localPath.EnsureDirectory();
-                //if (!Directory.Exists(Path.GetDirectoryName(localPath)))
-                //{
-                //    Directory.CreateDirectory(Path.GetDirectoryName(localPath));
-                //}
+                localPath.EnsureDirectory(true);
                 System.IO.File.WriteAllBytes(localPath, uploadFileBytes);
-                Result.Url = savePath;
-                Result.State = UploadState.Success;
+                rs.Url = savePath;
+                rs.State = UploadState.Success;
             }
             catch (Exception e)
             {
-                Result.State = UploadState.FileAccessError;
-                Result.ErrorMessage = e.Message;
+                rs.State = UploadState.FileAccessError;
+                rs.ErrorMessage = e.Message;
             }
 
-            return GetResult();
+            return GetResult(rs);
         }
 
-        private Object GetResult()
+        private Object GetResult(UploadResult rs)
         {
             return new
             {
-                state = GetStateMessage(Result.State),
-                url = Result.Url,
-                title = Result.OriginFileName,
-                original = Result.OriginFileName,
-                error = Result.ErrorMessage
+                state = GetStateMessage(rs.State),
+                url = rs.Url,
+                title = rs.OriginFileName,
+                original = rs.OriginFileName,
+                error = rs.ErrorMessage
             };
         }
 
@@ -121,22 +121,22 @@ namespace NewLife.CMX.Editor
 
         private Boolean CheckFileType(String filename)
         {
+            var exts = AllowExtensions;
+            if (exts == null) return false;
+
             var fileExtension = Path.GetExtension(filename).ToLower();
-            return AllowExtensions.Select(x => x.ToLower()).Contains(fileExtension);
+            return exts.Select(x => x.ToLower()).Contains(fileExtension);
         }
 
-        public static String Format(String originFileName, String pathFormat)
+        internal static String Format(String originFileName, String pathFormat)
         {
-            if (String.IsNullOrWhiteSpace(pathFormat))
-            {
-                pathFormat = "{filename}{rand:6}";
-            }
+            if (String.IsNullOrWhiteSpace(pathFormat)) pathFormat = "{filename}{rand:6}";
 
             var invalidPattern = new Regex(@"[\\\/\:\*\?\042\<\>\|]");
             originFileName = invalidPattern.Replace(originFileName, "");
 
-            String extension = Path.GetExtension(originFileName);
-            String filename = Path.GetFileNameWithoutExtension(originFileName);
+            var extension = Path.GetExtension(originFileName);
+            var filename = Path.GetFileNameWithoutExtension(originFileName);
 
             pathFormat = pathFormat.Replace("{filename}", filename);
             pathFormat = new Regex(@"\{rand(\:?)(\d+)\}", RegexOptions.Compiled).Replace(pathFormat, new MatchEvaluator(delegate (Match match)
@@ -163,7 +163,7 @@ namespace NewLife.CMX.Editor
         }
     }
 
-    public class UploadResult
+    class UploadResult
     {
         public UploadState State { get; set; }
         public String Url { get; set; }
@@ -172,7 +172,7 @@ namespace NewLife.CMX.Editor
         public String ErrorMessage { get; set; }
     }
 
-    public enum UploadState
+    enum UploadState
     {
         Success = 0,
         SizeLimitExceed = -1,
