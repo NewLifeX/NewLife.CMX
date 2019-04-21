@@ -20,7 +20,7 @@ using XCode.Membership;
 namespace NewLife.CMX
 {
     /// <summary>导航</summary>
-    public partial class Nav : EntityTree<Nav>//, IUserInfo, ITimeInfo
+    public partial class Nav : EntityTree<Nav>
     {
         #region 对象操作﻿
         static Nav()
@@ -56,61 +56,20 @@ namespace NewLife.CMX
 
             var fn = "../InitData/{0}.json".F(Meta.TableName).GetFullPath();
 
-            //if (File.Exists(fn))
-            //{
-            //    if (XTrace.Debug) XTrace.WriteLine("使用数据初始化文件【{0}】初始化{1}[{2}]数据……", fn, typeof(Nav).Name, Meta.Table.DataTable.DisplayName);
+            var header = Root.Add("头部");
+            header.Add("首页", "/");
+            header.Add("关于我们", "/About");
 
-            //    //var list = IList<Nav>.FromJson(File.ReadAllText(fn));
-            //    var list = File.ReadAllText(fn).ToJsonEntity<List<Nav>>();
-            //    //var list = new IList<Nav>();
-            //    //list.FromXml(File.ReadAllText(fn));
-            //    var queue = new Queue<Nav>(list);
-            //    while (queue.Count > 0)
-            //    {
-            //        var item = queue.Dequeue();
-            //        item.Insert();
+            var footer = Root.Add("尾部");
+            var link = footer.Add("友情链接");
+            link.Add("新生命团队", "http://www.NewLifeX.com");
+            link.Add("开源项目", "https://github.com/NewLifeX");
 
-            //        var childs = item.Childrens;
-            //        if (childs != null && childs.Count > 0)
-            //        {
-            //            foreach (var child in childs)
-            //            {
-            //                child.ParentID = item.ID;
-            //                queue.Enqueue(child);
-            //            }
-            //        }
-            //    }
-            //}
-            //else
-            {
-                var header = Root.Add("头部");
-                header.Add("首页", "/");
-                header.Add("关于我们", "/About");
-
-                var footer = Root.Add("尾部");
-                var link = footer.Add("友情链接");
-                link.Add("新生命团队", "http://www.NewLifeX.com");
-
-                footer.Add("社区").Add("用户社区", "/Communicate");
-                footer.Add("关于").Add("关于我们", "/About");
-
-                // 开发模式下输出初始化配置
-                if (SysConfig.Current.Develop)
-                {
-                    var list = new List<Nav>
-                    {
-                        header,
-                        footer
-                    };
-                    File.WriteAllText(fn.EnsureDirectory(), list.ToJson(true));
-                }
-            }
+            footer.Add("社区").Add("用户社区", "/Communicate");
+            footer.Add("关于").Add("关于我们", "/About");
 
             if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Nav).Name, Meta.Table.DataTable.DisplayName);
         }
-
-        /// <summary>子孙节点</summary>
-        public IList<Nav> Childrens { get; set; }
         #endregion
 
         #region 扩展属性﻿

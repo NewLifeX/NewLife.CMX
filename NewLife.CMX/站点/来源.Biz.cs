@@ -86,29 +86,8 @@ namespace NewLife.CMX
         /// <returns></returns>
         public static IList<Source> FindAllVisible()
         {
-            var data = Meta.Cache.Entities.ToList().Where(e => e.Enable).OrderBy(e => e.Sort);
+            var data = Meta.Cache.Entities.Where(e => e.Enable).OrderBy(e => e.Sort);
             return new List<Source>(data);
-        }
-
-        /// <summary>查询满足条件的记录集，分页、排序</summary>
-        /// <param name="userid">用户编号</param>
-        /// <param name="start">开始时间</param>
-        /// <param name="end">结束时间</param>
-        /// <param name="key">关键字</param>
-        /// <param name="param">分页排序参数，同时返回满足条件的总记录数</param>
-        /// <returns>实体集</returns>
-        public static IList<Source> Search(Int32 userid, DateTime start, DateTime end, String key, PageParameter param)
-        {
-            // WhereExpression重载&和|运算符，作为And和Or的替代
-            // SearchWhereByKeys系列方法用于构建针对字符串字段的模糊搜索，第二个参数可指定要搜索的字段
-            var exp = SearchWhereByKeys(key, null, null);
-
-            // 以下仅为演示，Field（继承自FieldItem）重载了==、!=、>、<、>=、<=等运算符
-            //if (userid > 0) exp &= _.OperatorID == userid;
-            //if (isSign != null) exp &= _.IsSign == isSign.Value;
-            //exp &= _.OccurTime.Between(start, end); // 大于等于start，小于end，当start/end大于MinValue时有效
-
-            return FindAll(exp, param);
         }
         #endregion
 
