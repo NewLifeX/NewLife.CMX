@@ -1,0 +1,34 @@
+﻿@model NewLife.CMX.ICategory
+@{
+    var infs = ViewBag.Infos as IList<IInfo>;
+    var Pager = ViewBag.Pager as Pager;
+}
+<div class="container" style="min-height: 600px;">
+    <div class="row">
+        @Html.Partial("_Nav")
+    </div>
+    <h2 class="tith2">
+        @Model.Name
+    </h2>
+    @{
+        var childs = Model.Childs;
+        if (childs.Count > 0)
+        {
+            @Html.Partial("_Category_Childs", Model)
+        }
+        else
+        {
+            <ul class="list_news_dl fixed">
+                @foreach (var item in infs)
+                {
+                    <li>
+                        <a href="@this.GetUrl(item)">
+                            <i></i>@item.Title
+                        </a>
+                    </li>
+                }
+            </ul>
+            @Html.Partial("_Category_Pager", Model)
+        }
+    }
+</div>

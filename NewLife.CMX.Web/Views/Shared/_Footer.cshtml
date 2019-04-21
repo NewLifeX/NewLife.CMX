@@ -1,0 +1,27 @@
+﻿@using NewLife.Common;
+@{
+    var footer = Nav.Root.FindByPath("尾部") ?? Nav.Root;
+}
+<div class="container">
+    @foreach (var nav in footer.Childs)
+    {
+        <div class="span3">
+            <h3>@nav.Name</h3>
+            @foreach (var item in nav.Childs)
+            {
+                <a href="@item.Url" target="@(item.Url.StartsWithIgnoreCase("http")?"_blank":"")">@item.Name</a><br>
+            }
+        </div>
+    }
+</div>
+<div class="container">
+    <div class="row">
+        <p>@SysConfig.Current.Company &copy; @DateTime.Now.Year 设计制作：<a href="http://www.newlifex.com" target="_blank">新生命开发团队</a></p>
+    </div>
+</div>
+@if (DbRunTimeModule.Enable)
+{
+    <div class="panel-footer">
+        @Html.Raw(DbRunTimeModule.GetInfo())
+    </div>
+}

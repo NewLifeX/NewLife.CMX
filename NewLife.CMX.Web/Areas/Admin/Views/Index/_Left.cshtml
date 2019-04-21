@@ -1,0 +1,79 @@
+﻿@using System.Linq;
+@using NewLife.Model;
+@using NewLife.CMX;
+@{
+    var user = ManageProvider.User;
+
+    var fact = ObjectContainer.Current.Resolve<IMenuFactory>();
+
+    var Menus = fact.Root.Childs;
+    if (user != null && user.Role != null)
+    {
+        Menus = fact.GetMySubMenus(fact.Root.ID, user);
+    }
+
+    // 如果顶级只有一层，并且至少有三级目录，则提升一级
+    if (Menus.Count == 1 && Menus[0].Childs.All(m => m.Childs.Count > 0)) { Menus = Menus[0].Childs; }
+
+    String[] icos = new String[] { "fa-tachometer", "fa-desktop", "fa-list", "fa-pencil-square-o", "fa-list-alt", "fa-calendar", "fa-picture-o", "fa-tag", "fa-file-o" };
+    Int32 _idx = 0;
+}
+<ul class="nav nav-list">
+    @foreach (IMenu menu in Menus.Where(m => m.Visible))
+    {
+        var childs = fact.GetMySubMenus(menu.ID, user).Where(m => m.Visible);
+        if (_idx >= icos.Length) { _idx = 0; }
+        <li @Html.Raw(menu == Menus[0] ? "class=\"active open\"" : "")>
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa @icos[_idx++]"></i>
+                <span class="menu-text">@menu.DisplayName</span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+            @if (childs.Any())
+            {
+                <b class="arrow"></b>
+
+                <ul @Html.Raw(menu == Menus[0] ? "class=\"submenu nav-show\" style=\"display:block;\"" : "class=\"submenu nav-hide\" style=\"display:none;\"")>
+                    @foreach (IMenu menu2 in childs)
+                    {
+                        @Html.Partial("_Left_Item", menu2);
+                    }
+                </ul>
+            }
+        </li>
+    }
+    @*遍历产生内容管理菜单*@
+    @foreach (var mod in NewLife.CMX.Model.GetAll())
+    {
+        // 判断是否有权访问该频道
+        var res = "CMS\\" + mod.Name;
+        //if (!user.Has(res) && !user.Has(res + "Category")) { continue; }
+        //if (!user.Has(res)) { continue; }
+        if (_idx >= icos.Length) { _idx = 0; }
+        <li>
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa @icos[_idx++]"></i>
+                <span class="menu-text">@mod.ToString()</span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu nav-hide" style="display:none;">
+                <li>
+                    <a href="~/CMS/Info/Mod/@mod.ID" target="main">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        @mod 管理
+                    </a>
+                </li>
+                @foreach (ICategory cat2 in mod.GetTopCategories())
+                {
+                    @Html.Partial("_Left_Category", cat2);
+                }
+            </ul>
+        </li>
+    }
+</ul>
+<!-- /.nav-list -->

@@ -1,0 +1,1577 @@
+﻿﻿<style type="text/css">
+<!--
+.caption td {
+    border:1px solid #666666;
+    font-weight:bold;
+    background-color: #CCCCCC;
+}
+.dbtable {
+    border:1px solid #666666;
+}
+.dbbody td {
+    border:1px solid #666666;
+}
+-->
+</style>
+由nnhy/X3生成于：2017-07-30 11:20:43 <BR />
+
+Model：
+<strong>模型 （Model）</strong> <BR>
+<table border="0" cellspacing="0" class="dbtable">
+  <tr align="center" valign="middle" class="caption">
+    <td width="150">中文名</td>
+    <td width="150">英文名</td>
+    <td width="150">字段名</td>
+    <td width="75">数据类型</td>
+    <td width="50">大小</td>
+    <td width="35">主键</td>
+    <td width="35">唯一</td>
+    <td width="35">必填</td>
+    <td width="150">描述</td>
+  </tr>
+  <tr class="dbbody">
+    <td>编号 </td>
+    <td>ID</td>
+    <td>ID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>名称 </td>
+    <td>Name</td>
+    <td>Name</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>显示名 </td>
+    <td>DisplayName</td>
+    <td>DisplayName</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>提供者 </td>
+    <td>ProviderName</td>
+    <td>ProviderName</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>启用 </td>
+    <td>Enable</td>
+    <td>Enable</td>
+    <td>Boolean</td>
+    <td>1</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>索引页模版 </td>
+    <td>IndexTemplate</td>
+    <td>IndexTemplate</td>
+    <td>String</td>
+    <td>200</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>本模型专属首页 </td>
+  </tr>
+  <tr class="dbbody">
+    <td>分类页模版 </td>
+    <td>CategoryTemplate</td>
+    <td>CategoryTemplate</td>
+    <td>String</td>
+    <td>200</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>本模型专属列表页 </td>
+  </tr>
+  <tr class="dbbody">
+    <td>信息页模版 </td>
+    <td>InfoTemplate</td>
+    <td>InfoTemplate</td>
+    <td>String</td>
+    <td>200</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>本模型专属内容页 </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建人 </td>
+    <td>CreateUserID</td>
+    <td>CreateUserID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建时间 </td>
+    <td>CreateTime</td>
+    <td>CreateTime</td>
+    <td>DateTime</td>
+    <td>3</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建地址 </td>
+    <td>CreateIP</td>
+    <td>CreateIP</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>更新人 </td>
+    <td>UpdateUserID</td>
+    <td>UpdateUserID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>更新时间 </td>
+    <td>UpdateTime</td>
+    <td>UpdateTime</td>
+    <td>DateTime</td>
+    <td>3</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>更新地址 </td>
+    <td>UpdateIP</td>
+    <td>UpdateIP</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>备注 </td>
+    <td>Remark</td>
+    <td>Remark</td>
+    <td>String</td>
+    <td>200</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+</table>
+
+Category：
+<strong>分类 （Category）=> EntityTree</strong> <BR>
+<table border="0" cellspacing="0" class="dbtable">
+  <tr align="center" valign="middle" class="caption">
+    <td width="150">中文名</td>
+    <td width="150">英文名</td>
+    <td width="150">字段名</td>
+    <td width="75">数据类型</td>
+    <td width="50">大小</td>
+    <td width="35">主键</td>
+    <td width="35">唯一</td>
+    <td width="35">必填</td>
+    <td width="150">描述</td>
+  </tr>
+  <tr class="dbbody">
+    <td>编号 </td>
+    <td>ID</td>
+    <td>ID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>名称 </td>
+    <td>Name</td>
+    <td>Name</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>编码 </td>
+    <td>Code</td>
+    <td>Code</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>全局唯一的路由识别名，英文名 </td>
+  </tr>
+  <tr class="dbbody">
+    <td>父类 </td>
+    <td>ParentID</td>
+    <td>ParentID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>模型 </td>
+    <td>ModelID</td>
+    <td>ModelID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>排序 </td>
+    <td>Sort</td>
+    <td>Sort</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>数量 </td>
+    <td>Num</td>
+    <td>Num</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>图标 </td>
+    <td>Image</td>
+    <td>Image</td>
+    <td>String</td>
+    <td>200</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>分类页模版 </td>
+    <td>CategoryTemplate</td>
+    <td>CategoryTemplate</td>
+    <td>String</td>
+    <td>200</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>本分类专属列表页 </td>
+  </tr>
+  <tr class="dbbody">
+    <td>信息页模版 </td>
+    <td>InfoTemplate</td>
+    <td>InfoTemplate</td>
+    <td>String</td>
+    <td>200</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>本分类专属内容页 </td>
+  </tr>
+  <tr class="dbbody">
+    <td>备注 </td>
+    <td>Remark</td>
+    <td>Remark</td>
+    <td>String</td>
+    <td>200</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+</table>
+
+Info：
+<strong>信息 （Info）</strong> <BR>
+<table border="0" cellspacing="0" class="dbtable">
+  <tr align="center" valign="middle" class="caption">
+    <td width="150">中文名</td>
+    <td width="150">英文名</td>
+    <td width="150">字段名</td>
+    <td width="75">数据类型</td>
+    <td width="50">大小</td>
+    <td width="35">主键</td>
+    <td width="35">唯一</td>
+    <td width="35">必填</td>
+    <td width="150">描述</td>
+  </tr>
+  <tr class="dbbody">
+    <td>编号 </td>
+    <td>ID</td>
+    <td>ID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>模型 </td>
+    <td>ModelID</td>
+    <td>ModelID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>分类 </td>
+    <td>CategoryID</td>
+    <td>CategoryID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>分类名称 </td>
+    <td>CategoryName</td>
+    <td>CategoryName</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>标题 </td>
+    <td>Title</td>
+    <td>Title</td>
+    <td>String</td>
+    <td>200</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>编码 </td>
+    <td>Code</td>
+    <td>Code</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td>全局唯一的路由识别名，英文名 </td>
+  </tr>
+  <tr class="dbbody">
+    <td>扩展 </td>
+    <td>ExtendID</td>
+    <td>ExtendID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>最新版本 </td>
+    <td>Version</td>
+    <td>Version</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>访问统计 </td>
+    <td>StatisticsID</td>
+    <td>StatisticsID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>访问量 </td>
+    <td>Views</td>
+    <td>Views</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td>由统计表同步过来 </td>
+  </tr>
+  <tr class="dbbody">
+    <td>排序 </td>
+    <td>Sort</td>
+    <td>Sort</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td>较大值在前 </td>
+  </tr>
+  <tr class="dbbody">
+    <td>图片 </td>
+    <td>Image</td>
+    <td>Image</td>
+    <td>String</td>
+    <td>200</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>摘要 </td>
+    <td>Summary</td>
+    <td>Summary</td>
+    <td>String</td>
+    <td>200</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>发布时间 </td>
+    <td>PublishTime</td>
+    <td>PublishTime</td>
+    <td>DateTime</td>
+    <td>3</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>发布人 </td>
+    <td>Publisher</td>
+    <td>Publisher</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建人 </td>
+    <td>CreateUserID</td>
+    <td>CreateUserID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建时间 </td>
+    <td>CreateTime</td>
+    <td>CreateTime</td>
+    <td>DateTime</td>
+    <td>3</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建地址 </td>
+    <td>CreateIP</td>
+    <td>CreateIP</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>更新人 </td>
+    <td>UpdateUserID</td>
+    <td>UpdateUserID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>更新时间 </td>
+    <td>UpdateTime</td>
+    <td>UpdateTime</td>
+    <td>DateTime</td>
+    <td>3</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>更新地址 </td>
+    <td>UpdateIP</td>
+    <td>UpdateIP</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+</table>
+
+Content：
+<strong>内容 （Content）</strong> <BR>
+<table border="0" cellspacing="0" class="dbtable">
+  <tr align="center" valign="middle" class="caption">
+    <td width="150">中文名</td>
+    <td width="150">英文名</td>
+    <td width="150">字段名</td>
+    <td width="75">数据类型</td>
+    <td width="50">大小</td>
+    <td width="35">主键</td>
+    <td width="35">唯一</td>
+    <td width="35">必填</td>
+    <td width="150">描述</td>
+  </tr>
+  <tr class="dbbody">
+    <td>编号 </td>
+    <td>ID</td>
+    <td>ID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>模型 </td>
+    <td>ModelID</td>
+    <td>ModelID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>主题 </td>
+    <td>InfoID</td>
+    <td>InfoID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>标题 </td>
+    <td>Title</td>
+    <td>Title</td>
+    <td>String</td>
+    <td>200</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>版本 </td>
+    <td>Version</td>
+    <td>Version</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建人 </td>
+    <td>CreateUserID</td>
+    <td>CreateUserID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建时间 </td>
+    <td>CreateTime</td>
+    <td>CreateTime</td>
+    <td>DateTime</td>
+    <td>3</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建地址 </td>
+    <td>CreateIP</td>
+    <td>CreateIP</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>内容 </td>
+    <td>Html</td>
+    <td>Html</td>
+    <td>String</td>
+    <td>-1</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+</table>
+
+Statistics：
+<strong>统计 （Statistics）</strong> <BR>
+<table border="0" cellspacing="0" class="dbtable">
+  <tr align="center" valign="middle" class="caption">
+    <td width="150">中文名</td>
+    <td width="150">英文名</td>
+    <td width="150">字段名</td>
+    <td width="75">数据类型</td>
+    <td width="50">大小</td>
+    <td width="35">主键</td>
+    <td width="35">唯一</td>
+    <td width="35">必填</td>
+    <td width="150">描述</td>
+  </tr>
+  <tr class="dbbody">
+    <td>编号 </td>
+    <td>ID</td>
+    <td>ID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>总数 </td>
+    <td>Total</td>
+    <td>Total</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>今天 </td>
+    <td>Today</td>
+    <td>Today</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>昨天 </td>
+    <td>Yesterday</td>
+    <td>Yesterday</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>本周 </td>
+    <td>ThisWeek</td>
+    <td>ThisWeek</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>上周 </td>
+    <td>LastWeek</td>
+    <td>LastWeek</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>本月 </td>
+    <td>ThisMonth</td>
+    <td>ThisMonth</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>上月 </td>
+    <td>LastMonth</td>
+    <td>LastMonth</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>本年 </td>
+    <td>ThisYear</td>
+    <td>ThisYear</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>去年 </td>
+    <td>LastYear</td>
+    <td>LastYear</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>最后时间 </td>
+    <td>LastTime</td>
+    <td>LastTime</td>
+    <td>DateTime</td>
+    <td>3</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>最后IP </td>
+    <td>LastIP</td>
+    <td>LastIP</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>备注 </td>
+    <td>Remark</td>
+    <td>Remark</td>
+    <td>String</td>
+    <td>200</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+</table>
+
+Text：
+<strong>文本 （Text）</strong> <BR>
+<table border="0" cellspacing="0" class="dbtable">
+  <tr align="center" valign="middle" class="caption">
+    <td width="150">中文名</td>
+    <td width="150">英文名</td>
+    <td width="150">字段名</td>
+    <td width="75">数据类型</td>
+    <td width="50">大小</td>
+    <td width="35">主键</td>
+    <td width="35">唯一</td>
+    <td width="35">必填</td>
+    <td width="150">描述</td>
+  </tr>
+  <tr class="dbbody">
+    <td>编号 </td>
+    <td>ID</td>
+    <td>ID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>标题 </td>
+    <td>InfoID</td>
+    <td>InfoID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+</table>
+
+Article：
+<strong>文章 （Article）</strong> <BR>
+<table border="0" cellspacing="0" class="dbtable">
+  <tr align="center" valign="middle" class="caption">
+    <td width="150">中文名</td>
+    <td width="150">英文名</td>
+    <td width="150">字段名</td>
+    <td width="75">数据类型</td>
+    <td width="50">大小</td>
+    <td width="35">主键</td>
+    <td width="35">唯一</td>
+    <td width="35">必填</td>
+    <td width="150">描述</td>
+  </tr>
+  <tr class="dbbody">
+    <td>编号 </td>
+    <td>ID</td>
+    <td>ID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>标题 </td>
+    <td>InfoID</td>
+    <td>InfoID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>来源 </td>
+    <td>SourceID</td>
+    <td>SourceID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>来源名称 </td>
+    <td>SourceName</td>
+    <td>SourceName</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>来源地址 </td>
+    <td>SourceUrl</td>
+    <td>SourceUrl</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>置顶 </td>
+    <td>Top</td>
+    <td>Top</td>
+    <td>Boolean</td>
+    <td>1</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>推荐 </td>
+    <td>Recommend</td>
+    <td>Recommend</td>
+    <td>Boolean</td>
+    <td>1</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>热门 </td>
+    <td>Hot</td>
+    <td>Hot</td>
+    <td>Boolean</td>
+    <td>1</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>幻灯片 </td>
+    <td>Slide</td>
+    <td>Slide</td>
+    <td>Boolean</td>
+    <td>1</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>封面 </td>
+    <td>Cover</td>
+    <td>Cover</td>
+    <td>String</td>
+    <td>200</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+</table>
+
+Product：
+<strong>产品 （Product）</strong> <BR>
+<table border="0" cellspacing="0" class="dbtable">
+  <tr align="center" valign="middle" class="caption">
+    <td width="150">中文名</td>
+    <td width="150">英文名</td>
+    <td width="150">字段名</td>
+    <td width="75">数据类型</td>
+    <td width="50">大小</td>
+    <td width="35">主键</td>
+    <td width="35">唯一</td>
+    <td width="35">必填</td>
+    <td width="150">描述</td>
+  </tr>
+  <tr class="dbbody">
+    <td>编号 </td>
+    <td>ID</td>
+    <td>ID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>标题 </td>
+    <td>InfoID</td>
+    <td>InfoID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>价格 </td>
+    <td>Price</td>
+    <td>Price</td>
+    <td>Decimal</td>
+    <td>19</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>图片路径 </td>
+    <td>PhotoPath</td>
+    <td>PhotoPath</td>
+    <td>String</td>
+    <td>200</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>规格参数 </td>
+    <td>Specification</td>
+    <td>Specification</td>
+    <td>String</td>
+    <td>-1</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>功能特点 </td>
+    <td>Feature</td>
+    <td>Feature</td>
+    <td>String</td>
+    <td>-1</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>推荐应用 </td>
+    <td>App</td>
+    <td>App</td>
+    <td>String</td>
+    <td>-1</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>相关配件 </td>
+    <td>Fitting</td>
+    <td>Fitting</td>
+    <td>String</td>
+    <td>-1</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>产品视频 </td>
+    <td>Video</td>
+    <td>Video</td>
+    <td>String</td>
+    <td>-1</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+</table>
+
+Photo：
+<strong>图册 （Photo）</strong> <BR>
+<table border="0" cellspacing="0" class="dbtable">
+  <tr align="center" valign="middle" class="caption">
+    <td width="150">中文名</td>
+    <td width="150">英文名</td>
+    <td width="150">字段名</td>
+    <td width="75">数据类型</td>
+    <td width="50">大小</td>
+    <td width="35">主键</td>
+    <td width="35">唯一</td>
+    <td width="35">必填</td>
+    <td width="150">描述</td>
+  </tr>
+  <tr class="dbbody">
+    <td>编号 </td>
+    <td>ID</td>
+    <td>ID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>标题 </td>
+    <td>InfoID</td>
+    <td>InfoID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+</table>
+
+Video：
+<strong>视频 （Video）</strong> <BR>
+<table border="0" cellspacing="0" class="dbtable">
+  <tr align="center" valign="middle" class="caption">
+    <td width="150">中文名</td>
+    <td width="150">英文名</td>
+    <td width="150">字段名</td>
+    <td width="75">数据类型</td>
+    <td width="50">大小</td>
+    <td width="35">主键</td>
+    <td width="35">唯一</td>
+    <td width="35">必填</td>
+    <td width="150">描述</td>
+  </tr>
+  <tr class="dbbody">
+    <td>编号 </td>
+    <td>ID</td>
+    <td>ID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>标题 </td>
+    <td>InfoID</td>
+    <td>InfoID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+</table>
+
+Down：
+<strong>下载 （Down）</strong> <BR>
+<table border="0" cellspacing="0" class="dbtable">
+  <tr align="center" valign="middle" class="caption">
+    <td width="150">中文名</td>
+    <td width="150">英文名</td>
+    <td width="150">字段名</td>
+    <td width="75">数据类型</td>
+    <td width="50">大小</td>
+    <td width="35">主键</td>
+    <td width="35">唯一</td>
+    <td width="35">必填</td>
+    <td width="150">描述</td>
+  </tr>
+  <tr class="dbbody">
+    <td>编号 </td>
+    <td>ID</td>
+    <td>ID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>标题 </td>
+    <td>InfoID</td>
+    <td>InfoID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+</table>
+
+Nav：
+<strong>导航 （Nav）=> EntityTree</strong> <BR>
+<table border="0" cellspacing="0" class="dbtable">
+  <tr align="center" valign="middle" class="caption">
+    <td width="150">中文名</td>
+    <td width="150">英文名</td>
+    <td width="150">字段名</td>
+    <td width="75">数据类型</td>
+    <td width="50">大小</td>
+    <td width="35">主键</td>
+    <td width="35">唯一</td>
+    <td width="35">必填</td>
+    <td width="150">描述</td>
+  </tr>
+  <tr class="dbbody">
+    <td>编号 </td>
+    <td>ID</td>
+    <td>ID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>名称 </td>
+    <td>Name</td>
+    <td>Name</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>父类 </td>
+    <td>ParentID</td>
+    <td>ParentID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>分类 </td>
+    <td>CategoryID</td>
+    <td>CategoryID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>地址 </td>
+    <td>Url</td>
+    <td>Url</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>新窗口打开 </td>
+    <td>NewWindow</td>
+    <td>NewWindow</td>
+    <td>Boolean</td>
+    <td>1</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>排序 </td>
+    <td>Sort</td>
+    <td>Sort</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>启用 </td>
+    <td>Enable</td>
+    <td>Enable</td>
+    <td>Boolean</td>
+    <td>1</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建人 </td>
+    <td>CreateUserID</td>
+    <td>CreateUserID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建时间 </td>
+    <td>CreateTime</td>
+    <td>CreateTime</td>
+    <td>DateTime</td>
+    <td>3</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建地址 </td>
+    <td>CreateIP</td>
+    <td>CreateIP</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>更新人 </td>
+    <td>UpdateUserID</td>
+    <td>UpdateUserID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>更新时间 </td>
+    <td>UpdateTime</td>
+    <td>UpdateTime</td>
+    <td>DateTime</td>
+    <td>3</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>更新地址 </td>
+    <td>UpdateIP</td>
+    <td>UpdateIP</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>备注 </td>
+    <td>Remark</td>
+    <td>Remark</td>
+    <td>String</td>
+    <td>200</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+</table>
+
+Source：
+<strong>来源 （Source）</strong> <BR>
+<table border="0" cellspacing="0" class="dbtable">
+  <tr align="center" valign="middle" class="caption">
+    <td width="150">中文名</td>
+    <td width="150">英文名</td>
+    <td width="150">字段名</td>
+    <td width="75">数据类型</td>
+    <td width="50">大小</td>
+    <td width="35">主键</td>
+    <td width="35">唯一</td>
+    <td width="35">必填</td>
+    <td width="150">描述</td>
+  </tr>
+  <tr class="dbbody">
+    <td>编号 </td>
+    <td>ID</td>
+    <td>ID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>名称 </td>
+    <td>Name</td>
+    <td>Name</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>地址 </td>
+    <td>Url</td>
+    <td>Url</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>排序 </td>
+    <td>Sort</td>
+    <td>Sort</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>启用 </td>
+    <td>Enable</td>
+    <td>Enable</td>
+    <td>Boolean</td>
+    <td>1</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建人 </td>
+    <td>CreateUserID</td>
+    <td>CreateUserID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建时间 </td>
+    <td>CreateTime</td>
+    <td>CreateTime</td>
+    <td>DateTime</td>
+    <td>3</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>创建地址 </td>
+    <td>CreateIP</td>
+    <td>CreateIP</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>更新人 </td>
+    <td>UpdateUserID</td>
+    <td>UpdateUserID</td>
+    <td>Int32</td>
+    <td>10</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">是</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>更新时间 </td>
+    <td>UpdateTime</td>
+    <td>UpdateTime</td>
+    <td>DateTime</td>
+    <td>3</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>更新地址 </td>
+    <td>UpdateIP</td>
+    <td>UpdateIP</td>
+    <td>String</td>
+    <td>50</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+  <tr class="dbbody">
+    <td>备注 </td>
+    <td>Remark</td>
+    <td>Remark</td>
+    <td>String</td>
+    <td>200</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td> </td>
+  </tr>
+</table>
