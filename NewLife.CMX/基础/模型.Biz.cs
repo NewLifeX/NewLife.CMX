@@ -60,7 +60,7 @@ namespace NewLife.CMX
         /// <returns></returns>
         protected override Int32 OnDelete()
         {
-            var count = Category.FindAllWithCache().ToList().Count(e => e.ModelID == ID);
+            var count = Category.FindAllWithCache().Count(e => e.ModelID == ID);
             if (count > 0) throw new XException("该模型下有{0}个分类，禁止删除！", count);
 
             return base.OnDelete();
@@ -82,7 +82,7 @@ namespace NewLife.CMX
             if (Meta.Count >= 1000)
                 return Find(__.ID, id);
             else
-                return Meta.Cache.Entities.FirstOrDefault(e => e.ID == id);
+                return Meta.Cache.Find(e => e.ID == id);
         }
 
         /// <summary>根据名称查找</summary>
@@ -94,8 +94,9 @@ namespace NewLife.CMX
             if (name.IsNullOrEmpty()) return null;
 
             // 实体缓存
-            var entity = Meta.Cache.Entities.FirstOrDefault(e => e.Name == name);
-            if (entity == null) entity = Meta.Cache.Entities.FirstOrDefault(e => e.DisplayName == name);
+            var entity = Meta.Cache.Find(e => e.Name == name);
+            if (entity == null) entity = Meta.Cache.Find(e => e.DisplayName == name);
+
             return entity;
         }
         #endregion
@@ -103,18 +104,14 @@ namespace NewLife.CMX
         #region 高级查询
         /// <summary>获取所有有效模型</summary>
         /// <returns></returns>
-        public static List<Model> GetAll()
-        {
-            //return FindAllWithCache(__.Enable, true).Sort(__.ID, false);
-            return FindAllWithCache().ToList().Where(e => e.Enable).OrderBy(e => e.ID).ToList();
-        }
+        public static List<Model> GetAll() => FindAllWithCache().Where(e => e.Enable).OrderBy(e => e.ID).ToList();
 
         /// <summary>获取当前模型的顶级分类</summary>
         /// <returns></returns>
         public IList<ICategory> GetTopCategories()
         {
             // 过滤得到该模型的所有分类，然后按照深度排序
-            var list = Category.FindAllWithCache().ToList().Where(e => e.ModelID == ID);
+            var list = Category.FindAllWithCache().Where(e => e.ModelID == ID);
             if (list.Any())
             {
                 var min = list.Min(e => e.Deepth);
@@ -127,13 +124,7 @@ namespace NewLife.CMX
         #region 扩展操作
         /// <summary>显示友好名称</summary>
         /// <returns></returns>
-        public override String ToString()
-        {
-            if (!DisplayName.IsNullOrEmpty())
-                return DisplayName;
-            else
-                return Name;
-        }
+        public override String ToString() => !DisplayName.IsNullOrEmpty() ? DisplayName : Name;
         #endregion
 
         #region 业务
@@ -161,10 +152,10 @@ namespace NewLife.CMX
             // 预设顺序
             var ms = "Text,Article,Photo,Video,Product,Down".Split(",");
 
-            foreach (var item in typeof(IInfoExtend).GetAllSubclasses(true).OrderBy(e => Array.IndexOf(ms, e.Name)))
+            var list = FindAll();
+            foreach (var item in typeof(IInfoExtend).GetAllSubclasses(false).OrderBy(e => Array.IndexOf(ms, e.Name)))
             {
-                //var entity = FindByName(item.Name);
-                var entity = Find(__.Name, item.Name);
+                var entity = list.Find(e => e.Name == item.Name);
                 if (entity == null) entity = new Model();
 
                 entity.Name = item.Name;
