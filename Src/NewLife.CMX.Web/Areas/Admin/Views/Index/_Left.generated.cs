@@ -69,7 +69,7 @@ namespace ASP
     var Menus = fact.Root.Childs;
     if (user != null && user.Role != null)
     {
-        Menus = fact.GetMySubMenus(fact.Root.ID);
+        Menus = fact.GetMySubMenus(fact.Root.ID, user);
     }
 
     // 如果顶级只有一层，并且至少有三级目录，则提升一级
@@ -97,7 +97,7 @@ WriteLiteral(">\r\n");
             #line 22 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
      foreach (IMenu menu in Menus.Where(m => m.Visible))
     {
-        var childs = fact.GetMySubMenus(menu.ID).Where(m => m.Visible);
+        var childs = fact.GetMySubMenus(menu.ID, user).Where(m => m.Visible);
         if (_idx >= icos.Length) { _idx = 0; }
 
             
@@ -120,16 +120,16 @@ WriteLiteral(" class=\"dropdown-toggle\"");
 
 WriteLiteral(">\r\n                <i");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 1009), Tuple.Create("\"", 1043)
-, Tuple.Create(Tuple.Create("", 1017), Tuple.Create("menu-icon", 1017), true)
-, Tuple.Create(Tuple.Create(" ", 1026), Tuple.Create("fa", 1027), true)
+WriteAttribute("class", Tuple.Create(" class=\"", 1021), Tuple.Create("\"", 1055)
+, Tuple.Create(Tuple.Create("", 1029), Tuple.Create("menu-icon", 1029), true)
+, Tuple.Create(Tuple.Create(" ", 1038), Tuple.Create("fa", 1039), true)
             
             #line 28 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-, Tuple.Create(Tuple.Create(" ", 1029), Tuple.Create<System.Object, System.Int32>(icos[_idx++]
+, Tuple.Create(Tuple.Create(" ", 1041), Tuple.Create<System.Object, System.Int32>(icos[_idx++]
             
             #line default
             #line hidden
-, 1030), false)
+, 1042), false)
 );
 
 WriteLiteral("></i>\r\n                <span");
@@ -267,16 +267,16 @@ WriteLiteral(" class=\"dropdown-toggle\"");
 
 WriteLiteral(">\r\n                <i");
 
-WriteAttribute("class", Tuple.Create(" class=\"", 2058), Tuple.Create("\"", 2092)
-, Tuple.Create(Tuple.Create("", 2066), Tuple.Create("menu-icon", 2066), true)
-, Tuple.Create(Tuple.Create(" ", 2075), Tuple.Create("fa", 2076), true)
+WriteAttribute("class", Tuple.Create(" class=\"", 2070), Tuple.Create("\"", 2104)
+, Tuple.Create(Tuple.Create("", 2078), Tuple.Create("menu-icon", 2078), true)
+, Tuple.Create(Tuple.Create(" ", 2087), Tuple.Create("fa", 2088), true)
             
             #line 56 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-, Tuple.Create(Tuple.Create(" ", 2078), Tuple.Create<System.Object, System.Int32>(icos[_idx++]
+, Tuple.Create(Tuple.Create(" ", 2090), Tuple.Create<System.Object, System.Int32>(icos[_idx++]
             
             #line default
             #line hidden
-, 2079), false)
+, 2091), false)
 );
 
 WriteLiteral("></i>\r\n                <span");
@@ -308,16 +308,16 @@ WriteLiteral(" style=\"display:none;\"");
 
 WriteLiteral(">\r\n                <li>\r\n                    <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 2388), Tuple.Create("\"", 2417)
-, Tuple.Create(Tuple.Create("", 2395), Tuple.Create<System.Object, System.Int32>(Href("~/CMS/Info/Mod/")
-, 2395), false)
+WriteAttribute("href", Tuple.Create(" href=\"", 2400), Tuple.Create("\"", 2429)
+, Tuple.Create(Tuple.Create("", 2407), Tuple.Create<System.Object, System.Int32>(Href("~/CMS/Info/Mod/")
+, 2407), false)
             
             #line 66 "..\..\Areas\Admin\Views\Index\_Left.cshtml"
-, Tuple.Create(Tuple.Create("", 2410), Tuple.Create<System.Object, System.Int32>(mod.ID
+, Tuple.Create(Tuple.Create("", 2422), Tuple.Create<System.Object, System.Int32>(mod.ID
             
             #line default
             #line hidden
-, 2410), false)
+, 2422), false)
 );
 
 WriteLiteral(" target=\"main\"");
