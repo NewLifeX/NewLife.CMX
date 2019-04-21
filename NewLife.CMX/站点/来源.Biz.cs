@@ -52,7 +52,15 @@ namespace NewLife.CMX
 
             var entity = new Source()
             {
-                Name = "本站",
+                Name = "本地",
+                Url = "/",
+                Enable = true
+            };
+            entity.Insert();
+
+            entity = new Source()
+            {
+                Name = "网络",
                 Url = "/",
                 Enable = true
             };

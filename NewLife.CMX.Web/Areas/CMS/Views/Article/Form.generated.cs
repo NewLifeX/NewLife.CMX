@@ -185,7 +185,7 @@ WriteLiteral("                    ");
             #line hidden
 WriteLiteral("\r\n                </div>\r\n                <div");
 
-WriteLiteral(" class=\"col-sm-3\"");
+WriteLiteral(" class=\"col-sm-4\"");
 
 WriteLiteral(">\r\n                    <label");
 
@@ -208,7 +208,7 @@ WriteLiteral("                        ");
             #line hidden
 WriteLiteral("\r\n                    </div>\r\n                </div>\r\n                <div");
 
-WriteLiteral(" class=\"col-sm-3\"");
+WriteLiteral(" class=\"col-sm-4\"");
 
 WriteLiteral(">\r\n                    <label");
 
@@ -314,7 +314,7 @@ WriteLiteral(">");
             #line hidden
 WriteLiteral("</label>\r\n                <div");
 
-WriteLiteral(" class=\"col-md-1\"");
+WriteLiteral(" class=\"col-md-2\"");
 
 WriteLiteral(">\r\n");
 
@@ -356,7 +356,7 @@ WriteLiteral(">");
             #line hidden
 WriteLiteral("</label>\r\n                <div");
 
-WriteLiteral(" class=\"col-md-1\"");
+WriteLiteral(" class=\"col-md-2\"");
 
 WriteLiteral(">\r\n");
 
@@ -398,7 +398,7 @@ WriteLiteral(">");
             #line hidden
 WriteLiteral("</label>\r\n                <div");
 
-WriteLiteral(" class=\"col-md-1\"");
+WriteLiteral(" class=\"col-md-2\"");
 
 WriteLiteral(">\r\n");
 
@@ -411,49 +411,9 @@ WriteLiteral("                    ");
             
             #line default
             #line hidden
-WriteLiteral("\r\n                </div>\r\n");
+WriteLiteral("\r\n                </div>\r\n                ");
 
-            
-            #line 68 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-                
-            
-            #line default
-            #line hidden
-            
-            #line 68 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-                   item = Article._.Slide;
-            
-            #line default
-            #line hidden
-WriteLiteral("\r\n                <label");
-
-WriteLiteral(" class=\"control-label col-md-1\"");
-
-WriteLiteral(">");
-
-            
-            #line 69 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-                                                 Write(item.DisplayName);
-
-            
-            #line default
-            #line hidden
-WriteLiteral("</label>\r\n                <div");
-
-WriteLiteral(" class=\"col-md-1\"");
-
-WriteLiteral(">\r\n");
-
-WriteLiteral("                    ");
-
-            
-            #line 71 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-               Write(Html.ForEditor(item, entity));
-
-            
-            #line default
-            #line hidden
-WriteLiteral("\r\n                </div>\r\n            </div>\r\n");
+WriteLiteral("\r\n            </div>\r\n");
 
 WriteLiteral("            <div");
 
@@ -570,7 +530,7 @@ WriteLiteral(@""").val();
                $.ajax({
                    type: ""Post"",//使用get方法访问后台
                    dataType: ""json"",//返回json格式的数据
-                   url: '/CMS/Article/GetSource/' + v,//要访问的后台地址
+                   url: '/CMS/Source/Get/' + v,//要访问的后台地址
                    success: function (msg) {//msg为返回的数据，在这里做数据绑定
                        $(""#");
 
