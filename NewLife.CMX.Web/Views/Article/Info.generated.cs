@@ -22,7 +22,6 @@ namespace ASP
     using System.Web.Mvc;
     using System.Web.Mvc.Ajax;
     using System.Web.Mvc.Html;
-    
     using System.Web.Routing;
     using System.Web.Security;
     using System.Web.UI;
@@ -105,7 +104,7 @@ WriteLiteral(">来源：");
 
             
             #line 16 "..\..\Views\Article\Info.cshtml"
-                           Write(inf.CreateUserName);
+                           Write(inf.CreateUser);
 
             
             #line default

@@ -8,10 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Web.Script.Serialization;
-using System.Xml.Serialization;
 using NewLife.Log;
-using NewLife.Model;
 using NewLife.Reflection;
 using XCode;
 using XCode.Membership;
@@ -20,7 +17,7 @@ namespace NewLife.CMX
 {
     /// <summary>模型</summary>
     /// <remarks>模型。默认有文章、文本、产品三种模型，可以扩展增加。</remarks>
-    public partial class Model : LogEntity<Model> 
+    public partial class Model : LogEntity<Model>
     {
         #region 对象操作﻿
         static Model()
@@ -71,27 +68,6 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性﻿
-        /// <summary>创建人</summary>
-        [XmlIgnore, ScriptIgnore]
-        [DisplayName("创建人")]
-        public IManageUser CreateUser { get { return Extends.Get(nameof(CreateUser), k => ManageProvider.Provider.FindByID(CreateUserID)); } }
-
-        /// <summary>创建人名称</summary>
-        [XmlIgnore, ScriptIgnore]
-        [DisplayName("创建人")]
-        [Map(__.CreateUserID)]
-        public String CreateUserName { get { return CreateUser + ""; } }
-
-        /// <summary>更新人</summary>
-        [XmlIgnore, ScriptIgnore]
-        [DisplayName("更新人")]
-        public IManageUser UpdateUser { get { return Extends.Get(nameof(UpdateUser), k => ManageProvider.Provider.FindByID(UpdateUserID)); } }
-
-        /// <summary>更新人名称</summary>
-        [XmlIgnore, ScriptIgnore]
-        [DisplayName("更新人")]
-        [Map(__.UpdateUserID)]
-        public String UpdateUserName { get { return UpdateUser + ""; } }
         #endregion
 
         #region 扩展查询﻿

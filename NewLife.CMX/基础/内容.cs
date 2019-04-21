@@ -57,12 +57,20 @@ namespace NewLife.CMX
         [BindColumn("Version", "版本", "")]
         public Int32 Version { get { return _Version; } set { if (OnPropertyChanging(__.Version, value)) { _Version = value; OnPropertyChanged(__.Version); } } }
 
-        private Int32 _CreateUserID;
+        private String _CreateUser;
         /// <summary>创建人</summary>
         [DisplayName("创建人")]
         [Description("创建人")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn("CreateUser", "创建人", "")]
+        public String CreateUser { get { return _CreateUser; } set { if (OnPropertyChanging(__.CreateUser, value)) { _CreateUser = value; OnPropertyChanged(__.CreateUser); } } }
+
+        private Int32 _CreateUserID;
+        /// <summary>创建者</summary>
+        [DisplayName("创建者")]
+        [Description("创建者")]
         [DataObjectField(false, false, false, 0)]
-        [BindColumn("CreateUserID", "创建人", "")]
+        [BindColumn("CreateUserID", "创建者", "")]
         public Int32 CreateUserID { get { return _CreateUserID; } set { if (OnPropertyChanging(__.CreateUserID, value)) { _CreateUserID = value; OnPropertyChanged(__.CreateUserID); } } }
 
         private DateTime _CreateTime;
@@ -105,6 +113,7 @@ namespace NewLife.CMX
                     case __.InfoID : return _InfoID;
                     case __.Title : return _Title;
                     case __.Version : return _Version;
+                    case __.CreateUser : return _CreateUser;
                     case __.CreateUserID : return _CreateUserID;
                     case __.CreateTime : return _CreateTime;
                     case __.CreateIP : return _CreateIP;
@@ -116,13 +125,14 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
-                    case __.ID : _ID = Convert.ToInt32(value); break;
-                    case __.ModelID : _ModelID = Convert.ToInt32(value); break;
-                    case __.InfoID : _InfoID = Convert.ToInt32(value); break;
+                    case __.ID : _ID = value.ToInt(); break;
+                    case __.ModelID : _ModelID = value.ToInt(); break;
+                    case __.InfoID : _InfoID = value.ToInt(); break;
                     case __.Title : _Title = Convert.ToString(value); break;
-                    case __.Version : _Version = Convert.ToInt32(value); break;
-                    case __.CreateUserID : _CreateUserID = Convert.ToInt32(value); break;
-                    case __.CreateTime : _CreateTime = Convert.ToDateTime(value); break;
+                    case __.Version : _Version = value.ToInt(); break;
+                    case __.CreateUser : _CreateUser = Convert.ToString(value); break;
+                    case __.CreateUserID : _CreateUserID = value.ToInt(); break;
+                    case __.CreateTime : _CreateTime = value.ToDateTime(); break;
                     case __.CreateIP : _CreateIP = Convert.ToString(value); break;
                     case __.Html : _Html = Convert.ToString(value); break;
                     default: base[name] = value; break;
@@ -151,6 +161,9 @@ namespace NewLife.CMX
             public static readonly Field Version = FindByName(__.Version);
 
             /// <summary>创建人</summary>
+            public static readonly Field CreateUser = FindByName(__.CreateUser);
+
+            /// <summary>创建者</summary>
             public static readonly Field CreateUserID = FindByName(__.CreateUserID);
 
             /// <summary>创建时间</summary>
@@ -184,6 +197,9 @@ namespace NewLife.CMX
             public const String Version = "Version";
 
             /// <summary>创建人</summary>
+            public const String CreateUser = "CreateUser";
+
+            /// <summary>创建者</summary>
             public const String CreateUserID = "CreateUserID";
 
             /// <summary>创建时间</summary>
@@ -218,6 +234,9 @@ namespace NewLife.CMX
         Int32 Version { get; set; }
 
         /// <summary>创建人</summary>
+        String CreateUser { get; set; }
+
+        /// <summary>创建者</summary>
         Int32 CreateUserID { get; set; }
 
         /// <summary>创建时间</summary>

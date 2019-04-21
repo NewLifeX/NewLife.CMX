@@ -46,9 +46,6 @@ namespace NewLife.CMX
             // 建议先调用基类方法，基类方法会对唯一索引的数据进行验证
             base.Valid(isNew);
 
-            // 自动保存分类名称
-            if (!Dirtys[__.CategoryName] && Category != null) CategoryName = Category.Name;
-
             // 发布时间为创建时间
             if ((isNew || PublishTime.Year < 2000) && !Dirtys[__.PublishTime]) PublishTime = CreateTime;
         }
@@ -82,7 +79,6 @@ namespace NewLife.CMX
                 {
                     ModelID = item.ModelID,
                     CategoryID = item.ID,
-                    CategoryName = item.Name,
                     Title = "{0}信息".F(item.Name),
                     ContentText = txt,
                     ExtendID = 0
@@ -238,28 +234,6 @@ namespace NewLife.CMX
         [DisplayName("访问统计")]
         [Map(__.StatisticsID, typeof(Statistics), "ID")]
         public String StatisticsText { get { return Statistics?.Text; } }
-
-        /// <summary>创建人</summary>
-        [XmlIgnore, ScriptIgnore]
-        [DisplayName("创建人")]
-        public IManageUser CreateUser { get { return Extends.Get(nameof(CreateUser), k => ManageProvider.Provider.FindByID(CreateUserID)); } }
-
-        /// <summary>创建人名称</summary>
-        [XmlIgnore, ScriptIgnore]
-        [DisplayName("创建人")]
-        [Map(__.CreateUserID)]
-        public String CreateUserName { get { return CreateUser + ""; } }
-
-        /// <summary>更新人</summary>
-        [XmlIgnore, ScriptIgnore]
-        [DisplayName("更新人")]
-        public IManageUser UpdateUser { get { return Extends.Get(nameof(UpdateUser), k => ManageProvider.Provider.FindByID(UpdateUserID)); } }
-
-        /// <summary>更新人名称</summary>
-        [XmlIgnore, ScriptIgnore]
-        [DisplayName("更新人")]
-        [Map(__.UpdateUserID)]
-        public String UpdateUserName { get { return UpdateUser + ""; } }
         #endregion
 
         #region 扩展查询
@@ -387,8 +361,5 @@ namespace NewLife.CMX
 
         /// <summary>统计</summary>
         IStatistics Statistics { get; }
-
-        /// <summary>创建者</summary>
-        String CreateUserName { get; }
     }
 }

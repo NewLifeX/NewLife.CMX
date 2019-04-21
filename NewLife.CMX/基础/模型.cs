@@ -7,12 +7,12 @@ using XCode.DataAccessLayer;
 
 namespace NewLife.CMX
 {
-    /// <summary>模型</summary>
+    /// <summary>模型。不同模型的信息结构不同</summary>
     [Serializable]
     [DataObject]
-    [Description("模型")]
+    [Description("模型。不同模型的信息结构不同")]
     [BindIndex("IU_Model_Name", true, "Name")]
-    [BindTable("Model", Description = "模型", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
+    [BindTable("Model", Description = "模型。不同模型的信息结构不同", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class Model : IModel
     {
         #region 属性
@@ -21,7 +21,7 @@ namespace NewLife.CMX
         [DisplayName("编号")]
         [Description("编号")]
         [DataObjectField(true, true, false, 0)]
-        [BindColumn("ID", "编号", "int")]
+        [BindColumn("ID", "编号", "")]
         public Int32 ID { get { return _ID; } set { if (OnPropertyChanging(__.ID, value)) { _ID = value; OnPropertyChanged(__.ID); } } }
 
         private String _Name;
@@ -29,7 +29,7 @@ namespace NewLife.CMX
         [DisplayName("名称")]
         [Description("名称")]
         [DataObjectField(false, false, false, 50)]
-        [BindColumn("Name", "名称", "nvarchar(50)")]
+        [BindColumn("Name", "名称", "")]
         public String Name { get { return _Name; } set { if (OnPropertyChanging(__.Name, value)) { _Name = value; OnPropertyChanged(__.Name); } } }
 
         private String _DisplayName;
@@ -37,7 +37,7 @@ namespace NewLife.CMX
         [DisplayName("显示名")]
         [Description("显示名")]
         [DataObjectField(false, false, false, 50)]
-        [BindColumn("DisplayName", "显示名", "nvarchar(50)", Master = true)]
+        [BindColumn("DisplayName", "显示名", "", Master = true)]
         public String DisplayName { get { return _DisplayName; } set { if (OnPropertyChanging(__.DisplayName, value)) { _DisplayName = value; OnPropertyChanged(__.DisplayName); } } }
 
         private String _ProviderName;
@@ -45,7 +45,7 @@ namespace NewLife.CMX
         [DisplayName("提供者")]
         [Description("提供者")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn("ProviderName", "提供者", "nvarchar(50)")]
+        [BindColumn("ProviderName", "提供者", "")]
         public String ProviderName { get { return _ProviderName; } set { if (OnPropertyChanging(__.ProviderName, value)) { _ProviderName = value; OnPropertyChanged(__.ProviderName); } } }
 
         private Boolean _Enable;
@@ -53,7 +53,7 @@ namespace NewLife.CMX
         [DisplayName("启用")]
         [Description("启用")]
         [DataObjectField(false, false, false, 0)]
-        [BindColumn("Enable", "启用", "bit")]
+        [BindColumn("Enable", "启用", "")]
         public Boolean Enable { get { return _Enable; } set { if (OnPropertyChanging(__.Enable, value)) { _Enable = value; OnPropertyChanged(__.Enable); } } }
 
         private String _IndexTemplate;
@@ -61,7 +61,7 @@ namespace NewLife.CMX
         [DisplayName("索引页模版")]
         [Description("索引页模版。本模型专属首页")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn("IndexTemplate", "索引页模版。本模型专属首页", "nvarchar(200)")]
+        [BindColumn("IndexTemplate", "索引页模版。本模型专属首页", "")]
         public String IndexTemplate { get { return _IndexTemplate; } set { if (OnPropertyChanging(__.IndexTemplate, value)) { _IndexTemplate = value; OnPropertyChanged(__.IndexTemplate); } } }
 
         private String _CategoryTemplate;
@@ -69,7 +69,7 @@ namespace NewLife.CMX
         [DisplayName("分类页模版")]
         [Description("分类页模版。本模型专属列表页")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn("CategoryTemplate", "分类页模版。本模型专属列表页", "nvarchar(200)")]
+        [BindColumn("CategoryTemplate", "分类页模版。本模型专属列表页", "")]
         public String CategoryTemplate { get { return _CategoryTemplate; } set { if (OnPropertyChanging(__.CategoryTemplate, value)) { _CategoryTemplate = value; OnPropertyChanged(__.CategoryTemplate); } } }
 
         private String _InfoTemplate;
@@ -77,15 +77,23 @@ namespace NewLife.CMX
         [DisplayName("信息页模版")]
         [Description("信息页模版。本模型专属内容页")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn("InfoTemplate", "信息页模版。本模型专属内容页", "nvarchar(200)")]
+        [BindColumn("InfoTemplate", "信息页模版。本模型专属内容页", "")]
         public String InfoTemplate { get { return _InfoTemplate; } set { if (OnPropertyChanging(__.InfoTemplate, value)) { _InfoTemplate = value; OnPropertyChanged(__.InfoTemplate); } } }
 
-        private Int32 _CreateUserID;
+        private String _CreateUser;
         /// <summary>创建人</summary>
         [DisplayName("创建人")]
         [Description("创建人")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn("CreateUser", "创建人", "")]
+        public String CreateUser { get { return _CreateUser; } set { if (OnPropertyChanging(__.CreateUser, value)) { _CreateUser = value; OnPropertyChanged(__.CreateUser); } } }
+
+        private Int32 _CreateUserID;
+        /// <summary>创建者</summary>
+        [DisplayName("创建者")]
+        [Description("创建者")]
         [DataObjectField(false, false, false, 0)]
-        [BindColumn("CreateUserID", "创建人", "int")]
+        [BindColumn("CreateUserID", "创建者", "")]
         public Int32 CreateUserID { get { return _CreateUserID; } set { if (OnPropertyChanging(__.CreateUserID, value)) { _CreateUserID = value; OnPropertyChanged(__.CreateUserID); } } }
 
         private DateTime _CreateTime;
@@ -93,7 +101,7 @@ namespace NewLife.CMX
         [DisplayName("创建时间")]
         [Description("创建时间")]
         [DataObjectField(false, false, true, 0)]
-        [BindColumn("CreateTime", "创建时间", "datetime")]
+        [BindColumn("CreateTime", "创建时间", "")]
         public DateTime CreateTime { get { return _CreateTime; } set { if (OnPropertyChanging(__.CreateTime, value)) { _CreateTime = value; OnPropertyChanged(__.CreateTime); } } }
 
         private String _CreateIP;
@@ -101,15 +109,23 @@ namespace NewLife.CMX
         [DisplayName("创建地址")]
         [Description("创建地址")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn("CreateIP", "创建地址", "nvarchar(50)")]
+        [BindColumn("CreateIP", "创建地址", "")]
         public String CreateIP { get { return _CreateIP; } set { if (OnPropertyChanging(__.CreateIP, value)) { _CreateIP = value; OnPropertyChanged(__.CreateIP); } } }
 
-        private Int32 _UpdateUserID;
+        private String _UpdateUser;
         /// <summary>更新人</summary>
         [DisplayName("更新人")]
         [Description("更新人")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn("UpdateUser", "更新人", "")]
+        public String UpdateUser { get { return _UpdateUser; } set { if (OnPropertyChanging(__.UpdateUser, value)) { _UpdateUser = value; OnPropertyChanged(__.UpdateUser); } } }
+
+        private Int32 _UpdateUserID;
+        /// <summary>更新者</summary>
+        [DisplayName("更新者")]
+        [Description("更新者")]
         [DataObjectField(false, false, false, 0)]
-        [BindColumn("UpdateUserID", "更新人", "int")]
+        [BindColumn("UpdateUserID", "更新者", "")]
         public Int32 UpdateUserID { get { return _UpdateUserID; } set { if (OnPropertyChanging(__.UpdateUserID, value)) { _UpdateUserID = value; OnPropertyChanged(__.UpdateUserID); } } }
 
         private DateTime _UpdateTime;
@@ -117,7 +133,7 @@ namespace NewLife.CMX
         [DisplayName("更新时间")]
         [Description("更新时间")]
         [DataObjectField(false, false, true, 0)]
-        [BindColumn("UpdateTime", "更新时间", "datetime")]
+        [BindColumn("UpdateTime", "更新时间", "")]
         public DateTime UpdateTime { get { return _UpdateTime; } set { if (OnPropertyChanging(__.UpdateTime, value)) { _UpdateTime = value; OnPropertyChanged(__.UpdateTime); } } }
 
         private String _UpdateIP;
@@ -125,7 +141,7 @@ namespace NewLife.CMX
         [DisplayName("更新地址")]
         [Description("更新地址")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn("UpdateIP", "更新地址", "nvarchar(50)")]
+        [BindColumn("UpdateIP", "更新地址", "")]
         public String UpdateIP { get { return _UpdateIP; } set { if (OnPropertyChanging(__.UpdateIP, value)) { _UpdateIP = value; OnPropertyChanged(__.UpdateIP); } } }
 
         private String _Remark;
@@ -133,7 +149,7 @@ namespace NewLife.CMX
         [DisplayName("备注")]
         [Description("备注")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn("Remark", "备注", "nvarchar(200)")]
+        [BindColumn("Remark", "备注", "")]
         public String Remark { get { return _Remark; } set { if (OnPropertyChanging(__.Remark, value)) { _Remark = value; OnPropertyChanged(__.Remark); } } }
         #endregion
 
@@ -155,9 +171,11 @@ namespace NewLife.CMX
                     case __.IndexTemplate : return _IndexTemplate;
                     case __.CategoryTemplate : return _CategoryTemplate;
                     case __.InfoTemplate : return _InfoTemplate;
+                    case __.CreateUser : return _CreateUser;
                     case __.CreateUserID : return _CreateUserID;
                     case __.CreateTime : return _CreateTime;
                     case __.CreateIP : return _CreateIP;
+                    case __.UpdateUser : return _UpdateUser;
                     case __.UpdateUserID : return _UpdateUserID;
                     case __.UpdateTime : return _UpdateTime;
                     case __.UpdateIP : return _UpdateIP;
@@ -169,19 +187,21 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
-                    case __.ID : _ID = Convert.ToInt32(value); break;
+                    case __.ID : _ID = value.ToInt(); break;
                     case __.Name : _Name = Convert.ToString(value); break;
                     case __.DisplayName : _DisplayName = Convert.ToString(value); break;
                     case __.ProviderName : _ProviderName = Convert.ToString(value); break;
-                    case __.Enable : _Enable = Convert.ToBoolean(value); break;
+                    case __.Enable : _Enable = value.ToBoolean(); break;
                     case __.IndexTemplate : _IndexTemplate = Convert.ToString(value); break;
                     case __.CategoryTemplate : _CategoryTemplate = Convert.ToString(value); break;
                     case __.InfoTemplate : _InfoTemplate = Convert.ToString(value); break;
-                    case __.CreateUserID : _CreateUserID = Convert.ToInt32(value); break;
-                    case __.CreateTime : _CreateTime = Convert.ToDateTime(value); break;
+                    case __.CreateUser : _CreateUser = Convert.ToString(value); break;
+                    case __.CreateUserID : _CreateUserID = value.ToInt(); break;
+                    case __.CreateTime : _CreateTime = value.ToDateTime(); break;
                     case __.CreateIP : _CreateIP = Convert.ToString(value); break;
-                    case __.UpdateUserID : _UpdateUserID = Convert.ToInt32(value); break;
-                    case __.UpdateTime : _UpdateTime = Convert.ToDateTime(value); break;
+                    case __.UpdateUser : _UpdateUser = Convert.ToString(value); break;
+                    case __.UpdateUserID : _UpdateUserID = value.ToInt(); break;
+                    case __.UpdateTime : _UpdateTime = value.ToDateTime(); break;
                     case __.UpdateIP : _UpdateIP = Convert.ToString(value); break;
                     case __.Remark : _Remark = Convert.ToString(value); break;
                     default: base[name] = value; break;
@@ -219,6 +239,9 @@ namespace NewLife.CMX
             public static readonly Field InfoTemplate = FindByName(__.InfoTemplate);
 
             /// <summary>创建人</summary>
+            public static readonly Field CreateUser = FindByName(__.CreateUser);
+
+            /// <summary>创建者</summary>
             public static readonly Field CreateUserID = FindByName(__.CreateUserID);
 
             /// <summary>创建时间</summary>
@@ -228,6 +251,9 @@ namespace NewLife.CMX
             public static readonly Field CreateIP = FindByName(__.CreateIP);
 
             /// <summary>更新人</summary>
+            public static readonly Field UpdateUser = FindByName(__.UpdateUser);
+
+            /// <summary>更新者</summary>
             public static readonly Field UpdateUserID = FindByName(__.UpdateUserID);
 
             /// <summary>更新时间</summary>
@@ -270,6 +296,9 @@ namespace NewLife.CMX
             public const String InfoTemplate = "InfoTemplate";
 
             /// <summary>创建人</summary>
+            public const String CreateUser = "CreateUser";
+
+            /// <summary>创建者</summary>
             public const String CreateUserID = "CreateUserID";
 
             /// <summary>创建时间</summary>
@@ -279,6 +308,9 @@ namespace NewLife.CMX
             public const String CreateIP = "CreateIP";
 
             /// <summary>更新人</summary>
+            public const String UpdateUser = "UpdateUser";
+
+            /// <summary>更新者</summary>
             public const String UpdateUserID = "UpdateUserID";
 
             /// <summary>更新时间</summary>
@@ -293,7 +325,7 @@ namespace NewLife.CMX
         #endregion
     }
 
-    /// <summary>模型接口</summary>
+    /// <summary>模型。不同模型的信息结构不同接口</summary>
     public partial interface IModel
     {
         #region 属性
@@ -322,6 +354,9 @@ namespace NewLife.CMX
         String InfoTemplate { get; set; }
 
         /// <summary>创建人</summary>
+        String CreateUser { get; set; }
+
+        /// <summary>创建者</summary>
         Int32 CreateUserID { get; set; }
 
         /// <summary>创建时间</summary>
@@ -331,6 +366,9 @@ namespace NewLife.CMX
         String CreateIP { get; set; }
 
         /// <summary>更新人</summary>
+        String UpdateUser { get; set; }
+
+        /// <summary>更新者</summary>
         Int32 UpdateUserID { get; set; }
 
         /// <summary>更新时间</summary>

@@ -21,7 +21,7 @@ namespace NewLife.CMX
         [DisplayName("编号")]
         [Description("编号")]
         [DataObjectField(true, true, false, 0)]
-        [BindColumn("ID", "编号", "int")]
+        [BindColumn("ID", "编号", "")]
         public Int32 ID { get { return _ID; } set { if (OnPropertyChanging(__.ID, value)) { _ID = value; OnPropertyChanged(__.ID); } } }
 
         private Int32 _InfoID;
@@ -29,7 +29,7 @@ namespace NewLife.CMX
         [DisplayName("标题")]
         [Description("标题")]
         [DataObjectField(false, false, false, 0)]
-        [BindColumn("InfoID", "标题", "int")]
+        [BindColumn("InfoID", "标题", "")]
         public Int32 InfoID { get { return _InfoID; } set { if (OnPropertyChanging(__.InfoID, value)) { _InfoID = value; OnPropertyChanged(__.InfoID); } } }
 
         private Int32 _SourceID;
@@ -37,7 +37,7 @@ namespace NewLife.CMX
         [DisplayName("来源")]
         [Description("来源")]
         [DataObjectField(false, false, false, 0)]
-        [BindColumn("SourceID", "来源", "int")]
+        [BindColumn("SourceID", "来源", "")]
         public Int32 SourceID { get { return _SourceID; } set { if (OnPropertyChanging(__.SourceID, value)) { _SourceID = value; OnPropertyChanged(__.SourceID); } } }
 
         private String _SourceName;
@@ -45,7 +45,7 @@ namespace NewLife.CMX
         [DisplayName("来源名称")]
         [Description("来源名称")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn("SourceName", "来源名称", "nvarchar(50)")]
+        [BindColumn("SourceName", "来源名称", "")]
         public String SourceName { get { return _SourceName; } set { if (OnPropertyChanging(__.SourceName, value)) { _SourceName = value; OnPropertyChanged(__.SourceName); } } }
 
         private String _SourceUrl;
@@ -53,7 +53,7 @@ namespace NewLife.CMX
         [DisplayName("来源地址")]
         [Description("来源地址")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn("SourceUrl", "来源地址", "nvarchar(50)")]
+        [BindColumn("SourceUrl", "来源地址", "")]
         public String SourceUrl { get { return _SourceUrl; } set { if (OnPropertyChanging(__.SourceUrl, value)) { _SourceUrl = value; OnPropertyChanged(__.SourceUrl); } } }
 
         private Boolean _Top;
@@ -61,7 +61,7 @@ namespace NewLife.CMX
         [DisplayName("置顶")]
         [Description("置顶")]
         [DataObjectField(false, false, false, 0)]
-        [BindColumn("Top", "置顶", "bit")]
+        [BindColumn("Top", "置顶", "")]
         public Boolean Top { get { return _Top; } set { if (OnPropertyChanging(__.Top, value)) { _Top = value; OnPropertyChanged(__.Top); } } }
 
         private Boolean _Recommend;
@@ -69,7 +69,7 @@ namespace NewLife.CMX
         [DisplayName("推荐")]
         [Description("推荐")]
         [DataObjectField(false, false, false, 0)]
-        [BindColumn("Recommend", "推荐", "bit")]
+        [BindColumn("Recommend", "推荐", "")]
         public Boolean Recommend { get { return _Recommend; } set { if (OnPropertyChanging(__.Recommend, value)) { _Recommend = value; OnPropertyChanged(__.Recommend); } } }
 
         private Boolean _Hot;
@@ -77,7 +77,7 @@ namespace NewLife.CMX
         [DisplayName("热门")]
         [Description("热门")]
         [DataObjectField(false, false, false, 0)]
-        [BindColumn("Hot", "热门", "bit")]
+        [BindColumn("Hot", "热门", "")]
         public Boolean Hot { get { return _Hot; } set { if (OnPropertyChanging(__.Hot, value)) { _Hot = value; OnPropertyChanged(__.Hot); } } }
 
         private Boolean _Slide;
@@ -85,7 +85,7 @@ namespace NewLife.CMX
         [DisplayName("幻灯片")]
         [Description("幻灯片")]
         [DataObjectField(false, false, false, 0)]
-        [BindColumn("Slide", "幻灯片", "bit")]
+        [BindColumn("Slide", "幻灯片", "")]
         public Boolean Slide { get { return _Slide; } set { if (OnPropertyChanging(__.Slide, value)) { _Slide = value; OnPropertyChanged(__.Slide); } } }
 
         private String _Cover;
@@ -93,7 +93,7 @@ namespace NewLife.CMX
         [DisplayName("封面")]
         [Description("封面")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn("Cover", "封面", "nvarchar(200)")]
+        [BindColumn("Cover", "封面", "")]
         public String Cover { get { return _Cover; } set { if (OnPropertyChanging(__.Cover, value)) { _Cover = value; OnPropertyChanged(__.Cover); } } }
         #endregion
 
@@ -124,15 +124,15 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
-                    case __.ID : _ID = Convert.ToInt32(value); break;
-                    case __.InfoID : _InfoID = Convert.ToInt32(value); break;
-                    case __.SourceID : _SourceID = Convert.ToInt32(value); break;
+                    case __.ID : _ID = value.ToInt(); break;
+                    case __.InfoID : _InfoID = value.ToInt(); break;
+                    case __.SourceID : _SourceID = value.ToInt(); break;
                     case __.SourceName : _SourceName = Convert.ToString(value); break;
                     case __.SourceUrl : _SourceUrl = Convert.ToString(value); break;
-                    case __.Top : _Top = Convert.ToBoolean(value); break;
-                    case __.Recommend : _Recommend = Convert.ToBoolean(value); break;
-                    case __.Hot : _Hot = Convert.ToBoolean(value); break;
-                    case __.Slide : _Slide = Convert.ToBoolean(value); break;
+                    case __.Top : _Top = value.ToBoolean(); break;
+                    case __.Recommend : _Recommend = value.ToBoolean(); break;
+                    case __.Hot : _Hot = value.ToBoolean(); break;
+                    case __.Slide : _Slide = value.ToBoolean(); break;
                     case __.Cover : _Cover = Convert.ToString(value); break;
                     default: base[name] = value; break;
                 }

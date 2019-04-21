@@ -13,7 +13,6 @@ using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 using NewLife.Common;
 using NewLife.Log;
-using NewLife.Model;
 using NewLife.Serialization;
 using XCode;
 using XCode.Membership;
@@ -117,35 +116,13 @@ namespace NewLife.CMX
         #region 扩展属性﻿
         /// <summary>分类</summary>
         [XmlIgnore, ScriptIgnore]
-        public ICategory Category { get { return Extends.Get(nameof(Category), k => NewLife.CMX.Category.FindByID(CategoryID)); } }
+        public ICategory Category => Extends.Get(nameof(Category), k => NewLife.CMX.Category.FindByID(CategoryID));
 
         /// <summary>分类</summary>
         [XmlIgnore, ScriptIgnore]
         [DisplayName("分类")]
         [Map(__.CategoryID, typeof(Category), "ID")]
-        public String CategoryName { get { return Category + ""; } }
-
-        /// <summary>创建人</summary>
-        [XmlIgnore, ScriptIgnore]
-        [DisplayName("创建人")]
-        public IManageUser CreateUser { get { return Extends.Get(nameof(CreateUser), k => ManageProvider.Provider.FindByID(CreateUserID)); } }
-
-        /// <summary>创建人名称</summary>
-        [XmlIgnore, ScriptIgnore]
-        [DisplayName("创建人")]
-        [Map(__.CreateUserID)]
-        public String CreateUserName { get { return CreateUser + ""; } }
-
-        /// <summary>更新人</summary>
-        [XmlIgnore, ScriptIgnore]
-        [DisplayName("更新人")]
-        public IManageUser UpdateUser { get { return Extends.Get(nameof(UpdateUser), k => ManageProvider.Provider.FindByID(UpdateUserID)); } }
-
-        /// <summary>更新人名称</summary>
-        [XmlIgnore, ScriptIgnore]
-        [DisplayName("更新人")]
-        [Map(__.UpdateUserID)]
-        public String UpdateUserName { get { return UpdateUser + ""; } }
+        public String CategoryName => Category + "";
         #endregion
 
         #region 扩展查询﻿

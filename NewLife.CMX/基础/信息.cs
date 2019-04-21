@@ -11,10 +11,11 @@ namespace NewLife.CMX
     [Serializable]
     [DataObject]
     [Description("信息")]
+    [BindIndex("IX_Info_Title", false, "Title")]
+    [BindIndex("IX_Info_Code", false, "Code")]
     [BindIndex("IX_Info_ModelID", false, "ModelID")]
     [BindIndex("IX_Info_ExtendID", false, "ExtendID")]
     [BindIndex("IX_Info_CategoryID", false, "CategoryID")]
-    [BindIndex("IX_Info_Code", false, "Code")]
     [BindIndex("IX_Info_PublishTime", false, "PublishTime")]
     [BindTable("Info", Description = "信息", ConnName = "CMX", DbType = DatabaseType.None)]
     public partial class Info : IInfo
@@ -43,14 +44,6 @@ namespace NewLife.CMX
         [DataObjectField(false, false, false, 0)]
         [BindColumn("CategoryID", "分类", "")]
         public Int32 CategoryID { get { return _CategoryID; } set { if (OnPropertyChanging(__.CategoryID, value)) { _CategoryID = value; OnPropertyChanged(__.CategoryID); } } }
-
-        private String _CategoryName;
-        /// <summary>分类名称</summary>
-        [DisplayName("分类名称")]
-        [Description("分类名称")]
-        [DataObjectField(false, false, true, 50)]
-        [BindColumn("CategoryName", "分类名称", "")]
-        public String CategoryName { get { return _CategoryName; } set { if (OnPropertyChanging(__.CategoryName, value)) { _CategoryName = value; OnPropertyChanged(__.CategoryName); } } }
 
         private String _Title;
         /// <summary>标题</summary>
@@ -124,14 +117,6 @@ namespace NewLife.CMX
         [BindColumn("Summary", "摘要", "")]
         public String Summary { get { return _Summary; } set { if (OnPropertyChanging(__.Summary, value)) { _Summary = value; OnPropertyChanged(__.Summary); } } }
 
-        private DateTime _PublishTime;
-        /// <summary>发布时间</summary>
-        [DisplayName("发布时间")]
-        [Description("发布时间")]
-        [DataObjectField(false, false, true, 0)]
-        [BindColumn("PublishTime", "发布时间", "")]
-        public DateTime PublishTime { get { return _PublishTime; } set { if (OnPropertyChanging(__.PublishTime, value)) { _PublishTime = value; OnPropertyChanged(__.PublishTime); } } }
-
         private String _Publisher;
         /// <summary>发布人</summary>
         [DisplayName("发布人")]
@@ -140,12 +125,28 @@ namespace NewLife.CMX
         [BindColumn("Publisher", "发布人", "")]
         public String Publisher { get { return _Publisher; } set { if (OnPropertyChanging(__.Publisher, value)) { _Publisher = value; OnPropertyChanged(__.Publisher); } } }
 
-        private Int32 _CreateUserID;
+        private DateTime _PublishTime;
+        /// <summary>发布时间</summary>
+        [DisplayName("发布时间")]
+        [Description("发布时间")]
+        [DataObjectField(false, false, true, 0)]
+        [BindColumn("PublishTime", "发布时间", "")]
+        public DateTime PublishTime { get { return _PublishTime; } set { if (OnPropertyChanging(__.PublishTime, value)) { _PublishTime = value; OnPropertyChanged(__.PublishTime); } } }
+
+        private String _CreateUser;
         /// <summary>创建人</summary>
         [DisplayName("创建人")]
         [Description("创建人")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn("CreateUser", "创建人", "")]
+        public String CreateUser { get { return _CreateUser; } set { if (OnPropertyChanging(__.CreateUser, value)) { _CreateUser = value; OnPropertyChanged(__.CreateUser); } } }
+
+        private Int32 _CreateUserID;
+        /// <summary>创建者</summary>
+        [DisplayName("创建者")]
+        [Description("创建者")]
         [DataObjectField(false, false, false, 0)]
-        [BindColumn("CreateUserID", "创建人", "")]
+        [BindColumn("CreateUserID", "创建者", "")]
         public Int32 CreateUserID { get { return _CreateUserID; } set { if (OnPropertyChanging(__.CreateUserID, value)) { _CreateUserID = value; OnPropertyChanged(__.CreateUserID); } } }
 
         private DateTime _CreateTime;
@@ -164,12 +165,20 @@ namespace NewLife.CMX
         [BindColumn("CreateIP", "创建地址", "")]
         public String CreateIP { get { return _CreateIP; } set { if (OnPropertyChanging(__.CreateIP, value)) { _CreateIP = value; OnPropertyChanged(__.CreateIP); } } }
 
-        private Int32 _UpdateUserID;
+        private String _UpdateUser;
         /// <summary>更新人</summary>
         [DisplayName("更新人")]
         [Description("更新人")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn("UpdateUser", "更新人", "")]
+        public String UpdateUser { get { return _UpdateUser; } set { if (OnPropertyChanging(__.UpdateUser, value)) { _UpdateUser = value; OnPropertyChanged(__.UpdateUser); } } }
+
+        private Int32 _UpdateUserID;
+        /// <summary>更新者</summary>
+        [DisplayName("更新者")]
+        [Description("更新者")]
         [DataObjectField(false, false, false, 0)]
-        [BindColumn("UpdateUserID", "更新人", "")]
+        [BindColumn("UpdateUserID", "更新者", "")]
         public Int32 UpdateUserID { get { return _UpdateUserID; } set { if (OnPropertyChanging(__.UpdateUserID, value)) { _UpdateUserID = value; OnPropertyChanged(__.UpdateUserID); } } }
 
         private DateTime _UpdateTime;
@@ -202,7 +211,6 @@ namespace NewLife.CMX
                     case __.ID : return _ID;
                     case __.ModelID : return _ModelID;
                     case __.CategoryID : return _CategoryID;
-                    case __.CategoryName : return _CategoryName;
                     case __.Title : return _Title;
                     case __.Code : return _Code;
                     case __.ExtendID : return _ExtendID;
@@ -212,11 +220,13 @@ namespace NewLife.CMX
                     case __.Sort : return _Sort;
                     case __.Image : return _Image;
                     case __.Summary : return _Summary;
-                    case __.PublishTime : return _PublishTime;
                     case __.Publisher : return _Publisher;
+                    case __.PublishTime : return _PublishTime;
+                    case __.CreateUser : return _CreateUser;
                     case __.CreateUserID : return _CreateUserID;
                     case __.CreateTime : return _CreateTime;
                     case __.CreateIP : return _CreateIP;
+                    case __.UpdateUser : return _UpdateUser;
                     case __.UpdateUserID : return _UpdateUserID;
                     case __.UpdateTime : return _UpdateTime;
                     case __.UpdateIP : return _UpdateIP;
@@ -227,26 +237,27 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
-                    case __.ID : _ID = Convert.ToInt32(value); break;
-                    case __.ModelID : _ModelID = Convert.ToInt32(value); break;
-                    case __.CategoryID : _CategoryID = Convert.ToInt32(value); break;
-                    case __.CategoryName : _CategoryName = Convert.ToString(value); break;
+                    case __.ID : _ID = value.ToInt(); break;
+                    case __.ModelID : _ModelID = value.ToInt(); break;
+                    case __.CategoryID : _CategoryID = value.ToInt(); break;
                     case __.Title : _Title = Convert.ToString(value); break;
                     case __.Code : _Code = Convert.ToString(value); break;
-                    case __.ExtendID : _ExtendID = Convert.ToInt32(value); break;
-                    case __.Version : _Version = Convert.ToInt32(value); break;
-                    case __.StatisticsID : _StatisticsID = Convert.ToInt32(value); break;
-                    case __.Views : _Views = Convert.ToInt32(value); break;
-                    case __.Sort : _Sort = Convert.ToInt32(value); break;
+                    case __.ExtendID : _ExtendID = value.ToInt(); break;
+                    case __.Version : _Version = value.ToInt(); break;
+                    case __.StatisticsID : _StatisticsID = value.ToInt(); break;
+                    case __.Views : _Views = value.ToInt(); break;
+                    case __.Sort : _Sort = value.ToInt(); break;
                     case __.Image : _Image = Convert.ToString(value); break;
                     case __.Summary : _Summary = Convert.ToString(value); break;
-                    case __.PublishTime : _PublishTime = Convert.ToDateTime(value); break;
                     case __.Publisher : _Publisher = Convert.ToString(value); break;
-                    case __.CreateUserID : _CreateUserID = Convert.ToInt32(value); break;
-                    case __.CreateTime : _CreateTime = Convert.ToDateTime(value); break;
+                    case __.PublishTime : _PublishTime = value.ToDateTime(); break;
+                    case __.CreateUser : _CreateUser = Convert.ToString(value); break;
+                    case __.CreateUserID : _CreateUserID = value.ToInt(); break;
+                    case __.CreateTime : _CreateTime = value.ToDateTime(); break;
                     case __.CreateIP : _CreateIP = Convert.ToString(value); break;
-                    case __.UpdateUserID : _UpdateUserID = Convert.ToInt32(value); break;
-                    case __.UpdateTime : _UpdateTime = Convert.ToDateTime(value); break;
+                    case __.UpdateUser : _UpdateUser = Convert.ToString(value); break;
+                    case __.UpdateUserID : _UpdateUserID = value.ToInt(); break;
+                    case __.UpdateTime : _UpdateTime = value.ToDateTime(); break;
                     case __.UpdateIP : _UpdateIP = Convert.ToString(value); break;
                     default: base[name] = value; break;
                 }
@@ -266,9 +277,6 @@ namespace NewLife.CMX
 
             /// <summary>分类</summary>
             public static readonly Field CategoryID = FindByName(__.CategoryID);
-
-            /// <summary>分类名称</summary>
-            public static readonly Field CategoryName = FindByName(__.CategoryName);
 
             /// <summary>标题</summary>
             public static readonly Field Title = FindByName(__.Title);
@@ -297,13 +305,16 @@ namespace NewLife.CMX
             /// <summary>摘要</summary>
             public static readonly Field Summary = FindByName(__.Summary);
 
-            /// <summary>发布时间</summary>
-            public static readonly Field PublishTime = FindByName(__.PublishTime);
-
             /// <summary>发布人</summary>
             public static readonly Field Publisher = FindByName(__.Publisher);
 
+            /// <summary>发布时间</summary>
+            public static readonly Field PublishTime = FindByName(__.PublishTime);
+
             /// <summary>创建人</summary>
+            public static readonly Field CreateUser = FindByName(__.CreateUser);
+
+            /// <summary>创建者</summary>
             public static readonly Field CreateUserID = FindByName(__.CreateUserID);
 
             /// <summary>创建时间</summary>
@@ -313,6 +324,9 @@ namespace NewLife.CMX
             public static readonly Field CreateIP = FindByName(__.CreateIP);
 
             /// <summary>更新人</summary>
+            public static readonly Field UpdateUser = FindByName(__.UpdateUser);
+
+            /// <summary>更新者</summary>
             public static readonly Field UpdateUserID = FindByName(__.UpdateUserID);
 
             /// <summary>更新时间</summary>
@@ -335,9 +349,6 @@ namespace NewLife.CMX
 
             /// <summary>分类</summary>
             public const String CategoryID = "CategoryID";
-
-            /// <summary>分类名称</summary>
-            public const String CategoryName = "CategoryName";
 
             /// <summary>标题</summary>
             public const String Title = "Title";
@@ -366,13 +377,16 @@ namespace NewLife.CMX
             /// <summary>摘要</summary>
             public const String Summary = "Summary";
 
-            /// <summary>发布时间</summary>
-            public const String PublishTime = "PublishTime";
-
             /// <summary>发布人</summary>
             public const String Publisher = "Publisher";
 
+            /// <summary>发布时间</summary>
+            public const String PublishTime = "PublishTime";
+
             /// <summary>创建人</summary>
+            public const String CreateUser = "CreateUser";
+
+            /// <summary>创建者</summary>
             public const String CreateUserID = "CreateUserID";
 
             /// <summary>创建时间</summary>
@@ -382,6 +396,9 @@ namespace NewLife.CMX
             public const String CreateIP = "CreateIP";
 
             /// <summary>更新人</summary>
+            public const String UpdateUser = "UpdateUser";
+
+            /// <summary>更新者</summary>
             public const String UpdateUserID = "UpdateUserID";
 
             /// <summary>更新时间</summary>
@@ -405,9 +422,6 @@ namespace NewLife.CMX
 
         /// <summary>分类</summary>
         Int32 CategoryID { get; set; }
-
-        /// <summary>分类名称</summary>
-        String CategoryName { get; set; }
 
         /// <summary>标题</summary>
         String Title { get; set; }
@@ -436,13 +450,16 @@ namespace NewLife.CMX
         /// <summary>摘要</summary>
         String Summary { get; set; }
 
-        /// <summary>发布时间</summary>
-        DateTime PublishTime { get; set; }
-
         /// <summary>发布人</summary>
         String Publisher { get; set; }
 
+        /// <summary>发布时间</summary>
+        DateTime PublishTime { get; set; }
+
         /// <summary>创建人</summary>
+        String CreateUser { get; set; }
+
+        /// <summary>创建者</summary>
         Int32 CreateUserID { get; set; }
 
         /// <summary>创建时间</summary>
@@ -452,6 +469,9 @@ namespace NewLife.CMX
         String CreateIP { get; set; }
 
         /// <summary>更新人</summary>
+        String UpdateUser { get; set; }
+
+        /// <summary>更新者</summary>
         Int32 UpdateUserID { get; set; }
 
         /// <summary>更新时间</summary>

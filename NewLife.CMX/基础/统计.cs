@@ -150,17 +150,17 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
-                    case __.ID : _ID = Convert.ToInt32(value); break;
-                    case __.Total : _Total = Convert.ToInt32(value); break;
-                    case __.Today : _Today = Convert.ToInt32(value); break;
-                    case __.Yesterday : _Yesterday = Convert.ToInt32(value); break;
-                    case __.ThisWeek : _ThisWeek = Convert.ToInt32(value); break;
-                    case __.LastWeek : _LastWeek = Convert.ToInt32(value); break;
-                    case __.ThisMonth : _ThisMonth = Convert.ToInt32(value); break;
-                    case __.LastMonth : _LastMonth = Convert.ToInt32(value); break;
-                    case __.ThisYear : _ThisYear = Convert.ToInt32(value); break;
-                    case __.LastYear : _LastYear = Convert.ToInt32(value); break;
-                    case __.LastTime : _LastTime = Convert.ToDateTime(value); break;
+                    case __.ID : _ID = value.ToInt(); break;
+                    case __.Total : _Total = value.ToInt(); break;
+                    case __.Today : _Today = value.ToInt(); break;
+                    case __.Yesterday : _Yesterday = value.ToInt(); break;
+                    case __.ThisWeek : _ThisWeek = value.ToInt(); break;
+                    case __.LastWeek : _LastWeek = value.ToInt(); break;
+                    case __.ThisMonth : _ThisMonth = value.ToInt(); break;
+                    case __.LastMonth : _LastMonth = value.ToInt(); break;
+                    case __.ThisYear : _ThisYear = value.ToInt(); break;
+                    case __.LastYear : _LastYear = value.ToInt(); break;
+                    case __.LastTime : _LastTime = value.ToDateTime(); break;
                     case __.LastIP : _LastIP = Convert.ToString(value); break;
                     case __.Remark : _Remark = Convert.ToString(value); break;
                     default: base[name] = value; break;

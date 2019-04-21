@@ -15,6 +15,7 @@ using NewLife.Common;
 using NewLife.Data;
 using NewLife.Log;
 using XCode;
+using XCode.Membership;
 
 namespace NewLife.CMX
 {
@@ -24,8 +25,9 @@ namespace NewLife.CMX
         #region 对象操作
         static Category()
         {
-            // 用于引发基类的静态构造函数，所有层次的泛型实体类都应该有一个
-            var entity = new Category();
+            Meta.Modules.Add<UserModule>();
+            Meta.Modules.Add<TimeModule>();
+            Meta.Modules.Add<IPModule>();
         }
 
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>

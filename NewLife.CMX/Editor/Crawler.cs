@@ -10,9 +10,14 @@ namespace NewLife.CMX.Editor
     /// <summary>抓取处理器</summary>
     public class Crawler
     {
+        /// <summary>源</summary>
         public String[] Sources { get; set; }
+
+        /// <summary>路径格式</summary>
         public String PathFormat { get; set; }
 
+        /// <summary>处理</summary>
+        /// <returns></returns>
         public virtual Object Process()
         {
             if (Sources == null || Sources.Length == 0)

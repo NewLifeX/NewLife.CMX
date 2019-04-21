@@ -21,7 +21,7 @@ namespace NewLife.CMX
         [DisplayName("编号")]
         [Description("编号")]
         [DataObjectField(true, true, false, 0)]
-        [BindColumn("ID", "编号", "int")]
+        [BindColumn("ID", "编号", "")]
         public Int32 ID { get { return _ID; } set { if (OnPropertyChanging(__.ID, value)) { _ID = value; OnPropertyChanged(__.ID); } } }
 
         private Int32 _InfoID;
@@ -29,7 +29,7 @@ namespace NewLife.CMX
         [DisplayName("标题")]
         [Description("标题")]
         [DataObjectField(false, false, false, 0)]
-        [BindColumn("InfoID", "标题", "int")]
+        [BindColumn("InfoID", "标题", "")]
         public Int32 InfoID { get { return _InfoID; } set { if (OnPropertyChanging(__.InfoID, value)) { _InfoID = value; OnPropertyChanged(__.InfoID); } } }
 
         private Decimal _Price;
@@ -37,7 +37,7 @@ namespace NewLife.CMX
         [DisplayName("价格")]
         [Description("价格")]
         [DataObjectField(false, false, false, 0)]
-        [BindColumn("Price", "价格", "money")]
+        [BindColumn("Price", "价格", "")]
         public Decimal Price { get { return _Price; } set { if (OnPropertyChanging(__.Price, value)) { _Price = value; OnPropertyChanged(__.Price); } } }
 
         private String _PhotoPath;
@@ -45,7 +45,7 @@ namespace NewLife.CMX
         [DisplayName("图片路径")]
         [Description("图片路径")]
         [DataObjectField(false, false, true, 200)]
-        [BindColumn("PhotoPath", "图片路径", "nvarchar(200)")]
+        [BindColumn("PhotoPath", "图片路径", "")]
         public String PhotoPath { get { return _PhotoPath; } set { if (OnPropertyChanging(__.PhotoPath, value)) { _PhotoPath = value; OnPropertyChanged(__.PhotoPath); } } }
 
         private String _Specification;
@@ -53,7 +53,7 @@ namespace NewLife.CMX
         [DisplayName("规格参数")]
         [Description("规格参数")]
         [DataObjectField(false, false, true, -1)]
-        [BindColumn("Specification", "规格参数", "ntext")]
+        [BindColumn("Specification", "规格参数", "")]
         public String Specification { get { return _Specification; } set { if (OnPropertyChanging(__.Specification, value)) { _Specification = value; OnPropertyChanged(__.Specification); } } }
 
         private String _Feature;
@@ -61,7 +61,7 @@ namespace NewLife.CMX
         [DisplayName("功能特点")]
         [Description("功能特点")]
         [DataObjectField(false, false, true, -1)]
-        [BindColumn("Feature", "功能特点", "ntext")]
+        [BindColumn("Feature", "功能特点", "")]
         public String Feature { get { return _Feature; } set { if (OnPropertyChanging(__.Feature, value)) { _Feature = value; OnPropertyChanged(__.Feature); } } }
 
         private String _App;
@@ -69,7 +69,7 @@ namespace NewLife.CMX
         [DisplayName("推荐应用")]
         [Description("推荐应用")]
         [DataObjectField(false, false, true, -1)]
-        [BindColumn("App", "推荐应用", "ntext")]
+        [BindColumn("App", "推荐应用", "")]
         public String App { get { return _App; } set { if (OnPropertyChanging(__.App, value)) { _App = value; OnPropertyChanged(__.App); } } }
 
         private String _Fitting;
@@ -77,7 +77,7 @@ namespace NewLife.CMX
         [DisplayName("相关配件")]
         [Description("相关配件")]
         [DataObjectField(false, false, true, -1)]
-        [BindColumn("Fitting", "相关配件", "ntext")]
+        [BindColumn("Fitting", "相关配件", "")]
         public String Fitting { get { return _Fitting; } set { if (OnPropertyChanging(__.Fitting, value)) { _Fitting = value; OnPropertyChanged(__.Fitting); } } }
 
         private String _Video;
@@ -85,7 +85,7 @@ namespace NewLife.CMX
         [DisplayName("产品视频")]
         [Description("产品视频")]
         [DataObjectField(false, false, true, -1)]
-        [BindColumn("Video", "产品视频", "ntext")]
+        [BindColumn("Video", "产品视频", "")]
         public String Video { get { return _Video; } set { if (OnPropertyChanging(__.Video, value)) { _Video = value; OnPropertyChanged(__.Video); } } }
         #endregion
 
@@ -115,8 +115,8 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
-                    case __.ID : _ID = Convert.ToInt32(value); break;
-                    case __.InfoID : _InfoID = Convert.ToInt32(value); break;
+                    case __.ID : _ID = value.ToInt(); break;
+                    case __.InfoID : _InfoID = value.ToInt(); break;
                     case __.Price : _Price = Convert.ToDecimal(value); break;
                     case __.PhotoPath : _PhotoPath = Convert.ToString(value); break;
                     case __.Specification : _Specification = Convert.ToString(value); break;

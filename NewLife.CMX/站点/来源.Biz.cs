@@ -8,11 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Web.Script.Serialization;
-using System.Xml.Serialization;
 using NewLife.Data;
 using NewLife.Log;
-using NewLife.Model;
 using XCode;
 using XCode.Membership;
 
@@ -66,27 +63,6 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性
-        /// <summary>创建人</summary>
-        [XmlIgnore, ScriptIgnore]
-        [DisplayName("创建人")]
-        public IManageUser CreateUser { get { return Extends.Get(nameof(CreateUser), k => ManageProvider.Provider.FindByID(CreateUserID)); } }
-
-        /// <summary>创建人名称</summary>
-        [XmlIgnore, ScriptIgnore]
-        [DisplayName("创建人")]
-        [Map(__.CreateUserID)]
-        public String CreateUserName { get { return CreateUser + ""; } }
-
-        /// <summary>更新人</summary>
-        [XmlIgnore, ScriptIgnore]
-        [DisplayName("更新人")]
-        public IManageUser UpdateUser { get { return Extends.Get(nameof(UpdateUser), k => ManageProvider.Provider.FindByID(UpdateUserID)); } }
-
-        /// <summary>更新人名称</summary>
-        [XmlIgnore, ScriptIgnore]
-        [DisplayName("更新人")]
-        [Map(__.UpdateUserID)]
-        public String UpdateUserName { get { return UpdateUser + ""; } }
         #endregion
 
         #region 扩展查询

@@ -37,6 +37,7 @@ namespace NewLife.CMX
                     return list.Count > 0 ? list[0] : null;
                 }
             };
+
             Meta.Modules.Add<UserModule>();
             Meta.Modules.Add<TimeModule>();
             Meta.Modules.Add<IPModule>();
@@ -73,16 +74,6 @@ namespace NewLife.CMX
         #endregion
 
         #region 扩展属性
-        /// <summary>创建人</summary>
-        [XmlIgnore, ScriptIgnore]
-        [DisplayName("创建人")]
-        public IManageUser CreateUser { get { return Extends.Get(nameof(CreateUser), k => ManageProvider.Provider.FindByID(CreateUserID)); } }
-
-        /// <summary>创建人名称</summary>
-        [XmlIgnore, ScriptIgnore]
-        [DisplayName("创建人")]
-        [Map(__.CreateUserID)]
-        public String CreateUserName { get { return CreateUser + ""; } }
         #endregion
 
         #region 扩展查询
