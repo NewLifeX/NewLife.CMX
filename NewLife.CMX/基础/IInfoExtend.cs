@@ -11,10 +11,15 @@ namespace NewLife.CMX
     public interface IInfoExtend
     {
         /// <summary>信息编号</summary>
-        Int32 InfoID { get; }
+        Int32 InfoID { get; set; }
 
         /// <summary>该扩展所对应的信息</summary>
         IInfo Info { get; }
+
+        ///// <summary>根据标题查找</summary>
+        ///// <param name="infoid">标题</param>
+        ///// <returns></returns>
+        //IEntity FindByInfoID(Int32 infoid);
     }
 
     /// <summary>信息扩展基类</summary>
@@ -29,12 +34,16 @@ namespace NewLife.CMX
         /// <summary>根据标题查找</summary>
         /// <param name="infoid">标题</param>
         /// <returns></returns>
-        public static IList<TEntity> FindAllByInfoID(Int32 infoid)
+        public static TEntity FindByInfoID(Int32 infoid)
         {
-            if (Meta.Count >= 1000)
-                return FindAll(nameof(IInfoExtend.InfoID), infoid);
-            else // 实体缓存
-                return Meta.Cache.Entities.Where(e => e.InfoID == infoid).ToList();
+            if (Meta.Count < 1000) return Meta.Cache.Find(e => e.InfoID == infoid);
+
+            return Find(nameof(IInfoExtend.InfoID), infoid);
         }
+
+        ///// <summary>根据标题查找</summary>
+        ///// <param name="infoid">标题</param>
+        ///// <returns></returns>
+        //IEntity IInfoExtend.FindByInfoID(Int32 infoid) => FindByInfoID(infoid);
     }
 }

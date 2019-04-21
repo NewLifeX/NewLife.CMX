@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web.Mvc;
+using NewLife.Reflection;
 using NewLife.Web;
+using XCode;
 
 namespace NewLife.CMX.Web.Controllers
 {
@@ -93,6 +96,32 @@ namespace NewLife.CMX.Web.Controllers
             var list = Info.Search(0, id, null, p);
 
             return View("List", list);
+        }
+
+        protected override Int32 OnUpdate(Info entity)
+        {
+            //using (var tran = Info.Meta.CreateTrans())
+            //{
+            var pager = ViewBag.Page as Pager;
+
+            // 填充扩展属性
+            var ext = Info.FindByID(entity.ID)?.Ext;
+            if (ext is IEntity eet && pager != null)
+            {
+                var fact = ext.GetType().AsFactory();
+                foreach (var item in fact.Fields)
+                {
+                    if (!pager[item.Name].IsNullOrEmpty()) eet.SetItem(item.Name, pager[item.Name].ChangeType(item.Type));
+                }
+                //eet.Update();
+            }
+
+            var rs = base.OnUpdate(entity);
+
+            //tran.Commit();
+
+            return rs;
+            //}
         }
     }
 }

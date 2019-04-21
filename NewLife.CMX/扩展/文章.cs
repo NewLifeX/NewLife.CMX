@@ -11,7 +11,7 @@ namespace NewLife.CMX
     [Serializable]
     [DataObject]
     [Description("文章")]
-    [BindIndex("IX_Article_InfoID", false, "InfoID")]
+    [BindIndex("IU_Article_InfoID", true, "InfoID")]
     [BindTable("Article", Description = "文章", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class Article : IArticle
     {

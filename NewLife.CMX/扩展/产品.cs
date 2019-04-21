@@ -11,7 +11,7 @@ namespace NewLife.CMX
     [Serializable]
     [DataObject]
     [Description("产品")]
-    [BindIndex("IX_Product_InfoID", false, "InfoID")]
+    [BindIndex("IU_Product_InfoID", true, "InfoID")]
     [BindTable("Product", Description = "产品", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class Product : IProduct
     {

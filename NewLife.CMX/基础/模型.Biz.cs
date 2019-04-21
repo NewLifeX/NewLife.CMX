@@ -175,6 +175,10 @@ namespace NewLife.CMX
 
             return count;
         }
+
+        /// <summary>获取提供者的实体工厂</summary>
+        /// <returns></returns>
+        public IEntityOperate GetFactory() => ProviderName?.GetTypeEx().AsFactory();
         #endregion
     }
 
@@ -183,5 +187,9 @@ namespace NewLife.CMX
         /// <summary>获取当前模型的顶级分类</summary>
         /// <returns></returns>
         IList<ICategory> GetTopCategories();
+
+        /// <summary>获取提供者的实体工厂</summary>
+        /// <returns></returns>
+        IEntityOperate GetFactory();
     }
 }

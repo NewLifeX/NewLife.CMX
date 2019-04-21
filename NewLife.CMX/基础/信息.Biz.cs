@@ -81,7 +81,6 @@ namespace NewLife.CMX
                     CategoryID = item.ID,
                     Title = "{0}信息".F(item.Name),
                     ContentText = txt,
-                    ExtendID = 0
                 };
                 // 顶级分类的信息，设置编码
                 if (item.ParentID == 0) entity.Code = PinYin.GetFirst(entity.Title);
@@ -96,48 +95,73 @@ namespace NewLife.CMX
         /// <returns></returns>
         protected override Int32 OnInsert()
         {
-            if (!Dirtys[nameof(Version)]) Version = 1;
+            using (var tran = Meta.CreateTrans())
+            {
+                if (!Dirtys[nameof(Version)]) Version = 1;
 
-            // 保存统计
-            var stat = Statistics;
-            if (stat != null) (stat as IEntity).Insert();
+                // 保存统计
+                var stat = Statistics;
+                if (stat != null) (stat as IEntity).Insert();
 
-            StatisticsID = stat.ID;
+                StatisticsID = stat.ID;
 
-            var rs = base.OnInsert();
+                // 保存信息
+                var rs = base.OnInsert();
 
-            // 保存内容
-            var content = Content;
-            content.InfoID = ID;
-            content.Title = Title;
-            content.Version = Version;
-            rs += (content as IEntity).Insert();
+                // 保存内容
+                var content = Content;
+                content.InfoID = ID;
+                content.Title = Title;
+                content.Version = Version;
+                rs += (content as IEntity).Insert();
 
-            return rs;
+                // 保存扩展
+                var fact = Model?.GetFactory();
+                var ext = Ext ?? fact.Create() as IInfoExtend;
+                ext.InfoID = ID;
+                rs += (ext as IEntity).Insert();
+
+                tran.Commit();
+
+                return rs;
+            }
         }
 
         /// <summary>同步更新内容，但不同步更新统计</summary>
         protected override Int32 OnUpdate()
         {
-            var rs = 0;
-            // 如果内容数据有修改，插入新内容
-            if (Content is IEntity entity && entity.HasDirty)
+            using (var tran = Meta.CreateTrans())
             {
-                // 创建新的对象
-                var content = (Content as IEntity).CloneEntity(true) as IContent;
-                content.ID = 0;
-                content.InfoID = ID;
-                content.Title = Title;
-                content.Version++;
-                rs += (content as IEntity).Insert();
+                var rs = 0;
+                // 如果内容数据有修改，插入新内容
+                if (Content is IEntity entity && entity.HasDirty)
+                {
+                    // 创建新的对象
+                    var content = (Content as IEntity).CloneEntity(true) as IContent;
+                    content.ID = 0;
+                    content.InfoID = ID;
+                    content.Title = Title;
+                    content.Version++;
+                    rs += (content as IEntity).Insert();
 
-                Version = content.Version;
+                    Version = content.Version;
+                }
+
+                // 同步访问量
+                if (HasDirty) Views = Statistics.Total;
+
+                rs += base.OnUpdate();
+
+                // 保存扩展
+                var fact = Model?.GetFactory();
+                var ext = Ext ?? fact.Create() as IInfoExtend;
+                ext.InfoID = ID;
+                rs += (ext as IEntity).Save();
+
+                tran.Commit();
+
+                return rs;
             }
-
-            // 同步访问量
-            if (HasDirty) Views = Statistics.Total;
-
-            return rs + base.OnUpdate();
         }
 
         /// <summary>已重载。关联删除内容和统计</summary>
@@ -153,6 +177,10 @@ namespace NewLife.CMX
                 (Statistics as IEntity).Delete();
 
                 var rs = base.OnDelete();
+
+                // 删扩展
+                var ext = Ext;
+                if (ext != null) rs += (ext as IEntity).Delete();
 
                 tran.Commit();
 
@@ -193,17 +221,18 @@ namespace NewLife.CMX
         public IInfoExtend Ext => Extends.Get(nameof(Ext), k =>
         {
             // 根据分类找到模型，再找到对应实体类
-            if (Model != null)
+            var fact = Model?.GetFactory();
+            if (fact != null)
             {
-                var type = Model.ProviderName.GetTypeEx();
-                if (type != null)
+                //var entity = fact.FindByKey(ExtendID);
+                var entity = fact.EntityType.Invoke("FindByInfoID", ID) as IEntity;
+                if (entity == null)
                 {
-                    // 反射调用FindByID方法
-                    //var entity = type.Invoke("FindByID", ExtendID);
-                    var fact = EntityFactory.CreateOperate(type);
-                    var entity = fact.FindByKey(ExtendID);
-                    return entity as IInfoExtend;
+                    entity = fact.Create();
+                    (entity as IInfoExtend).InfoID = ID;
                 }
+
+                return entity as IInfoExtend;
             }
             return null;
         });

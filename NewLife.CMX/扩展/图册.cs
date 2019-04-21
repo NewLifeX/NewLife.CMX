@@ -11,7 +11,7 @@ namespace NewLife.CMX
     [Serializable]
     [DataObject]
     [Description("图册")]
-    [BindIndex("IX_Photo_InfoID", false, "InfoID")]
+    [BindIndex("IU_Photo_InfoID", true, "InfoID")]
     [BindTable("Photo", Description = "图册", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class Photo : IPhoto
     {

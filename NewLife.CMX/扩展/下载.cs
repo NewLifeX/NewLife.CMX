@@ -11,7 +11,7 @@ namespace NewLife.CMX
     [Serializable]
     [DataObject]
     [Description("下载")]
-    [BindIndex("IX_Down_InfoID", false, "InfoID")]
+    [BindIndex("IU_Down_InfoID", true, "InfoID")]
     [BindTable("Down", Description = "下载", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class Down : IDown
     {

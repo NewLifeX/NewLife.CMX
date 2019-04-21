@@ -59,7 +59,6 @@
       <Column Name="CategoryID" DataType="Int32" Description="分类" />
       <Column Name="Title" DataType="String" Master="True" Length="200" Nullable="False" Description="标题" />
       <Column Name="Code" DataType="String" Description="编码。全局唯一的路由识别名，英文名" />
-      <Column Name="ExtendID" DataType="Int32" Description="扩展" />
       <Column Name="Version" DataType="Int32" Description="最新版本" />
       <Column Name="StatisticsID" DataType="Int32" Description="访问统计" />
       <Column Name="Views" DataType="Int32" Description="访问量。由统计表同步过来" />
@@ -81,7 +80,6 @@
       <Index Columns="Title" />
       <Index Columns="Code" />
       <Index Columns="ModelID" />
-      <Index Columns="ExtendID" />
       <Index Columns="CategoryID" />
       <Index Columns="PublishTime" />
     </Indexes>
@@ -144,7 +142,7 @@
       <Column Name="Cover" DataType="String" Length="200" Description="封面" />
     </Columns>
     <Indexes>
-      <Index Columns="InfoID" />
+      <Index Columns="InfoID" Unique="True" />
     </Indexes>
   </Table>
   <Table Name="Product" Description="产品" DbType="SqlServer" Output="扩展">
@@ -160,7 +158,7 @@
       <Column Name="Video" DataType="String" Length="-1" Description="产品视频" />
     </Columns>
     <Indexes>
-      <Index Columns="InfoID" />
+      <Index Columns="InfoID" Unique="True" />
     </Indexes>
   </Table>
   <Table Name="Photo" Description="图册" DbType="SqlServer" Output="扩展">
@@ -169,7 +167,7 @@
       <Column Name="InfoID" DataType="Int32" Description="标题" />
     </Columns>
     <Indexes>
-      <Index Columns="InfoID" />
+      <Index Columns="InfoID" Unique="True" />
     </Indexes>
   </Table>
   <Table Name="Video" Description="视频" DbType="SqlServer" Output="扩展">
@@ -178,7 +176,7 @@
       <Column Name="InfoID" DataType="Int32" Description="标题" />
     </Columns>
     <Indexes>
-      <Index Columns="InfoID" />
+      <Index Columns="InfoID" Unique="True" />
     </Indexes>
   </Table>
   <Table Name="Down" Description="下载" DbType="SqlServer" Output="扩展">
@@ -187,7 +185,7 @@
       <Column Name="InfoID" DataType="Int32" Description="标题" />
     </Columns>
     <Indexes>
-      <Index Columns="InfoID" />
+      <Index Columns="InfoID" Unique="True" />
     </Indexes>
   </Table>
   <Table Name="Nav" Description="导航" DbType="SqlServer" BaseType="EntityTree" Output="站点">

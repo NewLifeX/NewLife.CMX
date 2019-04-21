@@ -11,7 +11,7 @@ namespace NewLife.CMX
     [Serializable]
     [DataObject]
     [Description("视频")]
-    [BindIndex("IX_Video_InfoID", false, "InfoID")]
+    [BindIndex("IU_Video_InfoID", true, "InfoID")]
     [BindTable("Video", Description = "视频", ConnName = "CMX", DbType = DatabaseType.SqlServer)]
     public partial class Video : IVideo
     {

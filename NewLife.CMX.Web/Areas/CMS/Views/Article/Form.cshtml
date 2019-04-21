@@ -9,7 +9,7 @@
     var entity = Model as IEntity;
     var isNew = entity.IsNullKey;
     var inf = Model as IInfo;
-    var article = inf.Ext as IArticle;
+    var article = inf.Ext as IArticle ?? new Article();
 }
 <div class="panel panel-default">
     <div class="form-horizontal">
@@ -50,26 +50,24 @@
                 </div>
             </div>
             <div class="form-group">
-                @{ var item = Article._.Top;}
-                <label class="control-label col-md-2">@item.DisplayName</label>
+                <label class="control-label col-md-2">置顶</label>
                 <div class="col-md-2">
-                    @Html.ForEditor(item, entity)
+                    @Html.CheckBox("Top", @article.Top, new { @class = "chkSwitch" })
                 </div>
-                @{ item = Article._.Recommend;}
-                <label class="control-label col-md-1">@item.DisplayName</label>
+                <label class="control-label col-md-1">推荐</label>
                 <div class="col-md-2">
-                    @Html.ForEditor(item, entity)
+                    @Html.CheckBox("Recommend", @article.Recommend, new { @class = "chkSwitch" })
                 </div>
-                @{ item = Article._.Hot;}
-                <label class="control-label col-md-1">@item.DisplayName</label>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">热门</label>
                 <div class="col-md-2">
-                    @Html.ForEditor(item, entity)
+                    @Html.CheckBox("Hot", @article.Hot, new { @class = "chkSwitch" })
                 </div>
-                @*@{ item = Article._.Slide;}
-                <label class="control-label col-md-1">@item.DisplayName</label>
+                <label class="control-label col-md-1">幻灯片</label>
                 <div class="col-md-2">
-                    @Html.ForEditor(item, entity)
-                </div>*@
+                    @Html.CheckBox("Slide", @article.Slide, new { @class = "chkSwitch" })
+                </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-md-2">封面</label>
@@ -86,8 +84,8 @@
                 </div>
             </div>
             @Html.Partial("_Form_Footer", entity)
-                    @Html.Partial("_Form_Action", entity)
-                    }
+            @Html.Partial("_Form_Action", entity)
+        }
     </div>
 </div>
 <script type="text/javascript">

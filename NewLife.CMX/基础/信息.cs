@@ -14,7 +14,6 @@ namespace NewLife.CMX
     [BindIndex("IX_Info_Title", false, "Title")]
     [BindIndex("IX_Info_Code", false, "Code")]
     [BindIndex("IX_Info_ModelID", false, "ModelID")]
-    [BindIndex("IX_Info_ExtendID", false, "ExtendID")]
     [BindIndex("IX_Info_CategoryID", false, "CategoryID")]
     [BindIndex("IX_Info_PublishTime", false, "PublishTime")]
     [BindTable("Info", Description = "信息", ConnName = "CMX", DbType = DatabaseType.None)]
@@ -60,14 +59,6 @@ namespace NewLife.CMX
         [DataObjectField(false, false, true, 50)]
         [BindColumn("Code", "编码。全局唯一的路由识别名，英文名", "")]
         public String Code { get { return _Code; } set { if (OnPropertyChanging(__.Code, value)) { _Code = value; OnPropertyChanged(__.Code); } } }
-
-        private Int32 _ExtendID;
-        /// <summary>扩展</summary>
-        [DisplayName("扩展")]
-        [Description("扩展")]
-        [DataObjectField(false, false, false, 0)]
-        [BindColumn("ExtendID", "扩展", "")]
-        public Int32 ExtendID { get { return _ExtendID; } set { if (OnPropertyChanging(__.ExtendID, value)) { _ExtendID = value; OnPropertyChanged(__.ExtendID); } } }
 
         private Int32 _Version;
         /// <summary>最新版本</summary>
@@ -213,7 +204,6 @@ namespace NewLife.CMX
                     case __.CategoryID : return _CategoryID;
                     case __.Title : return _Title;
                     case __.Code : return _Code;
-                    case __.ExtendID : return _ExtendID;
                     case __.Version : return _Version;
                     case __.StatisticsID : return _StatisticsID;
                     case __.Views : return _Views;
@@ -242,7 +232,6 @@ namespace NewLife.CMX
                     case __.CategoryID : _CategoryID = value.ToInt(); break;
                     case __.Title : _Title = Convert.ToString(value); break;
                     case __.Code : _Code = Convert.ToString(value); break;
-                    case __.ExtendID : _ExtendID = value.ToInt(); break;
                     case __.Version : _Version = value.ToInt(); break;
                     case __.StatisticsID : _StatisticsID = value.ToInt(); break;
                     case __.Views : _Views = value.ToInt(); break;
@@ -283,9 +272,6 @@ namespace NewLife.CMX
 
             /// <summary>编码。全局唯一的路由识别名，英文名</summary>
             public static readonly Field Code = FindByName(__.Code);
-
-            /// <summary>扩展</summary>
-            public static readonly Field ExtendID = FindByName(__.ExtendID);
 
             /// <summary>最新版本</summary>
             public static readonly Field Version = FindByName(__.Version);
@@ -356,9 +342,6 @@ namespace NewLife.CMX
             /// <summary>编码。全局唯一的路由识别名，英文名</summary>
             public const String Code = "Code";
 
-            /// <summary>扩展</summary>
-            public const String ExtendID = "ExtendID";
-
             /// <summary>最新版本</summary>
             public const String Version = "Version";
 
@@ -428,9 +411,6 @@ namespace NewLife.CMX
 
         /// <summary>编码。全局唯一的路由识别名，英文名</summary>
         String Code { get; set; }
-
-        /// <summary>扩展</summary>
-        Int32 ExtendID { get; set; }
 
         /// <summary>最新版本</summary>
         Int32 Version { get; set; }
