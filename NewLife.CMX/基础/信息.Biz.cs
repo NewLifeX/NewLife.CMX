@@ -13,7 +13,6 @@ using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 using NewLife.Data;
 using NewLife.Log;
-using NewLife.Model;
 using NewLife.Reflection;
 using XCode;
 using XCode.Membership;
@@ -26,9 +25,6 @@ namespace NewLife.CMX
         #region 对象操作
         static Info()
         {
-            // 用于引发基类的静态构造函数，所有层次的泛型实体类都应该有一个
-            var entity = new Info();
-
             Meta.Factory.AdditionalFields.Add(__.Views);
 
             Meta.Modules.Add<UserModule>();
@@ -47,7 +43,10 @@ namespace NewLife.CMX
             base.Valid(isNew);
 
             // 发布时间为创建时间
-            if ((isNew || PublishTime.Year < 2000) && !Dirtys[__.PublishTime]) PublishTime = CreateTime;
+            if (PublishTime.Year < 2000 && !Dirtys[__.PublishTime]) PublishTime = CreateTime;
+
+            // 统一模型
+            if (!Dirtys[nameof(ModelID)]) ModelID = Category.ModelID;
         }
 
         /// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
@@ -93,26 +92,24 @@ namespace NewLife.CMX
         /// <returns></returns>
         protected override Int32 OnInsert()
         {
-            if (!Dirtys["Version"]) Version = 1;
+            if (!Dirtys[nameof(Version)]) Version = 1;
 
-            var num = 0;
             // 保存统计
             var stat = Statistics;
             if (stat != null) (stat as IEntity).Insert();
 
             StatisticsID = stat.ID;
 
-            num += base.OnInsert();
+            var rs = base.OnInsert();
 
             // 保存内容
-            //HelperTool.SaveModelContent(typeof(TContent), Version, ChannelSuffix, this, null);
-            var entity = Content;
-            entity.InfoID = ID;
-            entity.Title = Title;
-            entity.Version = Version;
-            num += (entity as IEntity).Insert();
+            var content = Content;
+            content.InfoID = ID;
+            content.Title = Title;
+            content.Version = Version;
+            rs += (content as IEntity).Insert();
 
-            return num;
+            return rs;
         }
 
         /// <summary>同步更新内容，但不同步更新统计</summary>
@@ -120,19 +117,17 @@ namespace NewLife.CMX
         {
             var rs = 0;
             // 如果内容数据有修改，插入新内容
-            //if ((Content as IEntity).Dirtys.Any(e => e.Value))
-            if ((Content as IEntity).Dirtys.Count > 0)
+            if (Content is IEntity entity && entity.HasDirty)
             {
-                //由于原先的添加方法存在BUG无法给ParentID赋值，给字段赋引用类型值时无法触发脏数据更新标记
-                //故创建新的对象
-                var entity = (Content as IEntity).CloneEntity(true) as IContent;
-                entity.ID = 0;
-                entity.InfoID = ID;
-                entity.Version++;
-                entity.Title = Title;
-                rs += (entity as IEntity).Insert();
+                // 创建新的对象
+                var content = (Content as IEntity).CloneEntity(true) as IContent;
+                content.ID = 0;
+                content.InfoID = ID;
+                content.Title = Title;
+                content.Version++;
+                rs += (content as IEntity).Insert();
 
-                Version = entity.Version;
+                Version = content.Version;
             }
 
             // 同步访问量
@@ -145,95 +140,90 @@ namespace NewLife.CMX
         /// <returns></returns>
         protected override Int32 OnDelete()
         {
-            // 删内容
-            NewLife.CMX.Content.DeleteByParentID(ID);
+            using (var tran = Meta.CreateTrans())
+            {
+                // 删内容
+                NewLife.CMX.Content.DeleteByInfoID(ID);
 
-            // 删统计
-            (Statistics as IEntity).Delete();
+                // 删统计
+                (Statistics as IEntity).Delete();
 
-            return base.OnDelete();
+                var rs = base.OnDelete();
+
+                tran.Commit();
+
+                return rs;
+            }
         }
         #endregion
 
         #region 扩展属性
         /// <summary>该分类所对应的模型</summary>
         [XmlIgnore, ScriptIgnore]
-        public IModel Model { get { return Extends.Get(nameof(Model), k => NewLife.CMX.Model.FindByID(ModelID)); } }
+        public IModel Model => Extends.Get(nameof(Model), k => NewLife.CMX.Model.FindByID(ModelID));
 
         /// <summary>该分类所对应的模型名称</summary>
         [XmlIgnore, ScriptIgnore]
         [DisplayName("模型")]
         [Map(__.ModelID, typeof(Model), "ID")]
-        public String ModelName { get { return Model + ""; } }
+        public String ModelName => Model + "";
 
         /// <summary>分类</summary>
         [XmlIgnore, ScriptIgnore]
-        public ICategory Category { get { return Extends.Get(nameof(Category), k => NewLife.CMX.Category.FindByID(CategoryID)); } }
+        public ICategory Category => Extends.Get(nameof(Category), k => NewLife.CMX.Category.FindByID(CategoryID));
 
-        ///// <summary>分类</summary>
-        //[XmlIgnore, ScriptIgnore]
-        //[DisplayName("分类")]
-        //[Map(__.CategoryID, typeof(Category), "ID")]
-        //public String CategoryName { get { return Category + ""; } }
+        /// <summary>分类</summary>
+        [XmlIgnore, ScriptIgnore]
+        [DisplayName("分类")]
+        [Map(__.CategoryID, typeof(Category), "ID")]
+        public String CategoryName => Category + "";
 
         /// <summary>内容</summary>
         [XmlIgnore, ScriptIgnore]
-        public IContent Content { get { return Extends.Get(nameof(Content), k => NewLife.CMX.Content.FindLastByParentID(ID) ?? new Content { InfoID = ID }); } }
+        public IContent Content => Extends.Get(nameof(Content), k => NewLife.CMX.Content.FindLastByInfo(ID) ?? new Content { InfoID = ID });
 
         /// <summary>内容文本</summary>
-        public String ContentText { get { return Content?.Html; } set { Content.Html = value; } }
+        public String ContentText { get => Content?.Html; set => Content.Html = value; }
 
         /// <summary>扩展</summary>
-        public IInfoExtend Ext
+        public IInfoExtend Ext => Extends.Get(nameof(Ext), k =>
         {
-            get
+            // 根据分类找到模型，再找到对应实体类
+            if (Model != null)
             {
-                return Extends.Get(nameof(Ext), k =>
+                var type = Model.ProviderName.GetTypeEx();
+                if (type != null)
                 {
-                    // 根据分类找到模型，再找到对应实体类
-                    if (Model != null)
-                    {
-                        var type = Model.ProviderName.GetTypeEx();
-                        if (type != null)
-                        {
-                            // 反射调用FindByID方法
-                            //var entity = type.Invoke("FindByID", ExtendID);
-                            var fact = EntityFactory.CreateOperate(type);
-                            var entity = fact.FindByKey(ExtendID);
-                            return entity as IInfoExtend;
-                        }
-                    }
-                    return null;
-                });
+                    // 反射调用FindByID方法
+                    //var entity = type.Invoke("FindByID", ExtendID);
+                    var fact = EntityFactory.CreateOperate(type);
+                    var entity = fact.FindByKey(ExtendID);
+                    return entity as IInfoExtend;
+                }
             }
-        }
+            return null;
+        });
 
         /// <summary>统计</summary>
         [XmlIgnore, ScriptIgnore]
-        public IStatistics Statistics
+        public IStatistics Statistics => Extends.Get(nameof(Statistics), k =>
         {
-            get
+            var st = NewLife.CMX.Statistics.FindByID(StatisticsID);
+            if (st == null)
             {
-                return Extends.Get(nameof(Statistics), k =>
-                {
-                    var st = NewLife.CMX.Statistics.FindByID(StatisticsID);
-                    if (st == null)
-                    {
-                        st = new Statistics();
-                        st.Insert();
+                st = new Statistics();
+                st.Insert();
 
-                        StatisticsID = st.ID;
-                    }
-                    return st;
-                });
+                StatisticsID = st.ID;
             }
-        }
+            return st;
+        });
 
         /// <summary>统计</summary>
         [XmlIgnore, ScriptIgnore]
         [DisplayName("访问统计")]
         [Map(__.StatisticsID, typeof(Statistics), "ID")]
-        public String StatisticsText { get { return Statistics?.Text; } }
+        public String StatisticsText => Statistics?.Text;
         #endregion
 
         #region 扩展查询
@@ -262,55 +252,6 @@ namespace NewLife.CMX
             else // 实体缓存
                 return Meta.Cache.Find(e => e.Code == code);
         }
-
-        /// <summary>根据模型查找</summary>
-        /// <param name="modelid">模型</param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static IList<Info> FindAllByModelID(Int32 modelid)
-        {
-            if (Meta.Count >= 1000)
-                return FindAll(__.ModelID, modelid);
-            else // 实体缓存
-                return Meta.Cache.Entities.Where(e => e.ModelID == modelid).ToList();
-        }
-
-        /// <summary>根据扩展查找</summary>
-        /// <param name="extendid">扩展</param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static IList<Info> FindAllByExtendID(Int32 extendid)
-        {
-            if (Meta.Count >= 1000)
-                return FindAll(__.ExtendID, extendid);
-            else // 实体缓存
-                return Meta.Cache.Entities.Where(e => e.ExtendID == extendid).ToList();
-        }
-
-        /// <summary>根据分类查找</summary>
-        /// <param name="categoryid">分类</param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static IList<Info> FindAllByCategoryID(Int32 categoryid)
-        {
-            if (Meta.Count >= 1000)
-                return FindAll(__.CategoryID, categoryid);
-            else // 实体缓存
-                return Meta.Cache.Entities.Where(e => e.CategoryID == categoryid).ToList();
-        }
-
-        /// <summary>根据发布时间查找</summary>
-        /// <param name="publishtime">发布时间</param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static IList<Info> FindAllByPublishTime(DateTime publishtime)
-        {
-            if (Meta.Count >= 1000)
-                return FindAll(__.PublishTime, publishtime);
-            else // 实体缓存
-                return Meta.Cache.Entities.Where(e => e.PublishTime == publishtime).ToList();
-        }
-
         #endregion
 
         #region 高级查询
@@ -324,13 +265,12 @@ namespace NewLife.CMX
         {
             var exp = new WhereExpression();
 
+            if (modelid > 0) exp &= _.ModelID == modelid;
             if (categoryid > 0)
             {
                 var cat = NewLife.CMX.Category.FindByID(categoryid);
                 if (cat != null) exp &= _.CategoryID.In(cat.MyAllChilds.Select(e => e.ID));
             }
-            else if (modelid > 0)
-                exp &= _.ModelID == modelid;
 
             if (!key.IsNullOrEmpty()) exp &= SearchWhereByKeys(key, null, null);
 

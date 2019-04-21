@@ -8,9 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Web.Script.Serialization;
-using System.Xml.Serialization;
-using NewLife.Model;
 using XCode;
 using XCode.Cache;
 using XCode.Membership;
@@ -21,8 +18,8 @@ namespace NewLife.CMX
     public partial class Content : Entity<Content>
     {
         #region 对象操作
-        /// <summary>根据ParentID缓存最后版本</summary>
-        static SingleEntityCache<Int32, Content> _cache;
+        /// <summary>根据InfoID缓存最后版本</summary>
+        static readonly SingleEntityCache<Int32, Content> _cache;
 
         static Content()
         {
@@ -31,11 +28,7 @@ namespace NewLife.CMX
 
             _cache = new SingleEntityCache<Int32, Content>()
             {
-                FindKeyMethod = id =>
-                {
-                    var list = FindAll(_.InfoID == id, _.Version.Desc(), null, 0, 1);
-                    return list.Count > 0 ? list[0] : null;
-                }
+                FindKeyMethod = id => FindAll(_.InfoID == id, _.Version.Desc(), null, 0, 1).FirstOrDefault(),
             };
 
             Meta.Modules.Add<UserModule>();
@@ -95,7 +88,7 @@ namespace NewLife.CMX
         /// <param name="parentid">主题</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static IList<Content> FindAllByParentID(Int32 parentid)
+        public static IList<Content> FindAllByInfoID(Int32 parentid)
         {
             if (Meta.Count >= 1000)
                 return FindAll(__.InfoID, parentid);
@@ -103,30 +96,11 @@ namespace NewLife.CMX
                 return Meta.Cache.Entities.Where(e => e.InfoID == parentid).ToList();
         }
 
-        /// <summary>根据主题、版本查找</summary>
-        /// <param name="parentid">主题</param>
-        /// <param name="version">版本</param>
+        /// <summary>根据InfoID查询最后版本</summary>
+        /// <param name="infoid"></param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static Content FindByParentIDAndVersion(Int32 parentid, Int32 version)
-        {
-            if (Meta.Count >= 1000)
-                return Find(new String[] { __.InfoID, __.Version }, new Object[] { parentid, version });
-            else // 实体缓存
-                return Meta.Cache.Find(e => e.InfoID == parentid && e.Version == version);
-        }
-
-        /// <summary>根据ParentID查询最后版本</summary>
-        /// <param name="parentid"></param>
-        /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static Content FindLastByParentID(Int32 parentid)
-        {
-            if (Meta.Count >= 1000)
-                return _cache[parentid];
-            else
-                return Meta.Cache.Entities.Where(e => e.InfoID == parentid).OrderByDescending(e => e.Version).FirstOrDefault();
-        }
+        public static Content FindLastByInfo(Int32 infoid) => _cache[infoid];
         #endregion
 
         #region 高级查询
@@ -136,16 +110,7 @@ namespace NewLife.CMX
         /// <summary>根据父级编号删除对应内容</summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static Int32 DeleteByParentID(Int32 id)
-        {
-            var rs = 0;
-            var list = FindAllByParentID(id);
-            foreach (var item in list)
-            {
-                rs += item.OnDelete();
-            }
-            return rs;
-        }
+        public static Int32 DeleteByInfoID(Int32 id) => Delete(_.InfoID == id);
         #endregion
 
         #region 业务
