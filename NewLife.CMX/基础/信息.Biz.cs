@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Web.Script.Serialization;
 using System.Xml.Serialization;
+using NewLife.Common;
 using NewLife.Data;
 using NewLife.Log;
 using NewLife.Reflection;
@@ -82,6 +83,9 @@ namespace NewLife.CMX
                     ContentText = txt,
                     ExtendID = 0
                 };
+                // 顶级分类的信息，设置编码
+                if (item.ParentID == 0) entity.Code = PinYin.GetFirst(entity.Title);
+
                 entity.Insert();
             }
 
