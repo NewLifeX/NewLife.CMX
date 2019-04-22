@@ -87,7 +87,6 @@
   <Table Name="Content" Description="内容" Output="基础">
     <Columns>
       <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" Description="编号" />
-      <Column Name="ModelID" DataType="Int32" Description="模型" />
       <Column Name="InfoID" DataType="Int32" Description="主题" />
       <Column Name="Title" DataType="String" Master="True" Length="200" Nullable="False" Description="标题" />
       <Column Name="Version" DataType="Int32" Description="版本" />
@@ -98,7 +97,6 @@
       <Column Name="Html" DataType="String" Length="-1" Description="内容" />
     </Columns>
     <Indexes>
-      <Index Columns="ModelID" />
       <Index Columns="InfoID,Version" Unique="True" />
     </Indexes>
   </Table>

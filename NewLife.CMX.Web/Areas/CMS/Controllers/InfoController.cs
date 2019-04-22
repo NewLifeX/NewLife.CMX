@@ -111,7 +111,18 @@ namespace NewLife.CMX.Web.Controllers
                 var fact = ext.GetType().AsFactory();
                 foreach (var item in fact.Fields)
                 {
-                    if (!pager[item.Name].IsNullOrEmpty()) eet.SetItem(item.Name, pager[item.Name].ChangeType(item.Type));
+                    if (!pager[item.Name].IsNullOrEmpty())
+                    {
+                        var value = pager[item.Name];
+                        // 布尔型可能传两份
+                        if (item.Type == typeof(Boolean))
+                        {
+                            var ss = value.Split(",");
+                            value = ss.FirstOrDefault();
+                        }
+
+                        eet.SetItem(item.Name, value.ChangeType(item.Type));
+                    }
                 }
                 //eet.Update();
             }

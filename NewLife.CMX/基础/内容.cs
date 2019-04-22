@@ -11,7 +11,6 @@ namespace NewLife.CMX
     [Serializable]
     [DataObject]
     [Description("内容")]
-    [BindIndex("IX_Content_ModelID", false, "ModelID")]
     [BindIndex("IU_Content_InfoID_Version", true, "InfoID,Version")]
     [BindTable("Content", Description = "内容", ConnName = "CMX", DbType = DatabaseType.None)]
     public partial class Content : IContent
@@ -24,14 +23,6 @@ namespace NewLife.CMX
         [DataObjectField(true, true, false, 0)]
         [BindColumn("ID", "编号", "")]
         public Int32 ID { get { return _ID; } set { if (OnPropertyChanging(__.ID, value)) { _ID = value; OnPropertyChanged(__.ID); } } }
-
-        private Int32 _ModelID;
-        /// <summary>模型</summary>
-        [DisplayName("模型")]
-        [Description("模型")]
-        [DataObjectField(false, false, false, 0)]
-        [BindColumn("ModelID", "模型", "")]
-        public Int32 ModelID { get { return _ModelID; } set { if (OnPropertyChanging(__.ModelID, value)) { _ModelID = value; OnPropertyChanged(__.ModelID); } } }
 
         private Int32 _InfoID;
         /// <summary>主题</summary>
@@ -109,7 +100,6 @@ namespace NewLife.CMX
                 switch (name)
                 {
                     case __.ID : return _ID;
-                    case __.ModelID : return _ModelID;
                     case __.InfoID : return _InfoID;
                     case __.Title : return _Title;
                     case __.Version : return _Version;
@@ -126,7 +116,6 @@ namespace NewLife.CMX
                 switch (name)
                 {
                     case __.ID : _ID = value.ToInt(); break;
-                    case __.ModelID : _ModelID = value.ToInt(); break;
                     case __.InfoID : _InfoID = value.ToInt(); break;
                     case __.Title : _Title = Convert.ToString(value); break;
                     case __.Version : _Version = value.ToInt(); break;
@@ -147,9 +136,6 @@ namespace NewLife.CMX
         {
             /// <summary>编号</summary>
             public static readonly Field ID = FindByName(__.ID);
-
-            /// <summary>模型</summary>
-            public static readonly Field ModelID = FindByName(__.ModelID);
 
             /// <summary>主题</summary>
             public static readonly Field InfoID = FindByName(__.InfoID);
@@ -184,9 +170,6 @@ namespace NewLife.CMX
             /// <summary>编号</summary>
             public const String ID = "ID";
 
-            /// <summary>模型</summary>
-            public const String ModelID = "ModelID";
-
             /// <summary>主题</summary>
             public const String InfoID = "InfoID";
 
@@ -220,9 +203,6 @@ namespace NewLife.CMX
         #region 属性
         /// <summary>编号</summary>
         Int32 ID { get; set; }
-
-        /// <summary>模型</summary>
-        Int32 ModelID { get; set; }
 
         /// <summary>主题</summary>
         Int32 InfoID { get; set; }
