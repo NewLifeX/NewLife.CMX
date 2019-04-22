@@ -153,10 +153,9 @@ namespace NewLife.CMX
         {
             if (code.IsNullOrEmpty()) return null;
 
-            if (Meta.Count >= 1000)
-                return Find(__.Code, code);
-            else // 实体缓存
-                return Meta.Cache.Find(e => e.Code == code);
+            if (Meta.Count < 1000) return Meta.Cache.Find(e => e.Code == code);
+
+            return Find(__.Code, code);
         }
         #endregion
 

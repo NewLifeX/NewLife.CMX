@@ -10,15 +10,12 @@ namespace NewLife.CMX.Web.Controllers
     [AllowAnonymous]
     public class ContentController : Controller
     {
-        protected virtual Int32 PageSize { get { return 10; } }
+        protected virtual Int32 PageSize => 10;
 
-        static Boolean ViewExists(String vpath)
-        {
-            return System.IO.File.Exists(vpath.GetFullPath());
-        }
+        static Boolean ViewExists(String vpath) => System.IO.File.Exists(vpath.GetFullPath());
 
         static DictionaryCache<String, String> _cache = new DictionaryCache<String, String>(StringComparer.OrdinalIgnoreCase);
-        String GetView(String name, IModel model)
+        static String GetView(String name, IModel model)
         {
             var viewName = "../{0}/{1}".F(model.Name, name);
 

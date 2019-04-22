@@ -23,13 +23,14 @@ namespace NewLife.CMX.Web
             base.RegisterArea(context);
 
             var routes = context.Routes;
-            routes.MapRoute(
-                name: "CMX_Model",
-                url: "{modelName}",
-                defaults: new { controller = "Content", action = "Index" },
-                constraints: new { modelName = new ModelUrlConstraint() }
-            );
+            //routes.MapRoute(
+            //    name: "CMX_Model",
+            //    url: "{modelName}",
+            //    defaults: new { controller = "Content", action = "Index" },
+            //    constraints: new { modelName = new ModelUrlConstraint() }
+            //);
 
+            #region 类别
             routes.MapRoute(
                 name: "CMX_Category",
                 url: "cat-{categoryid}",
@@ -57,7 +58,9 @@ namespace NewLife.CMX.Web
                 defaults: new { controller = "Content", action = "List2", pageIndex = UrlParameter.Optional },
                 constraints: new { categoryCode = new CategoryUrlConstraint(), pageIndex = "[\\d]+" }
             );
+            #endregion
 
+            #region 信息
             routes.MapRoute(
                 name: "CMX_Info",
                 url: "info-{id}",
@@ -67,37 +70,34 @@ namespace NewLife.CMX.Web
 
             routes.MapRoute(
                 name: "CMX_Info2",
-                url: "{infoCode}",
+                url: "{categoryCode}-{infoCode}",
                 defaults: new { controller = "Content", action = "Detail2" },
                 constraints: new { infoCode = new InfoUrlConstraint(), id = "[\\d]+" }
             );
+            #endregion
 
+            #region  搜索
             routes.MapRoute(
                 name: "CMX_Search",
-                url: "Search/{key}/{pageIndex}",
+                url: "search-{key}-{pageIndex}",
                 defaults: new { controller = "Content", action = "Search" },
                 constraints: null
             );
 
-            routes.MapRoute(
-                name: "CMX_Search2",
-                url: "{modelName}/Search/{key}/{pageIndex}",
-                defaults: new { controller = "Content", action = "Search" },
-                constraints: new { modelName = new ModelUrlConstraint() }
-            );
+            //routes.MapRoute(
+            //    name: "CMX_Search2",
+            //    url: "{modelName}/Search/{key}/{pageIndex}",
+            //    defaults: new { controller = "Content", action = "Search" },
+            //    constraints: new { modelName = new ModelUrlConstraint() }
+            //);
 
             routes.MapRoute(
                 name: "CMX_Search3",
-                url: "{categoryCode}/Search/{key}/{pageIndex}",
+                url: "{categoryCode}-{key}-{pageIndex}",
                 defaults: new { controller = "Content", action = "Search" },
                 constraints: new { categoryCode = new CategoryUrlConstraint() }
             );
-
-            // 用于UE的处理器
-            //   routes.Add(new Route("UEditor", new UEditor.RouteHandler()));
-            //   context.Routes.IgnoreRoute("ueditor/{*relpath}");
-            // UE这条路由太霸道，让它最后注册
-            //TimerX.Delay(s => routes.Add(new Route("UEditor", new UEditor.RouteHandler())), 5000);
+            #endregion
         }
     }
 
