@@ -387,7 +387,7 @@ WriteLiteral("                    ");
 
             
             #line 75 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-               Write(Html.ForEditor(Article._.Cover, entity));
+               Write(Html.ForEditor(Article._.Cover, article.Cover));
 
             
             #line default
