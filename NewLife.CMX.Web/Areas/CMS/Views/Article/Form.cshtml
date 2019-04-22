@@ -27,13 +27,16 @@
                 <div class="col-sm-4">
                     <label class="control-label col-md-4">名称</label>
                     <div class="col-md-8">
-                        @Html.ForEditor(Article._.SourceName, entity)
+                        <input class="form-control" id="SourceName" name="SourceName" type="text" value="@article.SourceName" />
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <label class="control-label col-md-4">地址</label>
                     <div class="col-md-8">
-                        @Html.ForEditor(Article._.SourceUrl, entity)
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                            <input class="form-control" id="SourceUrl" name="SourceUrl" type="text" value="@article.SourceUrl" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -46,7 +49,7 @@
             <div class="form-group">
                 <label class="control-label col-md-2">摘要</label>
                 <div class="col-md-6">
-                    @Html.TextArea("Summary", inf.Summary, 5, 100, null)
+                    <textarea cols="100" name="Summary" rows="5">@inf.Summary</textarea>
                 </div>
             </div>
             <div class="form-group">
@@ -72,14 +75,15 @@
             <div class="form-group">
                 <label class="control-label col-md-2">封面</label>
                 <div class="col-md-6">
-                    @Html.ForEditor(Article._.Cover, article.Cover)
+                    <input class="form-control" name="Cover" type="text" value="@article.Cover" />
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-md-2">发布时间</label>
                 <div class="col-md-2">
                     <div class="input-group">
-                        @Html.ForEditor("PublishTime", inf.PublishTime)
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        <input class="form-control date form_datetime" data-val="true" name="PublishTime" type="text" value="@inf.PublishTime.ToFullString("")" />
                     </div>
                 </div>
             </div>
@@ -89,17 +93,17 @@
     </div>
 </div>
 <script type="text/javascript">
-    $("#@Article._.SourceID").change(
-           function () {
-               var v = $("#@Article._.SourceID").val();
-               $.ajax({
-                   type: "Post",//使用get方法访问后台
-                   dataType: "json",//返回json格式的数据
-                   url: '/CMS/Source/Get/' + v,//要访问的后台地址
-                   success: function (msg) {//msg为返回的数据，在这里做数据绑定
-                       $("#@Article._.SourceName").attr("value", msg.Name);
-                       $("#@Article._.SourceUrl").attr("value", msg.Url);
-                   }
-               });
-           });
+    $("#SourceID").change(
+        function () {
+            var v = $("#SourceID").val();
+            $.ajax({
+                type: "Post",//使用get方法访问后台
+                dataType: "json",//返回json格式的数据
+                url: '/CMS/Source/Get/' + v,//要访问的后台地址
+                success: function (msg) {//msg为返回的数据，在这里做数据绑定
+                    $("#SourceName").attr("value", msg.Name);
+                    $("#SourceUrl").attr("value", msg.Url);
+                }
+            });
+        });
 </script>

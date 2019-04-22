@@ -118,7 +118,10 @@ namespace NewLife.CMX.Web.Controllers
                         if (item.Type == typeof(Boolean))
                         {
                             var ss = value.Split(",");
-                            value = ss.FirstOrDefault();
+                            if (ss.Any(e => e == "true"))
+                                value = "true";
+                            else
+                                value = ss.FirstOrDefault();
                         }
 
                         eet.SetItem(item.Name, value.ChangeType(item.Type));

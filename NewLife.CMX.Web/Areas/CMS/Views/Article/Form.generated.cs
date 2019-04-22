@@ -195,18 +195,27 @@ WriteLiteral(">名称</label>\r\n                    <div");
 
 WriteLiteral(" class=\"col-md-8\"");
 
-WriteLiteral(">\r\n");
+WriteLiteral(">\r\n                        <input");
 
-WriteLiteral("                        ");
+WriteLiteral(" class=\"form-control\"");
 
+WriteLiteral(" id=\"SourceName\"");
+
+WriteLiteral(" name=\"SourceName\"");
+
+WriteLiteral(" type=\"text\"");
+
+WriteAttribute("value", Tuple.Create(" value=\"", 1260), Tuple.Create("\"", 1287)
             
             #line 30 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-                   Write(Html.ForEditor(Article._.SourceName, entity));
-
+                         , Tuple.Create(Tuple.Create("", 1268), Tuple.Create<System.Object, System.Int32>(article.SourceName
             
             #line default
             #line hidden
-WriteLiteral("\r\n                    </div>\r\n                </div>\r\n                <div");
+, 1268), false)
+);
+
+WriteLiteral(" />\r\n                    </div>\r\n                </div>\r\n                <div");
 
 WriteLiteral(" class=\"col-sm-4\"");
 
@@ -218,18 +227,40 @@ WriteLiteral(">地址</label>\r\n                    <div");
 
 WriteLiteral(" class=\"col-md-8\"");
 
-WriteLiteral(">\r\n");
+WriteLiteral(">\r\n                        <div");
 
-WriteLiteral("                        ");
+WriteLiteral(" class=\"input-group\"");
 
+WriteLiteral(">\r\n                            <span");
+
+WriteLiteral(" class=\"input-group-addon\"");
+
+WriteLiteral("><i");
+
+WriteLiteral(" class=\"glyphicon glyphicon-home\"");
+
+WriteLiteral("></i></span>\r\n                            <input");
+
+WriteLiteral(" class=\"form-control\"");
+
+WriteLiteral(" id=\"SourceUrl\"");
+
+WriteLiteral(" name=\"SourceUrl\"");
+
+WriteLiteral(" type=\"text\"");
+
+WriteAttribute("value", Tuple.Create(" value=\"", 1758), Tuple.Create("\"", 1784)
             
-            #line 36 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-                   Write(Html.ForEditor(Article._.SourceUrl, entity));
-
+            #line 38 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+                           , Tuple.Create(Tuple.Create("", 1766), Tuple.Create<System.Object, System.Int32>(article.SourceUrl
             
             #line default
             #line hidden
-WriteLiteral("\r\n                    </div>\r\n                </div>\r\n            </div>\r\n");
+, 1766), false)
+);
+
+WriteLiteral(" />\r\n                        </div>\r\n                    </div>\r\n                " +
+"</div>\r\n            </div>\r\n");
 
 WriteLiteral("            <div");
 
@@ -248,7 +279,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                    ");
 
             
-            #line 43 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 46 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                Write(Html.Partial("_Form_Content", entity));
 
             
@@ -268,18 +299,24 @@ WriteLiteral(">摘要</label>\r\n                <div");
 
 WriteLiteral(" class=\"col-md-6\"");
 
-WriteLiteral(">\r\n");
+WriteLiteral(">\r\n                    <textarea");
 
-WriteLiteral("                    ");
+WriteLiteral(" cols=\"100\"");
+
+WriteLiteral(" name=\"Summary\"");
+
+WriteLiteral(" rows=\"5\"");
+
+WriteLiteral(">");
 
             
-            #line 49 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-               Write(Html.TextArea("Summary", inf.Summary, 5, 100, null));
+            #line 52 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+                                                            Write(inf.Summary);
 
             
             #line default
             #line hidden
-WriteLiteral("\r\n                </div>\r\n            </div>\r\n");
+WriteLiteral("</textarea>\r\n                </div>\r\n            </div>\r\n");
 
 WriteLiteral("            <div");
 
@@ -298,7 +335,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                    ");
 
             
-            #line 55 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 58 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                Write(Html.CheckBox("Top", @article.Top, new { @class = "chkSwitch" }));
 
             
@@ -317,7 +354,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                    ");
 
             
-            #line 59 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 62 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                Write(Html.CheckBox("Recommend", @article.Recommend, new { @class = "chkSwitch" }));
 
             
@@ -342,7 +379,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                    ");
 
             
-            #line 65 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 68 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                Write(Html.CheckBox("Hot", @article.Hot, new { @class = "chkSwitch" }));
 
             
@@ -361,7 +398,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("                    ");
 
             
-            #line 69 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 72 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                Write(Html.CheckBox("Slide", @article.Slide, new { @class = "chkSwitch" }));
 
             
@@ -381,18 +418,25 @@ WriteLiteral(">封面</label>\r\n                <div");
 
 WriteLiteral(" class=\"col-md-6\"");
 
-WriteLiteral(">\r\n");
+WriteLiteral(">\r\n                    <input");
 
-WriteLiteral("                    ");
+WriteLiteral(" class=\"form-control\"");
 
+WriteLiteral(" name=\"Cover\"");
+
+WriteLiteral(" type=\"text\"");
+
+WriteAttribute("value", Tuple.Create(" value=\"", 3656), Tuple.Create("\"", 3678)
             
-            #line 75 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-               Write(Html.ForEditor(Article._.Cover, article.Cover));
-
+            #line 78 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+, Tuple.Create(Tuple.Create("", 3664), Tuple.Create<System.Object, System.Int32>(article.Cover
             
             #line default
             #line hidden
-WriteLiteral("\r\n                </div>\r\n            </div>\r\n");
+, 3664), false)
+);
+
+WriteLiteral(" />\r\n                </div>\r\n            </div>\r\n");
 
 WriteLiteral("            <div");
 
@@ -410,48 +454,65 @@ WriteLiteral(">\r\n                    <div");
 
 WriteLiteral(" class=\"input-group\"");
 
-WriteLiteral(">\r\n");
+WriteLiteral(">\r\n                        <span");
 
-WriteLiteral("                        ");
+WriteLiteral(" class=\"input-group-addon\"");
 
+WriteLiteral("><i");
+
+WriteLiteral(" class=\"fa fa-calendar\"");
+
+WriteLiteral("></i></span>\r\n                        <input");
+
+WriteLiteral(" class=\"form-control date form_datetime\"");
+
+WriteLiteral(" data-val=\"true\"");
+
+WriteLiteral(" name=\"PublishTime\"");
+
+WriteLiteral(" type=\"text\"");
+
+WriteAttribute("value", Tuple.Create(" value=\"", 4133), Tuple.Create("\"", 4174)
             
-            #line 82 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-                   Write(Html.ForEditor("PublishTime", inf.PublishTime));
-
+            #line 86 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+                                             , Tuple.Create(Tuple.Create("", 4141), Tuple.Create<System.Object, System.Int32>(inf.PublishTime.ToFullString("")
             
             #line default
             #line hidden
-WriteLiteral("\r\n                    </div>\r\n                </div>\r\n            </div>\r\n");
+, 4141), false)
+);
+
+WriteLiteral(" />\r\n                    </div>\r\n                </div>\r\n            </div>\r\n");
 
             
-            #line 86 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 90 "..\..\Areas\CMS\Views\Article\Form.cshtml"
             
             
             #line default
             #line hidden
             
-            #line 86 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 90 "..\..\Areas\CMS\Views\Article\Form.cshtml"
        Write(Html.Partial("_Form_Footer", entity));
 
             
             #line default
             #line hidden
             
-            #line 86 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 90 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                                                  
             
             
             #line default
             #line hidden
             
-            #line 87 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 91 "..\..\Areas\CMS\Views\Article\Form.cshtml"
        Write(Html.Partial("_Form_Action", entity));
 
             
             #line default
             #line hidden
             
-            #line 87 "..\..\Areas\CMS\Views\Article\Form.cshtml"
+            #line 91 "..\..\Areas\CMS\Views\Article\Form.cshtml"
                                                  
         }
 
@@ -462,50 +523,21 @@ WriteLiteral("    </div>\r\n</div>\r\n<script");
 
 WriteLiteral(" type=\"text/javascript\"");
 
-WriteLiteral(">\r\n    $(\"#");
-
-            
-            #line 92 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-   Write(Article._.SourceID);
-
-            
-            #line default
-            #line hidden
-WriteLiteral("\").change(\r\n           function () {\r\n               var v = $(\"#");
-
-            
-            #line 94 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-                      Write(Article._.SourceID);
-
-            
-            #line default
-            #line hidden
-WriteLiteral(@""").val();
-               $.ajax({
-                   type: ""Post"",//使用get方法访问后台
-                   dataType: ""json"",//返回json格式的数据
-                   url: '/CMS/Source/Get/' + v,//要访问的后台地址
-                   success: function (msg) {//msg为返回的数据，在这里做数据绑定
-                       $(""#");
-
-            
-            #line 100 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-                      Write(Article._.SourceName);
-
-            
-            #line default
-            #line hidden
-WriteLiteral("\").attr(\"value\", msg.Name);\r\n                       $(\"#");
-
-            
-            #line 101 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-                      Write(Article._.SourceUrl);
-
-            
-            #line default
-            #line hidden
-WriteLiteral("\").attr(\"value\", msg.Url);\r\n                   }\r\n               });\r\n           " +
-"});\r\n</script>");
+WriteLiteral(@">
+    $(""#SourceID"").change(
+        function () {
+            var v = $(""#SourceID"").val();
+            $.ajax({
+                type: ""Post"",//使用get方法访问后台
+                dataType: ""json"",//返回json格式的数据
+                url: '/CMS/Source/Get/' + v,//要访问的后台地址
+                success: function (msg) {//msg为返回的数据，在这里做数据绑定
+                    $(""#SourceName"").attr(""value"", msg.Name);
+                    $(""#SourceUrl"").attr(""value"", msg.Url);
+                }
+            });
+        });
+</script>");
 
         }
     }
