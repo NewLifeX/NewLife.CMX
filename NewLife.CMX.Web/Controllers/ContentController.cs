@@ -2,6 +2,7 @@
 using System.IO;
 using System.Web.Mvc;
 using NewLife.Collections;
+using NewLife.Data;
 using NewLife.Web;
 using XCode;
 
@@ -77,12 +78,12 @@ namespace NewLife.CMX.Web.Controllers
             if (tmp.IsNullOrEmpty() || !ViewExists(tmp)) tmp = GetView("Category", cat.Model);
 
             var pager = new Pager { PageIndex = pageIndex, PageSize = PageSize };
-            var list = cat.GetInfos(pager);
+            //var list = cat.GetInfos(pager);
 
             ViewBag.Title = cat.Name;
             ViewBag.Category = cat;
             ViewBag.Pager = pager;
-            ViewBag.Infos = list;
+            //ViewBag.Infos = list;
 
             return View(tmp, cat);
         }

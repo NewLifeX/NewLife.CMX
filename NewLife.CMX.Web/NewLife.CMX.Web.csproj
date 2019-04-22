@@ -192,11 +192,6 @@
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UEditorController.cs" />
-    <Compile Include="Views\Article\Category.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Category.cshtml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Article\Info.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -258,11 +253,6 @@
       <DependentUpon>_Nav.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Views\Text\Category.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Category.cshtml</DependentUpon>
     </Compile>
     <Compile Include="Views\_ViewStart.generated.cs">
       <AutoGen>True</AutoGen>
@@ -624,10 +614,6 @@
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Index.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Views\Article\Category.cshtml">
-      <Generator>RazorGenerator</Generator>
-      <LastGenOutput>Category.generated.cs</LastGenOutput>
-    </Content>
     <Content Include="Views\Article\Info.cshtml">
       <SubType>Code</SubType>
       <Generator>RazorGenerator</Generator>
@@ -678,10 +664,6 @@
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>_Nav.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Views\Text\Category.cshtml">
-      <Generator>RazorGenerator</Generator>
-      <LastGenOutput>Category.generated.cs</LastGenOutput>
-    </Content>
     <None Include="Views\_ViewStart.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>_ViewStart.generated.cs</LastGenOutput>
@@ -703,6 +685,7 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Views\Product\" />
+    <Folder Include="Views\Text\" />
     <Folder Include="Views\UEditor\" />
   </ItemGroup>
   <PropertyGroup>

@@ -22,7 +22,6 @@ namespace ASP
     using System.Web.Mvc;
     using System.Web.Mvc.Ajax;
     using System.Web.Mvc.Html;
-    
     using System.Web.Routing;
     using System.Web.Security;
     using System.Web.UI;
@@ -48,8 +47,8 @@ namespace ASP
             
             #line 2 "..\..\Views\Content\Category.cshtml"
   
-    var infs = ViewBag.Infos as IList<IInfo>;
-    var Pager = ViewBag.Pager as Pager;
+    var cat = Model;
+    var page = ViewBag.Pager as Pager;
 
             
             #line default
@@ -85,7 +84,7 @@ WriteLiteral("        ");
 
             
             #line 11 "..\..\Views\Content\Category.cshtml"
-   Write(Model.Name);
+   Write(cat.Name);
 
             
             #line default
@@ -101,7 +100,7 @@ WriteLiteral("\r\n    </h2>\r\n");
             
             #line 13 "..\..\Views\Content\Category.cshtml"
       
-        var childs = Model.Childs;
+        var childs = cat.Childs;
         if (childs.Count > 0)
         {
             
@@ -110,14 +109,14 @@ WriteLiteral("\r\n    </h2>\r\n");
             #line hidden
             
             #line 17 "..\..\Views\Content\Category.cshtml"
-       Write(Html.Partial("_Category_Childs", Model));
+       Write(Html.Partial("_Category_Childs", cat));
 
             
             #line default
             #line hidden
             
             #line 17 "..\..\Views\Content\Category.cshtml"
-                                                    
+                                                  
         }
         else
         {
@@ -139,7 +138,7 @@ WriteLiteral(">\r\n");
             #line hidden
             
             #line 22 "..\..\Views\Content\Category.cshtml"
-                 foreach (var item in infs)
+                 foreach (var item in cat.GetInfos(page))
                 {
 
             
@@ -147,14 +146,14 @@ WriteLiteral(">\r\n");
             #line hidden
 WriteLiteral("                    <li>\r\n                        <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 636), Tuple.Create("\"", 661)
+WriteAttribute("href", Tuple.Create(" href=\"", 618), Tuple.Create("\"", 643)
             
             #line 25 "..\..\Views\Content\Category.cshtml"
-, Tuple.Create(Tuple.Create("", 643), Tuple.Create<System.Object, System.Int32>(this.GetUrl(item)
+, Tuple.Create(Tuple.Create("", 625), Tuple.Create<System.Object, System.Int32>(this.GetUrl(item)
             
             #line default
             #line hidden
-, 643), false)
+, 625), false)
 );
 
 WriteLiteral(">\r\n                            <i></i>");
@@ -185,14 +184,14 @@ WriteLiteral("            </ul>\r\n");
             #line hidden
             
             #line 31 "..\..\Views\Content\Category.cshtml"
-       Write(Html.Partial("_Category_Pager", Model));
+       Write(Html.Partial("_Category_Pager", cat));
 
             
             #line default
             #line hidden
             
             #line 31 "..\..\Views\Content\Category.cshtml"
-                                                   
+                                                 
         }
     
             
