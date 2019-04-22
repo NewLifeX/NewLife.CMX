@@ -81,25 +81,23 @@ WriteLiteral("\r\n<li>\r\n");
             #line hidden
 WriteLiteral("        <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 170), Tuple.Create("\"", 199)
-, Tuple.Create(Tuple.Create("", 177), Tuple.Create<System.Object, System.Int32>(Href("~/CMS/Info/Cat/")
+WriteAttribute("href", Tuple.Create(" href=\"", 170), Tuple.Create("\"", 210)
+, Tuple.Create(Tuple.Create("", 177), Tuple.Create<System.Object, System.Int32>(Href("~/CMS/Info/Cat?categoryId=")
 , 177), false)
             
             #line 10 "..\..\Areas\Admin\Views\Index\_Left_Category.cshtml"
-, Tuple.Create(Tuple.Create("", 192), Tuple.Create<System.Object, System.Int32>(cat.ID
+, Tuple.Create(Tuple.Create("", 203), Tuple.Create<System.Object, System.Int32>(cat.ID
             
             #line default
             #line hidden
-, 192), false)
+, 203), false)
 );
 
 WriteLiteral(" target=\"main\"");
 
-WriteLiteral(">\r\n            <i");
+WriteLiteral(">\r\n            ");
 
-WriteLiteral(" class=\"menu-icon fa fa-caret-right\"");
-
-WriteLiteral("></i>\r\n");
+WriteLiteral("\r\n");
 
 WriteLiteral("            ");
 

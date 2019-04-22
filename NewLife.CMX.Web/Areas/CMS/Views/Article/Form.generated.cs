@@ -170,7 +170,7 @@ WriteLiteral(" class=\"control-label col-sm-2\"");
 
 WriteLiteral(">来源</label>\r\n                <div");
 
-WriteLiteral(" class=\"col-sm-2\"");
+WriteLiteral(" class=\"col-sm-1\"");
 
 WriteLiteral(">\r\n");
 
@@ -189,11 +189,11 @@ WriteLiteral(" class=\"col-sm-4\"");
 
 WriteLiteral(">\r\n                    <label");
 
-WriteLiteral(" class=\"control-label col-md-4\"");
+WriteLiteral(" class=\"control-label col-md-3\"");
 
 WriteLiteral(">名称</label>\r\n                    <div");
 
-WriteLiteral(" class=\"col-md-8\"");
+WriteLiteral(" class=\"col-md-9\"");
 
 WriteLiteral(">\r\n                        <input");
 
@@ -217,15 +217,15 @@ WriteAttribute("value", Tuple.Create(" value=\"", 1260), Tuple.Create("\"", 1287
 
 WriteLiteral(" />\r\n                    </div>\r\n                </div>\r\n                <div");
 
-WriteLiteral(" class=\"col-sm-4\"");
+WriteLiteral(" class=\"col-sm-5\"");
 
 WriteLiteral(">\r\n                    <label");
 
-WriteLiteral(" class=\"control-label col-md-4\"");
+WriteLiteral(" class=\"control-label col-md-2\"");
 
 WriteLiteral(">地址</label>\r\n                    <div");
 
-WriteLiteral(" class=\"col-md-8\"");
+WriteLiteral(" class=\"col-md-10\"");
 
 WriteLiteral(">\r\n                        <div");
 
@@ -249,14 +249,14 @@ WriteLiteral(" name=\"SourceUrl\"");
 
 WriteLiteral(" type=\"text\"");
 
-WriteAttribute("value", Tuple.Create(" value=\"", 1758), Tuple.Create("\"", 1784)
+WriteAttribute("value", Tuple.Create(" value=\"", 1759), Tuple.Create("\"", 1785)
             
             #line 38 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-                           , Tuple.Create(Tuple.Create("", 1766), Tuple.Create<System.Object, System.Int32>(article.SourceUrl
+                           , Tuple.Create(Tuple.Create("", 1767), Tuple.Create<System.Object, System.Int32>(article.SourceUrl
             
             #line default
             #line hidden
-, 1766), false)
+, 1767), false)
 );
 
 WriteLiteral(" />\r\n                        </div>\r\n                    </div>\r\n                " +
@@ -426,14 +426,14 @@ WriteLiteral(" name=\"Cover\"");
 
 WriteLiteral(" type=\"text\"");
 
-WriteAttribute("value", Tuple.Create(" value=\"", 3656), Tuple.Create("\"", 3678)
+WriteAttribute("value", Tuple.Create(" value=\"", 3657), Tuple.Create("\"", 3679)
             
             #line 78 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-, Tuple.Create(Tuple.Create("", 3664), Tuple.Create<System.Object, System.Int32>(article.Cover
+, Tuple.Create(Tuple.Create("", 3665), Tuple.Create<System.Object, System.Int32>(article.Cover
             
             #line default
             #line hidden
-, 3664), false)
+, 3665), false)
 );
 
 WriteLiteral(" />\r\n                </div>\r\n            </div>\r\n");
@@ -472,14 +472,14 @@ WriteLiteral(" name=\"PublishTime\"");
 
 WriteLiteral(" type=\"text\"");
 
-WriteAttribute("value", Tuple.Create(" value=\"", 4133), Tuple.Create("\"", 4174)
+WriteAttribute("value", Tuple.Create(" value=\"", 4134), Tuple.Create("\"", 4175)
             
             #line 86 "..\..\Areas\CMS\Views\Article\Form.cshtml"
-                                             , Tuple.Create(Tuple.Create("", 4141), Tuple.Create<System.Object, System.Int32>(inf.PublishTime.ToFullString("")
+                                             , Tuple.Create(Tuple.Create("", 4142), Tuple.Create<System.Object, System.Int32>(inf.PublishTime.ToFullString("")
             
             #line default
             #line hidden
-, 4141), false)
+, 4142), false)
 );
 
 WriteLiteral(" />\r\n                    </div>\r\n                </div>\r\n            </div>\r\n");

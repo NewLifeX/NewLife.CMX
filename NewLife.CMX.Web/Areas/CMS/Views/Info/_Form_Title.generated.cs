@@ -180,40 +180,42 @@ WriteLiteral("\r\n    </div>\r\n    <label");
 
 WriteLiteral(" class=\"control-label col-md-2\"");
 
-WriteLiteral(">分类</label>\r\n    <div");
-
-WriteLiteral(" class=\"col-md-3\"");
-
-WriteLiteral(">\r\n");
-
-            
-            #line 37 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
-        
-            
-            #line default
-            #line hidden
-            
-            #line 37 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
-          
-            var data = new SelectList(Category.Root.AllChilds, "ID", "TreeNodeText", inf.CategoryID);
-        
-            
-            #line default
-            #line hidden
-WriteLiteral("\r\n");
-
-WriteLiteral("        ");
-
-            
-            #line 40 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
-   Write(Html.DropDownList("CategoryID", data, new { @class = "multiselect" }));
-
-            
-            #line default
-            #line hidden
-WriteLiteral("\r\n    </div>\r\n    <div");
+WriteLiteral(">分类：</label>\r\n    <div");
 
 WriteLiteral(" class=\"col-md-2\"");
+
+WriteLiteral(">\r\n        <label");
+
+WriteLiteral(" class=\"control-label\"");
+
+WriteLiteral(">");
+
+            
+            #line 37 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
+                                Write(inf.Category);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</label>\r\n        <input");
+
+WriteLiteral(" type=\"hidden\"");
+
+WriteLiteral(" name=\"CategoryId\"");
+
+WriteAttribute("value", Tuple.Create(" value=\"", 1184), Tuple.Create("\"", 1207)
+            
+            #line 38 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
+, Tuple.Create(Tuple.Create("", 1192), Tuple.Create<System.Object, System.Int32>(inf.CategoryID
+            
+            #line default
+            #line hidden
+, 1192), false)
+);
+
+WriteLiteral(" />\r\n    </div>\r\n    <div");
+
+WriteLiteral(" class=\"col-md-3\"");
 
 WriteLiteral(">\r\n        <label");
 
@@ -222,7 +224,7 @@ WriteLiteral(" class=\"control-label\"");
 WriteLiteral(">访问量</label>\r\n        <span>");
 
             
-            #line 44 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
+            #line 42 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
          Write(inf.Views);
 
             
@@ -235,7 +237,7 @@ WriteLiteral(" class=\"control-label\"");
 WriteLiteral(">版本</label>\r\n        <span>");
 
             
-            #line 46 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
+            #line 44 "..\..\Areas\CMS\Views\Info\_Form_Title.cshtml"
          Write(inf.Version);
 
             

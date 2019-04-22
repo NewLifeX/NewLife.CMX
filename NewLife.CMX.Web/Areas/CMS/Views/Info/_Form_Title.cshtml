@@ -32,14 +32,12 @@
     <div class="col-md-3" title="友好地址名，只能使用字母、数字、-连字符、_下划线">
         @Html.ForEditor("Code", inf.Code, typeof(String))
     </div>
-    <label class="control-label col-md-2">分类</label>
-    <div class="col-md-3">
-        @{
-            var data = new SelectList(Category.Root.AllChilds, "ID", "TreeNodeText", inf.CategoryID);
-        }
-        @Html.DropDownList("CategoryID", data, new { @class = "multiselect" })
-    </div>
+    <label class="control-label col-md-2">分类：</label>
     <div class="col-md-2">
+        <label class="control-label">@inf.Category</label>
+        <input type="hidden" name="CategoryId" value="@inf.CategoryID" />
+    </div>
+    <div class="col-md-3">
         <label class="control-label">访问量</label>
         <span>@inf.Views</span>
         <label class="control-label">版本</label>

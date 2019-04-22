@@ -21,18 +21,18 @@
             @Html.Partial("_Form_Title", entity)
             <div class="form-group">
                 <label class="control-label col-sm-2">来源</label>
-                <div class="col-sm-2">
+                <div class="col-sm-1">
                     @Html.ForDropDownList(Article._.SourceID, Source.FindAllVisible().Cast<IEntity>().ToList(), null, false)
                 </div>
                 <div class="col-sm-4">
-                    <label class="control-label col-md-4">名称</label>
-                    <div class="col-md-8">
+                    <label class="control-label col-md-3">名称</label>
+                    <div class="col-md-9">
                         <input class="form-control" id="SourceName" name="SourceName" type="text" value="@article.SourceName" />
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <label class="control-label col-md-4">地址</label>
-                    <div class="col-md-8">
+                <div class="col-sm-5">
+                    <label class="control-label col-md-2">地址</label>
+                    <div class="col-md-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
                             <input class="form-control" id="SourceUrl" name="SourceUrl" type="text" value="@article.SourceUrl" />

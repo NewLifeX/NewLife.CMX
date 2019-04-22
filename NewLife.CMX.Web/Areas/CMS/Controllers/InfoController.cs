@@ -25,8 +25,8 @@ namespace NewLife.CMX.Web.Controllers
 
         protected override IEnumerable<Info> Search(Pager p)
         {
-            var modelid = RouteData.Values["model"].ToInt();
-            var catid = RouteData.Values["category"].ToInt();
+            var modelid = RouteData.Values["modelId"].ToInt();
+            var catid = RouteData.Values["categoryId"].ToInt();
 
             var key = p["q"];
 
@@ -35,8 +35,8 @@ namespace NewLife.CMX.Web.Controllers
 
         public override ActionResult Add()
         {
-            var entity = Factory.Create() as Info;
-            entity.CategoryID = RouteData.Values["category"].ToInt();
+            var entity = Factory.Create(true) as Info;
+            entity.CategoryID = Request["categoryId"].ToInt();
 
             // 记下添加前的来源页，待会添加成功以后跳转
             Session["Cube_Add_Referrer"] = Request.UrlReferrer.ToString();
@@ -51,69 +51,67 @@ namespace NewLife.CMX.Web.Controllers
         {
             // 用于显示的列
             if (ViewBag.Fields == null) ViewBag.Fields = GetFields(true);
-            if (Session["cid"] != null)
-            {
-                entity.CategoryID = Session["cid"].ToInt();
-            }
-            if (Session["mid"] != null)
-            {
-                entity.ModelID = Session["mid"].ToInt();
-            }
-            var mod = entity.Model;
+
             var tmp = "~/Areas/CMS/Views/Info/Form.cshtml";
-            if (mod == null && entity.Category != null)
-            {
-                mod = entity.Category.Model;
-            }
+
+            var mod = entity.Category?.Model ?? entity.Model;
 
             // 根据模型加载专属表单页
             if (mod != null) tmp = "~/Areas/CMS/Views/{0}/Form.cshtml".F(mod.Name ?? "Info");
 
+            // 没有导航
+            PageSetting.EnableNavbar = false;
+
             return View(tmp, entity);
         }
 
-        public ActionResult Mod(Int32 id, Pager p = null)
+        public ActionResult Mod(Int32 modelId, Pager p = null)
         {
             if (p == null) p = new Pager();
-
             ViewBag.Page = p;
 
             // 用于显示的列
             ViewBag.Fields = base.GetFields(false);
 
-            var list = Info.Search(id, 0, null, p);
+            // 此时不能发布
+            PageSetting.EnableAdd = false;
+            PageSetting.EnableNavbar = false;
+
+            var list = Info.Search(modelId, 0, null, p);
 
             return View("List", list);
         }
 
-        public ActionResult Cat(Int32 id, Pager p = null)
+        public ActionResult Cat(Int32 categoryId, Pager p = null)
         {
-            ViewBag.Page = p ?? new Pager();
+            if (p == null) p = new Pager();
+            ViewBag.Page = p;
 
             // 用于显示的列
             ViewBag.Fields = base.GetFields(false);
 
-            var list = Info.Search(0, id, null, p);
+            // 没有导航
+            PageSetting.EnableNavbar = false;
+
+            var list = Info.Search(0, categoryId, null, p);
 
             return View("List", list);
         }
 
         protected override Int32 OnUpdate(Info entity)
         {
-            //using (var tran = Info.Meta.CreateTrans())
-            //{
-            var pager = ViewBag.Page as Pager;
+            var page = ViewBag.Page as Pager;
 
             // 填充扩展属性
             var ext = Info.FindByID(entity.ID)?.Ext;
-            if (ext is IEntity eet && pager != null)
+            if (ext is IEntity eet && page != null)
             {
                 var fact = ext.GetType().AsFactory();
                 foreach (var item in fact.Fields)
                 {
-                    if (!pager[item.Name].IsNullOrEmpty())
+                    if (!page[item.Name].IsNullOrEmpty())
                     {
-                        var value = pager[item.Name];
+                        var value = page[item.Name];
                         // 布尔型可能传两份
                         if (item.Type == typeof(Boolean))
                         {
@@ -127,15 +125,9 @@ namespace NewLife.CMX.Web.Controllers
                         eet.SetItem(item.Name, value.ChangeType(item.Type));
                     }
                 }
-                //eet.Update();
             }
 
-            var rs = base.OnUpdate(entity);
-
-            //tran.Commit();
-
-            return rs;
-            //}
+            return base.OnUpdate(entity);
         }
     }
 }

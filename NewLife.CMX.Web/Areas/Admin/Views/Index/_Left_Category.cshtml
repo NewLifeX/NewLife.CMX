@@ -7,8 +7,8 @@
 <li>
     @if (cat.Childs.Count == 0)
     {
-        <a href="~/CMS/Info/Cat/@cat.ID" target="main">
-            <i class="menu-icon fa fa-caret-right"></i>
+        <a href="~/CMS/Info/Cat?categoryId=@cat.ID" target="main">
+            @*<i class="menu-icon fa fa-caret-right"></i>*@
             @cat.Name
         </a>
     }
