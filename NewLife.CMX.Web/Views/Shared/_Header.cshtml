@@ -19,7 +19,14 @@
                 {
                     if (nav.Childs.Count == 0)
                     {
-                        <li role="presentation"><a href="@nav.Url" class="active">@nav.Name</a></li>
+                        if (nav.NewWindow)
+                        {
+                            <li role="presentation"><a href="@nav.Url" class="active" target="_blank">@nav.Name</a></li>
+                        }
+                        else
+                        {
+                            <li role="presentation"><a href="@nav.Url" class="active">@nav.Name</a></li>
+                        }
                     }
                     else
                     {
@@ -28,7 +35,14 @@
                             <ul class="dropdown-menu" role="menu">
                                 @foreach (var item in nav.Childs)
                                 {
-                                    <li><a href="@item.Url" class="">@item.Name</a></li>
+                                    if (item.NewWindow)
+                                    {
+                                        <li><a href="@item.Url" class="" target="_blank">@item.Name</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="@item.Url" class="">@item.Name</a></li>
+                                    }
                                 }
                             </ul>
                         </li>
