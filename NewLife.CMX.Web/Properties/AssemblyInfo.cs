@@ -31,10 +31,12 @@ using System.Runtime.InteropServices;
 //
 // 可以指定所有这些值，也可以使用“修订号”和“内部版本号”的默认值，
 // 方法是按如下所示使用“*”:
-[assembly: AssemblyVersion("3.0.*")]
-[assembly: AssemblyFileVersion("3.0.2016.0921")]
+[assembly: AssemblyVersion("3.1.*")]
+[assembly: AssemblyFileVersion("3.1.2019.0424")]
 
 /*
+ * v3.1.2019.0424   重构数据模型，定位中小企业
+ * 
  * v3.0.2016.0921   升级到.Net 4.5
  * 
  * v2.1.2015.0219   精简架构

@@ -686,7 +686,6 @@
     <Folder Include="Models\" />
     <Folder Include="Views\Product\" />
     <Folder Include="Views\Text\" />
-    <Folder Include="Views\UEditor\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
