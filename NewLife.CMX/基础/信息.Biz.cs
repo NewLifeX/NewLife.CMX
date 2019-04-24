@@ -31,6 +31,15 @@ namespace NewLife.CMX
             Meta.Modules.Add<UserModule>();
             Meta.Modules.Add<TimeModule>();
             Meta.Modules.Add<IPModule>();
+
+            // 信息编码使用从键
+            var sc = Meta.SingleCache;
+            sc.FindSlaveKeyMethod = k =>
+            {
+                var ss = k.Split("#");
+                return Find(_.CategoryID == ss[0] & _.Code == ss[1]);
+            };
+            sc.GetSlaveKeyMethod = e => $"{e.CategoryID}#{e.Code}";
         }
 
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
@@ -275,15 +284,19 @@ namespace NewLife.CMX
         }
 
         /// <summary>根据代码查找</summary>
+        /// <param name="categoryId">分类</param>
         /// <param name="code">代码</param>
         /// <returns></returns>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static Info FindByCode(String code)
+        public static Info FindByCategoryAndCode(Int32 categoryId, String code)
         {
-            if (Meta.Count >= 1000)
-                return Find(__.Code, code);
-            else // 实体缓存
-                return Meta.Cache.Find(e => e.Code == code);
+            //if (Meta.Count >= 1000)
+            //    return Find(__.Code, code);
+            //else // 实体缓存
+            //    return Meta.Cache.Find(e => e.Code == code);
+
+            var key = $"{categoryId}#{code}";
+
+            return Meta.SingleCache.GetItemWithSlaveKey(key) as Info;
         }
         #endregion
 

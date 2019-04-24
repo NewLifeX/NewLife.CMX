@@ -99,9 +99,12 @@ namespace NewLife.CMX.Web.Controllers
             return Detail(inf);
         }
 
-        public ActionResult Detail2(String code)
+        public ActionResult Detail2(String categoryCode, String infoCode)
         {
-            var inf = Info.FindByCode(code);
+            var cat = Category.FindByCode(categoryCode);
+            if (cat == null) return HttpNotFound();
+
+            var inf = Info.FindByCategoryAndCode(cat.ID, infoCode);
             if (inf == null) return HttpNotFound();
 
             return Detail(inf);

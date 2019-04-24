@@ -78,9 +78,8 @@
     </Columns>
     <Indexes>
       <Index Columns="Title" />
-      <Index Columns="Code" />
       <Index Columns="ModelID" />
-      <Index Columns="CategoryID" />
+      <Index Columns="CategoryID,Code" />
       <Index Columns="PublishTime" />
     </Indexes>
   </Table>

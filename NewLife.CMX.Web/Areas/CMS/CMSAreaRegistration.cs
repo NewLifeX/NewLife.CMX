@@ -72,7 +72,7 @@ namespace NewLife.CMX.Web
                 name: "CMX_Info2",
                 url: "{categoryCode}-{infoCode}",
                 defaults: new { controller = "Content", action = "Detail2" },
-                constraints: new { infoCode = new InfoUrlConstraint(), id = "[\\d]+" }
+                constraints: new { categoryCode = new CategoryUrlConstraint(), infoCode = new InfoUrlConstraint() }
             );
             #endregion
 
@@ -132,10 +132,13 @@ namespace NewLife.CMX.Web
     {
         public Boolean Match(HttpContextBase httpContext, Route route, String parameterName, RouteValueDictionary values, RouteDirection routeDirection)
         {
-            var name = values[parameterName] + "";
-            if (name.IsNullOrEmpty()) return false;
+            var cat = Category.FindByCode(values["categoryCode"] + "");
+            if (cat == null) return false;
 
-            if (Info.FindByCode(name) != null) return true;
+            var infoCode = values[parameterName] + "";
+            if (infoCode.IsNullOrEmpty() || infoCode.ToInt() > 0) return false;
+
+            if (Info.FindByCategoryAndCode(cat.ID, infoCode) != null) return true;
 
             return false;
         }
