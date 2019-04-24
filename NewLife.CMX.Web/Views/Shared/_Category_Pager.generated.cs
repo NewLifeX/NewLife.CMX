@@ -47,7 +47,7 @@ namespace ASP
             
             #line 2 "..\..\Views\Shared\_Category_Pager.cshtml"
   
-    var page = ViewBag.page as Pager;
+    var page = ViewBag.Pager as Pager;
 
             
             #line default
@@ -92,14 +92,14 @@ WriteLiteral("</span>\r\n        <a");
 
 WriteLiteral(" class=\"first\"");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 224), Tuple.Create("\"", 260)
+WriteAttribute("href", Tuple.Create(" href=\"", 225), Tuple.Create("\"", 261)
             
             #line 9 "..\..\Views\Shared\_Category_Pager.cshtml"
-, Tuple.Create(Tuple.Create("", 231), Tuple.Create<System.Object, System.Int32>(this.GetCategoryUrl(Model)
+, Tuple.Create(Tuple.Create("", 232), Tuple.Create<System.Object, System.Int32>(this.GetCategoryUrl(Model)
             
             #line default
             #line hidden
-, 231), false)
+, 232), false)
 );
 
 WriteLiteral(" title=\"首页\"");
@@ -126,14 +126,14 @@ WriteLiteral(" class=\"prev\"");
 
 WriteLiteral(" title=\"上一页\"");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 365), Tuple.Create("\"", 421)
+WriteAttribute("href", Tuple.Create(" href=\"", 366), Tuple.Create("\"", 422)
             
             #line 12 "..\..\Views\Shared\_Category_Pager.cshtml"
-, Tuple.Create(Tuple.Create("", 372), Tuple.Create<System.Object, System.Int32>(this.GetCategoryUrl(Model, page.PageIndex - 1)
+, Tuple.Create(Tuple.Create("", 373), Tuple.Create<System.Object, System.Int32>(this.GetCategoryUrl(Model, page.PageIndex - 1)
             
             #line default
             #line hidden
-, 372), false)
+, 373), false)
 );
 
 WriteLiteral(">&lt;</a>\r\n");
@@ -183,14 +183,14 @@ WriteLiteral("</a>\r\n");
             #line hidden
 WriteLiteral("                <a");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 664), Tuple.Create("\"", 703)
+WriteAttribute("href", Tuple.Create(" href=\"", 665), Tuple.Create("\"", 704)
             
             #line 22 "..\..\Views\Shared\_Category_Pager.cshtml"
-, Tuple.Create(Tuple.Create("", 671), Tuple.Create<System.Object, System.Int32>(this.GetCategoryUrl(Model, i)
+, Tuple.Create(Tuple.Create("", 672), Tuple.Create<System.Object, System.Int32>(this.GetCategoryUrl(Model, i)
             
             #line default
             #line hidden
-, 671), false)
+, 672), false)
 );
 
 WriteLiteral(">");
@@ -228,14 +228,14 @@ WriteLiteral(" class=\"next\"");
 
 WriteLiteral(" title=\"下一页\"");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 836), Tuple.Create("\"", 892)
+WriteAttribute("href", Tuple.Create(" href=\"", 837), Tuple.Create("\"", 893)
             
             #line 27 "..\..\Views\Shared\_Category_Pager.cshtml"
-, Tuple.Create(Tuple.Create("", 843), Tuple.Create<System.Object, System.Int32>(this.GetCategoryUrl(Model, page.PageIndex + 1)
+, Tuple.Create(Tuple.Create("", 844), Tuple.Create<System.Object, System.Int32>(this.GetCategoryUrl(Model, page.PageIndex + 1)
             
             #line default
             #line hidden
-, 843), false)
+, 844), false)
 );
 
 WriteLiteral(">&gt;</a>\r\n");
@@ -253,14 +253,14 @@ WriteLiteral(" class=\"first\"");
 
 WriteLiteral(" title=\"末页\"");
 
-WriteAttribute("href", Tuple.Create(" href=\"", 950), Tuple.Create("\"", 1009)
+WriteAttribute("href", Tuple.Create(" href=\"", 951), Tuple.Create("\"", 1010)
             
             #line 29 "..\..\Views\Shared\_Category_Pager.cshtml"
-, Tuple.Create(Tuple.Create("", 957), Tuple.Create<System.Object, System.Int32>(this.GetCategoryUrl(Model, (Int32)page.PageCount)
+, Tuple.Create(Tuple.Create("", 958), Tuple.Create<System.Object, System.Int32>(this.GetCategoryUrl(Model, (Int32)page.PageCount)
             
             #line default
             #line hidden
-, 957), false)
+, 958), false)
 );
 
 WriteLiteral(">末页</a>\r\n    </div>\r\n");
