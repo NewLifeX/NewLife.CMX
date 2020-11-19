@@ -88,7 +88,7 @@ namespace NewLife.CMX
                 {
                     ModelID = item.ModelID,
                     CategoryID = item.ID,
-                    Title = "{0}信息".F(item.Name),
+                    Title = $"{item.Name}信息",
                     ContentText = txt,
                 };
                 // 顶级分类的信息，设置编码
@@ -180,7 +180,7 @@ namespace NewLife.CMX
             using (var tran = Meta.CreateTrans())
             {
                 // 删内容
-                CMX.Content.DeleteByInfoID(ID);
+                Content.DeleteByInfoID(ID);
 
                 // 删统计
                 (Statistics as IEntity).Delete();
@@ -221,7 +221,7 @@ namespace NewLife.CMX
 
         /// <summary>内容</summary>
         [XmlIgnore, ScriptIgnore]
-        public Content Content => Extends.Get(nameof(Content), k => CMX.Content.FindLastByInfo(ID) ?? new Content { InfoID = ID });
+        public Content Content => Extends.Get(nameof(Content), k => Content.FindLastByInfo(ID) ?? new Content { InfoID = ID });
 
         /// <summary>内容文本</summary>
         public String ContentText { get => Content?.Html; set => Content.Html = value; }
@@ -250,7 +250,7 @@ namespace NewLife.CMX
         [XmlIgnore, ScriptIgnore]
         public Statistics Statistics => Extends.Get(nameof(Statistics), k =>
         {
-            var st = CMX.Statistics.FindByID(StatisticsID);
+            var st = Statistics.FindByID(StatisticsID);
             if (st == null)
             {
                 st = new Statistics();

@@ -91,7 +91,7 @@ namespace NewLife.CMX
         public static IList<Content> FindAllByInfoID(Int32 parentid)
         {
             if (Meta.Count >= 1000)
-                return FindAll(__.InfoID, parentid);
+                return FindAll(_.InfoID == parentid);
             else // 实体缓存
                 return Meta.Cache.Entities.Where(e => e.InfoID == parentid).ToList();
         }

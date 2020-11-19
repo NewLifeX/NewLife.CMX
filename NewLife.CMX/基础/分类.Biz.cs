@@ -77,10 +77,10 @@ namespace NewLife.CMX
             if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Category).Name, Meta.Table.DataTable.DisplayName);
 
             // 遍历模型
-            CMX.Model.Meta.Session.WaitForInitData();
+            Model.Meta.Session.WaitForInitData();
 
             var sort = 100;
-            foreach (var item in CMX.Model.FindAllWithCache())
+            foreach (var item in Model.FindAllWithCache())
             {
                 var entity = new Category
                 {
@@ -107,7 +107,7 @@ namespace NewLife.CMX
         #region 扩展属性
         /// <summary>该分类所对应的模型</summary>
         [XmlIgnore, ScriptIgnore]
-        public Model Model => Extends.Get(nameof(Model), k => NewLife.CMX.Model.FindByID(ModelID));
+        public Model Model => Extends.Get(nameof(Model), k => Model.FindByID(ModelID));
 
         /// <summary>该分类所对应的模型名称</summary>
         [XmlIgnore, ScriptIgnore]

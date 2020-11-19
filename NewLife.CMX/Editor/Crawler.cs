@@ -56,7 +56,7 @@ namespace NewLife.CMX.Editor
                 State = "INVALID_URL";
                 return this;
             }
-            var request = HttpWebRequest.Create(SourceUrl) as HttpWebRequest;
+            var request = WebRequest.Create(SourceUrl) as HttpWebRequest;
             using (var response = request.GetResponse() as HttpWebResponse)
             {
                 if (response.StatusCode != HttpStatusCode.OK)

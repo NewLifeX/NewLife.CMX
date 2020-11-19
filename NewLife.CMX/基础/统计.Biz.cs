@@ -7,7 +7,6 @@
 using System;
 using System.ComponentModel;
 using System.Text;
-using NewLife.Web;
 using XCode;
 using XCode.Membership;
 
@@ -19,14 +18,12 @@ namespace NewLife.CMX
         #region 对象操作﻿
         static Statistics()
         {
-            // 用于引发基类的静态构造函数，所有层次的泛型实体类都应该有一个
-            var entity = new Statistics();
-
-            Meta.Factory.AdditionalFields.Add(__.Total);
-            Meta.Factory.AdditionalFields.Add(__.Today);
-            Meta.Factory.AdditionalFields.Add(__.ThisWeek);
-            Meta.Factory.AdditionalFields.Add(__.ThisMonth);
-            Meta.Factory.AdditionalFields.Add(__.ThisYear);
+            var df = Meta.Factory.AdditionalFields;
+            df.Add(__.Total);
+            df.Add(__.Today);
+            df.Add(__.ThisWeek);
+            df.Add(__.ThisMonth);
+            df.Add(__.ThisYear);
         }
 
         /// <summary>验证数据，通过抛出异常的方式提示验证失败。</summary>
@@ -56,9 +53,9 @@ namespace NewLife.CMX
 
                     if (sb.Length > 0) sb.Append(" ");
                     if (item.Type == typeof(Int32))
-                        sb.Append("{0}{1:n0}".F(item.DisplayName, this[item.Name]));
+                        sb.AppendFormat("{0}{1:n0}", item.DisplayName, this[item.Name]);
                     else
-                        sb.Append("{0}{1}".F(item.DisplayName, this[item.Name]));
+                        sb.AppendFormat("{0}{1}", item.DisplayName, this[item.Name]);
                 }
                 return sb.ToString();
             }
@@ -87,7 +84,7 @@ namespace NewLife.CMX
         #region 扩展操作
         /// <summary>已重载。</summary>
         /// <returns></returns>
-        public override String ToString() { return Text; }
+        public override String ToString() => Text;
         #endregion
 
         #region 业务
