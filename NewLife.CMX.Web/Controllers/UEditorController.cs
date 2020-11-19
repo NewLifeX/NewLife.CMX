@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using NewLife.CMX.Editor;
 using NewLife.Collections;
-using NewLife.Log;
 using NewLife.Serialization;
 
 namespace NewLife.CMX.Web.Controllers

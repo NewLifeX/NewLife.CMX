@@ -1,99 +1,96 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 using NewLife.Cube;
 
 namespace NewLife.CMX.Web
 {
     [DisplayName("内容管理")]
-    public class CMSAreaRegistration : AreaRegistrationBase
+    public class CMSArea : AreaBase
     {
-        public override void RegisterArea(AreaRegistrationContext context)
+        /// <summary>区域名</summary>
+        public static String AreaName => nameof(CMSArea).TrimEnd("Area");
+
+        /// <inheritdoc />
+        public CMSArea() : base(AreaName) { }
+
+        public static void RegisterArea(IEndpointRouteBuilder endpoints)
         {
             // 用于左边菜单的两条路由
-            context.MapRoute(
+            endpoints.MapControllerRoute(
                "CMS_Manage",
                "CMS/{controller}/{action}/{id}",
                new { action = "Index", id = UrlParameter.Optional },
                null
                );
 
-            base.RegisterArea(context);
-
-            var routes = context.Routes;
-            //routes.MapRoute(
-            //    name: "CMX_Model",
-            //    url: "{modelName}",
-            //    defaults: new { controller = "Content", action = "Index" },
-            //    constraints: new { modelName = new ModelUrlConstraint() }
-            //);
-
             #region 类别
-            routes.MapRoute(
+            endpoints.MapControllerRoute(
                 name: "CMX_Category",
-                url: "cat-{categoryid}",
+                pattern: "cat-{categoryid}",
                 defaults: new { controller = "Content", action = "List" },
                 constraints: new { categoryid = "[\\d]+" }
             );
 
-            routes.MapRoute(
+            endpoints.MapControllerRoute(
                 name: "CMX_Category_Page",
-                url: "cat-{categoryid}-{pageIndex}",
+                pattern: "cat-{categoryid}-{pageIndex}",
                 defaults: new { controller = "Content", action = "List", pageIndex = UrlParameter.Optional },
                 constraints: new { categoryid = "[\\d]+", pageIndex = "[\\d]+" }
             );
 
-            routes.MapRoute(
+            endpoints.MapControllerRoute(
                 name: "CMX_Category2",
-                url: "{categoryCode}",
+                pattern: "{categoryCode}",
                 defaults: new { controller = "Content", action = "List2" },
                 constraints: new { categoryCode = new CategoryUrlConstraint() }
             );
 
-            routes.MapRoute(
+            endpoints.MapControllerRoute(
                 name: "CMX_Category_Page2",
-                url: "{categoryCode}-{pageIndex}",
+                pattern: "{categoryCode}-{pageIndex}",
                 defaults: new { controller = "Content", action = "List2", pageIndex = UrlParameter.Optional },
                 constraints: new { categoryCode = new CategoryUrlConstraint(), pageIndex = "[\\d]+" }
             );
             #endregion
 
             #region 信息
-            routes.MapRoute(
+            endpoints.MapControllerRoute(
                 name: "CMX_Info",
-                url: "info-{id}",
+                pattern: "info-{id}",
                 defaults: new { controller = "Content", action = "Detail" },
                 constraints: new { id = "[\\d]+" }
             );
 
-            routes.MapRoute(
+            endpoints.MapControllerRoute(
                 name: "CMX_Info2",
-                url: "{categoryCode}-{infoCode}",
+                pattern: "{categoryCode}-{infoCode}",
                 defaults: new { controller = "Content", action = "Detail2" },
                 constraints: new { categoryCode = new CategoryUrlConstraint(), infoCode = new InfoUrlConstraint() }
             );
             #endregion
 
             #region  搜索
-            routes.MapRoute(
+            endpoints.MapControllerRoute(
                 name: "CMX_Search",
-                url: "search-{key}-{pageIndex}",
+                pattern: "search-{key}-{pageIndex}",
                 defaults: new { controller = "Content", action = "Search" },
                 constraints: null
             );
 
-            //routes.MapRoute(
+            //routes.MapControllerRoute(
             //    name: "CMX_Search2",
             //    url: "{modelName}/Search/{key}/{pageIndex}",
             //    defaults: new { controller = "Content", action = "Search" },
             //    constraints: new { modelName = new ModelUrlConstraint() }
             //);
 
-            routes.MapRoute(
+            endpoints.MapControllerRoute(
                 name: "CMX_Search3",
-                url: "{categoryCode}-{key}-{pageIndex}",
+                pattern: "{categoryCode}-{key}-{pageIndex}",
                 defaults: new { controller = "Content", action = "Search" },
                 constraints: new { categoryCode = new CategoryUrlConstraint() }
             );
@@ -103,7 +100,7 @@ namespace NewLife.CMX.Web
 
     class ModelUrlConstraint : IRouteConstraint
     {
-        public Boolean Match(HttpContextBase httpContext, Route route, String parameterName, RouteValueDictionary values, RouteDirection routeDirection)
+        public Boolean Match(HttpContext httpContext, IRouter route, String parameterName, RouteValueDictionary values, RouteDirection routeDirection)
         {
             var name = values[parameterName] + "";
             if (name.IsNullOrEmpty()) return false;
@@ -116,7 +113,7 @@ namespace NewLife.CMX.Web
 
     class CategoryUrlConstraint : IRouteConstraint
     {
-        public Boolean Match(HttpContextBase httpContext, Route route, String parameterName, RouteValueDictionary values, RouteDirection routeDirection)
+        public Boolean Match(HttpContext httpContext, IRouter route, String parameterName, RouteValueDictionary values, RouteDirection routeDirection)
         {
             var name = values[parameterName] + "";
             if (name.IsNullOrEmpty()) return false;
@@ -130,7 +127,7 @@ namespace NewLife.CMX.Web
     /// <summary>信息路径适配</summary>
     class InfoUrlConstraint : IRouteConstraint
     {
-        public Boolean Match(HttpContextBase httpContext, Route route, String parameterName, RouteValueDictionary values, RouteDirection routeDirection)
+        public Boolean Match(HttpContext httpContext, IRouter route, String parameterName, RouteValueDictionary values, RouteDirection routeDirection)
         {
             var cat = Category.FindByCode(values["categoryCode"] + "");
             if (cat == null) return false;

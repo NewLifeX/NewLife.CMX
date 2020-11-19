@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace NewLife.CMX.Web
 {
@@ -16,7 +17,7 @@ namespace NewLife.CMX.Web
         /// <param name="page"></param>
         /// <param name="inf"></param>
         /// <returns></returns>
-        public static String GetUrl(this WebViewPage page, IInfo inf)
+        public static String GetUrl(this WebViewPage page, Info inf)
         {
             var values = page.Url.RequestContext.RouteData.Values;
             values["id"] = inf.ID;
@@ -33,7 +34,7 @@ namespace NewLife.CMX.Web
         /// <param name="cat"></param>
         /// <param name="pageIndex"></param>
         /// <returns></returns>
-        public static String GetCategoryUrl(this WebViewPage page, ICategory cat, Int32 pageIndex = 1)
+        public static String GetCategoryUrl(this WebViewPage page, Category cat, Int32 pageIndex = 1)
         {
             if (cat == null || cat.Model == null) return null;
 

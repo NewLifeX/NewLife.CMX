@@ -10,8 +10,8 @@ namespace NewLife.CMX.Editor
     /// <summary>文件上传处理器</summary>
     public class Uploader
     {
-        /// <summary>上传文件</summary>
-        public HttpPostedFileBase File { get; set; }
+        ///// <summary>上传文件</summary>
+        //public HttpPostedFileBase File { get; set; }
 
         /// <summary>上传文件内容</summary>
         public Byte[] FileBytes { get; set; }
@@ -28,66 +28,66 @@ namespace NewLife.CMX.Editor
         /// <summary>Base64 字符串所表示的文件名</summary>
         public String Base64Filename { get; set; }
 
-        /// <summary>处理</summary>
-        /// <returns></returns>
-        public virtual Object Process()
-        {
-            Byte[] uploadFileBytes = null;
-            String uploadFileName = null;
-            var rs = new UploadResult() { State = UploadState.Unknown };
+        ///// <summary>处理</summary>
+        ///// <returns></returns>
+        //public virtual Object Process()
+        //{
+        //    Byte[] uploadFileBytes = null;
+        //    String uploadFileName = null;
+        //    var rs = new UploadResult() { State = UploadState.Unknown };
 
-            var file = File;
-            if (file == null)
-            {
-                uploadFileName = Base64Filename;
-                uploadFileBytes = FileBytes;
-            }
-            else
-            {
-                uploadFileName = file.FileName;
+        //    var file = File;
+        //    if (file == null)
+        //    {
+        //        uploadFileName = Base64Filename;
+        //        uploadFileBytes = FileBytes;
+        //    }
+        //    else
+        //    {
+        //        uploadFileName = file.FileName;
 
-                if (!CheckFileType(uploadFileName))
-                {
-                    rs.State = UploadState.TypeNotAllow;
-                    return GetResult(rs);
-                }
-                if (file.ContentLength > MaxSize)
-                {
-                    rs.State = UploadState.SizeLimitExceed;
-                    return GetResult(rs);
-                }
+        //        if (!CheckFileType(uploadFileName))
+        //        {
+        //            rs.State = UploadState.TypeNotAllow;
+        //            return GetResult(rs);
+        //        }
+        //        if (file.ContentLength > MaxSize)
+        //        {
+        //            rs.State = UploadState.SizeLimitExceed;
+        //            return GetResult(rs);
+        //        }
 
-                uploadFileBytes = new Byte[file.ContentLength];
-                try
-                {
-                    file.InputStream.Read(uploadFileBytes, 0, file.ContentLength);
-                }
-                catch (Exception)
-                {
-                    rs.State = UploadState.NetworkError;
-                    return GetResult(rs);
-                }
-            }
+        //        uploadFileBytes = new Byte[file.ContentLength];
+        //        try
+        //        {
+        //            file.InputStream.Read(uploadFileBytes, 0, file.ContentLength);
+        //        }
+        //        catch (Exception)
+        //        {
+        //            rs.State = UploadState.NetworkError;
+        //            return GetResult(rs);
+        //        }
+        //    }
 
-            rs.OriginFileName = uploadFileName;
+        //    rs.OriginFileName = uploadFileName;
 
-            var savePath = Format(uploadFileName, PathFormat);
-            var localPath = savePath.TrimStart("/", "\\").GetFullPath();
-            try
-            {
-                localPath.EnsureDirectory(true);
-                System.IO.File.WriteAllBytes(localPath, uploadFileBytes);
-                rs.Url = savePath;
-                rs.State = UploadState.Success;
-            }
-            catch (Exception e)
-            {
-                rs.State = UploadState.FileAccessError;
-                rs.ErrorMessage = e.Message;
-            }
+        //    var savePath = Format(uploadFileName, PathFormat);
+        //    var localPath = savePath.TrimStart("/", "\\").GetFullPath();
+        //    try
+        //    {
+        //        localPath.EnsureDirectory(true);
+        //        System.IO.File.WriteAllBytes(localPath, uploadFileBytes);
+        //        rs.Url = savePath;
+        //        rs.State = UploadState.Success;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        rs.State = UploadState.FileAccessError;
+        //        rs.ErrorMessage = e.Message;
+        //    }
 
-            return GetResult(rs);
-        }
+        //    return GetResult(rs);
+        //}
 
         private Object GetResult(UploadResult rs)
         {

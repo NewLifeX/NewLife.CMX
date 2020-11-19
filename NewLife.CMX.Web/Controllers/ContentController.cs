@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NewLife.Collections;
-using NewLife.Data;
 using NewLife.Web;
 using XCode;
 
@@ -16,7 +16,7 @@ namespace NewLife.CMX.Web.Controllers
         static Boolean ViewExists(String vpath) => System.IO.File.Exists(vpath.GetFullPath());
 
         static DictionaryCache<String, String> _cache = new DictionaryCache<String, String>(StringComparer.OrdinalIgnoreCase);
-        static String GetView(String name, IModel model)
+        static String GetView(String name, Model model)
         {
             var viewName = "../{0}/{1}".F(model.Name, name);
 
@@ -58,7 +58,7 @@ namespace NewLife.CMX.Web.Controllers
         public ActionResult List(Int32 categoryid, Int32? pageIndex)
         {
             var cat = Category.FindByID(categoryid);
-            if (cat == null) return HttpNotFound();
+            if (cat == null) return NotFound();
 
             return List(cat, pageIndex ?? 1);
         }
@@ -66,12 +66,12 @@ namespace NewLife.CMX.Web.Controllers
         public ActionResult List2(String categoryCode, Int32? pageIndex)
         {
             var cat = Category.FindByCode(categoryCode);
-            if (cat == null) return HttpNotFound();
+            if (cat == null) return NotFound();
 
             return List(cat, pageIndex ?? 1);
         }
 
-        private ActionResult List(ICategory cat, Int32 pageIndex)
+        private ActionResult List(Category cat, Int32 pageIndex)
         {
             // 选择模版
             var tmp = cat.GetCategoryTemplate();
@@ -94,7 +94,7 @@ namespace NewLife.CMX.Web.Controllers
         public ActionResult Detail(Int32 id)
         {
             var inf = Info.FindByID(id);
-            if (inf == null) return HttpNotFound();
+            if (inf == null) return NotFound();
 
             return Detail(inf);
         }
@@ -102,15 +102,15 @@ namespace NewLife.CMX.Web.Controllers
         public ActionResult Detail2(String categoryCode, String infoCode)
         {
             var cat = Category.FindByCode(categoryCode);
-            if (cat == null) return HttpNotFound();
+            if (cat == null) return NotFound();
 
             var inf = Info.FindByCategoryAndCode(cat.ID, infoCode);
-            if (inf == null) return HttpNotFound();
+            if (inf == null) return NotFound();
 
             return Detail(inf);
         }
 
-        private ActionResult Detail(IInfo inf)
+        private ActionResult Detail(Info inf)
         {
             var cat = inf.Category;
 

@@ -1,14 +1,15 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Web;
+using NewLife.Configuration;
 using NewLife.Xml;
 
 namespace NewLife.CMX
 {
     /// <summary>网站设置</summary>
     [DisplayName("站点配置")]
-    [XmlConfigFile("Config/Site.config", 15000)]
-    public class SiteConfig : XmlConfig<SiteConfig>
+    [Config("Site")]
+    public class SiteConfig : Config<SiteConfig>
     {
         #region 属性
         /// <summary>网站名字</summary>
@@ -71,22 +72,22 @@ namespace NewLife.CMX
         /// <summary>实例化</summary>
         public SiteConfig()
         {
-            var context = HttpContext.Current;
-            if (context != null)
-            {
-                var uri = context.Request.Url;
-                var str = uri.ToString();
+            //var context = HttpContext.Current;
+            //if (context != null)
+            //{
+            //    var uri = context.Request.Url;
+            //    var str = uri.ToString();
 
-                // 如果域名后面有路径
-                var p = str.IndexOf("/", "https://".Length);
-                if (p > 0)
-                {
-                    // 截断
-                    str = str.Substring(0, p);
-                    str += HttpRuntime.AppDomainAppVirtualPath;
-                }
-                Url = str;
-            }
+            //    // 如果域名后面有路径
+            //    var p = str.IndexOf("/", "https://".Length);
+            //    if (p > 0)
+            //    {
+            //        // 截断
+            //        str = str.Substring(0, p);
+            //        str += HttpRuntime.AppDomainAppVirtualPath;
+            //    }
+            //    Url = str;
+            //}
         }
         #endregion
     }

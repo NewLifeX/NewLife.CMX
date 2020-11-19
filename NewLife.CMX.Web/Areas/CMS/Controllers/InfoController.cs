@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using NewLife.Reflection;
 using NewLife.Web;
 using XCode;
@@ -36,7 +35,7 @@ namespace NewLife.CMX.Web.Controllers
         public override ActionResult Add()
         {
             var entity = Factory.Create(true) as Info;
-            entity.CategoryID = Request["categoryId"].ToInt();
+            entity.CategoryID = Request.Query["categoryId"].ToInt();
 
             // 记下添加前的来源页，待会添加成功以后跳转
             Session["Cube_Add_Referrer"] = Request.UrlReferrer.ToString();

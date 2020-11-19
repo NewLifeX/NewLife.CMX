@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using NewLife.Cube;
 
 namespace NewLife.CMX.Web.Controllers

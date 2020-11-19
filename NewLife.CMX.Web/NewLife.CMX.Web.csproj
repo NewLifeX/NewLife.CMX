@@ -2,13 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <AssemblyName>cube</AssemblyName>
-    <RootNamespace>CubeDemo</RootNamespace>
-    <Version>3.3.2020.1114</Version>
-    <FileVersion>3.3.2020.1114</FileVersion>
-    <AssemblyVersion>3.3.*</AssemblyVersion>
+    <AssemblyName>CMXWeb</AssemblyName>
+    <Version>3.1.2019.0424</Version>
+    <FileVersion>3.1.2019.0424</FileVersion>
+    <AssemblyVersion>3.1.*</AssemblyVersion>
     <Deterministic>false</Deterministic>
-    <UserSecretsId>2f0e06a8-8b6c-4619-9dc5-3ad757f3c5eb</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -20,43 +18,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\School\Views\" />
-    <Folder Include="Views\Shared\" />
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="NewLife.Cube.Core" Version="3.7.2020.1101" />
     <PackageReference Include="NewLife.Stardust" Version="1.2.2020.1101" />
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.113.6" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NewLife.CubeNC\NewLife.CubeNC.csproj" />
+    <ProjectReference Include="..\NewLife.CMX\NewLife.CMX.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Areas\School\Models\Build.log">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Build.tt</DependentUpon>
-    </None>
-    <None Update="Areas\School\Models\Build.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Build.log</LastGenOutput>
-    </None>
-    <None Update="bootstrap.sh">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
-  </ItemGroup>
-
-  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="http://json.schemastore.org/behat" /></VisualStudio></ProjectExtensions>
-
-<!--  <Target Name="PostBuild" AfterTargets="PostBuildEvent">-->
-<!--    <Exec Command="del &quot;$(TargetDir)*.xml&quot; /q" />-->
-<!--  </Target>-->
 
 </Project>
