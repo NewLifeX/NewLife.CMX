@@ -69,7 +69,7 @@ namespace ASP
             
             #line 6 "..\..\Areas\CMS\Views\Info\Form.cshtml"
   
-    var fact = ViewBag.Factory as IEntityOperate;
+    var fact = ViewBag.Factory as IEntityFactory;
     var fields = ViewBag.Fields as List<FieldItem>;
     var entity = Model as IEntity;
     var isNew = entity.IsNullKey;

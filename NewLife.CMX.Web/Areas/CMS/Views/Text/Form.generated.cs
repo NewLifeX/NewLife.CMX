@@ -75,7 +75,7 @@ namespace ASP
             
             #line 7 "..\..\Areas\CMS\Views\Text\Form.cshtml"
   
-    var fact = ViewBag.Factory as IEntityOperate;
+    var fact = ViewBag.Factory as IEntityFactory;
     var entity = Model as IEntity;
     var isNew = entity.IsNullKey;
     var inf = Model as IInfo;

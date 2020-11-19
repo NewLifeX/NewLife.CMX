@@ -108,16 +108,16 @@ namespace NewLife.CMX
 
         /// <summary>获取当前模型的顶级分类</summary>
         /// <returns></returns>
-        public IList<ICategory> GetTopCategories()
+        public IList<Category> GetTopCategories()
         {
             // 过滤得到该模型的所有分类，然后按照深度排序
             var list = Category.FindAllWithCache().Where(e => e.ModelID == ID);
             if (list.Any())
             {
                 var min = list.Min(e => e.Deepth);
-                return list.Where(e => e.Deepth == min).Cast<ICategory>().ToList();
+                return list.Where(e => e.Deepth == min).Cast<Category>().ToList();
             }
-            return new List<ICategory>();
+            return new List<Category>();
         }
         #endregion
 
@@ -153,7 +153,7 @@ namespace NewLife.CMX
             var ms = "Text,Article,Photo,Video,Product,Down".Split(",");
 
             var list = FindAll();
-            foreach (var item in typeof(IInfoExtend).GetAllSubclasses(false).OrderBy(e => Array.IndexOf(ms, e.Name)))
+            foreach (var item in typeof(IInfoExtend).GetAllSubclasses().OrderBy(e => Array.IndexOf(ms, e.Name)))
             {
                 var entity = list.Find(e => e.Name == item.Name);
                 if (entity == null) entity = new Model();
@@ -163,9 +163,9 @@ namespace NewLife.CMX
                 entity.ProviderName = item.FullName;
 
                 // 默认初始化路径
-                entity.IndexTemplate = "~/Views/{0}/Index.cshtml".F(entity.Name);
-                entity.CategoryTemplate = "~/Views/{0}/Category.cshtml".F(entity.Name);
-                entity.InfoTemplate = "~/Views/{0}/Info.cshtml".F(entity.Name);
+                entity.IndexTemplate = $"~/Views/{entity.Name}/Index.cshtml";
+                entity.CategoryTemplate = $"~/Views/{entity.Name}/Category.cshtml";
+                entity.InfoTemplate = $"~/Views/{entity.Name}/Info.cshtml";
 
                 entity.Enable = true;
                 entity.Save();
@@ -178,18 +178,7 @@ namespace NewLife.CMX
 
         /// <summary>获取提供者的实体工厂</summary>
         /// <returns></returns>
-        public IEntityOperate GetFactory() => ProviderName?.GetTypeEx().AsFactory();
+        public IEntityFactory GetFactory() => ProviderName?.GetTypeEx().AsFactory();
         #endregion
-    }
-
-    partial interface IModel
-    {
-        /// <summary>获取当前模型的顶级分类</summary>
-        /// <returns></returns>
-        IList<ICategory> GetTopCategories();
-
-        /// <summary>获取提供者的实体工厂</summary>
-        /// <returns></returns>
-        IEntityOperate GetFactory();
     }
 }

@@ -14,7 +14,7 @@ namespace NewLife.CMX
         Int32 InfoID { get; set; }
 
         /// <summary>该扩展所对应的信息</summary>
-        IInfo Info { get; }
+        Info Info { get; }
 
         ///// <summary>根据标题查找</summary>
         ///// <param name="infoid">标题</param>
@@ -29,7 +29,7 @@ namespace NewLife.CMX
         /// <summary>来源</summary>
         [XmlIgnore, ScriptIgnore]
         [Map("ExtendID", typeof(Info), "ID")]
-        public IInfo Info => Extends.Get(nameof(Info), k => NewLife.CMX.Info.FindByID(this["ExtendID"].ToInt()));
+        public Info Info => Extends.Get(nameof(Info), k => NewLife.CMX.Info.FindByID(this["ExtendID"].ToInt()));
 
         /// <summary>根据标题查找</summary>
         /// <param name="infoid">标题</param>

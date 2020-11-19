@@ -66,7 +66,7 @@ namespace ASP
             
             #line 6 "..\..\Areas\CMS\Views\Nav\ListTree.cshtml"
   
-    var fact = ViewBag.Factory as IEntityOperate;
+    var fact = ViewBag.Factory as IEntityFactory;
     var page = ViewBag.Page as Pager;
 
             

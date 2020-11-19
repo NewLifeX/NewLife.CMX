@@ -75,7 +75,7 @@ namespace NewLife.CMX
         #region 扩展属性﻿
         /// <summary>分类</summary>
         [XmlIgnore, ScriptIgnore]
-        public ICategory Category => Extends.Get(nameof(Category), k => NewLife.CMX.Category.FindByID(CategoryID));
+        public Category Category => Extends.Get(nameof(Category), k => NewLife.CMX.Category.FindByID(CategoryID));
 
         /// <summary>分类</summary>
         [XmlIgnore, ScriptIgnore]

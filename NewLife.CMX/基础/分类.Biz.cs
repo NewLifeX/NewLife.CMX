@@ -20,7 +20,7 @@ using XCode.Membership;
 namespace NewLife.CMX
 {
     /// <summary>分类</summary>
-    public partial class Category : EntityTree<Category>, ICategory
+    public partial class Category : EntityTree<Category>
     {
         #region 对象操作
         static Category()
@@ -107,7 +107,7 @@ namespace NewLife.CMX
         #region 扩展属性
         /// <summary>该分类所对应的模型</summary>
         [XmlIgnore, ScriptIgnore]
-        public IModel Model => Extends.Get(nameof(Model), k => NewLife.CMX.Model.FindByID(ModelID));
+        public Model Model => Extends.Get(nameof(Model), k => NewLife.CMX.Model.FindByID(ModelID));
 
         /// <summary>该分类所对应的模型名称</summary>
         [XmlIgnore, ScriptIgnore]
@@ -164,24 +164,24 @@ namespace NewLife.CMX
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public IList<IInfo> GetInfos(Int32 pageIndex = 1, Int32 pageSize = 10)
+        public IList<Info> GetInfos(Int32 pageIndex = 1, Int32 pageSize = 10)
         {
             var pager = new PageParameter { PageIndex = pageIndex, PageSize = pageSize };
 
             return GetInfos(pager);
         }
 
-        DictionaryCache<String, IList<IInfo>> _cache = new DictionaryCache<String, IList<IInfo>>()
+        DictionaryCache<String, IList<Info>> _cache = new DictionaryCache<String, IList<Info>>()
         {
             Period = 60,
         };
         /// <summary>获取该分类以及子孙分类的所有有效信息。带60秒异步缓存</summary>
         /// <param name="pager"></param>
         /// <returns></returns>
-        public IList<IInfo> GetInfos(PageParameter pager)
+        public IList<Info> GetInfos(PageParameter pager)
         {
-            var key = "{0}-{1}".F(ID, pager.GetKey());
-            return _cache.GetItem(key, k => Info.Search(0, ID, null, pager).Cast<IInfo>().ToList());
+            var key = $"{ID}-{pager.GetKey()}";
+            return _cache.GetItem(key, k => Info.Search(0, ID, null, pager).Cast<Info>().ToList());
         }
         #endregion
 
@@ -246,30 +246,5 @@ namespace NewLife.CMX
         /// <returns></returns>
         public String GetInfoTemplate() => GetTemplate("info");
         #endregion
-    }
-
-    partial interface ICategory : IEntityTree
-    {
-        /// <summary>模型</summary>
-        IModel Model { get; }
-
-        /// <summary>获取该分类以及子孙分类的所有有效信息</summary>
-        /// <param name="pageIndex"></param>
-        /// <param name="pageCount"></param>
-        /// <returns></returns>
-        IList<IInfo> GetInfos(Int32 pageIndex = 1, Int32 pageCount = 10);
-
-        /// <summary>获取该分类以及子孙分类的所有有效信息</summary>
-        /// <param name="pager"></param>
-        /// <returns></returns>
-        IList<IInfo> GetInfos(PageParameter pager);
-
-        /// <summary>获取分类模版</summary>
-        /// <returns></returns>
-        String GetCategoryTemplate();
-
-        /// <summary>获取信息模版</summary>
-        /// <returns></returns>
-        String GetInfoTemplate();
     }
 }

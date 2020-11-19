@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.Serialization;
+using System.Web.Script.Serialization;
+using System.Xml.Serialization;
 using XCode;
 using XCode.Configuration;
 using XCode.DataAccessLayer;
@@ -13,7 +16,7 @@ namespace NewLife.CMX
     [Description("内容")]
     [BindIndex("IU_Content_InfoID_Version", true, "InfoID,Version")]
     [BindTable("Content", Description = "内容", ConnName = "CMX", DbType = DatabaseType.None)]
-    public partial class Content : IContent
+    public partial class Content
     {
         #region 属性
         private Int32 _ID;
@@ -22,7 +25,7 @@ namespace NewLife.CMX
         [Description("编号")]
         [DataObjectField(true, true, false, 0)]
         [BindColumn("ID", "编号", "")]
-        public Int32 ID { get { return _ID; } set { if (OnPropertyChanging(__.ID, value)) { _ID = value; OnPropertyChanged(__.ID); } } }
+        public Int32 ID { get => _ID; set { if (OnPropertyChanging("ID", value)) { _ID = value; OnPropertyChanged("ID"); } } }
 
         private Int32 _InfoID;
         /// <summary>主题</summary>
@@ -30,7 +33,7 @@ namespace NewLife.CMX
         [Description("主题")]
         [DataObjectField(false, false, false, 0)]
         [BindColumn("InfoID", "主题", "")]
-        public Int32 InfoID { get { return _InfoID; } set { if (OnPropertyChanging(__.InfoID, value)) { _InfoID = value; OnPropertyChanged(__.InfoID); } } }
+        public Int32 InfoID { get => _InfoID; set { if (OnPropertyChanging("InfoID", value)) { _InfoID = value; OnPropertyChanged("InfoID"); } } }
 
         private String _Title;
         /// <summary>标题</summary>
@@ -38,7 +41,7 @@ namespace NewLife.CMX
         [Description("标题")]
         [DataObjectField(false, false, false, 200)]
         [BindColumn("Title", "标题", "", Master = true)]
-        public String Title { get { return _Title; } set { if (OnPropertyChanging(__.Title, value)) { _Title = value; OnPropertyChanged(__.Title); } } }
+        public String Title { get => _Title; set { if (OnPropertyChanging("Title", value)) { _Title = value; OnPropertyChanged("Title"); } } }
 
         private Int32 _Version;
         /// <summary>版本</summary>
@@ -46,7 +49,7 @@ namespace NewLife.CMX
         [Description("版本")]
         [DataObjectField(false, false, false, 0)]
         [BindColumn("Version", "版本", "")]
-        public Int32 Version { get { return _Version; } set { if (OnPropertyChanging(__.Version, value)) { _Version = value; OnPropertyChanged(__.Version); } } }
+        public Int32 Version { get => _Version; set { if (OnPropertyChanging("Version", value)) { _Version = value; OnPropertyChanged("Version"); } } }
 
         private String _CreateUser;
         /// <summary>创建人</summary>
@@ -54,7 +57,7 @@ namespace NewLife.CMX
         [Description("创建人")]
         [DataObjectField(false, false, true, 50)]
         [BindColumn("CreateUser", "创建人", "")]
-        public String CreateUser { get { return _CreateUser; } set { if (OnPropertyChanging(__.CreateUser, value)) { _CreateUser = value; OnPropertyChanged(__.CreateUser); } } }
+        public String CreateUser { get => _CreateUser; set { if (OnPropertyChanging("CreateUser", value)) { _CreateUser = value; OnPropertyChanged("CreateUser"); } } }
 
         private Int32 _CreateUserID;
         /// <summary>创建者</summary>
@@ -62,7 +65,7 @@ namespace NewLife.CMX
         [Description("创建者")]
         [DataObjectField(false, false, false, 0)]
         [BindColumn("CreateUserID", "创建者", "")]
-        public Int32 CreateUserID { get { return _CreateUserID; } set { if (OnPropertyChanging(__.CreateUserID, value)) { _CreateUserID = value; OnPropertyChanged(__.CreateUserID); } } }
+        public Int32 CreateUserID { get => _CreateUserID; set { if (OnPropertyChanging("CreateUserID", value)) { _CreateUserID = value; OnPropertyChanged("CreateUserID"); } } }
 
         private DateTime _CreateTime;
         /// <summary>创建时间</summary>
@@ -70,7 +73,7 @@ namespace NewLife.CMX
         [Description("创建时间")]
         [DataObjectField(false, false, true, 0)]
         [BindColumn("CreateTime", "创建时间", "")]
-        public DateTime CreateTime { get { return _CreateTime; } set { if (OnPropertyChanging(__.CreateTime, value)) { _CreateTime = value; OnPropertyChanged(__.CreateTime); } } }
+        public DateTime CreateTime { get => _CreateTime; set { if (OnPropertyChanging("CreateTime", value)) { _CreateTime = value; OnPropertyChanged("CreateTime"); } } }
 
         private String _CreateIP;
         /// <summary>创建地址</summary>
@@ -78,7 +81,7 @@ namespace NewLife.CMX
         [Description("创建地址")]
         [DataObjectField(false, false, true, 50)]
         [BindColumn("CreateIP", "创建地址", "")]
-        public String CreateIP { get { return _CreateIP; } set { if (OnPropertyChanging(__.CreateIP, value)) { _CreateIP = value; OnPropertyChanged(__.CreateIP); } } }
+        public String CreateIP { get => _CreateIP; set { if (OnPropertyChanging("CreateIP", value)) { _CreateIP = value; OnPropertyChanged("CreateIP"); } } }
 
         private String _Html;
         /// <summary>内容</summary>
@@ -86,7 +89,7 @@ namespace NewLife.CMX
         [Description("内容")]
         [DataObjectField(false, false, true, -1)]
         [BindColumn("Html", "内容", "")]
-        public String Html { get { return _Html; } set { if (OnPropertyChanging(__.Html, value)) { _Html = value; OnPropertyChanged(__.Html); } } }
+        public String Html { get => _Html; set { if (OnPropertyChanging("Html", value)) { _Html = value; OnPropertyChanged("Html"); } } }
         #endregion
 
         #region 获取/设置 字段值
@@ -99,15 +102,15 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
-                    case __.ID : return _ID;
-                    case __.InfoID : return _InfoID;
-                    case __.Title : return _Title;
-                    case __.Version : return _Version;
-                    case __.CreateUser : return _CreateUser;
-                    case __.CreateUserID : return _CreateUserID;
-                    case __.CreateTime : return _CreateTime;
-                    case __.CreateIP : return _CreateIP;
-                    case __.Html : return _Html;
+                    case "ID": return _ID;
+                    case "InfoID": return _InfoID;
+                    case "Title": return _Title;
+                    case "Version": return _Version;
+                    case "CreateUser": return _CreateUser;
+                    case "CreateUserID": return _CreateUserID;
+                    case "CreateTime": return _CreateTime;
+                    case "CreateIP": return _CreateIP;
+                    case "Html": return _Html;
                     default: return base[name];
                 }
             }
@@ -115,15 +118,15 @@ namespace NewLife.CMX
             {
                 switch (name)
                 {
-                    case __.ID : _ID = value.ToInt(); break;
-                    case __.InfoID : _InfoID = value.ToInt(); break;
-                    case __.Title : _Title = Convert.ToString(value); break;
-                    case __.Version : _Version = value.ToInt(); break;
-                    case __.CreateUser : _CreateUser = Convert.ToString(value); break;
-                    case __.CreateUserID : _CreateUserID = value.ToInt(); break;
-                    case __.CreateTime : _CreateTime = value.ToDateTime(); break;
-                    case __.CreateIP : _CreateIP = Convert.ToString(value); break;
-                    case __.Html : _Html = Convert.ToString(value); break;
+                    case "ID": _ID = value.ToInt(); break;
+                    case "InfoID": _InfoID = value.ToInt(); break;
+                    case "Title": _Title = Convert.ToString(value); break;
+                    case "Version": _Version = value.ToInt(); break;
+                    case "CreateUser": _CreateUser = Convert.ToString(value); break;
+                    case "CreateUserID": _CreateUserID = value.ToInt(); break;
+                    case "CreateTime": _CreateTime = value.ToDateTime(); break;
+                    case "CreateIP": _CreateIP = Convert.ToString(value); break;
+                    case "Html": _Html = Convert.ToString(value); break;
                     default: base[name] = value; break;
                 }
             }
@@ -135,33 +138,33 @@ namespace NewLife.CMX
         public partial class _
         {
             /// <summary>编号</summary>
-            public static readonly Field ID = FindByName(__.ID);
+            public static readonly Field ID = FindByName("ID");
 
             /// <summary>主题</summary>
-            public static readonly Field InfoID = FindByName(__.InfoID);
+            public static readonly Field InfoID = FindByName("InfoID");
 
             /// <summary>标题</summary>
-            public static readonly Field Title = FindByName(__.Title);
+            public static readonly Field Title = FindByName("Title");
 
             /// <summary>版本</summary>
-            public static readonly Field Version = FindByName(__.Version);
+            public static readonly Field Version = FindByName("Version");
 
             /// <summary>创建人</summary>
-            public static readonly Field CreateUser = FindByName(__.CreateUser);
+            public static readonly Field CreateUser = FindByName("CreateUser");
 
             /// <summary>创建者</summary>
-            public static readonly Field CreateUserID = FindByName(__.CreateUserID);
+            public static readonly Field CreateUserID = FindByName("CreateUserID");
 
             /// <summary>创建时间</summary>
-            public static readonly Field CreateTime = FindByName(__.CreateTime);
+            public static readonly Field CreateTime = FindByName("CreateTime");
 
             /// <summary>创建地址</summary>
-            public static readonly Field CreateIP = FindByName(__.CreateIP);
+            public static readonly Field CreateIP = FindByName("CreateIP");
 
             /// <summary>内容</summary>
-            public static readonly Field Html = FindByName(__.Html);
+            public static readonly Field Html = FindByName("Html");
 
-            static Field FindByName(String name) { return Meta.Table.FindByName(name); }
+            static Field FindByName(String name) => Meta.Table.FindByName(name);
         }
 
         /// <summary>取得内容字段名称的快捷方式</summary>
@@ -194,46 +197,6 @@ namespace NewLife.CMX
             /// <summary>内容</summary>
             public const String Html = "Html";
         }
-        #endregion
-    }
-
-    /// <summary>内容接口</summary>
-    public partial interface IContent
-    {
-        #region 属性
-        /// <summary>编号</summary>
-        Int32 ID { get; set; }
-
-        /// <summary>主题</summary>
-        Int32 InfoID { get; set; }
-
-        /// <summary>标题</summary>
-        String Title { get; set; }
-
-        /// <summary>版本</summary>
-        Int32 Version { get; set; }
-
-        /// <summary>创建人</summary>
-        String CreateUser { get; set; }
-
-        /// <summary>创建者</summary>
-        Int32 CreateUserID { get; set; }
-
-        /// <summary>创建时间</summary>
-        DateTime CreateTime { get; set; }
-
-        /// <summary>创建地址</summary>
-        String CreateIP { get; set; }
-
-        /// <summary>内容</summary>
-        String Html { get; set; }
-        #endregion
-
-        #region 获取/设置 字段值
-        /// <summary>获取/设置 字段值</summary>
-        /// <param name="name">字段名</param>
-        /// <returns></returns>
-        Object this[String name] { get; set; }
         #endregion
     }
 }

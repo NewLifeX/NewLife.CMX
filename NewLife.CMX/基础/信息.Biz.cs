@@ -73,7 +73,7 @@ namespace NewLife.CMX
             if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Info).Name, Meta.Table.DataTable.DisplayName);
 
             // 遍历分类
-            NewLife.CMX.Category.Meta.Session.WaitForInitData();
+            Category.Meta.Session.WaitForInitData();
 
             var sb = new StringBuilder();
             for (var i = 0; i < 20; i++)
@@ -82,7 +82,7 @@ namespace NewLife.CMX
             }
             var txt = sb.ToString();
 
-            foreach (var item in NewLife.CMX.Category.FindAllWithCache())
+            foreach (var item in Category.FindAllWithCache())
             {
                 var entity = new Info()
                 {
@@ -146,7 +146,7 @@ namespace NewLife.CMX
                 if (Content is IEntity entity && entity.HasDirty)
                 {
                     // 创建新的对象
-                    var content = (Content as IEntity).CloneEntity(true) as IContent;
+                    var content = (Content as IEntity).CloneEntity(true) as Content;
                     content.ID = 0;
                     content.InfoID = ID;
                     content.Title = Title;
@@ -180,7 +180,7 @@ namespace NewLife.CMX
             using (var tran = Meta.CreateTrans())
             {
                 // 删内容
-                NewLife.CMX.Content.DeleteByInfoID(ID);
+                CMX.Content.DeleteByInfoID(ID);
 
                 // 删统计
                 (Statistics as IEntity).Delete();
@@ -201,7 +201,7 @@ namespace NewLife.CMX
         #region 扩展属性
         /// <summary>该分类所对应的模型</summary>
         [XmlIgnore, ScriptIgnore]
-        public IModel Model => Extends.Get(nameof(Model), k => NewLife.CMX.Model.FindByID(ModelID));
+        public Model Model => Extends.Get(nameof(Model), k => Model.FindByID(ModelID));
 
         /// <summary>该分类所对应的模型名称</summary>
         [XmlIgnore, ScriptIgnore]
@@ -211,7 +211,7 @@ namespace NewLife.CMX
 
         /// <summary>分类</summary>
         [XmlIgnore, ScriptIgnore]
-        public ICategory Category => Extends.Get(nameof(Category), k => NewLife.CMX.Category.FindByID(CategoryID));
+        public Category Category => Extends.Get(nameof(Category), k => Category.FindByID(CategoryID));
 
         /// <summary>分类</summary>
         [XmlIgnore, ScriptIgnore]
@@ -221,7 +221,7 @@ namespace NewLife.CMX
 
         /// <summary>内容</summary>
         [XmlIgnore, ScriptIgnore]
-        public IContent Content => Extends.Get(nameof(Content), k => NewLife.CMX.Content.FindLastByInfo(ID) ?? new Content { InfoID = ID });
+        public Content Content => Extends.Get(nameof(Content), k => CMX.Content.FindLastByInfo(ID) ?? new Content { InfoID = ID });
 
         /// <summary>内容文本</summary>
         public String ContentText { get => Content?.Html; set => Content.Html = value; }
@@ -248,9 +248,9 @@ namespace NewLife.CMX
 
         /// <summary>统计</summary>
         [XmlIgnore, ScriptIgnore]
-        public IStatistics Statistics => Extends.Get(nameof(Statistics), k =>
+        public Statistics Statistics => Extends.Get(nameof(Statistics), k =>
         {
-            var st = NewLife.CMX.Statistics.FindByID(StatisticsID);
+            var st = CMX.Statistics.FindByID(StatisticsID);
             if (st == null)
             {
                 st = new Statistics();
@@ -314,7 +314,7 @@ namespace NewLife.CMX
             if (modelid > 0) exp &= _.ModelID == modelid;
             if (categoryid > 0)
             {
-                var cat = NewLife.CMX.Category.FindByID(categoryid);
+                var cat = Category.FindByID(categoryid);
                 if (cat != null) exp &= _.CategoryID.In(cat.MyAllChilds.Select(e => e.ID));
             }
 
@@ -329,23 +329,5 @@ namespace NewLife.CMX
 
         #region 业务
         #endregion
-    }
-
-    partial interface IInfo //: IUserInfo
-    {
-        /// <summary>模型</summary>
-        IModel Model { get; }
-
-        /// <summary>当前主题的分类</summary>
-        ICategory Category { get; }
-
-        /// <summary>扩展信息</summary>
-        IInfoExtend Ext { get; }
-
-        /// <summary>主要内容</summary>
-        String ContentText { get; set; }
-
-        /// <summary>统计</summary>
-        IStatistics Statistics { get; }
     }
 }

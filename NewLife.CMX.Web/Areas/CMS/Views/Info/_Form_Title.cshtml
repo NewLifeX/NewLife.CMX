@@ -4,7 +4,7 @@
 @using NewLife.CMX
 @using NewLife.CMX.Web
 @{
-    var fact = ViewBag.Factory as IEntityOperate;
+    var fact = ViewBag.Factory as IEntityFactory;
     var fields = ViewBag.Fields as List<FieldItem>;
     var entity = Model as IEntity;
     var isNew = entity.IsNullKey;
