@@ -4,14 +4,13 @@
  * 时间：2013-12-14 17:00:07
  * 版权：版权所有 (C) 新生命开发团队 2002~2013
 */
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using NewLife.Data;
 using NewLife.Log;
-using NewLife.Web;
 using XCode;
-using XCode.Membership;
 
 namespace NewLife.CMX
 {
@@ -226,7 +225,7 @@ namespace NewLife.CMX
     }
 
     /// <summary>实体标题</summary>
-    public partial class EntityTitle<TEntity> : UserTimeEntity<TEntity> where TEntity : EntityTitle<TEntity>, new()
+    public partial class EntityTitle<TEntity> : Entity<TEntity> where TEntity : EntityTitle<TEntity>, new()
     {
         #region 对象操作﻿
         static EntityTitle()
@@ -306,7 +305,7 @@ namespace NewLife.CMX
         /// <param name="categoryid">分类</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<TEntity> FindAllByCategoryID(Int32 categoryid, Int32 start = 0, Int32 max = 10)
+        public static IList<TEntity> FindAllByCategoryID(Int32 categoryid, Int32 start = 0, Int32 max = 10)
         {
             if (Meta.Count >= 1000)
                 return FindAll(_.CategoryID == categoryid, null, null, start, max);
@@ -314,7 +313,7 @@ namespace NewLife.CMX
                 return Meta.Cache.Entities.FindAll(__.CategoryID, categoryid).Page(start, max);
         }
 
-        public static EntityList<TEntity> GetPages(Int32 categoryId, Int32 pageIndex, Int32 pageSize,
+        public static IList<TEntity> GetPages(Int32 categoryId, Int32 pageIndex, Int32 pageSize,
             out Int32 recordCount)
         {
             var where = _.CategoryID == categoryId;
@@ -324,15 +323,15 @@ namespace NewLife.CMX
         #endregion
 
         #region 高级查询
-        public static EntityList<TEntity> Search(Int32 categoryid, Pager p)
+        public static IList<TEntity> Search(Int32 categoryid, PageParameter p)
         {
             var exp = _.CategoryID == categoryid;
-            exp.SetStrict();
+            //exp.SetStrict();
 
             return FindAll(exp, p);
         }
 
-        //public static EntityList<TEntity> GetTitles(Int32 categoryid, Int32 pageIndex = 1, Int32 pageCount = 10)
+        //public static IList<TEntity> GetTitles(Int32 categoryid, Int32 pageIndex = 1, Int32 pageCount = 10)
         //{
         //    if (pageIndex <= 0) pageIndex = 1;
 
@@ -361,7 +360,7 @@ namespace NewLife.CMX
         //    //return FindCount(_.CategoryID, categoryid);
         //}
 
-        public static EntityList<TEntity> GetTitles(Int32 categoryid, PageParameter pager)
+        public static IList<TEntity> GetTitles(Int32 categoryid, PageParameter pager)
         {
             var provider = ModelProvider.Get(typeof(TEntity));
             var cat = provider.CategoryFactory.FindByID(categoryid);
@@ -398,7 +397,7 @@ namespace NewLife.CMX
         /// <param name="pageIndex"></param>
         /// <param name="pageCount"></param>
         /// <returns></returns>
-        public static EntityList<TEntity> GetTitles(String categoryPath, Int32 pageIndex = 1, Int32 pageSize = 10)
+        public static IList<TEntity> GetTitles(String categoryPath, Int32 pageIndex = 1, Int32 pageSize = 10)
         {
             return GetTitles(null, categoryPath, pageIndex, pageSize);
         }
@@ -409,7 +408,7 @@ namespace NewLife.CMX
         /// <param name="pageIndex"></param>
         /// <param name="pageCount"></param>
         /// <returns></returns>
-        public static EntityList<TEntity> GetTitles(String channelName, String categoryPath, Int32 pageIndex = 1, Int32 pageSize = 10)
+        public static IList<TEntity> GetTitles(String channelName, String categoryPath, Int32 pageIndex = 1, Int32 pageSize = 10)
         {
             var cat = FindOrCreateCategory(channelName, categoryPath);
             var pager = new PageParameter { PageIndex = pageIndex, PageSize = pageSize };

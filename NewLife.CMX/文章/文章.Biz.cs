@@ -5,6 +5,7 @@
  * 版权：版权所有 (C) 新生命开发团队 2002~2013
 */
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Xml.Serialization;
@@ -102,7 +103,7 @@ namespace NewLife.CMX
         /// <param name="maximumRows">最大返回行数，0表示所有行</param>
         /// <returns>实体集</returns>
         [DataObjectMethod(DataObjectMethodType.Select, true)]
-        public static EntityList<Article> Search(String key, Int32 CategoryID, String orderClause, Int32 startRowIndex, Int32 maximumRows)
+        public static IList<Article> Search(String key, Int32 CategoryID, String orderClause, Int32 startRowIndex, Int32 maximumRows)
         {
             if (Meta.Count < 1000 && key.IsNullOrWhiteSpace()) return FindAllByCategoryID(CategoryID).Page(startRowIndex, maximumRows);
 
@@ -132,7 +133,7 @@ namespace NewLife.CMX
         /// <param name="startRowIndex"></param>
         /// <param name="maximumRows"></param>
         /// <returns></returns>
-        public static EntityList<Article> Search(Int32[] CategoryID, String orderClause, Int32 startRowIndex, Int32 maximumRows)
+        public static IList<Article> Search(Int32[] CategoryID, String orderClause, Int32 startRowIndex, Int32 maximumRows)
         {
             if (Meta.Count < 1000) return Meta.Cache.Entities.FindAll(e => Array.IndexOf(CategoryID, e.CategoryID) >= 0).Page(startRowIndex, maximumRows);
 
@@ -238,7 +239,7 @@ namespace NewLife.CMX
         /// </summary>
         /// <param name="take"></param>
         /// <returns></returns>
-        public static EntityList<Article> GetSlides(Int32 take)
+        public static IList<Article> GetSlides(Int32 take)
         {
             if (take <= 0) throw new ArgumentOutOfRangeException("take", "必须大于0!");
             //var provider = ModelProvider.Get<TEntity>();
@@ -252,7 +253,7 @@ namespace NewLife.CMX
         /// </summary>
         /// <param name="take"></param>
         /// <returns></returns>
-        public static EntityList<Article> GetRecommends(Int32 take)
+        public static IList<Article> GetRecommends(Int32 take)
         {
             if (take <= 0) throw new ArgumentOutOfRangeException("take", "必须大于0!");
             var where = _.Recommend == true;

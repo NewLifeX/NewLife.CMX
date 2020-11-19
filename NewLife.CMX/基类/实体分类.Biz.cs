@@ -44,7 +44,7 @@ namespace NewLife.CMX
             //if (isNew || Dirtys[__.Name]) CheckExist(__.Name);
 
         }
-        public EntityList<TEntity> Childrens { get; set; }
+        public IList<TEntity> Childrens { get; set; }
 
         /// <summary>首次连接数据库时初始化数据，仅用于实体类重载，用户不应该调用该方法</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -63,7 +63,7 @@ namespace NewLife.CMX
             {
                 if (XTrace.Debug) XTrace.WriteLine("使用数据初始化文件【{0}】初始化{1}[{2}]数据……", fn, typeof(TEntity).Name, Meta.Table.DataTable.DisplayName);
 
-                var list = EntityList<TEntity>.FromJson(File.ReadAllText(fn, Encoding.UTF8));
+                var list = IList<TEntity>.FromJson(File.ReadAllText(fn, Encoding.UTF8));
                 var queue = new Queue<TEntity>(list);
                 var provider = ModelProvider.Get<TEntity>();
                 var model = Model.FindByName(provider.Name);
@@ -135,7 +135,7 @@ namespace NewLife.CMX
         /// <param name="name">名称</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<TEntity> FindAllByName(String name)
+        public static IList<TEntity> FindAllByName(String name)
         {
             if (Meta.Count >= 1000)
                 return FindAll(__.Name, name);
@@ -147,7 +147,7 @@ namespace NewLife.CMX
         /// <param name="parentid">父类</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<TEntity> FindAllByParentID(Int32 parentid)
+        public static IList<TEntity> FindAllByParentID(Int32 parentid)
         {
             if (Meta.Count >= 1000)
                 return FindAll(__.ParentID, parentid);
@@ -228,7 +228,7 @@ namespace NewLife.CMX
         ///// <summary>查询所有不是终节点的节点</summary>
         ///// <param name="parentkey"></param>
         ///// <returns></returns>
-        //public static EntityList<TEntity> FindAllByNoEnd(Int32 parentkey)
+        //public static IList<TEntity> FindAllByNoEnd(Int32 parentkey)
         //{
         //    var entitylist = FindAllChildsByParent(parentkey);
         //    entitylist.RemoveAll(e => e.IsEnd);
@@ -244,7 +244,7 @@ namespace NewLife.CMX
         ///// <param name="DisDeepth"></param>
         ///// <param name="IsContainParent"></param>
         ///// <returns></returns>
-        //public static EntityList<TEntity> FindAllByIDAndDeepth(Int32 id, Int32 RootDeepth, Int32 DisDeepth, Boolean IsContainParent)
+        //public static IList<TEntity> FindAllByIDAndDeepth(Int32 id, Int32 RootDeepth, Int32 DisDeepth, Boolean IsContainParent)
         //{
         //    var currentEntity = FindByID(id);
         //    TEntity pentity;

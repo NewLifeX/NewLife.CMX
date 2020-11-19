@@ -100,7 +100,7 @@ namespace NewLife.CMX
         /// <param name="parentid">主题</param>
         /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static EntityList<TEntity> FindAllByParentID(Int32 parentid)
+        public static IList<TEntity> FindAllByParentID(Int32 parentid)
         {
             if (Meta.Count >= 1000)
                 return FindAll(__.ParentID, parentid);

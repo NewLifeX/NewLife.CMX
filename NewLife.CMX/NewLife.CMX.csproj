@@ -1,129 +1,62 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4C2CF9BB-B920-43F5-9D87-B7288E416795}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworks>netcoreapp3.1;net5.0</TargetFrameworks>
     <RootNamespace>NewLife.CMX</RootNamespace>
     <AssemblyName>NewLife.CMX</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <AssemblyTitle>内容管理平台</AssemblyTitle>
+    <Description>内容管理平台</Description>
+    <Company>新生命开发团队</Company>
+    <Copyright>©2002-2020 NewLife</Copyright>
+    <Version>3.1.2019.0424</Version>
+    <FileVersion>3.1.2019.0424</FileVersion>
+    <AssemblyVersion>3.1.*</AssemblyVersion>
+    <Deterministic>false</Deterministic>
+    <OutputPath>..\Bin</OutputPath>
+    <DocumentationFile>$(OutputPath)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+    <PackageId>$(AssemblyName)</PackageId>
+    <Authors>$(Company)</Authors>
+    <ProjectUrl>https://github.com/NewLifeX</ProjectUrl>
+    <PackageIcon>leaf.png</PackageIcon>
+    <RepositoryUrl>https://github.com/NewLifeX/NewLife.Cube</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>新生命团队;X组件;NewLife;$(AssemblyName)</PackageTags>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\Bin\NewLife.CMX.XML</DocumentationFile>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>..\..\Bin\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\Bin\NewLife.CMX.XML</DocumentationFile>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="NewLife.Core, Version=8.1.7113.26161, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NewLife.Core.8.1.2019.618\lib\net45\NewLife.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.configuration" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.IO.Compression" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.ServiceProcess" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-    <Reference Include="XCode, Version=9.12.7113.26177, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NewLife.XCode.9.12.2019.618\lib\net45\XCode.dll</HintPath>
-    </Reference>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.0-beta-20204-02">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="NewLife.Core" Version="8.10.2020.1111-beta2" />
+    <PackageReference Include="NewLife.XCode" Version="10.0.2020.1111-beta2" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="Editor\Crawler.cs" />
-    <Compile Include="Editor\ListFile.cs" />
-    <Compile Include="Editor\Uploader.cs" />
-    <Compile Include="Manager\SiteConfig.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="基础\IInfoExtend.cs" />
-    <Compile Include="基础\信息.Biz.cs" />
-    <Compile Include="基础\信息.cs" />
-    <Compile Include="基础\内容.Biz.cs" />
-    <Compile Include="基础\内容.cs" />
-    <Compile Include="基础\分类.Biz.cs" />
-    <Compile Include="基础\分类.cs" />
-    <Compile Include="基础\模型.Biz.cs" />
-    <Compile Include="基础\模型.cs" />
-    <Compile Include="基础\统计.Biz.cs" />
-    <Compile Include="基础\统计.cs" />
-    <Compile Include="扩展\下载.Biz.cs" />
-    <Compile Include="扩展\下载.cs" />
-    <Compile Include="扩展\产品.Biz.cs" />
-    <Compile Include="扩展\产品.cs" />
-    <Compile Include="扩展\图册.Biz.cs" />
-    <Compile Include="扩展\图册.cs" />
-    <Compile Include="扩展\文本.Biz.cs" />
-    <Compile Include="扩展\文本.cs" />
-    <Compile Include="扩展\文章.Biz.cs" />
-    <Compile Include="扩展\文章.cs" />
-    <Compile Include="扩展\视频.Biz.cs" />
-    <Compile Include="扩展\视频.cs" />
-    <Compile Include="站点\导航.Biz.cs" />
-    <Compile Include="站点\导航.cs" />
-    <Compile Include="站点\来源.Biz.cs" />
-    <Compile Include="站点\来源.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="CMX.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="CMX数据字典.htm" />
-    <Content Include="Entity\Build.tt">
+    <None Update="Build.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Build.log</LastGenOutput>
-    </Content>
-    <Content Include="Entity\Model.xml" />
+    </None>
   </ItemGroup>
+
   <ItemGroup>
-    <None Include="Entity\Build.log">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Build.tt</DependentUpon>
-    </None>
-    <None Include="packages.config" />
-    <None Include="XCoder.log">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>XCoder.tt</DependentUpon>
-    </None>
-    <None Include="XCoder.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>XCoder.log</LastGenOutput>
-    </None>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>
