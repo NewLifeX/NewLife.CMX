@@ -1,7 +1,7 @@
 ﻿@using NewLife.Model;
 @using NewLife.CMX;
 @{
-    var cat = Model as ICategory;
+    var cat = Model as Category;
     var model = cat.Model;
 }
 <li>
@@ -20,9 +20,9 @@
         </a>
         <b class="arrow"></b>
         <ul class="submenu">
-            @foreach (ICategory cat2 in cat.Childs)
+            @foreach (var cat2 in cat.Childs)
             {
-                @Html.Partial("_Left_Category", cat2);
+                @await Html.PartialAsync("_Left_Category", cat2);
             }
         </ul>
     }

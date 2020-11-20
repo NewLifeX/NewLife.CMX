@@ -38,7 +38,7 @@ namespace NewLife.CMX.Web.Controllers
             entity.CategoryID = Request.Query["categoryId"].ToInt();
 
             // 记下添加前的来源页，待会添加成功以后跳转
-            Session["Cube_Add_Referrer"] = Request.UrlReferrer.ToString();
+            Session["Cube_Add_Referrer"] = Request.Headers["Referer"].FirstOrDefault() + "";
 
             return FormView(entity);
         }

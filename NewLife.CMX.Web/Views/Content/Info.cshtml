@@ -1,4 +1,4 @@
-﻿@model NewLife.CMX.IInfo
+﻿@model NewLife.CMX.Info
 @{
     var inf = Model;
     this.PushTitle(inf.Category.Name);
@@ -6,7 +6,7 @@
 }
 <div class="container">
     <div class="row">
-        @Html.Partial("_Nav")
+        @await Html.PartialAsync("_Nav")
     </div>
     <div class="row">
         <h2 class="text-center">
@@ -19,7 +19,7 @@
         </h3>
         <div class="content">
             <div>
-                @Html.Raw(inf.ContentText)
+                @await Html.PartialAsync(inf.ContentText)
             </div>
         </div>
     </div>

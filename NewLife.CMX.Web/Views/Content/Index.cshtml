@@ -1,4 +1,4 @@
-﻿@model NewLife.CMX.IModel
+﻿@model NewLife.CMX.Model
 @{
 }
 <h2 class="tith2">
@@ -16,7 +16,7 @@
                 @foreach (var item in cat.GetInfos())
                 {
                     <li>
-                        <a href="@this.GetUrl(item)">
+                        <a href="@Url.GetUrl(item)">
                             <i></i>@item.Title
                         </a>
                     </li>

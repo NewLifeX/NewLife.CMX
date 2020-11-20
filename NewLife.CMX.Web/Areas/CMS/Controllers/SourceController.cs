@@ -10,7 +10,7 @@ namespace NewLife.CMX.Web.Controllers
         {
             var entity = Source.FindByID(id);
 
-            return Json(entity, JsonRequestBehavior.AllowGet);
+            return Json(0, null, entity);
         }
     }
 }

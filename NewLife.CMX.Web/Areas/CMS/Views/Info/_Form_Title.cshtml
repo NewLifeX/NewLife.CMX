@@ -1,4 +1,4 @@
-﻿@model NewLife.CMX.IInfo
+﻿@model NewLife.CMX.Info
 @using XCode
 @using XCode.Configuration
 @using NewLife.CMX
@@ -10,7 +10,7 @@
     var isNew = entity.IsNullKey;
 
 
-    var inf = Model as IInfo;
+    var inf = Model as Info;
 }
 <div class="form-group">
     <label class="control-label col-md-2">标题</label>
@@ -20,7 +20,7 @@
     @if (!isNew)
     {
         <div class="col-md-1">
-            <a href="@this.GetUrl(inf)" class="btn btn-info btn-sm" target="_blank">
+            <a href="@Url.GetUrl(inf)" class="btn btn-info btn-sm" target="_blank">
                 <i class="glyphicon glyphicon-search"></i>
                 预览
             </a>

@@ -1,4 +1,4 @@
-﻿@model NewLife.CMX.IInfo
+﻿@model NewLife.CMX.Info
 @using System.Reflection
 @using XCode
 @using XCode.Configuration
@@ -9,17 +9,17 @@
 
     var entity = Model as IEntity;
     var isNew = entity.IsNullKey;
-    var inf = Model as IInfo;
-    var product = inf.Ext as IProduct;
+    var inf = Model as Info;
+    var product = inf.Ext as Product;
 }
 <div class="panel panel-default">
     <div class="form-horizontal">
-        @Html.Partial("_Form_Header", entity)
+        @await Html.PartialAsync("_Form_Header", entity)
         @using (Html.BeginForm((isNew ? "Add" : "Edit"), null, new { id = Model[fact.Unique.Name] }))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary()
-            @Html.Partial("_Form_Title", entity)
+            @await Html.PartialAsync("_Form_Title", entity)
             <div class="form-group">
                 <label class="control-label col-md-2">价格</label>
                 <div class="col-md-2">
@@ -33,11 +33,11 @@
             <div class="form-group">
                 <label class="control-label col-md-2">内容</label>
                 <div class="col-md-6">
-                    @Html.Partial("_Form_Content", entity)
+                    @await Html.PartialAsync("_Form_Content", entity)
                 </div>
             </div>
-            @Html.Partial("_Form_Footer", entity)
-            @Html.Partial("_Form_Action", entity)
+            @await Html.PartialAsync("_Form_Footer", entity)
+            @await Html.PartialAsync("_Form_Action", entity)
         }
     </div>
 </div>

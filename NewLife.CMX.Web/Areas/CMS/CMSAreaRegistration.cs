@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Web.Mvc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -22,9 +21,7 @@ namespace NewLife.CMX.Web
             // 用于左边菜单的两条路由
             endpoints.MapControllerRoute(
                "CMS_Manage",
-               "CMS/{controller}/{action}/{id}",
-               new { action = "Index", id = UrlParameter.Optional },
-               null
+               "CMS/{controller=Index}/{action=Index}/{id?}"
                );
 
             #region 类别
@@ -38,7 +35,7 @@ namespace NewLife.CMX.Web
             endpoints.MapControllerRoute(
                 name: "CMX_Category_Page",
                 pattern: "cat-{categoryid}-{pageIndex}",
-                defaults: new { controller = "Content", action = "List", pageIndex = UrlParameter.Optional },
+                defaults: new { controller = "Content", action = "List" },
                 constraints: new { categoryid = "[\\d]+", pageIndex = "[\\d]+" }
             );
 
@@ -52,7 +49,7 @@ namespace NewLife.CMX.Web
             endpoints.MapControllerRoute(
                 name: "CMX_Category_Page2",
                 pattern: "{categoryCode}-{pageIndex}",
-                defaults: new { controller = "Content", action = "List2", pageIndex = UrlParameter.Optional },
+                defaults: new { controller = "Content", action = "List2" },
                 constraints: new { categoryCode = new CategoryUrlConstraint(), pageIndex = "[\\d]+" }
             );
             #endregion

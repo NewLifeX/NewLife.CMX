@@ -5,10 +5,6 @@
 @using XCode.Configuration;
 @using XCode.Membership;
 @using NewLife.Cube;
-@using System.Web.Mvc;
-@using System.Web.Mvc.Ajax;
-@using System.Web.Mvc.Html;
-@using System.Web.Routing;
 @using NewLife.CMX.Web;
 @{
     var fact = ViewBag.Factory as IEntityFactory;
@@ -53,7 +49,7 @@
                 }
                 <td class="text-center hidden-md hidden-sm hidden-xs">@entity.ID</td>
                 <td>@entity.CategoryName</td>
-                <td><a href="@this.GetUrl(entity)" target="_blank">@entity.Title</a></td>
+                <td><a href="@Url.GetUrl(entity)" target="_blank">@entity.Title</a></td>
                 <td class="text-right">@entity.Views.ToString("n0")</td>
                 <td class="text-right">@entity.Sort.ToString("n0")</td>
                 <td>@entity.Publisher</td>
@@ -67,7 +63,7 @@
                 @if (this.Has(PermissionFlags.Detail, PermissionFlags.Update, PermissionFlags.Delete))
                 {
                     <td class="text-center">
-                        @Html.Partial("_List_Data_Action", (Object)entity)
+                        @await Html.PartialAsync("_List_Data_Action", (Object)entity)
                     </td>
                 }
             </tr>

@@ -29,17 +29,17 @@
                             <h2>@cat.Name</h2>
                         </div>
                         <div class="col-md-4" style="vertical-align:text-bottom">
-                            <a href="@this.GetCategoryUrl(cat)">更多</a>
+                            <a href="@Url.GetCategoryUrl(cat)">更多</a>
                         </div>
                         <div class="col-md-12 widget_list lz_con fixed tab_list show">
                             <ul>
                                 @foreach (var item in cat.GetInfos(1, 5))
                                 {
                                     <li>
-                                        [<a href="@this.GetCategoryUrl(item.Category)" target="_blank">
+                                        [<a href="@Url.GetCategoryUrl(item.Category)" target="_blank">
                                             <i></i>@item.Category
                                         </a>]
-                                        <a href="@this.GetUrl(item)" target="_blank">
+                                        <a href="@Url.GetUrl(item)" target="_blank">
                                             <i></i>@item.Title
                                         </a>
                                     </li>

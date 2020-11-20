@@ -1,6 +1,6 @@
 ﻿@using NewLife.CMX;
 @{
-    var cat = ViewBag.Category as ICategory;
+    var cat = ViewBag.Category as Category;
     var mod = cat != null ? cat.Model : null;
 }
 @if (mod != null && cat != null)
@@ -9,7 +9,7 @@
     <a href="@Url.Action("Index", new { model = mod.ID, category = cat.ID })" class="h4"><strong>@mod.Name</strong></a>
     if (cat != null)
     {
-        foreach (ICategory item in cat.AllParents)
+        foreach (var item in cat.AllParents)
         {
             if (item.ID != 0)
             {

@@ -37,7 +37,7 @@
                 <ul @Html.Raw(menu == menus[0] ? "class=\"submenu nav-show\" style=\"display:block;\"" : "class=\"submenu nav-hide\" style=\"display:none;\"")>
                     @foreach (IMenu menu2 in childs)
                     {
-                        @Html.Partial("_Left_Item", menu2);
+                        @await Html.PartialAsync("_Left_Item", menu2);
                     }
                 </ul>
             }
@@ -64,9 +64,9 @@
                         @mod 管理
                     </a>
                 </li>
-                @foreach (ICategory cat2 in mod.GetTopCategories())
+                @foreach (var cat2 in mod.GetTopCategories())
                 {
-                    @Html.Partial("_Left_Category", cat2);
+                    @await Html.PartialAsync("_Left_Category", cat2);
                 }
             </ul>
         </li>

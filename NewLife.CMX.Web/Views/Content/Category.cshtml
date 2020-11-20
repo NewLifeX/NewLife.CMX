@@ -1,11 +1,11 @@
-﻿@model NewLife.CMX.ICategory
+﻿@model NewLife.CMX.Category
 @{
     var cat = Model;
-    var page = ViewBag.Pager as Pager;
+    var pager = ViewBag.Pager as Pager;
 }
 <div class="container" style="min-height: 600px;">
     <div class="row">
-        @Html.Partial("_Nav")
+        @await Html.PartialAsync("_Nav")
     </div>
     <h2 class="tith2">
         @cat.Name
@@ -14,21 +14,21 @@
         var childs = cat.Childs;
         if (childs.Count > 0)
         {
-            @Html.Partial("_Category_Childs", cat)
+            @await Html.PartialAsync("_Category_Childs", cat)
         }
         else
         {
             <ul class="list_news_dl fixed">
-                @foreach (var item in cat.GetInfos(page))
+                @foreach (var item in cat.GetInfos(pager))
                 {
                     <li>
-                        <a href="@this.GetUrl(item)">
+                        <a href="@Url.GetUrl(item)">
                             <i></i>@item.Title
                         </a>
                     </li>
                 }
             </ul>
-            @Html.Partial("_Category_Pager", cat)
+            @await Html.PartialAsync("_Category_Pager", cat)
         }
     }
 </div>

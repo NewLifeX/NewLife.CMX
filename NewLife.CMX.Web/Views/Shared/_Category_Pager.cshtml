@@ -1,31 +1,31 @@
-﻿@model NewLife.CMX.ICategory
+﻿@model NewLife.CMX.Category
 @{
-    var page = ViewBag.Pager as Pager;
+    var pager = ViewBag.Pager as Pager;
 }
-@if (page.PageCount > 1)
+@if (pager.PageCount > 1)
 {
     <div class="page">
-        <span class="cor01">页数：@page.PageIndex/@page.PageCount</span>
-        <a class="first" href="@(this.GetCategoryUrl(Model))" title="首页">首页</a>
-        @if (page.PageIndex > 1)
+        <span class="cor01">页数：@pager.PageIndex/@pager.PageCount</span>
+        <a class="first" href="@Url.GetCategoryUrl(Model)" title="首页">首页</a>
+        @if (pager.PageIndex > 1)
         {
-            <a class="prev" title="上一页" href="@(this.GetCategoryUrl(Model, page.PageIndex - 1))">&lt;</a>
+            <a class="prev" title="上一页" href="@Url.GetCategoryUrl(Model, pager.PageIndex - 1)">&lt;</a>
         }
-        @for (int i = 1; i <= page.PageCount; i++)
+        @for (int i = 1; i <= pager.PageCount; i++)
         {
-            if (i == page.PageIndex)
+            if (i == pager.PageIndex)
             {
                 <a class="on">@i</a>
             }
             else
             {
-                <a href="@(this.GetCategoryUrl(Model, i))">@i</a>
+                <a href="@Url.GetCategoryUrl(Model, i)">@i</a>
             }
         }
-        @if (page.PageIndex < page.PageCount)
+        @if (pager.PageIndex < pager.PageCount)
         {
-            <a class="next" title="下一页" href="@(this.GetCategoryUrl(Model, page.PageIndex + 1))">&gt;</a>
+            <a class="next" title="下一页" href="@Url.GetCategoryUrl(Model, pager.PageIndex + 1)">&gt;</a>
         }
-        <a class="first" title="末页" href="@(this.GetCategoryUrl(Model, (Int32)page.PageCount))">末页</a>
+        <a class="first" title="末页" href="@Url.GetCategoryUrl(Model, (Int32)pager.PageCount)">末页</a>
     </div>
 }

@@ -1,13 +1,13 @@
-﻿@model NewLife.CMX.ICategory
+﻿@model NewLife.CMX.Category
 @{
 }
-@foreach (ICategory cat in Model.Childs)
+@foreach (var cat in Model.Childs)
 {
     <div class="widget2 fixed">
         <h2 class="tit">
             <em>@cat.Name</em>
             <small style="float: right;">
-                <a href="@this.GetCategoryUrl(cat)">更多 &gt;&gt;</a>
+                <a href="@Url.GetCategoryUrl(cat)">更多 &gt;&gt;</a>
             </small>
         </h2>
         <div class="content">
@@ -15,7 +15,7 @@
                 @foreach (var title in cat.GetInfos())
                 {
                     <li>
-                        <a href="@this.GetUrl(title)">
+                        <a href="@Url.GetUrl(title)">
                             <i></i>@title.Title
                         </a>
                     </li>

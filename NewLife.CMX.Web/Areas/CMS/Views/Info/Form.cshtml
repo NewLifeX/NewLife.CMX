@@ -1,4 +1,4 @@
-﻿@model NewLife.CMX.IInfo
+﻿@model NewLife.CMX.Info
 @using System.Reflection
 @using XCode
 @using XCode.Configuration
@@ -11,26 +11,26 @@
 }
 <div class="panel panel-default">
     <div class="form-horizontal">
-        @Html.Partial("_Form_Header", entity)
+        @await Html.PartialAsync("_Form_Header", entity)
         @using (Html.BeginForm((isNew ? "Add" : "Edit"), null, new { id = entity[fact.Unique.Name] }))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary()
-            @Html.Partial("_Form_Title", entity)
+            @await Html.PartialAsync("_Form_Title", entity)
             <div class="form-group">
                 <label class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2">内容</label>
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                    @Html.Partial("_Form_Content", entity)
+                    @await Html.PartialAsync("_Form_Content", entity)
                 </div>
             </div>
             foreach (var item in fields)
             {
                 <div class="form-group">
-                    @Html.Partial("_Form_Item", new Pair(entity, item))
+                    @await Html.PartialAsync("_Form_Item", new ValueTuple<IEntity, FieldItem>(entity, item))
                 </div>
             }
-            @Html.Partial("_Form_Footer", entity)
-            @Html.Partial("_Form_Action", entity)
+            @await Html.PartialAsync("_Form_Footer", entity)
+            @await Html.PartialAsync("_Form_Action", entity)
         }
     </div>
 </div>

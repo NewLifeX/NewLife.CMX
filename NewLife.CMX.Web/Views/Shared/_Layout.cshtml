@@ -28,12 +28,12 @@
     <link rel="stylesheet" href="~/Content/x.css" />
 </head>
 <body>
-    @Html.Partial("_Header")
+    @await Html.PartialAsync("_Header")
     <div class="content-wrapper main-content clear-fix">
         @RenderBody()
     </div>
     <footer class="footer">
-        @Html.Partial("_Footer")
+        @await Html.PartialAsync("_Footer")
     </footer>
     <!-- JQuery作为一等公民，页面内部随时可能使用 -->
     <script src="~/Content/js/jquery-2.1.3.min.js"></script>

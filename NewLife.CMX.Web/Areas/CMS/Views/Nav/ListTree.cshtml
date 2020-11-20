@@ -2,6 +2,7 @@
 @using NewLife.Web;
 @using XCode;
 @using XCode.Membership;
+@using XCode.Configuration;
 @using NewLife.CMX;
 @{
     var fact = ViewBag.Factory as IEntityFactory;
@@ -9,7 +10,7 @@
 }
 <div class="panel panel-default">
     <div class="panel-body">
-        @Html.Partial("_List_Toolbar")
+        @await Html.PartialAsync("_List_Toolbar")
     </div>
     <div class="table-responsive">
         <table class="table table-bordered table-hover table-striped table-condensed">
@@ -40,7 +41,7 @@
                         <td>@entity.CategoryName</td>
                         <td>@entity.Url</td>
                         <td>@entity.Sort</td>
-                        @Html.Partial("_List_Data_Item", new Pair(entity, fact.Table.FindByName("Enable")))
+                        @await Html.PartialAsync("_List_Data_Item", new ValueTuple<IEntity, FieldItem>(entity, fact.Table.FindByName("Enable")))
                         <td>
                             @if (p != null && entity != p.Childs[0])
                             {
@@ -54,7 +55,7 @@
                             }
                         </td>
                         <td>
-                            @Html.Partial("_List_Data_Action", entity)
+                            @await Html.PartialAsync("_List_Data_Action", entity)
                         </td>
                     </tr>
                 }
@@ -63,7 +64,7 @@
     </div>
     <div class="panel-footer">
         <p>
-            @Html.Partial("_List_Pager")
+            @await Html.PartialAsync("_List_Pager")
         </p>
     </div>
 </div>

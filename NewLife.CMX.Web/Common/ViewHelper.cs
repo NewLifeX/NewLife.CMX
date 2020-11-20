@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace NewLife.CMX.Web
@@ -10,54 +11,53 @@ namespace NewLife.CMX.Web
     {
         public static String GenerateUrl(this UrlHelper url, String routeName)
         {
-            return UrlHelper.GenerateUrl(routeName, null, null, null, url.RouteCollection, url.RequestContext, false);
+            return url.Link(routeName, null);
         }
 
         /// <summary>获取IInfo的Url</summary>
-        /// <param name="page"></param>
+        /// <param name="url"></param>
         /// <param name="inf"></param>
         /// <returns></returns>
-        public static String GetUrl(this WebViewPage page, Info inf)
+        public static String GetUrl(this IUrlHelper url, Info inf)
         {
-            var values = page.Url.RequestContext.RouteData.Values;
-            values["id"] = inf.ID;
-            values["infoCode"] = inf.Code;
+            //var values = url.ActionContext.RouteData.Values;
+            //values["id"] = inf.ID;
+            //values["infoCode"] = inf.Code;
 
             if (inf.Code.IsNullOrEmpty())
-                return page.Url.GenerateUrl("CMX_Info");
+                return url.Link("CMX_Info", new { inf.ID, inf.Code });
             else
-                return page.Url.GenerateUrl("CMX_Info2");
+                return url.Link("CMX_Info2", new { inf.ID, inf.Code });
         }
 
         /// <summary>获取到分类页面的链接</summary>
-        /// <param name="page"></param>
+        /// <param name="url"></param>
         /// <param name="cat"></param>
         /// <param name="pageIndex"></param>
         /// <returns></returns>
-        public static String GetCategoryUrl(this WebViewPage page, Category cat, Int32 pageIndex = 1)
+        public static String GetCategoryUrl(this IUrlHelper url, Category cat, Int32 pageIndex = 1)
         {
             if (cat == null || cat.Model == null) return null;
 
-            var values = page.Url.RequestContext.RouteData.Values;
-            //values["modelName"] = cat.Model.Name;
-            values["categoryCode"] = cat.Code;
-            values["categoryid"] = cat.ID;
-            values["pageIndex"] = pageIndex;
+            //var values = url.RequestContext.RouteData.Values;
+            ////values["modelName"] = cat.Model.Name;
+            //values["categoryCode"] = cat.Code;
+            //values["categoryid"] = cat.ID;
+            //values["pageIndex"] = pageIndex;
 
-            var url = page.Url;
             if (cat.Code.IsNullOrEmpty())
             {
                 if (pageIndex <= 1)
-                    return page.Url.GenerateUrl("CMX_Category");
+                    return url.Link("CMX_Category", new { cat.ID, cat.Code, pageIndex });
                 else
-                    return page.Url.GenerateUrl("CMX_Category_Page");
+                    return url.Link("CMX_Category_Page", new { cat.ID, cat.Code, pageIndex });
             }
             else
             {
                 if (pageIndex <= 1)
-                    return page.Url.GenerateUrl("CMX_Category2");
+                    return url.Link("CMX_Category2", new { cat.ID, cat.Code, pageIndex });
                 else
-                    return page.Url.GenerateUrl("CMX_Category_Page2");
+                    return url.Link("CMX_Category_Page2", new { cat.ID, cat.Code, pageIndex });
             }
         }
 
@@ -66,7 +66,7 @@ namespace NewLife.CMX.Web
         /// <param name="categoryName"></param>
         /// <param name="pageIndex"></param>
         /// <returns></returns>
-        public static String GetCategoryUrl(this WebViewPage page, String categoryName, Int32 pageIndex = 1)
+        public static String GetCategoryUrl(this IUrlHelper page, String categoryName, Int32 pageIndex = 1)
         {
             var cat = Category.FindByName(categoryName);
             if (cat == null) return null;
@@ -74,17 +74,17 @@ namespace NewLife.CMX.Web
             return page.GetCategoryUrl(cat, pageIndex);
         }
 
-        public static void PushTitle(this WebViewPage page, String title)
+        public static void PushTitle(this RazorPage page, String title)
         {
-            var list = page.ViewData["PageTitle"] as List<String> ?? new List<String>();
+            var list = page.TempData["PageTitle"] as List<String> ?? new List<String>();
 
             list.Add(title);
-            page.ViewData["PageTitle"] = list;
+            page.TempData["PageTitle"] = list;
         }
 
-        public static String GetPageTitle(this WebViewPage page)
+        public static String GetPageTitle(this RazorPage page)
         {
-            var list = page.ViewData["PageTitle"] as List<String> ?? new List<String> { };
+            var list = page.TempData["PageTitle"] as List<String> ?? new List<String> { };
 
             list.Reverse();
             list.Add(SiteConfig.Current.Title);
