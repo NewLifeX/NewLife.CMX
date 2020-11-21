@@ -2,32 +2,22 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
-using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace NewLife.CMX.Web
 {
     /// <summary>视图助手</summary>
     public static class ViewHelper
     {
-        public static String GenerateUrl(this UrlHelper url, String routeName)
-        {
-            return url.Link(routeName, null);
-        }
-
         /// <summary>获取IInfo的Url</summary>
         /// <param name="url"></param>
         /// <param name="inf"></param>
         /// <returns></returns>
         public static String GetUrl(this IUrlHelper url, Info inf)
         {
-            //var values = url.ActionContext.RouteData.Values;
-            //values["id"] = inf.ID;
-            //values["infoCode"] = inf.Code;
-
             if (inf.Code.IsNullOrEmpty())
-                return url.Link("CMX_Info", new { inf.ID, inf.Code });
+                return url.Link("CMX_Info", new { id = inf.ID });
             else
-                return url.Link("CMX_Info2", new { inf.ID, inf.Code });
+                return url.Link("CMX_Info2", new { categoryCode = inf.Category?.Code, infoCode = inf.Code });
         }
 
         /// <summary>获取到分类页面的链接</summary>
@@ -39,25 +29,19 @@ namespace NewLife.CMX.Web
         {
             if (cat == null || cat.Model == null) return null;
 
-            //var values = url.RequestContext.RouteData.Values;
-            ////values["modelName"] = cat.Model.Name;
-            //values["categoryCode"] = cat.Code;
-            //values["categoryid"] = cat.ID;
-            //values["pageIndex"] = pageIndex;
-
             if (cat.Code.IsNullOrEmpty())
             {
                 if (pageIndex <= 1)
-                    return url.Link("CMX_Category", new { cat.ID, cat.Code, pageIndex });
+                    return url.Link("CMX_Category", new { categoryid = cat.ID });
                 else
-                    return url.Link("CMX_Category_Page", new { cat.ID, cat.Code, pageIndex });
+                    return url.Link("CMX_Category_Page", new { categoryid = cat.ID, pageIndex });
             }
             else
             {
                 if (pageIndex <= 1)
-                    return url.Link("CMX_Category2", new { cat.ID, cat.Code, pageIndex });
+                    return url.Link("CMX_Category2", new { categoryCode = cat.Code });
                 else
-                    return url.Link("CMX_Category_Page2", new { cat.ID, cat.Code, pageIndex });
+                    return url.Link("CMX_Category_Page2", new { categoryCode = cat.Code, pageIndex });
             }
         }
 
