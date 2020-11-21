@@ -46,18 +46,13 @@ namespace NewLife.CMX.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            var set = Stardust.Setting.Current;
-
             // 使用Cube前添加自己的管道
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
             else
                 app.UseExceptionHandler("/CubeHome/Error");
 
-            if (!set.Server.IsNullOrEmpty()) app.UseMiddleware<TracerMiddleware>();
-
-            app.UseStaticFiles(); // 暂时添加，待更新新版本Cube后可删除
-            app.UseCube();
+            app.UseStaticFiles();
 
             //if (env.IsDevelopment())
             //{
@@ -72,7 +67,8 @@ namespace NewLife.CMX.Web
             //app.UseHttpsRedirection();
             //app.UseStaticFiles();
 
-            //app.UseRouting();
+            // 使用路由中间件，放在UseEndpoints之前，前端路由优先于Cube路由
+            app.UseRouting();
 
             //app.UseAuthorization();
 
@@ -84,6 +80,8 @@ namespace NewLife.CMX.Web
 
                 CMSArea.RegisterArea(endpoints);
             });
+
+            app.UseCube(env);
         }
     }
 }
