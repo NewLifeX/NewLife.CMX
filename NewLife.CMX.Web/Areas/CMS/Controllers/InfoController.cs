@@ -56,7 +56,7 @@ namespace NewLife.CMX.Web.Controllers
             var mod = entity.Category?.Model ?? entity.Model;
 
             // 根据模型加载专属表单页
-            if (mod != null) tmp = "~/Areas/CMS/Views/{0}/Form.cshtml".F(mod.Name ?? "Info");
+            if (mod != null) tmp = $"~/Areas/CMS/Views/{mod.Name ?? "Info"}/Form.cshtml";
 
             // 没有导航
             PageSetting.EnableNavbar = false;

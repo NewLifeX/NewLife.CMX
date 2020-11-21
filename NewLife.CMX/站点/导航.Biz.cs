@@ -54,19 +54,22 @@ namespace NewLife.CMX
             // 需要注意的是，如果该方法调用了其它实体类的首次数据库操作，目标实体类的数据初始化将会在同一个线程完成
             if (XTrace.Debug) XTrace.WriteLine("开始初始化{0}[{1}]数据……", typeof(Nav).Name, Meta.Table.DataTable.DisplayName);
 
-            var fn = "../InitData/{0}.json".F(Meta.TableName).GetFullPath();
+            var fn = $"../InitData/{Meta.TableName}.json".GetFullPath();
 
             var header = Root.Add("头部");
             header.Add("首页", "/");
-            header.Add("关于我们", "/About");
+            header.Add("关于", "/About");
+            header.Add("联系我们", "/Contact");
 
             var footer = Root.Add("尾部");
             var link = footer.Add("友情链接");
-            link.Add("新生命团队", "http://www.NewLifeX.com");
+            link.Add("新生命团队", "https://www.NewLifeX.com");
             link.Add("开源项目", "https://github.com/NewLifeX");
 
-            footer.Add("社区").Add("用户社区", "/Communicate");
-            footer.Add("关于").Add("关于我们", "/About");
+            footer.Add("文档").Add("文档资料", "https://www.yuque.com/smartstone/cube");
+            footer.Add("关于")
+                .Add("关于我们", "/About")
+                .Add("联系我们", "/Contact");
 
             if (XTrace.Debug) XTrace.WriteLine("完成初始化{0}[{1}]数据！", typeof(Nav).Name, Meta.Table.DataTable.DisplayName);
         }

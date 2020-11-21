@@ -1,6 +1,6 @@
 ﻿@using NewLife.CMX;
 @{
-    var cat = ViewBag.Category as Category;
+    var cat = ViewData["Category"] as Category;
     var mod = cat != null ? cat.Model : null;
 }
 @if (mod != null && cat != null)

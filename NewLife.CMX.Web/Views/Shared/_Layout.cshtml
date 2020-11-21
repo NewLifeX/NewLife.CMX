@@ -2,7 +2,7 @@
 @{
     //var menu = ManageProvider.Menu.Current;
     var menu = ViewBag.Menu as IMenu;
-    HttpContext.Current.Items["Title"] = ViewBag.Title + "";
+    HttpContext.Current.Items["Title"] = ViewData["Title"] + "";
 }
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>@ViewBag.Title - @SysConfig.Current.DisplayName</title>
+    <title>@ViewData["Title"] - @SysConfig.Current.DisplayName</title>
     <meta name="description" content="新生命开发团队">
     <meta name="keywords" content="新生命开发团队">
     <meta name="author" content="新生命开发团队">

@@ -79,8 +79,8 @@ namespace NewLife.CMX.Web.Controllers
 
             var pager = new Pager { PageIndex = pageIndex, PageSize = PageSize };
 
-            ViewBag.Title = cat.Name;
-            ViewBag.Category = cat;
+            ViewData["Title"] = cat.Name;
+            ViewData["Category"] = cat;
             ViewBag.Pager = pager;
 
             return View(tmp, cat);
@@ -123,8 +123,8 @@ namespace NewLife.CMX.Web.Controllers
             inf.Statistics.Increment(null);
             (inf as IEntity).SaveAsync(15);
 
-            ViewBag.Title = inf.Title;
-            ViewBag.Category = cat;
+            ViewData["Title"] = inf.Title;
+            ViewData["Category"] = cat;
 
             return View(tmp, inf);
         }
@@ -142,7 +142,7 @@ namespace NewLife.CMX.Web.Controllers
             var pager = new Pager { PageIndex = pageIndex ?? 1, PageSize = PageSize };
             var list = Info.Search(model != null ? model.ID : 0, cat != null ? cat.ID : 0, key, pager);
 
-            ViewBag.Title = "搜索[{0}]".F(key);
+            ViewData["Title"] = $"搜索[{key}]";
 
             return View(list);
         }

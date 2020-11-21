@@ -9,27 +9,14 @@ namespace NewLife.CMX.Web.Controllers
     {
         /// <summary>主页面</summary>
         /// <returns></returns>
-        public ActionResult Index()
-        {
-            ViewBag.Message = "主页面";
-
-            return View();
-        }
+        public ActionResult Index() => View();
 
         /// <summary>应用程序描述</summary>
-        public ActionResult About()
-        {
-            ViewBag.Message = "应用程序描述";
-
-            return View();
-        }
+        [Route("/About")]
+        public ActionResult About() => View();
 
         /// <summary>联系我们</summary>
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "联系我们";
-
-            return View();
-        }
+        [Route("/Contact")]
+        public ActionResult Contact() => View();
     }
 }
