@@ -18,24 +18,24 @@ namespace NewLife.CMX.Web.Controllers
         static DictionaryCache<String, String> _cache = new DictionaryCache<String, String>(StringComparer.OrdinalIgnoreCase);
         static String GetView(String name, Model model)
         {
-            var viewName = "../{0}/{1}".F(model.Name, name);
+            var viewName = $"../{model.Name}/{name}";
 
             // 如果频道模版不存在，则采用模型模版
             return _cache.GetItem(viewName, k =>
             {
                 // 模型目录的模版
                 var view = k;
-                var vpath = "Views/{0}/{1}.cshtml".F(model.Name, name);
+                var vpath = $"Views/{model.Name}/{name}.cshtml";
                 if (ViewExists(vpath)) return view;
 
                 // 内容目录的模板
-                view = "../{0}/{1}".F("Content", name);
-                vpath = "Views/{0}/{1}.cshtml".F("Content", name);
+                view = $"../Content/{name}";
+                vpath = $"Views/Content/{name}.cshtml";
                 if (ViewExists(vpath)) return view;
 
                 // 共享目录的模板
-                view = "../{0}/{1}".F("Shared", name);
-                vpath = "Views/{0}/{1}.cshtml".F("Shared", name);
+                view = $"../Shared/{name}";
+                vpath = $"Views/Shared/{name}.cshtml";
                 if (ViewExists(vpath)) return view;
 
                 return null;
