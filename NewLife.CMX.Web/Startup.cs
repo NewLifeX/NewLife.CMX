@@ -66,6 +66,7 @@ namespace NewLife.CMX.Web
             //}
             //app.UseHttpsRedirection();
             //app.UseStaticFiles();
+            app.UseSession();
 
             // 使用路由中间件，放在UseEndpoints之前，前端路由优先于Cube路由
             app.UseRouting();
