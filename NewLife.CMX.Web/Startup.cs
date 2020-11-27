@@ -69,18 +69,18 @@ namespace NewLife.CMX.Web
             app.UseSession();
 
             // 使用路由中间件，放在UseEndpoints之前，前端路由优先于Cube路由
-            app.UseRouting();
+            //app.UseRouting();
 
             //app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllerRoute(
+            //        name: "default",
+            //        pattern: "{controller=Home}/{action=Index}/{id?}");
 
-                CMSArea.RegisterArea(endpoints);
-            });
+            //    CMSArea.RegisterArea(endpoints);
+            //});
 
             app.UseCube(env);
         }
