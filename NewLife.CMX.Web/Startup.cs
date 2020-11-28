@@ -37,10 +37,10 @@ namespace NewLife.CMX.Web
                 services.AddSingleton<ITracer>(tracer);
             }
 
+            services.AddControllersWithViews();
+
             // 引入魔方
             services.AddCube();
-
-            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,21 +68,19 @@ namespace NewLife.CMX.Web
             //app.UseStaticFiles();
             app.UseSession();
 
-            // 使用路由中间件，放在UseEndpoints之前，前端路由优先于Cube路由
             //app.UseRouting();
 
             //app.UseAuthorization();
 
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllerRoute(
-            //        name: "default",
-            //        pattern: "{controller=Home}/{action=Index}/{id?}");
-
-            //    CMSArea.RegisterArea(endpoints);
-            //});
-
             app.UseCube(env);
+            app.UseRouter(endpoints => CMSArea.RegisterArea(endpoints));
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }
