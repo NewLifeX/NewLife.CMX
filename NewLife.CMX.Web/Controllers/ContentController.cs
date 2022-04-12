@@ -15,7 +15,7 @@ namespace NewLife.CMX.Web.Controllers
 
         static Boolean ViewExists(String vpath) => System.IO.File.Exists(vpath.GetFullPath());
 
-        static DictionaryCache<String, String> _cache = new DictionaryCache<String, String>(StringComparer.OrdinalIgnoreCase);
+        static DictionaryCache<String, String> _cache = new(StringComparer.OrdinalIgnoreCase);
         static String GetView(String name, Model model)
         {
             var viewName = $"../{model.Name}/{name}";
