@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>cmx</AssemblyName>
     <Version>3.1.2019.0424</Version>
     <FileVersion>3.1.2019.0424</FileVersion>
@@ -18,16 +18,300 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="wwwroot\**\*" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Controllers\UEditorController.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NewLife.Cube.Core" Version="3.7.2020.1129-beta3" />
-    <PackageReference Include="NewLife.Stardust" Version="1.2.2020.1101" />
+    <PackageReference Include="NewLife.Cube.Core" Version="5.0.2022.401" />
+    <PackageReference Include="NewLife.Stardust" Version="2.0.2022.404" />
+    <PackageReference Include="NewLife.Stardust.Extensions" Version="2.0.2022.404" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\NewLife.CMX\NewLife.CMX.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Content\cube-list.js" />
+    <None Include="wwwroot\Content\images\banner.png" />
+    <None Include="wwwroot\Content\images\logo.png" />
+    <None Include="wwwroot\Content\Site.css" />
+    <None Include="wwwroot\Content\ueditor\dialogs\anchor\anchor.html" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\attachment.css" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\attachment.html" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\attachment.js" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\fileTypeImages\icon_chm.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\fileTypeImages\icon_default.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\fileTypeImages\icon_doc.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\fileTypeImages\icon_exe.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\fileTypeImages\icon_jpg.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\fileTypeImages\icon_mp3.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\fileTypeImages\icon_mv.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\fileTypeImages\icon_pdf.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\fileTypeImages\icon_ppt.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\fileTypeImages\icon_psd.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\fileTypeImages\icon_rar.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\fileTypeImages\icon_txt.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\fileTypeImages\icon_xls.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\images\alignicon.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\images\alignicon.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\images\bg.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\images\file-icons.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\images\file-icons.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\images\icons.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\images\icons.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\images\image.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\images\progress.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\images\success.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\attachment\images\success.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\background\background.css" />
+    <None Include="wwwroot\Content\ueditor\dialogs\background\background.html" />
+    <None Include="wwwroot\Content\ueditor\dialogs\background\background.js" />
+    <None Include="wwwroot\Content\ueditor\dialogs\background\images\bg.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\background\images\success.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\charts\chart.config.js" />
+    <None Include="wwwroot\Content\ueditor\dialogs\charts\charts.css" />
+    <None Include="wwwroot\Content\ueditor\dialogs\charts\charts.html" />
+    <None Include="wwwroot\Content\ueditor\dialogs\charts\charts.js" />
+    <None Include="wwwroot\Content\ueditor\dialogs\charts\images\charts0.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\charts\images\charts1.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\charts\images\charts2.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\charts\images\charts3.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\charts\images\charts4.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\charts\images\charts5.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\emotion\emotion.css" />
+    <None Include="wwwroot\Content\ueditor\dialogs\emotion\emotion.html" />
+    <None Include="wwwroot\Content\ueditor\dialogs\emotion\emotion.js" />
+    <None Include="wwwroot\Content\ueditor\dialogs\emotion\images\0.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\emotion\images\bface.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\emotion\images\cface.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\emotion\images\fface.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\emotion\images\jxface2.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\emotion\images\neweditor-tab-bg.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\emotion\images\tface.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\emotion\images\wface.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\emotion\images\yface.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\gmap\gmap.html" />
+    <None Include="wwwroot\Content\ueditor\dialogs\help\help.css" />
+    <None Include="wwwroot\Content\ueditor\dialogs\help\help.html" />
+    <None Include="wwwroot\Content\ueditor\dialogs\help\help.js" />
+    <None Include="wwwroot\Content\ueditor\dialogs\image\image.css" />
+    <None Include="wwwroot\Content\ueditor\dialogs\image\image.html" />
+    <None Include="wwwroot\Content\ueditor\dialogs\image\image.js" />
+    <None Include="wwwroot\Content\ueditor\dialogs\image\images\alignicon.jpg" />
+    <None Include="wwwroot\Content\ueditor\dialogs\image\images\bg.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\image\images\icons.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\image\images\icons.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\image\images\image.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\image\images\progress.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\image\images\success.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\image\images\success.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\insertframe\insertframe.html" />
+    <None Include="wwwroot\Content\ueditor\dialogs\internal.js" />
+    <None Include="wwwroot\Content\ueditor\dialogs\link\link.html" />
+    <None Include="wwwroot\Content\ueditor\dialogs\map\map.html" />
+    <None Include="wwwroot\Content\ueditor\dialogs\map\show.html" />
+    <None Include="wwwroot\Content\ueditor\dialogs\music\music.css" />
+    <None Include="wwwroot\Content\ueditor\dialogs\music\music.html" />
+    <None Include="wwwroot\Content\ueditor\dialogs\music\music.js" />
+    <None Include="wwwroot\Content\ueditor\dialogs\preview\preview.html" />
+    <None Include="wwwroot\Content\ueditor\dialogs\scrawl\images\addimg.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\scrawl\images\brush.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\scrawl\images\delimg.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\scrawl\images\delimgH.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\scrawl\images\empty.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\scrawl\images\emptyH.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\scrawl\images\eraser.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\scrawl\images\redo.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\scrawl\images\redoH.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\scrawl\images\scale.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\scrawl\images\scaleH.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\scrawl\images\size.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\scrawl\images\undo.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\scrawl\images\undoH.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\scrawl\scrawl.css" />
+    <None Include="wwwroot\Content\ueditor\dialogs\scrawl\scrawl.html" />
+    <None Include="wwwroot\Content\ueditor\dialogs\scrawl\scrawl.js" />
+    <None Include="wwwroot\Content\ueditor\dialogs\searchreplace\searchreplace.html" />
+    <None Include="wwwroot\Content\ueditor\dialogs\searchreplace\searchreplace.js" />
+    <None Include="wwwroot\Content\ueditor\dialogs\snapscreen\snapscreen.html" />
+    <None Include="wwwroot\Content\ueditor\dialogs\spechars\spechars.html" />
+    <None Include="wwwroot\Content\ueditor\dialogs\spechars\spechars.js" />
+    <None Include="wwwroot\Content\ueditor\dialogs\table\dragicon.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\table\edittable.css" />
+    <None Include="wwwroot\Content\ueditor\dialogs\table\edittable.html" />
+    <None Include="wwwroot\Content\ueditor\dialogs\table\edittable.js" />
+    <None Include="wwwroot\Content\ueditor\dialogs\table\edittd.html" />
+    <None Include="wwwroot\Content\ueditor\dialogs\table\edittip.html" />
+    <None Include="wwwroot\Content\ueditor\dialogs\template\config.js" />
+    <None Include="wwwroot\Content\ueditor\dialogs\template\images\bg.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\template\images\pre0.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\template\images\pre1.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\template\images\pre2.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\template\images\pre3.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\template\images\pre4.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\template\template.css" />
+    <None Include="wwwroot\Content\ueditor\dialogs\template\template.html" />
+    <None Include="wwwroot\Content\ueditor\dialogs\template\template.js" />
+    <None Include="wwwroot\Content\ueditor\dialogs\video\images\bg.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\video\images\center_focus.jpg" />
+    <None Include="wwwroot\Content\ueditor\dialogs\video\images\file-icons.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\video\images\file-icons.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\video\images\icons.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\video\images\icons.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\video\images\image.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\video\images\left_focus.jpg" />
+    <None Include="wwwroot\Content\ueditor\dialogs\video\images\none_focus.jpg" />
+    <None Include="wwwroot\Content\ueditor\dialogs\video\images\progress.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\video\images\right_focus.jpg" />
+    <None Include="wwwroot\Content\ueditor\dialogs\video\images\success.gif" />
+    <None Include="wwwroot\Content\ueditor\dialogs\video\images\success.png" />
+    <None Include="wwwroot\Content\ueditor\dialogs\video\video.css" />
+    <None Include="wwwroot\Content\ueditor\dialogs\video\video.html" />
+    <None Include="wwwroot\Content\ueditor\dialogs\video\video.js" />
+    <None Include="wwwroot\Content\ueditor\dialogs\webapp\webapp.html" />
+    <None Include="wwwroot\Content\ueditor\dialogs\wordimage\fClipboard_ueditor.swf" />
+    <None Include="wwwroot\Content\ueditor\dialogs\wordimage\imageUploader.swf" />
+    <None Include="wwwroot\Content\ueditor\dialogs\wordimage\tangram.js" />
+    <None Include="wwwroot\Content\ueditor\dialogs\wordimage\wordimage.html" />
+    <None Include="wwwroot\Content\ueditor\dialogs\wordimage\wordimage.js" />
+    <None Include="wwwroot\Content\ueditor\index.html" />
+    <None Include="wwwroot\Content\ueditor\lang\en\en.js" />
+    <None Include="wwwroot\Content\ueditor\lang\en\images\addimage.png" />
+    <None Include="wwwroot\Content\ueditor\lang\en\images\alldeletebtnhoverskin.png" />
+    <None Include="wwwroot\Content\ueditor\lang\en\images\alldeletebtnupskin.png" />
+    <None Include="wwwroot\Content\ueditor\lang\en\images\background.png" />
+    <None Include="wwwroot\Content\ueditor\lang\en\images\button.png" />
+    <None Include="wwwroot\Content\ueditor\lang\en\images\copy.png" />
+    <None Include="wwwroot\Content\ueditor\lang\en\images\deletedisable.png" />
+    <None Include="wwwroot\Content\ueditor\lang\en\images\deleteenable.png" />
+    <None Include="wwwroot\Content\ueditor\lang\en\images\listbackground.png" />
+    <None Include="wwwroot\Content\ueditor\lang\en\images\localimage.png" />
+    <None Include="wwwroot\Content\ueditor\lang\en\images\music.png" />
+    <None Include="wwwroot\Content\ueditor\lang\en\images\rotateleftdisable.png" />
+    <None Include="wwwroot\Content\ueditor\lang\en\images\rotateleftenable.png" />
+    <None Include="wwwroot\Content\ueditor\lang\en\images\rotaterightdisable.png" />
+    <None Include="wwwroot\Content\ueditor\lang\en\images\rotaterightenable.png" />
+    <None Include="wwwroot\Content\ueditor\lang\en\images\upload.png" />
+    <None Include="wwwroot\Content\ueditor\lang\zh-cn\images\copy.png" />
+    <None Include="wwwroot\Content\ueditor\lang\zh-cn\images\localimage.png" />
+    <None Include="wwwroot\Content\ueditor\lang\zh-cn\images\music.png" />
+    <None Include="wwwroot\Content\ueditor\lang\zh-cn\images\upload.png" />
+    <None Include="wwwroot\Content\ueditor\lang\zh-cn\zh-cn.js" />
+    <None Include="wwwroot\Content\ueditor\themes\default\css\ueditor.css" />
+    <None Include="wwwroot\Content\ueditor\themes\default\css\ueditor.min.css" />
+    <None Include="wwwroot\Content\ueditor\themes\default\dialogbase.css" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\anchor.gif" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\arrow.png" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\arrow_down.png" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\arrow_up.png" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\button-bg.gif" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\cancelbutton.gif" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\charts.png" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\cursor_h.gif" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\cursor_h.png" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\cursor_v.gif" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\cursor_v.png" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\dialog-title-bg.png" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\filescan.png" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\highlighted.gif" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\icons-all.gif" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\icons.gif" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\icons.png" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\loaderror.png" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\loading.gif" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\lock.gif" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\neweditor-tab-bg.png" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\pagebreak.gif" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\scale.png" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\sortable.png" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\spacer.gif" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\sparator_v.png" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\table-cell-align.png" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\tangram-colorpicker.png" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\toolbar_bg.png" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\unhighlighted.gif" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\upload.png" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\videologo.gif" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\word.gif" />
+    <None Include="wwwroot\Content\ueditor\themes\default\images\wordpaste.png" />
+    <None Include="wwwroot\Content\ueditor\themes\iframe.css" />
+    <None Include="wwwroot\Content\ueditor\third-party\codemirror\codemirror.css" />
+    <None Include="wwwroot\Content\ueditor\third-party\codemirror\codemirror.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\adapters\mootools-adapter.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\adapters\mootools-adapter.src.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\adapters\prototype-adapter.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\adapters\prototype-adapter.src.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\adapters\standalone-framework.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\adapters\standalone-framework.src.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\highcharts-more.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\highcharts-more.src.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\highcharts.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\highcharts.src.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\modules\annotations.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\modules\annotations.src.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\modules\canvas-tools.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\modules\canvas-tools.src.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\modules\data.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\modules\data.src.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\modules\drilldown.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\modules\drilldown.src.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\modules\exporting.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\modules\exporting.src.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\modules\funnel.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\modules\funnel.src.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\modules\heatmap.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\modules\heatmap.src.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\modules\map.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\modules\map.src.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\modules\no-data-to-display.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\modules\no-data-to-display.src.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\themes\dark-blue.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\themes\dark-green.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\themes\gray.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\themes\grid.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\highcharts\themes\skies.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\jquery-1.10.2.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\jquery-1.10.2.min.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\jquery-1.10.2.min.map" />
+    <None Include="wwwroot\Content\ueditor\third-party\snapscreen\UEditorSnapscreen.exe" />
+    <None Include="wwwroot\Content\ueditor\third-party\SyntaxHighlighter\shCore.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\SyntaxHighlighter\shCoreDefault.css" />
+    <None Include="wwwroot\Content\ueditor\third-party\video-js\font\vjs.eot" />
+    <None Include="wwwroot\Content\ueditor\third-party\video-js\font\vjs.svg" />
+    <None Include="wwwroot\Content\ueditor\third-party\video-js\font\vjs.ttf" />
+    <None Include="wwwroot\Content\ueditor\third-party\video-js\font\vjs.woff" />
+    <None Include="wwwroot\Content\ueditor\third-party\video-js\video-js.css" />
+    <None Include="wwwroot\Content\ueditor\third-party\video-js\video-js.min.css" />
+    <None Include="wwwroot\Content\ueditor\third-party\video-js\video-js.swf" />
+    <None Include="wwwroot\Content\ueditor\third-party\video-js\video.dev.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\video-js\video.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\webuploader\Uploader.swf" />
+    <None Include="wwwroot\Content\ueditor\third-party\webuploader\webuploader.css" />
+    <None Include="wwwroot\Content\ueditor\third-party\webuploader\webuploader.custom.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\webuploader\webuploader.custom.min.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\webuploader\webuploader.flashonly.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\webuploader\webuploader.flashonly.min.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\webuploader\webuploader.html5only.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\webuploader\webuploader.html5only.min.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\webuploader\webuploader.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\webuploader\webuploader.min.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\webuploader\webuploader.withoutimage.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\webuploader\webuploader.withoutimage.min.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\xss.min.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\zeroclipboard\ZeroClipboard.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\zeroclipboard\ZeroClipboard.min.js" />
+    <None Include="wwwroot\Content\ueditor\third-party\zeroclipboard\ZeroClipboard.swf" />
+    <None Include="wwwroot\Content\ueditor\ueditor.all.js" />
+    <None Include="wwwroot\Content\ueditor\ueditor.all.min.js" />
+    <None Include="wwwroot\Content\ueditor\ueditor.config.js" />
+    <None Include="wwwroot\Content\ueditor\ueditor.parse.js" />
+    <None Include="wwwroot\Content\ueditor\ueditor.parse.min.js" />
+    <None Include="wwwroot\Content\x.css" />
   </ItemGroup>
 
 </Project>

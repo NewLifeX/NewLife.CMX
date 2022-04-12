@@ -8,6 +8,7 @@ using NewLife.Cube.WebMiddleware;
 using NewLife.Log;
 using NewLife.Remoting;
 using Stardust.Monitors;
+using XCode;
 using XCode.DataAccessLayer;
 
 namespace NewLife.CMX.Web
@@ -24,28 +25,21 @@ namespace NewLife.CMX.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var set = Stardust.Setting.Current;
-            if (!set.Server.IsNullOrEmpty())
-            {
-                // APM跟踪器
-                var tracer = new StarTracer(set.Server) { Log = XTrace.Log };
-                DefaultTracer.Instance = tracer;
-                ApiHelper.Tracer = tracer;
-                DAL.GlobalTracer = tracer;
-                TracerMiddleware.Tracer = tracer;
-
-                services.AddSingleton<ITracer>(tracer);
-            }
+            services.AddStardust(null);
 
             services.AddControllersWithViews();
 
             // 引入魔方
             services.AddCube();
+
+            AreaBase.RegisterArea(typeof(CMSArea));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            EntityFactory.InitConnection("CMX");
+
             // 使用Cube前添加自己的管道
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
@@ -72,6 +66,7 @@ namespace NewLife.CMX.Web
 
             //app.UseAuthorization();
 
+            app.UseStardust();
             app.UseCube(env);
             app.UseRouter(endpoints => CMSArea.RegisterArea(endpoints));
 

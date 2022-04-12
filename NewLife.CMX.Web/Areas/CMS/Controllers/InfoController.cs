@@ -16,10 +16,14 @@ namespace NewLife.CMX.Web.Controllers
             var list = ListFields;
             list.RemoveAll(e => e.Name.EqualIgnoreCase("ModelID", "ModelName", "CategoryID", "ExtendID", "Version", "Code", "SourceID", "SourceUrl", "StatisticsID", "Summary"));
 
-            list = FormFields;
+            list = AddFormFields;
             list.RemoveAll(e => e.Name.EqualIgnoreCase("ModelID", "CategoryID", "CategoryName", "StatisticsID", "Title", "Code", "Version", "Views"));
-            //var fi = Info.Meta.AllFields.FirstOrDefault(e => e.Name == "StatisticsText");
-            //if (fi != null) list.Add(fi);
+
+            list = EditFormFields;
+            list.RemoveAll(e => e.Name.EqualIgnoreCase("ModelID", "CategoryID", "CategoryName", "StatisticsID", "Title", "Code", "Version", "Views"));
+
+            list = DetailFields;
+            list.RemoveAll(e => e.Name.EqualIgnoreCase("ModelID", "CategoryID", "CategoryName", "StatisticsID", "Title", "Code", "Version", "Views"));
         }
 
         protected override IEnumerable<Info> Search(Pager p)
@@ -32,36 +36,32 @@ namespace NewLife.CMX.Web.Controllers
             return Info.Search(modelid, catid, key, p);
         }
 
-        public override ActionResult Add()
+        public override ActionResult Add(Info entity)
         {
-            var entity = Factory.Create(true) as Info;
-            entity.CategoryID = Request.Query["categoryId"].ToInt();
-
             // 记下添加前的来源页，待会添加成功以后跳转
             Session["Cube_Add_Referrer"] = Request.Headers["Referer"].FirstOrDefault() + "";
 
-            return FormView(entity);
+            return base.Add(entity);
         }
 
-        /// <summary>表单页视图。子控制器可以重载，以传递更多信息给视图，比如修改要显示的列</summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        protected override ActionResult FormView(Info entity)
+        public override ViewResult View(String viewName, Object model)
         {
-            // 用于显示的列
-            if (ViewBag.Fields == null) ViewBag.Fields = GetFields(true);
+            if (viewName == "")
+            {
+                var tmp = "~/Areas/CMS/Views/Info/Form.cshtml";
+                var entity = model as Info;
+                var mod = entity.Category?.Model ?? entity.Model;
 
-            var tmp = "~/Areas/CMS/Views/Info/Form.cshtml";
+                // 根据模型加载专属表单页
+                if (mod != null) tmp = $"~/Areas/CMS/Views/{mod.Name ?? "Info"}/Form.cshtml";
 
-            var mod = entity.Category?.Model ?? entity.Model;
+                // 没有导航
+                PageSetting.EnableNavbar = false;
 
-            // 根据模型加载专属表单页
-            if (mod != null) tmp = $"~/Areas/CMS/Views/{mod.Name ?? "Info"}/Form.cshtml";
+                viewName = tmp;
+            }
 
-            // 没有导航
-            PageSetting.EnableNavbar = false;
-
-            return View(tmp, entity);
+            return base.View(viewName, model);
         }
 
         public ActionResult Mod(Int32 modelId, Pager p = null)
@@ -70,7 +70,7 @@ namespace NewLife.CMX.Web.Controllers
             ViewBag.Page = p;
 
             // 用于显示的列
-            ViewBag.Fields = base.GetFields(false);
+            ViewBag.Fields = EditFormFields;
 
             // 此时不能发布
             PageSetting.EnableAdd = false;
@@ -87,7 +87,7 @@ namespace NewLife.CMX.Web.Controllers
             ViewBag.Page = p;
 
             // 用于显示的列
-            ViewBag.Fields = base.GetFields(false);
+            ViewBag.Fields = EditFormFields;
 
             // 没有导航
             PageSetting.EnableNavbar = false;

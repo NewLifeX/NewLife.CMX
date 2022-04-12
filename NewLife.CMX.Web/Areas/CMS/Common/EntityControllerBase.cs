@@ -10,10 +10,15 @@ namespace NewLife.CMX.Web
             // 过滤掉一些字段
             ListFields.Replace("CreateUserID", "CreateUser")
                 .Replace("UpdateUserID", "UpdateUser");
-            FormFields.Replace("CreateUserID", "CreateUser")
-                .Replace("UpdateUserID", "UpdateUser")
-                .RemoveField("CreateTime")
-                .RemoveField("UpdateTime");
+
+            AddFormFields.RemoveCreateField();
+            AddFormFields.RemoveUpdateField();
+
+            EditFormFields.RemoveCreateField();
+            EditFormFields.RemoveUpdateField();
+
+            DetailFields.RemoveCreateField();
+            DetailFields.RemoveUpdateField();
         }
     }
 }
