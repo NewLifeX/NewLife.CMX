@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Web.Script.Serialization;
 using System.Xml.Serialization;
+using NewLife.Caching;
 using NewLife.Collections;
 using NewLife.Common;
 using NewLife.Data;
@@ -171,17 +172,20 @@ namespace NewLife.CMX
             return GetInfos(pager);
         }
 
-        DictionaryCache<String, IList<Info>> _cache = new DictionaryCache<String, IList<Info>>()
-        {
-            Period = 60,
-        };
+        ICache _cache = Cache.Default;
         /// <summary>获取该分类以及子孙分类的所有有效信息。带60秒异步缓存</summary>
         /// <param name="pager"></param>
         /// <returns></returns>
         public IList<Info> GetInfos(PageParameter pager)
         {
             var key = $"{ID}-{pager.GetKey()}";
-            return _cache.GetItem(key, k => Info.Search(0, ID, null, pager).Cast<Info>().ToList());
+            if (_cache.TryGetValue<IList<Info>>(key, out var list)) return list;
+
+            list = Info.Search(0, ID, null, pager);
+
+            _cache.Set(key, list, 60);
+
+            return list;
         }
         #endregion
 

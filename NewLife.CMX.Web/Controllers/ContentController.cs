@@ -2,6 +2,7 @@
 using System.IO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NewLife.Caching;
 using NewLife.Collections;
 using NewLife.Web;
 using XCode;
@@ -15,31 +16,39 @@ namespace NewLife.CMX.Web.Controllers
 
         static Boolean ViewExists(String vpath) => System.IO.File.Exists(vpath.GetFullPath());
 
-        static DictionaryCache<String, String> _cache = new(StringComparer.OrdinalIgnoreCase);
+        static ICache _cache = new MemoryCache();
         static String GetView(String name, Model model)
         {
             var viewName = $"../{model.Name}/{name}";
 
-            // 如果频道模版不存在，则采用模型模版
-            return _cache.GetItem(viewName, k =>
-            {
-                // 模型目录的模版
-                var view = k;
-                var vpath = $"Views/{model.Name}/{name}.cshtml";
-                if (ViewExists(vpath)) return view;
+            if (_cache.TryGetValue<String>(viewName, out var view)) return view;
 
+            // 如果频道模版不存在，则采用模型模版
+
+            // 模型目录的模版
+            view = viewName;
+            var vpath = $"Views/{model.Name}/{name}.cshtml";
+            if (!ViewExists(vpath))
+            {
                 // 内容目录的模板
                 view = $"../Content/{name}";
                 vpath = $"Views/Content/{name}.cshtml";
-                if (ViewExists(vpath)) return view;
+                if (!ViewExists(vpath))
+                {
+                    // 共享目录的模板
+                    view = $"../Shared/{name}";
+                    vpath = $"Views/Shared/{name}.cshtml";
+                    if (!ViewExists(vpath))
+                    {
+                        view = null;
+                    }
+                }
 
-                // 共享目录的模板
-                view = $"../Shared/{name}";
-                vpath = $"Views/Shared/{name}.cshtml";
-                if (ViewExists(vpath)) return view;
+            }
 
-                return null;
-            });
+            _cache.Set(viewName, view, 60);
+
+            return view;
         }
 
         public ActionResult Index()

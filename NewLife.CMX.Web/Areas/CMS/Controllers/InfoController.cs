@@ -36,13 +36,14 @@ namespace NewLife.CMX.Web.Controllers
             return Info.Search(modelid, catid, key, p);
         }
 
-        public override ActionResult Add(Info entity)
-        {
-            // 记下添加前的来源页，待会添加成功以后跳转
-            Session["Cube_Add_Referrer"] = Request.Headers["Referer"].FirstOrDefault() + "";
 
-            return base.Add(entity);
-        }
+        //public override ActionResult Add(Info entity)
+        //{
+        //    // 记下添加前的来源页，待会添加成功以后跳转
+        //    Session["Cube_Add_Referrer"] = Request.Headers["Referer"].FirstOrDefault() + "";
+
+        //    return base.Add(entity);
+        //}
 
         public override ViewResult View(String viewName, Object model)
         {
